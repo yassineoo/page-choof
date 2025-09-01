@@ -498,25 +498,46 @@ renderMobileLayout(data, theme, lang) {
     const shadowClass = theme === 'dark' ? '' : 'shadow-[-2.6px_27.76px_27.76px_0px_#4F4F4F17]';
     const textClass = theme === 'dark' ? 'text-white' : 'text-[#2A2A2A]';
     const fontClass = lang === 'ar' ? 'font-noto-kufi-arabic' : 'font-rubik';
+    const renderedTitle = (() => {
+  let titleHTML = card.title;
+
+  if (titleHTML.includes('SMS')) {
+    titleHTML = titleHTML.replace(/(SMS)/g, '<span class="font-rubik">$1</span>');
+  }
+
+  return `
+    <h2 class="text-xl leading-[170%] tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
+      ${titleHTML}
+    </h2>
+  `;
+})();
+
 
     const renderedCard = `
-      <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}" style="min-height: 450px;">
-        <div class="p-6 flex flex-col h-full">
-          <div class="flex items-center gap-1 mb-4 pb-3 flex-shrink-0" style="border-bottom: 0.87px solid #F4F4F4;">
-            <div class="flex items-center justify-center">
-              <img src="${this.resolveIcon(card.icon, theme)}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
-            </div>
-            <h2 class="text-xl leading-[170%] tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
-              ${card.title}
-            </h2>
-          </div>
-          <div class="card-content flex flex-col gap-3 flex-1">
-            ${sections.map(section => this.renderSection(section, lang, theme)).join('')}
-          </div>
-          ${this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.renderExpandButton(cardIndex, isExpanded, theme) : ''}
+  <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}" style="min-height: 450px;">
+    <div class="px-6 pt-6 pb-6 flex flex-col h-full">
+    
+      <!-- Title Section -->
+      <div class="flex items-center gap-1 flex-shrink-0" style="padding-bottom: 24px; border-bottom: 0.87px solid #F4F4F4;">
+        <div class="flex items-center justify-center">
+          <img src="${this.resolveIcon(card.icon, theme)}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
         </div>
+        <h2 class="text-xl leading-[170%] tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
+          ${card.title}
+        </h2>
       </div>
-    `;
+
+      <!-- Card Content -->
+      <div class="card-content flex flex-col gap-3 flex-1 pt-6">
+        ${sections.map(section => this.renderSection(section, lang, theme)).join('')}
+      </div>
+
+      <!-- Expand Button (if any) -->
+      ${this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.renderExpandButton(cardIndex, isExpanded, theme) : ''}
+    </div>
+  </div>
+`;
+
 
     this.cache.renderedCards.set(cacheKey, renderedCard);
     return renderedCard;
@@ -524,61 +545,70 @@ renderMobileLayout(data, theme, lang) {
 
 renderSection(section, lang, theme) {
   if (!section?.subtitle) return '';
+
   const cacheKey = `section-${JSON.stringify(section)}-${lang}-${theme}`;
-  if (this.cache.renderedSections.has(cacheKey)) return this.cache.renderedSections.get(cacheKey);
-  
+  if (this.cache.renderedSections.has(cacheKey)) {
+    return this.cache.renderedSections.get(cacheKey);
+  }
+
   const textClass = theme === 'dark' ? 'text-white' : 'text-[#2A2A2A]';
-  
+
   const isRTL = lang === 'ar';
   const directionStyle = isRTL ? 'direction: rtl;' : 'direction: ltr;';
   const gapSideMargin = isRTL ? 'margin-left: 0.5rem;' : 'margin-right: 0.5rem;';
-  
-  
-  const isFacebookMessenger = (section.subtitle?.includes('Facebook & Messenger') || 
-                              section.subtitle?.includes('فايسبوك & ماسنجر')) &&
-                              Array.isArray(section.subIcon) && 
-                              section.subIcon.length === 2;
-  
+
+  const isFacebookMessenger = (
+    section.subtitle?.includes('Facebook & Messenger') ||
+    section.subtitle?.includes('فايسبوك & ماسنجر')
+  ) && Array.isArray(section.subIcon) && section.subIcon.length === 2;
+
   let iconsAndTextContent = '';
-  
+
+  // Special case: Facebook & Messenger
   if (isFacebookMessenger) {
-  const facebookIcon = `<img src="${this.resolveSubIcon(section.subIcon[0], theme)}" style="width:20px;height:20px;" alt="${section.subIcon[0]}" />`;
-  const messengerIcon = `<img src="${this.resolveSubIcon(section.subIcon[1], theme)}" style="width:20px;height:20px;" alt="${section.subIcon[1]}" />`;
+    const facebookIcon = `<img src="${this.resolveSubIcon(section.subIcon[0], theme)}" style="width:20px;height:20px;" alt="${section.subIcon[0]}" />`;
+    const messengerIcon = `<img src="${this.resolveSubIcon(section.subIcon[1], theme)}" style="width:20px;height:20px;" alt="${section.subIcon[1]}" />`;
 
-  const facebookText = lang === 'ar' ? 'فايسبوك' : 'Facebook';
-  const messengerText = lang === 'ar' ? 'ماسنجر' : 'Messenger';
-  const fontClassForText = lang === 'ar' ? 'font-noto-kufi-arabic' : 'font-rubik';
+    const facebookText = lang === 'ar' ? 'فايسبوك' : 'Facebook';
+    const messengerText = lang === 'ar' ? 'ماسنجر' : 'Messenger';
+    const fontClassForText = lang === 'ar' ? 'font-noto-kufi-arabic' : 'font-rubik';
 
-  iconsAndTextContent = `
-    <div class="flex items-center gap-1">
-      ${facebookIcon}
+    iconsAndTextContent = `
+      <div class="flex items-center gap-1">
+        ${facebookIcon}
+        <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
+          ${facebookText}
+        </span>
+      </div>
       <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
-        ${facebookText}
+        &
       </span>
-    </div>
-    <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
-      &
-    </span>
-    <div class="flex items-center gap-1">
-      ${messengerIcon}
-      <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
-        ${messengerText}
-      </span>
-    </div>
-  `;
-}
- else {
-    
-    
+      <div class="flex items-center gap-1">
+        ${messengerIcon}
+        <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
+          ${messengerText}
+        </span>
+      </div>
+    `;
+  } else {
+    // Default subtitle rendering
     let fontClassForSubtitle = 'font-rubik';
+
     if (lang === 'ar') {
-      
       const hasArabicChars = /[\u0600-\u06FF]/.test(section.subtitle);
       if (hasArabicChars) {
         fontClassForSubtitle = 'font-noto-kufi-arabic';
       }
+
+      // Special override: highlight "Ooredoo" with Rubik font
+      if (section.subtitle.includes('Ooredoo')) {
+        fontClassForSubtitle = ''; // We'll apply fonts inline instead
+
+        // Replace all "Ooredoo" with span-wrapped version
+        section.subtitle = section.subtitle.replace(/(Ooredoo)/g, `<span class="font-rubik">$1</span>`);
+      }
     }
-    
+
     iconsAndTextContent = `
       ${this.renderSectionIcons(section, theme)}
       <span class="text-sm font-medium ${textClass} ${fontClassForSubtitle}"
@@ -587,7 +617,7 @@ renderSection(section, lang, theme) {
       </span>
     `;
   }
-  
+
   const renderedSection = `
     <div class="flex flex-col font-rubik mb-6">
       <div class="flex items-center justify-between min-w-0">
@@ -605,6 +635,7 @@ renderSection(section, lang, theme) {
       </div>
     </div>
   `;
+
   this.cache.renderedSections.set(cacheKey, renderedSection);
   return renderedSection;
 }
@@ -639,7 +670,7 @@ renderSectionValue(section, theme) {
     fontClass = 'font-noto-kufi-arabic';
   }
 
-  const valueClass = theme === 'dark' ? 'text-white' : 'text-red-600';
+  const valueClass = theme === 'dark' ? 'text-white' : 'text-ooredoo-red';
 
   const formatUnit = (unit, value) => {
     if (!unit) return value;

@@ -683,10 +683,10 @@ class ForfaitComponent {
 
     this.container.innerHTML = `
       <div class="w-full">
-        <section class="w-full bg-[#141B4D] dark:bg-[#1a1a1a] py-16">
+        <section class="w-full bg-[#141B4D] dark:bg-[#141414] py-16">
           <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide uppercase text-center text-white">
-              ${this.createMixedTitleHTML(labels.titleData)}
+              ${labels.titleData}
             </h2>
             ${this.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5")}
           </div>
