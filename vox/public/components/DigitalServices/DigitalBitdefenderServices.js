@@ -939,7 +939,7 @@ export default class DigitalBitdefenderServices {
            role="dialog" 
            aria-modal="true" 
            aria-labelledby="modal-title">
-        <div class="relative bg-white pt-6 px-2 dark:bg-[#2C2C2C] rounded-3xl shadow-2xl w-full max-w-sm mx-4 overflow-hidden" ${dirAttribute}>
+        <div class="relative bg-white pt-6 px-2 dark:bg-[#2C2C2C] rounded-3xl shadow-2xl w-full max-w-sm mx-4 overflow-hidden flex flex-col items-center" ${dirAttribute}>
           <!-- Close Button -->
           <button class="bitdefender-modal-close" 
                   aria-label="${isRTL ? "إغلاق" : "Fermer"}">
@@ -980,7 +980,7 @@ export default class DigitalBitdefenderServices {
              }      
 
             <!-- Buttons -->
-            <div class="bitdefender-modal-buttons gap-3 flex items-center">
+            <div class="bitdefender-modal-buttons gap-3 flex items-center mx-auto">
               ${buttons}
             </div>
           </div>
