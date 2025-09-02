@@ -384,30 +384,32 @@ export default class Consommation {
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
 
     return `
-    <div class="w-full flex flex-col ${bgClass} ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
-      <div class="bg-[#141B4D] w-full px-6 pt-2 pb-14 -my-7"> 
-        <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center py-4" style="font-weight: 500; font-size: 24px;">
-          ${data.title}
-        </h1>
-      </div>
-      <div class="w-full px-4 -mt-7">
-        <div class="cards-container flex flex-col gap-6 max-w-full mx-auto">
-${this.renderMobileCard(data.cards[0], 0, lang, theme, true)}
-          ${
-            this.state.showAllCards
-              ? data.cards
-                  .slice(1)
-                  .map((card, index) => this.this.renderMobileCard(card, index + 1, lang, theme, false))
-                  .join("")
-              : ""
-          }
+      <div class="w-full flex flex-col ${bgClass} ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
+        <div class="bg-[#141B4D] w-full px-6 pt-2 pb-14 -my-7"> 
+          <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center py-4" style="font-weight: 500; font-size: 24px;">
+            ${data.title}
+          </h1>
         </div>
-        <div class="mb-6"> <!-- Added margin-bottom to the button wrapper -->
-          ${this.renderMobileButton(lang, theme)}
+        <div class="w-full px-4 -mt-7">
+          <div class="cards-container flex flex-col gap-6 max-w-full mx-auto">
+            ${this.renderMobileCard(data.cards[0], 0, lang, theme, true, this.isCardExpanded(0))}
+            ${
+              this.state.showAllCards
+                ? data.cards
+                    .slice(1)
+                    .map((card, index) =>
+                      this.renderMobileCard(card, index + 1, lang, theme, false, this.isCardExpanded(index + 1)),
+                    )
+                    .join("")
+                : ""
+            }
+          </div>
+          <div class="mb-6"> <!-- Added margin-bottom to the button wrapper -->
+            ${this.renderMobileButton(lang, theme)}
+          </div>
         </div>
       </div>
-    </div>
-  `
+    `
   }
 
   renderMobileButton(lang, theme) {
@@ -437,8 +439,7 @@ ${this.renderMobileCard(data.cards[0], 0, lang, theme, true)}
       return this.cache.renderedCards.get(cacheKey)
     }
 
-    const isCardExpanded = expanded || this.isCardExpanded(cardIndex)
-    const sections = this.getCardSections(card, isCardExpanded)
+    const sections = card.sections || []
     const borderRadius = "rounded-[22px]"
     const bgClass = theme === "dark" ? "bg-[#141414]" : "bg-white"
     const borderClass = theme === "dark" ? "border border-[#3F3F3F]" : "border border-[#CDCDCD]"
@@ -460,7 +461,6 @@ ${this.renderMobileCard(data.cards[0], 0, lang, theme, true)}
           <div class="card-content flex flex-col gap-3 flex-1">
             ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
           </div>
-          ${this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.renderExpandButton(cardIndex, isCardExpanded, theme) : ""}
         </div>
       </div>
     `
@@ -519,36 +519,36 @@ ${this.renderMobileCard(data.cards[0], 0, lang, theme, true)}
       }
 
       return `
-    <h2 class="text-xl leading-[170%] tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
-      ${titleHTML}
-    </h2>
-  `
+        <h2 class="text-xl leading-[170%] tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
+          ${titleHTML}
+        </h2>
+      `
     })()
 
     const renderedCard = `
-  <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}" style="min-height: 450px;">
-    <div class="px-6 pt-6 pb-6 flex flex-col h-full">
-    
-      <!-- Title Section -->
-      <div class="flex items-center gap-1 flex-shrink-0" style="padding-bottom: 24px; border-bottom: 0.87px solid #F4F4F4;">
-        <div class="flex items-center justify-center">
-          <img src="${this.resolveIcon(card.icon, theme)}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
+      <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}" style="min-height: 450px;">
+        <div class="px-6 pt-6 pb-6 flex flex-col h-full">
+        
+          <!-- Title Section -->
+          <div class="flex items-center gap-1 flex-shrink-0" style="padding-bottom: 24px; border-bottom: 0.87px solid #F4F4F4;">
+            <div class="flex items-center justify-center">
+              <img src="${this.resolveIcon(card.icon, theme)}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
+            </div>
+            <h2 class="text-xl leading-[170%] tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
+              ${card.title}
+            </h2>
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-content flex flex-col gap-3 flex-1 pt-6">
+            ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
+          </div>
+
+          <!-- Expand Button (if any) -->
+          ${this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.renderExpandButton(cardIndex, isExpanded, theme) : ""}
         </div>
-        <h2 class="text-xl leading-[170%] tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
-          ${card.title}
-        </h2>
       </div>
-
-      <!-- Card Content -->
-      <div class="card-content flex flex-col gap-3 flex-1 pt-6">
-        ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
-      </div>
-
-      <!-- Expand Button (if any) -->
-      ${this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.renderExpandButton(cardIndex, isExpanded, theme) : ""}
-    </div>
-  </div>
-`
+    `
 
     this.cache.renderedCards.set(cacheKey, renderedCard)
     return renderedCard
@@ -585,22 +585,22 @@ ${this.renderMobileCard(data.cards[0], 0, lang, theme, true)}
       const fontClassForText = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
 
       iconsAndTextContent = `
-      <div class="flex items-center gap-1">
-        ${facebookIcon}
+        <div class="flex items-center gap-1">
+          ${facebookIcon}
+          <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
+            ${facebookText}
+          </span>
+        </div>
         <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
-          ${facebookText}
+          &amp;
         </span>
-      </div>
-      <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
-        &
-      </span>
-      <div class="flex items-center gap-1">
-        ${messengerIcon}
-        <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
-          ${messengerText}
-        </span>
-      </div>
-    `
+        <div class="flex items-center gap-1">
+          ${messengerIcon}
+          <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
+            ${messengerText}
+          </span>
+        </div>
+      `
     } else {
       // Default subtitle rendering
       let fontClassForSubtitle = "font-rubik"
@@ -621,31 +621,31 @@ ${this.renderMobileCard(data.cards[0], 0, lang, theme, true)}
       }
 
       iconsAndTextContent = `
-      ${this.renderSectionIcons(section, theme)}
-      <span class="text-sm font-medium ${textClass} ${fontClassForSubtitle}"
-            style="font-weight: 500; line-height: 1.3; white-space: normal; word-break: break-word; ${gapSideMargin}">
-        ${section.subtitle}
-      </span>
-    `
+        ${this.renderSectionIcons(section, theme)}
+        <span class="text-sm font-medium ${textClass} ${fontClassForSubtitle}"
+              style="font-weight: 500; line-height: 1.3; white-space: normal; word-break: break-word; ${gapSideMargin}">
+          ${section.subtitle}
+        </span>
+      `
     }
 
     const renderedSection = `
-    <div class="flex flex-col font-rubik mb-6">
-      <div class="flex items-center justify-between min-w-0">
-        <div class="flex flex-col flex-1 min-w-0">
-          <div class="flex items-center gap-2" style="${directionStyle};">
-            ${iconsAndTextContent}
+      <div class="flex flex-col font-rubik mb-6">
+        <div class="flex items-center justify-between min-w-0">
+          <div class="flex flex-col flex-1 min-w-0">
+            <div class="flex items-center gap-2" style="${directionStyle};">
+              ${iconsAndTextContent}
+            </div>
+            <div class="mt-1">
+              ${this.renderSectionSecondaryRow(section, lang, theme)}
+            </div>
           </div>
-          <div class="mt-1">
-            ${this.renderSectionSecondaryRow(section, lang, theme)}
+          <div class="flex-shrink-0 flex items-center whitespace-nowrap">
+            ${this.renderSectionValue(section, theme)}
           </div>
-        </div>
-        <div class="flex-shrink-0 flex items-center whitespace-nowrap">
-          ${this.renderSectionValue(section, theme)}
         </div>
       </div>
-    </div>
-  `
+    `
 
     this.cache.renderedSections.set(cacheKey, renderedSection)
     return renderedSection
@@ -694,15 +694,15 @@ ${this.renderMobileCard(data.cards[0], 0, lang, theme, true)}
 
     if (section.extra) {
       return `
-      <div class="flex flex-col items-end">
-        <span class="${valueClass} ${fontClass} font-medium text-right" style="font-weight: 600; font-size: 15.99px;">
-          ${formatUnit(section.unit, section.value)}
-        </span>
-        <span class="${valueClass} ${fontClass} font-medium text-right text-[9px]" style="font-weight: 500;">
-          ${section.extra}
-        </span>
-      </div>
-    `
+        <div class="flex flex-col items-end">
+          <span class="${valueClass} ${fontClass} font-medium text-right" style="font-weight: 600; font-size: 15.99px;">
+            ${formatUnit(section.unit, section.value)}
+          </span>
+          <span class="${valueClass} ${fontClass} font-medium text-right text-[9px]" style="font-weight: 500;">
+            ${section.extra}
+          </span>
+        </div>
+      `
     }
 
     return `<span class="${valueClass} ${fontClass} font-medium text-right" style="font-weight: 500; font-size: 15.99px;">${formatUnit(section.unit, section.value)}</span>`
@@ -718,23 +718,23 @@ ${this.renderMobileCard(data.cards[0], 0, lang, theme, true)}
     let content = ""
     if (hasDate) {
       content += `
-      <div class="flex justify-start">
-        <span class="text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
-          ${lang === "ar" ? "إلى" : "Expire le"} ${section.date}
-        </span>
-      </div>
-    `
+        <div class="flex justify-start">
+          <span class="text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
+            ${lang === "ar" ? "إلى" : "Expire le"} ${section.date}
+          </span>
+        </div>
+      `
     }
     if (hasProgress) {
       const percentage = Math.max(0, Math.min(100, section.percentage))
       const barBgColor = theme === "dark" ? "bg-white" : "bg-[#F1F1F1]"
       content += `
-      <div class="flex justify-start mt-1">
-        <div class="relative ${barBgColor} rounded-full h-2" style="width: 90%;"> <!-- increased width -->
-          <div class="bg-ooredoo-red h-2 rounded-full" style="width:${percentage}%;"></div>
+        <div class="flex justify-start mt-1">
+          <div class="relative ${barBgColor} rounded-full h-2" style="width: 90%;"> <!-- increased width -->
+            <div class="bg-ooredoo-red h-2 rounded-full" style="width:${percentage}%;"></div>
+          </div>
         </div>
-      </div>
-    `
+      `
     }
     return content
   }
@@ -744,27 +744,27 @@ ${this.renderMobileCard(data.cards[0], 0, lang, theme, true)}
     const chevronSrc = this.resolveChevronIcon(theme)
 
     return `
-  <div class="w-full mt-4 pt-4 flex-shrink-0 flex justify-center">
-    <div class="w-2/3 border-t" style="border-color: ${borderColor};"></div>
-  </div>
-  <div class="flex justify-center">
-    <button
-      class="card-chevron flex items-center justify-center cursor-pointer rounded-full p-3 transition-all duration-200"
-      data-card-index="${cardIndex}"
-      type="button"
-      aria-label="Toggle card content"
-      aria-expanded="${isExpanded ? "true" : "false"}"
-      style="min-width: 50px; min-height: 50px; margin-bottom: 0;"
-    >
-      <div class="chevron-rotator w-12 h-10 flex items-center justify-center transform transition-transform duration-300 ease-in-out ${isExpanded ? "rotate-180" : "rotate-0"}">
-        <img src="${chevronSrc}"
-             class="w-full h-full"
-             alt="expand chevron"
-             style="filter: ${theme === "dark" ? "brightness(0) invert(1)" : "none"};" />
+      <div class="w-full mt-4 pt-4 flex-shrink-0 flex justify-center">
+        <div class="w-2/3 border-t" style="border-color: ${borderColor};"></div>
       </div>
-    </button>
-  </div>
-`
+      <div class="flex justify-center">
+        <button
+          class="card-chevron flex items-center justify-center cursor-pointer rounded-full p-3 transition-all duration-200"
+          data-card-index="${cardIndex}"
+          type="button"
+          aria-label="Toggle card content"
+          aria-expanded="${isExpanded ? "true" : "false"}"
+          style="min-width: 50px; min-height: 50px; margin-bottom: 0;"
+        >
+          <div class="chevron-rotator w-12 h-10 flex items-center justify-center transform transition-transform duration-300 ease-in-out ${isExpanded ? "rotate-180" : "rotate-0"}">
+            <img src="${chevronSrc}"
+                 class="w-full h-full"
+                 alt="expand chevron"
+                 style="filter: ${theme === "dark" ? "brightness(0) invert(1)" : "none"};" />
+          </div>
+        </button>
+      </div>
+    `
   }
 
   renderCardContent(cardIndex) {
