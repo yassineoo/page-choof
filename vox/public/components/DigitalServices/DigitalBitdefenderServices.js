@@ -1,61 +1,63 @@
-import { bitdefenderPlans } from './DigitalBitdefenderServicesData.js';
-import modalData from './ModalData.js';
+import { bitdefenderPlans } from "./DigitalBitdefenderServicesData.js";
+import modalData from "./ModalData.js";
 
 const bitdefenderTranslations = {
   fr: {
-    buttonText: 'ACHETER',
-    buyModalTitle: 'Confirmation d\'achat',
-    buyMessage: (plan) => `Obtenez un accès à ${plan.title} + ${plan.subtitle} pour ${plan.price} DA / ${plan.duration}.`,
-    congratsTitle: 'Félicitations !',
+    buttonText: "ACHETER",
+    buyModalTitle: "Confirmation d'achat",
+    buyMessage: (plan) => `Prix total : ${plan.price} DA/${plan.duration}.`,
+    terms: `J'accepte les conditions générales`,
+    congratsTitle: "Félicitations !",
     congratsMessage: (plan) => `Votre commande a été confirmée. Vous recevrez un SMS pour activer votre abonnement.`,
-    creditTitle: 'Crédit insuffisant',
+    creditTitle: "Crédit insuffisant",
     creditMessage: (plan) => `Votre crédit est insuffisant pour finaliser votre demande. Veuillez recharger votre compte et réessayer.`,
-    errorTitle: 'Erreur',
-    errorMessage: 'Une erreur s\'est produite. Veuillez réessayer.',
-    confirmBtn: 'Confirmer',
-    cancelBtn: 'Annuler',
-    closeBtn: 'Retour',
-    okBtn: 'OK',
-    startingFrom: 'À partir de',
-    completeProtection: 'Protection complète',
-    protectionUpTo: 'Protection jusqu\'à 10 appareils',
-    chooseOffer: 'Choisissez l\'offre qui vous convient',
-    subscriptionPrice: 'Prix de l\'abonnement',
-    chooseDevices: 'Choisissez le nombre d\'appareils',
-    chooseDuration: 'Choisissez la durée de l\'abonnement',
-    chooseBtn: 'Choisir',
-    month: 'mois',
-    months: 'mois',
-    device: 'appareil',
-    devices: 'appareils'
+    errorTitle: "Erreur",
+    errorMessage: "Une erreur s'est produite. Veuillez réessayer.",
+    confirmBtn: "Confirmer",
+    cancelBtn: "Annuler",
+    closeBtn: "Retour",
+    okBtn: "OK",
+    startingFrom: "À partir de",
+    completeProtection: "Protection complète",
+    protectionUpTo: "Protection jusqu'à 10 appareils",
+    chooseOffer: "Choisissez l'offre qui vous convient",
+    subscriptionPrice: "Prix de l'abonnement",
+    chooseDevices: "Choisissez le nombre d'appareils",
+    chooseDuration: "Choisissez la durée de l'abonnement",
+    chooseBtn: "Choisir",
+    month: "mois",
+    months: "mois",
+    device: "appareil",
+    devices: "appareils",
   },
   ar: {
-    buttonText: 'شراء',
-    buyModalTitle: 'تأكيد الشراء',
-    buyMessage: (plan) => `احصل على ${plan.titleAr || plan.title} + ${plan.subtitleAr || plan.subtitle} مقابل ${plan.price} دج / ${plan.durationAr || plan.duration}.`,
-    congratsTitle: 'هنيئًا!',
+    buttonText: "شراء",
+    buyModalTitle: "تأكيد الشراء",
+    buyMessage: (plan) => `السعر الإجمالي: ${plan.price} دج / ${plan.duration}`,
+    terms: "أوافق على شروط الإستعمال ",
+    congratsTitle: "هنيئًا!",
     congratsMessage: (plan) => `لقد تم تأكيد طلبك. ستتلقى رسالة قصيرة لتفعيل اشتراكك.`,
-    creditTitle: 'رصيد غير كافٍ',
+    creditTitle: "رصيد غير كافٍ",
     creditMessage: (plan) => `رصيدك غير كافٍ لتقديم طلبك. يرجى إعادة تعبئة حسابك والمحاولة مرة أخرى.`,
-    errorTitle: 'خطأ',
-    errorMessage: 'لقد حدث خلل ما. يرجى المحاولة مرة أخرى.',
-    confirmBtn: 'تأكيد',
-    cancelBtn: 'إلغاء',
-    closeBtn: 'العودة',
-    okBtn: 'تم',
-    startingFrom: 'ابتداءً من',
-    completeProtection: 'حماية كاملة',
-    protectionUpTo: 'حماية تصل إلى 10 أجهزة',
-    chooseOffer: 'إختاروا العرض الذي يناسبكم',
-    subscriptionPrice: 'سعر الإشتراك',
-    chooseDevices: 'إختاروا عدد الأجهزة',
-    chooseDuration: 'إختاروا مدة الإشتراك',
-    chooseBtn: 'إختيار',
-    month: 'شهر',
-    months: 'أشهر',
-    device: 'جهاز',
-    devices: 'أجهزة'
-  }
+    errorTitle: "خطأ",
+    errorMessage: "لقد حدث خلل ما. يرجى المحاولة مرة أخرى.",
+    confirmBtn: "تأكيد",
+    cancelBtn: "إلغاء",
+    closeBtn: "العودة",
+    okBtn: "تم",
+    startingFrom: "ابتداءً من",
+    completeProtection: "حماية كاملة",
+    protectionUpTo: "حماية تصل إلى 10 أجهزة",
+    chooseOffer: "إختاروا العرض الذي يناسبكم",
+    subscriptionPrice: "سعر الإشتراك",
+    chooseDevices: "إختاروا عدد الأجهزة",
+    chooseDuration: "إختاروا مدة الإشتراك",
+    chooseBtn: "إختيار",
+    month: "شهر",
+    months: "أشهر",
+    device: "جهاز",
+    devices: "أجهزة",
+  },
 };
 
 // Configuration for device and duration options
@@ -64,16 +66,16 @@ const durationOptions = [
   { value: 1, priceMultiplier: 1 },
   { value: 3, priceMultiplier: 2.8 },
   { value: 6, priceMultiplier: 5.5 },
-  { value: 12, priceMultiplier: 10.5 }
+  { value: 12, priceMultiplier: 10.5 },
 ];
 
 export default class DigitalBitdefenderServices {
   constructor(container) {
     this.container = container;
     this.currentLang = this.getLang();
-    this.currentView = 'main'; // 'main' or 'selection'
+    this.currentView = "main"; // 'main' or 'selection'
     this.selectedPlan = null;
-    this.selectedDevices = 5;  // Default to first option
+    this.selectedDevices = 5; // Default to first option
     this.selectedDuration = 1; // Default to first option
     this.checkboxAccepted = false; // For terms and conditions
     this.init();
@@ -87,9 +89,9 @@ export default class DigitalBitdefenderServices {
   }
 
   loadStyles() {
-    if (!document.getElementById('bitdefender-enhanced-styles')) {
-      const styleElement = document.createElement('style');
-      styleElement.id = 'bitdefender-enhanced-styles';
+    if (!document.getElementById("bitdefender-enhanced-styles")) {
+      const styleElement = document.createElement("style");
+      styleElement.id = "bitdefender-enhanced-styles";
       styleElement.textContent = `
         .bitdefender-card-shadow {
           box-shadow: -0.93px 7.46px 16.78px 0px rgba(79, 79, 79, 0.1), -2.8px 29.82px 29.82px 0px rgba(79, 79, 79, 0.09);
@@ -259,7 +261,7 @@ export default class DigitalBitdefenderServices {
 
         [dir="rtl"] .bitdefender-modal-close {
           left: 16px;
-          right: auto;
+        
         }
 
         .bitdefender-modal-icon {
@@ -384,29 +386,29 @@ export default class DigitalBitdefenderServices {
   }
 
   getLang() {
-    const stored = localStorage.getItem('language');
-    return ['fr', 'ar'].includes(stored) ? stored : 'fr';
+    const stored = localStorage.getItem("language");
+    return ["fr", "ar"].includes(stored) ? stored : "fr";
   }
 
   bindEvents() {
     this.unbindEvents();
     this.boundHandleLanguageChange = this.handleLanguageChange.bind(this);
-    window.addEventListener('languageChanged', this.boundHandleLanguageChange);
+    window.addEventListener("languageChanged", this.boundHandleLanguageChange);
     this.langPoller = setInterval(this.checkLanguageChange.bind(this), 200);
     this.boundStorageListener = (e) => {
-      if (e.key === 'language') {
+      if (e.key === "language") {
         this.handleLanguageChange();
       }
     };
-    window.addEventListener('storage', this.boundStorageListener);
+    window.addEventListener("storage", this.boundStorageListener);
   }
 
   unbindEvents() {
     if (this.boundHandleLanguageChange) {
-      window.removeEventListener('languageChanged', this.boundHandleLanguageChange);
+      window.removeEventListener("languageChanged", this.boundHandleLanguageChange);
     }
     if (this.boundStorageListener) {
-      window.removeEventListener('storage', this.boundStorageListener);
+      window.removeEventListener("storage", this.boundStorageListener);
     }
     if (this.langPoller) {
       clearInterval(this.langPoller);
@@ -429,41 +431,41 @@ export default class DigitalBitdefenderServices {
   }
 
   updateDocumentDirection() {
-    const mainContainer = this.container.querySelector('[dir]');
+    const mainContainer = this.container.querySelector("[dir]");
     if (mainContainer) {
-      mainContainer.dir = this.currentLang === 'ar' ? 'rtl' : 'ltr';
+      mainContainer.dir = this.currentLang === "ar" ? "rtl" : "ltr";
     }
   }
 
-  getIconPath(plan, type = 'icon') {
-    const isDark = document.documentElement.classList.contains('dark');
+  getIconPath(plan, type = "icon") {
+    const isDark = document.documentElement.classList.contains("dark");
     const iconKey = isDark ? `${type}Dark` : type;
     return plan[iconKey] || plan[type];
   }
 
   getLogoPath() {
-    const isDark = document.documentElement.classList.contains('dark');
-    return isDark ? './assets/images/services/Bitdefender/Bitdefender-white.svg' : './assets/images/services/Bitdefender.svg';
+    const isDark = document.documentElement.classList.contains("dark");
+    return isDark ? "./assets/images/services/Bitdefender/Bitdefender-white.svg" : "./assets/images/services/Bitdefender.svg";
   }
 
   getTranslatedPlan(plan) {
-    const isArabic = this.currentLang === 'ar';
+    const isArabic = this.currentLang === "ar";
     return {
       ...plan,
       title: isArabic ? plan.titleAr || plan.title : plan.title,
       subtitle: isArabic ? plan.subtitleAr || plan.subtitle : plan.subtitle,
       features: isArabic ? plan.featuresAr || plan.features : plan.features,
-      duration: isArabic ? plan.durationAr || plan.duration : plan.duration
+      duration: isArabic ? plan.durationAr || plan.duration : plan.duration,
     };
   }
 
   createCardHTML(plan, index) {
     const translatedPlan = this.getTranslatedPlan(plan);
-    const isArabic = this.currentLang === 'ar';
+    const isArabic = this.currentLang === "ar";
     const t = bitdefenderTranslations[this.currentLang];
-    const textAlign = isArabic ? 'text-right' : 'text-left';
-    const fontClass = isArabic ? 'font-noto-kufi-arabic' : 'font-rubik';
-    const currencyLabel = isArabic ? 'دج' : 'DA';
+    const textAlign = isArabic ? "text-right" : "text-left";
+    const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
+    const currencyLabel = isArabic ? "دج" : "DA";
 
     return `
       <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full max-w-[450px] mx-auto bitdefender-card-shadow dark:border dark:border-[#CDCDCD] bitdefender-hover-lift overflow-hidden">
@@ -477,7 +479,7 @@ export default class DigitalBitdefenderServices {
         <div class="p-6 bitdefender-card-container h-full">
           <!-- Subtitle and Icon -->
           <div class="flex items-center justify-between mb-4">
-            <h4 class="${fontClass} text-ooredoo-red dark:text-white font-bold text-xl flex-1 ${isArabic ? 'ml-3' : 'mr-3'} leading-tight">
+            <h4 class="${fontClass} text-ooredoo-red dark:text-white font-bold text-xl flex-1 ${isArabic ? "ml-3" : "mr-3"} leading-tight">
               ${translatedPlan.subtitle}
             </h4>
             <img src="${this.getIconPath(plan)}" alt="Device" class="w-20 h-14 object-contain flex-shrink-0 bitdefender-plan-icon" />
@@ -488,10 +490,13 @@ export default class DigitalBitdefenderServices {
           
           <!-- Protection info -->
           <div class="flex items-center justify-between mb-4">
-            <span class="${fontClass} text-black dark:text-white font-normal text-base ${isArabic ? 'ml-3' : 'mr-3'}">
+            <span class="${fontClass} text-black dark:text-white font-normal text-base ${isArabic ? "ml-3" : "mr-3"}">
               ${t.completeProtection}
             </span>
-            <img src="${this.getIconPath(plan, 'systemsIcon')}" alt="Systems" class="w-28 h-7 object-contain flex-shrink-0 bitdefender-systems-icon" />
+            <img src="${this.getIconPath(
+              plan,
+              "systemsIcon"
+            )}" alt="Systems" class="w-28 h-7 mb-[9px] object-contain flex-shrink-0 bitdefender-systems-icon" />
           </div>
           
           <!-- Divider -->
@@ -501,16 +506,20 @@ export default class DigitalBitdefenderServices {
           <div class="bitdefender-card-content flex-1">
             <!-- Features -->
             <div class="flex-1 mb-4">
-              <div class="${isArabic ? 'text-right' : 'text-left'}" dir="${isArabic ? 'rtl' : 'ltr'}">
+              <div class="${isArabic ? "text-right" : "text-left"}" dir="${isArabic ? "rtl" : "ltr"}">
                 <ul class="space-y-3">
-                  ${translatedPlan.features.map(feature => `
+                  ${translatedPlan.features
+                    .map(
+                      (feature) => `
                     <li class="flex items-start gap-2">
                       <img src="./assets/images/checkbox.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5" />
                       <span class="bitdefender-feature-item flex-1">
                         ${feature}
                       </span>
                     </li>
-                  `).join('')}
+                  `
+                    )
+                    .join("")}
                 </ul>
               </div>
             </div>
@@ -532,10 +541,7 @@ export default class DigitalBitdefenderServices {
                   ${plan.price}
                 </span>
                 <span class="${fontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">
-                  ${isArabic 
-                    ? `${currencyLabel}/${translatedPlan.duration}` 
-                    : `${currencyLabel}/${translatedPlan.duration}`
-                  }
+                  ${isArabic ? `${currencyLabel}/${translatedPlan.duration}` : `${currencyLabel}/${translatedPlan.duration}`}
                 </span> 
               </div>
             </div>
@@ -572,19 +578,19 @@ export default class DigitalBitdefenderServices {
     const priceTable = {
       5: { 1: 1500, 12: 16500 },
       10: { 1: 2500, 12: 27500 },
-      20: { 1: 4500, 12: 49500 }
+      20: { 1: 4500, 12: 49500 },
     };
-    
+
     return priceTable[this.selectedDevices]?.[duration] || 1500;
   }
 
   createSelectionHTML() {
-    const isArabic = this.currentLang === 'ar';
+    const isArabic = this.currentLang === "ar";
     const t = bitdefenderTranslations[this.currentLang];
-    const fontClass = isArabic ? 'font-noto-kufi-arabic' : 'font-rubik';
-    const dirAttribute = isArabic ? 'dir="rtl"' : '';
+    const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
+    const dirAttribute = isArabic ? 'dir="rtl"' : "";
     const currentPrice = this.calculatePrice(this.selectedPlan.price, this.selectedDuration);
-    const currency = isArabic ? 'دج' : 'DA';
+    const currency = isArabic ? "دج" : "DA";
 
     return `
       <div class="w-full bg-gray-50 dark:bg-[#1C1C1C] pt-4 lg:pt-8 pb-[50px] lg:pb-[70px] ${fontClass}" ${dirAttribute}>
@@ -595,10 +601,12 @@ export default class DigitalBitdefenderServices {
             
             <!-- Integrated Header -->
             <div class="rounded-t-xl lg:rounded-t-2xl" style="background-color: #ED1C24;">
-              <div class="flex flex-col sm:flex-row items-center justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0 ${isArabic ? 'sm:flex-row-reverse' : ''}">
+              <div class="flex flex-col sm:flex-row items-center justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0 ${
+                isArabic ? "sm:flex-row-reverse" : ""
+              }">
                 
                 <!-- Left Side: Logo + Separator + Title -->
-                <div class="flex items-center ${isArabic ? 'flex-row-reverse' : ''} gap-2 sm:gap-3 lg:gap-4">
+                <div class="flex items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
                   <div class="flex-shrink-0">
                     <img src="${this.getLogoPath()}" alt="Bitdefender" class="h-8 w-16 sm:h-10 sm:w-20 lg:h-[55px] lg:w-[112px] object-contain filter brightness-0 invert" />
                   </div>
@@ -606,16 +614,16 @@ export default class DigitalBitdefenderServices {
                   <!-- Vertical Separator - Hidden on mobile -->
                   <div class="hidden sm:block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
                   
-                  <div class="text-white ${isArabic ? 'text-right' : 'text-left'} text-center sm:text-left">
+                  <div class="text-white ${isArabic ? "text-right" : "text-left"} text-center sm:text-left">
                     <h2 class="font-medium font-rubik text-sm sm:text-lg lg:text-[22px] leading-tight">Small Office Security</h2>
                   </div>
                 </div>
 
                 <!-- Right Side: Paragraph + Device Image -->
-                <div class="flex items-center ${isArabic ? 'flex-row-reverse' : ''} gap-2 sm:gap-3 lg:gap-4">
-                  <div class="text-white ${isArabic ? 'text-left' : 'text-right'} text-center sm:text-right">
+                <div class="flex items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
+                  <div class="text-white ${isArabic ? "text-left" : "text-right"} text-center sm:text-right">
                     <p class="text-white text-opacity-90 text-sm sm:text-lg lg:text-[22px] font-medium lg:font-semibold">
-                      ${isArabic ? 'حماية تصل إلى 20 جهاز' : 'Protégez jusqu\'à 20 appareils'}
+                      ${isArabic ? "حماية تصل إلى 20 جهاز" : "Protégez jusqu'à 20 appareils"}
                     </p>
                   </div>
                   <div class="flex-shrink-0">
@@ -631,7 +639,7 @@ export default class DigitalBitdefenderServices {
               <!-- Title -->
               <div class="text-center mb-6 lg:mb-10">
                 <h1 class="font-medium text-lg sm:text-xl lg:text-[28.8px] text-black dark:text-white leading-tight">
-                  ${isArabic ? 'اختاروا العرض الذي يناسبكم' : 'CHOISISSEZ L\'OFFRE QUI VOUS CONVIENT'}
+                  ${isArabic ? "اختاروا العرض الذي يناسبكم" : "CHOISISSEZ L'OFFRE QUI VOUS CONVIENT"}
                 </h1>
               </div>
 
@@ -646,36 +654,28 @@ export default class DigitalBitdefenderServices {
                       01
                     </div>
                     <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
-                      ${isArabic ? 'اختاروا  مدة الاشتراك' : 'Choisissez la durée de l\'abonnement'}
+                      ${isArabic ? "اختاروا  مدة الاشتراك" : "Choisissez la durée de l'abonnement"}
                     </span>
                   </div>
                   <!-- Options -->
                   <div class="flex gap-2 sm:gap-3 lg:gap-4 justify-center py-8 sm:py-12 lg:py-[60px]">
                     <button class="bitdefender-selection-option duration-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDuration === 1 
-                        ? 'text-white' 
-                        : 'text-black hover:bg-gray-200'
+                      this.selectedDuration === 1 ? "text-white" : "text-black hover:bg-gray-200"
                     }" 
                             data-duration="1"
                             style="width: 60px; height: 35px; sm:width: 70px; sm:height: 38px; lg:width: 80px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDuration === 1 
-                                ? 'background-color: #ED1C24;' 
-                                : 'background-color: #eee;'
+                              this.selectedDuration === 1 ? "background-color: #ED1C24;" : "background-color: #eee;"
                             }">
-                      ${isArabic ? '01 شهر' : '01 mois'}
+                      ${isArabic ? "01 شهر" : "01 mois"}
                     </button>
                     <button class="bitdefender-selection-option duration-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDuration === 12 
-                        ? 'text-white' 
-                        : 'text-black hover:bg-gray-200'
+                      this.selectedDuration === 12 ? "text-white" : "text-black hover:bg-gray-200"
                     }" 
                             data-duration="12"
                             style="width: 60px; height: 35px; sm:width: 70px; sm:height: 38px; lg:width: 80px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDuration === 12 
-                                ? 'background-color: #ED1C24;' 
-                                : 'background-color: #eee;'
+                              this.selectedDuration === 12 ? "background-color: #ED1C24;" : "background-color: #eee;"
                             }">
-                      ${isArabic ? '12 شهر' : '12 mois'}
+                      ${isArabic ? "12 شهر" : "12 mois"}
                     </button>
                   </div>
                 </div>
@@ -688,47 +688,35 @@ export default class DigitalBitdefenderServices {
                       02
                     </div>
                     <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
-                      ${isArabic ? 'اختاروا  عدد الأجهزة' : 'Choisissez le nombre d\'appareils'}
+                      ${isArabic ? "اختاروا  عدد الأجهزة" : "Choisissez le nombre d'appareils"}
                     </span>
                   </div>
                   <!-- Options -->
                   <div class="flex gap-2 sm:gap-3 lg:gap-3 justify-center py-8 sm:py-12 lg:py-[60px]">
                     <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDevices === 5 
-                        ? 'text-white' 
-                        : 'text-black hover:bg-gray-200'
+                      this.selectedDevices === 5 ? "text-white" : "text-black hover:bg-gray-200"
                     }" 
                             data-devices="5"
                             style="width: 45px; height: 35px; sm:width: 50px; sm:height: 38px; lg:width: 60px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDevices === 5 
-                                ? 'background-color: #ED1C24;' 
-                                : 'background-color: #eee;'
+                              this.selectedDevices === 5 ? "background-color: #ED1C24;" : "background-color: #eee;"
                             }">
                       05
                     </button>
                     <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDevices === 10 
-                        ? 'text-white' 
-                        : 'text-black hover:bg-gray-200'
+                      this.selectedDevices === 10 ? "text-white" : "text-black hover:bg-gray-200"
                     }" 
                             data-devices="10"
                             style="width: 45px; height: 35px; sm:width: 50px; sm:height: 38px; lg:width: 60px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDevices === 10 
-                                ? 'background-color: #ED1C24;' 
-                                : 'background-color: #eee;'
+                              this.selectedDevices === 10 ? "background-color: #ED1C24;" : "background-color: #eee;"
                             }">
                       10
                     </button>
                     <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDevices === 20 
-                        ? 'text-white' 
-                        : 'text-black hover:bg-gray-200'
+                      this.selectedDevices === 20 ? "text-white" : "text-black hover:bg-gray-200"
                     }" 
                             data-devices="20"
                             style="width: 45px; height: 35px; sm:width: 50px; sm:height: 38px; lg:width: 60px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDevices === 20 
-                                ? 'background-color: #ED1C24;' 
-                                : 'background-color: #eee;'
+                              this.selectedDevices === 20 ? "background-color: #ED1C24;" : "background-color: #eee;"
                             }">
                       20
                     </button>
@@ -743,7 +731,7 @@ export default class DigitalBitdefenderServices {
                       03
                     </div>
                     <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
-                      ${isArabic ? 'سعر الاشتراك' : 'Prix de l\'abonnement'}
+                      ${isArabic ? "سعر الاشتراك" : "Prix de l'abonnement"}
                     </span>
                   </div>
                   <!-- Price Display -->
@@ -766,7 +754,7 @@ export default class DigitalBitdefenderServices {
                                lg:width: 207.11px; lg:height: 47.07px; 
                                border-radius: 25px; lg:border-radius: 28.24px; 
                                padding: 8px 20px; sm:padding: 9px 30px; lg:padding: 9.41px 34.13px;">
-                  <span class="relative z-10 dark:text-white dark:border-white">${isArabic ? 'الغاء' : 'RETOUR'}</span>
+                  <span class="relative z-10 dark:text-white dark:border-white">${isArabic ? "الغاء" : "RETOUR"}</span>
                 </button>
                 <button class="bitdefender-choose-btn ${fontClass} group relative overflow-hidden max-w-[200px]  text-white border-2 font-medium sm:font-semibold text-sm sm:text-base lg:text-[18px] transition-all duration-300 hover:shadow-xl hover:scale-105 uppercase tracking-wide w-full sm:w-auto"
                         style="background-color: #ED1C24; border-color: #ED1C24; 
@@ -775,7 +763,7 @@ export default class DigitalBitdefenderServices {
                                lg:width: 207.11px; lg:height: 47.07px; 
                                border-radius: 25px; lg:border-radius: 28.24px; 
                                padding: 8px 20px; sm:padding: 9px 30px; lg:padding: 9.41px 34.13px;">
-                  <span class="relative z-10">${isArabic ? 'اختيار' : 'CHOISIR'}</span>
+                  <span class="relative z-10">${isArabic ? "اختيار" : "CHOISIR"}</span>
                   <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: linear-gradient(135deg, #ED1C24 0%, #c41e1e 100%);"></div>
                 </button>
               </div>
@@ -789,7 +777,7 @@ export default class DigitalBitdefenderServices {
   }
 
   render() {
-    if (this.currentView === 'selection') {
+    if (this.currentView === "selection") {
       this.container.innerHTML = this.createSelectionHTML();
       this.bindSelectionEvents();
     } else {
@@ -798,8 +786,8 @@ export default class DigitalBitdefenderServices {
   }
 
   renderMainView() {
-    const isArabic = this.currentLang === 'ar';
-    const fontClass = isArabic ? 'font-noto-kufi-arabic' : 'font-rubik';
+    const isArabic = this.currentLang === "ar";
+    const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
     const dirAttribute = isArabic ? 'dir="rtl"' : 'dir="ltr"';
 
     this.container.innerHTML = `
@@ -811,7 +799,7 @@ export default class DigitalBitdefenderServices {
           
           <div class="flex-1 max-w-lg w-full">
             <div class="space-y-6">
-              ${bitdefenderPlans.map((plan, index) => this.createCardHTML(plan, index)).join('')}
+              ${bitdefenderPlans.map((plan, index) => this.createCardHTML(plan, index)).join("")}
             </div>
           </div>
         </div>
@@ -824,20 +812,24 @@ export default class DigitalBitdefenderServices {
   }
 
   bindButtons() {
-    this.container.querySelectorAll('button[data-plan-index]').forEach(btn => {
-      btn.addEventListener('click', this.handlePlanClick.bind(this, btn));
-      btn.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        this.handlePlanClick(btn);
-      }, { passive: false });
+    this.container.querySelectorAll("button[data-plan-index]").forEach((btn) => {
+      btn.addEventListener("click", this.handlePlanClick.bind(this, btn));
+      btn.addEventListener(
+        "touchend",
+        (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.handlePlanClick(btn);
+        },
+        { passive: false }
+      );
     });
   }
 
   bindSelectionEvents() {
     // Device selection
-    this.container.querySelectorAll('.device-option').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    this.container.querySelectorAll(".device-option").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
         const devices = parseInt(e.currentTarget.dataset.devices);
         this.selectedDevices = devices;
         this.updateSelectionUI();
@@ -845,8 +837,8 @@ export default class DigitalBitdefenderServices {
     });
 
     // Duration selection
-    this.container.querySelectorAll('.duration-option').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    this.container.querySelectorAll(".duration-option").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
         const duration = parseInt(e.currentTarget.dataset.duration);
         this.selectedDuration = duration;
         this.updateSelectionUI();
@@ -854,50 +846,50 @@ export default class DigitalBitdefenderServices {
     });
 
     // Action buttons
-    this.container.querySelector('.bitdefender-cancel-btn')?.addEventListener('click', () => {
-      this.currentView = 'main';
+    this.container.querySelector(".bitdefender-cancel-btn")?.addEventListener("click", () => {
+      this.currentView = "main";
       this.render();
     });
 
-    this.container.querySelector('.bitdefender-choose-btn')?.addEventListener('click', () => {
+    this.container.querySelector(".bitdefender-choose-btn")?.addEventListener("click", () => {
       this.showPurchaseFlow();
     });
   }
 
   updateSelectionUI() {
     // Update device options
-    this.container.querySelectorAll('.device-option').forEach(btn => {
+    this.container.querySelectorAll(".device-option").forEach((btn) => {
       const devices = parseInt(btn.dataset.devices);
       if (devices === this.selectedDevices) {
-        btn.style.backgroundColor = '#ED1C24';
-        btn.style.color = 'white';
-        btn.classList.add('selected');
+        btn.style.backgroundColor = "#ED1C24";
+        btn.style.color = "white";
+        btn.classList.add("selected");
       } else {
-        btn.style.backgroundColor = '#eee';
-        btn.style.color = 'black';
-        btn.classList.remove('selected');
+        btn.style.backgroundColor = "#eee";
+        btn.style.color = "black";
+        btn.classList.remove("selected");
       }
     });
 
     // Update duration options
-    this.container.querySelectorAll('.duration-option').forEach(btn => {
+    this.container.querySelectorAll(".duration-option").forEach((btn) => {
       const duration = parseInt(btn.dataset.duration);
       if (duration === this.selectedDuration) {
-        btn.style.backgroundColor = '#ED1C24';
-        btn.style.color = 'white';
-        btn.classList.add('selected');
+        btn.style.backgroundColor = "#ED1C24";
+        btn.style.color = "white";
+        btn.classList.add("selected");
       } else {
-        btn.style.backgroundColor = '#eee';
-        btn.style.color = 'black';
-        btn.classList.remove('selected');
+        btn.style.backgroundColor = "#eee";
+        btn.style.color = "black";
+        btn.classList.remove("selected");
       }
     });
 
-    const isArabic = this.currentLang === 'ar';
-    const currency = isArabic ? 'دج' : 'DA';
+    const isArabic = this.currentLang === "ar";
+    const currency = isArabic ? "دج" : "DA";
     // Update price using the new calculation
     const newPrice = this.calculatePrice(null, this.selectedDuration);
-    const priceDisplay = this.container.querySelector('.bitdefender-price-display');
+    const priceDisplay = this.container.querySelector(".bitdefender-price-display");
 
     if (priceDisplay) {
       priceDisplay.textContent = `${newPrice} ${currency}`;
@@ -907,23 +899,23 @@ export default class DigitalBitdefenderServices {
   handlePlanClick(btn) {
     const planIndex = parseInt(btn.dataset.planIndex);
     const plan = bitdefenderPlans[planIndex];
-    
+
     this.selectedPlan = this.getTranslatedPlan(plan);
-    this.selectedDevices = 5;  // Default to 5 devices (first option)
+    this.selectedDevices = 5; // Default to 5 devices (first option)
     this.selectedDuration = 1; // Default to 1 month (first option)
-    this.currentView = 'selection';
+    this.currentView = "selection";
     this.render();
   }
 
   // Enhanced Modal System with new designs
   createModalHTML({ type, title, message, isRTL }) {
     const dirAttribute = isRTL ? 'dir="rtl"' : 'dir="ltr"';
-    const fontClass = isRTL ? 'font-noto-kufi-arabic' : 'font-rubik';
-    
+    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
+
     // Get the appropriate icon based on modal type
-    const getModalIcon = (modalType) => {
-      switch(modalType) {
-        case 'error':
+    const getModalIcon = (modalType, isRTL) => {
+      switch (modalType) {
+        case "error":
           return `
             <div class="bitdefender-modal-icon bg-red-100 dark:bg-red-900/20">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -933,7 +925,7 @@ export default class DigitalBitdefenderServices {
               </svg>
             </div>
           `;
-        case 'credit':
+        case "credit":
           return `
             <div class="bitdefender-modal-icon bg-yellow-100 dark:bg-yellow-900/20">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -943,7 +935,7 @@ export default class DigitalBitdefenderServices {
               </svg>
             </div>
           `;
-        case 'success':
+        case "success":
           return `
             <div class="bitdefender-modal-icon bg-green-100 dark:bg-green-900/20">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -952,14 +944,16 @@ export default class DigitalBitdefenderServices {
               </svg>
             </div>
           `;
-        case 'confirm':
+        case "confirm":
         default:
           return `
-            <div class="bitdefender-modal-icon bg-blue-100 dark:bg-blue-900/20">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 12l2 2 4-4"/>
-                <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c1.22 0 2.39.24 3.45.68"/>
-              </svg>
+
+<div class="bitdefender-modal-icon flex">
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="82" height="84" viewBox="0 0 82 84" fill="none">
+<path d="M26.1236 50.9266V65.8045M41.0014 50.9266V65.8045M55.8793 50.9266V65.8045M72.8996 36.0487H9.10325C8.25215 36.0415 7.4094 36.2169 6.63188 36.5632C5.85435 36.9094 5.16013 37.4184 4.59608 38.0557C4.03202 38.6931 3.61124 39.4441 3.36214 40.258C3.11304 41.0718 3.04142 41.9296 3.15209 42.7735L7.49644 75.5049C7.68528 76.9456 8.39472 78.2675 9.49098 79.2213C10.5872 80.175 11.9946 80.6947 13.4476 80.6824H68.4363C69.8893 80.6947 71.2966 80.175 72.3929 79.2213C73.4891 78.2675 74.1986 76.9456 74.3874 75.5049L78.7318 42.7735C78.8412 41.9396 78.7725 41.0919 78.5304 40.2864C78.2883 39.4809 77.8782 38.7358 77.3271 38.1004C76.776 37.465 76.0965 36.9536 75.3333 36.5999C74.5701 36.2463 73.7407 36.0584 72.8996 36.0487ZM55.8793 10.7563C55.8793 11.7332 55.6869 12.7006 55.3131 13.6031C54.9392 14.5056 54.3913 15.3257 53.7005 16.0165C53.0097 16.7072 52.1897 17.2552 51.2871 17.629C50.3846 18.0029 49.4173 18.1953 48.4404 18.1953H33.5625C31.5896 18.1953 29.6974 17.4115 28.3024 16.0165C26.9073 14.6214 26.1236 12.7293 26.1236 10.7563C26.1236 8.7834 26.9073 6.89127 28.3024 5.4962C29.6974 4.10113 31.5896 3.31738 33.5625 3.31738H48.4404C50.4133 3.31738 52.3054 4.10113 53.7005 5.4962C55.0956 6.89127 55.8793 8.7834 55.8793 10.7563Z" stroke="#4258F5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M55.7627 9.50781C59.3276 10.1237 62.5938 11.887 65.0645 14.5296C67.5352 17.1722 69.0753 20.5495 69.4503 24.1477L70.7596 36.05M11.248 36.05L12.5573 24.1477C12.9568 20.5708 14.5076 17.2206 16.9763 14.6016C19.445 11.9826 22.6979 10.2367 26.245 9.62684" stroke="#4258F5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
             </div>
           `;
       }
@@ -976,7 +970,7 @@ export default class DigitalBitdefenderServices {
         <div class="relative bg-white dark:bg-[#2C2C2C] rounded-3xl shadow-2xl w-full max-w-sm mx-4 overflow-hidden" ${dirAttribute}>
           <!-- Close Button -->
           <button class="bitdefender-modal-close" 
-                  aria-label="${isRTL ? 'إغلاق' : 'Fermer'}">
+                  aria-label="${isRTL ? "إغلاق" : "Fermer"}">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"/>
               <line x1="6" y1="6" x2="18" y2="18"/>
@@ -985,18 +979,33 @@ export default class DigitalBitdefenderServices {
 
           <!-- Modal Content -->
           <div class="px-6 py-8 text-center">
-            <!-- Icon -->
-            ${getModalIcon(type)}
-
-            <!-- Title -->
+           <!-- Title -->
             <h2 id="modal-title" class="bitdefender-modal-title ${fontClass} text-black dark:text-white">
               ${title}
             </h2>
+            <!-- Icon -->
+            ${getModalIcon(type, isRTL)}
+
+           
 
             <!-- Message -->
-            <p class="bitdefender-modal-message ${fontClass}">
+            <p class="bitdefender-modal-message ${fontClass}  font-semibold text-base">
               ${message}
             </p>
+            <!-- Terms Checkbox -->   
+             ${
+               type == "confirm"
+                 ? `   <div class="flex items-center justify-center mt-4 mb-4">     
+                          <label class="flex items-center cursor-pointer ${fontClass}">         
+                                  <input type="checkbox"  class="sr-only peer"   id="terms-checkbox"> 
+                                    <div class="relative w-5 h-5 bg-gray-200 dark:bg-gray-600 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-focus:ring-2 peer-focus:ring-blue-500 peer-checked:bg-blue-600 peer-checked:border-blue-600 transition-all duration-200">                   <svg class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity duration-200"                         fill="currentColor" 
+                        viewBox="0 0 20 20">                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>                   </svg>                 </div>                 <span class="ml-3 text-sm text-gray-700 dark:text-gray-300 ${
+                          isRTL ? "mr-3 ml-0" : ""
+                        }">                   ${
+                     isRTL ? "أوافق على شروط الإستعمال" : "J'accepte les conditions générales"
+                   }                 </span>               </label>             </div> `
+                 : ""
+             }      
 
             <!-- Buttons -->
             <div class="bitdefender-modal-buttons">
@@ -1010,10 +1019,10 @@ export default class DigitalBitdefenderServices {
 
   getModalButtons(type, isRTL) {
     const t = bitdefenderTranslations[this.currentLang];
-    const fontClass = isRTL ? 'font-noto-kufi-arabic' : 'font-rubik';
+    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     switch (type) {
-      case 'confirm':
+      case "confirm":
         return `
           <button class="bitdefender-modal-button secondary ${fontClass}" data-action="cancel">
             ${t.cancelBtn}
@@ -1022,9 +1031,9 @@ export default class DigitalBitdefenderServices {
             ${t.confirmBtn}
           </button>
         `;
-      case 'error':
-      case 'credit':  
-      case 'success':
+      case "error":
+      case "credit":
+      case "success":
       default:
         return `
           <button class="bitdefender-modal-button primary ${fontClass}" data-action="close">
@@ -1037,84 +1046,94 @@ export default class DigitalBitdefenderServices {
   showPurchaseFlow() {
     const t = bitdefenderTranslations[this.currentLang];
     const finalPrice = this.calculatePrice(this.selectedPlan.price, this.selectedDuration);
+    function formatDuration(duration, lang) {
+      if (lang === "fr") {
+        return duration === 1 ? "mois" : `${duration} mois`;
+      }
+      if (lang === "ar") {
+        return duration === 1 ? "شهر" : `${duration} شهر`;
+      }
+      return `${duration}`;
+    }
+
     const planWithPrice = {
       ...this.selectedPlan,
       price: finalPrice,
       devices: this.selectedDevices,
-      duration: this.selectedDuration
+      duration: formatDuration(this.selectedDuration, this.currentLang),
     };
-    
+
     this.showModal({
-      type: 'confirm',
+      type: "confirm",
       title: t.buyModalTitle,
       message: t.buyMessage(planWithPrice),
-      isRTL: this.currentLang === 'ar',
+      isRTL: this.currentLang === "ar",
       onConfirm: () => {
         // Simulate credit check - 70% chance of insufficient credit for demo
         const hasCredit = Math.random() > 0.3;
-        
+
         if (!hasCredit) {
           // Show insufficient credit modal
           this.showModal({
-            type: 'credit',
+            type: "credit",
             title: t.creditTitle,
             message: t.creditMessage(planWithPrice),
-            isRTL: this.currentLang === 'ar',
+            isRTL: this.currentLang === "ar",
             onClose: () => {
-              this.currentView = 'main';
+              this.currentView = "main";
               this.render();
-            }
+            },
           });
         } else {
           // Show success modal
           this.showModal({
-            type: 'success',
+            type: "success",
             title: t.congratsTitle,
             message: t.congratsMessage(planWithPrice),
-            isRTL: this.currentLang === 'ar',
+            isRTL: this.currentLang === "ar",
             onClose: () => {
-              this.currentView = 'main';
+              this.currentView = "main";
               this.render();
-            }
+            },
           });
         }
-      }
+      },
     });
   }
 
   showModal({ type, title, message, isRTL = false, onConfirm, onClose }) {
-    const modalContainer = this.container.querySelector('#bitdefender-modal-hook');
+    const modalContainer = this.container.querySelector("#bitdefender-modal-hook");
     const modalHTML = this.createModalHTML({ type, title, message, isRTL });
-    
+
     modalContainer.innerHTML = modalHTML;
     this.setupModalEvents({ type, onConfirm, onClose, modalContainer });
   }
 
   setupModalEvents({ type, onConfirm, onClose, modalContainer }) {
-    const modal = modalContainer.querySelector('.bitdefender-modal-fade');
-    const closeButton = modal.querySelector('.bitdefender-modal-close');
-    const actionButtons = modal.querySelectorAll('[data-action]');
+    const modal = modalContainer.querySelector(".bitdefender-modal-fade");
+    const closeButton = modal.querySelector(".bitdefender-modal-close");
+    const actionButtons = modal.querySelectorAll("[data-action]");
 
     const closeModal = () => {
-      modal.style.animation = 'modalFadeOut 0.2s ease-in forwards';
+      modal.style.animation = "modalFadeOut 0.2s ease-in forwards";
       setTimeout(() => {
-        modalContainer.innerHTML = '';
+        modalContainer.innerHTML = "";
       }, 200);
     };
 
-    closeButton.addEventListener('click', closeModal);
+    closeButton.addEventListener("click", closeModal);
 
-    actionButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const action = button.getAttribute('data-action');
+    actionButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const action = button.getAttribute("data-action");
         closeModal();
 
         setTimeout(() => {
           switch (action) {
-            case 'confirm':
+            case "confirm":
               if (onConfirm) onConfirm();
               break;
-            case 'close':
+            case "close":
               if (onClose) onClose();
               break;
           }
@@ -1123,7 +1142,7 @@ export default class DigitalBitdefenderServices {
     });
 
     // Close on backdrop click
-    modal.addEventListener('click', (event) => {
+    modal.addEventListener("click", (event) => {
       if (event.target === modal) {
         closeModal();
       }
@@ -1131,16 +1150,16 @@ export default class DigitalBitdefenderServices {
 
     // Close on Escape key
     const escapeHandler = (event) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         closeModal();
-        document.removeEventListener('keydown', escapeHandler);
+        document.removeEventListener("keydown", escapeHandler);
       }
     };
-    document.addEventListener('keydown', escapeHandler);
+    document.addEventListener("keydown", escapeHandler);
 
     // Focus management
     setTimeout(() => {
-      const firstButton = modal.querySelector('[data-action]');
+      const firstButton = modal.querySelector("[data-action]");
       if (firstButton) {
         firstButton.focus();
       }
@@ -1149,32 +1168,32 @@ export default class DigitalBitdefenderServices {
 
   observeTheme() {
     const observer = new MutationObserver(this.updateThemeElements.bind(this));
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   }
 
   updateThemeElements() {
-    const logo = document.getElementById('bitdefender-logo');
+    const logo = document.getElementById("bitdefender-logo");
     if (logo) {
       logo.src = this.getLogoPath();
     }
 
-    document.querySelectorAll('.bitdefender-plan-icon').forEach((img, index) => {
+    document.querySelectorAll(".bitdefender-plan-icon").forEach((img, index) => {
       if (index < bitdefenderPlans.length) {
         img.src = this.getIconPath(bitdefenderPlans[index]);
       }
     });
 
-    document.querySelectorAll('.bitdefender-systems-icon').forEach((img, index) => {
+    document.querySelectorAll(".bitdefender-systems-icon").forEach((img, index) => {
       if (index < bitdefenderPlans.length) {
-        img.src = this.getIconPath(bitdefenderPlans[index], 'systemsIcon');
+        img.src = this.getIconPath(bitdefenderPlans[index], "systemsIcon");
       }
     });
   }
 
   destroy() {
     this.unbindEvents();
-    
-    const styles = document.getElementById('bitdefender-enhanced-styles');
+
+    const styles = document.getElementById("bitdefender-enhanced-styles");
     if (styles) {
       styles.remove();
     }
