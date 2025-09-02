@@ -980,7 +980,7 @@ export default class DigitalBitdefenderServices {
              }      
 
             <!-- Buttons -->
-            <div class="bitdefender-modal-buttons gap-3 flex items-center mx-auto">
+            <div class="bitdefender-modal-buttons gap-3 flex items-center mx-auto justify-center">
               ${buttons}
             </div>
           </div>
