@@ -1,34 +1,34 @@
-import ForfaitData from "./ForfaitData.js";
-import ModalData from "./ModalData.js";
+import ForfaitData from "./ForfaitData.js"
+import ModalData from "./ModalData.js"
 
 class ForfaitComponent {
   constructor(container) {
-    this.container = container;
-    this.currentLang = this.getLanguage();
+    this.container = container
+    this.currentLang = this.getLanguage()
     this.sliders = new Map([
       ["forfaits", this.createSliderState()],
       ["smart", this.createSliderState()],
-    ]);
+    ])
     this.boundHandlers = {
       languageChange: this.handleLanguageChange.bind(this),
       resize: this.handleResize.bind(this),
-    };
-    this.initialize();
+    }
+    this.initialize()
   }
 
   initialize() {
-    this.loadStyles();
-    this.render();
-    this.setupEventListeners();
-    this.initializeSliders();
+    this.loadStyles()
+    this.render()
+    this.setupEventListeners()
+    this.initializeSliders()
   }
 
   loadStyles() {
     if (!document.getElementById("forfait-animations")) {
-      const styleElement = document.createElement("style");
-      styleElement.id = "forfait-animations";
-      styleElement.textContent = this.getStylesheet();
-      document.head.appendChild(styleElement);
+      const styleElement = document.createElement("style")
+      styleElement.id = "forfait-animations"
+      styleElement.textContent = this.getStylesheet()
+      document.head.appendChild(styleElement)
     }
   }
 
@@ -41,380 +41,507 @@ class ForfaitComponent {
       touch-action: pan-y;
       margin: 0 auto;
     }
-      .forfait-card-shadow {
-          box-shadow: 0px 3.92px 7.84px 0px #0505050A;
-          border: 0.84px solid #C5C5C5;
+    .forfait-card-shadow {
+      box-shadow: 0px 3.92px 7.84px 0px #0505050A;
+      border: 0.84px solid #C5C5C5;
+      border-radius: 0.75rem;
+      width: 100%;
+      max-width: 300px;
+      min-width: 280px;
+      height: 100%;
+    }
+    .dark .forfait-card-shadow {
+      box-shadow: none;
+      border: 0.84px solid #C5C5C5;
+    }
+    .forfait-divider {
+      background-image: repeating-linear-gradient(to right, #D1D5DB 0px, #D1D5DB 8px, transparent 8px, transparent 16px);
+      background-size: 16px 1px;
+      background-repeat: repeat-x;
+      height: 1px;
+    }
+    .dark .forfait-divider {
+      background-image: repeating-linear-gradient(to right, #6B7280 0px, #6B7280 8px, transparent 8px, transparent 16px);
+    }
+    .forfait-slider-track {
+      display: flex;
+      width: 100%;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+    .forfait-slider-slide {
+      flex: 0 0 calc(100% - 30px);
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      padding: 0 15px;
+      box-sizing: border-box;
+      margin: 0;
+    }
+    [dir="rtl"] .forfait-slider-track {
+      flex-direction: row-reverse;
+    }
+    [dir="rtl"] .forfait-grid-5 {
+      direction: rtl;
+    }
+    [dir="rtl"] .forfait-card-shadow {
+      text-align: right;
+    }
+    [dir="rtl"] .forfait-card-content {
+      direction: rtl;
+    }
+    [dir="rtl"] .forfait-feature-item {
+      text-align: right;
+    }
+    [dir="rtl"] .forfait-mixed-title {
+      flex-direction: row-reverse;
+    }
+    .forfait-modal-fade {
+      animation: modalFadeIn 0.3s ease-out forwards;
+      backdrop-filter: blur(8px);
+      background-color: rgba(105, 105, 105, 0.8);
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .forfait-hover-lift {
+      transition: all 0.3s ease;
+    }
+    .forfait-hover-lift:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 8px 16px 0px #0505051A;
+      border: 0.84px solid #C5C5C5;
+    }
+    .dark .forfait-hover-lift:hover {
+      box-shadow: none;
+      border: 0.84px solid #C5C5C5;
+    }
+    /* GRID SYSTEM */
+    .forfait-grid {
+      display: grid;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      gap: 0.875rem;
+      justify-items: center;
+      align-items: stretch;
+    }
+    .forfait-mobile-slider {
+      display: none;
+    }
+    .forfait-mobile-container {
+      padding: 0 1rem;
+    }
+    /* Large Desktop 1920px+ */
+    @media (min-width: 1920px) {
+      .forfait-grid-5 {
+        grid-template-columns: repeat(5, minmax(280px, 320px));
+        grid-template-rows: auto;
+        gap: 0.875rem;
+        justify-content: center;
       }
-      .dark .forfait-card-shadow {
-          box-shadow: none;
-          border: 0.84px solid #C5C5C5;
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(320px, 380px));
+        gap: 0.875rem;
+        justify-content: center;
       }
-
-      .forfait-divider {
-          background-image: repeating-linear-gradient(to right, #D1D5DB 0px, #D1D5DB 8px, transparent 8px, transparent 16px);
-          background-size: 16px 1px;
-          background-repeat: repeat-x;
+    }
+    /* Desktop 1440px - 1919px */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+      .forfait-grid-5 {
+        grid-template-columns: repeat(3, minmax(280px, 320px));
+        grid-template-rows: auto auto;
+        gap: 0.875rem 1.5rem;
+        justify-content: center;
       }
-      .dark .forfait-divider {
-          background-image: repeating-linear-gradient(to right, #6B7280 0px, #6B7280 8px, transparent 8px, transparent 16px);
+      .forfait-grid-5 > *:nth-child(1) { grid-column: 1; grid-row: 1; }
+      .forfait-grid-5 > *:nth-child(2) { grid-column: 2; grid-row: 1; }
+      .forfait-grid-5 > *:nth-child(3) { grid-column: 3; grid-row: 1; }
+      .forfait-grid-5 > *:nth-child(4) { grid-column: 1; grid-row: 2; }
+      .forfait-grid-5 > *:nth-child(5) { grid-column: 2; grid-row: 2; }
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(280px, 320px));
+        gap: 0.875rem;
+        justify-content: center;
       }
-
-      .forfait-slider-container {
-          overflow: hidden;
-          position: relative;
-          width: 100%;
-          touch-action: pan-y;
+    }
+    /* Small Desktops 1280px - 1439px same as above */
+    @media (min-width: 1280px) and (max-width: 1439px) {
+      .forfait-grid-5 {
+        grid-template-columns: repeat(3, minmax(250px, 280px));
+        grid-template-rows: auto auto;
+        gap: 1rem 1.5rem;
+        justify-content: center;
       }
-      .forfait-slider-track {
-          display: flex;
-          width: 100%;
-          transition: transform 0.3s ease;
-          will-change: transform;
+      .forfait-grid-5 > *:nth-child(1) { grid-column: 1; grid-row: 1; }
+      .forfait-grid-5 > *:nth-child(2) { grid-column: 2; grid-row: 1; }
+      .forfait-grid-5 > *:nth-child(3) { grid-column: 3; grid-row: 1; }
+      .forfait-grid-5 > *:nth-child(4) { grid-column: 1; grid-row: 2; }
+      .forfait-grid-5 > *:nth-child(5) { grid-column: 2; grid-row: 2; }
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(250px, 280px));
+        gap: 0.875rem;
+        justify-content: center;
       }
-      .forfait-slider-slide {
-  flex: 0 0 85%;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  padding: 0 15px;
-  box-sizing: border-box;
-  margin: 0; 
-}
-
-     
-      [dir="rtl"] .forfait-slider-track {
-          direction: ltr;
+    }
+    /* Tablets and small desktops Under 1280px */
+    @media (max-width: 1279px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: repeat(2, minmax(280px, 320px));
+        gap: 1rem;
+        justify-content: center;
+        max-width: 700px;
+        margin: 0 auto;
       }
-
-      .forfait-modal-fade {
-          animation: modalFadeIn 0.3s ease-out forwards;
-          backdrop-filter: blur(8px);
-      }
-
-      @keyframes modalFadeIn {
-          from { opacity: 0; transform: scale(0.95) translateY(-10px); }
-          to { opacity: 1; transform: scale(1) translateY(0); }
-      }
-
-      .forfait-hover-lift {
-          transition: all 0.3s ease;
-      }
-      .forfait-hover-lift:hover {
-          transform: translateY(-3px);
-          box-shadow: 0px 8px 16px 0px #0505051A;
-          border: 0.84px solid #C5C5C5;
-      }
-      .dark .forfait-hover-lift:hover {
-          box-shadow: none;
-          border: 0.84px solid #C5C5C5;
-      }
-
+      /* No special row positioning, natural flow */
+    }
+    /* Mobile (up to 767px) - slider mode */
+    @media (max-width: 767px) {
       .forfait-grid {
-          display: grid;
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 0 1rem;
-          gap: 1.5rem;
+        display: none !important;
       }
       .forfait-mobile-slider {
-          display: none;
+        display: block !important;
       }
+      .forfait-mobile-slider .forfait-card-shadow {
+        background: white !important;
+        box-shadow: 0px 3.92px 7.84px 0px #0505050A !important;
+        border: 0.84px solid #C5C5C5 !important;
+        max-width: 320px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .dark .forfait-mobile-slider .forfait-card-shadow {
+        background: #2C2C2C !important;
+        box-shadow: none !important;
+        border: 0.84px solid #C5C5C5 !important;
+      }
+      .forfait-mobile-slider-wrapper {
+        overflow: visible;
+        margin: 0 -15px;
+        padding: 0 15px;
+      }
+      .forfait-slider-slide {
+        flex: 0 0 calc(100% - 30px);
+        padding: 0 15px;
+      }
+      .forfait-slider-container {
+        overflow: visible;
+      }
+    }
 
-     
-      .forfait-mobile-container {
-          padding: 0 1rem;
-      }
+    @media (min-width: 1280px) and (max-width: 1660px) {
+  .forfait-grid-5 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(280px, 320px));
+    grid-template-rows: auto auto;
+    justify-content: center;
+    gap: 1rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .forfait-grid-5 > *:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .forfait-grid-5 > *:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .forfait-grid-5 > *:nth-child(3) {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .forfait-grid-5 > *:nth-child(4) {
+    grid-column: 1 / 3; /* span first two columns */
+    grid-row: 2;
+    justify-self: end;
+  }
+  .forfait-grid-5 > *:nth-child(5) {
+    grid-column: 2 / 4; /* span last two columns */
+    grid-row: 2;
+    justify-self: start;
+  }
+}
 
-      @media (min-width: 1920px) {
-          .forfait-grid-5 {
-              grid-template-columns: repeat(5, minmax(280px, 320px));
-              justify-content: center;
-          }
-          .forfait-grid-3 {
-              grid-template-columns: repeat(3, minmax(320px, 380px));
-              justify-content: center;
-          }
+    /* Mobile Landscape (640px - 767px) */
+    @media (min-width: 640px) and (max-width: 767px) {
+      .forfait-grid-3,
+      .forfait-grid-5 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        justify-content: center;
+        max-width: 400px;
       }
-
-      @media (min-width: 1440px) and (max-width: 1920px) {
-          .forfait-grid-5 {
-              grid-template-columns: repeat(6, 1fr);
-              grid-template-rows: auto auto;
-              max-width: 1200px;
-          }
-          .forfait-grid-5 > *:nth-child(1) { grid-column: 1 / 3; justify-self: center; }
-          .forfait-grid-5 > *:nth-child(2) { grid-column: 3 / 5; justify-self: center; }
-          .forfait-grid-5 > *:nth-child(3) { grid-column: 5 / 7; justify-self: center; }
-          .forfait-grid-5 > *:nth-child(4) { grid-column: 2 / 4; justify-self: center; }
-          .forfait-grid-5 > *:nth-child(5) { grid-column: 4 / 6; justify-self: center; }
-          .forfait-grid-3 {
-              grid-template-columns: repeat(3, minmax(280px, 1fr));
-              max-width: 1000px;
-          }
+      .forfait-grid-3 > *:nth-child(3),
+      .forfait-grid-5 > *:nth-child(5) {
+        justify-self: center;
+        max-width: 300px;
+        margin-top: 0;
       }
-
-      @media (min-width: 1280px) and (max-width: 1439px) {
-          .forfait-grid-5 {
-              grid-template-columns: repeat(4, 1fr);
-              grid-template-rows: auto auto;
-              gap: 0.875rem;
-              max-width: 900px;
-          }
-          .forfait-grid-5 > *:nth-child(1) { grid-column: 1; }
-          .forfait-grid-5 > *:nth-child(2) { grid-column: 2; }
-          .forfait-grid-5 > *:nth-child(3) { grid-column: 3; }
-          .forfait-grid-5 > *:nth-child(4) { grid-column: 4; }
-          .forfait-grid-5 > *:nth-child(5) { 
-              grid-column: 2 / 4; 
-              grid-row: 2;
-              justify-self: center;
-          }
-          .forfait-grid-3 {
-              grid-template-columns: repeat(3, 1fr);
-              max-width: 750px;
-          }
-         
-          .forfait-card-container {
-              min-height: 360px !important;
-          }
-          .forfait-grid .forfait-card-shadow {
-              max-width: 260px !important;
-          }
-      }
-
-      @media (min-width: 992px) and (max-width: 1279px) {
-          .forfait-grid-5, .forfait-grid-3 {
-              grid-template-columns: repeat(2, minmax(280px, 1fr));
-              gap: 1.5rem;
-              max-width: 700px;
-          }
-          .forfait-grid-5 > *:nth-child(5) {
-              grid-column: 1 / 3;
-              justify-self: center;
-              max-width: 300px;
-              width: 100%;
-          }
-      }
-
-      @media (min-width: 640px) and (max-width: 991px) {
-          .forfait-grid-5, .forfait-grid-3 {
-              grid-template-columns: repeat(2, 1fr);
-              gap: 1.2rem;
-              max-width: 600px;
-          }
-          .forfait-grid-5 > *:nth-child(5) {
-              grid-column: 1 / 3;
-              justify-self: center;
-              max-width: 300px;
-          }
-      }
-
-      @media (max-width: 639px) {
-          .forfait-grid {
-              display: none !important;
-          }
-          .forfait-mobile-slider {
-              display: block !important;
-          }
-         
-          .forfait-slider-slide {
-              flex: 0 0 100%;
-              padding: 0 10px;
-          }
-         
-          .forfait-mobile-slider .forfait-card-shadow {
-              background: white !important;
-              box-shadow: 0px 3.92px 7.84px 0px #0505050A !important;
-              border: 0.84px solid #C5C5C5 !important;
-              border-radius: 0.75rem !important;
-              max-width: 320px;
-              width: 100%;
-              margin: 0 auto;
-          }
-          .dark .forfait-mobile-slider .forfait-card-shadow {
-              background: #2C2C2C !important;
-              box-shadow: none !important;
-              border: 0.84px solid #C5C5C5 !important;
-          }
-      }
-
-      .forfait-dot {
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          border: none;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          background-color: #d1d5db;
-          position: relative;
-      }
-      .forfait-dot:hover {
-          transform: scale(1.2);
-          background-color: #9ca3af;
-      }
-      .forfait-dot.active {
-          background-color: #ED1C23;
-          transform: scale(1.1);
-      }
-      .forfait-dots-container {
-          display: flex;
-          justify-content: center;
-          gap: 10px;
-          margin-top: 24px;
-          padding: 10px;
-      }
-
-      .forfait-buy-btn {
-          position: relative;
-          overflow: hidden;
-          z-index: 10;
-          touch-action: manipulation;
-      }
-
       .forfait-card-container {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          min-height: 340px;
+        min-height: 330px !important;
       }
-      .forfait-card-content {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
+    }
+    /* Mobile (up to 767px) - Slider Mode */
+    @media (max-width: 767px) {
+      .forfait-grid { display: none !important; }
+      .forfait-mobile-slider { display: block !important; }
+      .forfait-mobile-slider .forfait-card-shadow {
+        background: white !important;
+        box-shadow: 0px 3.92px 7.84px 0px #0505050A !important;
+        border: 0.84px solid #C5C5C5 !important;
+        max-width: 320px;
+        width: 100%;
+        margin: 0 auto;
       }
-      .forfait-card-footer {
-          margin-top: auto;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 1rem;
-          padding-top: 1rem;
+      .dark .forfait-mobile-slider .forfait-card-shadow {
+        background: #2C2C2C !important;
+        box-shadow: none !important;
+        border: 0.84px solid #C5C5C5 !important;
       }
-
+      .forfait-mobile-slider-wrapper {
+        overflow: visible;
+        margin: 0 -15px;
+        padding: 0 15px;
+      }
+      .forfait-slider-slide {
+        flex: 0 0 calc(100% - 30px);
+        padding: 0 15px;
+      }
+      .forfait-slider-container { overflow: visible; }
+    }
+    /* Component Styles */
+    .forfait-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #d1d5db;
+    }
+    .forfait-dot:hover {
+      transform: scale(1.2);
+      background-color: #9ca3af;
+    }
+    .forfait-dot.active {
+      background-color: #ED1C23;
+      transform: scale(1.1);
+    }
+    .forfait-dots-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 10px;
+    }
+    .forfait-buy-btn {
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+      touch-action: manipulation;
+    }
+    .forfait-card-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 340px;
+      padding: 1.5rem;
+    }
+    .forfait-card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .forfait-card-footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1rem;
+    }
+    .forfait-feature-item {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22.37px;
+      letter-spacing: 0;
+      color: #000000;
+    }
+    .dark .forfait-feature-item {
+      color: #d1d5db;
+    }
+    .forfait-button-zone {
+      touch-action: manipulation;
+      pointer-events: auto;
+      z-index: 10;
+      position: relative;
+    }
+    .forfait-mixed-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .forfait-check-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    /* Mobile Optimizations */
+    @media (max-width: 640px) {
+      .forfait-modal-buttons {
+        flex-direction: row !important;
+        gap: 12px !important;
+        justify-content: center;
+        align-items: center;
+      }
+      .forfait-modal-button {
+        width: auto !important;
+        min-width: 120px !important;
+        flex: 1;
+        max-width: 150px;
+      }
+      .forfait-card-container {
+        min-height: 380px;
+        padding: 1.25rem;
+      }
       .forfait-feature-item {
-          font-weight: 400;
-          font-size: 18px;
-          line-height: 22.37px;
-          letter-spacing: 0;
-          color: #000000;
+        font-size: 16px;
+        line-height: 20px;
       }
-      .dark .forfait-feature-item {
-          color: #d1d5db;
+    }
+    @media (max-width: 480px) {
+      .forfait-card-container {
+        min-height: 360px;
+        padding: 1rem;
       }
-
-      .forfait-button-zone {
-          touch-action: manipulation;
-          pointer-events: auto;
-          z-index: 10;
-          position: relative;
+      .forfait-feature-item {
+        font-size: 15px;
+        line-height: 18px;
       }
-
-     
-      .forfait-mixed-title {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.5rem;
+      .forfait-slider-slide {
+        flex: 0 0 85%;
       }
-
-      .forfait-check-icon {
-          width: 16px;
-          height: 16px;
-          flex-shrink: 0;
+      .forfait-mobile-slider-wrapper {
+        margin: 0 -10px;
+        padding: 0 10px;
       }
-
-      @media (max-width: 640px) {
-          .forfait-modal-buttons {
-              flex-direction: row !important;
-              gap: 12px !important;
-              justify-content: center;
-              align-items: center;
-          }
-          .forfait-modal-button {
-              width: auto !important;
-              min-width: 120px !important;
-              flex: 1;
-              max-width: 150px;
-          }
-          .forfait-card-container {
-              min-height: 380px;
-          }
-          .forfait-feature-item {
-              font-size: 16px;
-              line-height: 20px;
-          }
+    }
+    /* Card height adjustments */
+    @media (max-width: 1279px) {
+      .forfait-card-container { min-height: 360px !important; }
+    }
+    @media (max-width: 991px) {
+      .forfait-card-container { min-height: 340px !important; }
+    }
+    @media (max-width: 767px) {
+      .forfait-card-container { min-height: 320px !important; }
+    }
+    /* Additional tablet-specific fixes */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .forfait-feature-item {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
       }
-
-      @media (max-width: 480px) {
-          .forfait-card-container {
-              min-height: 360px;
-              padding: 1rem;
-          }
-          .forfait-feature-item {
-              font-size: 15px;
-              line-height: 18px;
-          }
-          .forfait-slider-slide {
-              flex: 0 0 85%;
-          }
+      .forfait-buy-btn {
+        padding: 8px 20px !important;
+        font-size: 14px !important;
       }
-    `;
+      .forfait-card-footer span {
+        font-size: 1.1rem !important;
+      }
+    }
+    /* Arabic specific tablet fixes */
+    @media (min-width: 768px) and (max-width: 1279px) and ([dir="rtl"]) {
+      .forfait-card-container {
+        text-align: right;
+      }
+      .forfait-feature-item {
+        text-align: right;
+      }
+      .forfait-card-content ul {
+        padding-right: 0;
+        padding-left: 1rem;
+      }
+    }
+    /* Text overflow prevention */
+    .forfait-card-container h2,
+    .forfait-card-container h3,
+    .forfait-feature-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .forfait-card-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .forfait-card-content li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+  `
   }
 
   setupEventListeners() {
-    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
-    window.addEventListener("languageChanged", this.boundHandlers.languageChange);
+    window.removeEventListener("languageChanged", this.boundHandlers.languageChange)
+    window.addEventListener("languageChanged", this.boundHandlers.languageChange)
 
-    window.removeEventListener("resize", this.boundHandlers.resize);
-    window.addEventListener("resize", this.boundHandlers.resize);
+    window.removeEventListener("resize", this.boundHandlers.resize)
+    window.addEventListener("resize", this.boundHandlers.resize)
 
-    this.setupLanguagePolling();
-    this.setupAccessibility();
+    this.setupLanguagePolling()
+    this.setupAccessibility()
   }
 
   setupLanguagePolling() {
-    if (this.languagePolling) clearInterval(this.languagePolling);
+    if (this.languagePolling) clearInterval(this.languagePolling)
     this.languagePolling = setInterval(() => {
-      const currentLang = this.getLanguage();
+      const currentLang = this.getLanguage()
       if (currentLang !== this.currentLang) {
-        clearTimeout(this.languageChangeTimeout);
+        clearTimeout(this.languageChangeTimeout)
         this.languageChangeTimeout = setTimeout(() => {
-          this.handleLanguageChange();
-        }, 100);
+          this.handleLanguageChange()
+        }, 100)
       }
-    }, 500);
+    }, 500)
   }
 
   setupAccessibility() {
     if (this.keyboardHandler) {
-      this.container.removeEventListener("keydown", this.keyboardHandler);
+      this.container.removeEventListener("keydown", this.keyboardHandler)
     }
     this.keyboardHandler = (e) => {
       if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-        const focusedSlider = e.target.closest(".forfait-slider-container");
+        const focusedSlider = e.target.closest(".forfait-slider-container")
         if (focusedSlider) {
-          e.preventDefault();
-          const sliderType = focusedSlider.id.replace("-slider", "");
-          const slider = this.sliders.get(sliderType);
+          e.preventDefault()
+          const sliderType = focusedSlider.id.replace("-slider", "")
+          const slider = this.sliders.get(sliderType)
 
           if (this.isRTL()) {
             if (e.key === "ArrowRight" && slider.currentIndex > 0) {
-              this.updateSliderSmooth(sliderType, slider.currentIndex - 1);
+              this.updateSliderSmooth(sliderType, slider.currentIndex - 1)
             } else if (e.key === "ArrowLeft" && slider.currentIndex < slider.totalSlides - 1) {
-              this.updateSliderSmooth(sliderType, slider.currentIndex + 1);
+              this.updateSliderSmooth(sliderType, slider.currentIndex + 1)
             }
           } else {
             if (e.key === "ArrowLeft" && slider.currentIndex > 0) {
-              this.updateSliderSmooth(sliderType, slider.currentIndex - 1);
+              this.updateSliderSmooth(sliderType, slider.currentIndex - 1)
             } else if (e.key === "ArrowRight" && slider.currentIndex < slider.totalSlides - 1) {
-              this.updateSliderSmooth(sliderType, slider.currentIndex + 1);
+              this.updateSliderSmooth(sliderType, slider.currentIndex + 1)
             }
           }
         }
       }
-    };
-    this.container.addEventListener("keydown", this.keyboardHandler);
+    }
+    this.container.addEventListener("keydown", this.keyboardHandler)
   }
 
   createSliderState() {
@@ -434,190 +561,191 @@ class ForfaitComponent {
         isScrolling: false,
       },
       eventHandlers: new Map(),
-    };
+    }
   }
 
   getLanguage() {
-    const storedLanguage = localStorage.getItem("language");
-    return ["fr", "ar"].includes(storedLanguage) ? storedLanguage : "fr";
+    const storedLanguage = localStorage.getItem("language")
+    return ["fr", "ar"].includes(storedLanguage) ? storedLanguage : "fr"
   }
 
   isRTL() {
-    return this.currentLang === "ar";
+    return this.currentLang === "ar"
   }
 
   containsArabic(text) {
-    if (!text) return false;
-    const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
-    return arabicPattern.test(text);
+    if (!text) return false
+    const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/
+    return arabicPattern.test(text)
   }
 
   getFontClass(text) {
-    return this.containsArabic(text) ? "font-noto-kufi-arabic" : "font-rubik";
+    return this.containsArabic(text) ? "font-noto-kufi-arabic" : "font-rubik"
   }
-
 
   convertToLatinNumerals(text) {
-    if (!text) return text;
-    const arabicNumerals = '٠١٢٣٤٥٦٧٨٩';
-    const latinNumerals = '0123456789';
+    if (!text) return text
+    const arabicNumerals = "٠١٢٣٤٥٦٧٨٩"
+    const latinNumerals = "0123456789"
 
     return text.replace(/[٠-٩]/g, (match) => {
-      return latinNumerals[arabicNumerals.indexOf(match)];
-    });
+      return latinNumerals[arabicNumerals.indexOf(match)]
+    })
   }
 
-
   parseMixedTitle(title) {
-    if (!title) return [{ text: '', isArabic: false }];
+    if (!title) return [{ text: "", isArabic: false }]
 
-    const parts = [];
-    let currentPart = '';
-    let isCurrentArabic = false;
+    const parts = []
+    let currentPart = ""
+    let isCurrentArabic = false
 
     for (let i = 0; i < title.length; i++) {
-      const char = title[i];
-      const isCharArabic = this.containsArabic(char);
+      const char = title[i]
+      const isCharArabic = this.containsArabic(char)
 
       if (i === 0) {
-        isCurrentArabic = isCharArabic;
-        currentPart = char;
+        isCurrentArabic = isCharArabic
+        currentPart = char
       } else if (isCharArabic === isCurrentArabic) {
-        currentPart += char;
+        currentPart += char
       } else {
         if (currentPart.trim()) {
-          parts.push({ text: currentPart.trim(), isArabic: isCurrentArabic });
+          parts.push({ text: currentPart.trim(), isArabic: isCurrentArabic })
         }
-        currentPart = char;
-        isCurrentArabic = isCharArabic;
+        currentPart = char
+        isCurrentArabic = isCharArabic
       }
     }
 
     if (currentPart.trim()) {
-      parts.push({ text: currentPart.trim(), isArabic: isCurrentArabic });
+      parts.push({ text: currentPart.trim(), isArabic: isCurrentArabic })
     }
 
-    return parts;
+    return parts
   }
 
-  createMixedTitleHTML(title, baseClasses = '') {
-    const parts = this.parseMixedTitle(title);
+  createMixedTitleHTML(title, baseClasses = "") {
+    const parts = this.parseMixedTitle(title)
     if (parts.length === 1) {
-      const fontClass = this.getFontClass(title);
-      return `<span class="${fontClass} ${baseClasses}">${title}</span>`;
+      const fontClass = this.getFontClass(title)
+      return `<span class="${fontClass} ${baseClasses}">${title}</span>`
     }
 
-    const isRTL = this.isRTL();
-    const flexDirection = isRTL ? 'flex-row-reverse' : 'flex-row';
+    const isRTL = this.isRTL()
+    const flexDirection = isRTL ? "flex-row-reverse" : "flex-row"
 
     return `
       <div class="forfait-mixed-title" style="flex-direction: ${flexDirection};">
-        ${parts.map(part => {
-      const fontClass = part.isArabic ? 'font-noto-kufi-arabic' : 'font-rubik';
-      return `<span class="${fontClass} ${baseClasses}">${part.text}</span>`;
-    }).join('')}
+        ${parts
+          .map((part) => {
+            const fontClass = part.isArabic ? "font-noto-kufi-arabic" : "font-rubik"
+            return `<span class="${fontClass} ${baseClasses}">${part.text}</span>`
+          })
+          .join("")}
       </div>
-    `;
+    `
   }
 
   createForfaitCard(offer, index, labels) {
-    const isRTL = this.isRTL();
-    const currencyLabel = isRTL ? "دج" : "DA";
-    const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
-    const textAlign = isRTL ? "text-right" : "text-left";
+    const isRTL = this.isRTL()
+    const currencyLabel = isRTL ? "دج" : "DA"
+    const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter")
+    const textAlign = isRTL ? "text-right" : "text-left"
 
-    const titleFontClass = this.getFontClass(offer.name);
-    const dataFontClass = this.getFontClass(offer.data);
-    const buttonFontClass = this.getFontClass(buyLabel);
+    const titleFontClass = this.getFontClass(offer.name)
+    const dataFontClass = this.getFontClass(offer.data)
+    const buttonFontClass = this.getFontClass(buyLabel)
 
+    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""))
+    const durationText = this.convertToLatinNumerals(offer.duration)
 
-    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
-    const durationText = this.convertToLatinNumerals(offer.duration);
-
-
-    const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
+    const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik"
 
     return `
-      <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
-        <div class="p-6 forfait-card-container h-full" ${isRTL ? `dir="rtl"` : ``}>
-          <div class="pb-4">
-            <h2 class="${titleFontClass} font-medium text-2xl text-center capitalize text-black dark:text-white mb-4 leading-tight">
-              ${offer.name}
-            </h2>
-            <div class="w-full h-px forfait-divider mb-4"></div>
+    <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden forfait-hover-lift" style="max-width: 320px;">
+      <div class="p-6 forfait-card-container h-full" ${isRTL ? `dir="rtl"` : ``}>
+        <div class="pb-4">
+          <h2 class="${titleFontClass} font-medium text-xl md:text-2xl text-center capitalize text-black dark:text-white mb-4 leading-tight truncate">
+            ${offer.name}
+          </h2>
+          <div class="w-full h-px forfait-divider mb-4"></div>
+        </div>
+
+        <div class="forfait-card-content flex-1">
+          <div class="mb-4">
+            <h3 class="${dataFontClass} text-xl md:text-2xl font-semibold text-ooredoo-red dark:text-white mb-2 ${textAlign} leading-relaxed break-words">
+              ${offer.data}
+            </h3>
           </div>
 
-          <div class="forfait-card-content flex-1">
-            <div class="mb-5">
-              <h3 class="${dataFontClass} text-[28px] font-semibold text-ooredoo-red dark:text-white mb-2 ${textAlign} leading-10">${offer.data}</h3>
-            </div>
-
-            <div class="flex-1">
-              ${offer.features && offer.features.length > 0
-        ? `<div class="${isRTL ? "text-right" : "text-left"}" dir="${isRTL ? "rtl" : "ltr"}">
+          <div class="flex-1">
+            ${
+              offer.features && offer.features.length > 0
+                ? `<div class="${isRTL ? "text-right" : "text-left"}" dir="${isRTL ? "rtl" : "ltr"}">
                     <ul class="space-y-2">
                       ${offer.features
-          .map(
-            (feature) => {
-              const featureFontClass = this.getFontClass(feature);
-              return `
+                        .map((feature) => {
+                          const featureFontClass = this.getFontClass(feature)
+                          return `
                             <li class="flex items-start gap-2">
                               <img src="./assets/images/checkbox.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5" />
-                              <span class="forfait-feature-item ${featureFontClass} flex-1">${feature}</span>
+                              <span class="forfait-feature-item ${featureFontClass} flex-1 break-words text-sm md:text-base">
+                                ${feature}
+                              </span>
                             </li>
-                          `;
-            }
-          )
-          .join("")}
+                          `
+                        })
+                        .join("")}
                     </ul>
                   </div>`
-        : ``
-      }
+                : ``
+            }
+          </div>
+        </div>
+
+        <div class="forfait-card-footer pt-4">
+          <div class="flex justify-center items-baseline w-full mb-4">
+            <div class="flex items-baseline justify-center" style="width:70%;">
+              <span class="${priceFontClass} font-bold text-xl md:text-2xl mx-2 leading-none text-black dark:text-white">${priceNumber}</span>
+              <span class="${priceFontClass} font-semibold text-lg md:text-xl leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span> 
+              <span class="${priceFontClass} font-semibold text-sm md:text-base leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span> 
             </div>
           </div>
 
-          <div class="forfait-card-footer pt-4">
-            <div class="flex justify-center items-baseline w-full mb-4">
-              <div class="flex items-baseline justify-center" style="width:70%;">
-                <span class="${priceFontClass} font-bold text-2xl mx-2 sm:text-3xl leading-none text-black dark:text-white">${priceNumber}</span>
-                <span class="${priceFontClass} font-semibold text-xl leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span> 
-                <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span> 
-              </div>
-            </div>
-
-            <div class="forfait-button-zone flex justify-center w-full">
-              <button class="forfait-buy-btn ${buttonFontClass} bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
-                style="
-                  font-weight: 600;
-                  font-size: 16px;
-                  line-height: 100%;
-                  letter-spacing: 0;
-                  text-align: center;
-                  text-transform: uppercase;
-                  padding: 8px 24px;
-                  height: 32px;
-                  width: auto;
-                  min-width: 96px;
-                  display: inline-flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-                data-index="${index}" 
-                data-offer-name="${offer.name}">
-                ${buyLabel}
-              </button>
-            </div>
+          <div class="forfait-button-zone flex justify-center w-full">
+            <button class="forfait-buy-btn ${buttonFontClass} bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
+              style="
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 100%;
+                letter-spacing: 0;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 8px 20px;
+                height: 32px;
+                width: auto;
+                min-width: 90px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+              "
+              data-index="${index}" 
+              data-offer-name="${offer.name}">
+              ${buyLabel}
+            </button>
           </div>
         </div>
       </div>
-    `;
+    </div>
+  `
   }
 
   createResponsiveLayout(offers, labels, gridType) {
-    const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
-    const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
-    const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-    const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
+    const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3"
+    const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider"
+    const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots"
+    const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length
 
     return `
       <div class="forfait-grid ${gridClass}">
@@ -627,59 +755,64 @@ class ForfaitComponent {
       <div class="forfait-mobile-slider forfait-mobile-container">
         <div class="forfait-slider-container" id="${sliderId}">
           <div class="forfait-slider-track">
-            ${offers.map((offer, index) => `
+            ${offers
+              .map(
+                (offer, index) => `
               <div class="forfait-slider-slide">
                 ${this.createForfaitCard(offer, startIndex + index, labels)}
               </div>
-            `).join("")}
+            `,
+              )
+              .join("")}
           </div>
         </div>
         <div class="forfait-dots-container" id="${dotsId}">
           ${this.generateDots(offers.length, 0)}
         </div>
       </div>
-    `;
+    `
   }
 
   generateDots(totalDots, activeIndex) {
-    return Array.from({ length: totalDots }, (_, index) =>
-      `<button class="forfait-dot ${index === activeIndex ? "active" : ""}" 
+    return Array.from(
+      { length: totalDots },
+      (_, index) =>
+        `<button class="forfait-dot ${index === activeIndex ? "active" : ""}" 
                 data-slide="${index}" 
-                aria-label="Slide ${index + 1}"></button>`
-    ).join("");
+                aria-label="Slide ${index + 1}"></button>`,
+    ).join("")
   }
 
   render() {
     try {
-      const language = this.getLanguage();
-      const data = ForfaitData[language];
+      const language = this.getLanguage()
+      const data = ForfaitData[language]
 
       if (!data || !data.forfaits || !data.smartForfaits) {
-        console.error("Missing data for language:", language);
-        const fallbackData = ForfaitData.fr;
+        console.error("Missing data for language:", language)
+        const fallbackData = ForfaitData.fr
         if (!fallbackData) {
-          throw new Error("No fallback data available");
+          throw new Error("No fallback data available")
         }
-        this.renderWithData(fallbackData, language);
-        return;
+        this.renderWithData(fallbackData, language)
+        return
       }
 
-      this.renderWithData(data, language);
+      this.renderWithData(data, language)
     } catch (error) {
-      console.error("Error rendering component:", error);
-      this.renderErrorState();
+      console.error("Error rendering component:", error)
+      this.renderErrorState()
     }
   }
 
   renderWithData(data, language) {
-    const labels = data.labels;
+    const labels = data.labels
 
+    this.sliders.forEach((slider) => {
+      slider.currentIndex = 0
+    })
 
-    this.sliders.forEach(slider => {
-      slider.currentIndex = 0;
-    });
-
-    this.cleanupAllEventListeners();
+    this.cleanupAllEventListeners()
 
     this.container.innerHTML = `
       <div class="w-full">
@@ -703,14 +836,14 @@ class ForfaitComponent {
 
         <div id="forfait-modal-container"></div>
       </div>
-    `;
+    `
 
-    this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
+    this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits])
 
     setTimeout(() => {
-      this.initializeSliders();
-      this.addSliderAccessibility();
-    }, 50);
+      this.initializeSliders()
+      this.addSliderAccessibility()
+    }, 50)
   }
 
   renderErrorState() {
@@ -724,221 +857,294 @@ class ForfaitComponent {
           </button>
         </div>
       </div>
-    `;
+    `
   }
 
   addSliderAccessibility() {
     this.sliders.forEach((slider, sliderType) => {
-      const element = this.container.querySelector(`#${sliderType}-slider`);
+      const element = this.container.querySelector(`#${sliderType}-slider`)
       if (element) {
-        element.setAttribute("role", "region");
-        element.setAttribute("aria-label", sliderType === "forfaits" ? "Forfaits data" : "Forfaits smart");
-        element.setAttribute("tabindex", "0");
+        element.setAttribute("role", "region")
+        element.setAttribute("aria-label", sliderType === "forfaits" ? "Forfaits data" : "Forfaits smart")
+        element.setAttribute("tabindex", "0")
       }
-    });
+    })
   }
 
   initializeSliders() {
-    const data = ForfaitData[this.currentLang];
+    const data = ForfaitData[this.currentLang]
 
-    this.sliders.forEach(slider => {
-      slider.element = null;
-      slider.track = null;
-      slider.dotsContainer = null;
-      slider.totalSlides = 0;
-    });
+    this.sliders.forEach((slider) => {
+      slider.element = null
+      slider.track = null
+      slider.dotsContainer = null
+      slider.totalSlides = 0
+    })
 
-    this.setupSlider("forfaits", data.forfaits.length);
-    this.setupSlider("smart", data.smartForfaits.length);
+    this.setupSlider("forfaits", data.forfaits.length)
+    this.setupSlider("smart", data.smartForfaits.length)
+
+    // Set initial position for RTL
+    setTimeout(() => {
+      if (this.isRTL()) {
+        this.sliders.forEach((slider, sliderType) => {
+          if (slider.track) {
+            // Start from the "end" (right side) for RTL
+            const lastSlideIndex = slider.totalSlides - 1
+            this.updateSlider(sliderType, lastSlideIndex)
+          }
+        })
+      }
+    }, 100)
+  }
+
+  // Update the updateSlider method for proper RTL behavior
+  updateSlider(sliderType, slideIndex) {
+    const slider = this.sliders.get(sliderType)
+    if (!slider || !slider.track) return
+
+    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1))
+    slider.currentIndex = clampedIndex
+
+    const containerWidth = slider.element.offsetWidth
+    const slideWidth = containerWidth // Full container width
+
+    let offset
+
+    if (this.isRTL()) {
+      // For RTL: position from right, starting with last slide at position 0
+      offset = clampedIndex * slideWidth
+    } else {
+      // LTR: standard left movement
+      offset = -clampedIndex * slideWidth
+    }
+
+    slider.track.style.transform = `translateX(${offset}px)`
+    this.updateDots(sliderType, clampedIndex)
+  }
+
+  // Also update updateSliderSmooth method
+  updateSliderSmooth(sliderType, slideIndex) {
+    const slider = this.sliders.get(sliderType)
+    if (!slider || !slider.track) return
+
+    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1))
+    slider.currentIndex = clampedIndex
+
+    const containerWidth = slider.element.offsetWidth
+    const slideWidth = containerWidth
+
+    let offset
+
+    if (this.isRTL()) {
+      // For RTL: position from right, starting with last slide at position 0
+      offset = clampedIndex * slideWidth
+    } else {
+      // LTR: standard left movement
+      offset = -clampedIndex * slideWidth
+    }
+
+    slider.track.style.transition = "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+
+    requestAnimationFrame(() => {
+      if (slider.track) {
+        slider.track.style.transform = `translateX(${offset}px)`
+      }
+    })
+
+    this.updateDots(sliderType, clampedIndex)
   }
   setupSlider(sliderType, totalSlides) {
-    const slider = this.sliders.get(sliderType);
-    const sliderId = `${sliderType}-slider`;
-    const dotsId = `${sliderType}-dots`;
+    const slider = this.sliders.get(sliderType)
+    const sliderId = `${sliderType}-slider`
+    const dotsId = `${sliderType}-dots`
 
-    const element = this.container.querySelector(`#${sliderId}`);
+    const element = this.container.querySelector(`#${sliderId}`)
     if (!element) {
-      console.warn(`Slider element not found for ${sliderType}`);
-      return;
+      console.warn(`Slider element not found for ${sliderType}`)
+      return
     }
-    const track = element.querySelector(".forfait-slider-track");
-    const dotsContainer = this.container.querySelector(`#${dotsId}`);
+    const track = element.querySelector(".forfait-slider-track")
+    const dotsContainer = this.container.querySelector(`#${dotsId}`)
 
     if (!track || !dotsContainer) {
-      console.warn(`Slider track or dots not found for ${sliderType}`);
-      return;
+      console.warn(`Slider track or dots not found for ${sliderType}`)
+      return
     }
 
-    slider.element = element;
-    slider.track = track;
-    slider.dotsContainer = dotsContainer;
-    slider.totalSlides = totalSlides;
-    slider.currentIndex = 0;
+    slider.element = element
+    slider.track = track
+    slider.dotsContainer = dotsContainer
+    slider.totalSlides = totalSlides
+    slider.currentIndex = 0
 
-    this.cleanupSliderEventListenersFor(slider);
+    this.cleanupSliderEventListenersFor(slider)
 
-    this.initializeSwipeHandlers(sliderType);
-    this.setupDotNavigation(sliderType);
+    this.initializeSwipeHandlers(sliderType)
+    this.setupDotNavigation(sliderType)
 
-    this.updateSlider(sliderType, 0);
+    this.updateSlider(sliderType, 0)
   }
 
+  // Replace the entire initializeSwipeHandlers method with this:
   initializeSwipeHandlers(sliderType) {
-    const slider = this.sliders.get(sliderType);
-    const { element, track } = slider;
+    const slider = this.sliders.get(sliderType)
+    const { element, track } = slider
     if (!element || !track) {
-      return;
+      return
     }
 
-    const isRTL = this.isRTL();
+    const isRTL = this.isRTL()
 
     const handleStart = (event) => {
-      if (
-        event.target.closest(".forfait-buy-btn") ||
-        event.target.closest(".forfait-button-zone")
-      ) {
-        return;
+      if (event.target.closest(".forfait-buy-btn") || event.target.closest(".forfait-button-zone")) {
+        return
       }
-      const touch = event.type.startsWith("touch") ? event.touches[0] : event;
-      slider.touchState.isDragging = false;
-      slider.touchState.isScrolling = false;
-      slider.touchState.startX = touch.clientX;
-      slider.touchState.startY = touch.clientY;
-      slider.touchState.startTime = Date.now();
-    };
+
+      const touch = event.type.startsWith("touch") ? event.touches[0] : event
+      slider.touchState.isDragging = false
+      slider.touchState.isScrolling = false
+      slider.touchState.startX = touch.clientX
+      slider.touchState.startY = touch.clientY
+      slider.touchState.startTime = Date.now()
+
+      // Store initial transform for smooth dragging
+      const currentTransform = this.getCurrentTransformValue(track)
+      slider.touchState.initialTransform = currentTransform
+
+      // Prevent default for touch events to avoid scrolling
+      if (event.type.startsWith("touch")) {
+        event.preventDefault()
+      }
+    }
 
     const handleMove = (event) => {
-      if (!slider.touchState.startX) return;
-      if (
-        event.target.closest(".forfait-buy-btn") ||
-        event.target.closest(".forfait-button-zone")
-      ) {
-        return;
+      if (!slider.touchState.startX) return
+      if (event.target.closest(".forfait-buy-btn") || event.target.closest(".forfait-button-zone")) {
+        return
       }
-      const touch = event.type.startsWith("touch") ? event.touches[0] : event;
-      slider.touchState.currentX = touch.clientX;
-      slider.touchState.currentY = touch.clientY;
 
-      const deltaX = Math.abs(
-        slider.touchState.currentX - slider.touchState.startX
-      );
-      const deltaY = Math.abs(
-        slider.touchState.currentY - slider.touchState.startY
-      );
+      const touch = event.type.startsWith("touch") ? event.touches[0] : event
+      slider.touchState.currentX = touch.clientX
+      slider.touchState.currentY = touch.clientY
 
+      const deltaX = Math.abs(slider.touchState.currentX - slider.touchState.startX)
+      const deltaY = Math.abs(slider.touchState.currentY - slider.touchState.startY)
+
+      // Determine if we're scrolling or dragging
       if (!slider.touchState.isDragging && !slider.touchState.isScrolling) {
         if (deltaX > 10 || deltaY > 10) {
-          if (deltaY > deltaX) {
-            slider.touchState.isScrolling = true;
-            return;
+          if (deltaY > deltaX * 1.2) {
+            slider.touchState.isScrolling = true
+            return
           } else {
-            slider.touchState.isDragging = true;
-            track.style.transition = "none";
-            event.preventDefault();
+            slider.touchState.isDragging = true
+            track.style.transition = "none"
+            event.preventDefault()
           }
         }
       }
 
-      if (!slider.touchState.isDragging || slider.touchState.isScrolling)
-        return;
+      if (!slider.touchState.isDragging || slider.touchState.isScrolling) return
 
-      event.preventDefault();
-      const deltaXReal = slider.touchState.currentX - slider.touchState.startX;
+      event.preventDefault()
 
-      const slideWidthPercent = 80;
-      let currentTransform, movePercentage, newTransform;
+      const deltaXReal = slider.touchState.currentX - slider.touchState.startX
+      const containerWidth = element.offsetWidth
+      const slideWidth = containerWidth // Full width for proper calculation
+
+      let newTransform = slider.touchState.initialTransform
+
+      // Direction handling for both LTR and RTL
+      if (isRTL) {
+        // RTL: positive deltaX = swipe right = next slide, negative = previous slide
+        newTransform += deltaXReal
+      } else {
+        // LTR: negative deltaX = swipe left = next slide, positive = previous slide
+        newTransform += deltaXReal
+      }
+
+      // Constrain movement based on direction
+      const maxSlides = slider.totalSlides - 1
+      const maxTransform = isRTL ? maxSlides * slideWidth : -maxSlides * slideWidth
+      const minTransform = 0
 
       if (isRTL) {
-
-
-
-        currentTransform = slider.currentIndex * slideWidthPercent;
-        movePercentage = (deltaXReal / element.offsetWidth) * slideWidthPercent;
-        newTransform = currentTransform - movePercentage;
-
-        const maxTransform = (slider.totalSlides - 1) * slideWidthPercent;
-        const minTransform = 0;
-
-        if (newTransform > maxTransform) {
-          newTransform = maxTransform;
-        } else if (newTransform < minTransform) {
-          newTransform = minTransform;
-        }
+        newTransform = Math.max(minTransform, Math.min(maxTransform, newTransform))
       } else {
-
-        currentTransform = -slider.currentIndex * slideWidthPercent;
-        movePercentage = (deltaXReal / element.offsetWidth) * slideWidthPercent;
-        newTransform = currentTransform + movePercentage;
-
-        const maxTransform = 0;
-        const minTransform = -(slider.totalSlides - 1) * slideWidthPercent;
-
-        if (newTransform > maxTransform) {
-          newTransform = maxTransform;
-        } else if (newTransform < minTransform) {
-          newTransform = minTransform;
-        }
+        newTransform = Math.max(maxTransform, Math.min(minTransform, newTransform))
       }
 
-      track.style.transform = `translateX(${newTransform}%)`;
-    };
+      track.style.transform = `translateX(${newTransform}px)`
+    }
 
     const handleEnd = () => {
-      if (!slider.touchState.startX) return;
+      if (!slider.touchState.startX) return
       if (slider.touchState.isScrolling) {
-        this.resetTouchState(slider);
-        return;
+        this.resetTouchState(slider)
+        return
       }
       if (!slider.touchState.isDragging) {
-        this.resetTouchState(slider);
-        return;
+        this.resetTouchState(slider)
+        return
       }
 
-      slider.touchState.isDragging = false;
-      track.style.transition = "transform 0.3s ease";
+      slider.touchState.isDragging = false
+      track.style.transition = "transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
 
-      const deltaX = slider.touchState.currentX - slider.touchState.startX;
-      const threshold = 50;
-      let newIndex = slider.currentIndex;
+      const deltaX = slider.touchState.currentX - slider.touchState.startX
+      const containerWidth = element.offsetWidth
+      const threshold = containerWidth * 0.15 // 15% of container width
+      const velocity = Math.abs(deltaX) / (Date.now() - slider.touchState.startTime)
 
-      if (Math.abs(deltaX) > threshold) {
+      let newIndex = slider.currentIndex
+
+      // Swipe direction handling
+      if (Math.abs(deltaX) > threshold || velocity > 0.3) {
         if (isRTL) {
-
-
-
+          // RTL: positive deltaX = swipe right = next slide, negative = previous slide
           if (deltaX > 0 && slider.currentIndex < slider.totalSlides - 1) {
-            newIndex = slider.currentIndex + 1;
+            newIndex = slider.currentIndex + 1
           } else if (deltaX < 0 && slider.currentIndex > 0) {
-            newIndex = slider.currentIndex - 1;
+            newIndex = slider.currentIndex - 1
           }
         } else {
-
-
+          // LTR: negative deltaX = swipe left = next slide, positive = previous slide
           if (deltaX < 0 && slider.currentIndex < slider.totalSlides - 1) {
-            newIndex = slider.currentIndex + 1;
+            newIndex = slider.currentIndex + 1
           } else if (deltaX > 0 && slider.currentIndex > 0) {
-            newIndex = slider.currentIndex - 1;
+            newIndex = slider.currentIndex - 1
           }
         }
+      } else {
+        // If not enough swipe, return to current position
+        newIndex = slider.currentIndex
       }
 
-      this.updateSlider(sliderType, newIndex);
-      this.resetTouchState(slider);
-    };
+      this.updateSliderSmooth(sliderType, newIndex)
+      this.resetTouchState(slider)
+    }
 
-    this.bindSwipeEvents(element, handleStart, handleMove, handleEnd, slider);
+    this.bindSwipeEvents(element, handleStart, handleMove, handleEnd, slider)
   }
 
+  getCurrentTransformValue(element) {
+    const transform = window.getComputedStyle(element).transform
+    if (transform === "none" || !transform) return 0
+
+    const matrix = new DOMMatrixReadOnly(transform)
+    return matrix.m41 // translateX value
+  }
   resetTouchState(slider) {
-    slider.touchState.startX = 0;
-    slider.touchState.startY = 0;
-    slider.touchState.currentX = 0;
-    slider.touchState.currentY = 0;
-    slider.touchState.isScrolling = false;
+    slider.touchState.startX = 0
+    slider.touchState.startY = 0
+    slider.touchState.currentX = 0
+    slider.touchState.currentY = 0
+    slider.touchState.isScrolling = false
   }
 
   bindSwipeEvents(element, handleStart, handleMove, handleEnd, slider) {
-    this.cleanupSliderEventListenersFor(slider);
+    this.cleanupSliderEventListenersFor(slider)
 
     const handlers = [
       { element, type: "mousedown", fn: handleStart },
@@ -949,241 +1155,233 @@ class ForfaitComponent {
       { element, type: "touchmove", fn: handleMove },
       { element, type: "touchend", fn: handleEnd },
       { element, type: "touchcancel", fn: handleEnd },
-    ];
+    ]
 
     handlers.forEach(({ element: el, type, fn }) => {
-      const options = type.startsWith("touch") ? { passive: type !== "touchmove" } : undefined;
-      el.addEventListener(type, fn, options);
+      const options = type.startsWith("touch") ? { passive: type !== "touchmove" } : undefined
+      el.addEventListener(type, fn, options)
 
-      const key = `${el.constructor.name}-${type}-${Date.now()}-${Math.random()}`;
-      slider.eventHandlers.set(key, { type, fn, element: el });
-    });
+      const key = `${el.constructor.name}-${type}-${Date.now()}-${Math.random()}`
+      slider.eventHandlers.set(key, { type, fn, element: el })
+    })
 
     const dragStartHandler = (e) => {
       if (!e.target.closest(".forfait-buy-btn")) {
-        e.preventDefault();
+        e.preventDefault()
       }
-    };
-    element.addEventListener("dragstart", dragStartHandler);
-    const dragKey = `${element.constructor.name}-dragstart-${Date.now()}-${Math.random()}`;
+    }
+    element.addEventListener("dragstart", dragStartHandler)
+    const dragKey = `${element.constructor.name}-dragstart-${Date.now()}-${Math.random()}`
     slider.eventHandlers.set(dragKey, {
       type: "dragstart",
       fn: dragStartHandler,
       element,
-    });
+    })
   }
 
   cleanupSliderEventListenersFor(slider) {
     if (slider.eventHandlers && slider.eventHandlers.size > 0) {
       slider.eventHandlers.forEach(({ element, type, fn }) => {
         if (element && element.removeEventListener) {
-          element.removeEventListener(type, fn);
+          element.removeEventListener(type, fn)
         }
-      });
-      slider.eventHandlers.clear();
+      })
+      slider.eventHandlers.clear()
     }
   }
 
   cleanupSliderEventListeners() {
     this.sliders.forEach((slider) => {
-      this.cleanupSliderEventListenersFor(slider);
-    });
+      this.cleanupSliderEventListenersFor(slider)
+    })
   }
 
   setupDotNavigation(sliderType) {
-    const slider = this.sliders.get(sliderType);
-    if (!slider.dotsContainer) return;
+    const slider = this.sliders.get(sliderType)
+    if (!slider.dotsContainer) return
 
-    const dots = slider.dotsContainer.querySelectorAll(".forfait-dot");
+    const dots = slider.dotsContainer.querySelectorAll(".forfait-dot")
 
     dots.forEach((dot, index) => {
       const clickHandler = () => {
-        const slideIndex = parseInt(dot.getAttribute("data-slide")) || index;
-        this.updateSlider(sliderType, slideIndex);
-      };
-      dot.addEventListener("click", clickHandler);
-      const key = `dot-${index}-click-${Date.now()}-${Math.random()}`;
+        const slideIndex = Number.parseInt(dot.getAttribute("data-slide")) || index
+        this.updateSlider(sliderType, slideIndex)
+      }
+      dot.addEventListener("click", clickHandler)
+      const key = `dot-${index}-click-${Date.now()}-${Math.random()}`
       slider.eventHandlers.set(key, {
         type: "click",
         fn: clickHandler,
         element: dot,
-      });
-    });
+      })
+    })
   }
 
   updateSlider(sliderType, slideIndex) {
-    const slider = this.sliders.get(sliderType);
-    if (!slider || !slider.track) return;
+    const slider = this.sliders.get(sliderType)
+    if (!slider || !slider.track) return
 
-    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1));
-    slider.currentIndex = clampedIndex;
+    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1))
+    slider.currentIndex = clampedIndex
 
+    const containerWidth = slider.element.offsetWidth
+    const slideWidth = containerWidth * 0.85
+    const gap = 30
+    const totalSlideWidth = slideWidth + gap
 
-    const containerWidth = slider.element.offsetWidth;
-    const slideWidth = containerWidth * 0.85;
-    const gap = 30;
-    const totalSlideWidth = slideWidth + gap;
-
-    let offset;
+    let offset
 
     if (this.isRTL()) {
-
-      offset = clampedIndex * totalSlideWidth;
-      slider.track.style.flexDirection = "row-reverse";
+      offset = clampedIndex * totalSlideWidth
+      slider.track.style.flexDirection = "row-reverse"
     } else {
-
-      offset = -clampedIndex * totalSlideWidth;
-      slider.track.style.flexDirection = "row";
+      offset = -clampedIndex * totalSlideWidth
+      slider.track.style.flexDirection = "row"
     }
 
-    slider.track.style.transform = `translateX(${offset}px)`;
-    this.updateDots(sliderType, clampedIndex);
+    slider.track.style.transform = `translateX(${offset}px)`
+    this.updateDots(sliderType, clampedIndex)
   }
 
   updateSliderSmooth(sliderType, slideIndex) {
-    const slider = this.sliders.get(sliderType);
-    if (!slider || !slider.track) return;
+    const slider = this.sliders.get(sliderType)
+    if (!slider || !slider.track) return
 
-    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1));
-    slider.currentIndex = clampedIndex;
+    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1))
+    slider.currentIndex = clampedIndex
 
+    const containerWidth = slider.element.offsetWidth
+    const slideWidth = containerWidth * 0.85
+    const gap = 30
+    const totalSlideWidth = slideWidth + gap
 
-    const containerWidth = slider.element.offsetWidth;
-    const slideWidth = containerWidth * 0.85;
-    const gap = 30;
-    const totalSlideWidth = slideWidth + gap;
-
-    let offset;
+    let offset
 
     if (this.isRTL()) {
-      offset = clampedIndex * totalSlideWidth;
-      slider.track.style.flexDirection = "row-reverse";
+      offset = clampedIndex * totalSlideWidth
+      slider.track.style.flexDirection = "row-reverse"
     } else {
-      offset = -clampedIndex * totalSlideWidth;
-      slider.track.style.flexDirection = "row";
+      offset = -clampedIndex * totalSlideWidth
+      slider.track.style.flexDirection = "row"
     }
 
     requestAnimationFrame(() => {
       if (slider.track) {
-        slider.track.style.transform = `translateX(${offset}px)`;
+        slider.track.style.transform = `translateX(${offset}px)`
       }
-    });
-    this.updateDots(sliderType, clampedIndex);
+    })
+    this.updateDots(sliderType, clampedIndex)
   }
 
   updateDots(sliderType, activeIndex) {
-    const slider = this.sliders.get(sliderType);
-    const dots = slider.dotsContainer?.querySelectorAll(".forfait-dot");
-    if (!dots) return;
+    const slider = this.sliders.get(sliderType)
+    const dots = slider.dotsContainer?.querySelectorAll(".forfait-dot")
+    if (!dots) return
 
     dots.forEach((dot, index) => {
-      const slideIndex = parseInt(dot.getAttribute("data-slide")) || index;
-      dot.classList.toggle("active", slideIndex === activeIndex);
-    });
+      const slideIndex = Number.parseInt(dot.getAttribute("data-slide")) || index
+      dot.classList.toggle("active", slideIndex === activeIndex)
+    })
   }
 
   handleLanguageChange() {
-    const newLanguage = this.getLanguage();
+    const newLanguage = this.getLanguage()
     if (newLanguage !== this.currentLang) {
-      this.currentLang = newLanguage;
-      this.closeAnyOpenModals();
-      this.render();
+      this.currentLang = newLanguage
+      this.closeAnyOpenModals()
+      this.render()
     }
   }
 
   closeAnyOpenModals() {
-    const modalContainer = this.container.querySelector("#forfait-modal-container");
+    const modalContainer = this.container.querySelector("#forfait-modal-container")
     if (modalContainer && modalContainer.innerHTML.trim()) {
-      modalContainer.innerHTML = "";
+      modalContainer.innerHTML = ""
     }
   }
 
   handleResize() {
-    clearTimeout(this.resizeTimeout);
+    clearTimeout(this.resizeTimeout)
     this.resizeTimeout = setTimeout(() => {
       this.sliders.forEach((slider, sliderType) => {
         if (slider.track) {
-          this.updateSlider(sliderType, slider.currentIndex);
+          this.updateSlider(sliderType, slider.currentIndex)
         }
-      });
-    }, 100);
+      })
+    }, 100)
   }
 
   bindPurchaseButtons(language, allOffers) {
     if (this.purchaseClickHandler) {
-      this.container.removeEventListener("click", this.purchaseClickHandler);
+      this.container.removeEventListener("click", this.purchaseClickHandler)
     }
     if (this.purchaseTouchHandler) {
-      this.container.removeEventListener("touchend", this.purchaseTouchHandler);
+      this.container.removeEventListener("touchend", this.purchaseTouchHandler)
     }
 
     const clickHandler = (e) => {
-      const button = e.target.closest(".forfait-buy-btn");
-      if (!button) return;
+      const button = e.target.closest(".forfait-buy-btn")
+      if (!button) return
 
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
+      e.preventDefault()
+      e.stopPropagation()
+      e.stopImmediatePropagation()
 
-      const index = parseInt(button.getAttribute("data-index"), 10);
-      const offer = allOffers[index];
+      const index = Number.parseInt(button.getAttribute("data-index"), 10)
+      const offer = allOffers[index]
       if (offer) {
         setTimeout(() => {
-          this.handlePurchaseClick(offer, language);
-        }, 50);
+          this.handlePurchaseClick(offer, language)
+        }, 50)
       }
-    };
+    }
 
     const touchHandler = (e) => {
-      const button = e.target.closest(".forfait-buy-btn");
-      if (!button) return;
+      const button = e.target.closest(".forfait-buy-btn")
+      if (!button) return
 
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
+      e.preventDefault()
+      e.stopPropagation()
+      e.stopImmediatePropagation()
 
-      const index = parseInt(button.getAttribute("data-index"), 10);
-      const offer = allOffers[index];
+      const index = Number.parseInt(button.getAttribute("data-index"), 10)
+      const offer = allOffers[index]
       if (offer) {
         setTimeout(() => {
-          this.handlePurchaseClick(offer, language);
-        }, 50);
+          this.handlePurchaseClick(offer, language)
+        }, 50)
       }
-    };
+    }
 
-    this.purchaseClickHandler = clickHandler;
-    this.purchaseTouchHandler = touchHandler;
+    this.purchaseClickHandler = clickHandler
+    this.purchaseTouchHandler = touchHandler
 
-    this.container.addEventListener("click", clickHandler);
-    this.container.addEventListener("touchend", touchHandler, { passive: false });
+    this.container.addEventListener("click", clickHandler)
+    this.container.addEventListener("touchend", touchHandler, { passive: false })
   }
 
   handlePurchaseClick(offer, language) {
-    const currentLanguage = this.getLanguage();
-    const modalContent = ModalData[currentLanguage];
+    const currentLanguage = this.getLanguage()
+    const modalContent = ModalData[currentLanguage]
     const content =
       modalContent && modalContent[offer.name]
         ? modalContent[offer.name]
-        : this.getDefaultModalContent(offer, currentLanguage);
+        : this.getDefaultModalContent(offer, currentLanguage)
 
-    this.showPurchaseFlow(offer.name, content, this.currentLang === "ar");
+    this.showPurchaseFlow(offer.name, content, this.currentLang === "ar")
   }
 
   getDefaultModalContent(offer, language) {
-    const isArabic = language === "ar";
-    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
+    const isArabic = language === "ar"
+    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""))
 
     return {
       confirm: isArabic
         ? `تأكيد شراء ${offer.data} مقابل ${priceNumber} دج`
         : `Confirmer l'achat de ${offer.data} pour ${priceNumber} DA`,
-      success: isArabic
-        ? `تم تفعيل باقة ${offer.name} بنجاح!`
-        : `Forfait ${offer.name} activé avec succès!`,
-      insufficient: isArabic
-        ? `رصيد غير كافٍ لشراء ${offer.name}`
-        : `Crédit insuffisant pour acheter ${offer.name}`,
-    };
+      success: isArabic ? `تم تفعيل باقة ${offer.name} بنجاح!` : `Forfait ${offer.name} activé avec succès!`,
+      insufficient: isArabic ? `رصيد غير كافٍ لشراء ${offer.name}` : `Crédit insuffisant pour acheter ${offer.name}`,
+    }
   }
 
   showPurchaseFlow(offerName, content, isRTL) {
@@ -1194,10 +1392,10 @@ class ForfaitComponent {
       isRTL,
       onConfirm: () => {
         this.showInsufficientCreditModal(content, isRTL, () => {
-          this.showSuccessModal(content, isRTL);
-        });
+          this.showSuccessModal(content, isRTL)
+        })
       },
-    });
+    })
   }
 
   showInsufficientCreditModal(content, isRTL, onClose) {
@@ -1207,7 +1405,7 @@ class ForfaitComponent {
       message: content.insufficient,
       isRTL,
       onClose,
-    });
+    })
   }
 
   showSuccessModal(content, isRTL) {
@@ -1216,41 +1414,41 @@ class ForfaitComponent {
       title: isRTL ? "هنيئًا!" : "Félicitations!",
       message: content.success,
       isRTL,
-    });
+    })
   }
 
   showModal({ type, title, message, isRTL = false, onConfirm, onClose }) {
     try {
-      const modalContainer = this.container.querySelector("#forfait-modal-container");
+      const modalContainer = this.container.querySelector("#forfait-modal-container")
       if (!modalContainer) {
-        console.error("Modal container not found");
-        return;
+        console.error("Modal container not found")
+        return
       }
 
-      const modalHTML = this.createModalHTML({ type, title, message, isRTL });
-      modalContainer.innerHTML = modalHTML;
-      this.setupModalEvents({ type, onConfirm, onClose, modalContainer });
-      this.manageFocusForModal(modalContainer);
+      const modalHTML = this.createModalHTML({ type, title, message, isRTL })
+      modalContainer.innerHTML = modalHTML
+      this.setupModalEvents({ type, onConfirm, onClose, modalContainer })
+      this.manageFocusForModal(modalContainer)
     } catch (error) {
-      console.error("Error showing modal:", error);
+      console.error("Error showing modal:", error)
     }
   }
 
   manageFocusForModal(modalContainer) {
-    this.previouslyFocusedElement = document.activeElement;
+    this.previouslyFocusedElement = document.activeElement
     setTimeout(() => {
-      const firstButton = modalContainer.querySelector("[data-action]");
+      const firstButton = modalContainer.querySelector("[data-action]")
       if (firstButton) {
-        firstButton.focus();
+        firstButton.focus()
       }
-    }, 100);
+    }, 100)
   }
 
   createModalHTML({ type, title, message, isRTL }) {
-    const dirAttribute = isRTL ? `dir="rtl"` : "";
-    const closeButtonPosition = isRTL ? "left-4" : "right-4";
-    const buttons = this.getModalButtons(type, isRTL);
-    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
+    const dirAttribute = isRTL ? `dir="rtl"` : ""
+    const closeButtonPosition = isRTL ? "left-4" : "right-4"
+    const buttons = this.getModalButtons(type, isRTL)
+    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik"
 
     return `
       <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 forfait-modal-fade"
@@ -1276,7 +1474,7 @@ class ForfaitComponent {
               <div class="flex justify-center forfait-modal-buttons">${buttons}</div>
           </div>
       </div>
-    `;
+    `
   }
 
   getModalButtons(type, isRTL) {
@@ -1284,13 +1482,13 @@ class ForfaitComponent {
       cancel: isRTL ? "إلغاء" : "Annuler",
       confirm: isRTL ? "تأكيد" : "Confirmer",
       close: isRTL ? "تم" : "OK",
-      ok: isRTL ? "تم": "OK",
-    };
+      ok: isRTL ? "تم" : "OK",
+    }
 
-    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `${fontClass} font-semibold text-base uppercase forfait-modal-button w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `${fontClass} font-semibold text-base uppercase forfait-modal-button w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
-    const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
+    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik"
+    const primaryBtn = `${fontClass} font-semibold text-base uppercase forfait-modal-button w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`
+    const secondaryBtn = `${fontClass} font-semibold text-base uppercase forfait-modal-button w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`
+    const buttonGap = "gap-4 flex-wrap sm:flex-nowrap"
 
     const buttonConfigs = {
       confirm: `
@@ -1309,142 +1507,142 @@ class ForfaitComponent {
           <button class="${primaryBtn}" data-action="close">${labels.ok}</button>
         </div>
       `,
-    };
+    }
 
-    return buttonConfigs[type] || buttonConfigs.success;
+    return buttonConfigs[type] || buttonConfigs.success
   }
 
   setupModalEvents({ type, onConfirm, onClose, modalContainer }) {
-    const modal = modalContainer.querySelector(".forfait-modal-fade");
-    const closeButton = modal.querySelector(".forfait-modal-close");
-    const actionButtons = modal.querySelectorAll("[data-action]");
+    const modal = modalContainer.querySelector(".forfait-modal-fade")
+    const closeButton = modal.querySelector(".forfait-modal-close")
+    const actionButtons = modal.querySelectorAll("[data-action]")
 
     const closeModal = () => {
-      modal.style.animation = "modalFadeOut 0.2s ease-in forwards";
+      modal.style.animation = "modalFadeOut 0.2s ease-in forwards"
       setTimeout(() => {
-        modalContainer.innerHTML = "";
+        modalContainer.innerHTML = ""
         if (this.previouslyFocusedElement && this.previouslyFocusedElement.focus) {
-          this.previouslyFocusedElement.focus();
+          this.previouslyFocusedElement.focus()
         }
-        this.previouslyFocusedElement = null;
-      }, 200);
-    };
+        this.previouslyFocusedElement = null
+      }, 200)
+    }
 
-    this.addModalCloseAnimation();
+    this.addModalCloseAnimation()
 
-    const modalHandlers = new Map();
+    const modalHandlers = new Map()
 
-    const closeClickHandler = () => closeModal();
-    closeButton.addEventListener("click", closeClickHandler);
+    const closeClickHandler = () => closeModal()
+    closeButton.addEventListener("click", closeClickHandler)
     modalHandlers.set("close-click", {
       element: closeButton,
       type: "click",
       handler: closeClickHandler,
-    });
+    })
 
     actionButtons.forEach((button) => {
       const actionClickHandler = () => {
-        const action = button.getAttribute("data-action");
-        closeModal();
+        const action = button.getAttribute("data-action")
+        closeModal()
 
         setTimeout(() => {
-          if (action === "confirm" && onConfirm) onConfirm();
-          if (action === "close" && onClose) onClose();
-        }, 200);
-      };
-      button.addEventListener("click", actionClickHandler);
+          if (action === "confirm" && onConfirm) onConfirm()
+          if (action === "close" && onClose) onClose()
+        }, 200)
+      }
+      button.addEventListener("click", actionClickHandler)
       modalHandlers.set(`action-${button.getAttribute("data-action")}`, {
         element: button,
         type: "click",
         handler: actionClickHandler,
-      });
-    });
+      })
+    })
 
     const backdropClickHandler = (event) => {
       if (event.target === modal) {
-        closeModal();
+        closeModal()
       }
-    };
-    modal.addEventListener("click", backdropClickHandler);
+    }
+    modal.addEventListener("click", backdropClickHandler)
     modalHandlers.set("backdrop-click", {
       element: modal,
       type: "click",
       handler: backdropClickHandler,
-    });
+    })
 
     const escapeHandler = (event) => {
       if (event.key === "Escape") {
-        closeModal();
-        document.removeEventListener("keydown", escapeHandler);
-        modalHandlers.delete("escape");
+        closeModal()
+        document.removeEventListener("keydown", escapeHandler)
+        modalHandlers.delete("escape")
       }
-    };
-    document.addEventListener("keydown", escapeHandler);
+    }
+    document.addEventListener("keydown", escapeHandler)
     modalHandlers.set("escape", {
       element: document,
       type: "keydown",
       handler: escapeHandler,
-    });
+    })
 
-    modal.modalHandlers = modalHandlers;
+    modal.modalHandlers = modalHandlers
   }
 
   addModalCloseAnimation() {
     if (!document.getElementById("modal-close-animation")) {
-      const style = document.createElement("style");
-      style.id = "modal-close-animation";
+      const style = document.createElement("style")
+      style.id = "modal-close-animation"
       style.textContent = `
             @keyframes modalFadeOut {
                 from { opacity: 1; transform: scale(1) translateY(0); }
                 to { opacity: 0; transform: scale(0.95) translateY(-10px); }
             }
-        `;
-      document.head.appendChild(style);
+        `
+      document.head.appendChild(style)
     }
   }
 
   cleanupAllEventListeners() {
-    this.cleanupSliderEventListeners();
+    this.cleanupSliderEventListeners()
 
     if (this.purchaseClickHandler) {
-      this.container.removeEventListener("click", this.purchaseClickHandler);
-      this.purchaseClickHandler = null;
+      this.container.removeEventListener("click", this.purchaseClickHandler)
+      this.purchaseClickHandler = null
     }
     if (this.purchaseTouchHandler) {
-      this.container.removeEventListener("touchend", this.purchaseTouchHandler);
-      this.purchaseTouchHandler = null;
+      this.container.removeEventListener("touchend", this.purchaseTouchHandler)
+      this.purchaseTouchHandler = null
     }
   }
 
   destroy() {
     if (this.languagePolling) {
-      clearInterval(this.languagePolling);
+      clearInterval(this.languagePolling)
     }
     if (this.resizeTimeout) {
-      clearTimeout(this.resizeTimeout);
+      clearTimeout(this.resizeTimeout)
     }
     if (this.languageChangeTimeout) {
-      clearTimeout(this.languageChangeTimeout);
+      clearTimeout(this.languageChangeTimeout)
     }
 
-    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
-    window.removeEventListener("resize", this.boundHandlers.resize);
+    window.removeEventListener("languageChanged", this.boundHandlers.languageChange)
+    window.removeEventListener("resize", this.boundHandlers.resize)
 
-    this.cleanupAllEventListeners();
+    this.cleanupAllEventListeners()
 
     if (this.keyboardHandler) {
-      this.container.removeEventListener("keydown", this.keyboardHandler);
+      this.container.removeEventListener("keydown", this.keyboardHandler)
     }
 
-    this.sliders.clear();
+    this.sliders.clear()
 
-    const modalContainer = this.container.querySelector("#forfait-modal-container");
+    const modalContainer = this.container.querySelector("#forfait-modal-container")
     if (modalContainer) {
-      modalContainer.innerHTML = "";
+      modalContainer.innerHTML = ""
     }
 
-    this.container.innerHTML = "";
+    this.container.innerHTML = ""
   }
 }
 
-export default ForfaitComponent;
+export default ForfaitComponent
