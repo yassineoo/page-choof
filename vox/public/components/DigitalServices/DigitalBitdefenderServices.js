@@ -285,67 +285,12 @@ export default class DigitalBitdefenderServices {
           font-size: 14px;
           line-height: 1.5;
           margin-bottom: 32px;
-          color: #666;
+          color: black;
           padding: 0 8px;
         }
 
         .dark .bitdefender-modal-message {
           color: #ccc;
-        }
-
-        .bitdefender-modal-buttons {
-          display: flex;
-          gap: 12px;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-
-        .bitdefender-modal-button {
-          padding: 12px 32px;
-          border-radius: 25px;
-          border: 2px solid #ED1C24;
-          font-weight: 500;
-          font-size: 14px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          min-width: 120px;
-          text-align: center;
-        }
-
-        .bitdefender-modal-button.primary {
-          background-color: transparent;
-          color: #ED1C24;
-        }
-
-        .bitdefender-modal-button.primary:hover {
-          background-color: #ED1C24;
-          color: white;
-        }
-
-        .bitdefender-modal-button.secondary {
-          background-color: transparent;
-          color: #666;
-          border-color: #ddd;
-        }
-
-        .bitdefender-modal-button.secondary:hover {
-          background-color: #f5f5f5;
-          border-color: #bbb;
-        }
-
-        .dark .bitdefender-modal-button.secondary {
-          color: #ccc;
-          border-color: #555;
-        }
-
-        .dark .bitdefender-modal-button.secondary:hover {
-          background-color: #3a3a3a;
-          border-color: #777;
-        }
-
-        .bitdefender-modal-button:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         @media (max-width: 640px) {
@@ -355,15 +300,42 @@ export default class DigitalBitdefenderServices {
             padding: 20px;
           }
           
-          .bitdefender-modal-buttons {
-            flex-direction: column;
-            gap: 12px !important;
-          }
+        
           
-          .bitdefender-modal-button {
-            width: 100% !important;
-            min-width: auto !important;
-          }
+       .bitdefender-modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.bitdefender-modal-button {
+  position: relative;
+  overflow: hidden;
+  padding: 9.41px 34.13px;
+  border-radius: 28.24px;
+  border: 2px solid #ED1C24;
+  font-weight: 600;
+  font-size: 17.65px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 207.11px;
+  height: 47.07px;
+  text-align: center;
+  display: inline-block;
+  white-space: nowrap;
+  max-width: 200px;
+  width: 100%;
+}
+
+.bitdefender-modal-button span {
+  position: relative;
+  z-index: 10;
+}
+
 
           .bitdefender-modal-icon {
             width: 56px;
@@ -747,8 +719,8 @@ export default class DigitalBitdefenderServices {
 
               <!-- Action Buttons -->
               <div class="flex flex-row justify-center items-center gap-3 mt-8 lg:mt-12">
-                <button class="bitdefender-cancel-btn ${fontClass} group relative overflow-hidden bg-white max-w-[200px]  dark:bg-[#2C2C2C] border-2 font-medium sm:font-semibold text-sm sm:text-base lg:text-[18px] transition-all duration-300 hover:shadow-lg hover:scale-105 uppercase tracking-wide w-full sm:w-auto"
-                        style="color: #ED1C24; border-color: #ED1C24; 
+                <button class="bitdefender-cancel-btn ${fontClass} group relative overflow-hidden border-[#ED1C24] text-[#ED1C24] dark:border-white  dark:text-white bg-white max-w-[200px]  dark:bg-[#2C2C2C] border-2 font-medium sm:font-semibold text-sm sm:text-base lg:text-[17.65px] transition-all duration-300 hover:shadow-lg hover:scale-105 uppercase tracking-wide w-full sm:w-auto"
+                        style="
                                width: 100%; height: 42px; 
                                sm:width: 180px; sm:height: 44px;
                                lg:width: 207.11px; lg:height: 47.07px; 
@@ -756,7 +728,7 @@ export default class DigitalBitdefenderServices {
                                padding: 8px 20px; sm:padding: 9px 30px; lg:padding: 9.41px 34.13px;">
                   <span class="relative z-10 dark:text-white dark:border-white">${isArabic ? "الغاء" : "RETOUR"}</span>
                 </button>
-                <button class="bitdefender-choose-btn ${fontClass} group relative overflow-hidden max-w-[200px]  text-white border-2 font-medium sm:font-semibold text-sm sm:text-base lg:text-[18px] transition-all duration-300 hover:shadow-xl hover:scale-105 uppercase tracking-wide w-full sm:w-auto"
+                <button class="bitdefender-choose-btn ${fontClass} group relative overflow-hidden max-w-[200px]  text-white border-2 font-medium sm:font-semibold text-sm sm:text-base lg:text-[17.65px] transition-all duration-300 hover:shadow-xl hover:scale-105 uppercase tracking-wide w-full sm:w-auto"
                         style="background-color: #ED1C24; border-color: #ED1C24; 
                                width: 100%; height: 42px; 
                                sm:width: 180px; sm:height: 44px;
@@ -967,7 +939,7 @@ export default class DigitalBitdefenderServices {
            role="dialog" 
            aria-modal="true" 
            aria-labelledby="modal-title">
-        <div class="relative bg-white dark:bg-[#2C2C2C] rounded-3xl shadow-2xl w-full max-w-sm mx-4 overflow-hidden" ${dirAttribute}>
+        <div class="relative bg-white pt-6 px-2 dark:bg-[#2C2C2C] rounded-3xl shadow-2xl w-full max-w-sm mx-4 overflow-hidden" ${dirAttribute}>
           <!-- Close Button -->
           <button class="bitdefender-modal-close" 
                   aria-label="${isRTL ? "إغلاق" : "Fermer"}">
@@ -995,7 +967,7 @@ export default class DigitalBitdefenderServices {
             <!-- Terms Checkbox -->   
              ${
                type == "confirm"
-                 ? `   <div class="flex items-center justify-center mt-4 mb-4">     
+                 ? `   <div class="flex items-center justify-center mt-4 mb-4 font-normal text-sm ">     
                           <label class="flex items-center cursor-pointer ${fontClass}">         
                                   <input type="checkbox"  class="sr-only peer"   id="terms-checkbox"> 
                                     <div class="relative w-5 h-5 bg-gray-200 dark:bg-gray-600 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-focus:ring-2 peer-focus:ring-blue-500 peer-checked:bg-blue-600 peer-checked:border-blue-600 transition-all duration-200">                   <svg class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity duration-200"                         fill="currentColor" 
@@ -1008,7 +980,7 @@ export default class DigitalBitdefenderServices {
              }      
 
             <!-- Buttons -->
-            <div class="bitdefender-modal-buttons">
+            <div class="bitdefender-modal-buttons gap-3 flex items-center">
               ${buttons}
             </div>
           </div>
@@ -1021,25 +993,59 @@ export default class DigitalBitdefenderServices {
     const t = bitdefenderTranslations[this.currentLang];
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
+    // Common styles for both buttons
+    const baseBtnClass = `
+    relative group overflow-hidden transition-all duration-300 
+    text-sm sm:text-base lg:text-[17.65px] font-medium sm:font-semibold 
+    tracking-wide uppercase max-w-[200px] w-full sm:w-auto 
+    h-[42px] sm:h-[44px] lg:h-[47.07px] 
+    px-[20px] sm:px-[30px] lg:px-[34.13px] 
+    rounded-[25px] lg:rounded-[28.24px]
+  `;
+
+    const secondaryBtn = `
+    ${baseBtnClass}
+    border-2 text-[#ED1C24] bg-white dark:bg-[#2C2C2C] 
+    border-[#ED1C24] dark:border-white  dark:text-white hover:scale-105 hover:shadow-lg
+  `;
+
+    const primaryBtn = `
+    ${baseBtnClass}
+    text-white border-2 bg-[#ED1C24] border-[#ED1C24] 
+    hover:scale-105 hover:shadow-xl
+  `;
+
+    const primaryBtnContent = `
+    <span class="relative z-10">${t.confirmBtn}</span>
+    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+         style="background: linear-gradient(135deg, #ED1C24 0%, #c41e1e 100%);"></div>
+  `;
+
+    const closeBtnContent = `
+    <span class="relative z-10">${t.closeBtn}</span>
+    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+         style="background: linear-gradient(135deg, #ED1C24 0%, #c41e1e 100%);"></div>
+  `;
+
     switch (type) {
       case "confirm":
         return `
-          <button class="bitdefender-modal-button secondary ${fontClass}" data-action="cancel">
-            ${t.cancelBtn}
-          </button>
-          <button class="bitdefender-modal-button primary ${fontClass}" data-action="confirm">
-            ${t.confirmBtn}
-          </button>
-        `;
+        <button class="${secondaryBtn} ${fontClass}" data-action="cancel">
+          <span class="relative z-10">${t.cancelBtn}</span>
+        </button>
+        <button class="${primaryBtn} ${fontClass}" data-action="confirm">
+          ${primaryBtnContent}
+        </button>
+      `;
       case "error":
       case "credit":
       case "success":
       default:
         return `
-          <button class="bitdefender-modal-button primary ${fontClass}" data-action="close">
-            ${t.closeBtn}
-          </button>
-        `;
+        <button class="${primaryBtn} ${fontClass}" data-action="close">
+          ${closeBtnContent}
+        </button>
+      `;
     }
   }
 

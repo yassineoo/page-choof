@@ -6,12 +6,12 @@ export default class Header {
     this.mobileMenuOpen = false;
     this.theme = this.detectInitialTheme();
     this.userData = {
-      phone: '0509876543',
-      offer: 'Offre VOX',
-      credit: '4000 DA',
-      compayName: 'Nom De L\'entreprise',
+      phone: "0509876543",
+      offer: "Offre VOX",
+      credit: "4000 DA",
+      compayName: "Nom De L'entreprise",
       autoRenewal: true,
-      charge: 'CHARGER',
+      charge: "CHARGER",
     };
     this.isTransitioning = false;
     this.boundOnClick = null;
@@ -19,19 +19,15 @@ export default class Header {
 
   getStoredLanguage() {
     try {
-      return typeof localStorage !== 'undefined'
-        ? localStorage.getItem('language') || 'fr'
-        : 'fr';
+      return typeof localStorage !== "undefined" ? localStorage.getItem("language") || "fr" : "fr";
     } catch (e) {
-      return 'fr';
+      return "fr";
     }
   }
 
   getStoredTheme() {
     try {
-      return typeof localStorage !== 'undefined'
-        ? localStorage.getItem("theme")
-        : null;
+      return typeof localStorage !== "undefined" ? localStorage.getItem("theme") : null;
     } catch (e) {
       return null;
     }
@@ -39,7 +35,7 @@ export default class Header {
 
   setStoredTheme(theme) {
     try {
-      if (typeof localStorage !== 'undefined') {
+      if (typeof localStorage !== "undefined") {
         localStorage.setItem("theme", theme);
       }
     } catch (_) {}
@@ -47,7 +43,7 @@ export default class Header {
 
   setStoredLanguage(lang) {
     try {
-      if (typeof localStorage !== 'undefined') {
+      if (typeof localStorage !== "undefined") {
         localStorage.setItem("language", lang);
       }
     } catch (_) {}
@@ -63,8 +59,8 @@ export default class Header {
   }
 
   preventHorizontalScroll() {
-    document.body.style.overflowX = 'hidden';
-    document.documentElement.style.overflowX = 'hidden';
+    document.body.style.overflowX = "hidden";
+    document.documentElement.style.overflowX = "hidden";
   }
 
   setupEventListeners() {
@@ -77,23 +73,21 @@ export default class Header {
   }
 
   render() {
-    document.querySelectorAll("header").forEach(h => h.remove());
-    document.body.insertAdjacentHTML("afterbegin",
-      generateHeaderHTML(this.currentLanguage, this.userData, this.theme)
-    );
+    document.querySelectorAll("header").forEach((h) => h.remove());
+    document.body.insertAdjacentHTML("afterbegin", generateHeaderHTML(this.currentLanguage, this.userData, this.theme));
   }
 
   // iOS-STYLE SLIDING THEME SWITCHER
   initSlidingThemeSwitcher() {
     const themeSwitcher = document.getElementById("theme-switcher");
-    
+
     if (themeSwitcher) {
       // Add visual effects
       const addVisualEffects = () => {
         // Ripple effect
-        themeSwitcher.classList.add('ripple');
+        themeSwitcher.classList.add("ripple");
         setTimeout(() => {
-          themeSwitcher.classList.remove('ripple');
+          themeSwitcher.classList.remove("ripple");
         }, 600);
       };
 
@@ -106,11 +100,11 @@ export default class Header {
 
       // Smooth hover effects
       themeSwitcher.addEventListener("mouseenter", () => {
-        themeSwitcher.style.transform = 'translateY(-1px) scale(1.02)';
+        themeSwitcher.style.transform = "translateY(-1px) scale(1.02)";
       });
 
       themeSwitcher.addEventListener("mouseleave", () => {
-        themeSwitcher.style.transform = 'translateY(0) scale(1)';
+        themeSwitcher.style.transform = "translateY(0) scale(1)";
       });
 
       // Update initial state
@@ -122,28 +116,28 @@ export default class Header {
     const themeSwitcher = document.getElementById("theme-switcher");
     if (themeSwitcher) {
       if (this.theme === "dark") {
-        themeSwitcher.classList.add('dark-mode');
+        themeSwitcher.classList.add("dark-mode");
       } else {
-        themeSwitcher.classList.remove('dark-mode');
+        themeSwitcher.classList.remove("dark-mode");
       }
     }
   }
 
   async setTheme(theme) {
     if (theme === this.theme || this.isTransitioning) return;
-    
+
     this.isTransitioning = true;
     this.theme = theme;
-    
+
     // Add smooth document transition
-    document.documentElement.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.documentElement.style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
     document.documentElement.classList.toggle("dark", theme === "dark");
-    
+
     this.setStoredTheme(theme);
     this.updateSlidingThemeSwitcher();
     this.updateMobileThemeIcons();
     this.updateMobileMenuIcons();
-    
+
     // Match the sliding animation timing
     setTimeout(() => {
       this.isTransitioning = false;
@@ -157,8 +151,8 @@ export default class Header {
       }
       this.preventHorizontalScroll();
     };
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('orientationchange', () => {
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", () => {
       setTimeout(() => {
         handleResize();
         this.preventHorizontalScroll();
@@ -174,8 +168,7 @@ export default class Header {
   applyInitialTheme() {
     document.documentElement.classList.toggle("dark", this.theme === "dark");
     requestAnimationFrame(() => {
-      document.documentElement.style.transition =
-        'background-color 0.3s ease-in-out, color 0.3s ease-in-out';
+      document.documentElement.style.transition = "background-color 0.3s ease-in-out, color 0.3s ease-in-out";
     });
   }
 
@@ -194,7 +187,7 @@ export default class Header {
     const isDark = this.theme === "dark";
     const sunIcon = document.getElementById("mobile-sun-icon");
     const moonIcon = document.getElementById("mobile-moon-icon-dark");
-    
+
     if (sunIcon) {
       sunIcon.classList.toggle("hidden", isDark);
     }
@@ -216,21 +209,21 @@ export default class Header {
             this.boundOnClick = (evt) => {
               if (!desktopDropdown.contains(evt.target)) {
                 this.closeLanguageDropdown(menu);
-                document.removeEventListener('click', this.boundOnClick);
+                document.removeEventListener("click", this.boundOnClick);
                 this.boundOnClick = null;
               }
             };
             setTimeout(() => {
-              document.addEventListener('click', this.boundOnClick);
+              document.addEventListener("click", this.boundOnClick);
             }, 0);
           }
         };
       }
     }
-    document.querySelectorAll(".language-option").forEach(option => {
+    document.querySelectorAll(".language-option").forEach((option) => {
       option.onclick = (e) => {
         e.preventDefault();
-        const lang = option.textContent.trim() === 'Français' ? 'fr' : 'ar';
+        const lang = option.textContent.trim() === "Français" ? "fr" : "ar";
         if (lang) {
           this.setLanguage(lang);
           this.closeMobileMenu();
@@ -255,11 +248,11 @@ export default class Header {
     if (this.currentLanguage === lang || this.isTransitioning) return;
     this.isTransitioning = true;
     this.currentLanguage = lang;
-    document.documentElement.style.transition = 'all 0.3s ease-in-out';
+    document.documentElement.style.transition = "all 0.3s ease-in-out";
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = lang;
     this.setStoredLanguage(lang);
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       setTimeout(() => {
         this.render();
         requestAnimationFrame(() => {
@@ -281,9 +274,7 @@ export default class Header {
         this.toggleMobileMenu();
       };
       document.addEventListener("click", (e) => {
-        if (this.mobileMenuOpen &&
-          !mobileMenu.contains(e.target) &&
-          !menuBtn.contains(e.target)) {
+        if (this.mobileMenuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
           this.closeMobileMenu();
         }
       });
@@ -300,21 +291,21 @@ export default class Header {
     this.mobileMenuOpen = !this.mobileMenuOpen;
     const mobileMenu = document.getElementById("mobile-menu");
     if (mobileMenu) {
-      mobileMenu.style.transition = 'all 0.3s ease-in-out';
+      mobileMenu.style.transition = "all 0.3s ease-in-out";
       if (this.mobileMenuOpen) {
         mobileMenu.classList.remove("hidden");
         requestAnimationFrame(() => {
-          mobileMenu.style.transform = 'translateY(0)';
-          mobileMenu.style.opacity = '1';
+          mobileMenu.style.transform = "translateY(0)";
+          mobileMenu.style.opacity = "1";
         });
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = "hidden";
       } else {
-        mobileMenu.style.transform = 'translateY(-10px)';
-        mobileMenu.style.opacity = '0';
+        mobileMenu.style.transform = "translateY(-10px)";
+        mobileMenu.style.opacity = "0";
         setTimeout(() => {
           mobileMenu.classList.add("hidden");
         }, 300);
-        document.body.style.overflow = '';
+        document.body.style.overflow = "";
       }
     }
     this.updateMobileMenuIcons();
@@ -325,13 +316,13 @@ export default class Header {
     this.mobileMenuOpen = false;
     const mobileMenu = document.getElementById("mobile-menu");
     if (mobileMenu) {
-      mobileMenu.style.transition = 'all 0.3s ease-in-out';
-      mobileMenu.style.transform = 'translateY(-10px)';
-      mobileMenu.style.opacity = '0';
+      mobileMenu.style.transition = "all 0.3s ease-in-out";
+      mobileMenu.style.transform = "translateY(-10px)";
+      mobileMenu.style.opacity = "0";
       setTimeout(() => {
         mobileMenu.classList.add("hidden");
       }, 300);
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     this.updateMobileMenuIcons();
   }
@@ -342,11 +333,11 @@ export default class Header {
       { id: "mobile-menu-icon", visible: !this.mobileMenuOpen && !isDark },
       { id: "mobile-menu-icon-dark", visible: !this.mobileMenuOpen && isDark },
       { id: "mobile-menu-close-icon", visible: this.mobileMenuOpen && !isDark },
-      { id: "mobile-menu-close-icon-dark", visible: this.mobileMenuOpen && isDark }
+      { id: "mobile-menu-close-icon-dark", visible: this.mobileMenuOpen && isDark },
     ].forEach(({ id, visible }) => {
       const element = document.getElementById(id);
       if (element) {
-        element.style.transition = 'all 0.3s ease-in-out';
+        element.style.transition = "all 0.3s ease-in-out";
         element.classList.toggle("hidden", !visible);
       }
     });
@@ -354,16 +345,16 @@ export default class Header {
 
   initChargeButton() {
     const chargeButtons = document.querySelectorAll('button:has([src*="baridi.svg"])');
-    chargeButtons.forEach(button => {
+    chargeButtons.forEach((button) => {
       button.onclick = (e) => {
         e.preventDefault();
         this.handleChargeClick();
       };
       button.onmouseenter = () => {
-        button.style.transform = 'scale(1.05)';
+        button.style.transform = "scale(1.05)";
       };
       button.onmouseleave = () => {
-        button.style.transform = 'scale(1)';
+        button.style.transform = "scale(1)";
       };
     });
   }
@@ -382,9 +373,9 @@ export default class Header {
   }
 
   destroy() {
-    document.body.style.overflow = '';
-    document.body.style.overflowX = '';
-    document.documentElement.style.overflowX = '';
-    document.querySelectorAll("header").forEach(h => h.remove());
+    document.body.style.overflow = "";
+    document.body.style.overflowX = "";
+    document.documentElement.style.overflowX = "";
+    document.querySelectorAll("header").forEach((h) => h.remove());
   }
 }
