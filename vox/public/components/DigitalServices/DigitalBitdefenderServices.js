@@ -471,7 +471,7 @@ export default class DigitalBitdefenderServices {
       <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full max-w-[450px] mx-auto bitdefender-card-shadow dark:border dark:border-[#CDCDCD] bitdefender-hover-lift overflow-hidden">
         <!-- Header with red background -->
         <div class="bg-ooredoo-red rounded-t-xl py-3 text-center">
-          <h3 class="${fontClass} text-white font-bold text-lg  tracking-wide leading-tight">
+          <h3 class="${fontClass} text-white font-medium text-[24px]  tracking-wide leading-tight">
             ${translatedPlan.title}
           </h3>
         </div>
