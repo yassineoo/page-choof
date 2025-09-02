@@ -596,16 +596,16 @@ renderSection(section, lang, theme) {
 
     if (lang === 'ar') {
       const hasArabicChars = /[\u0600-\u06FF]/.test(section.subtitle);
-      if (hasArabicChars) {
+      const containsOoredoo = section.subtitle.includes('Ooredoo');
+
+      if (hasArabicChars && containsOoredoo) {
+        fontClassForSubtitle = ''; // Fonts handled manually
+
+        // Wrap "Ooredoo" in Rubik, and the rest in Noto Kufi Arabic
+        const subtitleWithFonts = section.subtitle.replace(/Ooredoo/g, `<span class="font-rubik">Ooredoo</span>`);
+        section.subtitle = `<span class="font-noto-kufi-arabic">${subtitleWithFonts}</span>`;
+      } else if (hasArabicChars) {
         fontClassForSubtitle = 'font-noto-kufi-arabic';
-      }
-
-      // Special override: highlight "Ooredoo" with Rubik font
-      if (section.subtitle.includes('Ooredoo')) {
-        fontClassForSubtitle = ''; // We'll apply fonts inline instead
-
-        // Replace all "Ooredoo" with span-wrapped version
-        section.subtitle = section.subtitle.replace(/(Ooredoo)/g, `<span class="font-rubik">$1</span>`);
       }
     }
 
@@ -639,6 +639,7 @@ renderSection(section, lang, theme) {
   this.cache.renderedSections.set(cacheKey, renderedSection);
   return renderedSection;
 }
+
 
 
   renderSectionIcons(section, theme) {
