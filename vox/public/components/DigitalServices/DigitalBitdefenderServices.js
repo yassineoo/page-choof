@@ -951,12 +951,13 @@ export default class DigitalBitdefenderServices {
 
           <!-- Modal Content -->
           <div class="px-6 py-8 text-center">
+                  <!-- Icon -->
+            ${getModalIcon(type, isRTL)}
            <!-- Title -->
             <h2 id="modal-title" class="bitdefender-modal-title ${fontClass} text-black dark:text-white">
               ${title}
             </h2>
-            <!-- Icon -->
-            ${getModalIcon(type, isRTL)}
+    
 
            
 
@@ -980,7 +981,7 @@ export default class DigitalBitdefenderServices {
              }      
 
             <!-- Buttons -->
-            <div class="bitdefender-modal-buttons gap-3 flex items-center mx-auto justify-center">
+            <div class="bitdefender-modal-buttons gap-3 flex flex-row items-center mx-auto justify-center">
               ${buttons}
             </div>
           </div>
@@ -997,7 +998,7 @@ export default class DigitalBitdefenderServices {
     const baseBtnClass = `
     relative group overflow-hidden transition-all duration-300 
     text-sm sm:text-base lg:text-[17.65px] font-medium sm:font-semibold 
-    tracking-wide uppercase max-w-[200px] w-full sm:w-auto 
+    tracking-wide uppercase max-w-[200px] w-auto 
     h-[42px] sm:h-[44px] lg:h-[47.07px] 
     px-[20px] sm:px-[30px] lg:px-[34.13px] 
     rounded-[25px] lg:rounded-[28.24px]

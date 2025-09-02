@@ -1086,6 +1086,9 @@ class ForfaitComponent {
       modalContainer.innerHTML = "";
     }
   }
+  isMobile() {
+    return window.innerWidth <= 639;
+  }
 
   isMobile() {
     return window.innerWidth <= 639;
