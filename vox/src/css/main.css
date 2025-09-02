@@ -15,64 +15,64 @@
    Self-Hosted Fonts (Local)
    =========================== */
 @font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('/assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Thin.ttf') format('truetype');
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Thin.ttf") format("truetype");
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('/assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-ExtraLight.ttf') format('truetype');
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-ExtraLight.ttf") format("truetype");
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('/assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Light.ttf') format('truetype');
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('/assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Regular.ttf') format('truetype');
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('/assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Medium.ttf') format('truetype');
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('/assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-SemiBold.ttf') format('truetype');
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('/assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Bold.ttf') format('truetype');
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('/assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-ExtraBold.ttf') format('truetype');
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-ExtraBold.ttf") format("truetype");
   font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('/assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Black.ttf') format('truetype');
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Black.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
 }
@@ -92,11 +92,11 @@
    =========================== */
 @layer components {
   .font-rubik {
-    font-family: 'Rubik', sans-serif;
+    font-family: "Rubik", sans-serif;
   }
 
   .font-noto-kufi-arabic {
-    font-family: 'Noto Kufi Arabic', sans-serif;
+    font-family: "Noto Kufi Arabic", sans-serif;
   }
 
    .font-noto-kufi-arabic-google {
@@ -106,14 +106,14 @@
   }
 
   .bg-ooredoo-red {
-    background-color: #ED1C24;
+    background-color: #ed1c24;
   }
 
   .text-ooredoo-red {
-    color: #ED1C24;
+    color: #ed1c24;
   }
 
   .border-ooredoo-red {
-    border-color: #ED1C24;
+    border-color: #ed1c24;
   }
 }
