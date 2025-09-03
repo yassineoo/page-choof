@@ -138,17 +138,19 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
         <div class="flex flex-col space-y-4 pt-4 px-4">
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
             <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white">
-              <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300 mx-1" id="mobile-moon-icon" />
-              <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300 mx-1" id="mobile-moon-icon" />
-              <span class="ml-2 text-sm">${themeText}</span>
+              <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" id="mobile-moon-icon" />
+              <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" id="mobile-moon-icon" />
+              <span class="${language === "fr" ? "ml-2" : "mr-2"} text-sm">${themeText}</span>
             </button>
           </div>
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
             <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" />
-            <img src="./assets/images/header/help-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300 mx-1" />
+            <img src="./assets/images/header/help-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" />
             <span id="help-text-mobile" class="${
               language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-            } text-sm text-black dark:text-white">${helpText}</span>
+            } text-sm text-black dark:text-white">
+              <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${helpText}</a>
+            </span>
           </div>
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
             <img src="./assets/images/header/language.svg" class="w-5 h-5 hidden dark:hidden transition-opacity duration-300" />

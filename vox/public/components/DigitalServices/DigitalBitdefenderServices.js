@@ -747,7 +747,7 @@ export default class DigitalBitdefenderServices {
                                lg:width: 207.11px; lg:height: 47.07px; 
                                border-radius: 25px; lg:border-radius: 28.24px; 
                                padding: 8px 20px; sm:padding: 9px 30px; lg:padding: 9.41px 34.13px;">
-                  <span class="relative z-10 dark:text-white dark:border-white">${isArabic ? "الغاء" : "RETOUR"}</span>
+                  <span class="relative z-10 dark:text-white dark:border-white">${isArabic ? "إلغاء" : "RETOUR"}</span>
                 </button>
                 <button class="bitdefender-choose-btn ${fontClass} group relative overflow-hidden max-w-[200px]  text-white border-2 font-medium sm:font-semibold text-sm sm:text-base lg:text-[17.65px] transition-all duration-300 hover:shadow-xl hover:scale-105 uppercase tracking-wide w-full sm:w-auto"
                         style="background-color: #ED1C24; border-color: #ED1C24; 
@@ -1165,9 +1165,9 @@ createModalHTML({ type, title, message, isRTL }) {
             type === "confirm"
               ? `   
               <div class="flex items-center justify-center mt-4 mb-6 font-normal text-sm">     
-                <label class="flex items-center cursor-pointer ${fontClass} select-none gap-3 ${isRTL ? 'flex-row-reverse' : ''}">         
+                <label class="${!isRTL ? 'flex-row-reverse' : ''} flex items-center cursor-pointer ${fontClass} select-none gap-3">         
                   <input type="checkbox" class="sr-only peer" id="terms-checkbox"> 
-                  <div class="relative w-5 h-5 bg-gray-200 dark:bg-gray-600 rounded border-2 border-gray-300 dark:border-gray-500 peer-focus:ring-2 peer-focus:ring-ooredoo-red peer-checked:bg-ooredoo-red peer-checked:border-ooredoo-red transition-all duration-200 cursor-pointer flex-shrink-0">
+                  <div class="relative w-5 h-5 bg-gray-200 dark:bg-gray-600 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-focus:ring-2 peer-focus:ring-ooredoo-red peer-checked:bg-ooredoo-red peer-checked:border-ooredoo-red transition-all duration-200 cursor-pointer flex-shrink-0">
                     <svg class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity duration-200" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                     </svg>
