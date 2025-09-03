@@ -2,6 +2,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
   const helpText = language === "ar" ? "مساعدة" : "Aide";
   const currentLanguage = language === "ar" ? "العربية" : "Français";
   const chargeText = language === "ar" ? "تعبئة رصيدي" : "CHARGER";
+  const themeText = language === "ar" ? " تغيير الوضع" : "Changer mode";
 
   const getOfferText = (offer) => {
     if (language === "ar") {
@@ -84,10 +85,10 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
     <div class="w-full max-w-[90vw] mx-auto">
       <div class="flex items-center justify-between h-16 md:h-20">
         <div class="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
-          <div class="w-[120px] h-[30px] md:w-[140px] md:h-[36px] lg:w-[180px] lg:h-[56px] flex items-center justify-center relative">
-            <img src="./assets/images/header/Ooredoo-Business.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
-            <img src="./assets/images/header/Ooredoo-Business-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
-          </div>
+          <div class="w-[120px] h-[30px] md:w-[140px] md:h-[36px] lg:w-[180px] lg:h-[56px] flex items-center justify-center relative ${language === "ar" ? "ml-2" : ""}">
+  <img src="./assets/images/header/Ooredoo-Business.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
+  <img src="./assets/images/header/Ooredoo-Business-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
+</div>
           <span class="text-2xl md:text-3xl font-light block text-black dark:text-white transition-colors duration-300">|</span>
           <div class="w-[80px] h-[24px] md:w-[100px] md:h-[29px] lg:w-[120px] lg:h-[40px] flex items-center justify-center relative">
             <img src="./assets/images/header/Choof.svg" alt="Choof" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
@@ -103,7 +104,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
               <img src="./assets/images/header/sun.svg" alt="Sun" class="w-5 h-5 lg:w-7 lg:h-7 transition-all duration-300" />
             </button>
           </div>
-          <a href="#" class="flex items-center h-[40px] lg:h-[48px] px-4 lg:px-6 text-dark-text dark:text-white rounded-lg transition-all duration-300">
+          <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank" class="flex items-center h-[40px] lg:h-[48px] px-4 lg:px-6 text-dark-text dark:text-white rounded-lg transition-all duration-300">
             <span id="help-text" class="${language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-sm lg:text-base mx-2">${helpText}</span>
             <img src="./assets/images/header/help.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/help-white.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 hidden dark:inline transition-opacity duration-300" />
@@ -139,7 +140,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white">
               <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300 mx-1" id="mobile-moon-icon" />
               <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300 mx-1" id="mobile-moon-icon" />
-              <span class="ml-2 text-sm">Changer mode</span>
+              <span class="ml-2 text-sm">${themeText}</span>
             </button>
           </div>
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
@@ -190,10 +191,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             <div class="flex items-center justify-end gap-3 lg:gap-4 flex-shrink-0">
               <div class="flex items-center gap-2">
                 <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
-             <span class="font-rubik font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">${formatCredit(
-               userData.credit,
-               language
-             )}</span>
+             <span class="${language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
+  ${formatCredit(userData.credit, language)}
+</span>
               </div>
             </div>
           </div>

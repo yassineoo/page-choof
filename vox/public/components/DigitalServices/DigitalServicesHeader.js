@@ -75,8 +75,9 @@ export default class DigitalServicesHeader {
       : 'Conditions générales applicables.';
 
     this.container.innerHTML = `
-      <div class="bg-ooredoo-red w-full min-h-[clamp(200px,20vw,300px)] flex items-center justify-center" dir="${dir}">
-        <div class="w-full max-w-[1700px] flex flex-col md:flex-row items-center px-[clamp(1rem,5vw,5rem)] py-[clamp(2rem,5vw,4rem)]">
+      <div class="bg-ooredoo-red w-full min-h-[clamp(100px,10vw,160px)] flex items-center justify-center" dir="${dir}">
+        <div class="w-full max-w-[1700px] flex flex-col md:flex-row items-center px-[clamp(1rem,5vw,5rem)] py-[clamp(1rem,3vw,2rem)]
+">
           <div class="flex-1 flex flex-col items-start justify-center w-full">
             <h2 class="relative z-10 text-white ${fontClass} font-extrabold uppercase
               text-[2rem] md:text-[2.7rem] leading-[141%] tracking-[0.02em]

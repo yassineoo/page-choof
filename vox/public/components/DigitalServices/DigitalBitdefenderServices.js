@@ -880,7 +880,7 @@ export default class DigitalBitdefenderServices {
   }
 
   // Enhanced Modal System with new designs
-  createModalHTML({ type, title, message, isRTL }) {
+createModalHTML({ type, title, message, isRTL }) {
     const dirAttribute = isRTL ? 'dir="rtl"' : 'dir="ltr"';
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
@@ -919,19 +919,77 @@ export default class DigitalBitdefenderServices {
         case "confirm":
         default:
           return `
-
-<div class="bitdefender-modal-icon flex">
-
-        <svg xmlns="http://www.w3.org/2000/svg" width="82" height="84" viewBox="0 0 82 84" fill="none">
-<path d="M26.1236 50.9266V65.8045M41.0014 50.9266V65.8045M55.8793 50.9266V65.8045M72.8996 36.0487H9.10325C8.25215 36.0415 7.4094 36.2169 6.63188 36.5632C5.85435 36.9094 5.16013 37.4184 4.59608 38.0557C4.03202 38.6931 3.61124 39.4441 3.36214 40.258C3.11304 41.0718 3.04142 41.9296 3.15209 42.7735L7.49644 75.5049C7.68528 76.9456 8.39472 78.2675 9.49098 79.2213C10.5872 80.175 11.9946 80.6947 13.4476 80.6824H68.4363C69.8893 80.6947 71.2966 80.175 72.3929 79.2213C73.4891 78.2675 74.1986 76.9456 74.3874 75.5049L78.7318 42.7735C78.8412 41.9396 78.7725 41.0919 78.5304 40.2864C78.2883 39.4809 77.8782 38.7358 77.3271 38.1004C76.776 37.465 76.0965 36.9536 75.3333 36.5999C74.5701 36.2463 73.7407 36.0584 72.8996 36.0487ZM55.8793 10.7563C55.8793 11.7332 55.6869 12.7006 55.3131 13.6031C54.9392 14.5056 54.3913 15.3257 53.7005 16.0165C53.0097 16.7072 52.1897 17.2552 51.2871 17.629C50.3846 18.0029 49.4173 18.1953 48.4404 18.1953H33.5625C31.5896 18.1953 29.6974 17.4115 28.3024 16.0165C26.9073 14.6214 26.1236 12.7293 26.1236 10.7563C26.1236 8.7834 26.9073 6.89127 28.3024 5.4962C29.6974 4.10113 31.5896 3.31738 33.5625 3.31738H48.4404C50.4133 3.31738 52.3054 4.10113 53.7005 5.4962C55.0956 6.89127 55.8793 8.7834 55.8793 10.7563Z" stroke="#4258F5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M55.7627 9.50781C59.3276 10.1237 62.5938 11.887 65.0645 14.5296C67.5352 17.1722 69.0753 20.5495 69.4503 24.1477L70.7596 36.05M11.248 36.05L12.5573 24.1477C12.9568 20.5708 14.5076 17.2206 16.9763 14.6016C19.445 11.9826 22.6979 10.2367 26.245 9.62684" stroke="#4258F5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+            <div class="bitdefender-modal-icon flex">
+              <svg xmlns="http://www.w3.org/2000/svg" width="82" height="84" viewBox="0 0 82 84" fill="none">
+                <path d="M26.1236 50.9266V65.8045M41.0014 50.9266V65.8045M55.8793 50.9266V65.8045M72.8996 36.0487H9.10325C8.25215 36.0415 7.4094 36.2169 6.63188 36.5632C5.85435 36.9094 5.16013 37.4184 4.59608 38.0557C4.03202 38.6931 3.61124 39.4441 3.36214 40.258C3.11304 41.0718 3.04142 41.9296 3.15209 42.7735L7.49644 75.5049C7.68528 76.9456 8.39472 78.2675 9.49098 79.2213C10.5872 80.175 11.9946 80.6947 13.4476 80.6824H68.4363C69.8893 80.6947 71.2966 80.175 72.3929 79.2213C73.4891 78.2675 74.1986 76.9456 74.3874 75.5049L78.7318 42.7735C78.8412 41.9396 78.7725 41.0919 78.5304 40.2864C78.2883 39.4809 77.8782 38.7358 77.3271 38.1004C76.776 37.465 76.0965 36.9536 75.3333 36.5999C74.5701 36.2463 73.7407 36.0584 72.8996 36.0487ZM55.8793 10.7563C55.8793 11.7332 55.6869 12.7006 55.3131 13.6031C54.9392 14.5056 54.3913 15.3257 53.7005 16.0165C53.0097 16.7072 52.1897 17.2552 51.2871 17.629C50.3846 18.0029 49.4173 18.1953 48.4404 18.1953H33.5625C31.5896 18.1953 29.6974 17.4115 28.3024 16.0165C26.9073 14.6214 26.1236 12.7293 26.1236 10.7563C26.1236 8.7834 26.9073 6.89127 28.3024 5.4962C29.6974 4.10113 31.5896 3.31738 33.5625 3.31738H48.4404C50.4133 3.31738 52.3054 4.10113 53.7005 5.4962C55.0956 6.89127 55.8793 8.7834 55.8793 10.7563Z" stroke="#4258F5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M55.7627 9.50781C59.3276 10.1237 62.5938 11.887 65.0645 14.5296C67.5352 17.1722 69.0753 20.5495 69.4503 24.1477L70.7596 36.05M11.248 36.05L12.5573 24.1477C12.9568 20.5708 14.5076 17.2206 16.9763 14.6016C19.445 11.9826 22.6979 10.2367 26.245 9.62684" stroke="#4258F5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
           `;
       }
     };
 
     const buttons = this.getModalButtons(type, isRTL);
+
+    // Fonction pour gérer le téléchargement des conditions générales
+const setupTermsDownload = () => {
+  const termsLink = document.getElementById('terms-link');
+
+  if (termsLink) {
+    termsLink.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      const fileName = isRTL 
+        ? 'TERMES_ET_CONDITIONS_AR_migration_Dima_Ooredoo_ver_DIma+.pdf' 
+        : 'TERMES_ET_CONDITIONS_migration_Dima_Ooredoo_ver_DIma+.pdf';
+
+      const filePath = `public/assets/documents/${fileName}`;
+
+      // Try to download file by creating hidden link
+      const link = document.createElement('a');
+      link.href = filePath;
+      link.download = fileName;
+      link.target = '_blank'; // open in new tab as fallback
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Fallback notification if download doesn't start
+      setTimeout(() => {
+        if (!document.querySelector('.download-notification')) {
+          const notification = document.createElement('div');
+          notification.className = 'download-notification';
+          notification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #e10a1f;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            font-size: 14px;
+          `;
+          notification.textContent = isRTL
+            ? 'إذا لم يبدأ التحميل، يرجى النقر بزر الماوس الأيمن فوق الرابط واختيار "حفظ باسم"'
+            : 'Si le téléchargement ne démarre pas, faites un clic droit sur le lien et choisissez "Enregistrer sous"';
+
+          document.body.appendChild(notification);
+
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 5000);
+        }
+      }, 1500);
+    });
+  }
+};
+
+
+    // Exécuter la fonction après le rendu de la modale
+    setTimeout(setupTermsDownload, 0);
 
     return `
       <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bitdefender-modal-fade" 
@@ -951,34 +1009,38 @@ export default class DigitalBitdefenderServices {
 
           <!-- Modal Content -->
           <div class="px-6 py-8 text-center">
-                  <!-- Icon -->
+            <!-- Icon -->
             ${getModalIcon(type, isRTL)}
-           <!-- Title -->
+            
+            <!-- Title -->
             <h2 id="modal-title" class="bitdefender-modal-title ${fontClass} text-black dark:text-white">
               ${title}
             </h2>
-    
-
-           
 
             <!-- Message -->
-            <p class="bitdefender-modal-message ${fontClass}  font-semibold text-base">
+            <p class="bitdefender-modal-message ${fontClass} font-semibold text-base">
               ${message}
             </p>
-            <!-- Terms Checkbox -->   
-             ${
-               type == "confirm"
-                 ? `   <div class="flex items-center justify-center mt-4 mb-4 font-normal text-sm ">     
-                          <label class="flex items-center cursor-pointer ${fontClass}">         
-                                  <input type="checkbox"  class="sr-only peer"   id="terms-checkbox"> 
-                                    <div class="relative w-5 h-5 bg-gray-200 dark:bg-gray-600 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-focus:ring-2 peer-focus:ring-blue-500 peer-checked:bg-blue-600 peer-checked:border-blue-600 transition-all duration-200">                   <svg class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity duration-200"                         fill="currentColor" 
-                        viewBox="0 0 20 20">                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>                   </svg>                 </div>                 <span class="ml-3 text-sm text-gray-700 dark:text-gray-300 ${
-                          isRTL ? "mr-3 ml-0" : ""
-                        }">                   ${
-                     isRTL ? "أوافق على شروط الإستعمال" : "J'accepte les conditions générales"
-                   }                 </span>               </label>             </div> `
-                 : ""
-             }      
+            
+            <!-- Terms Checkbox -->
+            ${
+              type == "confirm"
+                ? `   
+                <div class="flex items-center justify-center mt-4 mb-4 font-normal text-sm">     
+                  <label class="flex items-center cursor-pointer ${fontClass}">         
+                    <input type="checkbox" class="sr-only peer" id="terms-checkbox"> 
+                    <div class="relative w-5 h-5 bg-gray-200 dark:bg-gray-600 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-focus:ring-2 peer-focus:ring-ooredoo-red peer-checked:bg-ooredoo-red peer-checked:border-ooredoo-red transition-all duration-200">
+                      <svg class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                    <span class="ml-3 text-sm text-gray-700 dark:text-gray-300 ${isRTL ? "mr-3 ml-0" : ""}">
+                      ${isRTL ? "أوافق على <a href='#' class='terms-link text-ooredoo-red font-semibold hover:underline' id='terms-link'>شروط الإستعمال</a>" : "J'accepte les <a href='#' class='terms-link text-ooredoo-red font-semibold hover:underline' id='terms-link'>conditions générales</a>"}
+                    </span>
+                  </label>
+                </div>`
+                : ""
+            }
 
             <!-- Buttons -->
             <div class="bitdefender-modal-buttons gap-3 flex flex-row items-center mx-auto justify-center">

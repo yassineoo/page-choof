@@ -33,8 +33,9 @@ class ForfaitComponent {
     }
   }
 
-  getStylesheet() {
-    return `
+getStylesheet() {
+  return `
+    /* Base Styles */
     .forfait-slider-container {
       overflow: hidden;
       position: relative;
@@ -42,326 +43,480 @@ class ForfaitComponent {
       touch-action: pan-y;
       margin: 0 auto;
     }
-      .forfait-card-shadow {
-          box-shadow: 0px 3.92px 7.84px 0px #0505050A;
-          border: 0.84px solid #C5C5C5;
-      }
-      .dark .forfait-card-shadow {
-          box-shadow: none;
-          border: 0.84px solid #C5C5C5;
-      }
 
-      .forfait-divider {
-          background-image: repeating-linear-gradient(to right, #D1D5DB 0px, #D1D5DB 8px, transparent 8px, transparent 16px);
-          background-size: 16px 1px;
-          background-repeat: repeat-x;
-      }
-      .dark .forfait-divider {
-          background-image: repeating-linear-gradient(to right, #6B7280 0px, #6B7280 8px, transparent 8px, transparent 16px);
-      }
+    .forfait-card-shadow {
+      box-shadow: 0px 3.92px 7.84px 0px #0505050A;
+      border: 0.84px solid #C5C5C5;
+      border-radius: 0.75rem;
+      width: 100%;
+      max-width: 300px;
+      min-width: 280px;
+      height: 100%;
+    }
 
-      .forfait-slider-container {
-          overflow: hidden;
-          position: relative;
-          width: 100%;
-          touch-action: pan-y;
-      }
-      .forfait-slider-track {
-          display: flex;
-          width: 100%;
-          transition: transform 0.3s ease;
-          will-change: transform;
-      }
-      .forfait-slider-slide {
-  flex: 0 0 85%;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  padding: 0 15px;
-  box-sizing: border-box;
-  margin: 0; 
-}
+    .dark .forfait-card-shadow {
+      box-shadow: none;
+      border: 0.84px solid #C5C5C5;
+    }
 
-     
-      [dir="rtl"] .forfait-slider-track {
-          direction: ltr;
-      }
+    .forfait-divider {
+      background-image: repeating-linear-gradient(to right, #D1D5DB 0px, #D1D5DB 8px, transparent 8px, transparent 16px);
+      background-size: 16px 1px;
+      background-repeat: repeat-x;
+      height: 1px;
+    }
 
-      .forfait-modal-fade {
-          animation: modalFadeIn 0.3s ease-out forwards;
-          backdrop-filter: blur(8px);
-      }
+    .dark .forfait-divider {
+      background-image: repeating-linear-gradient(to right, #6B7280 0px, #6B7280 8px, transparent 8px, transparent 16px);
+    }
 
-      @keyframes modalFadeIn {
-          from { opacity: 0; transform: scale(0.95) translateY(-10px); }
-          to { opacity: 1; transform: scale(1) translateY(0); }
-      }
+    .forfait-slider-track {
+      display: flex;
+      width: 100%;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
 
-      .forfait-hover-lift {
-          transition: all 0.3s ease;
-      }
-      .forfait-hover-lift:hover {
-          transform: translateY(-3px);
-          box-shadow: 0px 8px 16px 0px #0505051A;
-          border: 0.84px solid #C5C5C5;
-      }
-      .dark .forfait-hover-lift:hover {
-          box-shadow: none;
-          border: 0.84px solid #C5C5C5;
-      }
+    .forfait-slider-slide {
+      flex: 0 0 calc(100% - 30px);
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      padding: 0 15px;
+      box-sizing: border-box;
+      margin: 0;
+    }
 
+    /* RTL Support */
+    [dir="rtl"] .forfait-slider-track {
+      flex-direction: row-reverse;
+    }
+    [dir="rtl"] .forfait-grid-5 {
+      direction: rtl;
+    }
+    [dir="rtl"] .forfait-card-shadow {
+      text-align: right;
+    }
+    [dir="rtl"] .forfait-card-content {
+      direction: rtl;
+    }
+    [dir="rtl"] .forfait-feature-item {
+      text-align: right;
+    }
+    [dir="rtl"] .forfait-mixed-title {
+      flex-direction: row-reverse;
+    }
+
+    /* Modal Styles */
+    .forfait-modal-fade {
+      animation: modalFadeIn 0.3s ease-out forwards;
+      backdrop-filter: blur(8px);
+      background-color: rgba(105, 105, 105, 0.8);
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Hover Effects */
+    .forfait-hover-lift {
+      transition: all 0.3s ease;
+    }
+    .forfait-hover-lift:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 8px 16px 0px #0505051A;
+      border: 0.84px solid #C5C5C5;
+    }
+    .dark .forfait-hover-lift:hover {
+      box-shadow: none;
+      border: 0.84px solid #C5C5C5;
+    }
+
+    /* Grid System */
+    .forfait-grid {
+      display: grid;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      gap: 0.875rem;
+      justify-items: center;
+      align-items: stretch;
+    }
+
+    .forfait-mobile-slider {
+      display: none;
+    }
+
+    .forfait-mobile-container {
+      padding: 0 1rem;
+    }
+
+    /* 5-card grid (Forfaits) - V-shape layout on desktop screens */
+    .forfait-grid-5 {
+      grid-template-columns: repeat(3, minmax(280px, 320px));
+      grid-template-rows: auto auto;
+      gap: 0.875rem 1.5rem;
+      justify-content: center;
+    }
+    .forfait-grid-5 > *:nth-child(1),
+    .forfait-grid-5 > *:nth-child(2),
+    .forfait-grid-5 > *:nth-child(3) {
+      grid-row: 1;
+    }
+    .forfait-grid-5 > *:nth-child(4),
+    .forfait-grid-5 > *:nth-child(5) {
+      grid-row: 2;
+      justify-self: center;
+    }
+    .forfait-grid-5 > *:nth-child(4) {
+      grid-column: 1 / 3;
+      justify-self: end;
+    }
+    .forfait-grid-5 > *:nth-child(5) {
+      grid-column: 2 / 4;
+      justify-self: start;
+    }
+
+    /* 3-card grid (Smart) */
+    .forfait-grid-3 {
+      grid-template-columns: repeat(3, minmax(280px, 320px));
+      gap: 0.875rem;
+      justify-content: center;
+    }
+
+    /* Large Desktop (1920px+) */
+    @media (min-width: 1920px) {
+      .forfait-grid-5 {
+        grid-template-columns: repeat(5, minmax(280px, 320px));
+        grid-template-rows: auto;
+        gap: 0.875rem;
+      }
+      .forfait-grid-5 > *:nth-child(4),
+      .forfait-grid-5 > *:nth-child(5) {
+        grid-row: 1;
+        grid-column: auto;
+        justify-self: center;
+      }
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(320px, 380px));
+        gap: 0.875rem;
+      }
+    }
+
+    /* Desktop (1440px - 1919px) */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+      .forfait-grid-5 {
+        grid-template-columns: repeat(3, minmax(280px, 320px));
+        gap: 0.875rem 1.5rem;
+      }
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(280px, 320px));
+        gap: 0.875rem;
+      }
+    }
+
+    /* Small Desktop (1280px - 1439px) */
+    @media (min-width: 1280px) and (max-width: 1439px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(250px, 280px));
+        gap: 0.875rem 1rem;
+        justify-content: center;
+      }
+      .forfait-grid-5 > *:nth-child(4) {
+        justify-self: end;
+      }
+      .forfait-grid-5 > *:nth-child(5) {
+        justify-self: start;
+      }
+    }
+
+    /* Middle Screen Fix: 2-column grid */
+    @media (min-width: 992px) and (max-width: 1279px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: repeat(2, minmax(280px, 300px)) !important;
+        gap: 1rem !important;
+        justify-content: center !important;
+        max-width: 600px !important;
+        margin: 0 auto !important;
+      }
+      .forfait-grid-5 > *:nth-child(n) {
+        grid-row: auto !important;
+        grid-column: auto !important;
+        justify-self: auto !important;
+      }
+      .forfait-grid-5 > *:nth-child(5),
+      .forfait-grid-3 > *:nth-child(3) {
+        grid-column: 1 / 3 !important;
+        justify-self: center !important;
+        max-width: 300px !important;
+        margin-top: 1rem !important;
+      }
+    }
+
+    /* Tablet Portrait (768px - 991px) */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: repeat(2, minmax(260px, 280px));
+        gap: 1rem;
+        justify-content: center;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .forfait-grid-5 > *:nth-child(5),
+      .forfait-grid-3 > *:nth-child(3) {
+        grid-column: 1 / 3;
+        justify-self: center;
+        max-width: 280px;
+        margin-top: 1rem;
+      }
+    }
+
+    /* Mobile Landscape (640px - 767px) */
+    @media (min-width: 640px) and (max-width: 767px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        justify-content: center;
+        max-width: 400px;
+      }
+      .forfait-grid-5 > *:nth-child(5),
+      .forfait-grid-3 > *:nth-child(3) {
+        justify-self: center;
+        max-width: 300px;
+        margin-top: 0;
+      }
+    }
+
+    /* Mobile (up to 639px): slider mode */
+    @media (max-width: 639px) {
       .forfait-grid {
-          display: grid;
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 0 1rem;
-          gap: 1.5rem;
+        display: none !important;
       }
       .forfait-mobile-slider {
-          display: none;
+        display: block !important;
       }
+      .forfait-mobile-slider .forfait-card-shadow {
+        background: white !important;
+        box-shadow: 0px 3.92px 7.84px 0px #0505050A !important;
+        border: 0.84px solid #C5C5C5 !important;
+        max-width: 320px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .dark .forfait-mobile-slider .forfait-card-shadow {
+        background: #2C2C2C !important;
+        box-shadow: none !important;
+        border: 0.84px solid #C5C5C5 !important;
+      }
+      .forfait-mobile-slider-wrapper {
+        overflow: visible;
+        margin: 0 -15px;
+        padding: 0 15px;
+      }
+      .forfait-slider-slide {
+        flex: 0 0 calc(100% - 30px);
+        padding: 0 15px;
+      }
+      .forfait-slider-container {
+        overflow: visible;
+      }
+    }
 
-     
-      .forfait-mobile-container {
-          padding: 0 1rem;
-      }
+    /* Component Styles */
+    .forfait-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #d1d5db;
+    }
+    .forfait-dot:hover {
+      transform: scale(1.2);
+      background-color: #9ca3af;
+    }
+    .forfait-dot.active {
+      background-color: #ED1C23;
+      transform: scale(1.1);
+    }
+    .forfait-dots-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 10px;
+    }
+    .forfait-buy-btn {
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+      touch-action: manipulation;
+    }
+    .forfait-card-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 340px;
+      padding: 1.5rem;
+    }
+    .forfait-card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .forfait-card-footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1rem;
+    }
+    .forfait-feature-item {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22.37px;
+      letter-spacing: 0;
+      color: #000000;
+    }
+    .dark .forfait-feature-item {
+      color: #d1d5db;
+    }
+    .forfait-button-zone {
+      touch-action: manipulation;
+      pointer-events: auto;
+      z-index: 10;
+      position: relative;
+    }
+    .forfait-mixed-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .forfait-check-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
 
-      @media (min-width: 1920px) {
-          .forfait-grid-5 {
-              grid-template-columns: repeat(5, minmax(280px, 320px));
-              justify-content: center;
-          }
-          .forfait-grid-3 {
-              grid-template-columns: repeat(3, minmax(320px, 380px));
-              justify-content: center;
-          }
+    /* Mobile Optimizations */
+    @media (max-width: 640px) {
+      .forfait-modal-buttons {
+        flex-direction: row !important;
+        gap: 12px !important;
+        justify-content: center;
+        align-items: center;
       }
-
-      @media (min-width: 1440px) and (max-width: 1920px) {
-          .forfait-grid-5 {
-              grid-template-columns: repeat(6, 1fr);
-              grid-template-rows: auto auto;
-              max-width: 1200px;
-          }
-          .forfait-grid-5 > *:nth-child(1) { grid-column: 1 / 3; justify-self: center; }
-          .forfait-grid-5 > *:nth-child(2) { grid-column: 3 / 5; justify-self: center; }
-          .forfait-grid-5 > *:nth-child(3) { grid-column: 5 / 7; justify-self: center; }
-          .forfait-grid-5 > *:nth-child(4) { grid-column: 2 / 4; justify-self: center; }
-          .forfait-grid-5 > *:nth-child(5) { grid-column: 4 / 6; justify-self: center; }
-          .forfait-grid-3 {
-              grid-template-columns: repeat(3, minmax(280px, 1fr));
-              max-width: 1000px;
-          }
+      .forfait-modal-button {
+        width: auto !important;
+        min-width: 120px !important;
+        flex: 1;
+        max-width: 150px;
       }
-
-      @media (min-width: 1280px) and (max-width: 1439px) {
-          .forfait-grid-5 {
-              grid-template-columns: repeat(4, 1fr);
-              grid-template-rows: auto auto;
-              gap: 0.875rem;
-              max-width: 900px;
-          }
-          .forfait-grid-5 > *:nth-child(1) { grid-column: 1; }
-          .forfait-grid-5 > *:nth-child(2) { grid-column: 2; }
-          .forfait-grid-5 > *:nth-child(3) { grid-column: 3; }
-          .forfait-grid-5 > *:nth-child(4) { grid-column: 4; }
-          .forfait-grid-5 > *:nth-child(5) { 
-              grid-column: 2 / 4; 
-              grid-row: 2;
-              justify-self: center;
-          }
-          .forfait-grid-3 {
-              grid-template-columns: repeat(3, 1fr);
-              max-width: 750px;
-          }
-         
-          .forfait-card-container {
-              min-height: 360px !important;
-          }
-          .forfait-grid .forfait-card-shadow {
-              max-width: 260px !important;
-          }
-      }
-
-      @media (min-width: 992px) and (max-width: 1279px) {
-          .forfait-grid-5, .forfait-grid-3 {
-              grid-template-columns: repeat(2, minmax(280px, 1fr));
-              gap: 1.5rem;
-              max-width: 700px;
-          }
-          .forfait-grid-5 > *:nth-child(5) {
-              grid-column: 1 / 3;
-              justify-self: center;
-              max-width: 300px;
-              width: 100%;
-          }
-      }
-
-      @media (min-width: 640px) and (max-width: 991px) {
-          .forfait-grid-5, .forfait-grid-3 {
-              grid-template-columns: repeat(2, 1fr);
-              gap: 1.2rem;
-              max-width: 600px;
-          }
-          .forfait-grid-5 > *:nth-child(5) {
-              grid-column: 1 / 3;
-              justify-self: center;
-              max-width: 300px;
-          }
-      }
-
-      @media (max-width: 639px) {
-          .forfait-grid {
-              display: none !important;
-          }
-          .forfait-mobile-slider {
-              display: block !important;
-          }
-         
-          .forfait-slider-slide {
-              flex: 0 0 100%;
-              padding: 0 10px;
-          }
-         
-          .forfait-mobile-slider .forfait-card-shadow {
-              background: white !important;
-              box-shadow: 0px 3.92px 7.84px 0px #0505050A !important;
-              border: 0.84px solid #C5C5C5 !important;
-              border-radius: 0.75rem !important;
-              max-width: 320px;
-              width: 100%;
-              margin: 0 auto;
-          }
-          .dark .forfait-mobile-slider .forfait-card-shadow {
-              background: #2C2C2C !important;
-              box-shadow: none !important;
-              border: 0.84px solid #C5C5C5 !important;
-          }
-      }
-
-      .forfait-dot {
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          border: none;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          background-color: #d1d5db;
-          position: relative;
-      }
-      .forfait-dot:hover {
-          transform: scale(1.2);
-          background-color: #9ca3af;
-      }
-      .forfait-dot.active {
-          background-color: #ED1C23;
-          transform: scale(1.1);
-      }
-      .forfait-dots-container {
-          display: flex;
-          justify-content: center;
-          gap: 10px;
-          margin-top: 24px;
-          padding: 10px;
-      }
-
-      .forfait-buy-btn {
-          position: relative;
-          overflow: hidden;
-          z-index: 10;
-          touch-action: manipulation;
-      }
-
       .forfait-card-container {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          min-height: 340px;
+        min-height: 380px;
+        padding: 1.25rem;
       }
-      .forfait-card-content {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-      }
-      .forfait-card-footer {
-          margin-top: auto;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 1rem;
-          padding-top: 1rem;
-      }
-
       .forfait-feature-item {
-          font-weight: 400;
-          font-size: 18px;
-          line-height: 22.37px;
-          letter-spacing: 0;
-          color: #000000;
+        font-size: 16px;
+        line-height: 20px;
       }
-      .dark .forfait-feature-item {
-          color: #d1d5db;
+    }
+    @media (max-width: 480px) {
+      .forfait-card-container {
+        min-height: 360px;
+        padding: 1rem;
       }
+      .forfait-feature-item {
+        font-size: 15px;
+        line-height: 18px;
+      }
+      .forfait-slider-slide {
+        flex: 0 0 85%;
+      }
+      .forfait-mobile-slider-wrapper {
+        margin: 0 -10px;
+        padding: 0 10px;
+      }
+    }
 
-      .forfait-button-zone {
-          touch-action: manipulation;
-          pointer-events: auto;
-          z-index: 10;
-          position: relative;
+    /* Card height adjustments */
+    @media (max-width: 1279px) {
+      .forfait-card-container {
+        min-height: 360px !important;
       }
+    }
+    @media (max-width: 991px) {
+      .forfait-card-container {
+        min-height: 340px !important;
+      }
+    }
+    @media (max-width: 767px) {
+      .forfait-card-container {
+        min-height: 320px !important;
+      }
+    }
 
-     
-      .forfait-mixed-title {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.5rem;
+    /* Additional tablet-specific fixes */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      /* Ensure proper text wrapping */
+      .forfait-feature-item {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
       }
+      /* Adjust button sizes */
+      .forfait-buy-btn {
+        padding: 8px 20px !important;
+        font-size: 14px !important;
+      }
+      /* Adjust price font sizes */
+      .forfait-card-footer span {
+        font-size: 1.1rem !important;
+      }
+    }
 
-      .forfait-check-icon {
-          width: 16px;
-          height: 16px;
-          flex-shrink: 0;
+    /* Arabic specific tablet fixes */
+    @media (min-width: 768px) and (max-width: 1279px) and ([dir="rtl"]) {
+      .forfait-card-container {
+        text-align: right;
       }
+      .forfait-feature-item {
+        text-align: right;
+      }
+      /* Adjust RTL spacing */
+      .forfait-card-content ul {
+        padding-right: 0;
+        padding-left: 1rem;
+      }
+    }
 
-      @media (max-width: 640px) {
-          .forfait-modal-buttons {
-              flex-direction: row !important;
-              gap: 12px !important;
-              justify-content: center;
-              align-items: center;
-          }
-          .forfait-modal-button {
-              width: auto !important;
-              min-width: 120px !important;
-              flex: 1;
-              max-width: 150px;
-          }
-          .forfait-card-container {
-              min-height: 380px;
-          }
-          .forfait-feature-item {
-              font-size: 16px;
-              line-height: 20px;
-          }
-      }
-
-      @media (max-width: 480px) {
-          .forfait-card-container {
-              min-height: 360px;
-              padding: 1rem;
-          }
-          .forfait-feature-item {
-              font-size: 15px;
-              line-height: 18px;
-          }
-          .forfait-slider-slide {
-              flex: 0 0 85%;
-          }
-      }
-    `;
-  }
+    /* Text overflow prevention */
+    .forfait-card-container h2,
+    .forfait-card-container h3,
+    .forfait-feature-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .forfait-card-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .forfait-card-content li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+  `;
+}
 
   setupEventListeners() {
     window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
@@ -499,27 +654,40 @@ class ForfaitComponent {
     return parts;
   }
 
-  createMixedTitleHTML(title, baseClasses = "") {
-    const parts = this.parseMixedTitle(title);
-    if (parts.length === 1) {
-      const fontClass = this.getFontClass(title);
-      return `<span class="${fontClass} ${baseClasses}">${title}</span>`;
-    }
-
-    const isRTL = this.isRTL();
-    const flexDirection = isRTL ? "flex-row-reverse" : "flex-row";
-
+createMixedTitleHTML(title, baseClasses = '') {
+  if (!title) return '';
+  const isRTL = this.isRTL();
+  
+  // Specific fix for 'SMART اشتراكات' to show Arabic first then English
+  if (title === "SMART اشتراكات" && isRTL) {
     return `
-      <div class="forfait-mixed-title" style="flex-direction: ${flexDirection};">
-        ${parts
-          .map((part) => {
-            const fontClass = part.isArabic ? "font-noto-kufi-arabic" : "font-rubik";
-            return `<span class="${fontClass} ${baseClasses}">${part.text}</span>`;
-          })
-          .join("")}
-      </div>
+      <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
+      <span class="font-rubik ${baseClasses}"> SMART</span>
     `;
   }
+  
+  // General Arabic text only (no Latin)
+  if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
+    return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
+  }
+
+  // Mixed Arabic + English text
+  if (this.containsArabic(title) && title.match(/[a-zA-Z]/)) {
+    const parts = title.split(/([a-zA-Z]+)/).filter(part => part.trim());
+    return parts.map(part => {
+      const isArabic = this.containsArabic(part);
+      const fontClass = isArabic ? 'font-noto-kufi-arabic' : 'font-rubik';
+      const direction = isArabic ? 'rtl' : 'ltr';
+      // Display Arabic first followed by English when RTL mode
+      // If you want to reverse order for all mixed text, add custom logic here
+      return `<span class="${fontClass} ${baseClasses}" dir="${direction}">${part}</span>`;
+    }).join('');
+  }
+  
+  // Non-Arabic text only
+  return `<span class="font-rubik ${baseClasses}">${title}</span>`;
+}
+
 
   createForfaitCard(offer, index, labels) {
     const isRTL = this.isRTL();
@@ -675,46 +843,96 @@ class ForfaitComponent {
     }
   }
 
-  renderWithData(data, language) {
-    const labels = data.labels;
-
-    this.sliders.forEach((slider) => {
-      slider.currentIndex = 0;
-    });
-
-    this.cleanupAllEventListeners();
-
-    this.container.innerHTML = `
-      <div class="w-full">
-        <section class="w-full bg-[#141B4D] dark:bg-[#141414] py-16">
-          <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide uppercase text-center text-white">
-              ${labels.titleData}
-            </h2>
-            ${this.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5")}
-          </div>
-        </section>
-
-        <section class="w-full bg-white dark:bg-[#1a1a1a] py-16">
-          <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide uppercase text-center text-black dark:text-white">
-              ${labels.titleSmart}
-            </h2>
-            ${this.createResponsiveLayout(data.smartForfaits, labels, "forfait-grid-3")}
-          </div>
-        </section>
-
-        <div id="forfait-modal-container"></div>
-      </div>
+createMixedTitleHTML(title, baseClasses = '') {
+  if (!title) return '';
+  const isRTL = this.isRTL();
+  
+  // Specific fix for 'SMART اشتراكات' to show Arabic first then English
+  if (title === "SMART اشتراكات" && isRTL) {
+    return `
+      <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
+      <span class="font-rubik ${baseClasses}"> SMART</span>
     `;
-
-    this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
-
-    setTimeout(() => {
-      this.initializeSliders();
-      this.addSliderAccessibility();
-    }, 50);
   }
+  
+  // General Arabic text only (no Latin)
+  if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
+    return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
+  }
+
+  // Mixed Arabic + English text
+  if (this.containsArabic(title) && title.match(/[a-zA-Z]/)) {
+    const parts = title.split(/([a-zA-Z]+)/).filter(part => part.trim());
+    return parts.map(part => {
+      const isArabic = this.containsArabic(part);
+      const fontClass = isArabic ? 'font-noto-kufi-arabic' : 'font-rubik';
+      const direction = isArabic ? 'rtl' : 'ltr';
+      // Display Arabic first followed by English when RTL mode
+      // If you want to reverse order for all mixed text, add custom logic here
+      return `<span class="${fontClass} ${baseClasses}" dir="${direction}">${part}</span>`;
+    }).join('');
+  }
+  
+  // Non-Arabic text only
+  return `<span class="font-rubik ${baseClasses}">${title}</span>`;
+}
+
+renderTitle(language) {
+  if (language === 'ar') {
+    return `
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white" dir="rtl">
+        <span class="font-noto-kufi-arabic" dir="rtl">اشتراكات</span>
+        <span class="font-rubik" dir="ltr"> SMART</span>
+      </h2>
+    `;
+  } else {
+    return `
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white">
+        <span class="font-rubik">SMART اشتراكات</span>
+      </h2>
+    `;
+  }
+}
+
+renderWithData(data, language) {
+  const labels = data.labels;
+
+  this.sliders.forEach((slider) => {
+    slider.currentIndex = 0;
+  });
+
+  this.cleanupAllEventListeners();
+
+  this.container.innerHTML = `
+    <div class="w-full">
+      <section class="w-full bg-[#141B4D] dark:bg-[#141414] py-16">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-white">
+            ${this.createMixedTitleHTML(labels.titleData, 'uppercase')}
+          </h2>
+          ${this.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5")}
+        </div>
+      </section>
+
+      <section class="w-full bg-white dark:bg-[#1a1a1a] py-16">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
+          ${this.renderTitle(language)}
+          ${this.createResponsiveLayout(data.smartForfaits, labels, "forfait-grid-3")}
+        </div>
+      </section>
+
+      <div id="forfait-modal-container"></div>
+    </div>
+  `;
+
+  this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
+
+  setTimeout(() => {
+    this.initializeSliders();
+    this.addSliderAccessibility();
+  }, 50);
+}
+
 
   renderErrorState() {
     this.container.innerHTML = `
@@ -1189,7 +1407,7 @@ class ForfaitComponent {
   showInsufficientCreditModal(content, isRTL, onClose) {
     this.showModal({
       type: "info",
-      title: isRTL ? "رصيدك غير كاف" : "Information",
+      title: isRTL ? "رصيدك غير كاف" : "Crédit Insuffisant",
       message: content.insufficient,
       isRTL,
       onClose,
