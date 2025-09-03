@@ -421,6 +421,139 @@ getStylesheet() {
         flex: 1;
         max-width: 150px;
       }
+<<<<<<< HEAD
+=======
+
+      @media (min-width: 1280px) and (max-width: 1439px) {
+          .forfait-grid-5 {
+              grid-template-columns: repeat(4, 1fr);
+              grid-template-rows: auto auto;
+              gap: 0.875rem;
+              max-width: 900px;
+          }
+          .forfait-grid-5 > *:nth-child(1) { grid-column: 1; }
+          .forfait-grid-5 > *:nth-child(2) { grid-column: 2; }
+          .forfait-grid-5 > *:nth-child(3) { grid-column: 3; }
+          .forfait-grid-5 > *:nth-child(4) { grid-column: 4; }
+          .forfait-grid-5 > *:nth-child(5) { 
+              grid-column: 2 / 4; 
+              grid-row: 2;
+              justify-self: center;
+          }
+          .forfait-grid-3 {
+              grid-template-columns: repeat(3, 1fr);
+              max-width: 750px;
+          }
+         
+          .forfait-card-container {
+              min-height: 360px !important;
+          }
+          .forfait-grid .forfait-card-shadow {
+              max-width: 260px !important;
+          }
+      }
+
+      @media (min-width: 992px) and (max-width: 1279px) {
+          .forfait-grid-5, .forfait-grid-3 {
+              grid-template-columns: repeat(2, minmax(280px, 1fr));
+              gap: 1.5rem;
+              max-width: 700px;
+          }
+          .forfait-grid-5 > *:nth-child(5) {
+              grid-column: 1 / 3;
+              justify-self: center;
+              max-width: 300px;
+              width: 100%;
+          }
+      }
+
+      @media (min-width: 640px) and (max-width: 991px) {
+          .forfait-grid-5, .forfait-grid-3 {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 1.2rem;
+              max-width: 600px;
+          }
+          .forfait-grid-5 > *:nth-child(5) {
+              grid-column: 1 / 3;
+              justify-self: center;
+              max-width: 300px;
+          }
+      }
+
+      @media (max-width: 639px) {
+          .forfait-grid {
+              display: none !important;
+          }
+          .forfait-mobile-slider {
+              display: block !important;
+          }
+         
+          .forfait-slider-slide {
+              flex: 0 0 100%;
+              padding: 0 10px;
+          }
+         
+          .forfait-mobile-slider .forfait-card-shadow {
+              background: white !important;
+              box-shadow: 0px 3.92px 7.84px 0px #0505050A !important;
+              border: 0.84px solid #C5C5C5 !important;
+              border-radius: 0.75rem !important;
+              max-width: 320px;
+              width: 100%;
+              margin: 0 auto;
+          }
+          .dark .forfait-mobile-slider .forfait-card-shadow {
+              background: #2C2C2C !important;
+              box-shadow: none !important;
+              border: 0.84px solid #C5C5C5 !important;
+          }
+
+          @media (max-width: 639px) {
+  .forfait-slider-slide {
+    flex: 0 0 100%;
+    padding: 0;  /* ← Change this from "0 10px" to "0" */
+  }
+  
+  .forfait-mobile-container {
+    padding: 0;  /* ← Change this from "0 1rem" to "0" */;
+  }
+}
+      }
+
+      .forfait-dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background-color: #d1d5db;
+          position: relative;
+      }
+      .forfait-dot:hover {
+          transform: scale(1.2);
+          background-color: #9ca3af;
+      }
+      .forfait-dot.active {
+          background-color: #ED1C23;
+          transform: scale(1.1);
+      }
+      .forfait-dots-container {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          margin-top: 24px;
+          padding: 10px;
+      }
+
+      .forfait-buy-btn {
+          position: relative;
+          overflow: hidden;
+          z-index: 10;
+          touch-action: manipulation;
+      }
+
+>>>>>>> a1b52cb4e09e4e91b1c4a48cecca247f59e4eae7
       .forfait-card-container {
         min-height: 380px;
         padding: 1.25rem;
@@ -1278,7 +1411,6 @@ renderWithData(data, language) {
       dot.classList.toggle("active", slideIndex === activeIndex);
     });
   }
-
   handleLanguageChange() {
     const newLanguage = this.getLanguage();
     if (newLanguage !== this.currentLang) {
@@ -1298,6 +1430,9 @@ renderWithData(data, language) {
     return window.innerWidth <= 639;
   }
 
+  isMobile() {
+    return window.innerWidth <= 639;
+  }
   handleResize() {
     clearTimeout(this.resizeTimeout);
     this.resizeTimeout = setTimeout(() => {
