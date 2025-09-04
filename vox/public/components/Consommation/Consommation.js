@@ -634,7 +634,7 @@ export default class Consommation {
 
     const renderedSection = `
       <div class="flex flex-col font-rubik mb-6">
-        <div class="flex items-center justify-between min-w-0">
+        <div class="flex items-start justify-between min-w-0">
           <div class="flex flex-col flex-1 min-w-0">
             <div class="flex items-center gap-2" style="${directionStyle};">
               ${iconsAndTextContent}
@@ -696,7 +696,7 @@ export default class Consommation {
     if (section.extra) {
       return `
         <div class="flex flex-col items-end">
-          <span class="${valueClass} ${fontClass} font-medium text-right" style="font-weight: 600; font-size: 15.99px;">
+          <span class="${valueClass} ${fontClass} font-medium text-right" style="font-weight: 500; font-size: 15.99px;">
             ${formatUnit(section.unit, section.value)}
           </span>
           <span class="${valueClass} ${fontClass} font-medium text-right text-[9px]" style="font-weight: 500;">
