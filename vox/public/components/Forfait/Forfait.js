@@ -72,6 +72,8 @@ class ForfaitComponent {
 
     .forfait-slider-track {
       display: flex;
+      align-items: stretch;
+      justify-content: center;
       width: 100%;
       transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       will-change: transform;
