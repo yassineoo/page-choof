@@ -12,7 +12,6 @@ export const consommationData = {
             subtitle: "Crédit recharge",
             value: "4000",
             unit: "DA",
-            date: "26/05/25",
           },
           {
             subIcon: "dollar-phone",
