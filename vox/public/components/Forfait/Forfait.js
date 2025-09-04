@@ -33,8 +33,8 @@ class ForfaitComponent {
     }
   }
 
-getStylesheet() {
-  return `
+  getStylesheet() {
+    return `
     /* Base Styles */
     .forfait-slider-container {
       overflow: hidden;
@@ -139,7 +139,7 @@ getStylesheet() {
       max-width: 1400px;
       margin: 0 auto;
       padding: 0 1rem;
-      gap: 0.875rem;
+      gap: 0.875rem !imortant;
       justify-items: center;
       align-items: stretch;
     }
@@ -156,7 +156,7 @@ getStylesheet() {
     .forfait-grid-5 {
       grid-template-columns: repeat(3, minmax(280px, 320px));
       grid-template-rows: auto auto;
-      gap: 0.875rem 1.5rem;
+      
       justify-content: center;
     }
     .forfait-grid-5 > *:nth-child(1),
@@ -181,7 +181,6 @@ getStylesheet() {
     /* 3-card grid (Smart) */
     .forfait-grid-3 {
       grid-template-columns: repeat(3, minmax(280px, 320px));
-      gap: 0.875rem;
       justify-content: center;
     }
 
@@ -208,7 +207,8 @@ getStylesheet() {
     @media (min-width: 1440px) and (max-width: 1919px) {
       .forfait-grid-5 {
         grid-template-columns: repeat(3, minmax(280px, 320px));
-        gap: 0.875rem 1.5rem;
+        gap: 1.2rem 0.5rem;
+        
       }
       .forfait-grid-3 {
         grid-template-columns: repeat(3, minmax(280px, 320px));
@@ -221,7 +221,7 @@ getStylesheet() {
       .forfait-grid-5,
       .forfait-grid-3 {
         grid-template-columns: repeat(3, minmax(250px, 280px));
-        gap: 0.875rem 1rem;
+        gap: 1rem 1rem;
         justify-content: center;
       }
       .forfait-grid-5 > *:nth-child(4) {
@@ -478,9 +478,7 @@ getStylesheet() {
         font-size: 14px !important;
       }
       /* Adjust price font sizes */
-      .forfait-card-footer span {
-        font-size: 1.1rem !important;
-      }
+    
     }
 
     /* Arabic specific tablet fixes */
@@ -515,8 +513,48 @@ getStylesheet() {
       align-items: flex-start;
       margin-bottom: 0.5rem;
     }
-  `;
+
+
+    /* Tablet Portrait (768px - 991px) - FIXED */
+@media (min-width: 768px) and (max-width: 991px) {
+  .forfait-grid-5,
+  .forfait-grid-3 {
+    grid-template-columns: repeat(2, minmax(260px, 280px));
+    gap: 1rem;
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto;
+    gap: 30px;
+  }
+  
+  /* RESET V-shape positioning for cards 1-4 */
+  .forfait-grid-5 > *:nth-child(1),
+  .forfait-grid-5 > *:nth-child(2),
+  .forfait-grid-5 > *:nth-child(3),
+  .forfait-grid-5 > *:nth-child(4) {
+    grid-row: auto !important;
+    grid-column: auto !important;
+    justify-self: auto !important;
+    
+    
+  }
+  
+  /* Only 5th card spans both columns */
+  .forfait-grid-5 > *:nth-child(5),
+  .forfait-grid-3 > *:nth-child(3) {
+    grid-column: 1 / 3;
+    justify-self: center;
+    max-width: 280px;
+    margin-top: 1rem;
+    
+   
+  }
+
+  
+
 }
+  `;
+  }
 
   setupEventListeners() {
     window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
@@ -654,40 +692,41 @@ getStylesheet() {
     return parts;
   }
 
-createMixedTitleHTML(title, baseClasses = '') {
-  if (!title) return '';
-  const isRTL = this.isRTL();
-  
-  // Specific fix for 'SMART اشتراكات' to show Arabic first then English
-  if (title === "SMART اشتراكات" && isRTL) {
-    return `
+  createMixedTitleHTML(title, baseClasses = "") {
+    if (!title) return "";
+    const isRTL = this.isRTL();
+
+    // Specific fix for 'SMART اشتراكات' to show Arabic first then English
+    if (title === "SMART اشتراكات" && isRTL) {
+      return `
       <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
       <span class="font-rubik ${baseClasses}"> SMART</span>
     `;
-  }
-  
-  // General Arabic text only (no Latin)
-  if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
-    return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
-  }
+    }
 
-  // Mixed Arabic + English text
-  if (this.containsArabic(title) && title.match(/[a-zA-Z]/)) {
-    const parts = title.split(/([a-zA-Z]+)/).filter(part => part.trim());
-    return parts.map(part => {
-      const isArabic = this.containsArabic(part);
-      const fontClass = isArabic ? 'font-noto-kufi-arabic' : 'font-rubik';
-      const direction = isArabic ? 'rtl' : 'ltr';
-      // Display Arabic first followed by English when RTL mode
-      // If you want to reverse order for all mixed text, add custom logic here
-      return `<span class="${fontClass} ${baseClasses}" dir="${direction}">${part}</span>`;
-    }).join('');
-  }
-  
-  // Non-Arabic text only
-  return `<span class="font-rubik ${baseClasses}">${title}</span>`;
-}
+    // General Arabic text only (no Latin)
+    if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
+      return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
+    }
 
+    // Mixed Arabic + English text
+    if (this.containsArabic(title) && title.match(/[a-zA-Z]/)) {
+      const parts = title.split(/([a-zA-Z]+)/).filter((part) => part.trim());
+      return parts
+        .map((part) => {
+          const isArabic = this.containsArabic(part);
+          const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
+          const direction = isArabic ? "rtl" : "ltr";
+          // Display Arabic first followed by English when RTL mode
+          // If you want to reverse order for all mixed text, add custom logic here
+          return `<span class="${fontClass} ${baseClasses}" dir="${direction}">${part}</span>`;
+        })
+        .join("");
+    }
+
+    // Non-Arabic text only
+    return `<span class="font-rubik ${baseClasses}">${title}</span>`;
+  }
 
   createForfaitCard(offer, index, labels) {
     const isRTL = this.isRTL();
@@ -745,9 +784,9 @@ createMixedTitleHTML(title, baseClasses = '') {
           <div class="forfait-card-footer pt-4">
             <div class="flex justify-center items-baseline w-full mb-4">
               <div class="flex items-baseline justify-center" style="width:70%;">
-                <span class="${priceFontClass} font-bold text-2xl mx-2 sm:text-3xl leading-none text-black dark:text-white">${priceNumber}</span>
-                <span class="${priceFontClass} font-semibold text-xl leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span> 
-                <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span> 
+                <span class="${priceFontClass} font-bold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
+                <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span> 
+                <span class="${priceFontClass} font-semibold text-xs leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span> 
               </div>
             </div>
 
@@ -843,72 +882,74 @@ createMixedTitleHTML(title, baseClasses = '') {
     }
   }
 
-createMixedTitleHTML(title, baseClasses = '') {
-  if (!title) return '';
-  const isRTL = this.isRTL();
-  
-  // Specific fix for 'SMART اشتراكات' to show Arabic first then English
-  if (title === "SMART اشتراكات" && isRTL) {
-    return `
+  createMixedTitleHTML(title, baseClasses = "") {
+    if (!title) return "";
+    const isRTL = this.isRTL();
+
+    // Specific fix for 'SMART اشتراكات' to show Arabic first then English
+    if (title === "SMART اشتراكات" && isRTL) {
+      return `
       <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
       <span class="font-rubik ${baseClasses}"> SMART</span>
     `;
-  }
-  
-  // General Arabic text only (no Latin)
-  if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
-    return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
+    }
+
+    // General Arabic text only (no Latin)
+    if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
+      return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
+    }
+
+    // Mixed Arabic + English text
+    if (this.containsArabic(title) && title.match(/[a-zA-Z]/)) {
+      const parts = title.split(/([a-zA-Z]+)/).filter((part) => part.trim());
+      return parts
+        .map((part) => {
+          const isArabic = this.containsArabic(part);
+          const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
+          const direction = isArabic ? "rtl" : "ltr";
+          // Display Arabic first followed by English when RTL mode
+          // If you want to reverse order for all mixed text, add custom logic here
+          return `<span class="${fontClass} ${baseClasses}" dir="${direction}">${part}</span>`;
+        })
+        .join("");
+    }
+
+    // Non-Arabic text only
+    return `<span class="font-rubik ${baseClasses}">${title}</span>`;
   }
 
-  // Mixed Arabic + English text
-  if (this.containsArabic(title) && title.match(/[a-zA-Z]/)) {
-    const parts = title.split(/([a-zA-Z]+)/).filter(part => part.trim());
-    return parts.map(part => {
-      const isArabic = this.containsArabic(part);
-      const fontClass = isArabic ? 'font-noto-kufi-arabic' : 'font-rubik';
-      const direction = isArabic ? 'rtl' : 'ltr';
-      // Display Arabic first followed by English when RTL mode
-      // If you want to reverse order for all mixed text, add custom logic here
-      return `<span class="${fontClass} ${baseClasses}" dir="${direction}">${part}</span>`;
-    }).join('');
-  }
-  
-  // Non-Arabic text only
-  return `<span class="font-rubik ${baseClasses}">${title}</span>`;
-}
-
-renderTitle(language) {
-  if (language === 'ar') {
-    return `
+  renderTitle(language) {
+    if (language === "ar") {
+      return `
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white" dir="rtl">
         <span class="font-noto-kufi-arabic" dir="rtl">اشتراكات</span>
         <span class="font-rubik" dir="ltr"> SMART</span>
       </h2>
     `;
-  } else {
-    return `
+    } else {
+      return `
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white">
         <span class="font-rubik">SMART اشتراكات</span>
       </h2>
     `;
+    }
   }
-}
 
-renderWithData(data, language) {
-  const labels = data.labels;
+  renderWithData(data, language) {
+    const labels = data.labels;
 
-  this.sliders.forEach((slider) => {
-    slider.currentIndex = 0;
-  });
+    this.sliders.forEach((slider) => {
+      slider.currentIndex = 0;
+    });
 
-  this.cleanupAllEventListeners();
+    this.cleanupAllEventListeners();
 
-  this.container.innerHTML = `
+    this.container.innerHTML = `
     <div class="w-full">
       <section class="w-full bg-[#141B4D] dark:bg-[#141414] py-16">
         <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-white">
-            ${this.createMixedTitleHTML(labels.titleData, 'uppercase')}
+            ${this.createMixedTitleHTML(labels.titleData, "uppercase")}
           </h2>
           ${this.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5")}
         </div>
@@ -925,14 +966,13 @@ renderWithData(data, language) {
     </div>
   `;
 
-  this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
+    this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
 
-  setTimeout(() => {
-    this.initializeSliders();
-    this.addSliderAccessibility();
-  }, 50);
-}
-
+    setTimeout(() => {
+      this.initializeSliders();
+      this.addSliderAccessibility();
+    }, 50);
+  }
 
   renderErrorState() {
     this.container.innerHTML = `
@@ -1212,61 +1252,61 @@ renderWithData(data, language) {
     });
   }
 
-updateSlider(sliderType, slideIndex) {
-  const slider = this.sliders.get(sliderType);
-  if (!slider || !slider.track) return;
+  updateSlider(sliderType, slideIndex) {
+    const slider = this.sliders.get(sliderType);
+    if (!slider || !slider.track) return;
 
-  const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1));
-  slider.currentIndex = clampedIndex;
+    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1));
+    slider.currentIndex = clampedIndex;
 
-  const containerWidth = slider.element.offsetWidth;
-  const slideWidth = containerWidth * 0.85;
-  const gap = 30;
-  const totalSlideWidth = slideWidth + gap;
+    const containerWidth = slider.element.offsetWidth;
+    const slideWidth = containerWidth * 0.85;
+    const gap = 30;
+    const totalSlideWidth = slideWidth + gap;
 
-  let offset;
+    let offset;
 
-  if (this.isRTL()) {
-    slider.track.style.flexDirection = "row-reverse";
-    offset = clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
-  } else {
-    slider.track.style.flexDirection = "row";
-    offset = -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
-  }
-
-  slider.track.style.transform = `translateX(${offset}px)`;
-
-  this.updateDots(sliderType, clampedIndex);
-}
-updateSliderSmooth(sliderType, slideIndex) {
-  const slider = this.sliders.get(sliderType);
-  if (!slider || !slider.track) return;
-
-  const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1));
-  slider.currentIndex = clampedIndex;
-
-  const containerWidth = slider.element.offsetWidth;
-  const slideWidth = containerWidth * 0.85;
-  const gap = 30;
-  const totalSlideWidth = slideWidth + gap;
-
-  let offset;
-
-  if (this.isRTL()) {
-    slider.track.style.flexDirection = "row-reverse";
-    offset = clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
-  } else {
-    slider.track.style.flexDirection = "row";
-    offset = -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
-  }
-
-  requestAnimationFrame(() => {
-    if (slider.track) {
-      slider.track.style.transform = `translateX(${offset}px)`;
+    if (this.isRTL()) {
+      slider.track.style.flexDirection = "row-reverse";
+      offset = clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
+    } else {
+      slider.track.style.flexDirection = "row";
+      offset = -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
     }
-  });
-  this.updateDots(sliderType, clampedIndex);
-}
+
+    slider.track.style.transform = `translateX(${offset}px)`;
+
+    this.updateDots(sliderType, clampedIndex);
+  }
+  updateSliderSmooth(sliderType, slideIndex) {
+    const slider = this.sliders.get(sliderType);
+    if (!slider || !slider.track) return;
+
+    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1));
+    slider.currentIndex = clampedIndex;
+
+    const containerWidth = slider.element.offsetWidth;
+    const slideWidth = containerWidth * 0.85;
+    const gap = 30;
+    const totalSlideWidth = slideWidth + gap;
+
+    let offset;
+
+    if (this.isRTL()) {
+      slider.track.style.flexDirection = "row-reverse";
+      offset = clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
+    } else {
+      slider.track.style.flexDirection = "row";
+      offset = -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
+    }
+
+    requestAnimationFrame(() => {
+      if (slider.track) {
+        slider.track.style.transform = `translateX(${offset}px)`;
+      }
+    });
+    this.updateDots(sliderType, clampedIndex);
+  }
 
   updateDots(sliderType, activeIndex) {
     const slider = this.sliders.get(sliderType);

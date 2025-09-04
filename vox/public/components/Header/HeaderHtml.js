@@ -84,19 +84,21 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
   }">
     <div class="w-full max-w-[90vw] mx-auto">
       <div class="flex items-center justify-between h-16 md:h-20">
-        <div class="flex items-center gap-6 lg:gap-20 flex-shrink-0">
-          <div class="w-[120px] h-[30px] md:w-[140px] md:h-[36px] lg:w-[180px] lg:h-[56px] flex items-center justify-center relative ${language === "ar" ? "ml-2" : ""}">
+        <div class="flex items-center gap-[8px] lg:gap-[25px] flex-shrink-0">
+          <div class="w-[120px] h-[30px] md:w-[140px] md:h-[36px] lg:w-[180px] lg:h-[56px] flex items-center justify-center relative ${
+            language === "ar" ? "ml-2" : ""
+          }">
             <img src="./assets/images/header/Ooredoo-Business.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/Ooredoo-Business-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
           </div>
           <span class="text-2xl md:text-3xl font-light block text-black dark:text-white transition-colors duration-300">|</span>
-          <div class="w-[80px] h-[24px] md:w-[100px] md:h-[29px] lg:w-[120px] lg:h-[40px] flex items-center justify-center relative">
+          <div class="w-[56px] h-[24px] md:w-[100px] md:h-[29px] lg:w-[120px] lg:h-[40px] flex items-center justify-center relative">
             <img src="./assets/images/header/Choof.svg" alt="Choof" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
           </div>
         </div>
         <div class="hidden md:flex items-center space-x-3 lg:space-x-4 flex-shrink-0">
-          <div id="theme-switcher" class="relative w-[120px] lg:w-[144px] h-[40px] lg:h-[48px] rounded-full bg-[#E4E4E7] overflow-hidden transition-all duration-500">
+          <div id="theme-switcher" class="relative w-[102px] lg:w-[144px] h-[40px] lg:h-[48px] rounded-full bg-[#E4E4E7] overflow-hidden transition-all duration-500">
             <button id="moon-btn" class="absolute left-0 top-0 w-[60px] lg:w-[72px] h-[40px] lg:h-[48px] rounded-full bg-[#171717] dark:bg-[#2A2A2A] flex items-center justify-center transition-all duration-500 z-10 hover:scale-105">
               <img src="./assets/images/header/moon-white.svg" alt="Moon" class="w-5 h-5 lg:w-7 lg:h-7 transition-all duration-300" />
             </button>
@@ -146,9 +148,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
             <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/help-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" />
-            <span id="help-text-mobile" class="${
-              language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-            } text-sm text-black dark:text-white">
+            <span id="help-text-mobile" class="${language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-sm text-black dark:text-white">
               <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${helpText}</a>
             </span>
           </div>
@@ -193,7 +193,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             <div class="flex items-center justify-end gap-3 lg:gap-4 flex-shrink-0">
               <div class="flex items-center gap-2">
                 <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
-             <span class="${language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
+             <span class="${
+               language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+             } font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
   ${formatCredit(userData.credit, language)}
 </span>
               </div>
