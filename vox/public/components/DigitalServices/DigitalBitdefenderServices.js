@@ -912,17 +912,17 @@ createModalHTML({ type, title, message, isRTL }) {
       case "error":
         return `
           <div class="bitdefender-modal-icon bg-red-100 dark:bg-red-900/20">
-            <img src="../../assets/images/Frame.svg"/>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
           </div>
         `;
       case "credit":
         return `
           <div class="bitdefender-modal-icon bg-yellow-100 dark:bg-yellow-900/20">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-              <line x1="1" y1="10" x2="23" y2="10"/>
-              <line x1="1" y1="1" x2="23" y2="23" stroke="#ED1C24"/>
-            </svg>
+            <h1>fgg</h1>
           </div>
         `;
       case "success":
