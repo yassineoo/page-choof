@@ -85,7 +85,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
     <div class="w-full max-w-[90vw] mx-auto">
       <div class="flex items-center justify-between h-16 md:h-20">
         <div class="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
-          <div class="w-[120px] h-[30px] md:w-[140px] md:h-[36px] lg:w-[180px] lg:h-[56px] flex items-center justify-center relative ${language === "ar" ? "ml-2" : ""}">
+          <div class="w-[120px] h-[30px] md:w-[140px] md:h-[36px] lg:w-[180px] lg:h-[56px] flex items-center justify-center relative ${
+            language === "ar" ? "ml-2" : ""
+          }">
   <img src="./assets/images/header/Ooredoo-Business.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
   <img src="./assets/images/header/Ooredoo-Business-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
 </div>
@@ -146,9 +148,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
             <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/help-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300 mx-1" />
-            <span id="help-text-mobile" class="${
-              language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-            } text-sm text-black dark:text-white">
+            <span id="help-text-mobile" class="${language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-sm text-black dark:text-white">
               <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${helpText}</a>
             </span>
           </div>
@@ -193,7 +193,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             <div class="flex items-center justify-end gap-3 lg:gap-4 flex-shrink-0">
               <div class="flex items-center gap-2">
                 <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
-             <span class="${language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
+             <span class="${
+               language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+             } font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
   ${formatCredit(userData.credit, language)}
 </span>
               </div>
@@ -228,13 +230,13 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
               <img src="./assets/images/header/Puce.svg" class="w-5 h-5 flex-shrink-0" />
               <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white text-sm">${offerHTML}</span>
             </div>
-            <button class="bg-white text-ooredoo-red rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
+           <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red  rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
               <span class="${
                 language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-              } font-medium text-ooredoo-red text-xs uppercase tracking-[0.02em]"> ${chargeText} </span>
+              } font-medium text-ooredoo-red text-xs uppercase tracking-[0.02em]   "> ${chargeText} </span>
               <img src="./assets/images/consommation/baridi.svg" class="w-4 h-4 flex-shrink-0" />
               <img src="./assets/images/consommation/poste.svg" class="w-4 h-4 flex-shrink-0" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

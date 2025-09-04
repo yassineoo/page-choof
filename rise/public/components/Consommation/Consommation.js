@@ -482,11 +482,11 @@ export default class Consommation {
               ${data.title}
             </h1>
           </div>
-          <button class="bg-ooredoo-red text-white font-medium text-sm rounded-full px-6 py-3 flex items-center gap-2 whitespace-nowrap" style="font-weight: 500;">
+          <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${lang}' class="bg-ooredoo-red text-white font-medium text-sm rounded-full px-6 py-3 flex items-center gap-2 whitespace-nowrap" style="font-weight: 500;">
             <span class="${lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"}"> ${data.charge}</span>
             <img src="${this.config.IMAGE_BASE}baridi.svg" class="w-4 h-4" />
             <img src="${this.config.IMAGE_BASE}poste.svg" class="w-4 h-4" />
-          </button>
+          </a>
         </div>
         <div class="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 items-start">
           ${visibleCards.map(({ card, originalIndex }) => this.renderDesktopCard(card, originalIndex, lang, theme)).join("")}
