@@ -154,7 +154,7 @@ class ForfaitComponent {
 
     /* 5-card grid (Forfaits) - V-shape layout on desktop screens */
     .forfait-grid-5 {
-      grid-template-columns: repeat(3, minmax(280px, 320px));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
       grid-template-rows: auto auto;
       gap: 0.875rem 1.5rem;
       justify-content: center;
