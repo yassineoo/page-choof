@@ -539,7 +539,7 @@ export default class Consommation {
           </div>
 
           <!-- Card Content -->
-          <div class="card-content flex flex-col gap-3 flex-1 pt-6">
+          <div class="card-content flex flex-col flex-1 pt-6">
             ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
           </div>
 
@@ -752,18 +752,18 @@ export default class Consommation {
       </div>
       <div class="flex justify-center">
         <button
-          class="card-chevron flex items-center justify-center cursor-pointer rounded-full p-3 transition-all duration-200"
+          class="card-chevron flex items-end justify-end cursor-pointer rounded-full transition-all duration-200"
           data-card-index="${cardIndex}"
           type="button"
           aria-label="Toggle card content"
           aria-expanded="${isExpanded ? "true" : "false"}"
           style="min-width: 50px; min-height: 50px; margin-bottom: 0;"
         >
-          <div class="chevron-rotator w-12 h-10 flex items-center justify-center transform transition-transform duration-300 ease-in-out ${
+          <div class="chevron-rotator w-12 flex transform transition-transform duration-300 ease-in-out ${
             isExpanded ? "rotate-180" : "rotate-0"
           }">
             <img src="${chevronSrc}"
-                 class="w-full h-full"
+                 class="w-full"
                  alt="expand chevron"
                  style="filter: ${theme === "dark" ? "brightness(0) invert(1)" : "none"};" />
           </div>
