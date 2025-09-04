@@ -174,7 +174,7 @@ getStylesheet() {
       justify-self: end;
     }
     .forfait-grid-5 > *:nth-child(5) {
-      grid-column: 2 / 4;
+      grid-column: 2 / 6;
       justify-self: start;
     }
 

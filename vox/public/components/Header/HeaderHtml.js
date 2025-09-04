@@ -84,11 +84,11 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
   }">
     <div class="w-full max-w-[90vw] mx-auto">
       <div class="flex items-center justify-between h-16 md:h-20">
-        <div class="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
+        <div class="flex items-center gap-6 lg:gap-20 flex-shrink-0">
           <div class="w-[120px] h-[30px] md:w-[140px] md:h-[36px] lg:w-[180px] lg:h-[56px] flex items-center justify-center relative ${language === "ar" ? "ml-2" : ""}">
-  <img src="./assets/images/header/Ooredoo-Business.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
-  <img src="./assets/images/header/Ooredoo-Business-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
-</div>
+            <img src="./assets/images/header/Ooredoo-Business.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
+            <img src="./assets/images/header/Ooredoo-Business-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
+          </div>
           <span class="text-2xl md:text-3xl font-light block text-black dark:text-white transition-colors duration-300">|</span>
           <div class="w-[80px] h-[24px] md:w-[100px] md:h-[29px] lg:w-[120px] lg:h-[40px] flex items-center justify-center relative">
             <img src="./assets/images/header/Choof.svg" alt="Choof" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />

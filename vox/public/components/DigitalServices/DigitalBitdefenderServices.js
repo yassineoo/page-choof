@@ -189,7 +189,7 @@ export default class DigitalBitdefenderServices {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 1rem;
+          gap: 10px;
           padding-top: 1rem;
         }
 
@@ -521,7 +521,7 @@ export default class DigitalBitdefenderServices {
           <!-- Footer -->
           <div class="bitdefender-card-footer border-t border-gray-100 dark:border-gray-700 pt-4">
             <!-- Starting from text -->
-            <div class="text-center mb-2">
+            <div class="text-center">
               <span class="${fontClass} text-[#7F7F7F] text-sm font-normal leading-[18.91px]">
                 ${t.startingFrom}
               </span>
