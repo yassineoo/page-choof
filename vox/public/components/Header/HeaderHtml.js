@@ -3,6 +3,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
   const currentLanguage = language === "ar" ? "العربية" : "Français";
   const chargeText = language === "ar" ? "تعبئة رصيدي" : "CHARGER";
   const themeText = language === "ar" ? " تغيير الوضع" : "Changer mode";
+  const fontClass = language === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
 
   const getOfferText = (offer) => {
     if (language === "ar") {
@@ -86,12 +87,12 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
       <div class="flex items-center justify-between h-16 md:h-20">
         <div class="flex items-center gap-[8px] lg:gap-[25px] flex-shrink-0">
           <div class="w-[120px] h-[30px] md:w-[140px] md:h-[36px] lg:w-[180px] lg:h-[56px] flex items-center justify-center relative ${
-            language === "ar" ? "ml-2" : ""
+            language === "ar" ? "" : ""
           }">
             <img src="./assets/images/header/Ooredoo-Business.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/Ooredoo-Business-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
           </div>
-          <span class="text-2xl md:text-3xl font-light block text-black dark:text-white transition-colors duration-300">|</span>
+<span class="inline-block w-[0.5px] h-4 md:h-8 bg-black dark:bg-white transition-colors duration-300"></span>
           <div class="w-[56px] h-[24px] md:w-[100px] md:h-[29px] lg:w-[120px] lg:h-[40px] flex items-center justify-center relative">
             <img src="./assets/images/header/Choof.svg" alt="Choof" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
@@ -138,11 +139,11 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
 
       <div id="mobile-menu" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-50 transition-all duration-300 ease-in-out">
         <div class="flex flex-col space-y-4 pt-4 px-4">
-          <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
-            <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white">
+          <div class="flex items-center gap-3 py-2 rounded-lg transition-all duration-300">
+            <button id="theme-mobile-switcher" class="flex  gap-3 px-2   items-center w-full text-black dark:text-white">
               <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" id="mobile-moon-icon" />
               <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" id="mobile-moon-icon" />
-              <span class="${language === "fr" ? "ml-2" : "mr-2"} text-sm">${themeText}</span>
+              <span class="${fontClass}  text-sm">${themeText}</span>
             </button>
           </div>
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
@@ -193,9 +194,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             <div class="flex items-center justify-end gap-3 lg:gap-4 flex-shrink-0">
               <div class="flex items-center gap-2">
                 <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
-             <span class="${
-               language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-             } font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
+             <span class="${fontClass}  ${
+    language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+  } font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
   ${formatCredit(userData.credit, language)}
 </span>
               </div>
@@ -213,10 +214,10 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             </div>
             <div class="flex items-center gap-2">
               <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 flex-shrink-0" />
-          <span class="font-rubik font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white text-lg">${formatCredit(
-            userData.credit,
-            language
-          )}</span>
+          <span class="font-rubik font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white text-lg ${fontClass}">${formatCredit(
+    userData.credit,
+    language
+  )}</span>
             </div>
           </div>
           <div class="flex items-center gap-2 mb-4">
@@ -230,13 +231,13 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
               <img src="./assets/images/header/Puce.svg" class="w-5 h-5 flex-shrink-0" />
               <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white text-sm">${offerHTML}</span>
             </div>
-            <button class="bg-white text-ooredoo-red rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
+            <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red  rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
               <span class="${
                 language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-              } font-medium text-ooredoo-red text-xs uppercase tracking-[0.02em]"> ${chargeText} </span>
+              } font-medium text-ooredoo-red text-xs uppercase tracking-[0.02em]   "> ${chargeText} </span>
               <img src="./assets/images/consommation/baridi.svg" class="w-4 h-4 flex-shrink-0" />
               <img src="./assets/images/consommation/poste.svg" class="w-4 h-4 flex-shrink-0" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

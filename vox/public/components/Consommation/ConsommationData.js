@@ -21,7 +21,7 @@ export const consommationData = {
             unit: "DA",
             date: "26/05/25",
             percentage: 50,
-            extra: "/2500 DA"
+            extra: "/2500 DA",
           },
           {
             subIcon: "dollar-phone",
@@ -30,9 +30,9 @@ export const consommationData = {
             unit: "DA",
             date: "26/05/25",
             percentage: 100,
-            extra: "/100 DA"
-          }
-        ]
+            extra: "/100 DA",
+          },
+        ],
       },
       {
         icon: "internet",
@@ -45,7 +45,7 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 50,
-            extra: "/80Go"
+            extra: "/80Go",
           },
           {
             subIcon: "internet",
@@ -54,7 +54,7 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 100,
-            extra: "/15Go"
+            extra: "/15Go",
           },
           {
             subIcon: "internet",
@@ -63,7 +63,7 @@ export const consommationData = {
             unit: "Mo",
             date: "26/05/25",
             percentage: 50,
-            extra: "/500Mo"
+            extra: "/500Mo",
           },
           {
             subIcon: "internet",
@@ -72,9 +72,9 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 50,
-            extra: "/60Go"
-          }
-        ]
+            extra: "/60Go",
+          },
+        ],
       },
       {
         icon: "telephone",
@@ -85,21 +85,21 @@ export const consommationData = {
             subtitle: "Appels vers Ooredoo",
             infini: true,
             date: "26/05/25",
-            percentage: 100
+            percentage: 100,
           },
           {
             subIcon: "phone",
             subtitle: "Appels vers les autres",
             infini: true,
             date: "26/05/25",
-            percentage: 100
+            percentage: 100,
           },
           {
             subIcon: "sms",
             subtitle: "SMS vers Ooredoo",
             infini: true,
             date: "26/05/25",
-            percentage: 100
+            percentage: 100,
           },
           {
             subIcon: "sms",
@@ -108,7 +108,7 @@ export const consommationData = {
             unit: "SMS",
             date: "26/05/25",
             percentage: 50,
-            extra: "/60 SMS"
+            extra: "/60 SMS",
           },
           // {
           //   subIcon: "telephone",
@@ -119,7 +119,7 @@ export const consommationData = {
           //   percentage: 75,
           //   extra: "/160 min"
           // }
-        ]
+        ],
       },
       {
         icon: "services",
@@ -129,31 +129,31 @@ export const consommationData = {
             subIcon: "maps",
             subtitle: "Google Maps",
             infini: true,
-            date: "26/05/25"
+            date: "26/05/25",
           },
           {
             subIcon: "linkedin",
             subtitle: "LinkedIn",
             infini: true,
-            date: "26/05/25"
+            date: "26/05/25",
           },
           {
             subIcon: "anazik",
             subtitle: "ANAZIK",
             infini: true,
-            date: "26/05/25"
+            date: "26/05/25",
           },
           {
             subIcon: "anaflix",
             subtitle: "ANAFLIX",
             infini: true,
-            date: "26/05/25"
+            date: "26/05/25",
           },
           {
             subIcon: "islamiat",
             subtitle: "Islamiyat",
             infini: true,
-            date: "26/05/25"
+            date: "26/05/25",
           },
           {
             subIcon: "youtube",
@@ -162,17 +162,17 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 80,
-            extra: "/5Go"
+            extra: "/5Go",
           },
           {
             subIcon: ["facebook", "messenger"],
             subtitle: "Facebook & Messenger",
             infini: true,
-            date: "26/05/25"
-          }
-        ]
-      }
-    ]
+            date: "26/05/25",
+          },
+        ],
+      },
+    ],
   },
   ar: {
     title: "حسابي",
@@ -187,7 +187,6 @@ export const consommationData = {
             subtitle: "رصيد التعبئة",
             value: "4000",
             unit: "دج",
-            date: "26/05/25",
           },
           {
             subIcon: "dollar-phone",
@@ -196,7 +195,7 @@ export const consommationData = {
             unit: "دج",
             date: "26/05/25",
             percentage: 50,
-            extra: "/2500 دج"
+            extra: "/2500 دج",
           },
           {
             subIcon: "dollar-phone",
@@ -205,9 +204,9 @@ export const consommationData = {
             unit: "دج",
             date: "26/05/25",
             percentage: 100,
-            extra: "/100 دج"
-          }
-        ]
+            extra: "/100 دج",
+          },
+        ],
       },
       {
         icon: "internet",
@@ -220,7 +219,7 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 50,
-            extra: "/80Go"
+            extra: "/80Go",
           },
           {
             subIcon: "internet",
@@ -229,7 +228,7 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 100,
-            extra: "/15Go"
+            extra: "/15Go",
           },
           {
             subIcon: "internet",
@@ -238,7 +237,7 @@ export const consommationData = {
             unit: "Mo",
             date: "26/05/25",
             percentage: 50,
-            extra: "/500Mo"
+            extra: "/500Mo",
           },
           {
             subIcon: "internet",
@@ -247,9 +246,9 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 50,
-            extra: "/60Go"
-          }
-        ]
+            extra: "/60Go",
+          },
+        ],
       },
       {
         icon: "telephone",
@@ -260,21 +259,21 @@ export const consommationData = {
             subtitle: "مكالمات نحو Ooredoo",
             infini: true,
             date: "26/05/25",
-            percentage: 100
+            percentage: 100,
           },
           {
             subIcon: "phone",
             subtitle: "مكالمات نحو الشبكات الأخرى",
             infini: true,
             date: "26/05/25",
-            percentage: 100
+            percentage: 100,
           },
           {
             subIcon: "sms",
             subtitle: "رسائل قصيرة نحو Ooredoo",
             infini: true,
             date: "26/05/25",
-            percentage: 100
+            percentage: 100,
           },
           {
             subIcon: "sms",
@@ -283,7 +282,7 @@ export const consommationData = {
             unit: "SMS",
             date: "26/05/25",
             percentage: 50,
-            extra: "/60 SMS"
+            extra: "/60 SMS",
           },
           // {
           //   subIcon: "telephone",
@@ -294,41 +293,41 @@ export const consommationData = {
           //   percentage: 75,
           //   extra: "/160 دقيقة"
           // }
-        ]
+        ],
       },
       {
         icon: "services",
         title: "خدماتي",
-                sections: [
+        sections: [
           {
             subIcon: "maps",
             subtitle: "Google Maps",
             infini: true,
-            date: "26/05/25"
+            date: "26/05/25",
           },
           {
             subIcon: "linkedin",
             subtitle: "LinkedIn",
             infini: true,
-            date: "26/05/25"
+            date: "26/05/25",
           },
           {
             subIcon: "anazik",
             subtitle: "ANAZIK",
             infini: true,
-            date: "26/05/25"
+            date: "26/05/25",
           },
           {
             subIcon: "anaflix",
             subtitle: "ANAFLIX",
             infini: true,
-            date: "26/05/25"
+            date: "26/05/25",
           },
           {
             subIcon: "islamiat",
             subtitle: "إسلاميات",
             infini: true,
-            date: "26/05/25"
+            date: "26/05/25",
           },
           {
             subIcon: "youtube",
@@ -337,16 +336,16 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 80,
-            extra: "/5Go"
+            extra: "/5Go",
           },
           {
             subIcon: ["facebook", "messenger"],
             subtitle: "فايسبوك & ماسنجر",
             infini: true,
-            date: "26/05/25"
-          }
-        ]
-      }
-    ]
-  }
+            date: "26/05/25",
+          },
+        ],
+      },
+    ],
+  },
 };

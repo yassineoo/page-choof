@@ -1459,7 +1459,7 @@ class ForfaitComponent {
   showSuccessModal(content, isRTL) {
     this.showModal({
       type: "success",
-      title: isRTL ? "هنيئًا!" : "Félicitations!",
+      title: isRTL ? "هنيئًا !" : "Félicitations !",
       message: content.success,
       isRTL,
     });
