@@ -473,7 +473,7 @@ export default class Consommation {
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="${bgClass} w-full mb-6 py-8 px-8 md:px-12 flex flex-col items-stretch min-h-screen ${fontClass}" ${
+      <div class="${bgClass} w-full py-16 px-8 md:px-12 flex flex-col items-stretch min-h-screen ${fontClass}" ${
       lang === "ar" ? 'dir="rtl"' : ""
     }>
         <div class="w-full flex flex-row justify-between items-center mb-8">
@@ -482,7 +482,7 @@ export default class Consommation {
               ${data.title}
             </h1>
           </div>
-  <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${lang}' class="bg-ooredoo-red text-white font-medium text-sm rounded-full px-6 py-3 flex items-center gap-2 whitespace-nowrap" style="font-weight: 500;">
+          <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${lang}' class="bg-ooredoo-red text-white font-medium text-sm rounded-full px-6 py-3 flex items-center gap-2 whitespace-nowrap" style="font-weight: 500;">
             <span class="${lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"}"> ${data.charge}</span>
             <img src="${this.config.IMAGE_BASE}baridi.svg" class="w-4 h-4" />
             <img src="${this.config.IMAGE_BASE}poste.svg" class="w-4 h-4" />
@@ -526,7 +526,7 @@ export default class Consommation {
 
     const renderedCard = `
       <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}" style="min-height: 450px;">
-        <div class="px-6 pt-6 pb-6 flex flex-col h-full">
+        <div class="px-6 pt-6 pb-6 flex flex-col justify-between h-full">
         
           <!-- Title Section -->
           <div class="flex items-center gap-1 flex-shrink-0" style="padding-bottom: 24px; border-bottom: 0.87px solid #F4F4F4;">

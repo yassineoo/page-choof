@@ -788,7 +788,7 @@ class ForfaitComponent {
               <div class="flex items-baseline justify-center" style="width:70%;">
                 <span class="${priceFontClass} font-bold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
                 <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span> 
-                <span class="${priceFontClass} font-semibold text-xs leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span> 
+                <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${durationText.includes("cycle") ? "text-xs" : "text-base"}">/${durationText}</span> 
               </div>
             </div>
 
@@ -931,7 +931,7 @@ class ForfaitComponent {
     } else {
       return `
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white">
-        <span class="font-rubik">SMART اشتراكات</span>
+        <span class="font-rubik">FORFAIT SMART</span>
       </h2>
     `;
     }
@@ -957,7 +957,7 @@ class ForfaitComponent {
         </div>
       </section>
 
-      <section class="w-full bg-white dark:bg-[#1a1a1a] py-16">
+      <section class="w-full bg-white dark:bg-[#2c2c2c] py-16">
         <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
           ${this.renderTitle(language)}
           ${this.createResponsiveLayout(data.smartForfaits, labels, "forfait-grid-3")}

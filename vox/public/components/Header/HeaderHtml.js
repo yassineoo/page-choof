@@ -98,7 +98,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
           </div>
         </div>
-        <div class="hidden md:flex items-center space-x-3 lg:space-x-4 flex-shrink-0">
+        <div class="hidden md:flex items-center flex-shrink-0">
           <div id="theme-switcher" class="relative w-[102px] lg:w-[144px] h-[40px] lg:h-[48px] rounded-full bg-[#E4E4E7] overflow-hidden transition-all duration-500">
             <button id="moon-btn" class="absolute left-0 top-0 w-[60px] lg:w-[72px] h-[40px] lg:h-[48px] rounded-full bg-[#171717] dark:bg-[#2A2A2A] flex items-center justify-center transition-all duration-500 z-10 hover:scale-105">
               <img src="./assets/images/header/moon-white.svg" alt="Moon" class="w-5 h-5 lg:w-7 lg:h-7 transition-all duration-300" />
