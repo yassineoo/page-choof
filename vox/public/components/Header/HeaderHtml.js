@@ -208,28 +208,28 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           <div class="flex items-center justify-between mb-3">
             <div class="flex items-center gap-2">
               <img src="./assets/images/header/Telephone.svg" class="w-5 h-5 flex-shrink-0" />
-              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white text-sm">${
+              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white md:text-lg text-sm">${
                 phoneHTML || "0509876543"
               }</span>
             </div>
             <div class="flex items-center gap-2">
               <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 flex-shrink-0" />
-          <span class="font-rubik font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white text-lg ${fontClass}">${formatCredit(
-    userData.credit,
-    language
-  )}</span>
+              <span class="font-rubik font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white text-sm md:text-lg ${fontClass}">${formatCredit(
+                userData.credit,
+                language
+              )}</span>
             </div>
           </div>
           <div class="flex items-center gap-2 mb-4">
             <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
-            <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white text-sm">${
+            <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white text-sm md:text-lg">${
               companyHTML || "Nom De L'entreprise"
             }</span>
           </div>
           <div class="flex items-center justify-between gap-3">
             <div class="flex items-center gap-2">
               <img src="./assets/images/header/Puce.svg" class="w-5 h-5 flex-shrink-0" />
-              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white text-sm">${offerHTML}</span>
+              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white md:text-lg text-sm">${offerHTML}</span>
             </div>
             <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red  rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
               <span class="${
