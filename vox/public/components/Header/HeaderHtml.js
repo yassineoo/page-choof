@@ -156,11 +156,11 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
             <img src="./assets/images/header/language.svg" class="w-5 h-5 hidden dark:hidden transition-opacity duration-300" />
             <!-- Removed language icon for dark mode -->
-            <div class="flex gap-2">
-              <button class="language-option px-3 py-1 rounded-lg text-sm transition-all duration-300 text-black dark:text-white ${
+            <div class="flex gap-5">
+              <button class="language-option py-1 rounded-lg text-sm transition-all duration-300 text-black dark:text-white ${
                 language === "fr" ? "font-semibold text-ooredoo-red" : ""
               }">Français</button>
-              <button class="font-noto-kufi-arabic language-option px-3 py-1 rounded-lg text-sm transition-all duration-300 text-black dark:text-white ${
+              <button class="font-noto-kufi-arabic language-option py-1 rounded-lg text-sm transition-all duration-300 text-black dark:text-white ${
                 language === "ar" ? "font-semibold text-ooredoo-red" : ""
               }">العربية</button>
             </div>
