@@ -473,14 +473,18 @@ export default class Consommation {
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="${bgClass} w-full  py-8 px-8 md:px-12 flex flex-col items-stretch min-h-screen ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
+
+      <div class="${bgClass} w-full py-16 px-8 md:px-12 flex flex-col items-stretch min-h-screen ${fontClass}" ${
+      lang === "ar" ? 'dir="rtl"' : ""
+    }>
+
         <div class="w-full flex flex-row justify-between items-center mb-8">
           <div class="flex flex-col">
             <h1 class="${textClass} text-[2rem] leading-[170%] tracking-[2%] uppercase" style="font-weight: 500;">
               ${data.title}
             </h1>
           </div>
-  <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${lang}' class="bg-ooredoo-red text-white font-medium text-sm rounded-full px-6 py-3 flex items-center gap-2 whitespace-nowrap" style="font-weight: 500;">
+          <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${lang}' class="bg-ooredoo-red text-white font-medium text-sm rounded-full px-6 py-3 flex items-center gap-2 whitespace-nowrap" style="font-weight: 500;">
             <span class="${lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"}"> ${data.charge}</span>
             <img src="${this.config.IMAGE_BASE}baridi.svg" class="w-4 h-4" />
             <img src="${this.config.IMAGE_BASE}poste.svg" class="w-4 h-4" />
@@ -524,7 +528,7 @@ export default class Consommation {
 
     const renderedCard = `
       <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}" style="min-height: 450px;">
-        <div class="px-6 pt-6 pb-6 flex flex-col h-full">
+        <div class="px-6 pt-6 pb-6 flex flex-col justify-between h-full">
         
           <!-- Title Section -->
           <div class="flex items-center gap-1 flex-shrink-0" style="padding-bottom: 24px; border-bottom: 0.87px solid #F4F4F4;">
@@ -537,7 +541,7 @@ export default class Consommation {
           </div>
 
           <!-- Card Content -->
-          <div class="card-content flex flex-col gap-3 flex-1 pt-6">
+          <div class="card-content flex flex-col flex-1 pt-6">
             ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
           </div>
 
@@ -750,18 +754,18 @@ export default class Consommation {
       </div>
       <div class="flex justify-center">
         <button
-          class="card-chevron flex items-center justify-center cursor-pointer rounded-full p-3 transition-all duration-200"
+          class="card-chevron flex items-end justify-end cursor-pointer rounded-full transition-all duration-200"
           data-card-index="${cardIndex}"
           type="button"
           aria-label="Toggle card content"
           aria-expanded="${isExpanded ? "true" : "false"}"
           style="min-width: 50px; min-height: 50px; margin-bottom: 0;"
         >
-          <div class="chevron-rotator w-12 h-10 flex items-center justify-center transform transition-transform duration-300 ease-in-out ${
+          <div class="chevron-rotator w-12 flex transform transition-transform duration-300 ease-in-out ${
             isExpanded ? "rotate-180" : "rotate-0"
           }">
             <img src="${chevronSrc}"
-                 class="w-full h-full"
+                 class="w-full"
                  alt="expand chevron"
                  style="filter: ${theme === "dark" ? "brightness(0) invert(1)" : "none"};" />
           </div>

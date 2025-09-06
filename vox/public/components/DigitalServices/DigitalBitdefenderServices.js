@@ -15,7 +15,7 @@ const bitdefenderTranslations = {
     errorMessage: "Une erreur s'est produite. Veuillez réessayer.",
     confirmBtn: "Confirmer",
     cancelBtn: "Annuler",
-    closeBtn: "Retour",
+    closeBtn: "OK",
     okBtn: "OK",
     startingFrom: "À partir de",
     completeProtection: "Protection complète",
@@ -43,7 +43,7 @@ const bitdefenderTranslations = {
     errorMessage: "لقد حدث خلل ما. يرجى المحاولة مرة أخرى.",
     confirmBtn: "تأكيد",
     cancelBtn: "إلغاء",
-    closeBtn: "العودة",
+    closeBtn: "تم",
     okBtn: "تم",
     startingFrom: "ابتداءً من",
     completeProtection: "حماية كاملة",
@@ -921,12 +921,8 @@ createModalHTML({ type, title, message, isRTL }) {
         `;
       case "credit":
         return `
-          <div class="bitdefender-modal-icon bg-yellow-100 dark:bg-yellow-900/20">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-              <line x1="1" y1="10" x2="23" y2="10"/>
-              <line x1="1" y1="1" x2="23" y2="23" stroke="#ED1C24"/>
-            </svg>
+          <div class="bitdefender-modal-icon dark:bg-yellow-900/20">
+            <img src="/assets/images/Frame.svg"/>
           </div>
         `;
       case "success":
@@ -1156,7 +1152,7 @@ createModalHTML({ type, title, message, isRTL }) {
           </h2>
 
           <!-- Message -->
-          <p class="bitdefender-modal-message ${fontClass} font-semibold text-base text-black dark:text-[#ccc] leading-relaxed mb-8 px-2">
+          <p class="bitdefender-modal-message ${fontClass} text-base text-black dark:text-[#ccc] leading-relaxed mb-8 px-2">
             ${message}
           </p>
           
@@ -1165,7 +1161,7 @@ createModalHTML({ type, title, message, isRTL }) {
             type === "confirm"
               ? `   
               <div class="flex items-center justify-center mt-4 mb-6 font-normal text-sm">     
-                <label class="${!isRTL ? 'flex-row-reverse' : ''} flex items-center cursor-pointer ${fontClass} select-none gap-3">         
+                <label class="flex items-center cursor-pointer ${fontClass} select-none gap-3">         
                   <input type="checkbox" class="sr-only peer" id="terms-checkbox"> 
                   <div class="relative w-5 h-5 bg-gray-200 dark:bg-gray-600 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-focus:ring-2 peer-focus:ring-ooredoo-red peer-checked:bg-ooredoo-red peer-checked:border-ooredoo-red transition-all duration-200 cursor-pointer flex-shrink-0">
                     <svg class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity duration-200" fill="currentColor" viewBox="0 0 20 20">
@@ -1174,8 +1170,8 @@ createModalHTML({ type, title, message, isRTL }) {
                   </div>
                   <span class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer leading-relaxed ${isRTL ? 'text-right' : 'text-left'}">
                     ${isRTL 
-                      ? `أوافق على <button type="button" class="terms-link text-ooredoo-red font-semibold hover:underline underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>` 
-                      : `J'accepte les <button type="button" class="terms-link text-ooredoo-red font-semibold hover:underline underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">conditions générales</button>`
+                      ? `أوافق على <button type="button" class="terms-link font-semibold focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>` 
+                      : `J'accepte les <button type="button" class="terms-link font-semibold focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">conditions générales</button>`
                     }
                   </span>
                 </label>
@@ -1204,7 +1200,7 @@ createModalHTML({ type, title, message, isRTL }) {
     tracking-wide uppercase max-w-[200px] w-auto 
     h-[42px] sm:h-[44px] lg:h-[47.07px] 
     px-[20px] sm:px-[30px] lg:px-[34.13px] 
-    rounded-[25px] lg:rounded-[28.24px]
+    rounded-[25px] lg:rounded-[28.24px] flex items-center justify-center
   `;
 
     const secondaryBtn = `
