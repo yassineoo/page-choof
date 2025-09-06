@@ -446,7 +446,7 @@ export default class Consommation {
 
     const renderedCard = `
       <div class="card ${bgClass} ${borderRadius} ${borderClass} w-full max-w-full relative transition-all duration-500 flex flex-col md:min-h-[400px] ${shadowClass} ${fontClass}" data-card-index="${cardIndex}">
-        <div class="px-6 py-5 flex flex-col flex-1">
+        <div class="px-6 py-7 flex flex-col flex-1">
           <div class="flex items-center gap-3 mb-4 pb-3" style="border-bottom: 0.87px solid #F4F4F4;">
             <div class="flex items-center justify-center">
               <img src="${this.resolveIcon(card.icon, theme)}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
@@ -528,7 +528,7 @@ export default class Consommation {
 
     const renderedCard = `
       <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}" style="min-height: 450px;">
-        <div class="px-6 pt-6 pb-6 flex flex-col justify-between h-full">
+        <div class="px-6 py-7 flex flex-col justify-between h-full">
         
           <!-- Title Section -->
           <div class="flex items-center gap-1 flex-shrink-0" style="padding-bottom: 24px; border-bottom: 0.87px solid #F4F4F4;">
@@ -765,7 +765,7 @@ export default class Consommation {
             isExpanded ? "rotate-180" : "rotate-0"
           }">
             <img src="${chevronSrc}"
-                 class="w-full"
+                 class="w-full translate-y-4"
                  alt="expand chevron"
                  style="filter: ${theme === "dark" ? "brightness(0) invert(1)" : "none"};" />
           </div>

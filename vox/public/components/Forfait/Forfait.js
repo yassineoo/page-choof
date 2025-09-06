@@ -870,7 +870,7 @@ class ForfaitComponent {
 
     this.container.innerHTML = `
     <div class="w-full">
-      <section class="w-full bg-[#141B4D] dark:bg-[#141414] py-16">
+      <section class="w-full bg-[#141B4D] dark:bg-[#2c2c2c] py-16">
         <div class="max-w-[1600px] mx-auto md:px-6">
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-white">
             ${this.createMixedTitleHTML(labels.titleData, "uppercase")}
@@ -879,7 +879,7 @@ class ForfaitComponent {
         </div>
       </section>
 
-      <section class="w-full bg-white dark:bg-[#2c2c2c] py-16">
+      <section class="w-full bg-white dark:bg-[#141414] py-16">
         <div class="max-w-[1600px] mx-auto md:px-6">
           ${this.renderTitle(language)}
           ${this.slider.createResponsiveLayout(data.smartForfaits, labels, "forfait-grid-3")}

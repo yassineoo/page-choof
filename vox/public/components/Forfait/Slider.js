@@ -5,10 +5,55 @@ import ForfaitData from "./ForfaitData.js";
 export class Slider {
     constructor(parameters) {
         this.currentLang = this.getLanguage();
+        this.boundHandlers = {
+          languageChange: this.handleLanguageChange.bind(this),
+          //resize: this.handleResize.bind(this),
+        };
+        this.setupEventListeners();
     }
 
-    createForfaitCard(offer, index, labels, isRTL) {
-    const currencyLabel = this.currentLang === "ar" ? "دج" : "DA";
+    handleLanguageChange() {
+    const newLanguage = this.getLanguage();
+    if (newLanguage !== this.currentLang) {
+      this.currentLang = newLanguage;
+      this.closeAnyOpenModals();
+      this.render();
+    }
+  }
+
+  setupEventListeners() {
+    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
+    window.addEventListener("languageChanged", this.boundHandlers.languageChange);
+
+    window.removeEventListener("resize", this.boundHandlers.resize);
+    window.addEventListener("resize", this.boundHandlers.resize);
+
+    this.setupLanguagePolling();
+    //this.setupAccessibility();
+  }
+
+
+  setupLanguagePolling() {
+    if (this.languagePolling) clearInterval(this.languagePolling);
+    this.languagePolling = setInterval(() => {
+      const currentLang = this.getLanguage();
+      if (currentLang !== this.currentLang) {
+        clearTimeout(this.languageChangeTimeout);
+        this.languageChangeTimeout = setTimeout(() => {
+          this.handleLanguageChange();
+        }, 100);
+      }
+    }, 500);
+  }
+
+  getLanguage() {
+    const storedLanguage = localStorage.getItem("language");
+    return ["fr", "ar"].includes(storedLanguage) ? storedLanguage : "fr";
+  }
+
+    createForfaitCard(offer, index, labels) {
+    const isRTL = this.currentLang === "ar";
+    const currencyLabel = isRTL ? "دج" : "DA";
     const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
     const textAlign = isRTL ? "text-right" : "text-left";
 
