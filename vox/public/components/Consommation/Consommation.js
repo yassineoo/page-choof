@@ -473,9 +473,11 @@ export default class Consommation {
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
+
       <div class="${bgClass} w-full py-16 px-8 md:px-12 flex flex-col items-stretch min-h-screen ${fontClass}" ${
       lang === "ar" ? 'dir="rtl"' : ""
     }>
+
         <div class="w-full flex flex-row justify-between items-center mb-8">
           <div class="flex flex-col">
             <h1 class="${textClass} text-[2rem] leading-[170%] tracking-[2%] uppercase" style="font-weight: 500;">
