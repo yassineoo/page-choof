@@ -189,7 +189,7 @@ class ForfaitComponent {
     }
 
     .forfait-mobile-container {
-      padding: 0 1rem;
+      padding: 0;
     }
 
     /* 5-card grid (Forfaits) - V-shape layout on desktop screens */
@@ -871,7 +871,7 @@ class ForfaitComponent {
     this.container.innerHTML = `
     <div class="w-full">
       <section class="w-full bg-[#141B4D] dark:bg-[#141414] py-16">
-        <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
+        <div class="max-w-[1600px] mx-auto md:px-6">
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-white">
             ${this.createMixedTitleHTML(labels.titleData, "uppercase")}
           </h2>
@@ -880,7 +880,7 @@ class ForfaitComponent {
       </section>
 
       <section class="w-full bg-white dark:bg-[#2c2c2c] py-16">
-        <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
+        <div class="max-w-[1600px] mx-auto md:px-6">
           ${this.renderTitle(language)}
           ${this.slider.createResponsiveLayout(data.smartForfaits, labels, "forfait-grid-3")}
         </div>

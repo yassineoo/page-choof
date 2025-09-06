@@ -7,13 +7,8 @@ export class Slider {
         this.currentLang = this.getLanguage();
     }
 
-    getLanguage() {
-    const storedLanguage = localStorage.getItem("language");
-    return ["fr", "ar"].includes(storedLanguage) ? storedLanguage : "fr";
-    }
-
     createForfaitCard(offer, index, labels, isRTL) {
-    const currencyLabel = isRTL ? "دج" : "DA";
+    const currencyLabel = this.currentLang === "ar" ? "دج" : "DA";
     const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
     const textAlign = isRTL ? "text-right" : "text-left";
 
@@ -68,8 +63,8 @@ export class Slider {
             <div class="flex justify-center items-baseline w-full mb-4">
               <div class="flex items-baseline justify-center" style="width:70%;">
                 <span class="${priceFontClass} font-bold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
-                <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span> 
-                <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${durationText.includes("cycle") ? "text-xs" : "text-base"}">/${durationText}</span> 
+                <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
+                <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${durationText.includes("cycle") ? "text-xs" : "text-base"}">/${durationText}</span>
               </div>
             </div>
 
@@ -138,7 +133,7 @@ export class Slider {
 }
 
 
-        initSwiper(containerId, isRTL = false) {
+  initSwiper(containerId, isRTL = false) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
@@ -146,7 +141,7 @@ export class Slider {
     slidesPerView: 1.3,
     spaceBetween: 10,
     centeredSlides: false,
-    loop: true,
+    loop: false,
     rtl: isRTL,
     pagination: {
       el: container.querySelector(".swiper-pagination"),
@@ -159,14 +154,16 @@ export class Slider {
   });
 }
 
-
-
-
     containsArabic(text) {
     if (!text) return false;
     const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
     return arabicPattern.test(text);
     }
+
+    getLanguage() {
+    const storedLanguage = localStorage.getItem("language");
+    return ["fr", "ar"].includes(storedLanguage) ? storedLanguage : "fr";
+  }
 
     getFontClass(text) {
         return this.containsArabic(text) ? "font-noto-kufi-arabic" : "font-rubik";

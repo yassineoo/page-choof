@@ -401,7 +401,7 @@ export default class Consommation {
                 : ""
             }
           </div>
-          <div class="mb-6"> <!-- Added margin-bottom to the button wrapper -->
+          <div class="mb-[52px]"> <!-- Added margin-bottom to the button wrapper -->
             ${this.renderMobileButton(lang, theme)}
           </div>
         </div>
@@ -445,17 +445,17 @@ export default class Consommation {
     const shadowClass = theme === "dark" ? "" : "shadow-[-0.87px_6.94px_15.61px_0px_#4F4F4F1A]";
 
     const renderedCard = `
-      <div class="card ${bgClass} ${borderRadius} ${borderClass} w-full max-w-full relative transition-all duration-500 flex flex-col ${shadowClass} ${fontClass}" data-card-index="${cardIndex}" style="min-height: 400px;">
-        <div class="px-6 py-3 flex flex-col flex-1">
+      <div class="card ${bgClass} ${borderRadius} ${borderClass} w-full max-w-full relative transition-all duration-500 flex flex-col md:min-h-[400px] ${shadowClass} ${fontClass}" data-card-index="${cardIndex}">
+        <div class="px-6 py-5 flex flex-col flex-1">
           <div class="flex items-center gap-3 mb-4 pb-3" style="border-bottom: 0.87px solid #F4F4F4;">
             <div class="flex items-center justify-center">
               <img src="${this.resolveIcon(card.icon, theme)}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
             </div>
-            <h2 class="text-xl leading-[170%] tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
+            <h2 class="text-xl tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
               ${card.title}
             </h2>
           </div>
-          <div class="card-content flex flex-col gap-3 flex-1">
+          <div class="card-content flex flex-col gap-9 flex-1">
             ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
           </div>
         </div>
@@ -541,7 +541,7 @@ export default class Consommation {
           </div>
 
           <!-- Card Content -->
-          <div class="card-content flex flex-col flex-1 pt-6">
+          <div class="card-content flex flex-col gap-6 sm:flex-1 pt-6">
             ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
           </div>
 
@@ -635,7 +635,7 @@ export default class Consommation {
     }
 
     const renderedSection = `
-      <div class="flex flex-col font-rubik mb-6">
+      <div class="flex flex-col font-rubik">
         <div class="flex items-start justify-between min-w-0">
           <div class="flex flex-col flex-1 min-w-0">
             <div class="flex items-center gap-2" style="${directionStyle};">
