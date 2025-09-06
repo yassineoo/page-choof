@@ -912,10 +912,17 @@ createModalHTML({ type, title, message, isRTL }) {
       case "error":
         return `
           <div class="bitdefender-modal-icon bg-red-100 dark:bg-red-900/20">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-              <line x1="12" y1="9" x2="12" y2="13"/>
-              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="101" height="101" viewBox="0 0 101 101" fill="none">
+            <g clip-path="url(#clip0_1_46448)">
+            <path d="M50.5 37.8813V54.5057" stroke="#E31D23" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M43.6945 15.4019L10.0052 71.6504C9.31073 72.8531 8.94322 74.2167 8.93924 75.6055C8.93526 76.9943 9.29497 78.3599 9.98257 79.5666C10.6702 80.7733 11.6617 81.7789 12.8586 82.4834C14.0554 83.188 15.4159 83.5669 16.8046 83.5825H84.1913C85.5795 83.5665 86.9392 83.1875 88.1355 82.4832C89.3318 81.7788 90.3229 80.7737 91.0104 79.5677C91.6979 78.3616 92.0578 76.9967 92.0543 75.6085C92.0509 74.2203 91.6842 72.8571 90.9907 71.6545L57.3015 15.3978C56.5927 14.2278 55.5942 13.2605 54.4024 12.5891C53.2106 11.9177 51.8659 11.5649 50.498 11.5649C49.1301 11.5649 47.7853 11.9177 46.5935 12.5891C45.4018 13.2605 44.4033 14.2278 43.6945 15.3978V15.4019Z" stroke="#E31D23" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M50.5 66.9736H50.5411" stroke="#E31D23" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_1_46448">
+            <rect width="99.746" height="99.746" fill="white" transform="translate(0.626953 0.476562)"/>
+            </clipPath>
+            </defs>
             </svg>
           </div>
         `;
@@ -927,11 +934,18 @@ createModalHTML({ type, title, message, isRTL }) {
         `;
       case "success":
         return `
-          <div class="bitdefender-modal-icon bg-green-100 dark:bg-green-900/20">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-              <polyline points="22,4 12,14.01 9,11.01"/>
-            </svg>
+          <div class="bitdefender-modal-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="101" height="100" viewBox="0 0 101 100" fill="none">
+              <g clip-path="url(#clip0_1_46271)">
+              <path d="M13.0625 50.0469C13.0625 54.9591 14.03 59.8233 15.9099 64.3616C17.7897 68.9 20.545 73.0236 24.0185 76.4971C27.492 79.9706 31.6157 82.7259 36.154 84.6057C40.6923 86.4856 45.5565 87.4531 50.4688 87.4531C55.381 87.4531 60.2452 86.4856 64.7835 84.6057C69.3218 82.7259 73.4455 79.9706 76.919 76.4971C80.3925 73.0236 83.1478 68.9 85.0276 64.3616C86.9075 59.8233 87.875 54.9591 87.875 50.0469C87.875 45.1346 86.9075 40.2705 85.0276 35.7321C83.1478 31.1938 80.3925 27.0702 76.919 23.5967C73.4455 20.1232 69.3218 17.3678 64.7835 15.488C60.2452 13.6082 55.381 12.6406 50.4688 12.6406C45.5565 12.6406 40.6923 13.6082 36.154 15.488C31.6157 17.3678 27.492 20.1232 24.0185 23.5967C20.545 27.0702 17.7897 31.1938 15.9099 35.7321C14.03 40.2705 13.0625 45.1346 13.0625 50.0469Z" stroke="#00E02B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M38 50.0464L46.3125 58.3589L62.9375 41.7339" stroke="#00E02B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs>
+              <clipPath id="clip0_1_46271">
+              <rect width="99.75" height="99.75" fill="white" transform="translate(0.59375 0.171875)"/>
+              </clipPath>
+              </defs>
+              </svg>
           </div>
         `;
       case "confirm":
@@ -1159,7 +1173,7 @@ createModalHTML({ type, title, message, isRTL }) {
             type === "confirm"
               ? `   
               <div class="flex items-center justify-center mt-4 mb-6 font-normal text-sm">     
-                <label class="flex items-center cursor-pointer ${fontClass} select-none gap-3 ${isRTL ? 'flex-row-reverse' : ''}">         
+                <label class="flex items-center cursor-pointer ${fontClass} select-none gap-3">         
                   <input type="checkbox" class="sr-only peer" id="terms-checkbox"> 
                   <div class="relative w-5 h-5 bg-gray-200 dark:bg-gray-600 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-focus:ring-2 peer-focus:ring-ooredoo-red peer-checked:bg-ooredoo-red peer-checked:border-ooredoo-red transition-all duration-200 cursor-pointer flex-shrink-0">
                     <svg class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity duration-200" fill="currentColor" viewBox="0 0 20 20">
@@ -1168,8 +1182,8 @@ createModalHTML({ type, title, message, isRTL }) {
                   </div>
                   <span class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer leading-relaxed ${isRTL ? 'text-right' : 'text-left'}">
                     ${isRTL 
-                      ? `أوافق على <button type="button" class="terms-link text-ooredoo-red font-semibold hover:underline underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>` 
-                      : `J'accepte les <button type="button" class="terms-link text-ooredoo-red font-semibold hover:underline underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">conditions générales</button>`
+                      ? `أوافق على <button type="button" class="terms-link text-ooredoo-red dark:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>` 
+                      : `J'accepte les <button type="button" class="terms-link text-ooredoo-red dark:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">conditions générales</button>`
                     }
                   </span>
                 </label>
