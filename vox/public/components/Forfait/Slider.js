@@ -122,26 +122,45 @@ export class Slider {
               ${offers.map((offer, index) => this.createForfaitCard(offer, startIndex + index, labels, isRTL,  convertToLatinNumerals)).join("")}
             </div>
       
-            <div class="forfait-mobile-slider forfait-mobile-container">
-              <div class="forfait-slider-container" id="${sliderId}">
-                <div class="forfait-slider-track">
-                  ${offers
-                    .map(
-                      (offer, index) => `
-                    <div class="forfait-slider-slide">
-                      ${this.createForfaitCard(offer, startIndex + index, labels)}
+            
+            <div class="forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
+                <div class="relative swiper">
+                <div class="swiper-wrapper">
+                    ${offers.map((offer, index) => `
+                    <div class="swiper-slide flex justify-center p-4">
+                        ${this.createForfaitCard(offer, startIndex + index, labels, isRTL,  convertToLatinNumerals)}
                     </div>
-                  `
-                    )
-                    .join("")}
+                    `).join("")}
                 </div>
-              </div>
-              <div class="forfait-dots-container" id="${dotsId}">
-                ${this.generateDots(offers.length, 0)}
-              </div>
-            </div>
-          `;
-        }
+                <div class="absolute bottom-0  swiper-pagination"></div>
+                </div>
+            </div>`;
+}
+
+
+        initSwiper(containerId, isRTL = false) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  new Swiper(container.querySelector(".swiper"), {
+    slidesPerView: 1.3,
+    spaceBetween: 10,
+    centeredSlides: false,
+    loop: true,
+    rtl: isRTL,
+    pagination: {
+      el: container.querySelector(".swiper-pagination"),
+      clickable: true,
+      renderBullet: (index, className) => {
+        // Custom HTML for each dot
+        return `<span class="${className} custom-dot"></span>`;
+      }
+    },
+  });
+}
+
+
+
 
     containsArabic(text) {
     if (!text) return false;

@@ -49,6 +49,39 @@ class ForfaitComponent {
       margin: 0 auto;
     }
 
+    /* Make sure the swiper container is relative */
+.forfait-mobile-container .swiper {
+  position: relative;
+  padding-bottom: 40px; /* space for dots */
+}
+
+/* Move pagination to the bottom */
+.forfait-mobile-container .swiper-pagination {
+  position: absolute;
+  bottom: 10px; /* distance from bottom */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  gap: 8px; /* spacing between dots */
+}
+
+/* Style custom dots */
+.forfait-mobile-container .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.forfait-mobile-container .swiper-pagination-bullet-active {
+  background: #e30613; /* Ooredoo red */
+  transform: scale(1.3);
+}
+
+
     .forfait-card-shadow {
       box-shadow: 0px 3.92px 7.84px 0px #0505050A;
       border: 0.84px solid #C5C5C5;
@@ -812,7 +845,7 @@ class ForfaitComponent {
   renderTitle(language) {
     if (language === "ar") {
       return `
-      <h2 class="tesxt-center text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-black dark:text-white" dir="rtl">
+      <h2 class="text-center text-3xl sm:text-4xl md:text-5xl font-medium mb-16 text-black dark:text-white" dir="rtl">
         <span class="font-noto-kufi-arabic" dir="rtl">اشتراكات</span>
         <span class="font-rubik" dir="ltr"> SMART</span>
       </h2>
@@ -859,6 +892,10 @@ class ForfaitComponent {
 
     this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
 
+    requestAnimationFrame(() => {
+    this.slider.initSwiper("forfaits-slider", this.isRTL);
+    this.slider.initSwiper("smart-slider", this.isRTL);
+  });
     setTimeout(() => {
       this.initializeSliders();
       this.addSliderAccessibility();
