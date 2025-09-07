@@ -890,13 +890,18 @@ class ForfaitComponent {
     this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
 
     requestAnimationFrame(() => {
-      this.slider.initSwiper("forfaits-slider", this.isRTL);
-      this.slider.initSwiper("smart-slider", this.isRTL);
+      this.slider.initSwiper("forfaits-slider");
+      this.slider.initSwiper("smart-slider");
     });
     setTimeout(() => {
       this.initializeSliders();
       this.addSliderAccessibility();
     }, 50);
+
+    setTimeout(() => {
+      this.slider.initSwiper("forfaits-slider");
+      this.slider.initSwiper("smart-slider");
+    }, 200); // Increased delay
   }
 
   renderErrorState() {
@@ -1429,7 +1434,7 @@ class ForfaitComponent {
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title">
-          <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
+          <div class="relative bg-white dark:bg-[#2C2C2C]  rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
               <button class="absolute top-4 ${closeButtonPosition} p-2 z-10 rounded-full transition-all duration-200 forfait-modal-close"
                       aria-label="${isRTL ? "تم" : "ok"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>

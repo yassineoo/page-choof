@@ -1,18 +1,16 @@
 import ForfaitData from "./ForfaitData.js";
 
-
-
 export class Slider {
-    constructor(parameters) {
-        this.currentLang = this.getLanguage();
-        this.boundHandlers = {
-          languageChange: this.handleLanguageChange.bind(this),
-          //resize: this.handleResize.bind(this),
-        };
-        this.setupEventListeners();
-    }
+  constructor(parameters) {
+    this.currentLang = this.getLanguage();
+    this.boundHandlers = {
+      languageChange: this.handleLanguageChange.bind(this),
+      //resize: this.handleResize.bind(this),
+    };
+    this.setupEventListeners();
+  }
 
-    handleLanguageChange() {
+  handleLanguageChange() {
     const newLanguage = this.getLanguage();
     if (newLanguage !== this.currentLang) {
       this.currentLang = newLanguage;
@@ -32,7 +30,6 @@ export class Slider {
     //this.setupAccessibility();
   }
 
-
   setupLanguagePolling() {
     if (this.languagePolling) clearInterval(this.languagePolling);
     this.languagePolling = setInterval(() => {
@@ -51,7 +48,7 @@ export class Slider {
     return ["fr", "ar"].includes(storedLanguage) ? storedLanguage : "fr";
   }
 
-    createForfaitCard(offer, index, labels) {
+  createForfaitCard(offer, index, labels) {
     const isRTL = this.currentLang === "ar";
     const currencyLabel = isRTL ? "دج" : "DA";
     const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
@@ -109,7 +106,9 @@ export class Slider {
               <div class="flex items-baseline justify-center" style="width:70%;">
                 <span class="${priceFontClass} font-bold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
                 <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
-                <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${durationText.includes("cycle") ? "text-xs" : "text-base"}">/${durationText}</span>
+                <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${
+      durationText.includes("cycle") ? "text-xs" : "text-base"
+    }">/${durationText}</span>
               </div>
             </div>
 
@@ -141,7 +140,7 @@ export class Slider {
     `;
   }
 
-    generateDots(totalDots, activeIndex) {
+  generateDots(totalDots, activeIndex) {
     return Array.from(
       { length: totalDots },
       (_, index) =>
@@ -151,70 +150,96 @@ export class Slider {
     ).join("");
   }
 
-    createResponsiveLayout(offers, labels, gridType,isRTL,  convertToLatinNumerals) {
-          const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
-          const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
-          const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-          const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
-      
-          return `
+  createResponsiveLayout(offers, labels, gridType, isRTL, convertToLatinNumerals) {
+    const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
+    const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
+    const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
+    const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
+
+    return `
             <div class="forfait-grid ${gridClass}">
-              ${offers.map((offer, index) => this.createForfaitCard(offer, startIndex + index, labels, isRTL,  convertToLatinNumerals)).join("")}
+              ${offers.map((offer, index) => this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
             </div>
       
             
             <div class="forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
                 <div class="relative swiper">
                 <div class="swiper-wrapper">
-                    ${offers.map((offer, index) => `
+                    ${offers
+                      .map(
+                        (offer, index) => `
                     <div class="swiper-slide flex justify-center p-4">
-                        ${this.createForfaitCard(offer, startIndex + index, labels, isRTL,  convertToLatinNumerals)}
+                        ${this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)}
                     </div>
-                    `).join("")}
+                    `
+                      )
+                      .join("")}
                 </div>
                 <div class="absolute bottom-0  swiper-pagination"></div>
                 </div>
             </div>`;
-}
+  }
 
+  initSwiper(containerId, forceRTL = null) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-  initSwiper(containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
+    // Find and destroy existing Swiper instance
+    const existingSwiper = container.querySelector(".swiper");
+    if (existingSwiper && existingSwiper.swiper) {
+      existingSwiper.swiper.destroy(true, true);
+    }
 
-  new Swiper(container.querySelector(".swiper"), {
-    slidesPerView: 1.3,
-    spaceBetween: 10,
-    centeredSlides: false,
-    loop: false,
-    rtl: this.isRTL,
-    pagination: {
-      el: container.querySelector(".swiper-pagination"),
-      clickable: true,
-      renderBullet: (index, className) => {
-        // Custom HTML for each dot
-        return `<span class="${className} custom-dot"></span>`;
-      }
-    },
-  });
-}
+    const isRTL = forceRTL !== null ? forceRTL : this.getLanguage() === "ar";
 
-    containsArabic(text) {
+    // CRITICAL: Set document direction for Swiper to work properly
+    document.documentElement.dir = isRTL ? "rtl" : "ltr";
+    document.body.dir = isRTL ? "rtl" : "ltr";
+
+    // Also set on the container
+    container.dir = isRTL ? "rtl" : "ltr";
+
+    console.log("initSwiper - isRTL:", isRTL, "document.dir:", document.documentElement.dir);
+
+    setTimeout(() => {
+      const swiper = new Swiper(container.querySelector(".swiper"), {
+        slidesPerView: 1.3,
+        spaceBetween: 10,
+        centeredSlides: true,
+        loop: false,
+        rtl: isRTL,
+        pagination: {
+          el: container.querySelector(".swiper-pagination"),
+          clickable: true,
+          renderBullet: (index, className) => {
+            return `<span class="${className} custom-dot"></span>`;
+          },
+        },
+      });
+
+      setTimeout(() => {
+        if (swiper && swiper.update) {
+          swiper.update();
+        }
+      }, 50);
+    }, 100);
+  }
+  containsArabic(text) {
     if (!text) return false;
     const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
     return arabicPattern.test(text);
-    }
+  }
 
-    getLanguage() {
+  getLanguage() {
     const storedLanguage = localStorage.getItem("language");
     return ["fr", "ar"].includes(storedLanguage) ? storedLanguage : "fr";
   }
 
-    getFontClass(text) {
-        return this.containsArabic(text) ? "font-noto-kufi-arabic" : "font-rubik";
-    }
+  getFontClass(text) {
+    return this.containsArabic(text) ? "font-noto-kufi-arabic" : "font-rubik";
+  }
 
-    convertToLatinNumerals(text) {
+  convertToLatinNumerals(text) {
     if (!text) return text;
     const arabicNumerals = "٠١٢٣٤٥٦٧٨٩";
     const latinNumerals = "0123456789";
