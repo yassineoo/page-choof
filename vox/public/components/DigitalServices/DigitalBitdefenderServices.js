@@ -13,7 +13,7 @@ const bitdefenderTranslations = {
     creditMessage: (plan) => `Votre crédit est insuffisant pour finaliser votre demande. Veuillez recharger votre compte et réessayer.`,
     errorTitle: "Erreur",
     errorMessage: "Une erreur s'est produite. Veuillez réessayer.",
-    confirmBtn: "Confirmer",
+    confirmBtn: "Choisir",
     cancelBtn: "Annuler",
     closeBtn: "OK",
     okBtn: "OK",
@@ -41,7 +41,7 @@ const bitdefenderTranslations = {
     creditMessage: (plan) => `رصيدك غير كافٍ لتقديم طلبك. يرجى إعادة تعبئة حسابك والمحاولة مرة أخرى.`,
     errorTitle: "خطأ",
     errorMessage: "لقد حدث خلل ما. يرجى المحاولة مرة أخرى.",
-    confirmBtn: "تأكيد",
+    confirmBtn: "إختيار",
     cancelBtn: "إلغاء",
     closeBtn: "تم",
     okBtn: "تم",
@@ -1201,9 +1201,8 @@ export default class DigitalBitdefenderServices {
     // Common styles for both buttons
     const baseBtnClass = `
     relative group overflow-hidden transition-all duration-300 
-    text-sm sm:text-base lg:text-[17.65px] font-medium sm:font-semibold 
-    tracking-wide uppercase max-w-[200px] w-auto 
-    h-[42px] sm:h-[44px] lg:h-[47.07px] 
+    text-sm sm:text-base lg:text-[17.65px] font-medium sm:font-semibold uppercase 
+    h-[42px] sm:h-[44px] lg:h-[47.07px] min-w-[160px]
     px-[20px] sm:px-[30px] lg:px-[34.13px] 
     rounded-[25px] lg:rounded-[28.24px] flex items-center justify-center
   `;
