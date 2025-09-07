@@ -224,16 +224,11 @@ class ForfaitComponent {
     /* Large Desktop (1920px+) */
     @media (min-width: 1920px) {
       .forfait-grid-5 {
-        grid-template-columns: repeat(5, minmax(280px, 320px));
+        grid-template-columns: repeat(3, minmax(280px, 320px));
         grid-template-rows: auto;
-        gap: 0.875rem;
+        gap: 1.5rem 0.5rem;
       }
-      .forfait-grid-5 > *:nth-child(4),
-      .forfait-grid-5 > *:nth-child(5) {
-        grid-row: 1;
-        grid-column: auto;
-        justify-self: center;
-      }
+    
       .forfait-grid-3 {
         grid-template-columns: repeat(3, minmax(320px, 380px));
         gap: 0.875rem;
