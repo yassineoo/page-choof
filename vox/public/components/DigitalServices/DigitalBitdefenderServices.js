@@ -576,7 +576,7 @@ export default class DigitalBitdefenderServices {
     const currency = isArabic ? "دج" : "DA";
 
     return `
-      <div class="w-full bg-gray-50 dark:bg-[#2C2C2C] pt-4 lg:pt-8 pb-[50px] lg:pb-[70px] ${fontClass}" ${dirAttribute}>
+      <div class="w-full bg-gray-50 dark:bg-[#2C2C2C] py-[50px] lg:py-[70px] ${fontClass}" ${dirAttribute}>
         <div class="w-full mx-auto px-2 sm:px-4 flex flex-col items-center">
           
           <!-- Main Container Card -->
@@ -1139,12 +1139,12 @@ export default class DigitalBitdefenderServices {
     setTimeout(setupTermsDownload, 0);
 
     return `
-    <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bitdefender-modal-fade" 
+    <div class="fixed inset-0 z-[9999] flex items-center justify-center bitdefender-modal-fade" 
          style="background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px);" 
          role="dialog" 
          aria-modal="true" 
          aria-labelledby="modal-title">
-      <div class="relative bg-white pt-6 px-2 dark:bg-[#2C2C2C] rounded-3xl shadow-2xl w-full max-w-sm mx-4 overflow-hidden flex flex-col items-center animate-[modalFadeIn_0.3s_ease-out_forwards]" ${dirAttribute}>
+      <div class="relative pt-6 max-w-sm bg-white dark:bg-[#2C2C2C] rounded-3xl shadow-2xl w-full overflow-hidden flex flex-col items-center animate-[modalFadeIn_0.3s_ease-out_forwards]" ${dirAttribute}>
         <!-- Close Button -->
         <button class="bitdefender-modal-close absolute top-4 ${
           isRTL ? "left-4" : "right-4"
@@ -1157,7 +1157,7 @@ export default class DigitalBitdefenderServices {
         </button>
 
         <!-- Modal Content -->
-        <div class="px-6 py-8 text-center w-full">
+        <div class="py-8 text-center w-full">
           <!-- Icon -->
           ${getModalIcon(type, isRTL)}
           
@@ -1176,7 +1176,7 @@ export default class DigitalBitdefenderServices {
             type === "confirm"
               ? `   
               <div class="flex items-center justify-center mt-4 mb-6 font-semibold text-xs">     
-                <label class="flex items-center cursor-pointer ${fontClass} select-none gap-3">         
+                <label class="flex items-center cursor-pointer ${fontClass} select-none gap-1 md:gap-3">         
                   <input type="checkbox" class="sr-only peer" id="terms-checkbox"> 
                   <div class="relative w-5 h-5 bg-gray-200 dark:bg-gray-600 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-focus:ring-2 peer-focus:ring-ooredoo-red peer-checked:bg-ooredoo-red peer-checked:border-ooredoo-red transition-all duration-200 cursor-pointer flex-shrink-0">
                     <svg class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity duration-200" fill="currentColor" viewBox="0 0 20 20">
@@ -1186,8 +1186,8 @@ export default class DigitalBitdefenderServices {
                   <span class="text-xs text-black dark:text-white cursor-pointer leading-relaxed ${isRTL ? "text-right" : "text-left"}">
                     ${
                       isRTL
-                        ? `أوافق على <button type="button" class="terms-link text-ooredoo-red dark:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>`
-                        : `J'accepte les <button type="button" class="terms-link text-ooredoo-red dark:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">conditions générales</button>`
+                        ? `أوافق على <button type="button" class="terms-link text-ooredoo-red dark:text-white underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>`
+                        : `J'accepte les <button type="button" class="terms-link text-ooredoo-red dark:text-white underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">conditions générales</button>`
                     }
                   </span>
                 </label>
