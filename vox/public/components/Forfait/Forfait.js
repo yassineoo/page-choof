@@ -2,9 +2,6 @@ import ForfaitData from "./ForfaitData.js";
 import ModalData from "./ModalData.js";
 import { Slider } from "./Slider.js";
 
-
-
-
 class ForfaitComponent {
   constructor(container) {
     this.container = container;
@@ -893,9 +890,9 @@ class ForfaitComponent {
     this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
 
     requestAnimationFrame(() => {
-    this.slider.initSwiper("forfaits-slider", this.isRTL);
-    this.slider.initSwiper("smart-slider", this.isRTL);
-  });
+      this.slider.initSwiper("forfaits-slider", this.isRTL);
+      this.slider.initSwiper("smart-slider", this.isRTL);
+    });
     setTimeout(() => {
       this.initializeSliders();
       this.addSliderAccessibility();
@@ -1422,7 +1419,7 @@ class ForfaitComponent {
 
   createModalHTML({ type, title, message, isRTL }) {
     const dirAttribute = isRTL ? `dir="rtl"` : "";
-    const closeButtonPosition = isRTL ? "left-4" : "right-4";
+    const closeButtonPosition = "right-4";
     const buttons = this.getModalButtons(type, isRTL);
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
@@ -1432,9 +1429,9 @@ class ForfaitComponent {
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title">
-          <div class="relative bg-white dark:bg-[#2C2C2C] dark:border dark:border-[#CDCDCD] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
+          <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
               <button class="absolute top-4 ${closeButtonPosition} p-2 z-10 rounded-full transition-all duration-200 forfait-modal-close"
-                      aria-label="${isRTL ? "تم" : "Fermer"}">
+                      aria-label="${isRTL ? "تم" : "ok"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">

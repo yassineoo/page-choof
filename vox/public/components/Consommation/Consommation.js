@@ -474,9 +474,7 @@ export default class Consommation {
 
     return `
 
-      <div class="${bgClass} w-full py-16 px-8 md:px-12 flex flex-col items-stretch min-h-screen ${fontClass}" ${
-      lang === "ar" ? 'dir="rtl"' : ""
-    }>
+      <div class="${bgClass} w-full py-16 px-8 md:px-12 flex flex-col items-stretch min-h-screen ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
 
         <div class="w-full flex flex-row justify-between items-center mb-8">
           <div class="flex flex-col">
@@ -761,11 +759,9 @@ export default class Consommation {
           aria-expanded="${isExpanded ? "true" : "false"}"
           style="min-width: 50px; min-height: 50px; margin-bottom: 0;"
         >
-          <div class="chevron-rotator w-12 flex transform transition-transform duration-300 ease-in-out ${
-            isExpanded ? "rotate-180" : "rotate-0"
-          }">
+          <div class="chevron-rotator w-12 flex transform transition-transform duration-300 ease-in-out ${isExpanded ? "rotate-180" : "rotate-0"}">
             <img src="${chevronSrc}"
-                 class="w-full translate-y-4"
+                 class="w-full "
                  alt="expand chevron"
                  style="filter: ${theme === "dark" ? "brightness(0) invert(1)" : "none"};" />
           </div>
