@@ -580,7 +580,7 @@ export default class DigitalBitdefenderServices {
         <div class="w-full mx-auto px-2 sm:px-4 flex flex-col items-center">
           
           <!-- Main Container Card -->
-          <div class="max-w-[95vw] sm:max-w-[90vw] lg:max-w-[90vw] w-full mx-auto bg-white dark:bg-[#2C2C2C] rounded-xl lg:rounded-2xl shadow-lg overflow-hidden">
+          <div class="max-w-[95vw] sm:max-w-[90vw] lg:max-w-[90vw] w-full mx-auto bg-white dark:bg-[#2C2C2C] rounded-xl lg:rounded-2xl shadow-lg overflow-hidden dark:border-white border ">
             
             <!-- Integrated Header -->
             <div class="rounded-t-xl lg:rounded-t-2xl" style="background-color: #ED1C24;">
@@ -1298,26 +1298,26 @@ export default class DigitalBitdefenderServices {
       onConfirm: () => {
         // Simulate credit check - 70% chance of insufficient credit for demo
 
-          this.showModal({
-            type: "success",
-            title: t.congratsTitle,
-            message: t.congratsMessage(planWithPrice),
-            isRTL: this.currentLang === "ar",
-            onClose: () => {
-              this.showModal({
-            type: "credit",
-            title: t.creditTitle,
-            message: t.creditMessage(planWithPrice),
-            isRTL: this.currentLang === "ar",
-            onClose: () => {
-              this.currentView = "main";
-              this.render();
-            },
-          });
-              //this.currentView = "main";
-              //this.render();
-            },
-          });
+        this.showModal({
+          type: "success",
+          title: t.congratsTitle,
+          message: t.congratsMessage(planWithPrice),
+          isRTL: this.currentLang === "ar",
+          onClose: () => {
+            this.showModal({
+              type: "credit",
+              title: t.creditTitle,
+              message: t.creditMessage(planWithPrice),
+              isRTL: this.currentLang === "ar",
+              onClose: () => {
+                this.currentView = "main";
+                this.render();
+              },
+            });
+            //this.currentView = "main";
+            //this.render();
+          },
+        });
       },
     });
   }
