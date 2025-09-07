@@ -178,7 +178,7 @@ export class Slider {
 }
 
 
-  initSwiper(containerId, isRTL = false) {
+  initSwiper(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
@@ -187,7 +187,7 @@ export class Slider {
     spaceBetween: 10,
     centeredSlides: false,
     loop: false,
-    rtl: isRTL,
+    rtl: this.isRTL,
     pagination: {
       el: container.querySelector(".swiper-pagination"),
       clickable: true,
