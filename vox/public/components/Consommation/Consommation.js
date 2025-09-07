@@ -474,7 +474,7 @@ export default class Consommation {
 
     return `
 
-      <div class="${bgClass} w-full py-16 px-8 md:px-12 flex flex-col items-stretch min-h-screen ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
+      <div class="${bgClass} w-full py-16 px-8 md:px-12 flex flex-col items-stretch ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
 
         <div class="w-full flex flex-row justify-between items-center mb-8">
           <div class="flex flex-col">

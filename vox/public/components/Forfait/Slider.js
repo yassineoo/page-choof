@@ -187,7 +187,7 @@ export class Slider {
     spaceBetween: 10,
     centeredSlides: false,
     loop: false,
-    rtl: this.isRTL,
+    rtl: this.currentLang === "ar",
     pagination: {
       el: container.querySelector(".swiper-pagination"),
       clickable: true,
