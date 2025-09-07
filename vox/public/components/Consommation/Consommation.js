@@ -526,8 +526,8 @@ export default class Consommation {
 
     const renderedCard = `
       <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}" style="min-height: 450px;">
-        <div class="px-6 py-7 flex flex-col justify-between h-full">
-        
+        <div class="px-6 py-7 flex flex-col justify-between min-h-full relative">
+        <div class="mb-20">
           <!-- Title Section -->
           <div class="flex items-center gap-1 flex-shrink-0" style="padding-bottom: 24px; border-bottom: 0.87px solid #F4F4F4;">
             <div class="flex items-center justify-center">
@@ -542,10 +542,11 @@ export default class Consommation {
           <div class="card-content flex flex-col gap-6 sm:flex-1 pt-6">
             ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
           </div>
+          </div>
 
           <!-- Expand Button (if any) -->
-          ${this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.renderExpandButton(cardIndex, isExpanded, theme) : ""}
-        </div>
+            ${this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.renderExpandButton(cardIndex, isExpanded, theme) : ""}
+          </div>
       </div>
     `;
 
@@ -747,6 +748,7 @@ export default class Consommation {
     const chevronSrc = this.resolveChevronIcon(theme);
 
     return `
+    <div class="w-full absolute bottom-0 left-0 pb-3">
       <div class="w-full mt-4 pt-4 flex-shrink-0 flex justify-center">
         <div class="w-2/3 border-t" style="border-color: ${borderColor};"></div>
       </div>
@@ -766,6 +768,7 @@ export default class Consommation {
                  style="filter: ${theme === "dark" ? "brightness(0) invert(1)" : "none"};" />
           </div>
         </button>
+      </div>
       </div>
     `;
   }
