@@ -401,7 +401,7 @@ export default class Consommation {
                 : ""
             }
           </div>
-          <div class="mb-6"> <!-- Added margin-bottom to the button wrapper -->
+          <div class="mb-[52px]"> <!-- Added margin-bottom to the button wrapper -->
             ${this.renderMobileButton(lang, theme)}
           </div>
         </div>
@@ -445,17 +445,17 @@ export default class Consommation {
     const shadowClass = theme === "dark" ? "" : "shadow-[-0.87px_6.94px_15.61px_0px_#4F4F4F1A]";
 
     const renderedCard = `
-      <div class="card ${bgClass} ${borderRadius} ${borderClass} w-full max-w-full relative transition-all duration-500 flex flex-col ${shadowClass} ${fontClass}" data-card-index="${cardIndex}" style="min-height: 400px;">
-        <div class="px-6 py-3 flex flex-col flex-1">
+      <div class="card ${bgClass} ${borderRadius} ${borderClass} w-full max-w-full relative transition-all duration-500 flex flex-col md:min-h-[400px] ${shadowClass} ${fontClass}" data-card-index="${cardIndex}">
+        <div class="px-6 py-7 flex flex-col flex-1">
           <div class="flex items-center gap-3 mb-4 pb-3" style="border-bottom: 0.87px solid #F4F4F4;">
             <div class="flex items-center justify-center">
               <img src="${this.resolveIcon(card.icon, theme)}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
             </div>
-            <h2 class="text-xl leading-[170%] tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
+            <h2 class="text-xl tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
               ${card.title}
             </h2>
           </div>
-          <div class="card-content flex flex-col gap-3 flex-1">
+          <div class="card-content flex flex-col gap-9 flex-1">
             ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
           </div>
         </div>
@@ -468,14 +468,14 @@ export default class Consommation {
 
   renderDesktopLayout(data, theme, lang) {
     const visibleCards = this.getVisibleCards();
-    const bgClass = theme === "dark" ? "bg-[#141414]" : "bg-white";
+    const bgClass = theme === "dark" ? "bg-[#141414]" : "bg-[#F8F8F8]";
     const textClass = theme === "dark" ? "text-white" : "text-[#2A2A2A]";
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="${bgClass} w-full mb-6 py-8 px-8 md:px-12 flex flex-col items-stretch min-h-screen ${fontClass}" ${
-      lang === "ar" ? 'dir="rtl"' : ""
-    }>
+
+      <div class="${bgClass} w-full py-16 px-8 md:px-12 flex flex-col items-stretch ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
+
         <div class="w-full flex flex-row justify-between items-center mb-8">
           <div class="flex flex-col">
             <h1 class="${textClass} text-[2rem] leading-[170%] tracking-[2%] uppercase" style="font-weight: 500;">
@@ -526,8 +526,8 @@ export default class Consommation {
 
     const renderedCard = `
       <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}" style="min-height: 450px;">
-        <div class="px-6 pt-6 pb-6 flex flex-col h-full">
-        
+        <div class="px-6 py-7 flex flex-col justify-between min-h-full relative">
+        <div class="mb-20">
           <!-- Title Section -->
           <div class="flex items-center gap-1 flex-shrink-0" style="padding-bottom: 24px; border-bottom: 0.87px solid #F4F4F4;">
             <div class="flex items-center justify-center">
@@ -539,13 +539,14 @@ export default class Consommation {
           </div>
 
           <!-- Card Content -->
-          <div class="card-content flex flex-col gap-3 flex-1 pt-6">
+          <div class="card-content flex flex-col gap-6 sm:flex-1 pt-6">
             ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
+          </div>
           </div>
 
           <!-- Expand Button (if any) -->
-          ${this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.renderExpandButton(cardIndex, isExpanded, theme) : ""}
-        </div>
+            ${this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.renderExpandButton(cardIndex, isExpanded, theme) : ""}
+          </div>
       </div>
     `;
 
@@ -633,7 +634,7 @@ export default class Consommation {
     }
 
     const renderedSection = `
-      <div class="flex flex-col font-rubik mb-6">
+      <div class="flex flex-col font-rubik">
         <div class="flex items-start justify-between min-w-0">
           <div class="flex flex-col flex-1 min-w-0">
             <div class="flex items-center gap-2" style="${directionStyle};">
@@ -747,27 +748,27 @@ export default class Consommation {
     const chevronSrc = this.resolveChevronIcon(theme);
 
     return `
+    <div class="w-full absolute bottom-0 left-0 pb-3">
       <div class="w-full mt-4 pt-4 flex-shrink-0 flex justify-center">
         <div class="w-2/3 border-t" style="border-color: ${borderColor};"></div>
       </div>
       <div class="flex justify-center">
         <button
-          class="card-chevron flex items-center justify-center cursor-pointer rounded-full p-3 transition-all duration-200"
+          class="card-chevron flex items-end justify-end cursor-pointer rounded-full transition-all duration-200"
           data-card-index="${cardIndex}"
           type="button"
           aria-label="Toggle card content"
           aria-expanded="${isExpanded ? "true" : "false"}"
           style="min-width: 50px; min-height: 50px; margin-bottom: 0;"
         >
-          <div class="chevron-rotator w-12 h-10 flex items-center justify-center transform transition-transform duration-300 ease-in-out ${
-            isExpanded ? "rotate-180" : "rotate-0"
-          }">
+          <div class="chevron-rotator w-12 flex transform transition-transform duration-300 ease-in-out ${isExpanded ? "rotate-180" : "rotate-0"}">
             <img src="${chevronSrc}"
-                 class="w-full h-full"
+                 class="w-full "
                  alt="expand chevron"
                  style="filter: ${theme === "dark" ? "brightness(0) invert(1)" : "none"};" />
           </div>
         </button>
+      </div>
       </div>
     `;
   }
