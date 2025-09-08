@@ -2,43 +2,45 @@ export default {
   fr: {
     forfaits: [
       {
-        name: "Forfait 1500",
-        data: "40Go internet",
-        features: ["Youtube illimité"],
+        name: "Ooredoo internet 1500",
+        data: "50Go",
         price: "1500",
-        duration: "cycle de facturation",
+        duration: "4 Semaines",
         buy: "Acheter"
       },
       {
-        name: "Forfait 1000",
-        data: "15Go internet",
-        features: ["5Go Youtube"],
-        price: "1000",
-        duration: "cycle de facturation",
+        name: "ooredoo internet 2500",
+        data: "120Go",
+        price: "2500",
+        duration: "4 Semaines",
         buy: "Acheter"
       },
       {
-        name: "Forfait 500",
-        data: "12Go internet",
-        features: [],
-        price: "500 ",
-        duration: "cycle de facturation",
+        name: "ooredoo internet 4500",
+        data: "200Go",
+        price: "4500",
+        duration: "4 Semaines",
         buy: "Acheter"
       },
       {
-        name: "Forfait 300",
-        data: "3Go internet",
-        features: ["Youtube illimité"],
-        price: "300 ",
-        duration: "72 heures",
+        name: "ooredoo internet 5500",
+        data: "250Go",
+        price: "5500",
+        duration: "4 Semaines",
         buy: "Acheter"
       },
       {
-        name: "Forfait 100",
-        data: "700Mo internet",
-        features: ["Youtube illimité"],
-        price: "100 ",
-        duration: "24 heures",
+        name: "ooredoo internet 10000",
+        data: "500Go",
+        price: "10000",
+        duration: "4 Semaines",
+        buy: "Acheter"
+      },
+      {
+        name: "ooredoo internet 19500",
+        data: "1000Go",
+        price: "19500",
+        duration: "4 Semaines",
         buy: "Acheter"
       }
     ],
@@ -81,44 +83,46 @@ export default {
 ar: {
   forfaits: [
     {
-      name: "اشتراك 1500",
-      data: "40Go إنترنت",
-      features: ["يوتيوب غير محدود"],
-      price: "1500 ",
-      duration: "دورة فوترة",
+      name: "إنترنت 1500",
+      data: "50Go",
+      price: "1500",
+      duration: "4 أسابيع",
       buy: "شراء"
     },
     {
-      name: "اشتراك 1000",
-      data: "15Go إنترنت",
-      features: ["5Go يوتيوب"],
-      price: "1000 ",
-      duration: "دورة فوترة",
+      name: "إنترنت 2500",
+      data: "120Go",
+      price: "2500",
+      duration: "4 أسابيع",
       buy: "شراء"
     },
     {
-      name: "اشتراك 500",
-      data: "12Go إنترنت",
-      features: [],
-      price: "500 ",
-      duration: "دورة فوترة",
+      name: "إنترنت 4500",
+      data: "200Go",
+      price: "4500",
+      duration: "4 أسابيع",
+      buy: "شراء"
+    },
+    {
+      name: "إنترنت 5500",
+      data: "250Go",
+      price: "5500",
+      duration: "4 أسابيع",
       buy: "شراء"
     },
     
     {
-      name: "اشتراك 300",
-      data: "3Go إنترنت",
-      features: ["يوتيوب غير محدود"],
-      price: "300 ",
-      duration: "72 ساعة",
+      name: "إنترنت 10000",
+      data: "500Go",
+      price: "10000",
+      duration: "4 أسابيع",
       buy: "شراء"
     },
     {
-      name: "اشتراك 100",
-      data: "700Mo إنترنت",
-      features: ["يوتيوب غير محدود"],
-      price: "100 ",
-      duration: "24 ساعة",
+      name: "إنترنت 19500",
+      data: "1000Go",
+      price: "19500",
+      duration: "4 أسابيع",
       buy: "شراء"
     }
   ],

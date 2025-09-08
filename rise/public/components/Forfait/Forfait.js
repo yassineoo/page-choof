@@ -1,9 +1,11 @@
 import ForfaitData from "./ForfaitData.js";
 import ModalData from "./ModalData.js";
+import { Slider } from "./Slider.js";
 
 class ForfaitComponent {
   constructor(container) {
     this.container = container;
+    this.slider = new Slider();
     this.currentLang = this.getLanguage();
     this.lastIsMobile = this.isMobile();
     this.sliders = new Map([
@@ -44,6 +46,39 @@ class ForfaitComponent {
       margin: 0 auto;
     }
 
+    /* Make sure the swiper container is relative */
+.forfait-mobile-container .swiper {
+  position: relative;
+  padding-bottom: 40px; /* space for dots */
+}
+
+/* Move pagination to the bottom */
+.forfait-mobile-container .swiper-pagination {
+  position: absolute;
+  bottom: 10px; /* distance from bottom */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  gap: 8px; /* spacing between dots */
+}
+
+/* Style custom dots */
+.forfait-mobile-container .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.forfait-mobile-container .swiper-pagination-bullet-active {
+  background: #e30613; /* Ooredoo red */
+  transform: scale(1.3);
+}
+
+
     .forfait-card-shadow {
       box-shadow: 0px 3.92px 7.84px 0px #0505050A;
       border: 0.84px solid #C5C5C5;
@@ -72,6 +107,8 @@ class ForfaitComponent {
 
     .forfait-slider-track {
       display: flex;
+      align-items: stretch;
+      justify-content: center;
       width: 100%;
       transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       will-change: transform;
@@ -139,7 +176,7 @@ class ForfaitComponent {
       max-width: 1400px;
       margin: 0 auto;
       padding: 0 1rem;
-      gap: 0.875rem;
+      gap: 0.875rem !imortant;
       justify-items: center;
       align-items: stretch;
     }
@@ -149,14 +186,14 @@ class ForfaitComponent {
     }
 
     .forfait-mobile-container {
-      padding: 0 1rem;
+      padding: 0;
     }
 
     /* 5-card grid (Forfaits) - V-shape layout on desktop screens */
     .forfait-grid-5 {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+      grid-template-columns: repeat(3, minmax(280px, 320px));
       grid-template-rows: auto auto;
-      gap: 0.875rem 1.5rem;
+      
       justify-content: center;
     }
     .forfait-grid-5 > *:nth-child(1),
@@ -174,30 +211,24 @@ class ForfaitComponent {
       justify-self: end;
     }
     .forfait-grid-5 > *:nth-child(5) {
-      grid-column: 2 / 4;
+      grid-column: 2 / 6;
       justify-self: start;
     }
 
     /* 3-card grid (Smart) */
     .forfait-grid-3 {
       grid-template-columns: repeat(3, minmax(280px, 320px));
-      gap: 0.875rem;
       justify-content: center;
     }
 
     /* Large Desktop (1920px+) */
     @media (min-width: 1920px) {
       .forfait-grid-5 {
-        grid-template-columns: repeat(5, minmax(280px, 320px));
+        grid-template-columns: repeat(3, minmax(280px, 320px));
         grid-template-rows: auto;
-        gap: 0.875rem;
+        gap: 1.5rem 0.5rem;
       }
-      .forfait-grid-5 > *:nth-child(4),
-      .forfait-grid-5 > *:nth-child(5) {
-        grid-row: 1;
-        grid-column: auto;
-        justify-self: center;
-      }
+    
       .forfait-grid-3 {
         grid-template-columns: repeat(3, minmax(320px, 380px));
         gap: 0.875rem;
@@ -208,7 +239,8 @@ class ForfaitComponent {
     @media (min-width: 1440px) and (max-width: 1919px) {
       .forfait-grid-5 {
         grid-template-columns: repeat(3, minmax(280px, 320px));
-        gap: 0.875rem 1.5rem;
+        gap: 1.2rem 0.5rem;
+        
       }
       .forfait-grid-3 {
         grid-template-columns: repeat(3, minmax(280px, 320px));
@@ -221,7 +253,7 @@ class ForfaitComponent {
       .forfait-grid-5,
       .forfait-grid-3 {
         grid-template-columns: repeat(3, minmax(250px, 280px));
-        gap: 0.875rem 1rem;
+        gap: 1rem 1rem;
         justify-content: center;
       }
       .forfait-grid-5 > *:nth-child(4) {
@@ -478,9 +510,7 @@ class ForfaitComponent {
         font-size: 14px !important;
       }
       /* Adjust price font sizes */
-      .forfait-card-footer span {
-        font-size: 1.1rem !important;
-      }
+    
     }
 
     /* Arabic specific tablet fixes */
@@ -515,6 +545,62 @@ class ForfaitComponent {
       align-items: flex-start;
       margin-bottom: 0.5rem;
     }
+
+
+    /* Tablet Portrait (768px - 991px) - FIXED */
+@media (min-width: 768px) and (max-width: 991px) {
+  .forfait-grid-5,
+  .forfait-grid-3 {
+    grid-template-columns: repeat(2, minmax(260px, 280px));
+    gap: 1rem;
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto;
+    gap: 30px;
+  }
+  
+  /* RESET V-shape positioning for cards 1-4 */
+  .forfait-grid-5 > *:nth-child(1),
+  .forfait-grid-5 > *:nth-child(2),
+  .forfait-grid-5 > *:nth-child(3),
+  .forfait-grid-5 > *:nth-child(4) {
+    grid-row: auto !important;
+    grid-column: auto !important;
+    justify-self: auto !important;
+    
+    
+  }
+  
+  /* Only 5th card spans both columns */
+  .forfait-grid-5 > *:nth-child(5),
+  .forfait-grid-3 > *:nth-child(3) {
+    grid-column: 1 / 3;
+    justify-self: center;
+    max-width: 280px;
+    margin-top: 1rem;
+    
+   
+  }
+
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+  
+
+}
   `;
   }
 
@@ -690,138 +776,6 @@ class ForfaitComponent {
     return `<span class="font-rubik ${baseClasses}">${title}</span>`;
   }
 
-  createForfaitCard(offer, index, labels) {
-    const isRTL = this.isRTL();
-    const currencyLabel = isRTL ? "دج" : "DA";
-    const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
-    const textAlign = isRTL ? "text-right" : "text-left";
-
-    const titleFontClass = this.getFontClass(offer.name);
-    const dataFontClass = this.getFontClass(offer.data);
-    const buttonFontClass = this.getFontClass(buyLabel);
-
-    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
-    const durationText = this.convertToLatinNumerals(offer.duration);
-
-    const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-
-    return `
-      <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
-        <div class="p-6 forfait-card-container h-full" ${isRTL ? `dir="rtl"` : ``}>
-          <div class="pb-4">
-            <h2 class="${titleFontClass} font-medium text-2xl text-center capitalize text-black dark:text-white mb-4 leading-tight">
-              ${offer.name}
-            </h2>
-            <div class="w-full h-px forfait-divider mb-4"></div>
-          </div>
-
-          <div class="forfait-card-content flex-1">
-            <div class="mb-5">
-              <h3 class="${dataFontClass} text-[28px] font-semibold text-ooredoo-red dark:text-white mb-2 ${textAlign} leading-10">${offer.data}</h3>
-            </div>
-
-            <div class="flex-1">
-              ${
-                offer.features && offer.features.length > 0
-                  ? `<div class="${isRTL ? "text-right" : "text-left"}" dir="${isRTL ? "rtl" : "ltr"}">
-                    <ul class="space-y-2">
-                      ${offer.features
-                        .map((feature) => {
-                          const featureFontClass = this.getFontClass(feature);
-                          return `
-                            <li class="flex items-start gap-2">
-                              <img src="./assets/images/checkbox.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5" />
-                              <span class="forfait-feature-item ${featureFontClass} flex-1">${feature}</span>
-                            </li>
-                          `;
-                        })
-                        .join("")}
-                    </ul>
-                  </div>`
-                  : ``
-              }
-            </div>
-          </div>
-
-          <div class="forfait-card-footer pt-4">
-            <div class="flex justify-center items-baseline w-full mb-4">
-              <div class="flex items-baseline justify-center" style="width:70%;">
-                <span class="${priceFontClass} font-bold text-2xl mx-2 sm:text-3xl leading-none text-black dark:text-white">${priceNumber}</span>
-                <span class="${priceFontClass} font-semibold text-xl leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span> 
-                <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span> 
-              </div>
-            </div>
-
-            <div class="forfait-button-zone flex justify-center w-full">
-              <button class="forfait-buy-btn ${buttonFontClass} bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
-                style="
-                  font-weight: 600;
-                  font-size: 16px;
-                  line-height: 100%;
-                  letter-spacing: 0;
-                  text-align: center;
-                  text-transform: uppercase;
-                  padding: 8px 24px;
-                  height: 32px;
-                  width: auto;
-                  min-width: 96px;
-                  display: inline-flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-                data-index="${index}" 
-                data-offer-name="${offer.name}">
-                ${buyLabel}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  createResponsiveLayout(offers, labels, gridType) {
-    const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
-    const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
-    const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-    const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
-
-    return `
-      <div class="forfait-grid ${gridClass}">
-        ${offers.map((offer, index) => this.createForfaitCard(offer, startIndex + index, labels)).join("")}
-      </div>
-
-      <div class="forfait-mobile-slider forfait-mobile-container">
-        <div class="forfait-slider-container" id="${sliderId}">
-          <div class="forfait-slider-track">
-            ${offers
-              .map(
-                (offer, index) => `
-              <div class="forfait-slider-slide">
-                ${this.createForfaitCard(offer, startIndex + index, labels)}
-              </div>
-            `
-              )
-              .join("")}
-          </div>
-        </div>
-        <div class="forfait-dots-container" id="${dotsId}">
-          ${this.generateDots(offers.length, 0)}
-        </div>
-      </div>
-    `;
-  }
-
-  generateDots(totalDots, activeIndex) {
-    return Array.from(
-      { length: totalDots },
-      (_, index) =>
-        `<button class="forfait-dot ${index === activeIndex ? "active" : ""}" 
-                data-slide="${index}" 
-                aria-label="Slide ${index + 1}"></button>`
-    ).join("");
-  }
-
   render() {
     try {
       const language = this.getLanguage();
@@ -883,7 +837,7 @@ class ForfaitComponent {
   renderTitle(language) {
     if (language === "ar") {
       return `
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white" dir="rtl">
+      <h2 class="text-center text-3xl sm:text-4xl md:text-5xl font-medium mb-16 text-black dark:text-white" dir="rtl">
         <span class="font-noto-kufi-arabic" dir="rtl">اشتراكات</span>
         <span class="font-rubik" dir="ltr"> SMART</span>
       </h2>
@@ -891,7 +845,7 @@ class ForfaitComponent {
     } else {
       return `
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white">
-        <span class="font-rubik">SMART اشتراكات</span>
+        <span class="font-rubik">FORFAIT SMART</span>
       </h2>
     `;
     }
@@ -908,19 +862,35 @@ class ForfaitComponent {
 
     this.container.innerHTML = `
     <div class="w-full">
-      <section class="w-full bg-[#141B4D] dark:bg-[#141414] py-16">
-        <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
-          <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-white">
+      <section class="w-full bg-white dark:bg-[#2c2c2c] pt-16">
+        <div class="max-w-[1600px] mx-auto md:px-6">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${this.createMixedTitleHTML(labels.titleData, "uppercase")}
           </h2>
-          ${this.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5")}
+          ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
+        </div>
+        <div class="bg-ooredoo-red py-16 mt-16 px-4 md:px-8">
+          <h1 class="text-white text-3xl leading-snug font-bold max-w-md">${this.currentLang === "ar" ? "اللغة العربية" : "DECOUVREZ NOS SERVICES NUMERIQUES"}</h1>
+          <div class="flex items-center gap-4 my-10">
+            <span class="bg-white h-12 w-32 rounded-full"></span>
+            <span class="bg-white h-12 w-32 rounded-full"></span>
+            <span class="bg-white h-12 w-32 rounded-full"></span>
+            <span class="bg-white h-12 w-32 rounded-full"></span>
+            <span class="bg-white h-12 w-32 rounded-full"></span>
+          </div>
+          <div class="flex items-center justify-between">
+            <p class="text-white">${this.currentLang === "ar" ? "استمتع بها أينما كنت!" : "Profitez en où que vous soyez !"}</p>
+            <button>
+              <span class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${this.currentLang === "ar" ? "عرض التفاصيل" : "Voir détails"}</span>
+            </button>
+          </div>
         </div>
       </section>
 
-      <section class="w-full bg-white dark:bg-[#1a1a1a] py-16">
-        <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
+      <section class="w-full bg-white dark:bg-[#141414] py-16">
+        <div class="max-w-[1600px] mx-auto md:px-6">
           ${this.renderTitle(language)}
-          ${this.createResponsiveLayout(data.smartForfaits, labels, "forfait-grid-3")}
+          ${this.slider.createResponsiveLayout(data.smartForfaits, labels, "forfait-grid-3")}
         </div>
       </section>
 
@@ -930,10 +900,19 @@ class ForfaitComponent {
 
     this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
 
+    requestAnimationFrame(() => {
+      this.slider.initSwiper("forfaits-slider");
+      this.slider.initSwiper("smart-slider");
+    });
     setTimeout(() => {
       this.initializeSliders();
       this.addSliderAccessibility();
     }, 50);
+
+    setTimeout(() => {
+      this.slider.initSwiper("forfaits-slider");
+      this.slider.initSwiper("smart-slider");
+    }, 200); // Increased delay
   }
 
   renderErrorState() {
@@ -1420,7 +1399,7 @@ class ForfaitComponent {
   showSuccessModal(content, isRTL , onClose) {
     this.showModal({
       type: "success",
-      title: isRTL ? "هنيئًا ! " : "Félicitations !",
+      title: isRTL ? "هنيئًا !" : "Félicitations !",
       message: content.success,
       isRTL,
       onClose
@@ -1456,7 +1435,7 @@ class ForfaitComponent {
 
   createModalHTML({ type, title, message, isRTL }) {
     const dirAttribute = isRTL ? `dir="rtl"` : "";
-    const closeButtonPosition = isRTL ? "left-4" : "right-4";
+    const closeButtonPosition = "right-4";
     const buttons = this.getModalButtons(type, isRTL);
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
@@ -1466,9 +1445,9 @@ class ForfaitComponent {
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title">
-          <div class="relative bg-white dark:bg-[#2C2C2C] dark:border dark:border-[#CDCDCD] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
+          <div class="relative bg-white dark:bg-[#2C2C2C]  rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
               <button class="absolute top-4 ${closeButtonPosition} p-2 z-10 rounded-full transition-all duration-200 forfait-modal-close"
-                      aria-label="${isRTL ? "تم" : "Fermer"}">
+                      aria-label="${isRTL ? "تم" : "ok"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">

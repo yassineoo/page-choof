@@ -9,7 +9,7 @@ export default class Header {
       phone: "0509876543",
       offer: "Offre VOX",
       credit: "4000 DA",
-      compayName: "Nom De L'entreprise",
+      compayName: "Offre Ooredoo Internet ",
       autoRenewal: true,
       charge: "CHARGER",
     };
