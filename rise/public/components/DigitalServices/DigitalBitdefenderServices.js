@@ -773,17 +773,13 @@ export default class DigitalBitdefenderServices {
     const dirAttribute = isArabic ? 'dir="rtl"' : 'dir="ltr"';
 
     this.container.innerHTML = `
-      <div class="w-full bg-white dark:bg-[#2C2C2C] py-16 ${fontClass}" ${dirAttribute}>
-        <div class="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12">
-          <div class="flex-shrink-0 flex items-center justify-center lg:min-w-[300px] lg:h-[450px]">
+      <div class="w-full bg-white dark:bg-black py-16 ${fontClass}" ${dirAttribute}>
+        <div class=" w-full px-6 flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div class=" flex items-center justify-center  lg:h-[450px]">
             <img id="bitdefender-logo" src="${this.getLogoPath()}" alt="Bitdefender" class="w-80 h-auto object-contain" />
           </div>
-          
-          <div class="flex-1 max-w-lg w-full">
-            <div class="space-y-6">
-              ${bitdefenderPlans.map((plan, index) => this.createCardHTML(plan, index)).join("")}
-            </div>
-          </div>
+           ${bitdefenderPlans.map((plan, index) => this.createCardHTML(plan, index)).join("")}
+        
         </div>
         
         <div id="bitdefender-modal-hook"></div>
@@ -1183,7 +1179,9 @@ export default class DigitalBitdefenderServices {
                       <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                     </svg>
                   </div>
-                  <span class="text-xs text-black dark:text-white cursor-pointer leading-relaxed whitespace-nowrap ${isRTL ? "text-right" : "text-left"}">
+                  <span class="text-xs text-black dark:text-white cursor-pointer leading-relaxed whitespace-nowrap ${
+                    isRTL ? "text-right" : "text-left"
+                  }">
                     ${
                       isRTL
                         ? `أوافق على <button type="button" class="terms-link text-ooredoo-red dark:text-white underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>`
