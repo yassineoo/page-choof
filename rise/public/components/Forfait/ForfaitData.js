@@ -44,6 +44,62 @@ export default {
         buy: "Acheter"
       }
     ],
+    internetForfaits: [
+      {
+        topLabel: "600Go par an",
+        name: "15 000 DA",
+        data: "50Go x 12",
+        price: "1500",
+        oldPrice: "18 000",
+        duration: "4 Semaines",
+        buy: "Acheter"
+      },
+      {
+        topLabel: "1440Go par an",
+        name: "25 000 DA",
+        data: "12Go x 12",
+        price: "2500",
+        oldPrice: "30 000",
+        duration: "4 Semaines",
+        buy: "Acheter"
+      },
+      {
+        topLabel: "2400Go par an",
+        name: "45 000 DA",
+        data: "200Go x 12",
+        price: "4500",
+        oldPrice: "54 000",
+        duration: "4 Semaines",
+        buy: "Acheter"
+      },
+      {
+        topLabel: "3000Go par an",
+        name: "55 000 DA",
+        data: "250Go x 12",
+        price: "5500",
+        oldPrice:"66 000",
+        duration: "4 Semaines",
+        buy: "Acheter"
+      },
+      {
+        topLabel: "6000Go par an",
+        name: "100 000 DA",
+        data: "500Go x 12",
+        price: "10000",
+        oldPrice: "120 000",
+        duration: "4 Semaines",
+        buy: "Acheter"
+      },
+      {
+        topLabel: "12000Go par an",
+        name: "195 000 DA",
+        data: "1000Go x 12",
+        price: "19500",
+        oldPrice:"234 000",
+        duration: "4 Semaines",
+        buy: "Acheter"
+      }
+    ],
     smartForfaits: [
       {
         name: "Smart 200",
@@ -70,6 +126,27 @@ export default {
         features: [],
         price: "50 ",
         duration: "24 heures",
+        buy: "Acheter"
+      }
+    ],
+    hadraForfaits: [
+      {
+        name: "200",
+        data: "Appels illimités vers Ooredoo",
+        price: "200 ",
+        buy: "Acheter"
+      },
+      {
+        name: "300",
+        data: "600 DA de bonus",
+        price: "300",
+        buy: "Acheter"
+      },
+      {
+        name: "1000",
+        data: "Appels illimités vers tous les réseaux",
+        features: [],
+        price: "1000",
         buy: "Acheter"
       }
     ],
@@ -126,6 +203,83 @@ ar: {
       buy: "شراء"
     }
   ],
+  internetForfaits : [
+  {
+    topLabel: "600 جيغا للسنة",
+    name: "دج 15 000",
+    data: "50 جيغا × 12",
+    price: "1500",
+    oldPrice: "000 18",
+    duration: "4 أسابيع",
+    buy: "اشترِ"
+  },
+  {
+    topLabel: "1440 جيغا للسنة",
+    name: "25 000 دج",
+    data: "12 جيغا × 12",
+    price: "2500",
+    oldPrice: "000 30",
+    duration: "4 أسابيع",
+    buy: "اشترِ"
+  },
+  {
+    topLabel: "2400 جيغا للسنة",
+    name: "45 000 دج",
+    data: "200 جيغا × 12",
+    price: "4500",
+    oldPrice: "000 54",
+    duration: "4 أسابيع",
+    buy: "اشترِ"
+  },
+  {
+    topLabel: "3000 جيغا للسنة",
+    name: "55 000 دج",
+    data: "250 جيغا × 12",
+    price: "5500",
+    oldPrice: "000 66",
+    duration: "4 أسابيع",
+    buy: "اشترِ"
+  },
+  {
+    topLabel: "6000 جيغا للسنة",
+    name: "100 000 دج",
+    data: "500 جيغا × 12",
+    price: "10000",
+    oldPrice: "000 120",
+    duration: "4 أسابيع",
+    buy: "اشترِ"
+  },
+  {
+    topLabel: "12000 جيغا للسنة",
+    name: "195 000 دج",
+    data: "1000 جيغا × 12",
+    price: "19500",
+    oldPrice: "000 234",
+    duration: "4 أسابيع",
+    buy: "اشترِ"
+  }
+],
+hadraForfaits: [
+      {
+        name: "200",
+        data: "مكالمات غير محدودة نحو اوريدو",
+        price: "200 ",
+        buy: "Acheter"
+      },
+      {
+        name: "300",
+        data: "600 دج رصيد مُهدى",
+        price: "300",
+        buy: "Acheter"
+      },
+      {
+        name: "1000",
+        data: "مكالمات غير محدودة نحو كل الشبكات",
+        features: [],
+        price: "1000",
+        buy: "Acheter"
+      }
+    ],
   smartForfaits: [
     {
       name: "Smart 200",

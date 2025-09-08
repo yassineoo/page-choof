@@ -861,7 +861,7 @@ class ForfaitComponent {
     this.cleanupAllEventListeners();
 
     this.container.innerHTML = `
-    <div class="w-full">
+    <div class="w-full ${this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"}">
       <section class="w-full bg-white dark:bg-[#2c2c2c] pt-16">
         <div class="max-w-[1600px] mx-auto md:px-6">
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
@@ -870,28 +870,50 @@ class ForfaitComponent {
           ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
         </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-4 md:px-8">
-          <h1 class="text-white text-3xl leading-snug font-bold max-w-md">${this.currentLang === "ar" ? "اللغة العربية" : "DECOUVREZ NOS SERVICES NUMERIQUES"}</h1>
-          <div class="flex items-center gap-4 my-10">
-            <span class="bg-white h-12 w-32 rounded-full"></span>
-            <span class="bg-white h-12 w-32 rounded-full"></span>
-            <span class="bg-white h-12 w-32 rounded-full"></span>
-            <span class="bg-white h-12 w-32 rounded-full"></span>
-            <span class="bg-white h-12 w-32 rounded-full"></span>
+          <h1 class="text-white text-3xl leading-snug font-bold max-w-md">${this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "DECOUVREZ NOS SERVICES NUMERIQUES"}</h1>
+          <div class="flex items-center gap-4 my-10 flex-wrap">
+            <span class="bg-white flex items-center justify-center h-12 w-32 rounded-full">
+              <img src="/assets/images/services/Bitdefender.svg" />
+            </span>
+            <span class="bg-white flex items-center justify-center h-12 w-32 rounded-full">
+              <img src="/assets/images/TOD.svg" />
+            </span>
+            <span class="bg-white flex items-center justify-center h-12 w-32 rounded-full">
+              <img src="/assets/images/services/shahid.svg" />
+            </span>
+            <span class="bg-white flex items-center justify-center h-12 w-32 rounded-full">
+              <img src="/assets/images/services/freefire.svg" />
+            </span>
+            <span class="bg-white flex gap-1 items-center justify-center h-12 w-32 rounded-full">
+              <img src="/assets/images/consommation/osn.svg"/>  
+              <p class="text-sm font-bold">&</p>
+              <img src="/assets/images/services/anghani.svg" />
+            </span>
           </div>
-          <div class="flex items-center justify-between">
-            <p class="text-white">${this.currentLang === "ar" ? "استمتع بها أينما كنت!" : "Profitez en où que vous soyez !"}</p>
+          <div class="flex items-center gap-4 flex-wrap justify-between">
+            <p class="text-white">${this.currentLang === "ar" ? "استفيدوا منها اينما كنتم!" : "Profitez en où que vous soyez !"}</p>
             <button>
-              <span class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${this.currentLang === "ar" ? "عرض التفاصيل" : "Voir détails"}</span>
+              <span class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${this.currentLang === "ar" ? "المزيد من التفاصيل" : "Voir détails"}</span>
             </button>
+          </div>
+        </div>
+        <div class="py-16">
+          <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
+            ${this.currentLang === "ar" ?  "<span>اشتراكات<span class='font-rubik' dir='ltr'>12 x Ooredoo Internet</span></span>" : "<span class='font-rubik'>forfaits ooredoo internet x 12</span>"}
+          </h2>
+          <div class="">
+              ${this.slider.createResponsiveLayoutInternet(data.internetForfaits, labels, "forfait-grid-4", this.isRTL, this.convertToLatinNumerals)}
           </div>
         </div>
       </section>
 
-      <section class="w-full bg-white dark:bg-[#141414] py-16">
-        <div class="max-w-[1600px] mx-auto md:px-6">
-          ${this.renderTitle(language)}
-          ${this.slider.createResponsiveLayout(data.smartForfaits, labels, "forfait-grid-3")}
-        </div>
+      <section class="w-full bg-[#F8F8F8] dark:bg-[#141414] py-16">
+          <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
+            ${this.currentLang === "ar" ? "مزايا إضافية مكالمات ورصيد" : "Extra Hadra & Crédit"}
+          </h2>
+          <div class="">
+              ${this.slider.createResponsiveLayoutHadra(data.hadraForfaits, labels, "forfait-grid-4", this.isRTL, this.convertToLatinNumerals)}
+          </div>
       </section>
 
       <div id="forfait-modal-container"></div>
@@ -902,17 +924,13 @@ class ForfaitComponent {
 
     requestAnimationFrame(() => {
       this.slider.initSwiper("forfaits-slider");
-      this.slider.initSwiper("smart-slider");
+      this.slider.initSwiper("internet-slider")
+      this.slider.initSwiper("hadra-slider")
     });
     setTimeout(() => {
       this.initializeSliders();
       this.addSliderAccessibility();
     }, 50);
-
-    setTimeout(() => {
-      this.slider.initSwiper("forfaits-slider");
-      this.slider.initSwiper("smart-slider");
-    }, 200); // Increased delay
   }
 
   renderErrorState() {
