@@ -1,10 +1,10 @@
 // HeaderHtml.js
-export const generateHeaderHTML = (language = 'fr', userData = {}, theme = 'light') => {
+export const generateHeaderHTML = (language = "fr", userData = {}, theme = "light") => {
   const isAuto = userData.autoRenewal;
-  const helpText = language === 'ar' ? 'مساعدة' : 'Aide ?';
-  const currentLanguage = language === 'ar' ? 'العربية' : 'Français';
-  const renewalMode = isAuto ? 'Automatique' : 'Manuel';
-  const renewalLabel = language === 'ar' ? 'طريقة التجديد' : 'Renouvellement :';
+  const helpText = language === "ar" ? "مساعدة" : "Aide ?";
+  const currentLanguage = language === "ar" ? "العربية" : "Français";
+  const renewalMode = isAuto ? "Automatique" : "Manuel";
+  const renewalLabel = language === "ar" ? "طريقة التجديد" : "Renouvellement :";
 
   // Common text style
   const commonTextStyle = `
@@ -25,7 +25,7 @@ font-size: 24px;
 leading-trim: NONE;
 line-height: 170%;
 letter-spacing: 2%;
-`
+`;
 
   const infoCardTitleStyle = `
     font-family: 'DM Sans', sans-serif;
@@ -95,8 +95,12 @@ letter-spacing: 2%;
             <img src="/assets/images/header/chevron-down.svg" class="w-4 h-4 ml-2 dark:hidden" />
           </button>
           <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full bg-white dark:bg-[#171717] rounded-lg shadow-lg z-10 border border-gray-200 dark:border-gray-700 overflow-hidden">
-            <a href="#" class="language-option block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white transition-colors ${language === 'fr' ? 'font-semibold text-ooredoo-red' : ''}" data-lang="fr">Français</a>
-            <a href="#" class="language-option block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white transition-colors ${language === 'ar' ? 'font-semibold text-ooredoo-red' : ''}" data-lang="ar">العربية</a>
+            <a href="#" class="language-option block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white transition-colors ${
+              language === "fr" ? "font-semibold text-ooredoo-red" : ""
+            }" data-lang="fr">Français</a>
+            <a href="#" class="language-option block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white transition-colors ${
+              language === "ar" ? "font-semibold text-ooredoo-red" : ""
+            }" data-lang="ar">العربية</a>
           </div>
         </div>
       </div>
@@ -120,7 +124,7 @@ letter-spacing: 2%;
             <img src="/assets/images/header/sun-white.svg" class="w-5 h-5 hidden dark:inline" id="mobile-sun-icon-dark" />
             <img src="/assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:hidden" id="mobile-moon-icon" />
             <img src="/assets/images/header/moon.svg" class="w-5 h-5 hidden dark:inline" id="mobile-moon-icon-dark" />
-            <span class="ml-2">Changer mode</span>
+            <span class="ml-2">Changer de mode</span>
           </button>
         </div>
         
@@ -136,8 +140,12 @@ letter-spacing: 2%;
           <img src="/assets/images/header/language.svg" class="w-5 h-5 dark:hidden" />
           <img src="/assets/images/header/language-white.svg" class="w-5 h-5 hidden dark:inline" />
           <div class="flex gap-2">
-            <button class="language-option px-3 py-1 rounded-lg ${language === 'fr' ? 'font-semibold text-ooredoo-red' : ''}" data-lang="fr">Français</button>
-            <button class="language-option px-3 py-1 rounded-lg ${language === 'ar' ? 'font-semibold text-ooredoo-red' : ''}" data-lang="ar">العربية</button>
+            <button class="language-option px-3 py-1 rounded-lg ${
+              language === "fr" ? "font-semibold text-ooredoo-red" : ""
+            }" data-lang="fr">Français</button>
+            <button class="language-option px-3 py-1 rounded-lg ${
+              language === "ar" ? "font-semibold text-ooredoo-red" : ""
+            }" data-lang="ar">العربية</button>
           </div>
         </div>
       </div>
@@ -153,13 +161,13 @@ letter-spacing: 2%;
           <!-- Phone -->
           <div class="flex items-center gap-2">
             <img src="/assets/images/header/Telephone.svg" class="w-6 h-6" />
-            <span style="${commonTextStyle}">${userData.phone || '0509876543'}</span>
+            <span style="${commonTextStyle}">${userData.phone || "0509876543"}</span>
           </div>
           
           <!-- Offer -->
           <div class="flex items-center gap-2">
             <img src="/assets/images/header/Puce.svg" class="w-6 h-6" />
-            <span style="${commonTextStyle}">${userData.offer || 'Offre Dima'}</span>
+            <span style="${commonTextStyle}">${userData.offer || "Offre Dima"}</span>
           </div>
           
           <!-- Renewal -->
@@ -170,15 +178,19 @@ letter-spacing: 2%;
               <button 
                 id="renewal-auto"
                 class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300"
-                style="font-family:'Rubik',sans-serif;font-weight:500;font-size:0.95rem;${isAuto ? 'background:#E30613;color:#fff;' : 'background:#fff;color:#2A2A2A;'}">
-                <img src="/assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${isAuto ? '' : 'hidden'}" />
+                style="font-family:'Rubik',sans-serif;font-weight:500;font-size:0.95rem;${
+                  isAuto ? "background:#E30613;color:#fff;" : "background:#fff;color:#2A2A2A;"
+                }">
+                <img src="/assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${isAuto ? "" : "hidden"}" />
                 Auto
               </button>
               <button 
                 id="renewal-manual"
                 class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300"
-                style="font-family:'Rubik',sans-serif;font-weight:500;font-size:0.95rem;${!isAuto ? 'background:#E30613;color:#fff;' : 'background:#fff;color:#2A2A2A;'}">
-                <img src="/assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${!isAuto ? '' : 'hidden'}" />
+                style="font-family:'Rubik',sans-serif;font-weight:500;font-size:0.95rem;${
+                  !isAuto ? "background:#E30613;color:#fff;" : "background:#fff;color:#2A2A2A;"
+                }">
+                <img src="/assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${!isAuto ? "" : "hidden"}" />
                 Manuel
               </button>
             </div>
@@ -192,9 +204,11 @@ letter-spacing: 2%;
                   Mode : ${renewalMode}
                 </div>
                 <div style="${infoCardDescStyle}">
-                  ${isAuto
-                    ? `Le mode de renouvellement automatique permet d'activer votre offre chaque mois sans action de votre part. Désactivez-le si vous souhaitez renouveler manuellement.`
-                    : `Le mode manuel permet de renouveler votre offre chaque mois seulement si vous le demandez. Activez le mode automatique pour ne pas oublier.`}
+                  ${
+                    isAuto
+                      ? `Le mode de renouvellement automatique permet d'activer votre offre chaque mois sans action de votre part. Désactivez-le si vous souhaitez renouveler manuellement.`
+                      : `Le mode manuel permet de renouveler votre offre chaque mois seulement si vous le demandez. Activez le mode automatique pour ne pas oublier.`
+                  }
                 </div>
               </div>
             </button>
@@ -204,7 +218,7 @@ letter-spacing: 2%;
         <!-- Right Section (Credit) -->
         <div class="flex items-center gap-2">
           <img src="/assets/images/header/Dollar.svg" class="w-6 h-6" />
-          <span style="${priceHeader}">${userData.credit || '1200 DA'}</span>
+          <span style="${priceHeader}">${userData.credit || "1200 DA"}</span>
         </div>
       </div>
     </div>

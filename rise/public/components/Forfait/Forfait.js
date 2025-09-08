@@ -845,7 +845,7 @@ class ForfaitComponent {
     } else {
       return `
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white">
-        <span class="font-rubik">FORFAIT SMART</span>
+        <span class="font-rubik">FORFAITS SMART</span>
       </h2>
     `;
     }
@@ -870,7 +870,9 @@ class ForfaitComponent {
           ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
         </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-4 md:px-8">
-          <h1 class="text-white text-3xl leading-snug font-bold max-w-md">${this.currentLang === "ar" ? "اللغة العربية" : "DECOUVREZ NOS SERVICES NUMERIQUES"}</h1>
+          <h1 class="text-white text-3xl leading-snug font-bold max-w-md">${
+            this.currentLang === "ar" ? "اللغة العربية" : "DECOUVREZ NOS SERVICES NUMERIQUES"
+          }</h1>
           <div class="flex items-center gap-4 my-10">
             <span class="bg-white h-12 w-32 rounded-full"></span>
             <span class="bg-white h-12 w-32 rounded-full"></span>
@@ -881,7 +883,9 @@ class ForfaitComponent {
           <div class="flex items-center justify-between">
             <p class="text-white">${this.currentLang === "ar" ? "استمتع بها أينما كنت!" : "Profitez en où que vous soyez !"}</p>
             <button>
-              <span class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${this.currentLang === "ar" ? "عرض التفاصيل" : "Voir détails"}</span>
+              <span class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${
+                this.currentLang === "ar" ? "عرض التفاصيل" : "Voir détails"
+              }</span>
             </button>
           </div>
         </div>

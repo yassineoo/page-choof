@@ -33,7 +33,7 @@ const bitdefenderTranslations = {
   ar: {
     buttonText: "شراء",
     buyModalTitle: "تأكيد الشراء",
-    buyMessage: (plan) => `السعر الإجمالي: ${plan.price} دج / ${plan.duration}`,
+    buyMessage: (plan) => `السعر الإجمالي: ${plan.price} دج/${plan.duration}`,
     terms: "أوافق على شروط الإستعمال ",
     congratsTitle: "هنيئًا!",
     congratsMessage: (plan) => `لقد تم تأكيد طلبك. ستتلقى رسالة قصيرة لتفعيل اشتراكك.`,
