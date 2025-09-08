@@ -1384,8 +1384,8 @@ class ForfaitComponent {
       message: content.confirm,
       isRTL,
       onConfirm: () => {
-        this.showInsufficientCreditModal(content, isRTL, () => {
-          this.showSuccessModal(content, isRTL);
+        this.showSuccessModal(content, isRTL, () => {
+          this.showInsufficientCreditModal(content, isRTL);
         });
       },
     });
@@ -1397,16 +1397,16 @@ class ForfaitComponent {
       title: isRTL ? "رصيدك غير كاف" : "Crédit Insuffisant",
       message: content.insufficient,
       isRTL,
-      onClose,
     });
   }
 
-  showSuccessModal(content, isRTL) {
+  showSuccessModal(content, isRTL , onClose) {
     this.showModal({
       type: "success",
       title: isRTL ? "هنيئًا !" : "Félicitations !",
       message: content.success,
       isRTL,
+      onClose
     });
   }
 
