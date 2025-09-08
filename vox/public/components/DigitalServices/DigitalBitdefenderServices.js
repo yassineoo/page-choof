@@ -977,8 +977,8 @@ export default class DigitalBitdefenderServices {
           e.stopPropagation();
 
           const fileName = isRTL
-            ? "TERMES_ET_CONDITIONS AR migration Dima Ooredoo ver DIma+.pdf"
-            : "TERMES_ET_CONDITIONS migration Dima Ooredoo ver DIma+.pdf";
+            ? "Condition d'utilisation - Bitdefender by Ooredoo - AR.pdf"
+            : "Condition d'utilisation - Bitdefender by Ooredoo - FR.pdf";
 
           // Show loading state
           const originalText = termsLink.textContent;
@@ -1183,7 +1183,9 @@ export default class DigitalBitdefenderServices {
                       <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                     </svg>
                   </div>
-                  <span class="text-xs text-black dark:text-white cursor-pointer leading-relaxed whitespace-nowrap ${isRTL ? "text-right" : "text-left"}">
+                  <span class="text-xs text-black dark:text-white cursor-pointer leading-relaxed whitespace-nowrap ${
+                    isRTL ? "text-right" : "text-left"
+                  }">
                     ${
                       isRTL
                         ? `أوافق على <button type="button" class="terms-link text-ooredoo-red dark:text-white underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>`

@@ -68,8 +68,8 @@ export default class DigitalServicesHeader {
     const legalFontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
 
     const headline = isArabic
-      ? 'قوموا بحماية أجهزتكم مع <span class="uppercase">BITDEFENDER!</span>'
-      : 'Protégez vos  appareils avec <span class="uppercase">Bitdefender !</span>';
+      ? 'قوموا بحماية أجهزتكم مع <span class="uppercase font-rubik" dir="ltr" >BITDEFENDER!</span>'
+      : 'Protégez vos  appareils avec <span class="uppercase"  >Bitdefender !</span>';
     const legal = isArabic ? "يتم تطبيق الشروط و الأحكام" : "Conditions générales applicables.";
 
     this.container.innerHTML = `
