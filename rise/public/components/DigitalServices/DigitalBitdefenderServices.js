@@ -75,7 +75,7 @@ export default class DigitalBitdefenderServices {
     this.currentLang = this.getLang();
     this.currentView = "main"; // 'main' or 'selection'
     this.selectedPlan = null;
-    this.selectedDevices = 5; // Default to first option
+    this.selectedDevices = 1; // Default to first option
     this.selectedDuration = 1; // Default to first option
     this.checkboxAccepted = false; // For terms and conditions
     this.init();
@@ -559,15 +559,16 @@ export default class DigitalBitdefenderServices {
 
   calculatePrice(basePrice, duration) {
     const priceTable = {
-      5: { 1: 1500, 12: 16500 },
-      10: { 1: 2500, 12: 27500 },
-      20: { 1: 4500, 12: 49500 },
+      1: { 1: 1000, 3: 3000, 12: 16500 },
+      3: { 1: 3000, 3: 8000, 12: 22500 },
+      5: { 1: 5000, 3: 12000, 12: 33500 },
+      10: { 1: 10000, 3: 24000, 12: 44500 },
     };
 
     return priceTable[this.selectedDevices]?.[duration] || 1500;
   }
 
-  createSelectionHTML() {
+  createSelectionHTML(price) {
     const isArabic = this.currentLang === "ar";
     const t = bitdefenderTranslations[this.currentLang];
     const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
@@ -580,7 +581,7 @@ export default class DigitalBitdefenderServices {
         <div class="w-full mx-auto px-2 sm:px-4 flex flex-col items-center">
           
           <!-- Main Container Card -->
-          <div class="max-w-[95vw] sm:max-w-[90vw] lg:max-w-[90vw] w-full mx-auto bg-white dark:bg-[#2C2C2C] rounded-xl lg:rounded-2xl shadow-lg overflow-hidden dark:border-white border ">
+          <div class="max-w-[95vw] sm:max-w-[90vw] lg:max-w-[90vw] w-full mx-auto bg-white dark:bg-[#2C2C2C] rounded-xl lg:rounded-2xl shadow-lg overflow-hidden dark:border-white border">
             
             <!-- Integrated Header -->
             <div class="rounded-t-xl lg:rounded-t-2xl" style="background-color: #ED1C24;">
@@ -598,7 +599,7 @@ export default class DigitalBitdefenderServices {
                   <div class="hidden sm:block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
                   
                   <div class="text-white ${isArabic ? "text-right" : "text-left"} text-center sm:text-left">
-                    <h2 class="font-medium font-rubik text-sm sm:text-lg lg:text-[22px] leading-tight">Small Office Security</h2>
+                    <h2 class="font-medium font-rubik text-sm sm:text-lg lg:text-[22px] leading-tight">${isArabic ? "حماية كاملة" :"Total Security"}</h2>
                   </div>
                 </div>
 
@@ -606,7 +607,7 @@ export default class DigitalBitdefenderServices {
                 <div class="flex items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
                   <div class="text-white ${isArabic ? "text-left" : "text-right"} text-center sm:text-right">
                     <p class="text-white text-opacity-90 text-sm sm:text-lg lg:text-[22px] font-medium lg:font-semibold">
-                      ${isArabic ? "حماية تصل إلى 20 جهاز" : "Protégez jusqu'à 20 appareils"}
+                      ${isArabic ? "حماية تصل إلى 10 أجهزة" : "Protégez jusqu'à 10 appareils"}
                     </p>
                   </div>
                   <div class="flex-shrink-0">
@@ -627,7 +628,7 @@ export default class DigitalBitdefenderServices {
               </div>
 
               <!-- Selection Grid -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center items-start gap-4 lg:gap-6 mb-6 lg:mb-10">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center items-stretch gap-4 lg:gap-6 mb-6 lg:mb-10">
                 
                 <!-- 01 - Duration Selection Card -->
                 <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-1">
@@ -650,6 +651,15 @@ export default class DigitalBitdefenderServices {
                               this.selectedDuration === 1 ? "background-color: #ED1C24;" : "background-color: #eee;"
                             }">
                       ${isArabic ? "01 شهر" : "01 mois"}
+                    </button>
+                    <button class="bitdefender-selection-option duration-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
+                      this.selectedDuration === 3 ? "text-white" : "text-black hover:bg-gray-200"
+                    }" 
+                            data-duration="3"
+                            style="width: 60px; height: 35px; sm:width: 70px; sm:height: 38px; lg:width: 80px; lg:height: 40px; border-radius: 8px; ${
+                              this.selectedDuration === 3 ? "background-color: #ED1C24;" : "background-color: #eee;"
+                            }">
+                      ${isArabic ? "03 شهر" : "03 mois"}
                     </button>
                     <button class="bitdefender-selection-option duration-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
                       this.selectedDuration === 12 ? "text-white" : "text-black hover:bg-gray-200"
@@ -676,6 +686,24 @@ export default class DigitalBitdefenderServices {
                   </div>
                   <!-- Options -->
                   <div class="flex gap-2 sm:gap-3 lg:gap-3 justify-center py-8 sm:py-12 lg:py-[60px]">
+                  <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
+                      this.selectedDevices === 1 ? "text-white" : "text-black hover:bg-gray-200"
+                    }" 
+                            data-devices="1"
+                            style="width: 45px; height: 35px; sm:width: 50px; sm:height: 38px; lg:width: 60px; lg:height: 40px; border-radius: 8px; ${
+                              this.selectedDevices === 1 ? "background-color: #ED1C24;" : "background-color: #eee;"
+                            }">
+                      01
+                    </button>
+                    <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
+                      this.selectedDevices === 3 ? "text-white" : "text-black hover:bg-gray-200"
+                    }" 
+                            data-devices="3"
+                            style="width: 45px; height: 35px; sm:width: 50px; sm:height: 38px; lg:width: 60px; lg:height: 40px; border-radius: 8px; ${
+                              this.selectedDevices === 3 ? "background-color: #ED1C24;" : "background-color: #eee;"
+                            }">
+                      03
+                    </button>  
                     <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
                       this.selectedDevices === 5 ? "text-white" : "text-black hover:bg-gray-200"
                     }" 
@@ -693,15 +721,6 @@ export default class DigitalBitdefenderServices {
                               this.selectedDevices === 10 ? "background-color: #ED1C24;" : "background-color: #eee;"
                             }">
                       10
-                    </button>
-                    <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDevices === 20 ? "text-white" : "text-black hover:bg-gray-200"
-                    }" 
-                            data-devices="20"
-                            style="width: 45px; height: 35px; sm:width: 50px; sm:height: 38px; lg:width: 60px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDevices === 20 ? "background-color: #ED1C24;" : "background-color: #eee;"
-                            }">
-                      20
                     </button>
                   </div>
                 </div>
@@ -754,13 +773,20 @@ export default class DigitalBitdefenderServices {
           
           <div id="bitdefender-modal-hook"></div>
         </div>
+
+
+        </div>
+
       </div>
     `;
   }
 
   render() {
     if (this.currentView === "selection") {
-      this.container.innerHTML = this.createSelectionHTML();
+      this.container.innerHTML = this.createSelectionHTML(180);
+      this.bindSelectionEvents();
+    } else if (this.currentView === "selection1") {
+      this.container.innerHTML = this.createSelectionHTML(200);
       this.bindSelectionEvents();
     } else {
       this.renderMainView();
@@ -774,7 +800,7 @@ export default class DigitalBitdefenderServices {
 
     this.container.innerHTML = `
       <div class="w-full bg-white dark:bg-black py-16 ${fontClass}" ${dirAttribute}>
-        <div class=" w-full px-6 flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div class=" w-full px-6 flex flex-col lg:flex-row items-stretch justify-between gap-12">
           <div class=" flex items-center justify-center  lg:h-[450px]">
             <img id="bitdefender-logo" src="${this.getLogoPath()}" alt="Bitdefender" class="w-80 h-auto object-contain" />
           </div>
@@ -877,12 +903,18 @@ export default class DigitalBitdefenderServices {
   handlePlanClick(btn) {
     const planIndex = parseInt(btn.dataset.planIndex);
     const plan = bitdefenderPlans[planIndex];
+    console.log("first button", planIndex, plan);
 
     this.selectedPlan = this.getTranslatedPlan(plan);
-    this.selectedDevices = 5; // Default to 5 devices (first option)
-    this.selectedDuration = 1; // Default to 1 month (first option)
-    this.currentView = "selection";
-    this.render();
+    this.selectedDevices = 1; // Default to 5 devices (first option)
+    this. selectedDuration= 1; // Default to 1 month (first option)
+    if (planIndex === 1) {
+      this.currentView = "selection1";
+      this.render();
+    } else {
+      this.currentView = "selection";
+      this.render();
+    }
   }
 
   // Enhanced Modal System with new designs
