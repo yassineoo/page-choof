@@ -21,7 +21,7 @@ export const consommationData = {
             date: "26/05/25",
             percentage: 50,
             extra: "/600 DA",
-          }
+          },
         ],
       },
       {
@@ -234,6 +234,15 @@ export const consommationData = {
           {
             subIcon: "shahid",
             subtitle: "شاهد",
+            value: "4",
+            unit: "Go",
+            date: "26/05/25",
+            percentage: 80,
+            extra: "/5Go",
+          },
+          {
+            subIcon: "osn",
+            subtitle: "OSN+",
             value: "4",
             unit: "Go",
             date: "26/05/25",

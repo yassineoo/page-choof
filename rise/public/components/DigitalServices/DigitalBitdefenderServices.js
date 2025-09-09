@@ -576,7 +576,7 @@ export default class DigitalBitdefenderServices {
     const currency = isArabic ? "دج" : "DA";
 
     return `
-      <div class="w-full bg-gray-50 dark:bg-[#2C2C2C] py-[50px] lg:py-[70px] ${fontClass}" ${dirAttribute}>
+      <div class="w-full bg-gray-50 dark:bg-black py-[50px] lg:py-[70px] ${fontClass}" ${dirAttribute}>
         <div class="w-full mx-auto px-2 sm:px-4 flex flex-col items-center">
           
           <!-- Main Container Card -->
