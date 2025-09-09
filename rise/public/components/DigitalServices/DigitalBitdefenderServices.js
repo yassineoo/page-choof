@@ -800,12 +800,13 @@ export default class DigitalBitdefenderServices {
 
     this.container.innerHTML = `
       <div class="w-full bg-white dark:bg-black py-16 ${fontClass}" ${dirAttribute}>
-        <div class=" w-full px-6 flex flex-col lg:flex-row items-stretch justify-between gap-12">
-          <div class=" flex items-center justify-center  lg:h-[450px]">
+        <div class="w-full px-6 flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div class="flex items-center justify-center  lg:h-[450px]">
             <img id="bitdefender-logo" src="${this.getLogoPath()}" alt="Bitdefender" class="w-80 h-auto object-contain" />
           </div>
+          <div class="flex flex-col lg:flex-row items-stretch gap-10">
            ${bitdefenderPlans.map((plan, index) => this.createCardHTML(plan, index)).join("")}
-        
+          </div>
         </div>
         
         <div id="bitdefender-modal-hook"></div>

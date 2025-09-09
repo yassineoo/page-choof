@@ -116,8 +116,14 @@ export default class DigitalFreeFireServices {
       <div class="${styles.cardWrapper}">
         <div class="${styles.card}">
           <div class="${styles.logoContainer}">
-            <img src="/assets/images/services/freefire.svg" alt="Free Fire" 
-              class="${styles.logo}"/>
+            <img 
+              src="/assets/images/services/freefire.svg" alt="Free Fire" 
+              class="${styles.logo} dark:hidden"
+            />
+            <img 
+              src="/assets/images/services/freefire-dark.svg" alt="Free Fire" 
+              class="${styles.logo} hidden dark:block"
+            />
           </div>
           <div class="${styles.cardDesc}">
             ${freeFireData.description}

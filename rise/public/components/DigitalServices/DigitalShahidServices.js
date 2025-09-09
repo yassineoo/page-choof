@@ -134,9 +134,9 @@ function renderShahidCard(plan, isArabic, index) {
         </div>
         <div>
           <div class="${styles.divider}"></div>
-          <div class="${styles.priceContainer}" dir="ltr">
+          <div class="${styles.priceContainer}">
             <span class="${styles.priceAmount}">${plan.price}</span>
-            <span class="${styles.priceDa}"> دج /</span>
+            <span class="${styles.priceDa}">${isArabic ? "دج" : "DA"}/</span>
             <span class="${styles.priceDuration}">${plan.duration}</span>
           </div>
           <div class="${styles.buttonWrap}">

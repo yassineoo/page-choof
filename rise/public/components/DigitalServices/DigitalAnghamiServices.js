@@ -123,7 +123,7 @@ function renderAnghamiCard(plan, isArabic) {
             ${plan.features
               .map(
                 (f) => `
-              <li class="text-base leading-relaxed flex items-center mb-3 text-gray-800 dark:text-gray-200">
+              <li class="text-base leading-relaxed flex items-center gap-2 mb-3 text-gray-800 dark:text-gray-200">
                 <img src="/assets/images/dima/checkbox.svg" class="${styles.featureIconBase}" alt="✓" />
                 <span class="${styles.featureText}">${f}</span>
               </li>`
@@ -133,9 +133,9 @@ function renderAnghamiCard(plan, isArabic) {
         </div>
         <div>
           <div class="${styles.divider}"></div>
-          <div class="${styles.priceContainer}" dir="ltr">
+          <div class="${styles.priceContainer}">
             <span class="${styles.priceAmount}">${plan.price}</span>
-            <span class="${styles.priceDa}"> دج /</span>
+            <span class="${styles.priceDa}">${isArabic ? "دج" : "DA"}/</span>
             <span class="${styles.priceDuration}">${plan.duration}</span>
           </div>
           <div class="${styles.buttonWrap}">
@@ -417,11 +417,23 @@ export default class DigitalAnghamiServices {
             <!-- Logos & Description (left on desktop, top on mobile) -->
             <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">
               <div class="flex items-center justify-center gap-6 mb-8">
-                <img src="/assets/images/services/anghani.svg" alt="Anghami"
-                  class="w-36 md:w-48 h-auto"/>
+                <img 
+                  src="/assets/images/services/anghani.svg" alt="Anghami"
+                  class="w-36 md:w-48 h-auto dark:hidden"
+                />
+                <img 
+                  src="/assets/images/services/anghami-dark.svg" alt="Anghami"
+                  class="w-36 md:w-48 h-auto hidden dark:block"
+                />
                 <span class="text-4xl font-bold mx-4 text-black dark:text-white">&</span>
-                <img src="/assets/images/services/ofn.svg" alt="OSN+"
-                  class="w-36 md:w-48 h-auto"/>
+                <img 
+                  src="/assets/images/services/ofn.svg" alt="OSN+"
+                  class="w-36 md:w-48 h-auto dark:hidden"
+                />
+                <img 
+                  src="/assets/images/services/osn-dark.svg" alt="OSN+"
+                  class="w-36 md:w-48 h-auto hidden dark:block"
+                />
               </div>
               <h3 class="font-semibold text-xl leading-relaxed tracking-wide mb-4 text-black dark:text-white">
                 ${isArabic ? "إشتراك OSN + Anghami" : "FORFAITS OSN + Anghami"}
