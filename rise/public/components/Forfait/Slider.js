@@ -122,7 +122,6 @@ export class Slider {
     const currencyLabel = isRTL ? "دج" : "DA";
     const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
     const textAlign = isRTL ? "text-right" : "text-left";
-
     const titleFontClass = this.getFontClass(offer.name);
     const dataFontClass = this.getFontClass(offer.data);
     const buttonFontClass = this.getFontClass(buyLabel);
@@ -221,7 +220,7 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="relative bg-white px-4 py-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
+      <div class="${(index-12) === 2 && "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"}relative bg-white px-4 py-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
         <div class="h-full flex flex-col justify-between" ${isRTL ? `dir="rtl"` : ``}>
           <div class="">
             <div class="h-12 border-b-[1px] border-b-[#BBBEBE] border-dashed flex items-center justify-center">
@@ -286,7 +285,7 @@ export class Slider {
     const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
 
     return `
-          <div class="hidden md:flex w-full items-center justify-center">
+          <div class="hidden sm:flex w-full items-center justify-center">
             <div class="gap-5 grid gap-y-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center max-w-[1000px]">
               ${offers.map((offer, index) => this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
             </div>
@@ -315,10 +314,10 @@ export class Slider {
     const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
     const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "internet-slider";
     const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-    const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
+    const startIndex = 6
 
     return `
-          <div class="hidden md:flex w-full items-center justify-center">
+          <div class="hidden sm:flex w-full items-center justify-center">
             <div class="gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               ${offers.map((offer, index) => this.createForfaitCardInternet(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
             </div>
@@ -345,10 +344,10 @@ export class Slider {
 
   createResponsiveLayoutHadra(offers, labels, gridType, isRTL, convertToLatinNumerals) {
     const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "hadra-slider";
-    const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
+    const startIndex = 12;
 
     return `
-          <div class="hidden md:flex w-full items-center justify-center">
+          <div class="hidden sm:flex w-full items-center justify-center">
             <div class="gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               ${offers.map((offer, index) => this.createForfaitCardHadra(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
             </div>
@@ -391,8 +390,6 @@ export class Slider {
 
     // Also set on the container
     container.dir = isRTL ? "rtl" : "ltr";
-
-    console.log("initSwiper - isRTL:", isRTL, "document.dir:", document.documentElement.dir);
 
     setTimeout(() => {
       const swiper = new Swiper(container.querySelector(".swiper"), {

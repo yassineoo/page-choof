@@ -39,6 +39,51 @@ export default {
       confirm: `40Go + YouTube illimité, valables jusqu'à la fin de votre cycle de facturation, pour 1500 DA seulement`,
       success: `40Go + YouTube illimité attribués, valables jusqu'à la fin de votre cycle de facturation.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 1500. Veuillez recharger votre compte.`
+    },
+    '15 000 DA':{
+      confirm: `15 000 DA 50Go valables 4 semaines, renouvelables 12 fois.`,
+      success: `Votre Forfait Ooredoo 1500 est activé avec succès : 50Go valables 4 semaines, renouvelables 12 fois.`,
+      insufficient: `Votre crédit est insuffisant. Veuillez recharger votre compte.`
+    },
+    '25 000 DA':{
+      confirm: `25 000 DA 120Go valables 4 semaines, renouvelables 12 fois.`,
+      success: `Votre Forfait Ooredoo 25000 est activé avec succès : 120Go valables 4 semaines, renouvelables 12 fois.`,
+      insufficient: `Votre crédit est insuffisant. Veuillez recharger votre compte.`
+    },
+    '45 000 DA':{
+      confirm: `45 000 DA 200Go valables 4 semaines, renouvelables 12 fois.`,
+      success: `Votre Forfait Ooredoo 45000 est activé avec succès : 200Go valables 4 semaines, renouvelables 12 fois.`,
+      insufficient: `Votre crédit est insuffisant. Veuillez recharger votre compte.`
+    },
+    '55 000 DA':{
+      confirm: `55 000 DA 250Go valables 4 semaines, renouvelables 12 fois.`,
+      success: `Votre Forfait Ooredoo 55000 est activé avec succès : 250Go valables 4 semaines, renouvelables 12 fois.`,
+      insufficient: `Votre crédit est insuffisant. Veuillez recharger votre compte.`
+    },
+    '100 000 DA':{
+      confirm: `100 000 DA 500Go valables 4 semaines, renouvelables 12 fois.`,
+      success: `Votre Forfait Ooredoo 100000 est activé avec succès : 500Go valables 4 semaines, renouvelables 12 fois.`,
+      insufficient: `Votre crédit est insuffisant. Veuillez recharger votre compte.`
+    },
+    '195 000 DA':{
+      confirm: `195 000 DA 1To valables 4 semaines, renouvelables 12 fois.`,
+      success: `Votre Forfait Ooredoo 195000 est activé avec succès : 1000Gos valables 4 semaines, renouvelables 12 fois.`,
+      insufficient: `Votre crédit est insuffisant. Veuillez recharger votre compte.`
+    },
+    '200 DA':{
+      confirm: "Appels illimités vers Ooredoo, valables jusqu'à l'expiration de votre forfait XXXX en cours.",
+      success: "Boost activé avec succès, valable jusqu'à l'expiration de votre forfait XXXX en cours.",
+      insufficient: "Votre crédit est insuffisant. Veuillez recharger votre compte."
+    },
+    '300 DA':{
+      confirm: "600 DA Bonus valables en appels et SMS vers tous les réseaux nationaux, valable jusqu'à l'expiration de votre forfait XXXX en cours.",
+      success: "Boost activé avec succès, valable jusqu'à l'expiration de votre forfait XXXX en cours.",
+      insufficient: "Votre crédit est insuffisant. Veuillez recharger votre compte."
+    },
+    '1000 DA':{
+      confirm: "Appels illimités vers tous les réseaux nationaux, valables jusqu'à l'expiration de votre forfait XXXX en cours.",
+      success: "Boost activé avec succès, valable jusqu'à l'expiration de votre forfait XXXX en cours.",
+      insufficient: "Votre crédit est insuffisant. Veuillez recharger votre compte."
     }
   },
 
@@ -82,6 +127,51 @@ export default {
       confirm: `40Go + يوتيوب غير محدود، صالحين إلى غاية نهاية دورة الفوترة الخاصة بك، بـ 1500 دج فقط`,
       success: `لقد حصلت على 40Go + يوتيوب غير محدود، صالحين إلى غاية نهاية دورة الفوترة الخاصة بك.`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 1500. يُرجى تعبئة رصيدك.`
+    },
+    '000 15 دج':{
+      confirm: `000 15 دج 50Go صالحة 4 أسابيع ويتم تجديدها 12 مرة`,
+      success: `لقد تم تفعيل الاشتراك Ooredoo 15 000 بنجاح: 50Go صالحة 4 أسابيع ويتم تجديدها 12 مرة.`,
+      insufficient: `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.`
+    },
+    '000 25 دج':{
+      confirm: `000 25 دج 120Go صالحة 4 أسابيع ويتم تجديدها 12 مرة`,
+      success: `لقد تم تفعيل الاشتراك Ooredoo 25 000 بنجاح: 120Go صالحة 4 أسابيع ويتم تجديدها 12 مرة.`,
+      insufficient: `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.`
+    },
+    '000 45 دج':{
+      confirm: `000 45 دج 200Go صالحة 4 أسابيع ويتم تجديدها 12 مرة`,
+      success: `لقد تم تفعيل الاشتراك Ooredoo 45 000 بنجاح: 200Go صالحة 4 أسابيع ويتم تجديدها 12 مرة.`,
+      insufficient: `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.`
+    },
+    '000 55 دج':{
+      confirm: `000 55 دج 250Go صالحة 4 أسابيع ويتم تجديدها 12 مرة`,
+      success: `لقد تم تفعيل الاشتراك Ooredoo 55 000 بنجاح: 250Go صالحة 4 أسابيع ويتم تجديدها 12 مرة.`,
+      insufficient: `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.`
+    },
+    '000 100 دج':{
+      confirm: `000 100 دج 500Go صالحة 4 أسابيع ويتم تجديدها 12 مرة`,
+      success: `لقد تم تفعيل الاشتراك Ooredoo 100 000 بنجاح: 500Go صالحة 4 أسابيع ويتم تجديدها 12 مرة.`,
+      insufficient: `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.`
+    },
+    '000 195 دج':{
+      confirm: `000 195 دج 1000Go صالحة 4 أسابيع ويتم تجديدها 12 مرة`,
+      success: `لقد تم تفعيل الاشتراك Ooredoo 195 000 بنجاح: 1000Go صالحة 4 أسابيع ويتم تجديدها 12 مرة.`,
+      insufficient: `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.`
+    },
+    '200 دج':{
+      confirm: "مكالمات غير محدودة نحو Ooredoo، صالحة إلى غاية نهاية صلاحية اشتراكك XXXX الحالي",
+      success: "تمّ تفعيل Boost بنجاح، وهو صالح  إلى غاية نهاية صلاحية اشتراكك XXXX الحالي.",
+      insufficient: "رصيدك غير كافٍ. يرجى تعبئة حسابك."
+    },
+    '300 دج':{
+      confirm: "600 دج رصيد مُهدى، صالح إلى غاية نهاية صلاحية اشتراكك XXXX الحالي",
+      success: "تمّ تفعيل Boost بنجاح، وهو صالح  إلى غاية نهاية صلاحية اشتراكك XXXX الحالي.",
+      insufficient: "رصيدك غير كافٍ. يرجى تعبئة حسابك."
+    },
+    '1000 دج':{
+      confirm: "1000 دج مكالمات غير محدودة نحو كل الشبكات، صالحة إلى غاية نهاية صلاحية اشتراكك XXXX الحالي",
+      success: "تمّ تفعيل Boost بنجاح، وهو صالح  إلى غاية نهاية صلاحية اشتراكك XXXX الحالي.",
+      insufficient: "رصيدك غير كافٍ. يرجى تعبئة حسابك."
     }
   }
 };

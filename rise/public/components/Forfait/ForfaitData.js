@@ -131,19 +131,19 @@ export default {
     ],
     hadraForfaits: [
       {
-        name: "200",
+        name: "200 DA",
         data: "Appels illimités vers Ooredoo",
-        price: "200 ",
+        price: "200",
         buy: "Acheter"
       },
       {
-        name: "300",
+        name: "300 DA",
         data: "600 DA de bonus",
         price: "300",
         buy: "Acheter"
       },
       {
-        name: "1000",
+        name: "1000 DA",
         data: "Appels illimités vers tous les réseaux",
         features: [],
         price: "1000",
@@ -206,7 +206,7 @@ ar: {
   internetForfaits : [
   {
     topLabel: "600 جيغا للسنة",
-    name: "دج 15 000",
+    name: "000 15 دج",
     data: "50 جيغا × 12",
     price: "1500",
     oldPrice: "000 18",
@@ -215,7 +215,7 @@ ar: {
   },
   {
     topLabel: "1440 جيغا للسنة",
-    name: "25 000 دج",
+    name: "000 25 دج",
     data: "12 جيغا × 12",
     price: "2500",
     oldPrice: "000 30",
@@ -224,7 +224,7 @@ ar: {
   },
   {
     topLabel: "2400 جيغا للسنة",
-    name: "45 000 دج",
+    name: "000 45 دج",
     data: "200 جيغا × 12",
     price: "4500",
     oldPrice: "000 54",
@@ -233,7 +233,7 @@ ar: {
   },
   {
     topLabel: "3000 جيغا للسنة",
-    name: "55 000 دج",
+    name: "000 55 دج",
     data: "250 جيغا × 12",
     price: "5500",
     oldPrice: "000 66",
@@ -242,7 +242,7 @@ ar: {
   },
   {
     topLabel: "6000 جيغا للسنة",
-    name: "100 000 دج",
+    name: "000 100 دج",
     data: "500 جيغا × 12",
     price: "10000",
     oldPrice: "000 120",
@@ -251,7 +251,7 @@ ar: {
   },
   {
     topLabel: "12000 جيغا للسنة",
-    name: "195 000 دج",
+    name: "000 195 دج",
     data: "1000 جيغا × 12",
     price: "19500",
     oldPrice: "000 234",
@@ -261,19 +261,19 @@ ar: {
 ],
 hadraForfaits: [
       {
-        name: "200",
+        name: "200 دج",
         data: "مكالمات غير محدودة نحو اوريدو",
-        price: "200 ",
+        price: "200",
         buy: "Acheter"
       },
       {
-        name: "300",
+        name: "300 دج",
         data: "600 دج رصيد مُهدى",
         price: "300",
         buy: "Acheter"
       },
       {
-        name: "1000",
+        name: "1000 دج",
         data: "مكالمات غير محدودة نحو كل الشبكات",
         features: [],
         price: "1000",

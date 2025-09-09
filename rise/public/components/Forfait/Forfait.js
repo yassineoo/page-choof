@@ -920,7 +920,7 @@ class ForfaitComponent {
     </div>
   `;
 
-    this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
+    this.bindPurchaseButtons(language, [...data.forfaits, ...data.internetForfaits, ...data.hadraForfaits], labels);
 
     requestAnimationFrame(() => {
       this.slider.initSwiper("forfaits-slider");
@@ -1357,7 +1357,10 @@ class ForfaitComponent {
       e.stopImmediatePropagation();
 
       const index = parseInt(button.getAttribute("data-index"), 10);
+      ("Touch event on purchase button, index:", index);
       const offer = allOffers[index];
+      ("OFFER SENDED from touchHandler", offer);
+
       if (offer) {
         setTimeout(() => {
           this.handlePurchaseClick(offer, language);
@@ -1376,7 +1379,6 @@ class ForfaitComponent {
     const currentLanguage = this.getLanguage();
     const modalContent = ModalData[currentLanguage];
     const content = modalContent && modalContent[offer.name] ? modalContent[offer.name] : this.getDefaultModalContent(offer, currentLanguage);
-
     this.showPurchaseFlow(offer.name, content, this.currentLang === "ar");
   }
 
@@ -1385,9 +1387,9 @@ class ForfaitComponent {
     const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
 
     return {
-      confirm: isArabic ? `تأكيد شراء ${offer.data} مقابل ${priceNumber} دج` : `Confirmer l'achat de ${offer.data} pour ${priceNumber} DA`,
-      success: isArabic ? `تم تفعيل باقة ${offer.name} بنجاح!` : `Forfait ${offer.name} activé avec succès!`,
-      insufficient: isArabic ? `رصيد غير كافٍ لشراء ${offer.name}` : `Crédit insuffisant pour acheter ${offer.name}`,
+      confirm: isArabic ? `${offer.data} صالحة 4 أسابيع ويتم تجديدها 12 مرة` : `${offer.data} valables 4 semaines`,
+      success: isArabic ? `هنيئًا! لقد تم تفعيل الاشتراك ${offer.name} بنجاح: ${offer.data} صالحة 4 أسابيع ويتم تجديدها 12 مرة.` : `Votre Forfait ${offer.name} est activé avec succès : ${offer.data} valables 4 semaines.Forfait activé avec succès!`,
+      insufficient: isArabic ? `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.` : `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
     };
   }
 
