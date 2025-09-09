@@ -412,7 +412,7 @@ export default class DigitalShahidServices {
     const description = shahidDescription[lang];
 
     this.container.innerHTML = `
-      <div class="w-full bg-white dark:bg-[#141414] px-5 py-8">
+      <div class="${this.currentLang === 'ar' ? 'font-noto-kufi-arabic' : 'font-rubik'} w-full bg-white dark:bg-[#141414] px-5 py-8">
         <div class="mx-auto px-4 sm:px-6 py-12 w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ""}">
           <h2 class="text-center font-bold text-2xl lg:text-3xl leading-normal tracking-wide mb-12 text-black dark:text-white">
             ${isArabic ? "إكتشف الخدمات الرقمية" : "EXPLOREZ LES SERVICES NUMÉRIQUES"}

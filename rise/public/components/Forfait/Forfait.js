@@ -901,7 +901,7 @@ class ForfaitComponent {
             </button>
           </div>
         </div>
-        <div class="py-16">
+        <div class="py-16 dark:bg-black bg-white">
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${
               this.currentLang === "ar"
@@ -915,7 +915,7 @@ class ForfaitComponent {
         </div>
       </section>
 
-      <section class="w-full bg-[#F8F8F8] dark:bg-[#141414] py-16">
+      <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] py-16">
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${this.currentLang === "ar" ? "مزايا إضافية مكالمات ورصيد" : "Extra Hadra & Crédit"}
           </h2>

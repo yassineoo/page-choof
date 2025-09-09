@@ -103,7 +103,7 @@ function renderLogoBlock({ logo, subLogo, id }) {
 function renderTopCard(pkg, lang) {
   const topCard = document.createElement("div");
   topCard.className =
-    "flex items-center justify-between w-[430px] h-[108px] bg-white dark:bg-[#2C2C2C] dima-card-border rounded-[15px] px-[24px] py-[24px]";
+    "flex items-center justify-between w-[430px] h-[108px] bg-white dark:bg-[#2C2C2C] dima-card-border mb-2 rounded-[15px] px-[24px] py-[24px]";
 
   const logoBlock = renderLogoBlock(pkg);
 
@@ -280,26 +280,34 @@ export default class TODServices {
   handleBuyClick(selection, lang) {
     const isArabic = lang === "ar";
     const confirmMsg = isArabic
-      ? `اشتر الآن باقة ${selection.package.type} + ${selection.duration.giga}Go، ${selection.duration.price} دج / ${selection.duration.months}.`
-      : `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go pour ${selection.duration.price} DA / ${selection.duration.months}.`;
+      ? `احصل على دخول إلى ${selection.duration.giga}Go + ${selection.package.type} إنترنت صالحين شهر بـ ${selection.duration.price} دج.`
+      : `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go d'internet valables ${selection.duration.months} pour ${selection.duration.price} DA.`;
     const congratsMsg = isArabic
-      ? `لقد قمت بتفعيل باقة ${selection.package.type} + ${selection.duration.giga}Go بنجاح. <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">اضغط هنا</a>`
-      : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">Cliquez ici</a>`;
+      ? `لقد قمت بتفعيل اشتراكك ${selection.duration.giga} + ${selection.package.type}Go بنجاح. قم بتحميل TOD الآن على هذا <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">الرابط</a>.`
+      : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur ce lien <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">Cliquez ici</a>.`;
     const noCreditMsg = isArabic
-      ? `رصيدك غير كافٍ لشراء باقة ${selection.package.type}. يرجى إعادة الشحن.`
-      : `Votre crédit est insuffisant pour acheter ${selection.package.type}. Veuillez recharger.`;
+      ? `عزيزي الزبون، رصيدك غير كافٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى..`
+      : `Cher client, votre crédit est insuffisant pour acheter le forfait ${selection.package.type}. Veuillez recharger votre compte et réessayer.`;
 
     this.showModal(
       "buy",
       selection.package.title,
       confirmMsg,
       () => {
-        const noCredit = false;
-        if (noCredit) {
-          this.showModal("credit", isArabic ? "معلومات" : "Information", noCreditMsg);
-        } else {
-          this.showModal("congrats", isArabic ? "تهانينا!" : "Félicitations !", congratsMsg);
-        }
+        this.showModal(
+          "congrats", 
+          isArabic ? "تهانينا!" : "Félicitations!", 
+          congratsMsg,
+          () => {
+            this.showModal(
+              "credit",
+              isArabic ? "رصيد غير كافٍ" : "Crédit insuffisant",
+              noCreditMsg,
+              () => {},
+              isArabic
+            );
+          },
+          isArabic);
       },
       isArabic
     );
@@ -327,13 +335,16 @@ export default class TODServices {
 
     let buttonsHTML = "";
     if (type === "buy") {
+      console.log("type is buy");
       buttonsHTML = `
         <button class="${secondaryBtn}" id="modal-cancel">${isArabic ? "إلغاء" : "Annuler"}</button>
         <button class="${primaryBtn}" id="modal-confirm">${isArabic ? "تأكيد" : "Confirmer"}</button>
       `;
     } else if (type === "congrats") {
-      buttonsHTML = `<button class="${secondaryBtn}" id="modal-close">${isArabic ? "إغلاق" : "Fermer"}</button>`;
+      console.log("type is congrats");
+      buttonsHTML = `<button class="${primaryBtn}" id="modal-confirm">${isArabic ? "حسنًا" : "OK"}</button>`;
     } else if (type === "credit") {
+      console.log("type is credit");
       buttonsHTML = `<button class="${primaryBtn}" id="modal-close">${isArabic ? "حسنًا" : "OK"}</button>`;
     }
 
@@ -365,7 +376,12 @@ export default class TODServices {
         closeModal();
         if (onConfirm) onConfirm();
       };
-    } else {
+    } else if (type === "congrats") {
+      hook.querySelector("#modal-confirm").onclick = () => {
+        closeModal();
+        if (onConfirm) onConfirm();
+      };
+    } else if (type === "credit") {
       hook.querySelector("#modal-close").onclick = closeModal;
     }
 

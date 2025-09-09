@@ -315,5 +315,4 @@ hadraForfaits: [
     buy: "شراء"
   }
 }
-
 };

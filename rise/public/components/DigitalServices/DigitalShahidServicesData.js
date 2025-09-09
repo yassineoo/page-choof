@@ -46,26 +46,26 @@ export const shahidDescription = {
 export const shahidModalData = {
   fr: {
     "SHAHID 500": {
-      confirm: "Accès Shahid mobile + 02 Go internet, valables 30 jours pour 500 DA seulement",
-      success: "Félicitations ! Votre forfait SHAHID 500 est activé avec succès : Accès Shahid mobile + 02 Go internet, valables 30 jours.",
-      insufficient: "Votre crédit est insuffisant pour acheter le forfait SHAHID 500. Veuillez recharger votre compte.",
+      confirm: "Pour 500 DA, profitez de 30 jours d'accès à SHAHID + 2Go sur l'application.",
+      success: "Achat effectué avec succès ! Vous recevrez un SMS avec un lien sous peu.",
+      insufficient: "Votre crédit est insuffisant. Veuillez recharger votre compte et réessayer à nouveau.",
     },
     "SHAHID 1000": {
-      confirm: "Accès Shahid mobile + 06 Go internet, valables 30 jours pour 1000 DA seulement",
-      success: "Félicitations ! Votre forfait SHAHID 1000 est activé avec succès : Accès Shahid mobile + 06 Go internet, valables 30 jours.",
-      insufficient: "Votre crédit est insuffisant pour acheter le forfait SHAHID 1000. Veuillez recharger votre compte.",
+      confirm: "Pour 1000 DA, profitez de 30 jours d'accès à SHAHID + 6Go sur l'application.",
+      success: "Achat effectué avec succès ! Vous recevrez un SMS avec un lien sous peu.",
+      insufficient: "Votre crédit est insuffisant. Veuillez recharger votre compte et réessayer à nouveau.",
     },
   },
   ar: {
     "شاهد 500": {
-      confirm: "الوصول إلى شاهد موبايل + 02 Go إنترنت، صالحين 30 يوم بـ 500 دج فقط",
-      success: "هنيئًا ! لقد تم تفعيل اشتراك شاهد 500 بنجاح: الوصول إلى شاهد موبايل + 02 Go إنترنت، صالحين 30 يوم.",
-      insufficient: "رصيدك غير كافٍ لشراء اشتراك شاهد 500. يُرجى تعبئة رصيدك.",
+      confirm: "بـ 500 دج ,إستفد من 30 يوم دخول إلى شاهد + 2Go في التطبيق",
+      success: "لقد تم الشراء بنجاح ! بعد قليل ,ستصلك رسالة قصيرة فيها رابط",
+      insufficient: "عزيزي الزبون، رصيدك غير كافٍ لشراء الإشتراك شاهد 500يُرجى تعبئة حسابك والمحاولة مرة أخرى.",
     },
     "شاهد 1000": {
-      confirm: "الوصول إلى شاهد موبايل + 06 Go إنترنت، صالحين 30 يوم بـ 1000 دج فقط",
-      success: "هنيئًا ! لقد تم تفعيل اشتراك شاهد 1000 بنجاح: الوصول إلى شاهد موبايل + 06 Go إنترنت، صالحين 30 يوم.",
-      insufficient: "رصيدك غير كافٍ لشراء اشتراك شاهد 1000. يُرجى تعبئة رصيدك.",
+      confirm: "بـ 1000 دج ,إستفد من 30 يوم دخول إلى شاهد + 6Go في التطبيق",
+      success: "لقد تم الشراء بنجاح ! بعد قليل ,ستصلك رسالة قصيرة فيها رابط",
+      insufficient: "عزيزي الزبون، رصيدك غير كافٍ لشراء الإشتراك شاهد 1000 يُرجى تعبئة حسابك والمحاولة مرة أخرى.",
     },
   },
 };
