@@ -132,11 +132,11 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="relative md:w-[340px] bg-white dark:bg-[#2C2C2C] flex flex-col mx-auto overflow-hidden">
+      <div class="relative md:w-[340px] flex flex-col mx-auto overflow-hidden">
         <div class="mb-2 h-[45px] flex items-center justify-center text-ooredoo-red bg-[#ED1C2421] rounded-full font-semibold text-center uppercase">
           ${offer.topLabel}
         </div>
-        <div class="h-full pb-6 rounded-xl border-[1px] border-ooredoo-red"}>
+        <div class="h-full bg-white dark:bg-[#2C2C2C] pb-6 rounded-xl border-[1px] border-ooredoo-red"}>
           <div class="h-14 bg-ooredoo-red flex items-center justify-center rounded-t-xl">
             <h2  class="text-white font-medium text-center capitalize dark:text-white leading-tight">
               ${offer.price} ${currencyLabel}
