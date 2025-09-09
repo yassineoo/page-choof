@@ -845,7 +845,7 @@ class ForfaitComponent {
     } else {
       return `
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white">
-        <span class="font-rubik">FORFAIT SMART</span>
+        <span class="font-rubik">FORFAITS SMART</span>
       </h2>
     `;
     }
@@ -1380,7 +1380,7 @@ class ForfaitComponent {
     });
   }
 
-  showSuccessModal(content, isRTL , onClose) {
+  showSuccessModal(content, isRTL, onClose) {
     this.showModal({
       type: "success",
       title: isRTL ? "هنيئًا !" : "Félicitations !",

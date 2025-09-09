@@ -37,7 +37,7 @@ export default class DigitalFreeFireServices {
 
     return {
       container: `
-        w-full
+        w-full 
         flex flex-col items-center gap-8
         px-4 py-8
         ${isDark ? "bg-[#141414]" : "bg-white"}

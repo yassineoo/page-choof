@@ -2,7 +2,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
   const helpText = language === "ar" ? "مساعدة" : "Aide";
   const currentLanguage = language === "ar" ? "العربية" : "Français";
   const chargeText = language === "ar" ? "تعبئة رصيدي" : "CHARGER";
-  const themeText = language === "ar" ? " تغيير الوضع" : "Changer mode";
+  const themeText = language === "ar" ? " تغيير الوضع" : "Changer de mode";
   const fontClass = language === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
 
   const getOfferText = (offer) => {
@@ -211,9 +211,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             <div class="flex items-center gap-2">
               <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 flex-shrink-0" />
               <span class="font-rubik font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white text-sm md:text-lg ${fontClass}">${formatCredit(
-                userData.credit,
-                language
-              )}</span>
+    userData.credit,
+    language
+  )}</span>
             </div>
           </div>
           <div class="flex items-center gap-2 mb-4">

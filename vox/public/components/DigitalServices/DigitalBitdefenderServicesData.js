@@ -11,14 +11,11 @@ export const bitdefenderPlans = [
     systemsIconDark: "./assets/images/services/bitdefender/4-systems-dark.svg",
     features: [
       "Détection inégalée des menaces pour bloquer les attaques sophistiquées ciblant votre entreprise.",
-      "Protection efficace sans compromettre les performances et la productivité de vos appareils."
+      "Protection légère et efficace sans compromettre les performances et la productivité de vos appareils.",
     ],
-    featuresAr: [
-      "كشف لا مثيل له للتهديدات من أجل حظر الهجومات المتطورة التي تستهدف مؤسستكم.",
-      "حماية فعالة لا تنتقص من أداء أجهزتكم و إنتاجيتكم."
-    ],
+    featuresAr: ["كشف لا مثيل له للتهديدات من أجل حظر الهجومات المتطورة التي تستهدف مؤسستكم.", "حماية فعالة لا تنتقص من أداء أجهزتكم و إنتاجيتكم."],
     price: "1500",
     duration: "mois",
-    durationAr: "شهر"
-  }
+    durationAr: "شهر",
+  },
 ];

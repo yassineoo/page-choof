@@ -845,7 +845,7 @@ class ForfaitComponent {
     } else {
       return `
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white">
-        <span class="font-rubik">FORFAIT SMART</span>
+        <span class="font-rubik">FORFAITS SMART</span>
       </h2>
     `;
     }
@@ -870,7 +870,9 @@ class ForfaitComponent {
           ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
         </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-4 md:px-8">
-          <h1 class="text-white text-3xl leading-snug font-bold max-w-md">${this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "DECOUVREZ NOS SERVICES NUMERIQUES"}</h1>
+          <h1 class="text-white text-3xl leading-snug font-bold max-w-md">${
+            this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "DECOUVREZ NOS SERVICES NUMERIQUES"
+          }</h1>
           <div class="flex items-center gap-4 my-10 flex-wrap">
             <span class="bg-white flex items-center justify-center h-12 w-32 rounded-full">
               <img src="/assets/images/services/Bitdefender.svg" />
@@ -893,13 +895,19 @@ class ForfaitComponent {
           <div class="flex items-center gap-4 flex-wrap justify-between">
             <p class="text-white">${this.currentLang === "ar" ? "استفيدوا منها اينما كنتم!" : "Profitez en où que vous soyez !"}</p>
             <button>
-              <span class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${this.currentLang === "ar" ? "المزيد من التفاصيل" : "Voir détails"}</span>
+              <span class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${
+                this.currentLang === "ar" ? "المزيد من التفاصيل" : "Voir détails"
+              }</span>
             </button>
           </div>
         </div>
         <div class="py-16">
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
-            ${this.currentLang === "ar" ?  "<span>اشتراكات<span class='font-rubik' dir='ltr'>12 x Ooredoo Internet</span></span>" : "<span class='font-rubik'>forfaits ooredoo internet x 12</span>"}
+            ${
+              this.currentLang === "ar"
+                ? "<span>اشتراكات<span class='font-rubik' dir='ltr'>12 x Ooredoo Internet</span></span>"
+                : "<span class='font-rubik'>forfaits ooredoo internet x 12</span>"
+            }
           </h2>
           <div class="">
               ${this.slider.createResponsiveLayoutInternet(data.internetForfaits, labels, "forfait-grid-4", this.isRTL, this.convertToLatinNumerals)}
@@ -924,8 +932,8 @@ class ForfaitComponent {
 
     requestAnimationFrame(() => {
       this.slider.initSwiper("forfaits-slider");
-      this.slider.initSwiper("internet-slider")
-      this.slider.initSwiper("hadra-slider")
+      this.slider.initSwiper("internet-slider");
+      this.slider.initSwiper("hadra-slider");
     });
     setTimeout(() => {
       this.initializeSliders();
@@ -1416,13 +1424,13 @@ class ForfaitComponent {
     });
   }
 
-  showSuccessModal(content, isRTL , onClose) {
+  showSuccessModal(content, isRTL, onClose) {
     this.showModal({
       type: "success",
       title: isRTL ? "هنيئًا !" : "Félicitations !",
       message: content.success,
       isRTL,
-      onClose
+      onClose,
     });
   }
 
