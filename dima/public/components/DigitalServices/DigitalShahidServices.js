@@ -1,28 +1,28 @@
-import { shahidPlans, shahidDescription } from './DigitalShahidServicesData.js';
+import { shahidPlans, shahidDescription } from "./DigitalShahidServicesData.js";
 
 // Card style constants - Updated to match Dima sizing and styling
 const styles = {
-  card: 'w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border',
-  cardHeader: 'bg-ooredoo-red flex items-center justify-center px-6 py-3 text-center',
-  cardName: 'font-rubik font-medium text-[32px] leading-[100%] tracking-[0] capitalize text-white text-center align-middle',
-  cardContent: 'p-6 flex flex-col flex-1 justify-between',
-  dataTitle: 'text-2xl font-bold text-ooredoo-red mb-3',
-  featuresList: 'list-none p-0 m-0',
-  featureIconBase: 'w-5 h-5 flex-shrink-0 mr-3',
-  featureText: 'flex-1',
-  divider: 'dima-divider',
-  priceContainer: 'text-center mb-2',
-  priceAmount: 'font-rubik font-semibold text-[2rem] capitalize dark:text-white',
-  priceDa: 'font-rubik font-semibold text-lg capitalize dark:text-white',
-  priceDuration: 'font-rubik font-semibold text-lg capitalize dark:text-gray-300',
-  buttonWrap: 'flex justify-center mt-2',
-  acheterButton: 'acheter-button'
+  card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
+  cardHeader: "bg-ooredoo-red flex items-center justify-center px-6 py-3 text-center",
+  cardName: "font-rubik font-medium text-[32px] leading-[100%] tracking-[0] capitalize text-white text-center align-middle",
+  cardContent: "p-6 flex flex-col flex-1 justify-between",
+  dataTitle: "text-2xl font-bold text-ooredoo-red mb-3",
+  featuresList: "list-none p-0 m-0",
+  featureIconBase: "w-5 h-5 flex-shrink-0 mr-3",
+  featureText: "flex-1",
+  divider: "dima-divider",
+  priceContainer: "text-center mb-2",
+  priceAmount: "font-rubik font-semibold text-[2rem] capitalize dark:text-white",
+  priceDa: "font-rubik font-semibold text-lg capitalize dark:text-white",
+  priceDuration: "font-rubik font-semibold text-lg capitalize dark:text-gray-300",
+  buttonWrap: "flex justify-center mt-2",
+  acheterButton: "acheter-button",
 };
 
 // Inject CSS once with updated styling to match Dima
-if (!document.getElementById('dima-shahid-styles')) {
-  const styleEl = document.createElement('style');
-  styleEl.id = 'dima-shahid-styles';
+if (!document.getElementById("dima-shahid-styles")) {
+  const styleEl = document.createElement("style");
+  styleEl.id = "dima-shahid-styles";
   styleEl.textContent = `
     .dima-card-border {
       box-shadow: -0.92px 7.34px 16.52px 0px #4F4F4F1A, -2.75px 29.37px 29.37px 0px #4F4F4F17;
@@ -87,11 +87,15 @@ function renderShahidCard(plan, isArabic) {
         <div>
           <div class="${styles.dataTitle}">${plan.data}</div>
           <ul class="${styles.featuresList}">
-            ${plan.features.map(f => `
+            ${plan.features
+              .map(
+                (f) => `
               <li class="text-base leading-relaxed flex items-center mb-3 text-gray-800 dark:text-gray-200">
-                <img src="/assets/images/dima/checkbox.svg" class="${styles.featureIconBase}" alt="✓" />
+                <img src="./assets/images/dima/checkbox.svg" class="${styles.featureIconBase}" alt="✓" />
                 <span class="${styles.featureText}">${f}</span>
-              </li>`).join('')}
+              </li>`
+              )
+              .join("")}
           </ul>
         </div>
         <div>
@@ -103,7 +107,7 @@ function renderShahidCard(plan, isArabic) {
           </div>
           <div class="${styles.buttonWrap}">
             <button class="${styles.acheterButton}">
-              ${isArabic ? 'شراء' : 'ACHETER'}
+              ${isArabic ? "شراء" : "ACHETER"}
             </button>
           </div>
         </div>
@@ -117,7 +121,7 @@ export default class DigitalShahidServices {
     this.container = container;
     this.currentLang = this.getLang();
     this.render();
-    window.addEventListener('languageChanged', () => {
+    window.addEventListener("languageChanged", () => {
       const lang = this.getLang();
       if (lang !== this.currentLang) {
         this.currentLang = lang;
@@ -125,23 +129,23 @@ export default class DigitalShahidServices {
       }
     });
   }
-  
+
   getLang() {
-    const stored = localStorage.getItem('language');
-    return ['fr', 'ar'].includes(stored) ? stored : 'fr';
+    const stored = localStorage.getItem("language");
+    return ["fr", "ar"].includes(stored) ? stored : "fr";
   }
-  
+
   render() {
     const lang = this.getLang();
-    const isArabic = lang === 'ar';
+    const isArabic = lang === "ar";
     const plans = shahidPlans[lang];
     const description = shahidDescription[lang];
 
     this.container.innerHTML = `
       <div class="w-full bg-white dark:bg-[#141414] px-5 py-8">
-        <div class="mx-auto px-4 sm:px-6 py-12 w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ''}">
+        <div class="mx-auto px-4 sm:px-6 py-12 w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ""}">
           <h2 class="text-center font-bold text-2xl lg:text-3xl leading-normal tracking-wide mb-12 text-black dark:text-white">
-            ${isArabic ? 'إكتشف الخدمات الرقمية' : 'EXPLOREZ LES SERVICES NUMÉRIQUES'}
+            ${isArabic ? "إكتشف الخدمات الرقمية" : "EXPLOREZ LES SERVICES NUMÉRIQUES"}
           </h2>
 
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-3 gap-y-5 items-stretch">
@@ -158,10 +162,10 @@ export default class DigitalShahidServices {
 
             <!-- Logo/info -->
             <div class="flex flex-col items-center justify-center text-center mt-4 lg:mt-0 px-4">
-              <img src="/assets/images/services/shahid.svg" alt="Shahid"
+              <img src="./assets/images/services/shahid.svg" alt="Shahid"
                    class="w-full max-w-xs h-auto mb-6"/>
               <h3 class="font-semibold text-xl leading-relaxed tracking-wide mb-4 text-black dark:text-white">
-                ${isArabic ? 'إشتراك شاهد' : 'FORFAITS SHAHID'}
+                ${isArabic ? "إشتراك شاهد" : "FORFAITS SHAHID"}
               </h3>
               <p class="text-base leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">
                 ${description}

@@ -875,19 +875,19 @@ class ForfaitComponent {
           }</h1>
           <div class="grid grid-cols-5 md:flex items-center gap-2 md:gap-4 my-10 flex-wrap">
             <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
-              <img src="/assets/images/services/Bitdefender.svg" class="h-full w-full"/>
+              <img src="./assets/images/services/Bitdefender.svg" class="h-full w-full"/>
             </span>
             <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
-              <img src="/assets/images/TOD.svg" class="h-full w-full"/>
+              <img src="./assets/images/TOD.svg" class="h-full w-full"/>
             </span>
             <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
-              <img src="/assets/images/services/shahid.svg" class="h-full w-full"/>
+              <img src="./assets/images/services/shahid.svg" class="h-full w-full"/>
             </span>
             <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
-              <img src="/assets/images/services/anghani-osn.svg"  class="h-full w-full"/>
+              <img src="./assets/images/services/anghani-osn.svg"  class="h-full w-full"/>
             </span>
             <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
-              <img src="/assets/images/services/freefire.svg" class="h-full w-full"/>
+              <img src="./assets/images/services/freefire.svg" class="h-full w-full"/>
             </span>
           </div>
           <div class="flex items-center gap-4 flex-wrap justify-between">
@@ -1363,9 +1363,9 @@ class ForfaitComponent {
       e.stopImmediatePropagation();
 
       const index = parseInt(button.getAttribute("data-index"), 10);
-      ("Touch event on purchase button, index:", index);
+      "Touch event on purchase button, index:", index;
       const offer = allOffers[index];
-      ("OFFER SENDED from touchHandler", offer);
+      "OFFER SENDED from touchHandler", offer;
 
       if (offer) {
         setTimeout(() => {
@@ -1394,7 +1394,9 @@ class ForfaitComponent {
 
     return {
       confirm: isArabic ? `${offer.data} صالحة 4 أسابيع ويتم تجديدها 12 مرة` : `${offer.data} valables 4 semaines`,
-      success: isArabic ? `هنيئًا! لقد تم تفعيل الاشتراك ${offer.name} بنجاح: ${offer.data} صالحة 4 أسابيع ويتم تجديدها 12 مرة.` : `Votre Forfait ${offer.name} est activé avec succès : ${offer.data} valables 4 semaines.Forfait activé avec succès!`,
+      success: isArabic
+        ? `هنيئًا! لقد تم تفعيل الاشتراك ${offer.name} بنجاح: ${offer.data} صالحة 4 أسابيع ويتم تجديدها 12 مرة.`
+        : `Votre Forfait ${offer.name} est activé avec succès : ${offer.data} valables 4 semaines.Forfait activé avec succès!`,
       insufficient: isArabic ? `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.` : `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
     };
   }

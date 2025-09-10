@@ -152,7 +152,7 @@ export class Slider {
           <div class="flex-1 py-4 text-center border-b-[1px] border-t-[1px] border-t-[#BBBEBE] border-b-[#BBBEBE] border-dashed">
             <p>${this.currentLang === 'ar' ? "قوموا بشراء" : "Payez"}</p>
             <p class="text-ooredoo-red text-xl font-bold">${this.currentLang === 'ar' ? "10 اشتراكات" : "10 forfaits"}</p>
-            <p class="font-bold text-xl">Ooredoo Internet ${offer.price}</p>
+            <p class="font-bold text-xl">Ooredoo Internet ${offer.sub}</p>
             <p>${isRTL ? "و" : "&"}</p>
             <p>${this.currentLang === 'ar' ? "احصلوا على" : "Obtenez"}</p>
             <p class="text-ooredoo-red font-bold text-xl">${this.currentLang === 'ar' ? "اشتراكين مجانا" : "2 gratuits"} !</p>

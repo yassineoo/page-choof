@@ -1,7 +1,7 @@
-import * as styles from './Styles.js';
+import * as styles from "./Styles.js";
 
 export default function ForfaitCard(offer, index = 0, buyLabel = "Acheter") {
-  const shadowClass = index === 0 ? 'forfait-card-light' : 'forfait-card-heavy';
+  const shadowClass = index === 0 ? "forfait-card-light" : "forfait-card-heavy";
 
   return `
     <div class="${styles.cardContainer} ${shadowClass}">
@@ -19,12 +19,16 @@ export default function ForfaitCard(offer, index = 0, buyLabel = "Acheter") {
 
           <!-- Feature List -->
           <ul class="${styles.featureList}">
-            ${offer.features.map(feature => `
+            ${offer.features
+              .map(
+                (feature) => `
               <li class="${styles.featureItem}">
-                <img src="/assets/images/dima/checkbox.svg" alt="Check" class="${styles.featureIcon}" />
+                <img src="./assets/images/dima/checkbox.svg" alt="Check" class="${styles.featureIcon}" />
                 <span class="${styles.featureText}">${feature}</span>
               </li>
-            `).join('')}
+            `
+              )
+              .join("")}
           </ul>
         </div>
 

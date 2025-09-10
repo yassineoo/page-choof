@@ -36,7 +36,6 @@ const customCSS = `
   background-color: var(--ooredoo-red, #e50012);
   border: none;
   color: white;
-  font-family: Rubik, sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
   text-transform: uppercase;
@@ -103,12 +102,12 @@ function renderLogoBlock({ logo, subLogo, id }) {
 function renderTopCard(pkg, lang) {
   const topCard = document.createElement("div");
   topCard.className =
-    "flex items-center justify-between w-[430px] h-[108px] bg-white dark:bg-[#2C2C2C] dima-card-border mb-2 rounded-[15px] px-[24px] py-[24px]";
+    "flex items-center justify-between w-full h-[108px] bg-white dark:bg-[#2C2C2C] dima-card-border mb-2 rounded-[15px] px-[24px] py-[24px]";
 
   const logoBlock = renderLogoBlock(pkg);
 
   const desc = document.createElement("div");
-  desc.className = "font-rubik font-normal text-[14px] text-black dark:text-gray-200 leading-none";
+  desc.className = " font-normal text-[14px] text-black dark:text-gray-200 leading-none";
   desc.innerHTML =
     lang === "ar"
       ? pkg.description
@@ -127,11 +126,11 @@ function renderTopCard(pkg, lang) {
 function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   const curr = pkg.durations[currentDuration];
   const downCard = document.createElement("div");
-  downCard.className = "w-[430px] flex flex-col items-center bg-white dark:bg-[#2C2C2C] dima-card-border rounded-[15px] pt-0 pb-[20px]";
+  downCard.className = "w-full flex flex-col items-center bg-white dark:bg-[#2C2C2C] dima-card-border rounded-[15px] pt-0 pb-[20px]";
 
   const titleBar = document.createElement("div");
   titleBar.className =
-    "w-full bg-[#ED1C24] text-white font-rubik font-medium text-[25px] leading-[1] text-center capitalize py-[20px] rounded-t-[15px] tracking-wide";
+    "w-full bg-[#ED1C24] text-white  font-medium text-[25px] leading-[1] text-center capitalize py-[20px] rounded-t-[15px] tracking-wide";
   titleBar.innerText = pkg.title;
   downCard.appendChild(titleBar);
 
@@ -143,7 +142,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
     const tab = document.createElement("button");
     tab.type = "button";
     tab.className = [
-      "rounded-full px-[15px] py-[5px] font-rubik text-[15px] flex-1 transition-all duration-150 font-normal ring-0",
+      "rounded-full px-[15px] py-[5px]  text-[15px] flex-1 transition-all duration-150 font-normal ring-0",
       "shadow",
       i === currentDuration ? "bg-[#ED1C24] text-white tod-tab-shadow" : "bg-white dark:bg-[#2C2C2C] text-black dark:text-white",
     ].join(" ");
@@ -155,11 +154,11 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
 
   // Options
   const optsUL = document.createElement("ul");
-  optsUL.className = "flex flex-col gap-y-[9px] w-full px-2 mt-2";
+  optsUL.className = "flex flex-col gap-y-[9px] w-full px-[15px] mt-2";
   curr.options.forEach((opt) => {
     const li = document.createElement("li");
-    li.className = "flex items-center font-rubik text-[15px] font-normal text-[#191919] dark:text-gray-200";
-    li.innerHTML = `<img src="/assets/images/dima/checkbox.svg" alt="" class="w-[19px] h-[19px] mr-2" /><span>${opt}</span>`;
+    li.className = "flex items-center gap-2 text-[15px] font-normal text-[#191919] dark:text-gray-200";
+    li.innerHTML = `<img src="./assets/images/dima/checkbox.svg" alt="" class="w-[19px] h-[19px] mr-2" /><span>${opt}</span>`;
     optsUL.appendChild(li);
   });
   downCard.appendChild(optsUL);
@@ -173,8 +172,8 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   const priceRow = document.createElement("div");
   priceRow.className = "flex items-baseline justify-center gap-[10px]";
   priceRow.innerHTML = `
-    <span class="font-bold font-rubik text-[clamp(1.5rem,2vw,2.25rem)] dark:text-white">${curr.price}</span>
-    <span class="font-rubik text-[1.09em] text-[#6c6c6c] dark:text-gray-300">${lang === "ar" ? "دج/" : "DA /"}${curr.months}</span>
+    <span class="font-semibold  text-[clamp(1.5rem,2vw,2.25rem)] dark:text-white">${curr.price}</span>
+    <span class="font-semibold text-[1.09em] dark:text-white">${lang === "ar" ? "دج/" : "DA /"}${curr.months}</span>
   `;
   downCard.appendChild(priceRow);
 
@@ -191,7 +190,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
 function TODCard({ packageData, lang, onBuyClick }) {
   let currentDuration = 0;
   const card = document.createElement("div");
-  card.className = "flex flex-col items-center w-[430px] gap-[4px]";
+  card.className = "flex flex-col items-center w-full gap-[4px]";
 
   const topCard = renderTopCard(packageData, lang);
   card.appendChild(topCard);
@@ -253,14 +252,16 @@ export default class TODServices {
     const isArabic = lang === "ar";
 
     this.container.innerHTML = `
-      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-8" ${isArabic ? 'dir="rtl"' : ""}>
+      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-8" ${
+      isArabic ? 'dir="rtl"' : ""
+    }>
         <div class="max-w-7xl mx-auto">
           <div class="text-center mb-12">
             <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
-              ${isArabic ? "اشتراكات TOD" : "LES FORFAITS TOD"}
+              ${isArabic ? "اشتراكات <span class='font-rubik'>TOD</span>" : "LES FORFAITS TOD"}
             </h2>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 place-items-center w-full" id="tod-packages-grid"></div>
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 place-items-center w-full" id="tod-packages-grid"></div>
           <div id="tod-modal-hook"></div>
         </div>
       </div>
@@ -295,19 +296,14 @@ export default class TODServices {
       confirmMsg,
       () => {
         this.showModal(
-          "congrats", 
-          isArabic ? "تهانينا!" : "Félicitations!", 
+          "congrats",
+          isArabic ? "تهانينا!" : "Félicitations!",
           congratsMsg,
           () => {
-            this.showModal(
-              "credit",
-              isArabic ? "رصيد غير كافٍ" : "Crédit insuffisant",
-              noCreditMsg,
-              () => {},
-              isArabic
-            );
+            this.showModal("credit", isArabic ? "رصيد غير كافٍ" : "Crédit insuffisant", noCreditMsg, () => {}, isArabic);
           },
-          isArabic);
+          isArabic
+        );
       },
       isArabic
     );
@@ -318,7 +314,7 @@ export default class TODServices {
     hook.innerHTML = "";
 
     const modalTitleClass = `
-      font-rubik font-semibold text-ooredoo-red dark:text-white
+      font-semibold text-ooredoo-red dark:text-white
       text-[34px] leading-[55.86px]
       uppercase text-center tracking-[-0.02em]
       mb-6
@@ -326,12 +322,12 @@ export default class TODServices {
 
     const closeButton = `
       <button class="absolute top-6 right-6 p-2 z-10" aria-label="Fermer" tabindex="0">
-        <img src="/assets/images/Close.svg" alt="close" style="width:34px;height:34px;display:block"/>
+        <img src="./assets/images/Close.svg" alt="close" style="width:34px;height:34px;display:block"/>
       </button>
     `;
 
-    const primaryBtn = `flex items-center justify-center rounded-full bg-[#e50012] text-white font-rubik font-semibold uppercase text-sm min-w-[10rem] py-2 px-5 dark:`;
-    const secondaryBtn = `flex items-center justify-center rounded-full bg-white border-2 border-[#ED1C24] text-[#ED1C24] font-rubik font-semibold uppercase dark:text-white dark:bg-transparent dark:border-white text-sm min-w-[10rem] py-2 px-5 transition`;
+    const primaryBtn = `flex items-center justify-center rounded-full bg-[#e50012] text-white font-semibold uppercase text-sm min-w-[10rem] py-2 px-5 dark:`;
+    const secondaryBtn = `flex items-center justify-center rounded-full bg-white border-2 border-[#ED1C24] text-[#ED1C24] font-semibold uppercase dark:text-white dark:bg-transparent dark:border-white text-sm min-w-[10rem] py-2 px-5 transition`;
 
     let buttonsHTML = "";
     if (type === "buy") {
@@ -355,7 +351,7 @@ export default class TODServices {
           <div class="${modalTitleClass}">
             ${title}
           </div>
-          <div class="font-rubik dark:text-white text-[#262626] leading-snug text-center max-w-[70%] mx-auto mb-8">
+          <div class=" dark:text-white text-[#262626] leading-snug text-center max-w-[70%] mx-auto mb-8">
             ${message}
           </div>
           <div class="flex flex-wrap justify-center gap-3">

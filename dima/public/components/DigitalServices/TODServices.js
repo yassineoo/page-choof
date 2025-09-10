@@ -159,7 +159,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   curr.options.forEach((opt) => {
     const li = document.createElement("li");
     li.className = "flex items-center font-rubik text-[15px] font-normal text-[#191919] dark:text-gray-200";
-    li.innerHTML = `<img src="/assets/images/dima/checkbox.svg" alt="" class="w-[19px] h-[19px] mr-2" /><span>${opt}</span>`;
+    li.innerHTML = `<img src="./assets/images/dima/checkbox.svg" alt="" class="w-[19px] h-[19px] mr-2" /><span>${opt}</span>`;
     optsUL.appendChild(li);
   });
   downCard.appendChild(optsUL);
@@ -318,7 +318,7 @@ export default class TODServices {
 
     const closeButton = `
       <button class="absolute top-6 right-6 p-2 z-10" aria-label="Fermer" tabindex="0">
-        <img src="/assets/images/Close.svg" alt="close" style="width:34px;height:34px;display:block"/>
+        <img src="./assets/images/Close.svg" alt="close" style="width:34px;height:34px;display:block"/>
       </button>
     `;
 

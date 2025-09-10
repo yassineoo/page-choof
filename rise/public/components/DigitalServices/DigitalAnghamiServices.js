@@ -123,7 +123,7 @@ function renderAnghamiCard(plan, isArabic) {
               .map(
                 (f) => `
               <li class="text-base leading-relaxed flex items-center gap-2 mb-3 text-gray-800 dark:text-gray-200">
-                <img src="/assets/images/dima/checkbox.svg" class="${styles.featureIconBase}" alt="✓" />
+                <img src="./assets/images/dima/checkbox.svg" class="${styles.featureIconBase}" alt="✓" />
                 <span class="${styles.featureText}">${f}</span>
               </li>`
               )
@@ -422,28 +422,32 @@ export default class DigitalAnghamiServices {
             <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">
               <div class="flex items-center justify-center gap-6 mb-8">
                 <img 
-                  src="/assets/images/services/anghani.svg" alt="Anghami"
+                  src="./assets/images/services/anghani.svg" alt="Anghami"
                   class="w-36 md:w-48 h-auto dark:hidden"
                 />
                 <img 
-                  src="/assets/images/services/anghami-dark.svg" alt="Anghami"
+                  src="./assets/images/services/anghami-dark.svg" alt="Anghami"
                   class="w-36 md:w-48 h-auto hidden dark:block"
                 />
                 <span class="text-4xl font-bold mx-4 text-black dark:text-white">&</span>
                 <img 
-                  src="/assets/images/services/ofn.svg" alt="OSN+"
+                  src="./assets/images/services/ofn.svg" alt="OSN+"
                   class="w-36 md:w-48 h-auto dark:hidden"
                 />
                 <img 
-                  src="/assets/images/services/osn-dark.svg" alt="OSN+"
+                  src="./assets/images/services/osn-dark.svg" alt="OSN+"
                   class="w-36 md:w-48 h-auto hidden dark:block"
                 />
               </div>
-              <p class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl ${
+              <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl ${
                 isArabic ? "text-right" : "text-left"
               } text-gray-800 dark:text-gray-200">
-                ${description}
-              </p>
+                ${
+                  isArabic
+                    ? `<p>سارعوا للحصول على اشتراك  <span class="font-semibold">OSN+ & ANGHAMI</span> واستمتعوا <span class="font-semibold">بمحتوياتكم المفضلة</span> بالإضافة إلى حجم إنترنت بـ 1000 دج!</p>`
+                    : `<p>Obtenez dès maintenant un forfait <span class="font-semibold">OSN+</span> & <span class="font-semibold">ANGHAMI</span> pour plonger dans <span class="font-semibold">une expérience de streaming exceptionnelle</span> et profiter d’un volume internet pour 1000 DA !</p>`
+                }
+              </div>
             </div>
 
             <!-- Card Section (right on desktop, bottom on mobile) -->
