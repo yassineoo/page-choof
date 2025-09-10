@@ -688,7 +688,7 @@ export default class DigitalBitdefenderServices {
               <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-1">
                 <!-- Header -->
                 <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
-                  <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
+                  <div class="bg-white rounded-full flex items-center justify-center font-semibold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
                     01
                   </div>
                   <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
@@ -705,7 +705,7 @@ export default class DigitalBitdefenderServices {
               <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-2">
                 <!-- Header -->
                 <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
-                  <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
+                  <div class="bg-white rounded-full flex items-center justify-center font-semibold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
                     02
                   </div>
                   <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
@@ -722,7 +722,7 @@ export default class DigitalBitdefenderServices {
               <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-3 sm:col-span-2 lg:col-span-1">
                 <!-- Header -->
                 <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
-                  <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
+                  <div class="bg-white rounded-full flex items-center justify-center font-semibold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
                     03
                   </div>
                   <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">

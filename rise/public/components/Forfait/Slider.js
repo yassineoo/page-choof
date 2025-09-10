@@ -81,7 +81,7 @@ export class Slider {
           <div class="forfait-card-footer pt-4">
             <div class="flex justify-center items-baseline w-full mb-4">
               <div class="flex items-baseline justify-center" style="width:70%;">
-                <span class="${priceFontClass} font-bold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
+                <span class="${priceFontClass} font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
                 <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
                 <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${
       durationText.includes("cycle") ? "text-xs" : "text-base"
@@ -151,23 +151,23 @@ export class Slider {
 
           <div class="flex-1 py-4 text-center border-b-[1px] border-t-[1px] border-t-[#BBBEBE] border-b-[#BBBEBE] border-dashed">
             <p>${this.currentLang === 'ar' ? "قوموا بشراء" : "Payez"}</p>
-            <p class="text-ooredoo-red text-xl font-bold">${this.currentLang === 'ar' ? "10 اشتراكات" : "10 forfaits"}</p>
-            <p class="font-bold text-xl">Ooredoo Internet ${offer.sub}</p>
+            <p class="text-ooredoo-red text-xl font-semibold">${this.currentLang === 'ar' ? "10 اشتراكات" : "10 forfaits"}</p>
+            <p class="font-semibold text-xl">Ooredoo Internet ${offer.sub}</p>
             <p>${isRTL ? "و" : "&"}</p>
             <p>${this.currentLang === 'ar' ? "احصلوا على" : "Obtenez"}</p>
-            <p class="text-ooredoo-red font-bold text-xl">${this.currentLang === 'ar' ? "اشتراكين مجانا" : "2 gratuits"} !</p>
+            <p class="text-ooredoo-red font-semibold text-xl">${this.currentLang === 'ar' ? "اشتراكين مجانا" : "2 gratuits"} !</p>
           </div>
 
           <div class="p-4 flex items-center justify-between">
             <div class="text-center">
               <p class="text-sm">${this.currentLang === 'ar' ? "احصلوا على" : "Recevez"}</p>
-              <p class="font-bold text-xl">${this.currentLang === 'ar' ? "12 اشتراك" : "12 forfaits"}</p>
+              <p class="font-semibold text-xl">${this.currentLang === 'ar' ? "12 اشتراك" : "12 forfaits"}</p>
             </div>
             <div class="text-center">
-              <p class="text-[#7F7F7F] font-bold text-xl line-through decoration-red-500">
+              <p class="text-[#7F7F7F] font-semibold text-xl line-through decoration-red-500">
                 ${offer.oldPrice} ${currencyLabel}
               </p>
-              <p class="font-bold text-3xl">${offer.price} ${currencyLabel}</p>
+              <p class="font-semibold text-3xl">${offer.price} ${currencyLabel}</p>
             </div>
           </div>
 

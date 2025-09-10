@@ -870,7 +870,7 @@ class ForfaitComponent {
           ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
         </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-4 md:px-8">
-          <h1 class="text-white text-3xl leading-snug font-bold max-w-md">${
+          <h1 class="text-white text-3xl leading-snug font-semibold max-w-md">${
             this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "DECOUVREZ NOS SERVICES NUMERIQUES"
           }</h1>
           <div class="grid grid-cols-5 md:flex items-center gap-2 md:gap-4 my-10 flex-wrap">
@@ -893,9 +893,9 @@ class ForfaitComponent {
           <div class="flex items-center gap-4 flex-wrap justify-between">
             <p class="text-white">${this.currentLang === "ar" ? "استفيدوا منها اينما كنتم!" : "Profitez en où que vous soyez !"}</p>
             <button>
-              <span class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${
+              <a href="#freefire-section" class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${
                 this.currentLang === "ar" ? "المزيد من التفاصيل" : "Voir détails"
-              }</span>
+              }</a>
             </button>
           </div>
         </div>

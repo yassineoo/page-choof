@@ -104,7 +104,7 @@ export class Slider {
           <div class="forfait-card-footer pt-4">
             <div class="flex justify-center items-baseline w-full mb-4">
               <div class="flex items-baseline justify-center" style="width:70%;">
-                <span class="${priceFontClass} font-bold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
+                <span class="${priceFontClass} font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
                 <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
                 <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${
       durationText.includes("cycle") ? "text-xs" : "text-base"

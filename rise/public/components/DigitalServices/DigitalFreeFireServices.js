@@ -113,7 +113,7 @@ export default class DigitalFreeFireServices {
 
     // Free Fire Card with same structure as Migration cards
     const freeFireCard = `
-      <div class="${styles.cardWrapper} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"}">
+      <div id="freefire-section" class="${styles.cardWrapper} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"}">
         <div class="${styles.card}">
           <div class="${styles.logoContainer}">
             <img 
