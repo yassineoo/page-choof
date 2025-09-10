@@ -893,7 +893,7 @@ class ForfaitComponent {
           <div class="flex items-center gap-4 flex-wrap justify-between">
             <p class="text-white">${this.currentLang === "ar" ? "استفيدوا منها اينما كنتم!" : "Profitez en où que vous soyez !"}</p>
             <button>
-              <a href="#freefire-section" class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${
+              <a href="#digitalServices-root" class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${
                 this.currentLang === "ar" ? "المزيد من التفاصيل" : "Voir détails"
               }</a>
             </button>

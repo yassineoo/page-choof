@@ -569,7 +569,7 @@ export default class Consommation {
     const gapSideMargin = isRTL ? "margin-left: 0.5rem;" : "margin-right: 0.5rem;";
 
     const isFacebookMessenger =
-      (section.subtitle?.includes("Facebook & Messenger") || section.subtitle?.includes("فايسبوك & ماسنجر")) &&
+      (section.subtitle?.includes("OSN+")) &&
       Array.isArray(section.subIcon) &&
       section.subIcon.length === 2;
 
@@ -634,7 +634,7 @@ export default class Consommation {
     }
 
     const renderedSection = `
-      <div class="flex flex-col font-rubik">
+      <div class="flex flex-col font-rubik border-2 border-black">
         <div class="flex items-start justify-between min-w-0">
           <div class="flex flex-col flex-1 min-w-0">
             <div class="flex items-center gap-2" style="${directionStyle};">
@@ -724,7 +724,7 @@ export default class Consommation {
       content += `
         <div class="flex justify-start">
           <span class="text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
-            ${lang === "ar" ? "إلى" : "Expire le"} ${section.date}
+            ${lang === "ar" ? "إلى  غاية" : "Expire le"} ${section.date}
           </span>
         </div>
       `;

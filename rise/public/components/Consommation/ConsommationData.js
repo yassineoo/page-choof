@@ -145,6 +145,7 @@ export const consommationData = {
             subtitle: "رصيد التعبئة",
             value: "4000",
             unit: "دج",
+            date: "26/05/25",
           },
           {
             subIcon: "dollar-phone",
@@ -242,7 +243,7 @@ export const consommationData = {
             extra: "/5Go",
           },
           {
-            subIcon: "osn",
+            subIcon: ["osn","anghami"],
             subtitle: "OSN+",
             value: "4",
             unit: "Go",
