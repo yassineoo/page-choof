@@ -252,7 +252,7 @@ export default class TODServices {
     const isArabic = lang === "ar";
 
     this.container.innerHTML = `
-      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-8" ${
+      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-16" ${
       isArabic ? 'dir="rtl"' : ""
     }>
         <div class="max-w-7xl mx-auto">

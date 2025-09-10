@@ -20,17 +20,17 @@ export const shahidPlans = {
   ar: [
     {
       id: "shahid500",
-      name: "شاهد 500",
+      name: "شاهد <span class='font-rubik'>500</span>",
       data: "02",
-      features: ["الوصول إلى شاهد موبايل", "2Go إنترنت"],
+      features: ["الوصول إلى شاهد موبايل", "<span class='font-rubik'>2Go</span> إنترنت"],
       price: "500",
       duration: "30 يوم",
     },
     {
       id: "shahid1000",
-      name: "شاهد 1000",
+      name: "شاهد <span class='font-rubik'>1000</span>",
       data: "06",
-      features: ["الوصول إلى شاهد موبايل", "6Go إنترنت"],
+      features: ["الوصول إلى شاهد موبايل", "<span class='font-rubik'>6Go</span> إنترنت"],
       price: "1000",
       duration: "30 يوم",
     },
@@ -57,12 +57,12 @@ export const shahidModalData = {
     },
   },
   ar: {
-    "شاهد 500": {
+    "شاهد <span class='font-rubik'>500</span>": {
       confirm: "بـ 500 دج ,إستفد من 30 يوم دخول إلى شاهد + 2Go في التطبيق",
       success: "لقد تم الشراء بنجاح ! بعد قليل ,ستصلك رسالة قصيرة فيها رابط",
       insufficient: "عزيزي الزبون، رصيدك غير كافٍٍ لشراء الإشتراك شاهد 500يُرجى تعبئة حسابك والمحاولة مرة أخرى.",
     },
-    "شاهد 1000": {
+    "شاهد <span class='font-rubik'>1000</span>": {
       confirm: "بـ 1000 دج ,إستفد من 30 يوم دخول إلى شاهد + 6Go في التطبيق",
       success: "لقد تم الشراء بنجاح ! بعد قليل ,ستصلك رسالة قصيرة فيها رابط",
       insufficient: "عزيزي الزبون، رصيدك غير كافٍٍ لشراء الإشتراك شاهد 1000 يُرجى تعبئة حسابك والمحاولة مرة أخرى.",

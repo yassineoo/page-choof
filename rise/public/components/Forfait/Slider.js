@@ -64,30 +64,26 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
+      <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
         <div class="h-full pb-6" ${isRTL ? `dir="rtl"` : ``}>
-          <div class="h-14 bg-ooredoo-red flex items-center justify-center">
-            <h2 class="${titleFontClass} text-white font-medium text-center capitalize dark:text-white leading-tight">
+          <div class="h-14 -mx-[0.84px] bg-ooredoo-red flex items-center justify-center p-4">
+            <h2 class="font-rubik text-white text-2xl font-medium text-center capitalize dark:text-white leading-tight">
               ${offer.name}
             </h2>
           </div>
 
           <div class="flex-1 text-center border-b-[1px] border-b-[#BBBEBE] border-dashed">
             <div class="flex items-center justify-center">
-              <h3 class="${dataFontClass} py-7 px-5 text-4xl font-semibold text-ooredoo-red dark:text-white ${textAlign} leading-10">${
-      offer.data
-    }</h3>
+              <h3 class="font-rubik py-8 px-6 text-[50px] font-semibold text-ooredoo-red dark:text-white ${textAlign} leading-10">${offer.data}</h3>
             </div>
           </div>
 
-          <div class="forfait-card-footer pt-4">
-            <div class="flex justify-center items-baseline w-full mb-4">
+          <div class="forfait-card-footer">
+            <div class="flex justify-center items-baseline w-full mt-5">
               <div class="flex items-baseline justify-center" style="width:70%;">
-                <span class="${priceFontClass} font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
+                <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
                 <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
-                <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${
-      durationText.includes("cycle") ? "text-xs" : "text-base"
-    }">/${durationText}</span>
+                <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span>
               </div>
             </div>
 

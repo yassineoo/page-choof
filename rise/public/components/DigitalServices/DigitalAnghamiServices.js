@@ -3,8 +3,8 @@ import { anghamiPlan, anghamiDescription, anghamiModalData } from "./DigitalAngh
 // Updated styles to match Dima card sizing (28rem instead of 21rem)
 const styles = {
   card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
-  cardHeader: "bg-ooredoo-red px-6 py-3 text-center",
-  cardName: "font-semibold text-2xl md:text-3xl leading-tight tracking-tight text-white",
+  cardHeader: "bg-ooredoo-red px-6 py-3 text-center font-rubik",
+  cardName: "font-medium text-2xl md:text-3xl leading-tight tracking-tight text-white",
   cardContent: "p-6 flex flex-col flex-1 justify-between",
   dataTitle: "text-2xl font-semibold text-ooredoo-red mb-3",
   featuresList: "list-none p-0 m-0",
@@ -410,7 +410,7 @@ export default class DigitalAnghamiServices {
     const description = anghamiDescription[lang];
 
     this.container.innerHTML = `
-      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-8">
+      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-16">
         <div>
           <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
             ${isArabic ? "اشتراك OSN+ & ANGHAMI" : "forfait OSN+ & ANGHAMI"}

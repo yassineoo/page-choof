@@ -184,7 +184,7 @@ export const consommationData = {
       },
       {
         icon: "telephone",
-        title: "المكـالمات / SMS",
+        title: "المكـالمات / <span class='font-rubik'>SMS</span>",
         sections: [
           {
             subIcon: "phone",

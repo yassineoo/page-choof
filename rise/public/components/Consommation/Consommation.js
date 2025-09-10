@@ -568,7 +568,7 @@ export default class Consommation {
     const directionStyle = isRTL ? "direction: rtl;" : "direction: ltr;";
     const gapSideMargin = isRTL ? "margin-left: 0.5rem;" : "margin-right: 0.5rem;";
 
-    const isFacebookMessenger =
+    const isOsn =
       (section.subtitle?.includes("OSN+")) &&
       Array.isArray(section.subIcon) &&
       section.subIcon.length === 2;
@@ -576,32 +576,32 @@ export default class Consommation {
     let iconsAndTextContent = "";
 
     // Special case: Facebook & Messenger
-    if (isFacebookMessenger) {
-      const facebookIcon = `<img src="${this.resolveSubIcon(section.subIcon[0], theme)}" style="width:20px;height:20px;" alt="${
+    if (isOsn) {
+      const osnIcon = `<img src="${this.resolveSubIcon(section.subIcon[0], theme)}" style="width:20px;height:20px;" alt="${
         section.subIcon[0]
       }" />`;
-      const messengerIcon = `<img src="${this.resolveSubIcon(section.subIcon[1], theme)}" style="width:20px;height:20px;" alt="${
+      const anghamiIcon = `<img src="${this.resolveSubIcon(section.subIcon[1], theme)}" style="width:20px;height:20px;" alt="${
         section.subIcon[1]
       }" />`;
 
-      const facebookText = lang === "ar" ? "فايسبوك" : "Facebook";
-      const messengerText = lang === "ar" ? "ماسنجر" : "Messenger";
+      const osnText = "OSN+";
+      const anghamiText = "ANGHAMI";
       const fontClassForText = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
 
       iconsAndTextContent = `
         <div class="flex items-center gap-1">
-          ${facebookIcon}
+          ${osnIcon}
           <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
-            ${facebookText}
+            ${osnText}
           </span>
         </div>
         <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
           &amp;
         </span>
         <div class="flex items-center gap-1">
-          ${messengerIcon}
+          ${anghamiIcon}
           <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
-            ${messengerText}
+            ${anghamiText}
           </span>
         </div>
       `;
@@ -634,7 +634,7 @@ export default class Consommation {
     }
 
     const renderedSection = `
-      <div class="flex flex-col font-rubik border-2 border-black">
+      <div class="flex flex-col font-rubik">
         <div class="flex items-start justify-between min-w-0">
           <div class="flex flex-col flex-1 min-w-0">
             <div class="flex items-center gap-2" style="${directionStyle};">
@@ -723,8 +723,8 @@ export default class Consommation {
     if (hasDate) {
       content += `
         <div class="flex justify-start">
-          <span class="text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
-            ${lang === "ar" ? "إلى  غاية" : "Expire le"} ${section.date}
+          <span class="${lang === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
+            ${lang === "ar" ? "إلى غاية" : "Expire le"} ${section.date}
           </span>
         </div>
       `;
