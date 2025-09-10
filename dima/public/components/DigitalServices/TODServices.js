@@ -108,12 +108,12 @@ function renderTopCard(pkg, lang) {
   const logoBlock = renderLogoBlock(pkg);
 
   const desc = document.createElement("div");
-  desc.className = "font-rubik font-normal text-[14px] text-black dark:text-gray-200 leading-none";
+  desc.className = "font-rubik font-normal text-[14px] text-black dark:text-gray-200 ";
   desc.innerHTML =
     lang === "ar"
       ? pkg.description
       : pkg.description.replace(/<strong>(.*?)<\/strong>/g, `<strong class="font-semibold text-black dark:text-white">$1</strong>`);
-  desc.style.lineHeight = "1";
+  desc.style.lineHeight = "1.3";
   desc.style.verticalAlign = "middle";
   desc.style.letterSpacing = "0";
   desc.style.direction = lang === "ar" ? "rtl" : "ltr";
@@ -286,7 +286,7 @@ export default class TODServices {
       ? `لقد قمت بتفعيل باقة ${selection.package.type} + ${selection.duration.giga}Go بنجاح. <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">اضغط هنا</a>`
       : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">Cliquez ici</a>`;
     const noCreditMsg = isArabic
-      ? `رصيدك غير كافٍ لشراء باقة ${selection.package.type}. يرجى إعادة الشحن.`
+      ? `رصيدك غير كافٍٍ لشراء باقة ${selection.package.type}. يرجى إعادة الشحن.`
       : `Votre crédit est insuffisant pour acheter ${selection.package.type}. Veuillez recharger.`;
 
     this.showModal(

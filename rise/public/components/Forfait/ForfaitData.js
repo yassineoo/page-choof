@@ -59,7 +59,7 @@ export default {
         topLabel: "1440Go PAR AN",
         name: "25 000 DA",
         sub: "2500",
-        data: "12Go x 12",
+        data: "120Go x 12",
         price: "25 000",
         oldPrice: "30 000",
         duration: "4 Semaines",

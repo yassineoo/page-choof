@@ -107,12 +107,12 @@ function renderTopCard(pkg, lang) {
   const logoBlock = renderLogoBlock(pkg);
 
   const desc = document.createElement("div");
-  desc.className = " font-normal text-[14px] text-black dark:text-gray-200 leading-none";
+  desc.className = " font-normal text-sm text-black dark:text-gray-200 leading-1.3";
   desc.innerHTML =
     lang === "ar"
       ? pkg.description
       : pkg.description.replace(/<strong>(.*?)<\/strong>/g, `<strong class="font-semibold text-black dark:text-white">$1</strong>`);
-  desc.style.lineHeight = "1";
+  desc.style.lineHeight = "1.3";
   desc.style.verticalAlign = "middle";
   desc.style.letterSpacing = "0";
   desc.style.direction = lang === "ar" ? "rtl" : "ltr";
@@ -287,7 +287,7 @@ export default class TODServices {
       ? `لقد قمت بتفعيل اشتراكك ${selection.duration.giga} + ${selection.package.type}Go بنجاح. قم بتحميل TOD الآن على هذا <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">الرابط</a>.`
       : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur ce lien <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">Cliquez ici</a>.`;
     const noCreditMsg = isArabic
-      ? `عزيزي الزبون، رصيدك غير كافٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى..`
+      ? `عزيزي الزبون، رصيدك غير كافٍٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى..`
       : `Cher client, votre crédit est insuffisant pour acheter le forfait ${selection.package.type}. Veuillez recharger votre compte et réessayer.`;
 
     this.showModal(
@@ -300,7 +300,7 @@ export default class TODServices {
           isArabic ? "تهانينا!" : "Félicitations!",
           congratsMsg,
           () => {
-            this.showModal("credit", isArabic ? "رصيد غير كافٍ" : "Crédit insuffisant", noCreditMsg, () => {}, isArabic);
+            this.showModal("credit", isArabic ? "رصيد غير كافٍٍ" : "Crédit insuffisant", noCreditMsg, () => {}, isArabic);
           },
           isArabic
         );

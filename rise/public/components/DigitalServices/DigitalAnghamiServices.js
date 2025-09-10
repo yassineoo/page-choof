@@ -6,7 +6,7 @@ const styles = {
   cardHeader: "bg-ooredoo-red px-6 py-3 text-center",
   cardName: "font-semibold text-2xl md:text-3xl leading-tight tracking-tight text-white",
   cardContent: "p-6 flex flex-col flex-1 justify-between",
-  dataTitle: "text-2xl font-bold text-ooredoo-red mb-3",
+  dataTitle: "text-2xl font-semibold text-ooredoo-red mb-3",
   featuresList: "list-none p-0 m-0",
   featureIconBase: "w-5 h-5 flex-shrink-0 mr-3",
   featureText: "flex-1",
@@ -228,7 +228,7 @@ export default class DigitalAnghamiServices {
   showInsufficientCreditModal(content, isRTL) {
     this.showModal({
       type: "info",
-      title: isRTL ? "رصيدك غير كاف" : "Crédit Insuffisant",
+      title: isRTL ? "رصيدك غير كافٍ" : "Crédit Insuffisant",
       message: content.insufficient,
       isRTL,
     });
@@ -429,7 +429,7 @@ export default class DigitalAnghamiServices {
                   src="./assets/images/services/anghami-dark.svg" alt="Anghami"
                   class="w-36 md:w-48 h-auto hidden dark:block"
                 />
-                <span class="text-4xl font-bold mx-4 text-black dark:text-white">&</span>
+                <span class="text-4xl font-semibold mx-4 text-black dark:text-white">&</span>
                 <img 
                   src="./assets/images/services/ofn.svg" alt="OSN+"
                   class="w-36 md:w-48 h-auto dark:hidden"

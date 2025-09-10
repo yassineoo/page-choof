@@ -37,8 +37,8 @@ const bitdefenderTranslations = {
     terms: "أوافق على شروط الإستعمال ",
     congratsTitle: "هنيئًا!",
     congratsMessage: (plan) => `لقد تم تأكيد طلبك. ستتلقى رسالة قصيرة لتفعيل اشتراكك.`,
-    creditTitle: "رصيد غير كافٍ",
-    creditMessage: (plan) => `رصيدك غير كافٍ لتقديم طلبك. يرجى إعادة تعبئة حسابك والمحاولة مرة أخرى.`,
+    creditTitle: "رصيد غير كافٍٍ",
+    creditMessage: (plan) => `رصيدك غير كافٍٍ لتقديم طلبك. يرجى إعادة تعبئة حسابك والمحاولة مرة أخرى.`,
     errorTitle: "خطأ",
     errorMessage: "لقد حدث خلل ما. يرجى المحاولة مرة أخرى.",
     confirmBtn: "إختيار",
@@ -462,7 +462,7 @@ export default class DigitalBitdefenderServices {
         <div class="p-6 bitdefender-card-container h-full">
           <!-- Subtitle and Icon -->
           <div class="flex items-center justify-between mb-4">
-            <h4 class="${fontClass} text-ooredoo-red dark:text-white font-bold text-xl flex-1 ${isArabic ? "ml-3" : "mr-3"} leading-tight">
+            <h4 class="${fontClass} text-ooredoo-red dark:text-white font-semibold text-xl flex-1 ${isArabic ? "ml-3" : "mr-3"} leading-tight">
               ${translatedPlan.subtitle}
             </h4>
             <img src="${this.getIconPath(plan)}" alt="Device" class="w-20 h-14 object-contain flex-shrink-0 bitdefender-plan-icon" />
@@ -520,7 +520,7 @@ export default class DigitalBitdefenderServices {
             <!-- Price Section -->
             <div class="flex justify-center items-baseline w-full">
               <div class="flex items-baseline justify-center gap-2">
-                <span class="${fontClass} font-bold text-2xl sm:text-3xl leading-none text-black dark:text-white">
+                <span class="${fontClass} font-semibold text-2xl sm:text-3xl leading-none text-black dark:text-white">
                   ${plan.price}
                 </span>
                 <span class="${fontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">
@@ -635,7 +635,7 @@ export default class DigitalBitdefenderServices {
                 <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-1">
                   <!-- Header -->
                   <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
-                    <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
+                    <div class="bg-white rounded-full flex items-center justify-center font-semibold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
                       01
                     </div>
                     <span class="font-medium text-white text-xs sm:text-sm lg:text-base leading-tight">
@@ -669,7 +669,7 @@ export default class DigitalBitdefenderServices {
                 <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-2">
                   <!-- Header -->
                   <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
-                    <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
+                    <div class="bg-white rounded-full flex items-center justify-center font-semibold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
                       02
                     </div>
                     <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
@@ -712,7 +712,7 @@ export default class DigitalBitdefenderServices {
                 <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-3 sm:col-span-2 lg:col-span-1">
                   <!-- Header -->
                   <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
-                    <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
+                    <div class="bg-white rounded-full flex items-center justify-center font-semibold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
                       03
                     </div>
                     <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
@@ -1150,7 +1150,7 @@ export default class DigitalBitdefenderServices {
         <!-- Close Button -->
         <button class="bitdefender-modal-close absolute top-4 ${
           isRTL ? "left-4" : "right-4"
-        } w-8 h-8 bg-[#ED1C24] hover:bg-[#c41e1e] border-none rounded-full flex items-center justify-center cursor-pointer text-white text-lg font-bold transition-all duration-200  z-10" 
+        } w-8 h-8 bg-[#ED1C24] hover:bg-[#c41e1e] border-none rounded-full flex items-center justify-center cursor-pointer text-white text-lg font-semibold transition-all duration-200  z-10" 
                 aria-label="${isRTL ? "إغلاق" : "Fermer"}">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"/>

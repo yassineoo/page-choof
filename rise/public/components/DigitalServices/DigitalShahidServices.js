@@ -6,7 +6,7 @@ const styles = {
   cardHeader: "bg-ooredoo-red flex items-center justify-center px-6 py-3 text-center",
   cardName: "font-medium text-[32px] leading-[100%] tracking-[0] capitalize text-white text-center align-middle",
   cardContent: "p-6 flex flex-col flex-1 justify-between",
-  dataTitle: "text-2xl font-bold text-ooredoo-red mb-3",
+  dataTitle: "text-2xl font-semibold text-ooredoo-red mb-3",
   featuresList: "list-none p-0 m-0",
   featureIconBase: "w-5 h-5 flex-shrink-0 mr-3",
   featureText: "flex-1",
@@ -229,7 +229,7 @@ export default class DigitalShahidServices {
   showInsufficientCreditModal(content, isRTL) {
     this.showModal({
       type: "info",
-      title: isRTL ? "رصيدك غير كاف" : "Crédit Insuffisant",
+      title: isRTL ? "رصيدك غير كافٍ" : "Crédit Insuffisant",
       message: content.insufficient,
       isRTL,
     });

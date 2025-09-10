@@ -113,7 +113,7 @@ export default class DigitalFreeFireServices {
 
     // Free Fire Card with same structure as Migration cards
     const freeFireCard = `
-      <div class="${styles.cardWrapper} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"}">
+      <div id="freefire-section" class="${styles.cardWrapper} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"}">
         <div class="${styles.card}">
           <div class="${styles.logoContainer}">
             <img 
@@ -128,11 +128,10 @@ export default class DigitalFreeFireServices {
           <div class="${styles.cardDesc}">
             ${isArabic ? freeFireData.ar.description : freeFireData.fr.description}
           </div>
-          <div class="${styles.buttonWrap}">
-            <button class="${styles.acheterButton} freefire-btn">
+          <div class="${styles.buttonWrap}" >
+            <a class="${styles.acheterButton} freefire-btn" href='https://shop2game.com/' >
               <span>${isArabic ? freeFireData.ar.button : freeFireData.fr.button}</span>
-            </button>
-          </div>
+        </a>
         </div>
       </div>
     `;

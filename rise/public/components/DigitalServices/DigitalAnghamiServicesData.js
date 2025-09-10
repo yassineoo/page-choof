@@ -26,16 +26,18 @@ export const anghamiDescription = {
 export const anghamiModalData = {
   fr: {
     "OSN+ & ANGHAMI 1000": {
-      confirm: "Profitez du meilleur du divertissement en un seul forfait ! Un accès premium à OSN+ et à Anghami + 10Go d'internet dédié pendant 1 mois. Le forfait est auto-renouvelable. ",
+      confirm:
+        "Profitez du meilleur du divertissement en un seul forfait ! Un accès premium à OSN+ et à Anghami + 10Go d'internet dédié pendant 1 mois. Le forfait est auto-renouvelable. ",
       success: "Vous avez activé votre forfait avec succès.Téléchargez Anghami et OSN+ pour profiter de votre abonnement.",
       insufficient: "Votre crédit est insuffisant pour acheter ce forfait. Veuillez recharger votre compte.",
     },
   },
   ar: {
     "OSN+ & ANGHAMI 1000 إشتراك": {
-      confirm: "استفد من محتويات ترفيهية رائعة في اشتراك واحد! دخول حصري إلى +OSN وAnghami و10Go إنترنت، صالح لمدة شهر. الاشتراك قبل للتجديد تلقائيًا.",
+      confirm:
+        "استفد من محتويات ترفيهية رائعة في اشتراك واحد! دخول حصري إلى +OSN وAnghami و10Go إنترنت، صالح لمدة شهر. الاشتراك قبل للتجديد تلقائيًا.",
       success: "لقد قمت بتفعيل اشتراكك بنجاح! حمّل +OSN وAnghami واستمتع به الأن!",
-      insufficient: "رصيدك غير كافٍ لشراء هذا الاشتراك. يُرجى إعادة تعبئة حسابك.",
+      insufficient: "رصيدك غير كافٍٍ لشراء هذا الاشتراك. يُرجى إعادة تعبئة حسابك.",
     },
   },
 };

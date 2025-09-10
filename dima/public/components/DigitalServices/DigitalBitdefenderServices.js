@@ -78,7 +78,7 @@ const bitdefenderTranslations = {
     congratsTitle: "تهانينا!",
     congratsMessage: (plan) => `لقد قمت بتفعيل باقة ${plan.titleAr} + ${plan.subtitleAr} بنجاح.`,
     creditTitle: "معلومات",
-    creditMessage: (plan) => `عزيزي العميل، رصيدك غير كافٍ لشراء باقة ${plan.titleAr}. يرجى شحن رصيدك وإعادة المحاولة.`,
+    creditMessage: (plan) => `عزيزي العميل، رصيدك غير كافٍٍ لشراء باقة ${plan.titleAr}. يرجى شحن رصيدك وإعادة المحاولة.`,
     confirmBtn: "تأكيد",
     cancelBtn: "إلغاء",
     closeBtn: "إغلاق",

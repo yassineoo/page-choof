@@ -175,14 +175,14 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           <div class="flex items-center justify-between gap-4 lg:gap-6 w-full">
             <div class="flex-1 flex items-center gap-4 lg:gap-6 xl:gap-8 min-w-0">
               <div class="flex items-center gap-2 flex-shrink-0">
-                <img src="./assets/images/header/Telephone.svg" class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
-                <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white whitespace-nowrap">${
+                <img src="./assets/images/header/Telephone.svg" class="w-5 h-5 flex-shrink-0" />
+                <span class="font-semibold text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white whitespace-nowrap">${
                   phoneHTML || "0509876543"
                 }</span>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 min-w-0">
-                <img src="./assets/images/header/Company.svg" class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
-                <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
+                <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
+                <span class="font-semibold text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
                   companyHTML || "Offre Ooredoo Internet"
                 }</span>
               </div>
