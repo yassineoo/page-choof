@@ -24,6 +24,15 @@ export const bitdefenderPlans = [
     price: "200",
     duration: "mois",
     durationAr: "شهر",
+    // Add pricing structure for Total Security
+    pricing: {
+      1: { 1: 200, 3: 500, 12: 1600 },
+      3: { 1: 350, 3: 875, 12: 2800 },
+      5: { 1: 550, 3: 1375, 12: 4400 },
+      10: { 1: 800, 3: 2000, 12: 6400 },
+    },
+    availableDevices: [1, 3, 5, 10],
+    availableDurations: [1, 3, 12],
   },
   {
     id: "mobileSecurity",
@@ -46,5 +55,10 @@ export const bitdefenderPlans = [
     price: "180",
     duration: "mois",
     durationAr: "شهر",
+    pricing: {
+      1: { 1: 180, 3: 450, 12: 1440 },
+    },
+    availableDevices: [1],
+    availableDurations: [1, 3, 12],
   },
 ];

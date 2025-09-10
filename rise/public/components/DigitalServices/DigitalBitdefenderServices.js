@@ -557,17 +557,66 @@ export default class DigitalBitdefenderServices {
     `;
   }
 
-  calculatePrice(basePrice, duration) {
-    const priceTable = {
-      1: { 1: 1000, 3: 3000, 12: 16500 },
-      3: { 1: 3000, 3: 8000, 12: 22500 },
-      5: { 1: 5000, 3: 12000, 12: 33500 },
-      10: { 1: 10000, 3: 24000, 12: 44500 },
-    };
+  calculatePrice(basePrice, duration, planId = null) {
+    const plan = planId ? bitdefenderPlans.find((p) => p.id === planId) : this.selectedPlan;
 
+    if (!plan || !plan.pricing) {
+      return 1500; // fallback price
+    }
+
+    const priceTable = plan.pricing;
     return priceTable[this.selectedDevices]?.[duration] || 1500;
   }
 
+  // 4. Method to generate device options based on current plan
+  generateDeviceOptions() {
+    const isArabic = this.currentLang === "ar";
+    const availableDevices = this.selectedPlan.availableDevices || [1, 3, 5, 10];
+
+    return availableDevices
+      .map((deviceCount) => {
+        const isSelected = this.selectedDevices === deviceCount;
+        return `
+      <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
+        isSelected ? "text-white" : "text-black hover:bg-gray-200"
+      }" 
+              data-devices="${deviceCount}"
+              style="width: 45px; height: 35px; sm:width: 50px; sm:height: 38px; lg:width: 60px; lg:height: 40px; border-radius: 8px; ${
+                isSelected ? "background-color: #ED1C24;" : "background-color: #eee;"
+              }">
+        ${deviceCount.toString().padStart(2, "0")}
+      </button>
+    `;
+      })
+      .join("");
+  }
+
+  // 5. Method to generate duration options based on current plan
+  generateDurationOptions() {
+    const isArabic = this.currentLang === "ar";
+    const availableDurations = this.selectedPlan.availableDurations || [1, 3, 12];
+
+    return availableDurations
+      .map((duration) => {
+        const isSelected = this.selectedDuration === duration;
+        const durationText = isArabic ? `${duration.toString().padStart(2, "0")} شهر` : `${duration.toString().padStart(2, "0")} mois`;
+
+        return `
+      <button class="bitdefender-selection-option duration-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
+        isSelected ? "text-white" : "text-black hover:bg-gray-200"
+      }" 
+              data-duration="${duration}"
+              style="width: 60px; height: 35px; sm:width: 70px; sm:height: 38px; lg:width: 80px; lg:height: 40px; border-radius: 8px; ${
+                isSelected ? "background-color: #ED1C24;" : "background-color: #eee;"
+              }">
+        ${durationText}
+      </button>
+    `;
+      })
+      .join("");
+  }
+
+  // 6. Updated createSelectionHTML method
   createSelectionHTML(price) {
     const isArabic = this.currentLang === "ar";
     const t = bitdefenderTranslations[this.currentLang];
@@ -577,212 +626,148 @@ export default class DigitalBitdefenderServices {
     const currency = isArabic ? "دج" : "DA";
 
     return `
-      <div class="w-full bg-gray-50 dark:bg-black py-[50px] lg:py-[70px] ${fontClass}" ${dirAttribute}>
-        <div class="w-full mx-auto px-2 sm:px-4 flex flex-col items-center">
+    <div class="w-full bg-gray-50 dark:bg-black py-[50px] lg:py-[70px] ${fontClass}" ${dirAttribute}>
+      <div class="w-full mx-auto px-2 sm:px-4 flex flex-col items-center">
+        
+        <!-- Main Container Card -->
+        <div class="max-w-[95vw] sm:max-w-[90vw] lg:max-w-[90vw] w-full mx-auto bg-white dark:bg-[#2C2C2C] rounded-xl lg:rounded-2xl shadow-lg overflow-hidden dark:border-white border">
           
-          <!-- Main Container Card -->
-          <div class="max-w-[95vw] sm:max-w-[90vw] lg:max-w-[90vw] w-full mx-auto bg-white dark:bg-[#2C2C2C] rounded-xl lg:rounded-2xl shadow-lg overflow-hidden dark:border-white border">
-            
-            <!-- Integrated Header -->
-            <div class="rounded-t-xl lg:rounded-t-2xl" style="background-color: #ED1C24;">
-              <div class="flex flex-row-reverse items-center justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0 ${
-                isArabic ? "sm:flex-row-reverse" : ""
-              }">
-                
-                <!-- Left Side: Logo + Separator + Title -->
-                <div class="flex flex-col md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
-                  <div class="flex-shrink-0">
-                    <img src="${this.getLogoPath()}" alt="Bitdefender" class="h-8 w-16 sm:h-10 sm:w-20 lg:h-[55px] lg:w-[112px] object-contain filter brightness-0 invert" />
-                  </div>
-                  
-                  <!-- Vertical Separator - Hidden on mobile -->
-                  <div class="hidden sm:block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
-                  
-                  <div class="text-white ${isArabic ? "text-right" : "text-left"} text-center sm:text-left">
-                    <h2 class="font-medium font-rubik text-sm sm:text-lg lg:text-[22px] leading-tight">${isArabic ? "حماية كاملة" :"Total Security"}</h2>
-                  </div>
-                </div>
-
-                <div class="sm:hidden block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
-
-                
-
-                <!-- Right Side: Paragraph + Device Image -->
-                <div class="flex flex-col-reverse md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
-                  <div class="text-white ${isArabic ? "text-left" : "text-right"} text-center sm:text-right">
-                    <p class="text-white text-opacity-90 text-sm sm:text-lg lg:text-[22px] font-medium lg:font-semibold">
-                      ${isArabic ? "حماية تصل إلى 10 أجهزة" : "Protégez jusqu'à 10 appareils"}
-                    </p>
-                  </div>
-                  <div class="flex-shrink-0">
-                    <img src="./assets/images/services/bitdefender/appareils-desktop-dark.svg" alt="Device" class="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-14 object-contain bitdefender-plan-icon" />
-                  </div>
+          <!-- Integrated Header -->
+          <div class="rounded-t-xl lg:rounded-t-2xl" style="background-color: #ED1C24;">
+            <div class="flex flex-row-reverse items-center justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0 ${isArabic ? "sm:flex-row-reverse" : ""}">
+              
+              <!-- Left Side: Logo + Separator + Title -->
+              <div class="flex flex-col md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
+                <div class="flex-shrink-0">
+                  <img src="${this.getLogoPath()}" alt="Bitdefender" class="h-8 w-16 sm:h-10 sm:w-20 lg:h-[55px] lg:w-[112px] object-contain filter brightness-0 invert" />
                 </div>
                 
-              </div>
-            </div>
-
-            <!-- Content Section -->
-            <div class="px-3 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-[50px]">
-              <!-- Title -->
-              <div class="text-center mb-6 lg:mb-10">
-                <h1 class="font-medium text-lg sm:text-xl lg:text-[28.8px] text-black dark:text-white leading-tight">
-                  ${isArabic ? "اختاروا العرض الذي يناسبكم" : "CHOISISSEZ L'OFFRE QUI VOUS CONVIENT"}
-                </h1>
-              </div>
-
-              <!-- Selection Grid -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center items-stretch gap-4 lg:gap-6 mb-6 lg:mb-10">
+                <!-- Vertical Separator - Hidden on mobile -->
+                <div class="hidden sm:block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
                 
-                <!-- 01 - Duration Selection Card -->
-                <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-1">
-                  <!-- Header -->
-                  <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
-                    <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
-                      01
-                    </div>
-                    <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
-                      ${isArabic ? "اختاروا  مدة الاشتراك" : "Choisissez la durée de l'abonnement"}
-                    </span>
-                  </div>
-                  <!-- Options -->
-                  <div class="flex gap-2 sm:gap-3 lg:gap-4 justify-center py-8 sm:py-12 lg:py-[60px]">
-                    <button class="bitdefender-selection-option duration-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDuration === 1 ? "text-white" : "text-black hover:bg-gray-200"
-                    }" 
-                            data-duration="1"
-                            style="width: 60px; height: 35px; sm:width: 70px; sm:height: 38px; lg:width: 80px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDuration === 1 ? "background-color: #ED1C24;" : "background-color: #eee;"
-                            }">
-                      ${isArabic ? "01 شهر" : "01 mois"}
-                    </button>
-                    <button class="bitdefender-selection-option duration-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDuration === 3 ? "text-white" : "text-black hover:bg-gray-200"
-                    }" 
-                            data-duration="3"
-                            style="width: 60px; height: 35px; sm:width: 70px; sm:height: 38px; lg:width: 80px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDuration === 3 ? "background-color: #ED1C24;" : "background-color: #eee;"
-                            }">
-                      ${isArabic ? "03 شهر" : "03 mois"}
-                    </button>
-                    <button class="bitdefender-selection-option duration-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDuration === 12 ? "text-white" : "text-black hover:bg-gray-200"
-                    }" 
-                            data-duration="12"
-                            style="width: 60px; height: 35px; sm:width: 70px; sm:height: 38px; lg:width: 80px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDuration === 12 ? "background-color: #ED1C24;" : "background-color: #eee;"
-                            }">
-                      ${isArabic ? "12 شهر" : "12 mois"}
-                    </button>
-                  </div>
+                <div class="text-white ${isArabic ? "text-right" : "text-left"} text-center sm:text-left">
+                  <h2 class="font-medium font-rubik text-sm sm:text-lg lg:text-[22px] leading-tight">
+                    ${isArabic ? this.selectedPlan.titleAr : this.selectedPlan.title}
+                  </h2>
                 </div>
-
-                <!-- 02 - Device Selection Card -->
-                <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-2">
-                  <!-- Header -->
-                  <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
-                    <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
-                      02
-                    </div>
-                    <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
-                      ${isArabic ? "اختاروا  عدد الأجهزة" : "Choisissez le nombre d'appareils"}
-                    </span>
-                  </div>
-                  <!-- Options -->
-                  <div class="flex gap-2 sm:gap-3 lg:gap-3 justify-center py-8 sm:py-12 lg:py-[60px]">
-                  <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDevices === 1 ? "text-white" : "text-black hover:bg-gray-200"
-                    }" 
-                            data-devices="1"
-                            style="width: 45px; height: 35px; sm:width: 50px; sm:height: 38px; lg:width: 60px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDevices === 1 ? "background-color: #ED1C24;" : "background-color: #eee;"
-                            }">
-                      01
-                    </button>
-                    <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDevices === 3 ? "text-white" : "text-black hover:bg-gray-200"
-                    }" 
-                            data-devices="3"
-                            style="width: 45px; height: 35px; sm:width: 50px; sm:height: 38px; lg:width: 60px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDevices === 3 ? "background-color: #ED1C24;" : "background-color: #eee;"
-                            }">
-                      03
-                    </button>  
-                    <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDevices === 5 ? "text-white" : "text-black hover:bg-gray-200"
-                    }" 
-                            data-devices="5"
-                            style="width: 45px; height: 35px; sm:width: 50px; sm:height: 38px; lg:width: 60px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDevices === 5 ? "background-color: #ED1C24;" : "background-color: #eee;"
-                            }">
-                      05
-                    </button>
-                    <button class="bitdefender-selection-option device-option transition-all duration-300 font-medium text-xs sm:text-sm lg:text-sm ${
-                      this.selectedDevices === 10 ? "text-white" : "text-black hover:bg-gray-200"
-                    }" 
-                            data-devices="10"
-                            style="width: 45px; height: 35px; sm:width: 50px; sm:height: 38px; lg:width: 60px; lg:height: 40px; border-radius: 8px; ${
-                              this.selectedDevices === 10 ? "background-color: #ED1C24;" : "background-color: #eee;"
-                            }">
-                      10
-                    </button>
-                  </div>
-                </div>
-
-                <!-- 03 - Subscription Price Card -->
-                <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-3 sm:col-span-2 lg:col-span-1">
-                  <!-- Header -->
-                  <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
-                    <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
-                      03
-                    </div>
-                    <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
-                      ${isArabic ? "سعر الاشتراك" : "Prix de l'abonnement"}
-                    </span>
-                  </div>
-                  <!-- Price Display -->
-                  <div class="py-8 sm:py-12 lg:py-[55px] flex items-center justify-center">
-                    <div class="text-center bitdefender-price-display flex items-center justify-center text-white font-medium text-base sm:text-lg lg:text-[20px] px-3" 
-                         style="background-color: #ED1C24; height: 40px; sm:height: 45px; lg:height: 50px; border-radius: 8px; min-width: 100px; sm:min-width: 120px;">
-                     ${this.calculatePrice(null, this.selectedDuration)} ${currency}
-                    </div>
-                  </div>
-                </div>
-
               </div>
 
-              <!-- Action Buttons -->
-              <div class="flex flex-row justify-center items-center gap-3 mt-8 lg:mt-12">
-                <button class="bitdefender-cancel-btn ${fontClass} group relative overflow-hidden border-[#ED1C24] text-[#ED1C24] dark:border-white  dark:text-white bg-white max-w-[200px]  dark:bg-[#2C2C2C] border-2 font-medium sm:font-semibold text-sm sm:text-base lg:text-[17.65px] transition-all duration-300 hover:shadow-lg  uppercase tracking-wide w-full sm:w-auto"
-                        style="
-                               width: 100%; height: 42px; 
-                               sm:width: 180px; sm:height: 44px;
-                               lg:width: 207.11px; lg:height: 47.07px; 
-                               border-radius: 25px; lg:border-radius: 28.24px; 
-                               padding: 8px 20px; sm:padding: 9px 30px; lg:padding: 9.41px 34.13px;">
-                  <span class="relative z-10 dark:text-white dark:border-white">${isArabic ? "إلغاء" : "RETOUR"}</span>
-                </button>
-                <button class="bitdefender-choose-btn ${fontClass} group relative overflow-hidden max-w-[200px]  text-white border-2 font-medium sm:font-semibold text-sm sm:text-base lg:text-[17.65px] transition-all duration-300 hover:shadow-xl  uppercase tracking-wide w-full sm:w-auto"
-                        style="background-color: #ED1C24; border-color: #ED1C24; 
-                               width: 100%; height: 42px; 
-                               sm:width: 180px; sm:height: 44px;
-                               lg:width: 207.11px; lg:height: 47.07px; 
-                               border-radius: 25px; lg:border-radius: 28.24px; 
-                               padding: 8px 20px; sm:padding: 9px 30px; lg:padding: 9.41px 34.13px;">
-                  <span class="relative z-10">${isArabic ? "اختيار" : "CHOISIR"}</span>
-                </button>
+              <div class="sm:hidden block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
+
+              <!-- Right Side: Paragraph + Device Image -->
+              <div class="flex flex-col-reverse md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
+                <div class="text-white ${isArabic ? "text-left" : "text-right"} text-center sm:text-right">
+                  <p class="text-white text-opacity-90 text-sm sm:text-lg lg:text-[22px] font-medium lg:font-semibold">
+                    ${isArabic ? this.selectedPlan.subtitleAr : this.selectedPlan.subtitle}
+                  </p>
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="${this.getIconPath(
+                    this.selectedPlan,
+                    "iconDark"
+                  )}" alt="Device" class="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-14 object-contain bitdefender-plan-icon" />
+                </div>
               </div>
+              
             </div>
           </div>
-          
-          <div id="bitdefender-modal-hook"></div>
+
+          <!-- Content Section -->
+          <div class="px-3 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-[50px]">
+            <!-- Title -->
+            <div class="text-center mb-6 lg:mb-10">
+              <h1 class="font-medium text-lg sm:text-xl lg:text-[28.8px] text-black dark:text-white leading-tight">
+                ${isArabic ? "اختاروا العرض الذي يناسبكم" : "CHOISISSEZ L'OFFRE QUI VOUS CONVIENT"}
+              </h1>
+            </div>
+
+            <!-- Selection Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center items-stretch gap-4 lg:gap-6 mb-6 lg:mb-10">
+              
+              <!-- 01 - Duration Selection Card -->
+              <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-1">
+                <!-- Header -->
+                <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
+                  <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
+                    01
+                  </div>
+                  <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
+                    ${isArabic ? "اختاروا  مدة الاشتراك" : "Choisissez la durée de l'abonnement"}
+                  </span>
+                </div>
+                <!-- Options -->
+                <div class="flex gap-2 sm:gap-3 lg:gap-4 justify-center py-8 sm:py-12 lg:py-[60px]">
+                  ${this.generateDurationOptions()}
+                </div>
+              </div>
+
+              <!-- 02 - Device Selection Card -->
+              <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-2">
+                <!-- Header -->
+                <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
+                  <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
+                    02
+                  </div>
+                  <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
+                    ${isArabic ? "اختاروا  عدد الأجهزة" : "Choisissez le nombre d'appareils"}
+                  </span>
+                </div>
+                <!-- Options -->
+                <div class="flex gap-2 sm:gap-3 lg:gap-3 justify-center py-8 sm:py-12 lg:py-[60px]">
+                  ${this.generateDeviceOptions()}
+                </div>
+              </div>
+
+              <!-- 03 - Subscription Price Card -->
+              <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-3 sm:col-span-2 lg:col-span-1">
+                <!-- Header -->
+                <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
+                  <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
+                    03
+                  </div>
+                  <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
+                    ${isArabic ? "سعر الاشتراك" : "Prix de l'abonnement"}
+                  </span>
+                </div>
+                <!-- Price Display -->
+                <div class="py-8 sm:py-12 lg:py-[55px] flex items-center justify-center">
+                  <div class="text-center bitdefender-price-display flex items-center justify-center text-white font-medium text-base sm:text-lg lg:text-[20px] px-3" 
+                       style="background-color: #ED1C24; height: 40px; sm:height: 45px; lg:height: 50px; border-radius: 8px; min-width: 100px; sm:min-width: 120px;">
+                   ${this.calculatePrice(null, this.selectedDuration)} ${currency}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-row justify-center items-center gap-3 mt-8 lg:mt-12">
+              <button class="bitdefender-cancel-btn ${fontClass} group relative overflow-hidden border-[#ED1C24] text-[#ED1C24] dark:border-white  dark:text-white bg-white max-w-[200px]  dark:bg-[#2C2C2C] border-2 font-medium sm:font-semibold text-sm sm:text-base lg:text-[17.65px] transition-all duration-300 hover:shadow-lg  uppercase tracking-wide w-full sm:w-auto"
+                      style="
+                             width: 100%; height: 42px; 
+                             sm:width: 180px; sm:height: 44px;
+                             lg:width: 207.11px; lg:height: 47.07px; 
+                             border-radius: 25px; lg:border-radius: 28.24px; 
+                             padding: 8px 20px; sm:padding: 9px 30px; lg:padding: 9.41px 34.13px;">
+                <span class="relative z-10 dark:text-white dark:border-white">${isArabic ? "إلغاء" : "RETOUR"}</span>
+              </button>
+              <button class="bitdefender-choose-btn ${fontClass} group relative overflow-hidden max-w-[200px]  text-white border-2 font-medium sm:font-semibold text-sm sm:text-base lg:text-[17.65px] transition-all duration-300 hover:shadow-xl  uppercase tracking-wide w-full sm:w-auto"
+                      style="background-color: #ED1C24; border-color: #ED1C24; 
+                             width: 100%; height: 42px; 
+                             sm:width: 180px; sm:height: 44px;
+                             lg:width: 207.11px; lg:height: 47.07px; 
+                             border-radius: 25px; lg:border-radius: 28.24px; 
+                             padding: 8px 20px; sm:padding: 9px 30px; lg:padding: 9.41px 34.13px;">
+                <span class="relative z-10">${isArabic ? "اختيار" : "CHOISIR"}</span>
+              </button>
+            </div>
+          </div>
         </div>
-
-
-        </div>
-
+        
+        <div id="bitdefender-modal-hook"></div>
       </div>
-    `;
+    </div>
+  `;
   }
 
   render() {
@@ -835,37 +820,11 @@ export default class DigitalBitdefenderServices {
     });
   }
 
-  bindSelectionEvents() {
-    // Device selection
-    this.container.querySelectorAll(".device-option").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        const devices = parseInt(e.currentTarget.dataset.devices);
-        this.selectedDevices = devices;
-        this.updateSelectionUI();
-      });
-    });
-
-    // Duration selection
-    this.container.querySelectorAll(".duration-option").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        const duration = parseInt(e.currentTarget.dataset.duration);
-        this.selectedDuration = duration;
-        this.updateSelectionUI();
-      });
-    });
-
-    // Action buttons
-    this.container.querySelector(".bitdefender-cancel-btn")?.addEventListener("click", () => {
-      this.currentView = "main";
-      this.render();
-    });
-
-    this.container.querySelector(".bitdefender-choose-btn")?.addEventListener("click", () => {
-      this.showPurchaseFlow();
-    });
-  }
-
+  // 8. Updated updateSelectionUI method
   updateSelectionUI() {
+    const isArabic = this.currentLang === "ar";
+    const currency = isArabic ? "دج" : "DA";
+
     // Update device options
     this.container.querySelectorAll(".device-option").forEach((btn) => {
       const devices = parseInt(btn.dataset.devices);
@@ -894,9 +853,7 @@ export default class DigitalBitdefenderServices {
       }
     });
 
-    const isArabic = this.currentLang === "ar";
-    const currency = isArabic ? "دج" : "DA";
-    // Update price using the new calculation
+    // Update price using the new dynamic calculation
     const newPrice = this.calculatePrice(null, this.selectedDuration);
     const priceDisplay = this.container.querySelector(".bitdefender-price-display");
 
@@ -905,21 +862,59 @@ export default class DigitalBitdefenderServices {
     }
   }
 
+  // 9. Updated bindSelectionEvents method
+  bindSelectionEvents() {
+    // Device selection
+    this.container.querySelectorAll(".device-option").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const devices = parseInt(e.currentTarget.dataset.devices);
+        // Only allow selection if it's available for current plan
+        if (this.selectedPlan.availableDevices.includes(devices)) {
+          this.selectedDevices = devices;
+          this.updateSelectionUI();
+        }
+      });
+    });
+
+    // Duration selection
+    this.container.querySelectorAll(".duration-option").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const duration = parseInt(e.currentTarget.dataset.duration);
+        // Only allow selection if it's available for current plan
+        if (this.selectedPlan.availableDurations.includes(duration)) {
+          this.selectedDuration = duration;
+          this.updateSelectionUI();
+        }
+      });
+    });
+
+    // Action buttons
+    this.container.querySelector(".bitdefender-cancel-btn")?.addEventListener("click", () => {
+      this.currentView = "main";
+      this.render();
+    });
+
+    this.container.querySelector(".bitdefender-choose-btn")?.addEventListener("click", () => {
+      this.showPurchaseFlow();
+    });
+  }
+
+  // 7. Updated handlePlanClick method
   handlePlanClick(btn) {
     const planIndex = parseInt(btn.dataset.planIndex);
     const plan = bitdefenderPlans[planIndex];
-    console.log("first button", planIndex, plan);
+    console.log("Selected plan:", planIndex, plan);
 
-    this.selectedPlan = this.getTranslatedPlan(plan);
-    this.selectedDevices = 1; // Default to 5 devices (first option)
-    this. selectedDuration= 1; // Default to 1 month (first option)
-    if (planIndex === 1) {
-      this.currentView = "selection1";
-      this.render();
-    } else {
-      this.currentView = "selection";
-      this.render();
-    }
+    // Set the selected plan object (not just the translated version)
+    this.selectedPlan = plan;
+
+    // Reset to valid defaults for this plan
+    this.selectedDevices = plan.availableDevices[0]; // First available device option
+    this.selectedDuration = plan.availableDurations[0]; // First available duration option
+
+    // Both plans use the same selection view now
+    this.currentView = "selection";
+    this.render();
   }
 
   // Enhanced Modal System with new designs
