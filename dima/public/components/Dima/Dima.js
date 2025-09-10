@@ -200,7 +200,7 @@ export default class Dima {
           : `Vous avez activé votre forfait ${offer.name} + ${offer.highlight} avec succès.`;
 
         const noCreditMsg = isArabic
-          ? `رصيدك غير كافٍ لشراء باقة ${offer.name}. يرجى شحن رصيدك وإعادة المحاولة.`
+          ? `رصيدك غير كافٍٍ لشراء باقة ${offer.name}. يرجى شحن رصيدك وإعادة المحاولة.`
           : `Cher client, votre crédit est insuffisant pour acheter le forfait ${offer.name}. Veuillez recharger votre compte et réessayer.`;
 
         this.showModal(

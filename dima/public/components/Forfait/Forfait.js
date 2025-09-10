@@ -84,7 +84,7 @@ export default class Forfait {
         const congratsMsg = isArabic ? `لقد قمت بتفعيل باقة ${offer.name} بنجاح.` : `Vous avez activé votre forfait ${offer.name} avec succès.`;
 
         const noCreditMsg = isArabic
-          ? `رصيدك غير كافٍ لشراء باقة ${offer.name}. يرجى شحن رصيدك وإعادة المحاولة.`
+          ? `رصيدك غير كافٍٍ لشراء باقة ${offer.name}. يرجى شحن رصيدك وإعادة المحاولة.`
           : `Cher client, votre crédit est insuffisant pour acheter le forfait ${offer.name}. Veuillez recharger votre compte et réessayer.`;
 
         // Show buy modal

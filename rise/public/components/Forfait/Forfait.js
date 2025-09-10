@@ -1397,7 +1397,7 @@ class ForfaitComponent {
       success: isArabic
         ? `هنيئًا! لقد تم تفعيل الاشتراك ${offer.name} بنجاح: ${offer.data} صالحة 4 أسابيع ويتم تجديدها 12 مرة.`
         : `Votre Forfait ${offer.name} est activé avec succès : ${offer.data} valables 4 semaines.Forfait activé avec succès!`,
-      insufficient: isArabic ? `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.` : `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
+      insufficient: isArabic ? `رصيدك غير كافٍٍ. يُرجى إعادة تعبئة حسابك.` : `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
     };
   }
 
@@ -1418,7 +1418,7 @@ class ForfaitComponent {
   showInsufficientCreditModal(content, isRTL, onClose) {
     this.showModal({
       type: "info",
-      title: isRTL ? "رصيدك غير كاف" : "Crédit Insuffisant",
+      title: isRTL ? "رصيدك غير كافٍ" : "Crédit Insuffisant",
       message: content.insufficient,
       isRTL,
     });

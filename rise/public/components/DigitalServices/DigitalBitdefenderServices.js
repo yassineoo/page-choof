@@ -37,8 +37,8 @@ const bitdefenderTranslations = {
     terms: "أوافق على شروط الإستعمال ",
     congratsTitle: "هنيئًا!",
     congratsMessage: (plan) => `لقد تم تأكيد طلبك. ستتلقى رسالة قصيرة لتفعيل اشتراكك.`,
-    creditTitle: "رصيد غير كافٍ",
-    creditMessage: (plan) => `رصيدك غير كافٍ لتقديم طلبك. يرجى إعادة تعبئة حسابك والمحاولة مرة أخرى.`,
+    creditTitle: "رصيد غير كافٍٍ",
+    creditMessage: (plan) => `رصيدك غير كافٍٍ لتقديم طلبك. يرجى إعادة تعبئة حسابك والمحاولة مرة أخرى.`,
     errorTitle: "خطأ",
     errorMessage: "لقد حدث خلل ما. يرجى المحاولة مرة أخرى.",
     confirmBtn: "إختيار",
@@ -1195,7 +1195,7 @@ export default class DigitalBitdefenderServices {
           </h2>
 
           <!-- Message -->
-          <p class="bitdefender-modal-message ${fontClass} font-semibold text-base text-black dark:text-[#ccc] leading-relaxed mb-8 px-2">
+          <p class="bitdefender-modal-message ${fontClass}  text-base text-black dark:text-[#ccc] leading-relaxed mb-8 px-2">
             ${message}
           </p>
           

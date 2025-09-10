@@ -228,7 +228,7 @@ export default class DigitalShahidServices {
   showInsufficientCreditModal(content, isRTL) {
     this.showModal({
       type: "info",
-      title: isRTL ? "رصيدك غير كاف" : "Crédit Insuffisant",
+      title: isRTL ? "رصيدك غير كافٍ" : "Crédit Insuffisant",
       message: content.insufficient,
       isRTL,
     });
