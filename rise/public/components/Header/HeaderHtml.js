@@ -222,11 +222,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
               companyHTML || "Nom De L'entreprise"
             }</span>
           </div>
-          <div class="flex items-center justify-between gap-3">
-            <div class="flex items-center gap-2">
-              <img src="./assets/images/header/Puce.svg" class="w-5 h-5 flex-shrink-0" />
-              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white md:text-lg text-sm">${offerHTML}</span>
-            </div>
+          <div class="flex items-center justify-end gap-3">
             <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red  rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
               <span class="${
                 language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
