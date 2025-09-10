@@ -253,11 +253,11 @@ export default class TODServices {
     const isArabic = lang === "ar";
 
     this.container.innerHTML = `
-      <div class="w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-8" ${isArabic ? 'dir="rtl"' : ""}>
+      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-8" ${isArabic ? 'dir="rtl"' : ""}>
         <div class="max-w-7xl mx-auto">
           <div class="text-center mb-12">
-            <h2 class="font-rubik font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
-              ${isArabic ? "اشتراكات TOD" : "FORFAITS TOD"}
+            <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
+              ${isArabic ? "اشتراكات TOD" : "LES FORFAITS TOD"}
             </h2>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 place-items-center w-full" id="tod-packages-grid"></div>

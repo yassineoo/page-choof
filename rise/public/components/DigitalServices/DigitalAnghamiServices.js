@@ -4,7 +4,7 @@ import { anghamiPlan, anghamiDescription, anghamiModalData } from "./DigitalAngh
 const styles = {
   card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
   cardHeader: "bg-ooredoo-red px-6 py-3 text-center",
-  cardName: "font-rubik font-semibold text-2xl md:text-3xl leading-tight tracking-tight text-white",
+  cardName: "font-semibold text-2xl md:text-3xl leading-tight tracking-tight text-white",
   cardContent: "p-6 flex flex-col flex-1 justify-between",
   dataTitle: "text-2xl font-bold text-ooredoo-red mb-3",
   featuresList: "list-none p-0 m-0",
@@ -14,7 +14,7 @@ const styles = {
   priceContainer: "text-center mb-2",
   priceAmount: "font-rubik font-semibold text-[2rem] capitalize dark:text-white",
   priceDa: "font-rubik font-semibold text-lg capitalize dark:text-white",
-  priceDuration: "font-rubik font-semibold text-lg capitalize dark:text-gray-300",
+  priceDuration: "font-semibold text-lg capitalize dark:text-white",
   buttonWrap: "flex justify-center mt-2",
   acheterButton: "acheter-button",
 };
@@ -112,13 +112,12 @@ if (!document.getElementById("dima-anghami-styles")) {
 
 function renderAnghamiCard(plan, isArabic) {
   return `
-    <div class="${styles.card}">
+    <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${styles.card}">
       <div class="${styles.cardHeader}">
         <h2 class="${styles.cardName}">${plan.name}</h2>
       </div>
       <div class="${styles.cardContent}">
         <div>
-          <div class="${styles.dataTitle}">${plan.data}</div>
           <ul class="${styles.featuresList}">
             ${plan.features
               .map(
@@ -411,7 +410,12 @@ export default class DigitalAnghamiServices {
     const description = anghamiDescription[lang];
 
     this.container.innerHTML = `
-      <div class="w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-8">
+      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-8">
+        <div>
+          <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
+            ${isArabic ? "اشتراك OSN+ & ANGHAMI" : "forfait OSN+ & ANGHAMI"}
+          </h2>
+        </div>
         <div class="mx-auto px-2 sm:px-4 py-12 w-full max-w-screen-xl" ${isArabic ? 'dir="rtl"' : ""}>
           <div class="flex flex-col-reverse lg:flex-row w-full gap-8 items-center">
             <!-- Logos & Description (left on desktop, top on mobile) -->
@@ -435,10 +439,7 @@ export default class DigitalAnghamiServices {
                   class="w-36 md:w-48 h-auto hidden dark:block"
                 />
               </div>
-              <h3 class="font-semibold text-xl leading-relaxed tracking-wide mb-4 text-black dark:text-white">
-                ${isArabic ? "إشتراك OSN + Anghami" : "FORFAITS OSN + Anghami"}
-              </h3>
-              <p class="text-base leading-relaxed tracking-wide w-full max-w-sm mx-auto ${
+              <p class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl ${
                 isArabic ? "text-right" : "text-left"
               } text-gray-800 dark:text-gray-200">
                 ${description}

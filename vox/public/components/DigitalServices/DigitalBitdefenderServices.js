@@ -584,12 +584,12 @@ export default class DigitalBitdefenderServices {
             
             <!-- Integrated Header -->
             <div class="rounded-t-xl lg:rounded-t-2xl" style="background-color: #ED1C24;">
-              <div class="flex flex-col sm:flex-row items-center justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0 ${
+              <div class="flex flex-row-reverse items-center justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0 ${
                 isArabic ? "sm:flex-row-reverse" : ""
               }">
                 
                 <!-- Left Side: Logo + Separator + Title -->
-                <div class="flex items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
+                <div class="flex flex-col md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
                   <div class="flex-shrink-0">
                     <img src="${this.getLogoPath()}" alt="Bitdefender" class="h-8 w-16 sm:h-10 sm:w-20 lg:h-[55px] lg:w-[112px] object-contain filter brightness-0 invert" />
                   </div>
@@ -601,9 +601,11 @@ export default class DigitalBitdefenderServices {
                     <h2 class="font-medium font-rubik text-sm sm:text-lg lg:text-[22px] leading-tight">Small Office Security</h2>
                   </div>
                 </div>
+                
+                <div class="sm:hidden block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
 
                 <!-- Right Side: Paragraph + Device Image -->
-                <div class="flex items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
+                <div class="flex flex-col-reverse md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
                   <div class="text-white ${isArabic ? "text-left" : "text-right"} text-center sm:text-right">
                     <p class="text-white text-opacity-90 text-sm sm:text-lg lg:text-[22px] font-medium lg:font-semibold">
                       ${isArabic ? "حماية تصل إلى 20 جهاز" : "Protégez jusqu'à 20 appareils"}
@@ -632,11 +634,11 @@ export default class DigitalBitdefenderServices {
                 <!-- 01 - Duration Selection Card -->
                 <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-1">
                   <!-- Header -->
-                  <div class="w-full flex items-center justify-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
+                  <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
                     <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
                       01
                     </div>
-                    <span class="font-medium text-white text-xs sm:text-sm lg:text-base text-center leading-tight">
+                    <span class="font-medium text-white text-xs sm:text-sm lg:text-base leading-tight">
                       ${isArabic ? "اختاروا  مدة الاشتراك" : "Choisissez la durée de l'abonnement"}
                     </span>
                   </div>
@@ -666,7 +668,7 @@ export default class DigitalBitdefenderServices {
                 <!-- 02 - Device Selection Card -->
                 <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-2">
                   <!-- Header -->
-                  <div class="w-full flex items-center justify-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
+                  <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
                     <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
                       02
                     </div>
@@ -709,7 +711,7 @@ export default class DigitalBitdefenderServices {
                 <!-- 03 - Subscription Price Card -->
                 <div class="flex flex-col items-center rounded-2xl lg:rounded-[18px] border border-[#D4D4D4] overflow-hidden order-3 sm:col-span-2 lg:col-span-1">
                   <!-- Header -->
-                  <div class="w-full flex items-center justify-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
+                  <div class="w-full flex items-center gap-2 lg:gap-3" style="background-color: #ED1C24; padding: 12px 8px; lg:padding: 16px;">
                     <div class="bg-white rounded-full flex items-center justify-center font-bold text-xs lg:text-sm" style="width: 22px; height: 22px; lg:width: 27px; lg:height: 27px; color: #ED1C24;">
                       03
                     </div>
@@ -1188,8 +1190,8 @@ export default class DigitalBitdefenderServices {
                   }">
                     ${
                       isRTL
-                        ? `أوافق على <button type="button" class="terms-link text-ooredoo-red dark:text-white underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>`
-                        : `J'accepte les <button type="button" class="terms-link text-ooredoo-red dark:text-white underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">conditions générales</button>`
+                        ? `أوافق على <button type="button" class="terms-link text-blue-600 dark:text-white underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>`
+                        : `J'accepte les <button type="button" class="terms-link text-blue-600 dark:text-white underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">conditions générales</button>`
                     }
                   </span>
                 </label>

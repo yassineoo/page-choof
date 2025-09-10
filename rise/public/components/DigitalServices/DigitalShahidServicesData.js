@@ -38,8 +38,8 @@ export const shahidPlans = {
 };
 
 export const shahidDescription = {
-  fr: "Obtenez dès maintenant un forfait Shahid. 30 jours d'accès premium Shahid + Internet",
-  ar: "احصل على اشتراك شاهد الآن، 30 يومًا من الوصول المميز إلى شاهد + الإنترنت",
+  fr: "Obtenez dès maintenant un forfait Shahid,30 jours d'accès premium Shahid + internet",
+  ar: "احصلوا الآن على اشتراك شاهد الذي يناسبكم، و استفيدوا من دخول حصري لمدة 30 يوم + إنترنت.",
 };
 
 // Modal data structure for Shahid services

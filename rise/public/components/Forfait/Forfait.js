@@ -873,23 +873,21 @@ class ForfaitComponent {
           <h1 class="text-white text-3xl leading-snug font-bold max-w-md">${
             this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "DECOUVREZ NOS SERVICES NUMERIQUES"
           }</h1>
-          <div class="flex items-center gap-4 my-10 flex-wrap">
-            <span class="bg-white flex items-center justify-center h-12 w-32 rounded-full">
-              <img src="/assets/images/services/Bitdefender.svg" />
+          <div class="grid grid-cols-5 md:flex items-center gap-2 md:gap-4 my-10 flex-wrap">
+            <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
+              <img src="/assets/images/services/Bitdefender.svg" class="h-full w-full"/>
             </span>
-            <span class="bg-white flex items-center justify-center h-12 w-32 rounded-full">
-              <img src="/assets/images/TOD.svg" />
+            <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
+              <img src="/assets/images/TOD.svg" class="h-full w-full"/>
             </span>
-            <span class="bg-white flex items-center justify-center h-12 w-32 rounded-full">
-              <img src="/assets/images/services/shahid.svg" />
+            <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
+              <img src="/assets/images/services/shahid.svg" class="h-full w-full"/>
             </span>
-            <span class="bg-white flex items-center justify-center h-12 w-32 rounded-full">
-              <img src="/assets/images/services/freefire.svg" />
+            <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
+              <img src="/assets/images/services/anghani-osn.svg"  class="h-full w-full"/>
             </span>
-            <span class="bg-white flex gap-1 items-center justify-center h-12 w-32 rounded-full">
-              <img src="/assets/images/consommation/osn.svg"/>  
-              <p class="text-sm font-bold">&</p>
-              <img src="/assets/images/services/anghani.svg" />
+            <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
+              <img src="/assets/images/services/freefire.svg" class="h-full w-full"/>
             </span>
           </div>
           <div class="flex items-center gap-4 flex-wrap justify-between">

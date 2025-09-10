@@ -10,7 +10,7 @@ export const anghamiPlan = {
   ar: {
     id: "osnAngami1000",
     name: "OSN+ & ANGHAMI 1000 إشتراك",
-    data: "Go 10 إنترنت",
+    data: "10Go إنترنت",
     features: ["دخول حصري إلى التطبيقين OSN+ & ANGHAMI", "10 Go إنترنت"],
     price: "1000",
     duration: "30 يوم",
@@ -18,8 +18,8 @@ export const anghamiPlan = {
 };
 
 export const anghamiDescription = {
-  fr: "Profitez d'un accès premium aux contenus exclusifs d'OSN+ et ANGHAMI avec 10 Go d'internet pour naviguer librement.",
-  ar: "استمتعوا بالدخول الحصري للمحتويات المميزة لتطبيقي OSN+ و ANGHAMI مع 10 Go إنترنت للتصفح بحرية.",
+  fr: "Obtenez dès maintenant un forfait OSN+ & ANGHAMI pour plonger dans une expérience de streaming exceptionnelle et profiter d’un volume internet pour 1000 DA !",
+  ar: "سارعوا للحصول على اشتراك  OSN+ & ANGHAMI واستمتعوا بمحتوياتكم المفضلة بالإضافة إلى حجم إنترنت بـ 1000 دج!",
 };
 
 // Modal data structure for Anghami service

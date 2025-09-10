@@ -4,7 +4,7 @@ import { shahidPlans, shahidDescription, shahidModalData } from "./DigitalShahid
 const styles = {
   card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
   cardHeader: "bg-ooredoo-red flex items-center justify-center px-6 py-3 text-center",
-  cardName: "font-rubik font-medium text-[32px] leading-[100%] tracking-[0] capitalize text-white text-center align-middle",
+  cardName: "font-medium text-[32px] leading-[100%] tracking-[0] capitalize text-white text-center align-middle",
   cardContent: "p-6 flex flex-col flex-1 justify-between",
   dataTitle: "text-2xl font-bold text-ooredoo-red mb-3",
   featuresList: "list-none p-0 m-0",
@@ -12,9 +12,9 @@ const styles = {
   featureText: "flex-1",
   divider: "dima-divider",
   priceContainer: "text-center mb-2",
-  priceAmount: "font-rubik font-semibold text-[2rem] capitalize dark:text-white",
-  priceDa: "font-rubik font-semibold text-lg capitalize dark:text-white",
-  priceDuration: "font-rubik font-semibold text-lg capitalize dark:text-gray-300",
+  priceAmount: "font-semibold text-[2rem] capitalize dark:text-white",
+  priceDa: "font-semibold text-lg capitalize dark:text-white",
+  priceDuration: "font-semibold text-lg capitalize dark:text-white",
   buttonWrap: "flex justify-center mt-2",
   acheterButton: "acheter-button",
 };
@@ -113,7 +113,7 @@ if (!document.getElementById("dima-shahid-styles")) {
 // Card renderer with purchase button functionality
 function renderShahidCard(plan, isArabic, index) {
   return `
-    <div class="${styles.card} mx-2">
+    <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${styles.card} mx-2">
       <div class="${styles.cardHeader}">
         <h2 class="${styles.cardName}">${plan.name}</h2>
       </div>
@@ -414,8 +414,8 @@ export default class DigitalShahidServices {
     this.container.innerHTML = `
       <div class="${this.currentLang === 'ar' ? 'font-noto-kufi-arabic' : 'font-rubik'} w-full bg-white dark:bg-[#141414] px-5 py-8">
         <div class="mx-auto px-4 sm:px-6 py-12 w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ""}">
-          <h2 class="text-center font-bold text-2xl lg:text-3xl leading-normal tracking-wide mb-12 text-black dark:text-white">
-            ${isArabic ? "إكتشف الخدمات الرقمية" : "EXPLOREZ LES SERVICES NUMÉRIQUES"}
+          <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white mb-10">
+            ${isArabic ? "اشتراكات شاهد" : "FORFAIT SHAHID"}
           </h2>
 
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-3 gap-y-5 items-stretch">

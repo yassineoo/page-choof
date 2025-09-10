@@ -133,12 +133,12 @@ export class Slider {
 
     return `
       <div class="relative md:w-[340px] flex flex-col mx-auto overflow-hidden">
-        <div class="mb-2 h-[45px] flex items-center justify-center text-ooredoo-red bg-[#ED1C2421] rounded-full font-semibold text-center uppercase">
+        <div class="mb-2 h-[45px] flex items-center justify-center text-ooredoo-red dark:text-white bg-[#ED1C2421] rounded-full font-semibold text-center">
           ${offer.topLabel}
         </div>
-        <div class="h-full bg-white dark:bg-[#2C2C2C] pb-6 rounded-xl border-[1px] border-ooredoo-red"}>
-          <div class="h-14 bg-ooredoo-red flex items-center justify-center rounded-t-xl">
-            <h2  class="text-white font-medium text-center capitalize dark:text-white leading-tight">
+        <div class="h-full bg-white dark:bg-[#2C2C2C] pb-6 rounded-xl border-[1px] border-ooredoo-red dark:border-white"}>
+          <div class="h-14 bg-ooredoo-red dark:border-ooredoo-red -m-[1px] border-2 flex items-center justify-center rounded-t-xl">
+            <h2 class="text-white font-semibold text-xl text-center capitalize dark:text-white leading-tight">
               ${offer.price} ${currencyLabel}
             </h2>
           </div>
@@ -220,24 +220,22 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="${(index-12) === 2 && "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"}relative bg-white px-4 py-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
+      <div class="${(index-12) === 2 && "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"}relative bg-white px-4 pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
         <div class="h-full flex flex-col justify-between" ${isRTL ? `dir="rtl"` : ``}>
           <div class="">
-            <div class="h-12 border-b-[1px] border-b-[#BBBEBE] border-dashed flex items-center justify-center">
-              <h2 class="font-bold text-2xl text-center capitalize dark:text-white leading-tight">
+            <div class="border-b-[1px] border-b-[#BBBEBE] border-dashed text-center py-4">
+              <h2 class="font-semibold text-2xl text-center capitalize dark:text-white leading-tight">
                 ${offer.price} ${currencyLabel}
               </h2>
             </div>
-            <div class="h-24 text-center flex items-center justify-center text-xl">
+            <div class="h-[54px] my-6 text-center px-[20px] justify-center text-xl">
               <p>${offer.data}</p>
             </div>
             <div class="text-center">
-              <p class="font-bold text-3xl py-4">${offer.price} ${currencyLabel}</p>
-              <p class="text-sm">${isRTL ? "" : "Suit la validité du forfait en cours"}</p>
+              <p class="font-semibold text-3xl py-4">${offer.price} <span class="text-lg">${currencyLabel}</span></p>
+              <p class="text-sm">${isRTL ? "حسب صلاحية الاشتراك الجاري" : "Suit la validité du forfait en cours"}</p>
             </div>
           </div>
-
-          
 
           <div class="forfait-card-footer pt-4">
             <div class="forfait-button-zone flex justify-center w-full">

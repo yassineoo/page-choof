@@ -46,55 +46,55 @@ export default {
     ],
     internetForfaits: [
       {
-        topLabel: "600Go par an",
+        topLabel: "600Go par AN",
         name: "15 000 DA",
         data: "50Go x 12",
-        price: "1500",
+        price: "15000",
         oldPrice: "18 000",
         duration: "4 Semaines",
         buy: "Acheter"
       },
       {
-        topLabel: "1440Go par an",
+        topLabel: "1440Go par AN",
         name: "25 000 DA",
         data: "12Go x 12",
-        price: "2500",
+        price: "25000",
         oldPrice: "30 000",
         duration: "4 Semaines",
         buy: "Acheter"
       },
       {
-        topLabel: "2400Go par an",
+        topLabel: "2400Go par AN",
         name: "45 000 DA",
         data: "200Go x 12",
-        price: "4500",
+        price: "45000",
         oldPrice: "54 000",
         duration: "4 Semaines",
         buy: "Acheter"
       },
       {
-        topLabel: "3000Go par an",
+        topLabel: "3000Go par AN",
         name: "55 000 DA",
         data: "250Go x 12",
-        price: "5500",
+        price: "55000",
         oldPrice:"66 000",
         duration: "4 Semaines",
         buy: "Acheter"
       },
       {
-        topLabel: "6000Go par an",
+        topLabel: "6000Go par AN",
         name: "100 000 DA",
         data: "500Go x 12",
-        price: "10000",
+        price: "100000",
         oldPrice: "120 000",
         duration: "4 Semaines",
         buy: "Acheter"
       },
       {
-        topLabel: "12000Go par an",
+        topLabel: "12000Go par AN",
         name: "195 000 DA",
         data: "1000Go x 12",
-        price: "19500",
+        price: "195000",
         oldPrice:"234 000",
         duration: "4 Semaines",
         buy: "Acheter"
@@ -208,25 +208,25 @@ ar: {
     topLabel: "600 جيغا للسنة",
     name: "000 15 دج",
     data: "50 جيغا × 12",
-    price: "1500",
+    price: "000 15",
     oldPrice: "000 18",
     duration: "4 أسابيع",
     buy: "اشترِ"
   },
   {
     topLabel: "1440 جيغا للسنة",
-    name: "000 25 دج",
+    name: "000 025 دج",
     data: "12 جيغا × 12",
-    price: "2500",
+    price: "000 25",
     oldPrice: "000 30",
     duration: "4 أسابيع",
     buy: "اشترِ"
   },
   {
     topLabel: "2400 جيغا للسنة",
-    name: "000 45 دج",
+    name: "000 045 دج",
     data: "200 جيغا × 12",
-    price: "4500",
+    price: "000 45",
     oldPrice: "000 54",
     duration: "4 أسابيع",
     buy: "اشترِ"
@@ -235,7 +235,7 @@ ar: {
     topLabel: "3000 جيغا للسنة",
     name: "000 55 دج",
     data: "250 جيغا × 12",
-    price: "5500",
+    price: "000 55",
     oldPrice: "000 66",
     duration: "4 أسابيع",
     buy: "اشترِ"
@@ -244,7 +244,7 @@ ar: {
     topLabel: "6000 جيغا للسنة",
     name: "000 100 دج",
     data: "500 جيغا × 12",
-    price: "10000",
+    price: "000 100",
     oldPrice: "000 120",
     duration: "4 أسابيع",
     buy: "اشترِ"
@@ -253,7 +253,7 @@ ar: {
     topLabel: "12000 جيغا للسنة",
     name: "000 195 دج",
     data: "1000 جيغا × 12",
-    price: "19500",
+    price: "000 195",
     oldPrice: "000 234",
     duration: "4 أسابيع",
     buy: "اشترِ"
