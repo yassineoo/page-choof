@@ -74,14 +74,16 @@ export class Slider {
 
           <div class="flex-1 text-center border-b-[1px] border-b-[#BBBEBE] border-dashed">
             <div class="flex items-center justify-center">
-              <h3 class="${dataFontClass} py-7 px-5 text-4xl font-semibold text-ooredoo-red dark:text-white ${textAlign} leading-10">${offer.data}</h3>
+              <h3 class="${dataFontClass} py-7 px-5 text-4xl font-semibold text-ooredoo-red dark:text-white ${textAlign} leading-10">${
+      offer.data
+    }</h3>
             </div>
           </div>
 
           <div class="forfait-card-footer pt-4">
             <div class="flex justify-center items-baseline w-full mb-4">
               <div class="flex items-baseline justify-center" style="width:70%;">
-                <span class="${priceFontClass} font-bold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
+                <span class="${priceFontClass} font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
                 <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
                 <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${
       durationText.includes("cycle") ? "text-xs" : "text-base"
@@ -138,7 +140,7 @@ export class Slider {
         </div>
         <div class="h-full bg-white dark:bg-[#2C2C2C] pb-6 rounded-xl border-[1px] border-ooredoo-red dark:border-white"}>
           <div class="h-14 bg-ooredoo-red dark:border-ooredoo-red -m-[1px] border-2 flex items-center justify-center rounded-t-xl">
-            <h2 class="text-white font-semibold text-xl text-center capitalize dark:text-white leading-tight">
+            <h2 class="text-white font-bold text-[25px]  text-center capitalize dark:text-white leading-tight">
               ${offer.price} ${currencyLabel}
             </h2>
           </div>
@@ -150,24 +152,24 @@ export class Slider {
           </div>
 
           <div class="flex-1 py-4 text-center border-b-[1px] border-t-[1px] border-t-[#BBBEBE] border-b-[#BBBEBE] border-dashed">
-            <p>${this.currentLang === 'ar' ? "قوموا بشراء" : "Payez"}</p>
-            <p class="text-ooredoo-red text-xl font-bold">${this.currentLang === 'ar' ? "10 اشتراكات" : "10 forfaits"}</p>
-            <p class="font-bold text-xl">Ooredoo Internet ${offer.sub}</p>
+            <p>${this.currentLang === "ar" ? "قوموا بشراء" : "Payez"}</p>
+            <p class="text-ooredoo-red text-xl font-bold">${this.currentLang === "ar" ? "10 اشتراكات" : "10 forfaits"}</p>
+            <p class="font-semibold text-xl">Ooredoo Internet ${offer.sub}</p>
             <p>${isRTL ? "و" : "&"}</p>
-            <p>${this.currentLang === 'ar' ? "احصلوا على" : "Obtenez"}</p>
-            <p class="text-ooredoo-red font-bold text-xl">${this.currentLang === 'ar' ? "اشتراكين مجانا" : "2 gratuits"} !</p>
+            <p>${this.currentLang === "ar" ? "احصلوا على" : "Obtenez"}</p>
+            <p class="text-ooredoo-red font-bold text-xl">${this.currentLang === "ar" ? "اشتراكين مجانا" : "2 gratuits"} !</p>
           </div>
 
           <div class="p-4 flex items-center justify-between">
             <div class="text-center">
-              <p class="text-sm">${this.currentLang === 'ar' ? "احصلوا على" : "Recevez"}</p>
-              <p class="font-bold text-xl">${this.currentLang === 'ar' ? "12 اشتراك" : "12 forfaits"}</p>
+              <p class="text-sm">${this.currentLang === "ar" ? "احصلوا على" : "Recevez"}</p>
+              <p class="font-semibold text-xl">${this.currentLang === "ar" ? "12 اشتراك" : "12 forfaits"}</p>
             </div>
             <div class="text-center">
-              <p class="text-[#7F7F7F] font-bold text-xl line-through decoration-red-500">
+              <p class="text-[#7F7F7F] font-semibold text-xl line-through decoration-red-500">
                 ${offer.oldPrice} ${currencyLabel}
               </p>
-              <p class="font-bold text-3xl">${offer.price} ${currencyLabel}</p>
+              <p class="font-semibold text-3xl">${offer.price} ${currencyLabel}</p>
             </div>
           </div>
 
@@ -220,7 +222,9 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="${(index-12) === 2 && "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"}relative bg-white px-4 pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
+      <div class="${
+        index - 12 === 2 && "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"
+      }relative bg-white px-4 pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
         <div class="h-full flex flex-col justify-between" ${isRTL ? `dir="rtl"` : ``}>
           <div class="">
             <div class="border-b-[1px] border-b-[#BBBEBE] border-dashed text-center py-4">
@@ -312,12 +316,14 @@ export class Slider {
     const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
     const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "internet-slider";
     const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-    const startIndex = 6
+    const startIndex = 6;
 
     return `
           <div class="hidden sm:flex w-full items-center justify-center">
             <div class="gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              ${offers.map((offer, index) => this.createForfaitCardInternet(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
+              ${offers
+                .map((offer, index) => this.createForfaitCardInternet(offer, startIndex + index, labels, isRTL, convertToLatinNumerals))
+                .join("")}
             </div>
           </div>
       
