@@ -119,12 +119,11 @@ function renderShahidCard(plan, isArabic, index) {
       </div>
       <div class="${styles.cardContent}">
         <div>
-          <div class="${styles.dataTitle}">${plan.data}</div>
           <ul class="${styles.featuresList}">
             ${plan.features
               .map(
                 (f) => `
-              <li class="text-base leading-relaxed flex items-center mb-3 text-gray-800 dark:text-gray-200">
+              <li class="text-base leading-relaxed flex items-center gap-2 mb-3 text-gray-800 dark:text-gray-200">
                 <img src="/assets/images/dima/checkbox.svg" class="${styles.featureIconBase}" alt="✓" />
                 <span class="${styles.featureText}">${f}</span>
               </li>`
@@ -439,9 +438,13 @@ export default class DigitalShahidServices {
               <h3 class="font-semibold text-xl leading-relaxed tracking-wide mb-4 text-black dark:text-white">
                 ${isArabic ? "إشتراك شاهد" : "FORFAITS SHAHID"}
               </h3>
-              <p class="text-base leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">
-                ${description}
-              </p>
+              <div class="text-base leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">
+                ${isArabic ? 
+                  `<p>احصلوا الآن على اشتراك <span class="font-semibold">شاهد</span> الذي يناسبكم، و استفيدوا من <span class="font-semibold">دخول حصري</span> لمدة 30 يوم + <span class="font-semibold">إنترنت</span>. <span></span></p>` 
+                  : 
+                  `<p>Obtenez dès maintenant <span class="font-semibold">un forfait Shahid</span>,30 jours d'<span class="font-semibold">accès premium Shahid + internet</span></p>`
+                }
+              </div>
             </div>
 
           </div>

@@ -3,7 +3,7 @@ export const shahidPlans = {
     {
       id: "shahid500",
       name: "SHAHID 500",
-      data: "02 Go internet",
+      data: "02",
       features: ["Accès shahid mobile", "02 Go internet"],
       price: "500",
       duration: "30 jour",
@@ -11,7 +11,7 @@ export const shahidPlans = {
     {
       id: "shahid1000",
       name: "SHAHID 1000",
-      data: "06 Go internet",
+      data: "06",
       features: ["Accès shahid mobile", "06 Go internet"],
       price: "1000",
       duration: "30 jour",
@@ -21,16 +21,16 @@ export const shahidPlans = {
     {
       id: "shahid500",
       name: "شاهد 500",
-      data: "02 Go إنترنت",
-      features: ["الوصول إلى شاهد موبايل", "02 Go إنترنت"],
+      data: "02",
+      features: ["الوصول إلى شاهد موبايل", "2Go إنترنت"],
       price: "500",
       duration: "30 يوم",
     },
     {
       id: "shahid1000",
       name: "شاهد 1000",
-      data: "06 Go إنترنت",
-      features: ["الوصول إلى شاهد موبايل", "06 Go إنترنت"],
+      data: "06",
+      features: ["الوصول إلى شاهد موبايل", "6Go إنترنت"],
       price: "1000",
       duration: "30 يوم",
     },

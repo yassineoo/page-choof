@@ -48,6 +48,7 @@ export default {
       {
         topLabel: "600Go par AN",
         name: "15 000 DA",
+        sub:"1500",
         data: "50Go x 12",
         price: "15000",
         oldPrice: "18 000",
@@ -57,6 +58,7 @@ export default {
       {
         topLabel: "1440Go par AN",
         name: "25 000 DA",
+        sub:"2500",
         data: "12Go x 12",
         price: "25000",
         oldPrice: "30 000",
@@ -66,6 +68,7 @@ export default {
       {
         topLabel: "2400Go par AN",
         name: "45 000 DA",
+        sub:"4500",
         data: "200Go x 12",
         price: "45000",
         oldPrice: "54 000",
@@ -75,6 +78,7 @@ export default {
       {
         topLabel: "3000Go par AN",
         name: "55 000 DA",
+        sub:"5500",
         data: "250Go x 12",
         price: "55000",
         oldPrice:"66 000",
@@ -84,6 +88,7 @@ export default {
       {
         topLabel: "6000Go par AN",
         name: "100 000 DA",
+        sub:"10000",
         data: "500Go x 12",
         price: "100000",
         oldPrice: "120 000",
@@ -93,6 +98,7 @@ export default {
       {
         topLabel: "12000Go par AN",
         name: "195 000 DA",
+        sub:"19500",
         data: "1000Go x 12",
         price: "195000",
         oldPrice:"234 000",
@@ -207,6 +213,7 @@ ar: {
   {
     topLabel: "600 جيغا للسنة",
     name: "000 15 دج",
+    sub:"1500",
     data: "50 جيغا × 12",
     price: "000 15",
     oldPrice: "000 18",
@@ -216,7 +223,8 @@ ar: {
   {
     topLabel: "1440 جيغا للسنة",
     name: "000 025 دج",
-    data: "12 جيغا × 12",
+    sub:"2500",
+    data: "120 جيغا × 12",
     price: "000 25",
     oldPrice: "000 30",
     duration: "4 أسابيع",
@@ -225,6 +233,7 @@ ar: {
   {
     topLabel: "2400 جيغا للسنة",
     name: "000 045 دج",
+    sub:"4500",
     data: "200 جيغا × 12",
     price: "000 45",
     oldPrice: "000 54",
@@ -234,6 +243,7 @@ ar: {
   {
     topLabel: "3000 جيغا للسنة",
     name: "000 55 دج",
+    sub:"5500",
     data: "250 جيغا × 12",
     price: "000 55",
     oldPrice: "000 66",
@@ -243,6 +253,7 @@ ar: {
   {
     topLabel: "6000 جيغا للسنة",
     name: "000 100 دج",
+    sub:"10000",
     data: "500 جيغا × 12",
     price: "000 100",
     oldPrice: "000 120",
@@ -252,6 +263,7 @@ ar: {
   {
     topLabel: "12000 جيغا للسنة",
     name: "000 195 دج",
+    sub:"19500",
     data: "1000 جيغا × 12",
     price: "000 195",
     oldPrice: "000 234",

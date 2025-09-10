@@ -439,11 +439,16 @@ export default class DigitalAnghamiServices {
                   class="w-36 md:w-48 h-auto hidden dark:block"
                 />
               </div>
-              <p class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl ${
+              <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl ${
                 isArabic ? "text-right" : "text-left"
               } text-gray-800 dark:text-gray-200">
-                ${description}
-              </p>
+                ${
+                  isArabic ?
+                  `<p>سارعوا للحصول على اشتراك  <span class="font-semibold">OSN+ & ANGHAMI</span> واستمتعوا <span class="font-semibold">بمحتوياتكم المفضلة</span> بالإضافة إلى حجم إنترنت بـ 1000 دج!</p>`
+                  :
+                  `<p>Obtenez dès maintenant un forfait <span class="font-semibold">OSN+</span> & <span class="font-semibold">ANGHAMI</span> pour plonger dans <span class="font-semibold">une expérience de streaming exceptionnelle</span> et profiter d’un volume internet pour 1000 DA !</p>`
+                }
+              </div>
             </div>
 
             <!-- Card Section (right on desktop, bottom on mobile) -->
