@@ -84,7 +84,7 @@ class ForfaitComponent {
       border: 0.84px solid #C5C5C5;
       border-radius: 0.75rem;
       width: 100%;
-      max-width: 300px;
+      max-width: 340px;
       min-width: 280px;
       height: 100%;
     }
@@ -869,24 +869,24 @@ class ForfaitComponent {
           </h2>
           ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
         </div>
-        <div class="bg-ooredoo-red py-16 mt-16 px-4 md:px-8">
-          <h1 class="text-white text-3xl leading-snug font-semibold max-w-md">${
+        <div class="bg-ooredoo-red py-16 mt-16 px-[clamp(1rem,5vw,5rem)]">
+          <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-lg font-outfit">${
             this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "DECOUVREZ NOS SERVICES NUMERIQUES"
           }</h1>
-          <div class="grid grid-cols-5 md:flex items-center gap-2 md:gap-4 my-10 flex-wrap">
-            <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
+          <div class="grid grid-cols-5 md:flex items-center gap-2 my-10 flex-wrap">
+            <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
               <img src="./assets/images/services/Bitdefender.svg" class="h-full w-full"/>
             </span>
-            <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
+            <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
               <img src="./assets/images/TOD.svg" class="h-full w-full"/>
             </span>
-            <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
+            <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
               <img src="./assets/images/services/shahid.svg" class="h-full w-full"/>
             </span>
-            <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
+            <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
               <img src="./assets/images/services/anghani-osn.svg"  class="h-full w-full"/>
             </span>
-            <span class="bg-white p-2 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
+            <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
               <img src="./assets/images/services/freefire.svg" class="h-full w-full"/>
             </span>
           </div>

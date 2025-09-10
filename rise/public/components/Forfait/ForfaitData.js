@@ -166,28 +166,28 @@ export default {
 ar: {
   forfaits: [
     {
-      name: "إنترنت 1500",
+      name: "Ooredoo internet 1500",
       data: "50Go",
       price: "1500",
       duration: "4 أسابيع",
       buy: "شراء"
     },
     {
-      name: "إنترنت 2500",
+      name: "Ooredoo internet 2500",
       data: "120Go",
       price: "2500",
       duration: "4 أسابيع",
       buy: "شراء"
     },
     {
-      name: "إنترنت 4500",
+      name: "Ooredoo internet 4500",
       data: "200Go",
       price: "4500",
       duration: "4 أسابيع",
       buy: "شراء"
     },
     {
-      name: "إنترنت 5500",
+      name: "Ooredoo internet 5500",
       data: "250Go",
       price: "5500",
       duration: "4 أسابيع",
@@ -195,14 +195,14 @@ ar: {
     },
     
     {
-      name: "إنترنت 10000",
+      name: "Ooredoo internet 10000",
       data: "500Go",
       price: "10000",
       duration: "4 أسابيع",
       buy: "شراء"
     },
     {
-      name: "إنترنت 19500",
+      name: "Ooredoo internet 19500",
       data: "1000Go",
       price: "19500",
       duration: "4 أسابيع",

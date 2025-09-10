@@ -12,7 +12,7 @@ const styles = {
   featureText: "flex-1",
   divider: "dima-divider",
   priceContainer: "text-center mb-2",
-  priceAmount: "font-semibold text-[2rem] capitalize dark:text-white",
+  priceAmount: "font-semibold text-[2rem] capitalize dark:text-white font-rubik",
   priceDa: "font-semibold text-lg capitalize dark:text-white",
   priceDuration: "font-semibold text-lg capitalize dark:text-white",
   buttonWrap: "flex justify-center mt-2",
@@ -42,7 +42,6 @@ if (!document.getElementById("dima-shahid-styles")) {
       background-color: var(--ooredoo-red, #e50012);
       border: none;
       color: white;
-      font-family: Rubik, sans-serif;
       font-weight: 600;
       font-size: 1.1rem;
       text-transform: uppercase;
@@ -139,7 +138,7 @@ function renderShahidCard(plan, isArabic, index) {
             <span class="${styles.priceDuration}">${plan.duration}</span>
           </div>
           <div class="${styles.buttonWrap}">
-            <button class="${styles.acheterButton} shahid-purchase-btn" data-offer-name="${plan.name}" data-plan-index="${index}">
+            <button class="${styles.acheterButton} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} shahid-purchase-btn" data-offer-name="${plan.name}" data-plan-index="${index}">
               ${isArabic ? "شراء" : "ACHETER"}
             </button>
           </div>
@@ -411,8 +410,8 @@ export default class DigitalShahidServices {
     const description = shahidDescription[lang];
 
     this.container.innerHTML = `
-      <div class="${this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-white dark:bg-[#141414] px-5 py-8">
-        <div class="mx-auto px-4 sm:px-6 py-12 w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ""}">
+      <div class="${this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-white dark:bg-[#141414] px-5 py-16">
+        <div class="mx-auto px-4 sm:px-6 py-7 w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ""}">
           <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white mb-10">
             ${isArabic ? "اشتراكات شاهد" : "FORFAIT SHAHID"}
           </h2>

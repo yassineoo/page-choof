@@ -107,7 +107,7 @@ function renderTopCard(pkg, lang) {
   const logoBlock = renderLogoBlock(pkg);
 
   const desc = document.createElement("div");
-  desc.className = " font-normal text-[14px] text-black dark:text-gray-200 leading-none";
+  desc.className = "font-normal text-[14px] text-black dark:text-gray-200";
   desc.innerHTML =
     lang === "ar"
       ? pkg.description
@@ -252,7 +252,7 @@ export default class TODServices {
     const isArabic = lang === "ar";
 
     this.container.innerHTML = `
-      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-8" ${
+      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-16" ${
       isArabic ? 'dir="rtl"' : ""
     }>
         <div class="max-w-7xl mx-auto">
