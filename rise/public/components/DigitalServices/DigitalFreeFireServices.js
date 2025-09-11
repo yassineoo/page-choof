@@ -53,7 +53,7 @@ export default class DigitalFreeFireServices {
         ${isDark ? "bg-[#2C2C2C]" : "bg-white"}
         rounded-xl flex flex-col justify-between
         w-full max-w-[800px]
-        min-h-[280px] h-[280px]
+        min-h-[280px] 
         border border-[#C5C5C5]
         py-6 px-8
         transition-all

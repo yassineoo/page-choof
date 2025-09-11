@@ -416,7 +416,7 @@ export default class DigitalAnghamiServices {
             ${isArabic ? "اشتراك OSN+ & ANGHAMI" : "forfait OSN+ & ANGHAMI"}
           </h2>
         </div>
-        <div class="mx-auto px-2 sm:px-4 py-12 w-full max-w-screen-xl" ${isArabic ? 'dir="rtl"' : ""}>
+        <div class="mx-auto px-2 sm:px-4 pt-12 w-full max-w-screen-xl" ${isArabic ? 'dir="rtl"' : ""}>
           <div class="flex flex-col-reverse lg:flex-row w-full gap-8 items-center">
             <!-- Logos & Description (left on desktop, top on mobile) -->
             <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">
@@ -431,7 +431,7 @@ export default class DigitalAnghamiServices {
                 />
                 <span class="text-4xl font-semibold mx-4 text-black dark:text-white">&</span>
                 <img 
-                  src="./assets/images/services/ofn.svg" alt="OSN+"
+                  src="./assets/images/services/osn.svg" alt="OSN+"
                   class="w-36 md:w-48 h-auto dark:hidden"
                 />
                 <img 

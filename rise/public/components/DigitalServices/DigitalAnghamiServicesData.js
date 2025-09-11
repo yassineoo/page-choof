@@ -5,7 +5,7 @@ export const anghamiPlan = {
     data: "10 Go internet",
     features: ["Accès premium à OSN+ & ANGHAMI", "10 Go internet"],
     price: "1000",
-    duration: "30 jour",
+    duration: "30 jours",
   },
   ar: {
     id: "osnAngami1000",
