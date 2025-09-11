@@ -4,8 +4,8 @@ import modalData from "./ModalData.js";
 const bitdefenderTranslations = {
   fr: {
     buttonText: "ACHETER",
-    buyModalTitle: "Confirmation d'achat",
-    buyMessage: (plan) => `Prix total : <span class="font-semibold">${plan.price}</span> DA/${plan.duration}.`,
+    buyModalTitle: `<span class="font-semibold">Confirmation d'achat</span>`,
+    buyMessage: (plan) => `<span class="font-semibold"> Prix total : ${plan.price} DA/${plan.duration}.</span>`,
     terms: `J'accepte les conditions générales`,
     congratsTitle: "Félicitations !",
     congratsMessage: (plan) => `Votre commande a été confirmée. Vous recevrez un SMS pour activer votre abonnement.`,
@@ -32,8 +32,8 @@ const bitdefenderTranslations = {
   },
   ar: {
     buttonText: "شراء",
-    buyModalTitle: "تأكيد الشراء",
-    buyMessage: (plan) => `السعر الإجمالي: <span class="font-semibold">${plan.price}</span> دج / ${plan.duration}`,
+    buyModalTitle: "<span class='font-semibold'>تأكيد الشراء</span>",
+    buyMessage: (plan) => `<span class='font-semibold'>السعر الإجمالي: ${plan.price} دج / ${plan.duration}</span>`,
     terms: "أوافق على شروط الإستعمال ",
     congratsTitle: "هنيئًا!",
     congratsMessage: (plan) => `لقد تم تأكيد طلبك. ستتلقى رسالة قصيرة لتفعيل اشتراكك.`,
