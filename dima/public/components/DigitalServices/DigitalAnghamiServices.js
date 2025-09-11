@@ -148,7 +148,7 @@ export default class DigitalAnghamiServices {
             <!-- Logos & Description (left on desktop, top on mobile) -->
             <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">
               <div class="flex items-center justify-center gap-6 mb-8">
-                <img src="./assets/images/services/anghani.svg" alt="Anghami"
+                <img src="./assets/images/services/anghami.svg" alt="Anghami"
                   class="w-36 md:w-48 h-auto"/>
                 <span class="text-4xl font-bold mx-4 text-black dark:text-white">&</span>
                 <img src="./assets/images/services/ofn.svg" alt="OSN+"
