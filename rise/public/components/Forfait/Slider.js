@@ -223,12 +223,12 @@ export class Slider {
       }relative bg-white px-4 pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
         <div class="h-full flex flex-col justify-between" ${isRTL ? `dir="rtl"` : ``}>
           <div class="">
-            <div class="border-b-[1px] border-b-[#BBBEBE] border-dashed text-center py-4">
-              <h2 class="font-semibold text-2xl text-center capitalize dark:text-white leading-tight">
+            <div class="border-b-[1px] border-b-[#BBBEBE] border-dashed text-center py-3">
+              <h2 class="font-medium text-2xl text-center capitalize dark:text-white leading-tight">
                 ${offer.price} ${currencyLabel}
               </h2>
             </div>
-            <div class="h-[54px] my-6 text-center px-[20px] justify-center text-xl">
+            <div class="h-[54px] my-4 text-center px-[20px] justify-center text-xl">
               <p>${offer.data}</p>
             </div>
             <div class="text-center">

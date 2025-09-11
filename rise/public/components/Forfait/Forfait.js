@@ -884,7 +884,7 @@ class ForfaitComponent {
               <img src="./assets/images/services/shahid.svg" class="h-full w-full"/>
             </span>
             <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
-              <img src="./assets/images/services/anghani-osn.svg"  class="h-full w-full"/>
+              <img src="./assets/images/services/anghami-osn.svg"  class="h-full w-full"/>
             </span>
             <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
               <img src="./assets/images/services/freefire.svg" class="h-full w-full"/>

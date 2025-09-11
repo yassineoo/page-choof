@@ -3,7 +3,7 @@ import { shahidPlans, shahidDescription, shahidModalData } from "./DigitalShahid
 // Card style constants - Updated to match Dima sizing and styling
 const styles = {
   card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
-  cardHeader: "bg-ooredoo-red flex items-center justify-center px-6 py-3 text-center",
+  cardHeader: "bg-ooredoo-red flex items-center justify-center px-6 py-6 text-center",
   cardName: "font-medium text-[32px] leading-[100%] tracking-[0] capitalize text-white text-center align-middle",
   cardContent: "p-6 flex flex-col flex-1 justify-between",
   dataTitle: "text-2xl font-semibold text-ooredoo-red mb-3",
@@ -11,7 +11,7 @@ const styles = {
   featureIconBase: "w-5 h-5 flex-shrink-0 mr-3",
   featureText: "flex-1",
   divider: "dima-divider",
-  priceContainer: "text-center mb-2",
+  priceContainer: "text-center mb-2 py-4",
   priceAmount: "font-semibold text-[2rem] capitalize dark:text-white font-rubik",
   priceDa: "font-semibold text-lg capitalize dark:text-white",
   priceDuration: "font-semibold text-lg capitalize dark:text-white",
@@ -138,7 +138,9 @@ function renderShahidCard(plan, isArabic, index) {
             <span class="${styles.priceDuration}">${plan.duration}</span>
           </div>
           <div class="${styles.buttonWrap}">
-            <button class="${styles.acheterButton} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} shahid-purchase-btn" data-offer-name="${plan.name}" data-plan-index="${index}">
+            <button class="${styles.acheterButton} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} shahid-purchase-btn" data-offer-name="${
+    plan.name
+  }" data-plan-index="${index}">
               ${isArabic ? "شراء" : "ACHETER"}
             </button>
           </div>
@@ -419,12 +421,12 @@ export default class DigitalShahidServices {
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-3 gap-y-5 items-stretch">
             
             <!-- Card 1 -->
-            <div class="flex items-stretch mx-2">
+            <div class="flex items-stretch mx-2 justify-center">
               ${renderShahidCard(plans[0], isArabic, 0)}
             </div>
 
             <!-- Card 2 -->
-            <div class="flex items-stretch mx-2">
+            <div class="flex items-stretch mx-2 justify-center">
               ${renderShahidCard(plans[1], isArabic, 1)}
             </div>
 

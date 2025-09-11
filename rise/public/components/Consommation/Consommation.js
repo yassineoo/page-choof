@@ -568,43 +568,32 @@ export default class Consommation {
     const directionStyle = isRTL ? "direction: rtl;" : "direction: ltr;";
     const gapSideMargin = isRTL ? "margin-left: 0.5rem;" : "margin-right: 0.5rem;";
 
-    const isOsn =
-      (section.subtitle?.includes("OSN+")) &&
-      Array.isArray(section.subIcon) &&
-      section.subIcon.length === 2;
+    const isOsn = section.subtitle?.includes("OSN");
 
     let iconsAndTextContent = "";
 
     // Special case: Facebook & Messenger
+    // Special case: OSN service
     if (isOsn) {
-      const osnIcon = `<img src="${this.resolveSubIcon(section.subIcon[0], theme)}" style="width:20px;height:20px;" alt="${
-        section.subIcon[0]
-      }" />`;
-      const anghamiIcon = `<img src="${this.resolveSubIcon(section.subIcon[1], theme)}" style="width:20px;height:20px;" alt="${
-        section.subIcon[1]
-      }" />`;
+      // For OSN, use custom dark mode logic with -dark suffix
+      const osnIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}osn-dark.svg` : `${this.config.IMAGE_BASE}osn.svg`;
+      const anghamiIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}anghami-dark.svg` : `${this.config.IMAGE_BASE}anghami.svg`;
 
-      const osnText = "OSN+";
-      const anghamiText = "ANGHAMI";
+      const osnIcon = `<img src="${osnIconPath}" style="width:25px;height:25px;" alt="OSN" />`;
+      const anghamiIcon = `<img src="${anghamiIconPath}" style="width:88px;height:23px;" alt="Anghami" />`;
+
       const fontClassForText = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
+      const textColor = theme === "dark" ? "text-white" : textClass;
 
       iconsAndTextContent = `
-        <div class="flex items-center gap-1">
-          ${osnIcon}
-          <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
-            ${osnText}
-          </span>
-        </div>
-        <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
-          &amp;
-        </span>
-        <div class="flex items-center gap-1">
-          ${anghamiIcon}
-          <span class="text-sm font-medium ${textClass} ${fontClassForText}" style="font-weight: 500;">
-            ${anghamiText}
-          </span>
-        </div>
-      `;
+    <div class="flex items-center gap-2">
+      ${osnIcon}
+      <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
+        OSN & 
+      </span>
+      ${anghamiIcon}
+    </div>
+  `;
     } else {
       // Default subtitle rendering
       let fontClassForSubtitle = "font-rubik";
@@ -723,7 +712,7 @@ export default class Consommation {
     if (hasDate) {
       content += `
         <div class="flex justify-start">
-          <span class="${lang === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
+          <span class="${lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
             ${lang === "ar" ? "إلى غاية" : "Expire le"} ${section.date}
           </span>
         </div>

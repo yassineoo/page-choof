@@ -112,7 +112,7 @@ function renderTopCard(pkg, lang) {
     lang === "ar"
       ? pkg.description
       : pkg.description.replace(/<strong>(.*?)<\/strong>/g, `<strong class="font-semibold text-black dark:text-white">$1</strong>`);
-  desc.style.lineHeight = "1.3";
+  desc.style.lineHeight = "1.1";
   desc.style.verticalAlign = "middle";
   desc.style.letterSpacing = "0";
   desc.style.direction = lang === "ar" ? "rtl" : "ltr";
@@ -261,6 +261,7 @@ export default class TODServices {
               ${isArabic ? "اشتراكات <span class='font-rubik'>TOD</span>" : "LES FORFAITS TOD"}
             </h2>
           </div>
+          
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 place-items-center w-full" id="tod-packages-grid"></div>
           <div id="tod-modal-hook"></div>
         </div>

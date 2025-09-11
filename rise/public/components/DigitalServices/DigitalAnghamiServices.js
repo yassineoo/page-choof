@@ -422,7 +422,7 @@ export default class DigitalAnghamiServices {
             <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">
               <div class="flex items-center justify-center gap-6 mb-8">
                 <img 
-                  src="./assets/images/services/anghani.svg" alt="Anghami"
+                  src="./assets/images/services/anghami.svg" alt="Anghami"
                   class="w-36 md:w-48 h-auto dark:hidden"
                 />
                 <img 
