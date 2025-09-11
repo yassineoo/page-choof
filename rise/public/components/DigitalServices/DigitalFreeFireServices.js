@@ -46,7 +46,7 @@ export default class DigitalFreeFireServices {
       cardWrapper: `
         w-full flex justify-center
         ${isDark ? "bg-[#141414]" : "bg-white"}
-        my-4
+        my-8
       `,
 
       card: `

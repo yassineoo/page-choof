@@ -723,8 +723,8 @@ export default class Consommation {
     if (hasDate) {
       content += `
         <div class="flex justify-start">
-          <span class="text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
-            ${lang === "ar" ? "إلى" : "Expire le"} ${section.date}
+          <span class="${lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
+            ${lang === "ar" ? "إلى غاية" : "Expire le"} ${section.date}
           </span>
         </div>
       `;

@@ -64,10 +64,10 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
+      <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 400px;">
         <div class="h-full pb-6" ${isRTL ? `dir="rtl"` : ``}>
-          <div class="h-14 -mx-[0.84px] bg-ooredoo-red flex items-center justify-center p-4">
-            <h2 class="font-rubik text-white text-2xl font-medium text-center capitalize dark:text-white leading-tight">
+          <div class="h-14 -mx-[0.84px] bg-ooredoo-red flex items-center justify-center p-5">
+            <h2 class="text-white font-rubik text-2xl font-medium text-center capitalize dark:text-white leading-tight">
               ${offer.name}
             </h2>
           </div>
@@ -131,26 +131,26 @@ export class Slider {
 
     return `
       <div class="relative md:w-[340px] flex flex-col mx-auto overflow-hidden">
-        <div class="mb-2 h-[45px] flex items-center justify-center text-ooredoo-red dark:text-white bg-[#ED1C2421] rounded-full font-semibold text-center">
-          ${offer.topLabel}
+        <div class="mb-2 h-[45px] flex items-center gap-1 justify-center text-ooredoo-red dark:text-white bg-[#ED1C2421] dark:bg-[#ED1C2421]/60 rounded-full font-semibold text-center">
+          <span class="font-rubik">${offer.topLabel}</span> ${isRTL ? "للسنة " : "PAR AN"}
         </div>
         <div class="h-full bg-white dark:bg-[#2C2C2C] pb-6 rounded-xl border-[1px] border-ooredoo-red dark:border-white"}>
           <div class="h-14 bg-ooredoo-red dark:border-ooredoo-red -m-[1px] border-2 flex items-center justify-center rounded-t-xl">
             <h2 class="text-white font-bold text-[25px]  text-center capitalize dark:text-white leading-tight">
-              ${offer.price} ${currencyLabel}
+              <span class="font-rubik">${offer.price}</span> ${currencyLabel}
             </h2>
           </div>
 
           <div class="flex-1 text-center">
             <div class="flex items-center justify-center">
-              <h3 class=" py-2 px-5 text-4xl font-semibold text-ooredoo-red dark:text-white ${textAlign} leading-10">${offer.data}</h3>
+              <h3 dir="ltr" class="font-rubik py-4 text-4xl font-semibold text-ooredoo-red dark:text-white ${textAlign} leading-10">${isRTL ? `12 x ${offer.data}` : `${offer.data} x 12`}</h3>
             </div>
           </div>
 
           <div class="flex-1 py-4 text-center border-b-[1px] border-t-[1px] border-t-[#BBBEBE] border-b-[#BBBEBE] border-dashed">
             <p>${this.currentLang === "ar" ? "قوموا بشراء" : "Payez"}</p>
-            <p class="text-ooredoo-red text-xl font-bold">${this.currentLang === "ar" ? "10 اشتراكات" : "10 forfaits"}</p>
-            <p class="font-semibold text-xl">Ooredoo Internet ${offer.sub}</p>
+            <p class="text-ooredoo-red text-xl font-bold">${this.currentLang === "ar" ? "<span class='font-rubik'>10</span> اشتراكات" : "10 forfaits"}</p>
+            <p class="font-semibold text-xl font-rubik">Ooredoo Internet ${offer.sub}</p>
             <p>${isRTL ? "و" : "&"}</p>
             <p>${this.currentLang === "ar" ? "احصلوا على" : "Obtenez"}</p>
             <p class="text-ooredoo-red font-bold text-xl">${this.currentLang === "ar" ? "اشتراكين مجانا" : "2 gratuits"} !</p>
@@ -159,18 +159,18 @@ export class Slider {
           <div class="p-4 flex items-center justify-between">
             <div class="text-center">
               <p class="text-sm">${this.currentLang === "ar" ? "احصلوا على" : "Recevez"}</p>
-              <p class="font-semibold text-xl">${this.currentLang === "ar" ? "12 اشتراك" : "12 forfaits"}</p>
+              <p class="font-semibold text-xl"><span class="font-rubik">12</span> ${this.currentLang === "ar" ? "اشتراك" : "forfaits"}</p>
             </div>
             <div class="text-center">
-              <p class="text-[#7F7F7F] font-semibold text-xl line-through decoration-red-500">
-                ${offer.oldPrice} ${currencyLabel}
+              <p class="text-[#7F7F7F] font-semibold text-xl">
+                <span class="font-rubik line-through decoration-red-500">${offer.oldPrice}</span> <span class="text-sm">${currencyLabel}</span>
               </p>
-              <p class="font-semibold text-3xl">${offer.price} ${currencyLabel}</p>
+              <p class="font-semibold text-3xl"><span class="font-rubik">${offer.price}</span> ${currencyLabel}</p>
             </div>
           </div>
 
           <div class="text-center text-sm px-6">
-            <p>${isRTL ? "يتم تجديد الاشتراك تلقائيًا كل 4 أسابيع " : "Forfait renouvelable automatiquement chaque 4 semaines"}</p>
+            <p>${isRTL ? "يتم تجديد الاشتراك تلقائيًا كل <span class='font-rubik'>4</span> أسابيع " : "Forfait renouvelable automatiquement chaque <span>4</span> semaines"}</p>
           </div>
 
           <div class="forfait-card-footer pt-4">

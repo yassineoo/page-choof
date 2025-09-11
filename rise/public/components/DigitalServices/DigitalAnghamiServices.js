@@ -138,7 +138,7 @@ function renderAnghamiCard(plan, isArabic) {
             <span class="${styles.priceDuration}">${plan.duration}</span>
           </div>
           <div class="${styles.buttonWrap}">
-            <button class="${styles.acheterButton} anghami-purchase-btn" data-offer-name="${plan.name}">
+            <button class="${styles.acheterButton} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} anghami-purchase-btn" data-offer-name="${plan.name}">
               ${isArabic ? "شراء" : "ACHETER"}
             </button>
           </div>
@@ -421,6 +421,15 @@ export default class DigitalAnghamiServices {
             <!-- Logos & Description (left on desktop, top on mobile) -->
             <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">
               <div class="flex items-center justify-center gap-6 mb-8">
+              <img 
+                  src="./assets/images/services/osn.svg" alt="OSN+"
+                  class="w-36 md:w-42 h-auto dark:hidden"
+                />
+                <img 
+                  src="./assets/images/services/osn-dark.svg" alt="OSN+"
+                  class="w-36 md:w-42 h-auto hidden dark:block"
+                />
+                <span class="text-4xl font-semibold mx-4 text-black dark:text-white">&</span>
                 <img 
                   src="./assets/images/services/anghami.svg" alt="Anghami"
                   class="w-36 md:w-48 h-auto dark:hidden"
@@ -429,19 +438,8 @@ export default class DigitalAnghamiServices {
                   src="./assets/images/services/anghami-dark.svg" alt="Anghami"
                   class="w-36 md:w-48 h-auto hidden dark:block"
                 />
-                <span class="text-4xl font-semibold mx-4 text-black dark:text-white">&</span>
-                <img 
-                  src="./assets/images/services/osn.svg" alt="OSN+"
-                  class="w-36 md:w-48 h-auto dark:hidden"
-                />
-                <img 
-                  src="./assets/images/services/osn-dark.svg" alt="OSN+"
-                  class="w-36 md:w-48 h-auto hidden dark:block"
-                />
-              </div>
-              <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl ${
-                isArabic ? "text-right" : "text-left"
-              } text-gray-800 dark:text-gray-200">
+                </div>
+              <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl text-center text-gray-800 dark:text-gray-200">
                 ${
                   isArabic
                     ? `<p>سارعوا للحصول على اشتراك  <span class="font-semibold">OSN+ & ANGHAMI</span> واستمتعوا <span class="font-semibold">بمحتوياتكم المفضلة</span> بالإضافة إلى حجم إنترنت بـ 1000 دج!</p>`

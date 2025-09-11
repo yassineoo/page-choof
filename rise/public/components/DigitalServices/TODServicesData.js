@@ -98,7 +98,7 @@ export const todPackages = {
   ar: [
     {
       id: "tod-mobile",
-      title: "اشتراك TOD MOBILE",
+      title: "اشتراك <span class='font-rubik'>TOD MOBILE</span>",
       type: "TOD MOBILE",
       description: `استمتعوا بأفضل المحتويات الرياضية والترفيهية على هاتفكم! <strong>المشاهدة على الإنترنت بجودة HD</strong> + حجم إنترنت كبير ابتداءً من <strong>900 دج في الشهر!</strong>`,
       logo: "./assets/images/services/TOD.svg",
@@ -111,7 +111,7 @@ export const todPackages = {
     },
     {
       id: "tod-standard",
-      title: "اشتراك TOD",
+      title: "اشتراك <span class='font-rubik'>TOD</span>",
       type: "TOD",
       description: `شاهدوا مبارياتكم ومسلسلاتكم وأفلامكم المفضلة على كل الشاشات (<strong>الهاتف، الحاسوب، التلفاز</strong>). المزيد من الإنترنت والمزيد من الترفيه ابتداءً من <strong>1900 دج في الشهر!</strong>`,
       logo: "./assets/images/services/TOD.svg",
@@ -123,7 +123,7 @@ export const todPackages = {
     },
     {
       id: "tod-4k",
-      title: "اشتراك TOD 4K",
+      title: "اشتراك <span class='font-rubik'>TOD 4K</span>",
       type: "TOD 4K",
       description: `عيشوا كل لحظة بجودة <strong>Ultra HD</strong>! أفضل جودة <strong>4K</strong> مع المزيد من الإنترنت لتجربة دون انقطاع ابتداءً من <strong>2900 دج في الشهر!</strong>`,
       logo: "./assets/images/services/TOD.svg",

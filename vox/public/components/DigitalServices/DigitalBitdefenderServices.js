@@ -5,7 +5,7 @@ const bitdefenderTranslations = {
   fr: {
     buttonText: "ACHETER",
     buyModalTitle: "Confirmation d'achat",
-    buyMessage: (plan) => `Prix total : ${plan.price} DA/${plan.duration}.`,
+    buyMessage: (plan) => `Prix total : <span class="font-semibold">${plan.price}</span> DA/${plan.duration}.`,
     terms: `J'accepte les conditions générales`,
     congratsTitle: "Félicitations !",
     congratsMessage: (plan) => `Votre commande a été confirmée. Vous recevrez un SMS pour activer votre abonnement.`,
@@ -33,7 +33,7 @@ const bitdefenderTranslations = {
   ar: {
     buttonText: "شراء",
     buyModalTitle: "تأكيد الشراء",
-    buyMessage: (plan) => `السعر الإجمالي: ${plan.price} دج/${plan.duration}`,
+    buyMessage: (plan) => `السعر الإجمالي: <span class="font-semibold">${plan.price}</span> دج/${plan.duration}`,
     terms: "أوافق على شروط الإستعمال ",
     congratsTitle: "هنيئًا!",
     congratsMessage: (plan) => `لقد تم تأكيد طلبك. ستتلقى رسالة قصيرة لتفعيل اشتراكك.`,
@@ -584,7 +584,7 @@ export default class DigitalBitdefenderServices {
             
             <!-- Integrated Header -->
             <div class="rounded-t-xl lg:rounded-t-2xl" style="background-color: #ED1C24;">
-              <div class="flex flex-row-reverse items-center justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0 ${
+              <div class="flex flex-row-reverse items-center justify-around md:justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0 ${
                 isArabic ? "sm:flex-row-reverse" : ""
               }">
                 
@@ -1169,7 +1169,7 @@ export default class DigitalBitdefenderServices {
           </h2>
 
           <!-- Message -->
-          <p class="bitdefender-modal-message ${fontClass} font-semibold text-base text-black dark:text-[#ccc] leading-relaxed mb-8 px-2">
+          <p class="bitdefender-modal-message ${fontClass} font-medium text-base text-black dark:text-[#ccc] leading-relaxed mb-8 px-2">
             ${message}
           </p>
           

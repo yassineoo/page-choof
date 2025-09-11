@@ -865,7 +865,7 @@ class ForfaitComponent {
       <section class="w-full bg-white dark:bg-[#2c2c2c] pt-16">
         <div class="max-w-[1600px] mx-auto md:px-6">
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
-            ${this.createMixedTitleHTML(labels.titleData, "uppercase")}
+            ${this.currentLang === "ar" ? "اشتراكات <span class='font-rubik' dir='ltr'>OOREDOO INTERNET</span>" : "FORFAITS OOREDOO INTERNET"}
           </h2>
           ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
         </div>
@@ -873,7 +873,7 @@ class ForfaitComponent {
           <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-lg font-outfit">${
             this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "DECOUVREZ NOS SERVICES NUMERIQUES"
           }</h1>
-          <div class="grid grid-cols-5 md:flex items-center gap-2 my-10 flex-wrap">
+          <div class="grid grid-cols-5 md:flex items-center gap-2 mt-10 md:mb-16 flex-wrap">
             <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
               <img src="./assets/images/services/Bitdefender.svg" class="h-full w-full"/>
             </span>
@@ -891,7 +891,7 @@ class ForfaitComponent {
             </span>
           </div>
           <div class="flex items-center gap-4 flex-wrap justify-between">
-            <p class="text-white">${this.currentLang === "ar" ? "استفيدوا منها اينما كنتم!" : "Profitez en où que vous soyez !"}</p>
+            <p class="text-white py-10 md:py-0">${this.currentLang === "ar" ? "استفيدوا منها اينما كنتم!" : "Profitez en où que vous soyez !"}</p>
             <button>
               <a href="#digitalServices-root" class="text-ooredoo-red bg-white px-4 py-2 rounded-full font-semibold text-[18px] uppercase">${
                 this.currentLang === "ar" ? "المزيد من التفاصيل" : "Voir détails"

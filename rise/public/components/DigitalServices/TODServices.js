@@ -131,7 +131,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   const titleBar = document.createElement("div");
   titleBar.className =
     "w-full bg-[#ED1C24] text-white  font-medium text-[25px] leading-[1] text-center capitalize py-[20px] rounded-t-[15px] tracking-wide";
-  titleBar.innerText = pkg.title;
+  titleBar.innerHTML = pkg.title;
   downCard.appendChild(titleBar);
 
   // Tabs
@@ -179,7 +179,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
 
   // Button
   const buyBtn = document.createElement("button");
-  buyBtn.className = "acheter-button mt-1";
+  buyBtn.className = `acheter-button mt-1 ${lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"}`;
   buyBtn.innerText = lang === "ar" ? "شراء" : "ACHETER";
   buyBtn.onclick = () => onBuy();
   downCard.appendChild(buyBtn);
