@@ -5,11 +5,11 @@ const styles = {
   card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
   cardHeader: "bg-ooredoo-red flex items-center justify-center px-6 py-6 text-center",
   cardName: "font-medium text-[32px] leading-[100%] tracking-[0] capitalize text-white text-center align-middle",
-  cardContent: "p-6 flex flex-col flex-1 justify-between",
+  cardContent: "p-6 flex flex-col justify-between",
   dataTitle: "text-2xl font-semibold text-ooredoo-red mb-3",
   featuresList: "list-none p-0 m-0",
   featureIconBase: "w-5 h-5 flex-shrink-0 mr-3",
-  featureText: "flex-1",
+  featureText: "whitespace-nowrap",
   divider: "dima-divider",
   priceContainer: "text-center mb-2 py-4",
   priceAmount: "font-semibold text-[2rem] capitalize dark:text-white font-rubik",
@@ -112,18 +112,33 @@ if (!document.getElementById("dima-shahid-styles")) {
 // Card renderer with purchase button functionality
 function renderShahidCard(plan, isArabic, index) {
   return `
-    <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${styles.card} mx-2">
+    <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${styles.card}">
       <div class="${styles.cardHeader}">
         <h2 class="${styles.cardName}">${plan.name}</h2>
       </div>
       <div class="${styles.cardContent}">
         <div>
-          <ul class="${styles.featuresList}">
-            ${plan.features
+          <ul class="">
+              ${plan.features
               .map(
-                (f) => `
+                (f, i) => `
               <li class="text-base leading-relaxed flex items-center gap-2 mb-3 text-gray-800 dark:text-gray-200">
-                <img src="./assets/images/dima/checkbox.svg" class="${styles.featureIconBase}" alt="✓" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+                  <rect y="0.422852" width="14.91" height="14.91" rx="7.455" fill="#E31D23"/>
+                  <g clip-path="url(#clip0_113_17964)">
+                  <g clip-path="url(#clip1_113_17964)">
+                  <path d="M4.22656 7.87927L6.37732 10.03L10.6788 5.72852" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_113_17964">
+                  <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91211 3.33594)"/>
+                  </clipPath>
+                  <clipPath id="clip1_113_17964">
+                  <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91016 3.33691)"/>
+                  </clipPath>
+                  </defs>
+                </svg>
                 <span class="${styles.featureText}">${f}</span>
               </li>`
               )
@@ -418,15 +433,15 @@ export default class DigitalShahidServices {
             ${isArabic ? "اشتراكات شاهد" : "FORFAIT SHAHID"}
           </h2>
 
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-3 gap-y-5 items-stretch">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-5 items-stretch">
             
             <!-- Card 1 -->
-            <div class="flex items-stretch mx-2 justify-center">
+            <div class="flex justify-center">
               ${renderShahidCard(plans[0], isArabic, 0)}
             </div>
 
             <!-- Card 2 -->
-            <div class="flex items-stretch mx-2 justify-center">
+            <div class="flex justify-center">
               ${renderShahidCard(plans[1], isArabic, 1)}
             </div>
 
