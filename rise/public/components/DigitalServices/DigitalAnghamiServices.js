@@ -13,7 +13,7 @@ const styles = {
   divider: "dima-divider",
   priceContainer: "text-center mb-2",
   priceAmount: "font-rubik font-semibold text-[2rem] capitalize dark:text-white",
-  priceDa: "font-rubik font-semibold text-lg capitalize dark:text-white",
+  priceDa: `font-semibold text-lg capitalize dark:text-white`,
   priceDuration: "font-semibold text-lg capitalize dark:text-white",
   buttonWrap: "flex justify-center mt-2",
   acheterButton: "acheter-button",
@@ -135,7 +135,7 @@ function renderAnghamiCard(plan, isArabic) {
           <div class="${styles.priceContainer} flex items-center justify-center gap-2">
             <span class="${styles.priceAmount}">${plan.price}</span>
             <div class="flex items-center gap-0">
-              <span class="${styles.priceDa}">${isArabic ? "دج" : "DA"}/</span>
+              <span class="${styles.priceDa} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"}">${isArabic ? "دج" : "DA"}/</span>
               <span class="${styles.priceDuration}">${plan.duration}</span>
             </div>
           </div>
