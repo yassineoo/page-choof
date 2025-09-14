@@ -22,7 +22,7 @@ export const bitdefenderPlans = [
       "تحليل نقاط الضعف ومنع هجمات الشبكة.",
     ],
     price: "200",
-    duration: "30 Jour",
+    duration: "30 jours",
     durationAr: "30 يوم",
   },
   {
@@ -44,7 +44,7 @@ export const bitdefenderPlans = [
       "منع التعرض وسوء الاستخدام العرضي للبيانات لجميع التطبيقات المثبتة.",
     ],
     price: "180",
-    duration: "30 Jour",
+    duration: "30 jours",
     durationAr: "30 يوم",
   },
 ];

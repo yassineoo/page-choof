@@ -151,7 +151,7 @@ export default class DigitalAnghamiServices {
                 <img src="./assets/images/services/anghami.svg" alt="Anghami"
                   class="w-36 md:w-48 h-auto"/>
                 <span class="text-4xl font-bold mx-4 text-black dark:text-white">&</span>
-                <img src="./assets/images/services/ofn.svg" alt="OSN+"
+                <img src="./assets/images/services/osn.svg" alt="OSN+"
                   class="w-36 md:w-48 h-auto"/>
               </div>
               <h3 class="font-semibold text-xl leading-relaxed tracking-wide mb-4 text-black dark:text-white">

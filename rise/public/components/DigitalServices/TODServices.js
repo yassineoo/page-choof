@@ -233,16 +233,12 @@ export default class TODServices {
     this.container = container;
     this.currentLang = this.getLang();
     this.injectStyles();
+    this.init();
+  }
 
-    window.addEventListener("languageChanged", () => {
-      const lang = this.getLang();
-      if (lang !== this.currentLang) {
-        this.currentLang = lang;
-        this.render();
-      }
-    });
-
+  init() {
     this.render();
+    this.bindEvents();
   }
 
   // Inject enhanced styles
@@ -258,6 +254,48 @@ export default class TODServices {
   getLang() {
     const stored = localStorage.getItem("language");
     return ["fr", "ar"].includes(stored) ? stored : "fr";
+  }
+
+  bindEvents() {
+    this.unbindEvents();
+
+    this.boundHandleLanguageChange = this.handleLanguageChange.bind(this);
+    window.addEventListener("languageChanged", this.boundHandleLanguageChange);
+
+    this.langPoller = setInterval(this.checkLanguageChange.bind(this), 200);
+
+    this.boundStorageListener = (e) => {
+      if (e.key === "language") {
+        this.handleLanguageChange();
+      }
+    };
+    window.addEventListener("storage", this.boundStorageListener);
+  }
+
+  unbindEvents() {
+    if (this.boundHandleLanguageChange) {
+      window.removeEventListener("languageChanged", this.boundHandleLanguageChange);
+    }
+    if (this.boundStorageListener) {
+      window.removeEventListener("storage", this.boundStorageListener);
+    }
+    if (this.langPoller) {
+      clearInterval(this.langPoller);
+      this.langPoller = null;
+    }
+  }
+
+  handleLanguageChange() {
+    const newLang = this.getLang();
+    if (newLang !== this.currentLang) {
+      console.log(`TODServices: Language changed from ${this.currentLang} to ${newLang}`);
+      this.currentLang = newLang;
+      this.render();
+    }
+  }
+
+  checkLanguageChange() {
+    this.handleLanguageChange();
   }
 
   render() {
@@ -399,5 +437,9 @@ export default class TODServices {
     hook.querySelector(".fixed").onclick = (e) => {
       if (e.target.classList.contains("fixed")) closeModal();
     };
+  }
+
+  destroy() {
+    this.unbindEvents();
   }
 }

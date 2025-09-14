@@ -138,7 +138,9 @@ function renderAnghamiCard(plan, isArabic) {
             <span class="${styles.priceDuration}">${plan.duration}</span>
           </div>
           <div class="${styles.buttonWrap}">
-            <button class="${styles.acheterButton} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} anghami-purchase-btn" data-offer-name="${plan.name}">
+            <button class="${styles.acheterButton} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} anghami-purchase-btn" data-offer-name="${
+    plan.name
+  }">
               ${isArabic ? "شراء" : "ACHETER"}
             </button>
           </div>
@@ -153,19 +155,16 @@ export default class DigitalAnghamiServices {
     this.container = container;
     this.currentLang = this.getLang();
     this.previouslyFocusedElement = null;
+    this.init();
+  }
+
+  init() {
     this.render();
     this.setupEventListeners();
+    this.bindEvents();
   }
 
   setupEventListeners() {
-    window.addEventListener("languageChanged", () => {
-      const lang = this.getLang();
-      if (lang !== this.currentLang) {
-        this.currentLang = lang;
-        this.render();
-      }
-    });
-
     // Purchase button event delegation
     this.container.addEventListener("click", this.handlePurchaseClick.bind(this));
   }
@@ -173,6 +172,48 @@ export default class DigitalAnghamiServices {
   getLang() {
     const stored = localStorage.getItem("language");
     return ["fr", "ar"].includes(stored) ? stored : "fr";
+  }
+
+  bindEvents() {
+    this.unbindEvents();
+
+    this.boundHandleLanguageChange = this.handleLanguageChange.bind(this);
+    window.addEventListener("languageChanged", this.boundHandleLanguageChange);
+
+    this.langPoller = setInterval(this.checkLanguageChange.bind(this), 200);
+
+    this.boundStorageListener = (e) => {
+      if (e.key === "language") {
+        this.handleLanguageChange();
+      }
+    };
+    window.addEventListener("storage", this.boundStorageListener);
+  }
+
+  unbindEvents() {
+    if (this.boundHandleLanguageChange) {
+      window.removeEventListener("languageChanged", this.boundHandleLanguageChange);
+    }
+    if (this.boundStorageListener) {
+      window.removeEventListener("storage", this.boundStorageListener);
+    }
+    if (this.langPoller) {
+      clearInterval(this.langPoller);
+      this.langPoller = null;
+    }
+  }
+
+  handleLanguageChange() {
+    const newLang = this.getLang();
+    if (newLang !== this.currentLang) {
+      console.log(`DigitalAnghamiServices: Language changed from ${this.currentLang} to ${newLang}`);
+      this.currentLang = newLang;
+      this.render();
+    }
+  }
+
+  checkLanguageChange() {
+    this.handleLanguageChange();
   }
 
   convertToLatinNumerals(text) {
@@ -442,8 +483,8 @@ export default class DigitalAnghamiServices {
               <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl text-center text-gray-800 dark:text-gray-200">
                 ${
                   isArabic
-                    ? `<p>سارعوا للحصول على اشتراك  <span class="font-semibold">OSN+ & ANGHAMI</span> واستمتعوا <span class="font-semibold">بمحتوياتكم المفضلة</span> بالإضافة إلى حجم إنترنت بـ 1000 دج!</p>`
-                    : `<p>Obtenez dès maintenant un forfait <span class="font-semibold">OSN+</span> & <span class="font-semibold">ANGHAMI</span> pour plonger dans <span class="font-semibold">une expérience de streaming exceptionnelle</span> et profiter d’un volume internet pour 1000 DA !</p>`
+                    ? `<p>سارعوا للحصول على اشتراك  <span class="font-semibold">OSN+ & ANGHAMI</span> واستمتعوا <span class="font-semibold">بمحتوياتكم المفضلة</span> بالإضافة إلى حجم إنترنت بـ 1000 دج!</p>`
+                    : `<p>Obtenez dès maintenant un forfait <span class="font-semibold">OSN+</span> & <span class="font-semibold">ANGHAMI</span> pour plonger dans <span class="font-semibold">une expérience de streaming exceptionnelle</span> et profiter d'un volume internet pour 1000 DA !</p>`
                 }
               </div>
             </div>
@@ -457,5 +498,9 @@ export default class DigitalAnghamiServices {
       </div>
       <div id="anghami-modal-container"></div>
     `;
+  }
+
+  destroy() {
+    this.unbindEvents();
   }
 }
