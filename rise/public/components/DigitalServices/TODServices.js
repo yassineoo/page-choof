@@ -334,8 +334,8 @@ export default class TODServices {
   handleBuyClick(selection, lang) {
     const isArabic = lang === "ar";
     const confirmMsg = isArabic
-      ? `احصل على دخول إلى ${selection.duration.giga}Go + ${selection.package.type} إنترنت صالحين شهر بـ ${selection.duration.price} دج.`
-      : `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go d'internet valables ${selection.duration.months} pour ${selection.duration.price} DA.`;
+      ? `احصل على دخول إلى ${selection.duration.giga}Go + ${selection.package.type} إنترنت صالحين شهر بـ <span class="whitespace-nowrap">${selection.duration.price} دج.</span>`
+      : `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go d'internet valables ${selection.duration.months} pour <span class="whitespace-nowrap">${selection.duration.price} DA.</span>`;
     const congratsMsg = isArabic
       ? `لقد قمت بتفعيل اشتراكك  ${selection.package.type} + ${selection.duration.giga}Go بنجاح. قم بتحميل TOD الآن على هذا <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">الرابط</a>.`
       : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur ce lien <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">Cliquez ici</a>.`;

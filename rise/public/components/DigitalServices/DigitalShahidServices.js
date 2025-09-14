@@ -147,10 +147,12 @@ function renderShahidCard(plan, isArabic, index) {
         </div>
         <div>
           <div class="${styles.divider}"></div>
-          <div class="${styles.priceContainer}">
+          <div class="${styles.priceContainer} flex items-center gap-2 justify-center">
             <span class="${styles.priceAmount}">${plan.price}</span>
-            <span class="${styles.priceDa}">${isArabic ? "دج" : "DA"}/</span>
-            <span class="${styles.priceDuration}">${plan.duration}</span>
+            <div class="flex items-center gap-0">
+              <span class="${styles.priceDa}">${isArabic ? "دج" : "DA"}/</span>
+              <span class="${styles.priceDuration}">${plan.duration}</span>
+            </div>
           </div>
           <div class="${styles.buttonWrap}">
             <button class="${styles.acheterButton} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} shahid-purchase-btn" data-offer-name="${
