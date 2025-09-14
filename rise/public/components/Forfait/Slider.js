@@ -393,7 +393,7 @@ export class Slider {
 
     setTimeout(() => {
       const swiper = new Swiper(container.querySelector(".swiper"), {
-        slidesPerView: 1.2,
+        slidesPerView: 1.3,
         spaceBetween: 8,
         centeredSlides: true,
         loop: false,
