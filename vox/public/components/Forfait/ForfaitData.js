@@ -82,7 +82,7 @@ ar: {
   forfaits: [
     {
       name: "اشتراك 1500",
-      data: "40Go إنترنت",
+      data: "<span class='font-rubik'>40Go</span> إنترنت",
       features: ["يوتيوب غير محدود"],
       price: "1500 ",
       duration: "دورة فوترة",
@@ -90,15 +90,15 @@ ar: {
     },
     {
       name: "اشتراك 1000",
-      data: "15Go إنترنت",
-      features: ["5Go يوتيوب"],
+      data: "<span class='font-rubik'>15Go</span> إنترنت",
+      features: ["<span class='font-rubik'>5Go</span> يوتيوب"],
       price: "1000 ",
       duration: "دورة فوترة",
       buy: "شراء"
     },
     {
       name: "اشتراك 500",
-      data: "12Go إنترنت",
+      data: "<span class='font-rubik'>12Go</span> إنترنت",
       features: [],
       price: "500 ",
       duration: "دورة فوترة",
@@ -107,7 +107,7 @@ ar: {
     
     {
       name: "اشتراك 300",
-      data: "3Go إنترنت",
+      data: "<span class='font-rubik'>3Go</span> إنترنت",
       features: ["يوتيوب غير محدود"],
       price: "300 ",
       duration: "72 ساعة",
@@ -115,7 +115,7 @@ ar: {
     },
     {
       name: "اشتراك 100",
-      data: "700Mo إنترنت",
+      data: "<span class='font-rubik'>700Mo</span> إنترنت",
       features: ["يوتيوب غير محدود"],
       price: "100 ",
       duration: "24 ساعة",
@@ -126,17 +126,17 @@ ar: {
     {
       name: "Smart 200",
       data: "إنترنت مجاني",
-      features: ["600 دج رصيد"],
+      features: ["<span class='font-rubik'>600</span> دج رصيد"],
       price: "200 ",
       duration: "24 ساعة",
       buy: "شراء"
     },
     {
       name: "Smart 100",
-      data: "500Mo إنترنت",
+      data: "<span class='font-rubik'>500Mo</span> إنترنت",
       features: [
         "فايسبوك & ماسنجر مجانيين",
-        "100 دج رصيد"
+        "<span class='font-rubik'>100</span> دج رصيد"
       ],
       price: "100 ",
       duration: "24 ساعة",
@@ -144,7 +144,7 @@ ar: {
     },
     {
       name: "Smart 50",
-      data: "200Mo إنترنت",
+      data: "<span class='font-rubik'>200Mo</span> إنترنت",
       features: [],
       price: "50 ",
       duration: "24 ساعة",

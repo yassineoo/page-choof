@@ -225,14 +225,14 @@ export class Slider {
           <div class="">
             <div class="border-b-[1px] border-b-[#BBBEBE] border-dashed text-center py-3">
               <h2 class="font-medium text-2xl text-center capitalize dark:text-white leading-tight">
-                ${offer.price} ${currencyLabel}
+                <span class="font-rubik">${offer.price}</span> ${currencyLabel}
               </h2>
             </div>
             <div class="h-[54px] my-4 text-center px-[20px] justify-center text-xl">
               <p>${offer.data}</p>
             </div>
             <div class="text-center">
-              <p class="font-semibold text-3xl py-4">${offer.price} <span class="text-lg">${currencyLabel}</span></p>
+              <p class="font-semibold text-3xl py-4"><span class="font-rubik">${offer.price}</span> <span class="text-lg">${currencyLabel}</span></p>
               <p class="text-sm">${isRTL ? "حسب صلاحية الاشتراك الجاري" : "Suit la validité du forfait en cours"}</p>
             </div>
           </div>

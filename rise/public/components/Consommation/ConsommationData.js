@@ -154,7 +154,7 @@ export const consommationData = {
             unit: "دج",
             date: "26/05/25",
             percentage: 50,
-            extra: "/2500 دج",
+            extra: "<span class='font-rubik'>/2500</span> دج",
           },
         ],
       },

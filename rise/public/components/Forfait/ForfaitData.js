@@ -277,7 +277,7 @@ export default {
       },
       {
         name: "300 دج",
-        data: "600 دج رصيد مُهدى",
+        data: "<span>600</span> دج رصيد مُهدى",
         price: "300",
         buy: "Acheter",
       },
