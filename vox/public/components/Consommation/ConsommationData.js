@@ -196,7 +196,7 @@ export const consommationData = {
             unit: "دج",
             date: "26/05/25",
             percentage: 50,
-            extra: "/2500 دج",
+            extra: "<span class=\"font-rubik\">/2500</span> دج",
           },
           {
             subIcon: "dollar-phone",
@@ -205,7 +205,7 @@ export const consommationData = {
             unit: "دج",
             date: "26/05/25",
             percentage: 100,
-            extra: "/100 دج",
+            extra: "<span class=\"font-rubik\">/100</span> دج",
           },
         ],
       },

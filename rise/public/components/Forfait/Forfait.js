@@ -870,7 +870,7 @@ class ForfaitComponent {
           ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
         </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-[clamp(1rem,5vw,5rem)]">
-          <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-lg font-outfit whitespace-nowrap">${
+          <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit">${
             this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "DECOUVREZ NOS SERVICES NUMERIQUES"
           }</h1>
           <div class="grid grid-cols-5 md:flex items-center gap-2 mt-10 md:mb-16 flex-wrap">

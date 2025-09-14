@@ -214,10 +214,11 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             </div>
             <div class="flex items-center gap-2">
               <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 flex-shrink-0" />
-              <span class="font-rubik font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white text-sm md:text-lg ${fontClass}">${formatCredit(
-    userData.credit,
-    language
-  )}</span>
+              <span class="${fontClass}  ${
+    language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+  } font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
+  ${formatCredit(userData.credit, language)}
+</span>
             </div>
           </div>
           <div class="flex items-center gap-2 mb-4">
