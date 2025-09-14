@@ -185,14 +185,14 @@ export const consommationData = {
           {
             subIcon: "dollar-phone",
             subtitle: "رصيد التعبئة",
-            value: "4000",
+            value: "<span class=\"font-rubik\">4000</span>",
             unit: "دج",
             date: "26/05/25",
           },
           {
             subIcon: "dollar-phone",
             subtitle: "رصيد مُهدى",
-            value: "1250",
+            value: "<span class=\"font-rubik\">1250</span>",
             unit: "دج",
             date: "26/05/25",
             percentage: 50,
@@ -201,7 +201,7 @@ export const consommationData = {
           {
             subIcon: "dollar-phone",
             subtitle: "رصيد يومي",
-            value: "100",
+            value: "<span class=\"font-rubik\">100</span>",
             unit: "دج",
             date: "26/05/25",
             percentage: 100,

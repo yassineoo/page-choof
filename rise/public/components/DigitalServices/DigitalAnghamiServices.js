@@ -416,7 +416,7 @@ export default class DigitalAnghamiServices {
             ${isArabic ? "اشتراك OSN+ & ANGHAMI" : "forfait OSN+ & ANGHAMI"}
           </h2>
         </div>
-        <div class="mx-auto px-2 sm:px-4 pt-12 w-full max-w-screen-xl" ${isArabic ? 'dir="rtl"' : ""}>
+        <div class="mx-auto pt-12 w-full max-w-screen-xl" ${isArabic ? 'dir="rtl"' : ""}>
           <div class="flex flex-col-reverse lg:flex-row w-full gap-8 items-center">
             <!-- Logos & Description (left on desktop, top on mobile) -->
             <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">

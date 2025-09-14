@@ -67,7 +67,7 @@ export class Slider {
       <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 400px;">
         <div class="h-full pb-6" ${isRTL ? `dir="rtl"` : ``}>
           <div class="h-14 -mx-[0.84px] bg-ooredoo-red flex items-center justify-center p-5">
-            <h2 class="text-white font-rubik text-2xl font-medium text-center capitalize dark:text-white leading-tight">
+            <h2 class="text-white font-rubik text-xl md:text-2xl font-medium text-center capitalize dark:text-white leading-tight">
               ${offer.name}
             </h2>
           </div>
@@ -130,13 +130,13 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="relative md:w-[340px] flex flex-col mx-auto overflow-hidden">
+      <div class="relative w-full max-w-[350px] flex flex-col mx-auto overflow-hidden">
         <div class="mb-2 h-[45px] flex items-center gap-1 justify-center text-ooredoo-red dark:text-white bg-[#ED1C2421] dark:bg-[#ED1C2421]/60 rounded-full font-semibold text-center">
           <span class="font-rubik">${offer.topLabel}</span> ${isRTL ? "للسنة " : "PAR AN"}
         </div>
         <div class="h-full bg-white dark:bg-[#2C2C2C] pb-6 rounded-xl border-[1px] border-ooredoo-red dark:border-white"}>
           <div class="h-14 bg-ooredoo-red dark:border-ooredoo-red -m-[1px] border-2 flex items-center justify-center rounded-t-xl">
-            <h2 class="text-white font-bold text-[25px]  text-center capitalize dark:text-white leading-tight">
+            <h2 class="text-white font-bold text-[20px] md:text-[25px]  text-center capitalize dark:text-white leading-tight">
               <span class="font-rubik">${offer.price}</span> ${currencyLabel}
             </h2>
           </div>
@@ -150,22 +150,22 @@ export class Slider {
           <div class="flex-1 py-4 text-center border-b-[1px] border-t-[1px] border-t-[#BBBEBE] border-b-[#BBBEBE] border-dashed">
             <p>${this.currentLang === "ar" ? "قوموا بشراء" : "Payez"}</p>
             <p class="text-ooredoo-red text-xl font-bold">${this.currentLang === "ar" ? "<span class='font-rubik'>10</span> اشتراكات" : "10 forfaits"}</p>
-            <p class="font-semibold text-xl font-rubik">Ooredoo Internet ${offer.sub}</p>
+            <p class="font-semibold text-lg md:text-xl font-rubik">Ooredoo Internet ${offer.sub}</p>
             <p>${isRTL ? "و" : "&"}</p>
             <p>${this.currentLang === "ar" ? "احصلوا على" : "Obtenez"}</p>
             <p class="text-ooredoo-red font-bold text-xl">${this.currentLang === "ar" ? "اشتراكين مجانا" : "2 gratuits"} !</p>
           </div>
 
-          <div class="p-4 flex items-center justify-between">
+          <div class="py-4 px-2 flex items-center justify-between">
             <div class="text-center">
               <p class="text-sm">${this.currentLang === "ar" ? "احصلوا على" : "Recevez"}</p>
-              <p class="font-semibold text-xl"><span class="font-rubik">12</span> ${this.currentLang === "ar" ? "اشتراك" : "forfaits"}</p>
+              <p class="font-semibold text-lg md:text-xl"><span class="font-rubik">12</span> ${this.currentLang === "ar" ? "اشتراك" : "forfaits"}</p>
             </div>
             <div class="text-center">
               <p class="text-[#7F7F7F] font-semibold text-xl">
                 <span class="font-rubik line-through decoration-red-500">${offer.oldPrice}</span> <span class="text-sm">${currencyLabel}</span>
               </p>
-              <p class="font-semibold text-3xl"><span class="font-rubik">${offer.price}</span> ${currencyLabel}</p>
+              <p class="font-semibold text-2xl md:text-3xl"><span class="font-rubik">${offer.price}</span> ${currencyLabel}</p>
             </div>
           </div>
 
@@ -393,8 +393,8 @@ export class Slider {
 
     setTimeout(() => {
       const swiper = new Swiper(container.querySelector(".swiper"), {
-        slidesPerView: 1.3,
-        spaceBetween: 10,
+        slidesPerView: 1.2,
+        spaceBetween: 8,
         centeredSlides: true,
         loop: false,
         rtl: isRTL,

@@ -1226,7 +1226,7 @@ export default class DigitalBitdefenderServices {
           }
 
           <!-- Buttons -->
-          <div class="bitdefender-modal-buttons flex flex-row items-center justify-center gap-3 mt-8">
+          <div class="bitdefender-modal-buttons flex flex-row flex-nowrap items-center justify-center gap-3 mt-8">
             ${buttons}
           </div>
         </div>
@@ -1247,7 +1247,7 @@ export default class DigitalBitdefenderServices {
     const baseBtnClass = `
     relative group overflow-hidden transition-all duration-300 
     text-sm sm:text-base lg:text-[17.65px] font-medium sm:font-semibold uppercase 
-    h-[42px] sm:h-[44px] lg:h-[47.07px] min-w-[160px]
+    h-[42px] sm:h-[44px] lg:h-[47.07px] min-w-[100px] sm:min-w-[160px]
     px-[20px] sm:px-[30px] lg:px-[34.13px] 
     rounded-[25px] lg:rounded-[28.24px] flex items-center justify-center
   `;
