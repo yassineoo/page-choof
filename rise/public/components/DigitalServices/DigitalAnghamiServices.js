@@ -454,7 +454,7 @@ export default class DigitalAnghamiServices {
       <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-16">
         <div>
           <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
-            ${isArabic ? "اشتراك OSN+ & ANGHAMI" : "forfait OSN+ & ANGHAMI"}
+            ${isArabic ? "اشتراك <span class='font-rubik'>OSN+ & ANGHAMI</span>" : "forfait OSN+ & ANGHAMI"}
           </h2>
         </div>
         <div class="mx-auto pt-12 w-full max-w-screen-xl" ${isArabic ? 'dir="rtl"' : ""}>
@@ -483,7 +483,7 @@ export default class DigitalAnghamiServices {
               <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl text-center text-gray-800 dark:text-gray-200">
                 ${
                   isArabic
-                    ? `<p>سارعوا للحصول على اشتراك  <span class="font-semibold">OSN+ & ANGHAMI</span> واستمتعوا <span class="font-semibold">بمحتوياتكم المفضلة</span> بالإضافة إلى حجم إنترنت بـ 1000 دج!</p>`
+                    ? `<p>سارعوا للحصول على اشتراك  <span class="font-semibold font-rubik">OSN+ & ANGHAMI</span> واستمتعوا <span class="font-semibold">بمحتوياتكم المفضلة</span> بالإضافة إلى حجم إنترنت بـ <span class="font-rubik">1000</span> دج!</p>`
                     : `<p>Obtenez dès maintenant un forfait <span class="font-semibold">OSN+</span> & <span class="font-semibold">ANGHAMI</span> pour plonger dans <span class="font-semibold">une expérience de streaming exceptionnelle</span> et profiter d'un volume internet pour 1000 DA !</p>`
                 }
               </div>

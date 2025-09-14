@@ -271,7 +271,7 @@ export default {
     hadraForfaits: [
       {
         name: "200 دج",
-        data: "مكالمات غير محدودة نحو اوريدو",
+        data: "مكالمات غير محدودة نحو <span class=\"font-rubik\">Ooredoo</span>",
         price: "200",
         buy: "Acheter",
       },

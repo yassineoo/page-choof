@@ -81,7 +81,6 @@ export default class DigitalFreeFireServices {
         text-center mb-6
         ${isDark ? "text-[#CDCDCD]" : "text-gray-700"}
         leading-relaxed
-        flex-1 flex items-center justify-center
         w-3/5 mx-auto
       `,
 

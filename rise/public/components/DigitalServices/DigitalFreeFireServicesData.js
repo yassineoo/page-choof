@@ -4,7 +4,7 @@ export const freeFireData = {
     button: "OBTENEZ MAINTENANT!",
   },
   ar: {
-    description: "احصل على جواهر Free Fire الخاصة بك من خلال الضغط على الزر أدناه ",
+    description: "احصل على جواهر  <span class='font-rubik'>Free Fire</span> الخاصة بك من خلال الضغط على الزر أدناه ",
     button: "احصل الآن!",
   },
 };

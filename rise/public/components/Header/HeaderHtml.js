@@ -190,7 +190,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             <div class="flex items-center justify-end gap-3 lg:gap-4 flex-shrink-0">
               <div class="flex items-center gap-2">
                 <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
-             <span class="${fontClass}  ${
+             <span class="${
     language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
   } font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
   ${formatCredit(userData.credit, language)}
@@ -210,7 +210,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             </div>
             <div class="flex items-center gap-2">
               <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 flex-shrink-0" />
-              <span class="font-rubik font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white text-sm md:text-lg ${fontClass}">${formatCredit(
+              <span class="font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white text-sm md:text-lg ${fontClass}">${formatCredit(
     userData.credit,
     language
   )}</span>
@@ -218,9 +218,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           </div>
           <div class="flex items-center gap-2 mb-4">
             <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
-            <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white text-sm md:text-lg">${
-              companyHTML || "Nom De L'entreprise"
-            }</span>
+            <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
+                  (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offer ") + offerHTML
+                }</span>
           </div>
           <div class="flex items-center justify-end gap-3">
             <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red  rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">

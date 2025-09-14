@@ -11,7 +11,7 @@ export const anghamiPlan = {
     id: "osnAngami1000",
     name: "OSN+ & ANGHAMI 1000",
     data: "10Go إنترنت",
-    features: ["دخول حصري إلى التطبيقين OSN+ & ANGHAMI", " 10Go إنترنت"],
+    features: ["دخول حصري إلى التطبيقين <span class='font-rubik'>OSN+ & ANGHAMI</span>", " <span class='font-rubik'>10Go</span> إنترنت"],
     price: "1000",
     duration: "30 يوم",
   },
