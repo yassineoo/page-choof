@@ -120,8 +120,8 @@ function renderShahidCard(plan, isArabic, index) {
         <div>
           <ul class="">
               ${plan.features
-              .map(
-                (f, i) => `
+                .map(
+                  (f, i) => `
               <li class="text-base leading-relaxed flex items-center gap-2 mb-3 text-gray-800 dark:text-gray-200">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
                   <rect y="0.422852" width="14.91" height="14.91" rx="7.455" fill="#E31D23"/>
@@ -141,8 +141,8 @@ function renderShahidCard(plan, isArabic, index) {
                 </svg>
                 <span class="${styles.featureText}">${f}</span>
               </li>`
-              )
-              .join("")}
+                )
+                .join("")}
           </ul>
         </div>
         <div>
@@ -170,19 +170,16 @@ export default class DigitalShahidServices {
     this.container = container;
     this.currentLang = this.getLang();
     this.previouslyFocusedElement = null;
+    this.init();
+  }
+
+  init() {
     this.render();
     this.setupEventListeners();
+    this.bindEvents();
   }
 
   setupEventListeners() {
-    window.addEventListener("languageChanged", () => {
-      const lang = this.getLang();
-      if (lang !== this.currentLang) {
-        this.currentLang = lang;
-        this.render();
-      }
-    });
-
     // Purchase button event delegation
     this.container.addEventListener("click", this.handlePurchaseClick.bind(this));
   }
@@ -190,6 +187,48 @@ export default class DigitalShahidServices {
   getLang() {
     const stored = localStorage.getItem("language");
     return ["fr", "ar"].includes(stored) ? stored : "fr";
+  }
+
+  bindEvents() {
+    this.unbindEvents();
+
+    this.boundHandleLanguageChange = this.handleLanguageChange.bind(this);
+    window.addEventListener("languageChanged", this.boundHandleLanguageChange);
+
+    this.langPoller = setInterval(this.checkLanguageChange.bind(this), 200);
+
+    this.boundStorageListener = (e) => {
+      if (e.key === "language") {
+        this.handleLanguageChange();
+      }
+    };
+    window.addEventListener("storage", this.boundStorageListener);
+  }
+
+  unbindEvents() {
+    if (this.boundHandleLanguageChange) {
+      window.removeEventListener("languageChanged", this.boundHandleLanguageChange);
+    }
+    if (this.boundStorageListener) {
+      window.removeEventListener("storage", this.boundStorageListener);
+    }
+    if (this.langPoller) {
+      clearInterval(this.langPoller);
+      this.langPoller = null;
+    }
+  }
+
+  handleLanguageChange() {
+    const newLang = this.getLang();
+    if (newLang !== this.currentLang) {
+      console.log(`DigitalShahidServices: Language changed from ${this.currentLang} to ${newLang}`);
+      this.currentLang = newLang;
+      this.render();
+    }
+  }
+
+  checkLanguageChange() {
+    this.handleLanguageChange();
   }
 
   convertToLatinNumerals(text) {
@@ -468,5 +507,9 @@ export default class DigitalShahidServices {
       </div>
       <div id="shahid-modal-container"></div>
     `;
+  }
+
+  destroy() {
+    this.unbindEvents();
   }
 }
