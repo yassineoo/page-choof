@@ -132,10 +132,12 @@ function renderAnghamiCard(plan, isArabic) {
         </div>
         <div>
           <div class="${styles.divider}"></div>
-          <div class="${styles.priceContainer}">
+          <div class="${styles.priceContainer} flex items-center justify-center gap-2">
             <span class="${styles.priceAmount}">${plan.price}</span>
-            <span class="${styles.priceDa}">${isArabic ? "دج" : "DA"}/</span>
-            <span class="${styles.priceDuration}">${plan.duration}</span>
+            <div class="flex items-center gap-0">
+              <span class="${styles.priceDa}">${isArabic ? "دج" : "DA"}/</span>
+              <span class="${styles.priceDuration}">${plan.duration}</span>
+            </div>
           </div>
           <div class="${styles.buttonWrap}">
             <button class="${styles.acheterButton} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} anghami-purchase-btn" data-offer-name="${
@@ -321,7 +323,7 @@ export default class DigitalAnghamiServices {
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="anghami-modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                  <h2 id="anghami-modal-title" class="font-rubik font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${title}
                   </h2>
               </div>
@@ -330,7 +332,7 @@ export default class DigitalAnghamiServices {
                       ${message}
                   </p>
               </div>
-              <div class="flex justify-center anghami-modal-buttons">${buttons}</div>
+              <div class="flex justify-center flex-nowrap anghami-modal-buttons">${buttons}</div>
           </div>
       </div>
     `;
@@ -345,8 +347,8 @@ export default class DigitalAnghamiServices {
     };
 
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `${fontClass} font-semibold text-base uppercase anghami-modal-button w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `${fontClass} font-semibold text-base uppercase anghami-modal-button w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const primaryBtn = `${fontClass} font-semibold text-base uppercase anghami-modal-button w-28 sm:w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `${fontClass} font-semibold text-base uppercase anghami-modal-button w-28 sm:w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
     const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
 
     const buttonConfigs = {

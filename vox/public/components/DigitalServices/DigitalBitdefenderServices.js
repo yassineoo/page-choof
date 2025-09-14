@@ -520,7 +520,7 @@ export default class DigitalBitdefenderServices {
             <!-- Price Section -->
             <div class="flex justify-center items-baseline w-full">
               <div class="flex items-baseline justify-center gap-2">
-                <span class="${fontClass} font-semibold text-2xl sm:text-3xl leading-none text-black dark:text-white">
+                <span class="font-rubik font-semibold text-2xl sm:text-3xl leading-none text-black dark:text-white">
                   ${plan.price}
                 </span>
                 <span class="${fontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">

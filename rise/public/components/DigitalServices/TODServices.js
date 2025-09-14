@@ -186,8 +186,8 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   const priceRow = document.createElement("div");
   priceRow.className = "flex items-baseline justify-center gap-[10px]";
   priceRow.innerHTML = `
-    <span class="font-semibold font-rubik  text-[clamp(1.5rem,2vw,2.25rem)] dark:text-white">${curr.price}</span>
-    <span class="font-semibold text-[1.09em] dark:text-white">${lang === "ar" ? "دج/" : "DA /"}${curr.months}</span>
+    <span class="font-semibold font-rubik  text-[37.38px] dark:text-white">${curr.price}</span>
+    <span class="font-semibold text-[20px] dark:text-white">${lang === "ar" ? "دج/" : "DA /"}${curr.months}</span>
   `;
   downCard.appendChild(priceRow);
 
@@ -337,7 +337,7 @@ export default class TODServices {
       ? `احصل على دخول إلى ${selection.duration.giga}Go + ${selection.package.type} إنترنت صالحين شهر بـ ${selection.duration.price} دج.`
       : `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go d'internet valables ${selection.duration.months} pour ${selection.duration.price} DA.`;
     const congratsMsg = isArabic
-      ? `لقد قمت بتفعيل اشتراكك ${selection.duration.giga} + ${selection.package.type}Go بنجاح. قم بتحميل TOD الآن على هذا <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">الرابط</a>.`
+      ? `لقد قمت بتفعيل اشتراكك  ${selection.package.type} + ${selection.duration.giga}Go بنجاح. قم بتحميل TOD الآن على هذا <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">الرابط</a>.`
       : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur ce lien <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">Cliquez ici</a>.`;
     const noCreditMsg = isArabic
       ? `عزيزي الزبون، رصيدك غير كافٍٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى..`
