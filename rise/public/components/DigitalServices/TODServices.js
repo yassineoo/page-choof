@@ -102,7 +102,7 @@ function renderLogoBlock({ logo, subLogo, id }) {
 function renderTopCard(pkg, lang) {
   const topCard = document.createElement("div");
   topCard.className =
-    "flex items-center justify-between w-full h-[108px] bg-white dark:bg-[#2C2C2C] dima-card-border mb-2 rounded-[15px] px-[24px] py-[24px]";
+    "flex items-center justify-between w-full h-auto bg-white dark:bg-[#2C2C2C] dima-card-border mb-2 rounded-[15px] px-[24px] py-[24px]";
 
   const logoBlock = renderLogoBlock(pkg);
 
@@ -137,7 +137,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   // Tabs
   const tabs = document.createElement("div");
   tabs.className =
-    "flex items-center w-[390px] h-[41px] gap-[8px] border border-[#ED1C24] rounded-full px-[10px] py-[7px] bg-white dark:bg-[#2C2C2C] mb-[10px] mt-6 shadow-sm";
+    "flex items-center w-[95%] h-[41px] gap-[8px] border border-[#ED1C24] rounded-full px-[10px] py-[7px] bg-white dark:bg-[#2C2C2C] mb-[10px] mt-6 shadow-sm";
   pkg.durations.forEach((d, i) => {
     const tab = document.createElement("button");
     tab.type = "button";
@@ -154,7 +154,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
 
   // Options
   const optsUL = document.createElement("ul");
-  optsUL.className = "flex flex-col gap-y-[9px] w-full px-[15px] mt-2";
+  optsUL.className = "flex flex-col gap-y-[9px] w-full px-[15px] py-5";
   curr.options.forEach((opt) => {
     const li = document.createElement("li");
     li.className = "flex items-center gap-2 text-[15px] font-normal text-[#191919] dark:text-gray-200";
@@ -167,6 +167,20 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   const dash = document.createElement("div");
   dash.className = "dima-divider w-[97%]";
   downCard.appendChild(dash);
+
+  // conditional rendering text for 12 months duration
+  if (currentDuration === 2) {
+    const txt = document.createElement("div");
+  const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
+  txt.className = "text-center text-[14px] font-normal text-[#191919] dark:text-gray-200 px-5 mb-3";
+  txt.innerHTML = lang === "ar" ? 
+  `<div class="${fontClass}">ادفعوا <span class="font-semibold"><span class="font-rubik">10</span> اشهر</span> واحصلوا على <span class="font-semibold">شهرين مجانا</span></div>` 
+  : 
+  `<div class="${fontClass}">Payez <span class="font-semibold">10 mois</span> et obtenez <span class="font-semibold">2 gratuits</span></div>`  
+;
+    downCard.appendChild(txt);
+  }
+  
 
   // Price
   const priceRow = document.createElement("div");
@@ -365,8 +379,8 @@ export default class TODServices {
       </button>
     `;
 
-    const primaryBtn = `flex items-center justify-center rounded-full bg-[#e50012] text-white font-semibold uppercase text-sm min-w-[10rem] py-2 px-5 dark:`;
-    const secondaryBtn = `flex items-center justify-center rounded-full bg-white border-2 border-[#ED1C24] text-[#ED1C24] font-semibold uppercase dark:text-white dark:bg-transparent dark:border-white text-sm min-w-[10rem] py-2 px-5 transition`;
+    const primaryBtn = `flex items-center justify-center rounded-full bg-[#e50012] text-white font-semibold uppercase text-sm min-w-[8rem] sm:min-w-[10rem] py-2 px-5 dark:`;
+    const secondaryBtn = `flex items-center justify-center rounded-full bg-white border-2 border-[#ED1C24] text-[#ED1C24] font-semibold uppercase dark:text-white dark:bg-transparent dark:border-white text-sm min-w-[8rem] sm:min-w-[10rem] py-2 px-5 transition`;
 
     let buttonsHTML = "";
     if (type === "buy") {
@@ -384,7 +398,7 @@ export default class TODServices {
     }
 
     hook.innerHTML = `
-      <div class="fixed inset-0 z-[9999] flex items-center justify-center" style="background-color:#696969CC">
+      <div class="fixed inset-0 z-[9999] flex items-center justify-center px-4" style="background-color:#696969CC">
         <div class="relative bg-white  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] mx-auto px-8 pt-14 pb-10">
           ${closeButton}
           <div class="${modalTitleClass}">
@@ -393,7 +407,7 @@ export default class TODServices {
           <div class=" dark:text-white text-[#262626] leading-snug text-center max-w-[70%] mx-auto mb-8">
             ${message}
           </div>
-          <div class="flex flex-wrap justify-center gap-3">
+          <div class="flex flex-nowrap justify-center gap-3">
             ${buttonsHTML}
           </div>
         </div>

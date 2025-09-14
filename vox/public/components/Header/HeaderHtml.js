@@ -71,7 +71,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
     const currency = language === "ar" ? "دج" : "DA";
     // Remove existing DA or دج if present
     const cleanCredit = creditValue.replace(/\s*(DA|دج)\s*$/i, "");
-    return `${cleanCredit} ${currency}`;
+    return `<span class="font-rubik">${cleanCredit}</span> ${currency}`;
   };
   return `
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Noto+Kufi+Arabic&display=swap" rel="stylesheet" />

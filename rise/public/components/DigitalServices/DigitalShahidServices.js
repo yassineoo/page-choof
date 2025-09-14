@@ -2,7 +2,7 @@ import { shahidPlans, shahidDescription, shahidModalData } from "./DigitalShahid
 
 // Card style constants - Updated to match Dima sizing and styling
 const styles = {
-  card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
+  card: "w-full max-w-[30rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
   cardHeader: "bg-ooredoo-red flex items-center justify-center px-6 py-6 text-center",
   cardName: "font-medium text-[32px] leading-[100%] tracking-[0] capitalize text-white text-center align-middle",
   cardContent: "p-6 flex flex-col justify-between",
@@ -345,7 +345,7 @@ export default class DigitalShahidServices {
                       ${message}
                   </p>
               </div>
-              <div class="flex justify-center shahid-modal-buttons">${buttons}</div>
+              <div class="flex justify-center flex-nowrap shahid-modal-buttons">${buttons}</div>
           </div>
       </div>
     `;
@@ -360,8 +360,8 @@ export default class DigitalShahidServices {
     };
 
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `${fontClass} font-semibold text-base uppercase shahid-modal-button w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `${fontClass} font-semibold text-base uppercase shahid-modal-button w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const primaryBtn = `${fontClass} font-semibold text-base uppercase shahid-modal-button w-28 sm:w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `${fontClass} font-semibold text-base uppercase shahid-modal-button w-28 sm:w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
     const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
 
     const buttonConfigs = {
@@ -467,7 +467,7 @@ export default class DigitalShahidServices {
 
     this.container.innerHTML = `
       <div class="${this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-white dark:bg-[#141414] px-5 py-16">
-        <div class="mx-auto px-4 sm:px-6  w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ""}">
+        <div class="mx-auto w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ""}">
           <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white mb-10">
             ${isArabic ? "اشتراكات شاهد" : "FORFAIT SHAHID"}
           </h2>

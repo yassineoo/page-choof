@@ -77,6 +77,24 @@
   font-style: normal;
 }
 
+
+@font-face {
+      font-family: "CustomMix";
+      src: url("https://fonts.gstatic.com/s/rubik/v28/iJWKBXyIfDnIV7nBrXw.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0030-0039; /* Latin + numbers */
+    }
+
+    @font-face {
+      font-family: "CustomMix";
+      src: url("https://fonts.gstatic.com/s/notokufiarabic/v22/LhW7MV7iVSdZ3VQCc4qa7yC1NA.woff2") format("woff2");
+      unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF; /* Arabic */
+    }
+
+    body {
+      font-family: "CustomMix", sans-serif;
+      font-size: 20px;
+    }
+
 /* ===========================
    Base Styles
    =========================== */

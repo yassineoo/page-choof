@@ -580,18 +580,26 @@ export default class Consommation {
       const anghamiIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}anghami-dark.svg` : `${this.config.IMAGE_BASE}anghami.svg`;
 
       const osnIcon = `<img src="${osnIconPath}" style="width:25px;height:25px;" alt="OSN" />`;
-      const anghamiIcon = `<img src="${anghamiIconPath}" style="width:88px;height:23px;" alt="Anghami" />`;
+      const anghamiIcon = `<img src="/assets/images/anghami-icon.svg" style="width: auto;height:23px;" alt="Anghami" />`;
 
       const fontClassForText = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
       const textColor = theme === "dark" ? "text-white" : textClass;
 
       iconsAndTextContent = `
-    <div class="flex items-center gap-2">
-      ${osnIcon}
-      <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
-        OSN & 
-      </span>
-      ${anghamiIcon}
+    <div class="flex items-center gap-1 font-rubik font-medium" ${gapSideMargin}">
+      <div class="flex items-center gap-0.5">
+        ${osnIcon}
+        <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
+          ${isRTL ? "+OSN" : "OSN+"}
+        </span>
+      </div>
+      &
+      <div class="flex items-center gap-0.5">
+        ${anghamiIcon}
+        <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
+          ANGHAMI
+        </span>
+      </div>
     </div>
   `;
     } else {
@@ -713,7 +721,7 @@ export default class Consommation {
       content += `
         <div class="flex justify-start">
           <span class="${lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
-            ${lang === "ar" ? "إلى غاية" : "Expire le"} ${section.date}
+            ${lang === "ar" ? "إلى غاية" : "Expire le"} <span class="font-rubik">${section.date}</span>
           </span>
         </div>
       `;
