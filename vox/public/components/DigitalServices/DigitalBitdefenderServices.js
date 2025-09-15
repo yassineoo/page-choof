@@ -584,12 +584,12 @@ export default class DigitalBitdefenderServices {
             
             <!-- Integrated Header -->
             <div class="rounded-t-xl lg:rounded-t-2xl" style="background-color: #ED1C24;">
-              <div class="flex flex-row items-center justify-around md:justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0">
+              <div class="flex flex-row items-center justify-around md:justify-between p-3 sm:p-4 lg:p-6 gap-3">
                 
                 <!-- Left Side: Logo + Separator + Title -->
                 <div class="flex flex-1 md:flex-none flex-col md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
                   <div class="flex-shrink-0">
-                    <img src="${this.getLogoPath()}" alt="Bitdefender" class="h-8 w-16 sm:h-10 sm:w-20 lg:h-[55px] lg:w-[112px] object-contain filter brightness-0 invert" />
+                    <img src="${this.getLogoPath()}" alt="Bitdefender" class="h-12 w-20 sm:h-16 sm:w-28 lg:h-[55px] lg:w-[112px] object-contain filter brightness-0 invert" />
                   </div>
                   
                   <!-- Vertical Separator - Hidden on mobile -->
@@ -610,7 +610,7 @@ export default class DigitalBitdefenderServices {
                     </p>
                   </div>
                   <div class="flex-shrink-0">
-                    <img src="./assets/images/services/bitdefender/appareils-desktop-dark.svg" alt="Device" class="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-14 object-contain bitdefender-plan-icon" />
+                    <img src="./assets/images/services/bitdefender/appareils-desktop-dark.svg" alt="Device" class="w-28 h-16 sm:w-36 sm:h-20 lg:w-44 lg:h-24 object-contain bitdefender-plan-icon" />
                   </div>
                 </div>
                 
