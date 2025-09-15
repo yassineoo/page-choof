@@ -53,9 +53,6 @@ export class Slider {
     const currencyLabel = isRTL ? "دج" : "DA";
     const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
     const textAlign = isRTL ? "text-right" : "text-left";
-
-    console.log("first", index)
-
     const titleFontClass = this.getFontClass(offer.name);
     const dataFontClass = this.getFontClass(offer.data);
     const buttonFontClass = this.getFontClass(buyLabel);
@@ -205,9 +202,6 @@ export class Slider {
 
     // Also set on the container
     container.dir = isRTL ? "rtl" : "ltr";
-
-    console.log("initSwiper - isRTL:", isRTL, "document.dir:", document.documentElement.dir);
-
     setTimeout(() => {
       const swiper = new Swiper(container.querySelector(".swiper"), {
         slidesPerView: 1.3,

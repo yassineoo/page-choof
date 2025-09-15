@@ -49,7 +49,6 @@ export default class DigitalServicesHeader {
   handleLanguageChange() {
     const newLang = this.getLang();
     if (newLang !== this.currentLang) {
-      console.log(`DigitalServicesHeader: Language changed from ${this.currentLang} to ${newLang}`);
       this.currentLang = newLang;
       this.render();
     }

@@ -208,7 +208,6 @@ export default class DigitalAnghamiServices {
   handleLanguageChange() {
     const newLang = this.getLang();
     if (newLang !== this.currentLang) {
-      console.log(`DigitalAnghamiServices: Language changed from ${this.currentLang} to ${newLang}`);
       this.currentLang = newLang;
       this.render();
     }

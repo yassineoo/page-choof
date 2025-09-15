@@ -1259,7 +1259,6 @@ class ForfaitComponent {
 
       // Check if layout needs to change (mobile/desktop transition)
       if (newIsMobile !== this.lastIsMobile) {
-        console.log(`ForfaitComponent: Layout changed from ${this.lastIsMobile ? "mobile" : "desktop"} to ${newIsMobile ? "mobile" : "desktop"}`);
         this.lastIsMobile = newIsMobile;
 
         // Re-render to switch between grid and slider layouts

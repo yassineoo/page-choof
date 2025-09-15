@@ -402,7 +402,6 @@ export default class DigitalBitdefenderServices {
   handleLanguageChange() {
     const newLang = this.getLang();
     if (newLang !== this.currentLang) {
-      console.log(`Language changed from ${this.currentLang} to ${newLang}`);
       this.currentLang = newLang;
       this.render();
       this.updateDocumentDirection();
@@ -584,28 +583,26 @@ export default class DigitalBitdefenderServices {
             
             <!-- Integrated Header -->
             <div class="rounded-t-xl lg:rounded-t-2xl" style="background-color: #ED1C24;">
-              <div class="flex flex-row-reverse items-center justify-around md:justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0 ${
-                isArabic ? "sm:flex-row-reverse" : ""
-              }">
+              <div class="flex flex-row items-center justify-around md:justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0">
                 
                 <!-- Left Side: Logo + Separator + Title -->
-                <div class="flex flex-col md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
+                <div class="flex flex-1 md:flex-none flex-col md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
                   <div class="flex-shrink-0">
                     <img src="${this.getLogoPath()}" alt="Bitdefender" class="h-8 w-16 sm:h-10 sm:w-20 lg:h-[55px] lg:w-[112px] object-contain filter brightness-0 invert" />
                   </div>
                   
                   <!-- Vertical Separator - Hidden on mobile -->
-                  <div class="hidden sm:block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
+                  <div class="hidden md:block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
                   
                   <div class="text-white ${isArabic ? "text-right" : "text-left"} text-center sm:text-left">
                     <h2 class="font-medium font-rubik text-sm sm:text-lg lg:text-[22px] leading-tight">Small Office Security</h2>
                   </div>
                 </div>
                 
-                <div class="sm:hidden block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
+                <div class="md:hidden block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
 
                 <!-- Right Side: Paragraph + Device Image -->
-                <div class="flex flex-col-reverse md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
+                <div class="flex flex-1 md:flex-none flex-col-reverse md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
                   <div class="text-white ${isArabic ? "text-left" : "text-right"} text-center sm:text-right">
                     <p class="text-white text-center text-opacity-90 text-sm sm:text-lg lg:text-[22px] font-medium lg:font-semibold">
                       ${isArabic ? "حماية تصل إلى 20 جهاز" : "Protégez jusqu'à 20 appareils"}

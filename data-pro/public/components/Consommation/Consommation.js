@@ -109,9 +109,6 @@ export default class Consommation {
     const newIsMobile = this.isMobile();
 
     if (newLang !== this.state.currentLang || newTheme !== this.state.currentTheme || newIsMobile !== this.state.lastIsMobile) {
-      console.log(
-        `Consommation: Language/Theme/Layout changed from ${this.state.currentLang}/${this.state.currentTheme}/${this.state.lastIsMobile} to ${newLang}/${newTheme}/${newIsMobile}`
-      );
 
       this.state.currentLang = newLang;
       this.state.currentTheme = newTheme;
