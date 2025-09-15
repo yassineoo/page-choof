@@ -634,7 +634,9 @@ export default class DigitalBitdefenderServices {
           
           <!-- Integrated Header -->
           <div class="rounded-t-xl lg:rounded-t-2xl" style="background-color: #ED1C24;">
-            <div class="flex flex-row-reverse items-center justify-around md:justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0 ${isArabic ? "sm:flex-row-reverse" : ""}">
+            <div class="flex flex-row-reverse items-center justify-around md:justify-between p-3 sm:p-4 lg:p-6 gap-3 sm:gap-0 ${
+              isArabic ? "sm:flex-row-reverse" : ""
+            }">
               
               <!-- Left Side: Logo + Separator + Title -->
               <div class="flex flex-col md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
@@ -1005,8 +1007,8 @@ export default class DigitalBitdefenderServices {
           e.stopPropagation();
 
           const fileName = isRTL
-            ? "TERMES_ET_CONDITIONS AR migration Dima Ooredoo ver DIma+.pdf"
-            : "TERMES_ET_CONDITIONS migration Dima Ooredoo ver DIma+.pdf";
+            ? "Condition d'utilisation - Bitdefender by Ooredoo - AR.pdf"
+            : "Condition d'utilisation - Bitdefender by Ooredoo - FR.pdf";
 
           // Show loading state
           const originalText = termsLink.textContent;

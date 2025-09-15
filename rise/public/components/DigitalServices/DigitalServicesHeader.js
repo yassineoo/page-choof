@@ -82,7 +82,9 @@ export default class DigitalServicesHeader {
               mb-6 mt-2 ${alignClass}">
               ${headline}
             </h2>
-            <div class="flex flex-wrap gap-3 md:gap-2 mb-4 justify-center ${isArabic ? "justify-center md:justify-end" : "justify-center md:justify-start"}">
+            <div class="flex flex-wrap gap-3 md:gap-2 mb-4 justify-center ${
+              isArabic ? "justify-center md:justify-end" : "justify-center md:justify-start"
+            }">
               ${digitalServices
                 .map(
                   (service) => `
