@@ -442,7 +442,7 @@ export default class Consommation {
     const shadowClass = theme === "dark" ? "" : "shadow-[-0.87px_6.94px_15.61px_0px_#4F4F4F1A]";
 
     const renderedCard = `
-      <div class="card ${bgClass} ${borderRadius} ${borderClass} w-full max-w-full relative transition-all duration-500 flex flex-col md:min-h-[400px] ${shadowClass} ${fontClass}" data-card-index="${cardIndex}">
+      <div class="card ${bgClass} ${borderRadius} ${borderClass} w-full max-w-full relative transition-all duration-500 flex flex-1 flex-col md:min-h-[400px] ${shadowClass} ${fontClass}" data-card-index="${cardIndex}">
         <div class="px-6 py-7 flex flex-col flex-1">
           <div class="flex items-center gap-3 mb-4 pb-3" style="border-bottom: 0.87px solid #F4F4F4;">
             <div class="flex items-center justify-center">
