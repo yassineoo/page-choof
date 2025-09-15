@@ -607,7 +607,7 @@ export default class DigitalBitdefenderServices {
                 <!-- Right Side: Paragraph + Device Image -->
                 <div class="flex flex-col-reverse md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
                   <div class="text-white ${isArabic ? "text-left" : "text-right"} text-center sm:text-right">
-                    <p class="text-white text-opacity-90 text-sm sm:text-lg lg:text-[22px] font-medium lg:font-semibold">
+                    <p class="text-white text-center text-opacity-90 text-sm sm:text-lg lg:text-[22px] font-medium lg:font-semibold">
                       ${isArabic ? "حماية تصل إلى 20 جهاز" : "Protégez jusqu'à 20 appareils"}
                     </p>
                   </div>
