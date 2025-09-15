@@ -147,9 +147,9 @@ function renderShahidCard(plan, isArabic, index) {
         </div>
         <div>
           <div class="${styles.divider}"></div>
-          <div class="${styles.priceContainer} flex items-center gap-2 justify-center">
+          <div class="${styles.priceContainer} flex items-end gap-2 justify-center">
             <span class="${styles.priceAmount}">${plan.price}</span>
-            <div class="flex items-center gap-0">
+            <div class="flex items-center gap-0 pb-1">
               <span class="${styles.priceDa}">${isArabic ? "دج" : "DA"}/</span>
               <span class="${styles.priceDuration}">${plan.duration}</span>
             </div>

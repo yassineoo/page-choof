@@ -132,9 +132,9 @@ function renderAnghamiCard(plan, isArabic) {
         </div>
         <div>
           <div class="${styles.divider}"></div>
-          <div class="${styles.priceContainer} flex items-center justify-center gap-2">
+          <div class="${styles.priceContainer} flex items-end gap-2">
             <span class="${styles.priceAmount}">${plan.price}</span>
-            <div class="flex items-center gap-0">
+            <div class="flex items-center gap-0 pb-1">
               <span class="${styles.priceDa} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"}">${isArabic ? "دج" : "DA"}/</span>
               <span class="${styles.priceDuration}">${plan.duration}</span>
             </div>
@@ -459,10 +459,10 @@ export default class DigitalAnghamiServices {
           </h2>
         </div>
         <div class="mx-auto pt-12 w-full max-w-screen-xl" ${isArabic ? 'dir="rtl"' : ""}>
-          <div class="flex flex-col-reverse lg:flex-row w-full gap-8 items-center">
+          <div class="flex flex-col lg:flex-row w-full gap-8 items-center">
             <!-- Logos & Description (left on desktop, top on mobile) -->
             <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">
-              <div class="flex items-center justify-center gap-6 mb-8">
+              <div class="flex items-center justify-center gap-3 mb-8">
               <img 
                   src="./assets/images/services/osn.svg" alt="OSN+"
                   class="w-36 md:w-42 h-auto dark:hidden"
@@ -471,7 +471,7 @@ export default class DigitalAnghamiServices {
                   src="./assets/images/services/osn-dark.svg" alt="OSN+"
                   class="w-36 md:w-42 h-auto hidden dark:block"
                 />
-                <span class="text-4xl font-semibold mx-4 text-black dark:text-white">&</span>
+                <span class="text-4xl font-semibold text-black dark:text-white">&</span>
                 <img 
                   src="./assets/images/services/anghami.svg" alt="Anghami"
                   class="w-36 md:w-48 h-auto dark:hidden"

@@ -646,7 +646,7 @@ export default class DigitalBitdefenderServices {
                 <div class="hidden md:block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
                 
                 <div class="text-white ${isArabic ? "text-right" : "text-left"} text-center sm:text-left">
-                  <h2 class="font-medium font-rubik text-sm sm:text-lg lg:text-[22px] leading-tight">
+                  <h2 class="font-medium text-sm sm:text-lg lg:text-[22px] leading-tight">
                     ${isArabic ? this.selectedPlan.titleAr : this.selectedPlan.title}
                   </h2>
                 </div>

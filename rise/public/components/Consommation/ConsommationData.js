@@ -173,7 +173,7 @@ export const consommationData = {
           },
           {
             subIcon: "internet",
-            subtitle: "إنترنت ترحيبي",
+            subtitle: "اشتراك الترحيب",
             value: "25",
             unit: "Go",
             date: "26/05/25",

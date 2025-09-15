@@ -1396,7 +1396,7 @@ class ForfaitComponent {
       confirm: isArabic ? `${offer.data} صالحة 4 أسابيع ويتم تجديدها 12 مرة` : `${offer.data} valables 4 semaines`,
       success: isArabic
         ? `هنيئًا! لقد تم تفعيل الاشتراك ${offer.name} بنجاح: ${offer.data} صالحة 4 أسابيع ويتم تجديدها 12 مرة.`
-        : `Votre Forfait ${offer.name} est activé avec succès : ${offer.data} valables 4 semaines.Forfait activé avec succès!`,
+        : `Votre Forfait ${offer.name} est activé avec succès : ${offer.data} valables 4 semaines.`,
       insufficient: isArabic ? `رصيدك غير كافٍٍ. يُرجى إعادة تعبئة حسابك.` : `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
     };
   }

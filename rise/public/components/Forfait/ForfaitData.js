@@ -100,7 +100,7 @@ export default {
         name: "195 000 DA",
         sub: "19500",
         data: "1000Go",
-        price: "19 5000",
+        price: "19 500",
         oldPrice: "234 000",
         duration: "4 Semaines",
         buy: "Acheter",
