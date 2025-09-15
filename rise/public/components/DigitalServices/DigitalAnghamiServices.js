@@ -132,7 +132,7 @@ function renderAnghamiCard(plan, isArabic) {
         </div>
         <div>
           <div class="${styles.divider}"></div>
-          <div class="${styles.priceContainer} flex items-end gap-2">
+          <div class="${styles.priceContainer} flex items-end justify-center gap-2">
             <span class="${styles.priceAmount}">${plan.price}</span>
             <div class="flex items-center gap-0 pb-1">
               <span class="${styles.priceDa} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"}">${isArabic ? "دج" : "DA"}/</span>
