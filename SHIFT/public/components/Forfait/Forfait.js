@@ -226,7 +226,8 @@ class ForfaitComponent {
 
 /* 3-card grid (Smart) */
 .forfait-grid-3 {
-  grid-template-columns: repeat(1, minmax(280px, 320px));
+display : grid;
+  grid-template-columns: repeat(3, minmax(280px, 320px)) !important;
   justify-content: center;
 }
 
@@ -239,7 +240,7 @@ class ForfaitComponent {
   }
 
   .forfait-grid-3 {
-    grid-template-columns: repeat(1, minmax(320px, 380px));
+    grid-template-columns: repeat(3, minmax(320px, 380px));
     gap: 0.875rem;
   }
 }
@@ -251,7 +252,7 @@ class ForfaitComponent {
     gap: 1.2rem 0.5rem;
   }
   .forfait-grid-3 {
-    grid-template-columns: repeat(2, minmax(280px, 320px));
+    grid-template-columns: repeat(3, minmax(280px, 320px));
     gap: 0.875rem;
   }
 }
@@ -260,7 +261,7 @@ class ForfaitComponent {
 @media (min-width: 1280px) and (max-width: 1439px) {
   .forfait-grid-5,
   .forfait-grid-3 {
-    grid-template-columns: repeat(2, minmax(250px, 280px));
+    grid-template-columns: repeat(3, minmax(250px, 280px));
     gap: 1rem 1rem;
     justify-content: center;
   }
@@ -600,8 +601,14 @@ class ForfaitComponent {
   }
 
   setupEventListeners() {
-    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
-    window.addEventListener("languageChanged", this.boundHandlers.languageChange);
+    window.removeEventListener(
+      "languageChanged",
+      this.boundHandlers.languageChange
+    );
+    window.addEventListener(
+      "languageChanged",
+      this.boundHandlers.languageChange
+    );
 
     window.removeEventListener("resize", this.boundHandlers.resize);
     window.addEventListener("resize", this.boundHandlers.resize);
@@ -638,13 +645,19 @@ class ForfaitComponent {
           if (this.isRTL()) {
             if (e.key === "ArrowRight" && slider.currentIndex > 0) {
               this.updateSliderSmooth(sliderType, slider.currentIndex - 1);
-            } else if (e.key === "ArrowLeft" && slider.currentIndex < slider.totalSlides - 1) {
+            } else if (
+              e.key === "ArrowLeft" &&
+              slider.currentIndex < slider.totalSlides - 1
+            ) {
               this.updateSliderSmooth(sliderType, slider.currentIndex + 1);
             }
           } else {
             if (e.key === "ArrowLeft" && slider.currentIndex > 0) {
               this.updateSliderSmooth(sliderType, slider.currentIndex - 1);
-            } else if (e.key === "ArrowRight" && slider.currentIndex < slider.totalSlides - 1) {
+            } else if (
+              e.key === "ArrowRight" &&
+              slider.currentIndex < slider.totalSlides - 1
+            ) {
               this.updateSliderSmooth(sliderType, slider.currentIndex + 1);
             }
           }
@@ -862,14 +875,23 @@ class ForfaitComponent {
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-white">
             ${this.createMixedTitleHTML(labels.titleData, "uppercase")}
           </h2>
-          ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
+          ${this.slider.createResponsiveLayout(
+            data.forfaits,
+            labels,
+            "forfait-grid-5",
+            this.isRTL
+          )}
         </div>
       </section>
 
       <section class="w-full bg-white dark:bg-[#141414] py-16">
         <div class="max-w-[1600px] mx-auto md:px-6">
           ${this.renderTitle(language)}
-          ${this.slider.createResponsiveLayout(data.smartForfaits, labels, "forfait-grid-3")}
+          ${this.slider.createResponsiveLayout(
+            data.smartForfaits,
+            labels,
+            "forfait-grid-3"
+          )}
         </div>
       </section>
 
@@ -877,7 +899,10 @@ class ForfaitComponent {
     </div>
   `;
 
-    this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
+    this.bindPurchaseButtons(language, [
+      ...data.forfaits,
+      ...data.smartForfaits,
+    ]);
 
     requestAnimationFrame(() => {
       this.slider.initSwiper("forfaits-slider");
@@ -913,7 +938,10 @@ class ForfaitComponent {
       const element = this.container.querySelector(`#${sliderType}-slider`);
       if (element) {
         element.setAttribute("role", "region");
-        element.setAttribute("aria-label", sliderType === "forfaits" ? "Forfaits data" : "Forfaits smart");
+        element.setAttribute(
+          "aria-label",
+          sliderType === "forfaits" ? "Forfaits data" : "Forfaits smart"
+        );
         element.setAttribute("tabindex", "0");
       }
     });
@@ -974,7 +1002,10 @@ class ForfaitComponent {
     const isRTL = this.isRTL();
 
     const handleStart = (event) => {
-      if (event.target.closest(".forfait-buy-btn") || event.target.closest(".forfait-button-zone")) {
+      if (
+        event.target.closest(".forfait-buy-btn") ||
+        event.target.closest(".forfait-button-zone")
+      ) {
         return;
       }
       const touch = event.type.startsWith("touch") ? event.touches[0] : event;
@@ -987,15 +1018,22 @@ class ForfaitComponent {
 
     const handleMove = (event) => {
       if (!slider.touchState.startX) return;
-      if (event.target.closest(".forfait-buy-btn") || event.target.closest(".forfait-button-zone")) {
+      if (
+        event.target.closest(".forfait-buy-btn") ||
+        event.target.closest(".forfait-button-zone")
+      ) {
         return;
       }
       const touch = event.type.startsWith("touch") ? event.touches[0] : event;
       slider.touchState.currentX = touch.clientX;
       slider.touchState.currentY = touch.clientY;
 
-      const deltaX = Math.abs(slider.touchState.currentX - slider.touchState.startX);
-      const deltaY = Math.abs(slider.touchState.currentY - slider.touchState.startY);
+      const deltaX = Math.abs(
+        slider.touchState.currentX - slider.touchState.startX
+      );
+      const deltaY = Math.abs(
+        slider.touchState.currentY - slider.touchState.startY
+      );
 
       if (!slider.touchState.isDragging && !slider.touchState.isScrolling) {
         if (deltaX > 10 || deltaY > 10) {
@@ -1010,7 +1048,8 @@ class ForfaitComponent {
         }
       }
 
-      if (!slider.touchState.isDragging || slider.touchState.isScrolling) return;
+      if (!slider.touchState.isDragging || slider.touchState.isScrolling)
+        return;
 
       event.preventDefault();
       const deltaXReal = slider.touchState.currentX - slider.touchState.startX;
@@ -1113,10 +1152,14 @@ class ForfaitComponent {
     ];
 
     handlers.forEach(({ element: el, type, fn }) => {
-      const options = type.startsWith("touch") ? { passive: type !== "touchmove" } : undefined;
+      const options = type.startsWith("touch")
+        ? { passive: type !== "touchmove" }
+        : undefined;
       el.addEventListener(type, fn, options);
 
-      const key = `${el.constructor.name}-${type}-${Date.now()}-${Math.random()}`;
+      const key = `${
+        el.constructor.name
+      }-${type}-${Date.now()}-${Math.random()}`;
       slider.eventHandlers.set(key, { type, fn, element: el });
     });
 
@@ -1126,7 +1169,9 @@ class ForfaitComponent {
       }
     };
     element.addEventListener("dragstart", dragStartHandler);
-    const dragKey = `${element.constructor.name}-dragstart-${Date.now()}-${Math.random()}`;
+    const dragKey = `${
+      element.constructor.name
+    }-dragstart-${Date.now()}-${Math.random()}`;
     slider.eventHandlers.set(dragKey, {
       type: "dragstart",
       fn: dragStartHandler,
@@ -1176,7 +1221,10 @@ class ForfaitComponent {
     const slider = this.sliders.get(sliderType);
     if (!slider || !slider.track) return;
 
-    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1));
+    const clampedIndex = Math.max(
+      0,
+      Math.min(slideIndex, slider.totalSlides - 1)
+    );
     slider.currentIndex = clampedIndex;
 
     const containerWidth = slider.element.offsetWidth;
@@ -1188,10 +1236,12 @@ class ForfaitComponent {
 
     if (this.isRTL()) {
       slider.track.style.flexDirection = "row-reverse";
-      offset = clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
+      offset =
+        clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
     } else {
       slider.track.style.flexDirection = "row";
-      offset = -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
+      offset =
+        -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
     }
 
     slider.track.style.transform = `translateX(${offset}px)`;
@@ -1202,7 +1252,10 @@ class ForfaitComponent {
     const slider = this.sliders.get(sliderType);
     if (!slider || !slider.track) return;
 
-    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1));
+    const clampedIndex = Math.max(
+      0,
+      Math.min(slideIndex, slider.totalSlides - 1)
+    );
     slider.currentIndex = clampedIndex;
 
     const containerWidth = slider.element.offsetWidth;
@@ -1214,10 +1267,12 @@ class ForfaitComponent {
 
     if (this.isRTL()) {
       slider.track.style.flexDirection = "row-reverse";
-      offset = clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
+      offset =
+        clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
     } else {
       slider.track.style.flexDirection = "row";
-      offset = -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
+      offset =
+        -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
     }
 
     requestAnimationFrame(() => {
@@ -1248,7 +1303,9 @@ class ForfaitComponent {
   }
 
   closeAnyOpenModals() {
-    const modalContainer = this.container.querySelector("#forfait-modal-container");
+    const modalContainer = this.container.querySelector(
+      "#forfait-modal-container"
+    );
     if (modalContainer && modalContainer.innerHTML.trim()) {
       modalContainer.innerHTML = "";
     }
@@ -1267,7 +1324,11 @@ class ForfaitComponent {
 
       // Check if layout needs to change (mobile/desktop transition)
       if (newIsMobile !== this.lastIsMobile) {
-        console.log(`ForfaitComponent: Layout changed from ${this.lastIsMobile ? "mobile" : "desktop"} to ${newIsMobile ? "mobile" : "desktop"}`);
+        console.log(
+          `ForfaitComponent: Layout changed from ${
+            this.lastIsMobile ? "mobile" : "desktop"
+          } to ${newIsMobile ? "mobile" : "desktop"}`
+        );
         this.lastIsMobile = newIsMobile;
 
         // Re-render to switch between grid and slider layouts
@@ -1330,25 +1391,38 @@ class ForfaitComponent {
     this.purchaseTouchHandler = touchHandler;
 
     this.container.addEventListener("click", clickHandler);
-    this.container.addEventListener("touchend", touchHandler, { passive: false });
+    this.container.addEventListener("touchend", touchHandler, {
+      passive: false,
+    });
   }
 
   handlePurchaseClick(offer, language) {
     const currentLanguage = this.getLanguage();
     const modalContent = ModalData[currentLanguage];
-    const content = modalContent && modalContent[offer.name] ? modalContent[offer.name] : this.getDefaultModalContent(offer, currentLanguage);
+    const content =
+      modalContent && modalContent[offer.name]
+        ? modalContent[offer.name]
+        : this.getDefaultModalContent(offer, currentLanguage);
 
     this.showPurchaseFlow(offer.name, content, this.currentLang === "ar");
   }
 
   getDefaultModalContent(offer, language) {
     const isArabic = language === "ar";
-    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
+    const priceNumber = this.convertToLatinNumerals(
+      offer.price.replace(/[^0-9٠-٩]/g, "")
+    );
 
     return {
-      confirm: isArabic ? `تأكيد شراء ${offer.data} مقابل ${priceNumber} دج` : `Confirmer l'achat de ${offer.data} pour ${priceNumber} DA`,
-      success: isArabic ? `تم تفعيل باقة ${offer.name} بنجاح!` : `Forfait ${offer.name} activé avec succès!`,
-      insufficient: isArabic ? `رصيد غير كافٍٍ لشراء ${offer.name}` : `Crédit insuffisant pour acheter ${offer.name}`,
+      confirm: isArabic
+        ? `تأكيد شراء ${offer.data} مقابل ${priceNumber} دج`
+        : `Confirmer l'achat de ${offer.data} pour ${priceNumber} DA`,
+      success: isArabic
+        ? `تم تفعيل باقة ${offer.name} بنجاح!`
+        : `Forfait ${offer.name} activé avec succès!`,
+      insufficient: isArabic
+        ? `رصيد غير كافٍٍ لشراء ${offer.name}`
+        : `Crédit insuffisant pour acheter ${offer.name}`,
     };
   }
 
@@ -1387,7 +1461,9 @@ class ForfaitComponent {
 
   showModal({ type, title, message, isRTL = false, onConfirm, onClose }) {
     try {
-      const modalContainer = this.container.querySelector("#forfait-modal-container");
+      const modalContainer = this.container.querySelector(
+        "#forfait-modal-container"
+      );
       if (!modalContainer) {
         console.error("Modal container not found");
         return;
@@ -1489,7 +1565,10 @@ class ForfaitComponent {
       modal.style.animation = "modalFadeOut 0.2s ease-in forwards";
       setTimeout(() => {
         modalContainer.innerHTML = "";
-        if (this.previouslyFocusedElement && this.previouslyFocusedElement.focus) {
+        if (
+          this.previouslyFocusedElement &&
+          this.previouslyFocusedElement.focus
+        ) {
           this.previouslyFocusedElement.focus();
         }
         this.previouslyFocusedElement = null;
@@ -1593,7 +1672,10 @@ class ForfaitComponent {
       clearTimeout(this.languageChangeTimeout);
     }
 
-    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
+    window.removeEventListener(
+      "languageChanged",
+      this.boundHandlers.languageChange
+    );
     window.removeEventListener("resize", this.boundHandlers.resize);
 
     this.cleanupAllEventListeners();
@@ -1604,7 +1686,9 @@ class ForfaitComponent {
 
     this.sliders.clear();
 
-    const modalContainer = this.container.querySelector("#forfait-modal-container");
+    const modalContainer = this.container.querySelector(
+      "#forfait-modal-container"
+    );
     if (modalContainer) {
       modalContainer.innerHTML = "";
     }

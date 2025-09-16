@@ -151,8 +151,33 @@ export const consommationData = {
           },
           {
             subIcon: "dollar-phone",
+            subtitle: "رصيد تعبئة إضافي",
+            value: '<span class="font-rubik">500</span>',
+            unit: "دج",
+            date: "26/05/25",
+          },
+          {
+            subIcon: "dollar-phone",
+            subtitle: "رصيد مهدى",
+            value: '<span class="font-rubik">2000</span>',
+            unit: "دج",
+            date: "26/05/25",
+            percentage: 50,
+            extra: '<span class="font-rubik">/4000</span> دج',
+          },
+          {
+            subIcon: "dollar-phone",
+            subtitle: "رصيد إضافي",
+            value: '<span class="font-rubik">4000</span>',
+            unit: "دج",
+            date: "26/05/25",
+            percentage: 50,
+            extra: '<span class="font-rubik">/8000</span> دج',
+          },
+          {
+            subIcon: "dollar-phone",
             subtitle: "رصيد يومي",
-            value: '<span class="font-rubik">600</span>',
+            value: '<span class="font-rubik">100</span>',
             unit: "دج",
             date: "26/05/25",
             percentage: 100,
@@ -164,15 +189,6 @@ export const consommationData = {
         icon: "internet",
         title: "الإنترنت",
         sections: [
-          {
-            subIcon: "internet",
-            subtitle: "إنترنت مُهدى",
-            value: '<span class="font-rubik">100</span>',
-            unit: "Go",
-            date: "26/05/25",
-            percentage: 50,
-            extra: '<span class="font-rubik">/200Go</span>',
-          },
           {
             subIcon: "internet",
             subtitle: "إنترنت شهري",
@@ -193,12 +209,12 @@ export const consommationData = {
           },
           {
             subIcon: "internet",
-            subtitle: "إنترنت متبقي",
-            value: '<span class="font-rubik">30</span>',
+            subtitle: "ميزة الإنترنت",
+            value: '<span class="font-rubik">4</span>',
             unit: "Go",
             date: "26/05/25",
             percentage: 50,
-            extra: '<span class="font-rubik">/60Go</span>',
+            extra: '<span class="font-rubik">/8Go</span>',
           },
         ],
       },
@@ -208,14 +224,13 @@ export const consommationData = {
         sections: [
           {
             subIcon: "phone",
-            subtitle: "مكالمات نحو كل الشبكات",
+            subtitle: "مكالمات نحو Ooredoo",
             infini: true,
             date: "26/05/25",
-            percentage: 100,
           },
           {
             subIcon: "phone",
-            subtitle: "دقائق نحو الخارج",
+            subtitle: "دقائق نحو Ooredoo",
             value: '<span class="font-rubik">15</span>',
             unit: '<span class="font-noto-kufi-arabic">د</span>',
             extra:
@@ -228,44 +243,13 @@ export const consommationData = {
             subtitle: "رسائل قصيرة نحو Ooredoo",
             infini: true,
             date: "26/05/25",
-            percentage: 100,
           },
-          {
-            subIcon: "sms",
-            subtitle: "رسائل قصيرة نحو الشبكات الأخرى",
-            value: "50",
-            unit: "SMS",
-            date: "26/05/25",
-            percentage: 50,
-            extra: "/100 SMS",
-          },
-          // {
-          //   subIcon: "telephone",
-          //   subtitle: "مكالمات دولية",
-          //   value: "120",
-          //   unit: "دقيقة",
-          //   date: "26/05/25",
-          //   percentage: 75,
-          //   extra: "/160 دقيقة"
-          // }
         ],
       },
       {
         icon: "services",
-        title: "خدماتي",
+        title: "الخدمات",
         sections: [
-          {
-            subIcon: "maps",
-            subtitle: "Google Maps",
-            infini: true,
-            date: "26/05/25",
-          },
-          {
-            subIcon: "linkedin",
-            subtitle: "LinkedIn",
-            infini: true,
-            date: "26/05/25",
-          },
           {
             subIcon: "youtube",
             subtitle: "يوتيوب",
@@ -274,6 +258,12 @@ export const consommationData = {
             date: "26/05/25",
             percentage: 80,
             extra: "/5Go",
+          },
+          {
+            subIcon: ["facebook", "messenger"],
+            subtitle: "فايسبوك & ماسنجر",
+            infini: true,
+            date: "26/05/25",
           },
         ],
       },
