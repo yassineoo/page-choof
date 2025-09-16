@@ -226,7 +226,7 @@ class ForfaitComponent {
 
 /* 3-card grid (Smart) */
 .forfait-grid-3 {
-  grid-template-columns: repeat(2, minmax(280px, 320px));
+  grid-template-columns: repeat(1, minmax(280px, 320px));
   justify-content: center;
 }
 
@@ -239,7 +239,7 @@ class ForfaitComponent {
   }
 
   .forfait-grid-3 {
-    grid-template-columns: repeat(2, minmax(320px, 380px));
+    grid-template-columns: repeat(1, minmax(320px, 380px));
     gap: 0.875rem;
   }
 }

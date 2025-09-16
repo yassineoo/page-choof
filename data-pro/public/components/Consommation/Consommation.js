@@ -387,7 +387,7 @@ export default class Consommation {
           </h1>
         </div>
         <div class="w-full px-4 -mt-7">
-          <div class="cards-container flex flex-col gap-6 max-w-full mx-auto">
+          <div class="cards-container flex flex-col items-stretch gap-6 max-w-full mx-auto">
             ${this.renderMobileCard(data.cards[0], 0, lang, theme, true, this.isCardExpanded(0))}
             ${
               this.state.showAllCards
