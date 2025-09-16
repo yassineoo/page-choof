@@ -7,8 +7,8 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
 
   const getOfferText = (offer) => {
     if (language === "ar") {
-      if (offer === "Offre VOX") return "عرض VOX";
-      if (offer === "Offre Dima") return "عرض Dima";
+      if (offer === "Offre Data Share Pro") return "عرض Data Share Pro";
+      if (offer === "Offre Data Share Pro") return "عرض Dima";
       if (offer.startsWith("Offre ")) {
         return offer.replace("Offre ", "عرض ");
       }
