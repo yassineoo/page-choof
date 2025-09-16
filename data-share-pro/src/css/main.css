@@ -1,0 +1,119 @@
+/* ===========================
+   Google Fonts - Rubik
+   =========================== */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* ===========================
+   Tailwind Base Styles
+   =========================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================
+   Self-Hosted Fonts (Local)
+   =========================== */
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  src: url("./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* ===========================
+   Base Styles
+   =========================== */
+@layer base {
+  body {
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white;
+    font-family: "Rubik", "Noto Kufi Arabic", sans-serif;
+  }
+}
+
+/* ===========================
+   Components & Utilities
+   =========================== */
+@layer components {
+  .font-rubik {
+    font-family: "Rubik", sans-serif;
+  }
+
+  .font-noto-kufi-arabic {
+    font-family: "Noto Kufi Arabic", sans-serif;
+  }
+
+   .font-noto-kufi-arabic-google {
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    /* optional: you can mark this as a Google version using a comment */
+    /* This class uses the Google Fonts version */
+  }
+
+  .bg-ooredoo-red {
+    background-color: #ed1c24;
+  }
+
+  .text-ooredoo-red {
+    color: #ed1c24;
+  }
+
+  .border-ooredoo-red {
+    border-color: #ed1c24;
+  }
+}
