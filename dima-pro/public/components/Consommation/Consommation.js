@@ -545,7 +545,6 @@ export default class Consommation {
           </div>
 
           <!-- Expand Button (if any) -->
-            ${this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.renderExpandButton(cardIndex, isExpanded, theme) : ""}
           </div>
       </div>
     `;
@@ -750,6 +749,24 @@ export default class Consommation {
     return `
     <div class="w-full absolute bottom-0 left-0 pb-3">
       <div class="w-full mt-4 pt-4 flex-shrink-0 flex justify-center">
+        <div class="w-2/3 border-t" style="border-color: ${borderColor};"></div>
+      </div>
+      <div class="flex justify-center">
+        <button
+          class="card-chevron flex items-end justify-end cursor-pointer rounded-full transition-all duration-200"
+          data-card-index="${cardIndex}"
+          type="button"
+          aria-label="Toggle card content"
+          aria-expanded="${isExpanded ? "true" : "false"}"
+          style="min-width: 50px; min-height: 50px; margin-bottom: 0;"
+        >
+          <div class="chevron-rotator w-12 flex transform transition-transform duration-300 ease-in-out ${isExpanded ? "rotate-180" : "rotate-0"}">
+            <img src="${chevronSrc}"
+                 class="w-full "
+                 alt="expand chevron"
+                 style="filter: ${theme === "dark" ? "brightness(0) invert(1)" : "none"};" />
+          </div>
+        </button>
       </div>
       </div>
     `;

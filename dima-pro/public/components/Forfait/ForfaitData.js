@@ -6,7 +6,7 @@ export default {
         data: "40Go internet",
         features: ["Youtube illimité"],
         price: "1500",
-        duration: "cycle de facturation",
+        duration: "30 jours",
         buy: "Acheter"
       },
       {
@@ -14,15 +14,7 @@ export default {
         data: "15Go internet",
         features: ["5Go Youtube"],
         price: "1000",
-        duration: "cycle de facturation",
-        buy: "Acheter"
-      },
-      {
-        name: "Forfait 500",
-        data: "12Go internet",
-        features: [],
-        price: "500 ",
-        duration: "cycle de facturation",
+        duration: "30 jours",
         buy: "Acheter"
       },
       {
@@ -50,25 +42,6 @@ export default {
         price: "200 ",
         duration: "24 heures",
         buy: "Acheter"
-      },
-      {
-        name: "Smart 100",
-        data: "500Mo internet",
-        features: [
-          "Facebook et Messenger illimités",
-          "100 DA de crédit"
-        ],
-        price: "100 ",
-        duration: "24 heures",
-        buy: "Acheter"
-      },
-      {
-        name: "Smart 50",
-        data: "200Mo internet",
-        features: [],
-        price: "50 ",
-        duration: "24 heures",
-        buy: "Acheter"
       }
     ],
     labels: {
@@ -85,7 +58,7 @@ ar: {
       data: "<span class='font-rubik'>40Go</span> إنترنت",
       features: ["يوتيوب غير محدود"],
       price: "1500 ",
-      duration: "دورة فوترة",
+      duration: "30 يوم",
       buy: "شراء"
     },
     {
@@ -93,18 +66,9 @@ ar: {
       data: "<span class='font-rubik'>15Go</span> إنترنت",
       features: ["<span class='font-rubik'>5Go</span> يوتيوب"],
       price: "1000 ",
-      duration: "دورة فوترة",
+      duration: "30 يوم",
       buy: "شراء"
     },
-    {
-      name: "اشتراك 500",
-      data: "<span class='font-rubik'>12Go</span> إنترنت",
-      features: [],
-      price: "500 ",
-      duration: "دورة فوترة",
-      buy: "شراء"
-    },
-    
     {
       name: "اشتراك 300",
       data: "<span class='font-rubik'>3Go</span> إنترنت",
@@ -128,25 +92,6 @@ ar: {
       data: "إنترنت مجاني",
       features: ["<span class='font-rubik'>600</span> دج رصيد"],
       price: "200 ",
-      duration: "24 ساعة",
-      buy: "شراء"
-    },
-    {
-      name: "Smart 100",
-      data: "<span class='font-rubik'>500Mo</span> إنترنت",
-      features: [
-        "فايسبوك & ماسنجر مجانيين",
-        "<span class='font-rubik'>100</span> دج رصيد"
-      ],
-      price: "100 ",
-      duration: "24 ساعة",
-      buy: "شراء"
-    },
-    {
-      name: "Smart 50",
-      data: "<span class='font-rubik'>200Mo</span> إنترنت",
-      features: [],
-      price: "50 ",
       duration: "24 ساعة",
       buy: "شراء"
     }
