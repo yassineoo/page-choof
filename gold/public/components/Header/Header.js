@@ -7,8 +7,8 @@ export default class Header {
     this.theme = this.detectInitialTheme();
     this.userData = {
       phone: "0509876543",
-      offer: "Ooredoo Internet",
-      credit: "4000 DA",
+      offer: "La Gold",
+      credit: "2000 DA",
 
       autoRenewal: true,
       charge: "CHARGER",

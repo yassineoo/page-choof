@@ -53,8 +53,8 @@ export const consommationData = {
             value: "15",
             unit: "Go",
             date: "26/05/25",
-            percentage: 50,
-            extra: "/30Go",
+            percentage: 100,
+            extra: "/15Go",
           },
           {
             subIcon: "internet",
