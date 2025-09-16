@@ -10,7 +10,6 @@ class ForfaitComponent {
     this.lastIsMobile = this.isMobile();
     this.sliders = new Map([
       ["forfaits", this.createSliderState()],
-      ["smart", this.createSliderState()],
     ]);
     this.boundHandlers = {
       languageChange: this.handleLanguageChange.bind(this),
@@ -188,137 +187,142 @@ class ForfaitComponent {
     .forfait-mobile-container {
       padding: 0;
     }
-/* Updated Grid System for 4 cards instead of 5 */
-.forfait-grid {
-  display: grid;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  gap: 0.875rem !important;
-  justify-items: center;
-  align-items: stretch;
-}
 
-.forfait-mobile-slider {
-  display: none;
-}
+    /* 5-card grid (Forfaits) - V-shape layout on desktop screens */
+    .forfait-grid-5 {
+      grid-template-columns: repeat(3, minmax(280px, 320px));
+      grid-template-rows: auto auto;
+      
+      justify-content: center;
+    }
+    .forfait-grid-5 > *:nth-child(1),
+    .forfait-grid-5 > *:nth-child(2),
+    .forfait-grid-5 > *:nth-child(3) {
+      grid-row: 1;
+    }
+    .forfait-grid-5 > *:nth-child(4),
+    .forfait-grid-5 > *:nth-child(5) {
+      grid-row: 2;
+      justify-self: center;
+    }
+    .forfait-grid-5 > *:nth-child(4) {
+      grid-column: 1 / 3;
+      justify-self: end;
+    }
+    .forfait-grid-5 > *:nth-child(5) {
+      grid-column: 2 / 6;
+      justify-self: start;
+    }
 
-.forfait-mobile-container {
-  padding: 0;
-}
+    /* 3-card grid (Smart) */
+    .forfait-grid-3 {
+      grid-template-columns: repeat(3, minmax(280px, 320px));
+      justify-content: center;
+    }
 
-/* 4-card grid (Forfaits) - 2x2 layout on desktop screens */
-.forfait-grid-5 {
-  grid-template-columns: repeat(2, minmax(280px, 320px));
-  grid-template-rows: auto auto;
-  justify-content: center;
-}
+    /* Large Desktop (1920px+) */
+    @media (min-width: 1920px) {
+      .forfait-grid-5 {
+        grid-template-columns: repeat(3, minmax(280px, 320px));
+        grid-template-rows: auto;
+        gap: 1.5rem 0.5rem;
+      }
+    
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(320px, 380px));
+        gap: 0.875rem;
+      }
+    }
 
-.forfait-grid-5 > *:nth-child(1),
-.forfait-grid-5 > *:nth-child(2) {
-  grid-row: 1;
-}
+    /* Desktop (1440px - 1919px) */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+      .forfait-grid-5 {
+        grid-template-columns: repeat(3, minmax(280px, 320px));
+        gap: 1.2rem 0.5rem;
+        
+      }
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(280px, 320px));
+        gap: 0.875rem;
+      }
+    }
 
-.forfait-grid-5 > *:nth-child(3),
-.forfait-grid-5 > *:nth-child(4) {
-  grid-row: 2;
-}
+    /* Small Desktop (1280px - 1439px) */
+    @media (min-width: 1280px) and (max-width: 1439px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(250px, 280px));
+        gap: 1rem 1rem;
+        justify-content: center;
+      }
+      .forfait-grid-5 > *:nth-child(4) {
+        justify-self: end;
+      }
+      .forfait-grid-5 > *:nth-child(5) {
+        justify-self: start;
+      }
+    }
 
-/* 3-card grid (Smart) */
-.forfait-grid-3 {
-  grid-template-columns: repeat(1, minmax(280px, 320px));
-  justify-content: center;
-}
+    /* Middle Screen Fix: 2-column grid */
+    @media (min-width: 992px) and (max-width: 1279px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: repeat(2, minmax(280px, 300px)) !important;
+        gap: 1rem !important;
+        justify-content: center !important;
+        max-width: 600px !important;
+        margin: 0 auto !important;
+      }
+      .forfait-grid-5 > *:nth-child(n) {
+        grid-row: auto !important;
+        grid-column: auto !important;
+        justify-self: auto !important;
+      }
+      .forfait-grid-5 > *:nth-child(5),
+      .forfait-grid-3 > *:nth-child(3) {
+        grid-column: 1 / 3 !important;
+        justify-self: center !important;
+        max-width: 300px !important;
+        margin-top: 1rem !important;
+      }
+    }
 
-/* Large Desktop (1920px+) */
-@media (min-width: 1920px) {
-  .forfait-grid-5 {
-    grid-template-columns: repeat(2, minmax(280px, 320px));
-    grid-template-rows: auto auto;
-    gap: 1.5rem 0.5rem;
-  }
+    /* Tablet Portrait (768px - 991px) */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: repeat(2, minmax(260px, 280px));
+        gap: 1rem;
+        justify-content: center;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .forfait-grid-5 > *:nth-child(5),
+      .forfait-grid-3 > *:nth-child(3) {
+        grid-column: 1 / 3;
+        justify-self: center;
+        max-width: 280px;
+        margin-top: 1rem;
+      }
+    }
 
-  .forfait-grid-3 {
-    grid-template-columns: repeat(3, minmax(320px, 380px));
-    gap: 0.875rem;
-  }
-}
+    /* Mobile Landscape (640px - 767px) */
+    @media (min-width: 640px) and (max-width: 767px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        justify-content: center;
+        max-width: 400px;
+      }
+      .forfait-grid-5 > *:nth-child(5),
+      .forfait-grid-3 > *:nth-child(3) {
+        justify-self: center;
+        max-width: 300px;
+        margin-top: 0;
+      }
+    }
 
-/* Desktop (1440px - 1919px) */
-@media (min-width: 1440px) and (max-width: 1919px) {
-  .forfait-grid-5 {
-    grid-template-columns: repeat(2, minmax(280px, 320px));
-    gap: 1.2rem 0.5rem;
-  }
-  .forfait-grid-3 {
-    grid-template-columns: repeat(3, minmax(280px, 320px));
-    gap: 0.875rem;
-  }
-}
-
-/* Small Desktop (1280px - 1439px) */
-@media (min-width: 1280px) and (max-width: 1439px) {
-  .forfait-grid-5,
-  .forfait-grid-3 {
-    grid-template-columns: repeat(3, minmax(250px, 280px));
-    gap: 1rem 1rem;
-    justify-content: center;
-  }
-}
-
-/* Middle Screen Fix: 2-column grid */
-@media (min-width: 992px) and (max-width: 1279px) {
-  .forfait-grid-5,
-  .forfait-grid-3 {
-    grid-template-columns: repeat(2, minmax(280px, 300px)) !important;
-    gap: 1rem !important;
-    justify-content: center !important;
-    max-width: 600px !important;
-    margin: 0 auto !important;
-  }
-  .forfait-grid-5 > *:nth-child(n) {
-    grid-row: auto !important;
-    grid-column: auto !important;
-    justify-self: auto !important;
-  }
-  /* Remove the 5th card special positioning since we only have 4 cards */
-  .forfait-grid-3 > *:nth-child(3) {
-    grid-column: 1 / 3 !important;
-    justify-self: center !important;
-    max-width: 300px !important;
-    margin-top: 1rem !important;
-  }
-}
-
-/* Tablet Portrait (768px - 991px) - UPDATED FOR 4 CARDS */
-@media (min-width: 768px) and (max-width: 991px) {
-  .forfait-grid-5,
-  .forfait-grid-3 {
-    grid-template-columns: repeat(2, minmax(260px, 280px));
-    gap: 30px;
-    justify-content: center;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  
-  /* RESET all positioning for 4-card grid - all cards use normal flow */
-  .forfait-grid-5 > *:nth-child(1),
-  .forfait-grid-5 > *:nth-child(2),
-  .forfait-grid-5 > *:nth-child(3),
-  .forfait-grid-5 > *:nth-child(4) {
-    grid-row: auto !important;
-    grid-column: auto !important;
-    justify-self: auto !important;
-  }
-  
-  /* Only 3rd card in smart grid spans both columns */
-  .forfait-grid-3 > *:nth-child(3) {
-    grid-column: 1 / 3;
-    justify-self: center;
-    max-width: 280px;
-    margin-top: 1rem;
-  }
-}
     /* Mobile (up to 639px): slider mode */
     @media (max-width: 639px) {
       .forfait-grid {
@@ -600,8 +604,14 @@ class ForfaitComponent {
   }
 
   setupEventListeners() {
-    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
-    window.addEventListener("languageChanged", this.boundHandlers.languageChange);
+    window.removeEventListener(
+      "languageChanged",
+      this.boundHandlers.languageChange
+    );
+    window.addEventListener(
+      "languageChanged",
+      this.boundHandlers.languageChange
+    );
 
     window.removeEventListener("resize", this.boundHandlers.resize);
     window.addEventListener("resize", this.boundHandlers.resize);
@@ -638,13 +648,19 @@ class ForfaitComponent {
           if (this.isRTL()) {
             if (e.key === "ArrowRight" && slider.currentIndex > 0) {
               this.updateSliderSmooth(sliderType, slider.currentIndex - 1);
-            } else if (e.key === "ArrowLeft" && slider.currentIndex < slider.totalSlides - 1) {
+            } else if (
+              e.key === "ArrowLeft" &&
+              slider.currentIndex < slider.totalSlides - 1
+            ) {
               this.updateSliderSmooth(sliderType, slider.currentIndex + 1);
             }
           } else {
             if (e.key === "ArrowLeft" && slider.currentIndex > 0) {
               this.updateSliderSmooth(sliderType, slider.currentIndex - 1);
-            } else if (e.key === "ArrowRight" && slider.currentIndex < slider.totalSlides - 1) {
+            } else if (
+              e.key === "ArrowRight" &&
+              slider.currentIndex < slider.totalSlides - 1
+            ) {
               this.updateSliderSmooth(sliderType, slider.currentIndex + 1);
             }
           }
@@ -739,14 +755,6 @@ class ForfaitComponent {
     if (!title) return "";
     const isRTL = this.isRTL();
 
-    // Specific fix for 'SMART اشتراكات' to show Arabic first then English
-    if (title === "SMART اشتراكات" && isRTL) {
-      return `
-      <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
-      <span class="font-rubik ${baseClasses}"> SMART</span>
-    `;
-    }
-
     // General Arabic text only (no Latin)
     if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
       return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
@@ -776,7 +784,7 @@ class ForfaitComponent {
       const language = this.getLanguage();
       const data = ForfaitData[language];
 
-      if (!data || !data.forfaits || !data.smartForfaits) {
+      if (!data || !data.forfaits) {
         console.error("Missing data for language:", language);
         const fallbackData = ForfaitData.fr;
         if (!fallbackData) {
@@ -796,14 +804,6 @@ class ForfaitComponent {
   createMixedTitleHTML(title, baseClasses = "") {
     if (!title) return "";
     const isRTL = this.isRTL();
-
-    // Specific fix for 'SMART اشتراكات' to show Arabic first then English
-    if (title === "SMART اشتراكات" && isRTL) {
-      return `
-      <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
-      <span class="font-rubik ${baseClasses}"> SMART</span>
-    `;
-    }
 
     // General Arabic text only (no Latin)
     if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
@@ -829,23 +829,6 @@ class ForfaitComponent {
     return `<span class="font-rubik ${baseClasses}">${title}</span>`;
   }
 
-  renderTitle(language) {
-    if (language === "ar") {
-      return `
-      <h2 class="text-center text-3xl sm:text-4xl md:text-5xl font-medium mb-16 text-black dark:text-white" dir="rtl">
-        <span class="font-noto-kufi-arabic" dir="rtl">اشتراكات</span>
-        <span class="font-rubik" dir="ltr"> SMART</span>
-      </h2>
-    `;
-    } else {
-      return `
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white">
-        <span class="font-rubik">FORFAITS SMART</span>
-      </h2>
-    `;
-    }
-  }
-
   renderWithData(data, language) {
     const labels = data.labels;
 
@@ -862,21 +845,12 @@ class ForfaitComponent {
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-white">
             ${this.createMixedTitleHTML(labels.titleData, "uppercase")}
           </h2>
-         <div style="width:100%; display:flex; justify-content:center; align-items:flex-start;">
-            ${this.slider.createResponsiveLayout(
-              data.forfaits,
-              labels,
-              "forfait-grid-5",
-              this.isRTL
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section class="w-full bg-white dark:bg-[#141414] py-16">
-        <div class="max-w-[1600px] mx-auto md:px-6">
-          ${this.renderTitle(language)}
-          ${this.slider.createResponsiveLayout(data.smartForfaits, labels, "forfait-grid-3")}
+          ${this.slider.createResponsiveLayout(
+            data.forfaits,
+            labels,
+            "forfait-grid-5",
+            this.isRTL
+          )}
         </div>
       </section>
 
@@ -884,11 +858,12 @@ class ForfaitComponent {
     </div>
   `;
 
-    this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits]);
+    this.bindPurchaseButtons(language, [
+      ...data.forfaits,
+    ]);
 
     requestAnimationFrame(() => {
       this.slider.initSwiper("forfaits-slider");
-      this.slider.initSwiper("smart-slider");
     });
     setTimeout(() => {
       this.initializeSliders();
@@ -897,7 +872,6 @@ class ForfaitComponent {
 
     setTimeout(() => {
       this.slider.initSwiper("forfaits-slider");
-      this.slider.initSwiper("smart-slider");
     }, 200); // Increased delay
   }
 
@@ -920,7 +894,10 @@ class ForfaitComponent {
       const element = this.container.querySelector(`#${sliderType}-slider`);
       if (element) {
         element.setAttribute("role", "region");
-        element.setAttribute("aria-label", sliderType === "forfaits" ? "Forfaits data" : "Forfaits smart");
+        element.setAttribute(
+          "aria-label",
+           "Forfaits data" 
+        );
         element.setAttribute("tabindex", "0");
       }
     });
@@ -937,7 +914,6 @@ class ForfaitComponent {
     });
 
     this.setupSlider("forfaits", data.forfaits.length);
-    this.setupSlider("smart", data.smartForfaits.length);
   }
   setupSlider(sliderType, totalSlides) {
     const slider = this.sliders.get(sliderType);
@@ -981,7 +957,10 @@ class ForfaitComponent {
     const isRTL = this.isRTL();
 
     const handleStart = (event) => {
-      if (event.target.closest(".forfait-buy-btn") || event.target.closest(".forfait-button-zone")) {
+      if (
+        event.target.closest(".forfait-buy-btn") ||
+        event.target.closest(".forfait-button-zone")
+      ) {
         return;
       }
       const touch = event.type.startsWith("touch") ? event.touches[0] : event;
@@ -994,15 +973,22 @@ class ForfaitComponent {
 
     const handleMove = (event) => {
       if (!slider.touchState.startX) return;
-      if (event.target.closest(".forfait-buy-btn") || event.target.closest(".forfait-button-zone")) {
+      if (
+        event.target.closest(".forfait-buy-btn") ||
+        event.target.closest(".forfait-button-zone")
+      ) {
         return;
       }
       const touch = event.type.startsWith("touch") ? event.touches[0] : event;
       slider.touchState.currentX = touch.clientX;
       slider.touchState.currentY = touch.clientY;
 
-      const deltaX = Math.abs(slider.touchState.currentX - slider.touchState.startX);
-      const deltaY = Math.abs(slider.touchState.currentY - slider.touchState.startY);
+      const deltaX = Math.abs(
+        slider.touchState.currentX - slider.touchState.startX
+      );
+      const deltaY = Math.abs(
+        slider.touchState.currentY - slider.touchState.startY
+      );
 
       if (!slider.touchState.isDragging && !slider.touchState.isScrolling) {
         if (deltaX > 10 || deltaY > 10) {
@@ -1017,7 +1003,8 @@ class ForfaitComponent {
         }
       }
 
-      if (!slider.touchState.isDragging || slider.touchState.isScrolling) return;
+      if (!slider.touchState.isDragging || slider.touchState.isScrolling)
+        return;
 
       event.preventDefault();
       const deltaXReal = slider.touchState.currentX - slider.touchState.startX;
@@ -1120,10 +1107,14 @@ class ForfaitComponent {
     ];
 
     handlers.forEach(({ element: el, type, fn }) => {
-      const options = type.startsWith("touch") ? { passive: type !== "touchmove" } : undefined;
+      const options = type.startsWith("touch")
+        ? { passive: type !== "touchmove" }
+        : undefined;
       el.addEventListener(type, fn, options);
 
-      const key = `${el.constructor.name}-${type}-${Date.now()}-${Math.random()}`;
+      const key = `${
+        el.constructor.name
+      }-${type}-${Date.now()}-${Math.random()}`;
       slider.eventHandlers.set(key, { type, fn, element: el });
     });
 
@@ -1133,7 +1124,9 @@ class ForfaitComponent {
       }
     };
     element.addEventListener("dragstart", dragStartHandler);
-    const dragKey = `${element.constructor.name}-dragstart-${Date.now()}-${Math.random()}`;
+    const dragKey = `${
+      element.constructor.name
+    }-dragstart-${Date.now()}-${Math.random()}`;
     slider.eventHandlers.set(dragKey, {
       type: "dragstart",
       fn: dragStartHandler,
@@ -1183,7 +1176,10 @@ class ForfaitComponent {
     const slider = this.sliders.get(sliderType);
     if (!slider || !slider.track) return;
 
-    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1));
+    const clampedIndex = Math.max(
+      0,
+      Math.min(slideIndex, slider.totalSlides - 1)
+    );
     slider.currentIndex = clampedIndex;
 
     const containerWidth = slider.element.offsetWidth;
@@ -1195,10 +1191,12 @@ class ForfaitComponent {
 
     if (this.isRTL()) {
       slider.track.style.flexDirection = "row-reverse";
-      offset = clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
+      offset =
+        clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
     } else {
       slider.track.style.flexDirection = "row";
-      offset = -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
+      offset =
+        -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
     }
 
     slider.track.style.transform = `translateX(${offset}px)`;
@@ -1209,7 +1207,10 @@ class ForfaitComponent {
     const slider = this.sliders.get(sliderType);
     if (!slider || !slider.track) return;
 
-    const clampedIndex = Math.max(0, Math.min(slideIndex, slider.totalSlides - 1));
+    const clampedIndex = Math.max(
+      0,
+      Math.min(slideIndex, slider.totalSlides - 1)
+    );
     slider.currentIndex = clampedIndex;
 
     const containerWidth = slider.element.offsetWidth;
@@ -1221,10 +1222,12 @@ class ForfaitComponent {
 
     if (this.isRTL()) {
       slider.track.style.flexDirection = "row-reverse";
-      offset = clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
+      offset =
+        clampedIndex * totalSlideWidth - (containerWidth - slideWidth) / 2;
     } else {
       slider.track.style.flexDirection = "row";
-      offset = -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
+      offset =
+        -clampedIndex * totalSlideWidth + (containerWidth - slideWidth) / 2;
     }
 
     requestAnimationFrame(() => {
@@ -1255,7 +1258,9 @@ class ForfaitComponent {
   }
 
   closeAnyOpenModals() {
-    const modalContainer = this.container.querySelector("#forfait-modal-container");
+    const modalContainer = this.container.querySelector(
+      "#forfait-modal-container"
+    );
     if (modalContainer && modalContainer.innerHTML.trim()) {
       modalContainer.innerHTML = "";
     }
@@ -1274,7 +1279,11 @@ class ForfaitComponent {
 
       // Check if layout needs to change (mobile/desktop transition)
       if (newIsMobile !== this.lastIsMobile) {
-        console.log(`ForfaitComponent: Layout changed from ${this.lastIsMobile ? "mobile" : "desktop"} to ${newIsMobile ? "mobile" : "desktop"}`);
+        console.log(
+          `ForfaitComponent: Layout changed from ${
+            this.lastIsMobile ? "mobile" : "desktop"
+          } to ${newIsMobile ? "mobile" : "desktop"}`
+        );
         this.lastIsMobile = newIsMobile;
 
         // Re-render to switch between grid and slider layouts
@@ -1337,25 +1346,38 @@ class ForfaitComponent {
     this.purchaseTouchHandler = touchHandler;
 
     this.container.addEventListener("click", clickHandler);
-    this.container.addEventListener("touchend", touchHandler, { passive: false });
+    this.container.addEventListener("touchend", touchHandler, {
+      passive: false,
+    });
   }
 
   handlePurchaseClick(offer, language) {
     const currentLanguage = this.getLanguage();
     const modalContent = ModalData[currentLanguage];
-    const content = modalContent && modalContent[offer.name] ? modalContent[offer.name] : this.getDefaultModalContent(offer, currentLanguage);
+    const content =
+      modalContent && modalContent[offer.name]
+        ? modalContent[offer.name]
+        : this.getDefaultModalContent(offer, currentLanguage);
 
     this.showPurchaseFlow(offer.name, content, this.currentLang === "ar");
   }
 
   getDefaultModalContent(offer, language) {
     const isArabic = language === "ar";
-    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
+    const priceNumber = this.convertToLatinNumerals(
+      offer.price.replace(/[^0-9٠-٩]/g, "")
+    );
 
     return {
-      confirm: isArabic ? `تأكيد شراء ${offer.data} مقابل ${priceNumber} دج` : `Confirmer l'achat de ${offer.data} pour ${priceNumber} DA`,
-      success: isArabic ? `تم تفعيل باقة ${offer.name} بنجاح!` : `Forfait ${offer.name} activé avec succès!`,
-      insufficient: isArabic ? `رصيد غير كافٍٍ لشراء ${offer.name}` : `Crédit insuffisant pour acheter ${offer.name}`,
+      confirm: isArabic
+        ? `تأكيد شراء ${offer.data} مقابل ${priceNumber} دج`
+        : `Confirmer l'achat de ${offer.data} pour ${priceNumber} DA`,
+      success: isArabic
+        ? `تم تفعيل باقة ${offer.name} بنجاح!`
+        : `Forfait ${offer.name} activé avec succès!`,
+      insufficient: isArabic
+        ? `رصيد غير كافٍٍ لشراء ${offer.name}`
+        : `Crédit insuffisant pour acheter ${offer.name}`,
     };
   }
 
@@ -1394,7 +1416,9 @@ class ForfaitComponent {
 
   showModal({ type, title, message, isRTL = false, onConfirm, onClose }) {
     try {
-      const modalContainer = this.container.querySelector("#forfait-modal-container");
+      const modalContainer = this.container.querySelector(
+        "#forfait-modal-container"
+      );
       if (!modalContainer) {
         console.error("Modal container not found");
         return;
@@ -1496,7 +1520,10 @@ class ForfaitComponent {
       modal.style.animation = "modalFadeOut 0.2s ease-in forwards";
       setTimeout(() => {
         modalContainer.innerHTML = "";
-        if (this.previouslyFocusedElement && this.previouslyFocusedElement.focus) {
+        if (
+          this.previouslyFocusedElement &&
+          this.previouslyFocusedElement.focus
+        ) {
           this.previouslyFocusedElement.focus();
         }
         this.previouslyFocusedElement = null;
@@ -1600,7 +1627,10 @@ class ForfaitComponent {
       clearTimeout(this.languageChangeTimeout);
     }
 
-    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
+    window.removeEventListener(
+      "languageChanged",
+      this.boundHandlers.languageChange
+    );
     window.removeEventListener("resize", this.boundHandlers.resize);
 
     this.cleanupAllEventListeners();
@@ -1611,7 +1641,9 @@ class ForfaitComponent {
 
     this.sliders.clear();
 
-    const modalContainer = this.container.querySelector("#forfait-modal-container");
+    const modalContainer = this.container.querySelector(
+      "#forfait-modal-container"
+    );
     if (modalContainer) {
       modalContainer.innerHTML = "";
     }
