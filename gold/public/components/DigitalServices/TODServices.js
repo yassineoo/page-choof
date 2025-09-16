@@ -390,10 +390,8 @@ export default class TODServices {
         <button class="${primaryBtn}" id="modal-confirm">${isArabic ? "تأكيد" : "Confirmer"}</button>
       `;
     } else if (type === "congrats") {
-      console.log("type is congrats");
       buttonsHTML = `<button class="${primaryBtn}" id="modal-confirm">${isArabic ? "حسنًا" : "OK"}</button>`;
     } else if (type === "credit") {
-      console.log("type is credit");
       buttonsHTML = `<button class="${primaryBtn}" id="modal-close">${isArabic ? "حسنًا" : "OK"}</button>`;
     }
 

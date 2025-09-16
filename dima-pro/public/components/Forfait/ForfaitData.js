@@ -81,7 +81,7 @@ ar: {
       name: "اشتراك 100",
       data: "<span class='font-rubik'>700Mo</span> إنترنت",
       features: ["يوتيوب غير محدود"],
-      price: "100 ",
+      price: "100",
       duration: "24 ساعة",
       buy: "شراء"
     }

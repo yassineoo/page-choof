@@ -569,6 +569,7 @@ export default class Consommation {
     const gapSideMargin = isRTL ? "margin-left: 0.5rem;" : "margin-right: 0.5rem;";
 
     const isOsn = section.subtitle?.includes("OSN");
+    const isFacebookMessenger = section.subtitle?.includes("Facebook & Messenger");
 
     let iconsAndTextContent = "";
 
@@ -598,6 +599,34 @@ export default class Consommation {
         ${anghamiIcon}
         <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
           ANGHAMI
+        </span>
+      </div>
+    </div>
+  `;
+    } else 
+      if (isFacebookMessenger) {
+      const facebookIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}facebook-dark.svg` : `${this.config.IMAGE_BASE}facebook.svg`;
+      const messengerIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}messenger-dark.svg` : `${this.config.IMAGE_BASE}messenger.svg`;
+
+      const facebookIcon = `<img src="${facebookIconPath}" style="width:20px;height:20px;" alt="Facebook" />`;
+      const messengerIcon = `<img src="${messengerIconPath}" style="width:20px;height:20px;" alt="Messenger" />`;
+
+      const fontClassForText = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
+      const textColor = theme === "dark" ? "text-white" : textClass;
+
+      iconsAndTextContent = `
+    <div class="flex items-center gap-1 font-rubik font-medium" ${gapSideMargin}">
+      <div class="flex items-center gap-0.5">
+        ${facebookIcon}
+        <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
+         Facebook
+        </span>
+      </div>
+      <span class="text-lg">&</span>
+      <div class="flex items-center gap-0.5">
+        ${messengerIcon}
+        <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
+          Messenger
         </span>
       </div>
     </div>

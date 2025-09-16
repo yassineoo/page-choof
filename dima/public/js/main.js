@@ -9,6 +9,7 @@ import DigitalFreeFireServices from "../components/DigitalServices/DigitalFreeFi
 
 // 🆕 1. Import the shared Modals
 import Modals from "../components/Modals/Modals.js";
+import Footer from "../components/Footer/footer.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     initComponent("migration-root", Migration);
     initComponent("digitalServices-root", DigitalServices);
     initComponent("freefire-services", DigitalFreeFireServices);
+    initComponent("footer-root", Footer)
 
   } catch (error) {
     console.error("Initialization failed:", error);
