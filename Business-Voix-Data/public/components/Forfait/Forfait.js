@@ -188,142 +188,137 @@ class ForfaitComponent {
     .forfait-mobile-container {
       padding: 0;
     }
+/* Updated Grid System for 4 cards instead of 5 */
+.forfait-grid {
+  display: grid;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  gap: 0.875rem !important;
+  justify-items: center;
+  align-items: stretch;
+}
 
-    /* 5-card grid (Forfaits) - V-shape layout on desktop screens */
-    .forfait-grid-5 {
-      grid-template-columns: repeat(3, minmax(280px, 320px));
-      grid-template-rows: auto auto;
-      
-      justify-content: center;
-    }
-    .forfait-grid-5 > *:nth-child(1),
-    .forfait-grid-5 > *:nth-child(2),
-    .forfait-grid-5 > *:nth-child(3) {
-      grid-row: 1;
-    }
-    .forfait-grid-5 > *:nth-child(4),
-    .forfait-grid-5 > *:nth-child(5) {
-      grid-row: 2;
-      justify-self: center;
-    }
-    .forfait-grid-5 > *:nth-child(4) {
-      grid-column: 1 / 3;
-      justify-self: end;
-    }
-    .forfait-grid-5 > *:nth-child(5) {
-      grid-column: 2 / 6;
-      justify-self: start;
-    }
+.forfait-mobile-slider {
+  display: none;
+}
 
-    /* 3-card grid (Smart) */
-    .forfait-grid-3 {
-      grid-template-columns: repeat(3, minmax(280px, 320px));
-      justify-content: center;
-    }
+.forfait-mobile-container {
+  padding: 0;
+}
 
-    /* Large Desktop (1920px+) */
-    @media (min-width: 1920px) {
-      .forfait-grid-5 {
-        grid-template-columns: repeat(3, minmax(280px, 320px));
-        grid-template-rows: auto;
-        gap: 1.5rem 0.5rem;
-      }
-    
-      .forfait-grid-3 {
-        grid-template-columns: repeat(3, minmax(320px, 380px));
-        gap: 0.875rem;
-      }
-    }
+/* 4-card grid (Forfaits) - 2x2 layout on desktop screens */
+.forfait-grid-5 {
+  grid-template-columns: repeat(2, minmax(280px, 320px));
+  grid-template-rows: auto auto;
+  justify-content: center;
+}
 
-    /* Desktop (1440px - 1919px) */
-    @media (min-width: 1440px) and (max-width: 1919px) {
-      .forfait-grid-5 {
-        grid-template-columns: repeat(3, minmax(280px, 320px));
-        gap: 1.2rem 0.5rem;
-        
-      }
-      .forfait-grid-3 {
-        grid-template-columns: repeat(3, minmax(280px, 320px));
-        gap: 0.875rem;
-      }
-    }
+.forfait-grid-5 > *:nth-child(1),
+.forfait-grid-5 > *:nth-child(2) {
+  grid-row: 1;
+}
 
-    /* Small Desktop (1280px - 1439px) */
-    @media (min-width: 1280px) and (max-width: 1439px) {
-      .forfait-grid-5,
-      .forfait-grid-3 {
-        grid-template-columns: repeat(3, minmax(250px, 280px));
-        gap: 1rem 1rem;
-        justify-content: center;
-      }
-      .forfait-grid-5 > *:nth-child(4) {
-        justify-self: end;
-      }
-      .forfait-grid-5 > *:nth-child(5) {
-        justify-self: start;
-      }
-    }
+.forfait-grid-5 > *:nth-child(3),
+.forfait-grid-5 > *:nth-child(4) {
+  grid-row: 2;
+}
 
-    /* Middle Screen Fix: 2-column grid */
-    @media (min-width: 992px) and (max-width: 1279px) {
-      .forfait-grid-5,
-      .forfait-grid-3 {
-        grid-template-columns: repeat(2, minmax(280px, 300px)) !important;
-        gap: 1rem !important;
-        justify-content: center !important;
-        max-width: 600px !important;
-        margin: 0 auto !important;
-      }
-      .forfait-grid-5 > *:nth-child(n) {
-        grid-row: auto !important;
-        grid-column: auto !important;
-        justify-self: auto !important;
-      }
-      .forfait-grid-5 > *:nth-child(5),
-      .forfait-grid-3 > *:nth-child(3) {
-        grid-column: 1 / 3 !important;
-        justify-self: center !important;
-        max-width: 300px !important;
-        margin-top: 1rem !important;
-      }
-    }
+/* 3-card grid (Smart) */
+.forfait-grid-3 {
+  grid-template-columns: repeat(3, minmax(280px, 320px));
+  justify-content: center;
+}
 
-    /* Tablet Portrait (768px - 991px) */
-    @media (min-width: 768px) and (max-width: 991px) {
-      .forfait-grid-5,
-      .forfait-grid-3 {
-        grid-template-columns: repeat(2, minmax(260px, 280px));
-        gap: 1rem;
-        justify-content: center;
-        max-width: 700px;
-        margin: 0 auto;
-      }
-      .forfait-grid-5 > *:nth-child(5),
-      .forfait-grid-3 > *:nth-child(3) {
-        grid-column: 1 / 3;
-        justify-self: center;
-        max-width: 280px;
-        margin-top: 1rem;
-      }
-    }
+/* Large Desktop (1920px+) */
+@media (min-width: 1920px) {
+  .forfait-grid-5 {
+    grid-template-columns: repeat(2, minmax(280px, 320px));
+    grid-template-rows: auto auto;
+    gap: 1.5rem 0.5rem;
+  }
 
-    /* Mobile Landscape (640px - 767px) */
-    @media (min-width: 640px) and (max-width: 767px) {
-      .forfait-grid-5,
-      .forfait-grid-3 {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        justify-content: center;
-        max-width: 400px;
-      }
-      .forfait-grid-5 > *:nth-child(5),
-      .forfait-grid-3 > *:nth-child(3) {
-        justify-self: center;
-        max-width: 300px;
-        margin-top: 0;
-      }
-    }
+  .forfait-grid-3 {
+    grid-template-columns: repeat(3, minmax(320px, 380px));
+    gap: 0.875rem;
+  }
+}
 
+/* Desktop (1440px - 1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .forfait-grid-5 {
+    grid-template-columns: repeat(2, minmax(280px, 320px));
+    gap: 1.2rem 0.5rem;
+  }
+  .forfait-grid-3 {
+    grid-template-columns: repeat(3, minmax(280px, 320px));
+    gap: 0.875rem;
+  }
+}
+
+/* Small Desktop (1280px - 1439px) */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .forfait-grid-5,
+  .forfait-grid-3 {
+    grid-template-columns: repeat(2, minmax(250px, 280px));
+    gap: 1rem 1rem;
+    justify-content: center;
+  }
+}
+
+/* Middle Screen Fix: 2-column grid */
+@media (min-width: 992px) and (max-width: 1279px) {
+  .forfait-grid-5,
+  .forfait-grid-3 {
+    grid-template-columns: repeat(2, minmax(280px, 300px)) !important;
+    gap: 1rem !important;
+    justify-content: center !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+  }
+  .forfait-grid-5 > *:nth-child(n) {
+    grid-row: auto !important;
+    grid-column: auto !important;
+    justify-self: auto !important;
+  }
+  /* Remove the 5th card special positioning since we only have 4 cards */
+  .forfait-grid-3 > *:nth-child(3) {
+    grid-column: 1 / 3 !important;
+    justify-self: center !important;
+    max-width: 300px !important;
+    margin-top: 1rem !important;
+  }
+}
+
+/* Tablet Portrait (768px - 991px) - UPDATED FOR 4 CARDS */
+@media (min-width: 768px) and (max-width: 991px) {
+  .forfait-grid-5,
+  .forfait-grid-3 {
+    grid-template-columns: repeat(2, minmax(260px, 280px));
+    gap: 30px;
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  /* RESET all positioning for 4-card grid - all cards use normal flow */
+  .forfait-grid-5 > *:nth-child(1),
+  .forfait-grid-5 > *:nth-child(2),
+  .forfait-grid-5 > *:nth-child(3),
+  .forfait-grid-5 > *:nth-child(4) {
+    grid-row: auto !important;
+    grid-column: auto !important;
+    justify-self: auto !important;
+  }
+  
+  /* Only 3rd card in smart grid spans both columns */
+  .forfait-grid-3 > *:nth-child(3) {
+    grid-column: 1 / 3;
+    justify-self: center;
+    max-width: 280px;
+    margin-top: 1rem;
+  }
+}
     /* Mobile (up to 639px): slider mode */
     @media (max-width: 639px) {
       .forfait-grid {

@@ -226,7 +226,7 @@ class ForfaitComponent {
 
 /* 3-card grid (Smart) */
 .forfait-grid-3 {
-  grid-template-columns: repeat(1, minmax(280px, 320px));
+  grid-template-columns: repeat(3, minmax(280px, 320px));
   justify-content: center;
 }
 
@@ -260,7 +260,7 @@ class ForfaitComponent {
 @media (min-width: 1280px) and (max-width: 1439px) {
   .forfait-grid-5,
   .forfait-grid-3 {
-    grid-template-columns: repeat(3, minmax(250px, 280px));
+    grid-template-columns: repeat(2, minmax(250px, 280px));
     gap: 1rem 1rem;
     justify-content: center;
   }
@@ -862,14 +862,7 @@ class ForfaitComponent {
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-white">
             ${this.createMixedTitleHTML(labels.titleData, "uppercase")}
           </h2>
-         <div style="width:100%; display:flex; justify-content:center; align-items:flex-start;">
-            ${this.slider.createResponsiveLayout(
-              data.forfaits,
-              labels,
-              "forfait-grid-5",
-              this.isRTL
-            )}
-          </div>
+          ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
         </div>
       </section>
 

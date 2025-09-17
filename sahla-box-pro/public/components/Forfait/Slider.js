@@ -54,7 +54,7 @@ export class Slider {
     const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
     const textAlign = isRTL ? "text-right" : "text-left";
 
-    console.log("first", index)
+    console.log("first", index);
 
     const titleFontClass = this.getFontClass(offer.name);
     const dataFontClass = this.getFontClass(offer.data);
@@ -70,12 +70,13 @@ export class Slider {
         <div class="p-6 forfait-card-container h-full" ${isRTL ? `dir="rtl"` : ``}>
           <div class="pb-4">
             <h2 class="${titleFontClass} font-medium text-2xl text-center capitalize text-black dark:text-white mb-4 leading-tight">
-              ${index < 5 ? 
-                 `<span class='font-rubik'>${
-                  isRTL ? `<span class="font-noto-kufi-arabic">اشتراك <span class='font-rubik'>${offer.price}</span></span>` : offer.name
-                }</span>` 
-                 : 
-                 offer.name}
+              ${
+                index < 5
+                  ? `<span class='font-rubik'>${
+                      isRTL ? `<span class="font-noto-kufi-arabic">اشتراك <span class='font-rubik'>${offer.price}</span></span>` : offer.name
+                    }</span>`
+                  : offer.name
+              }
             </h2>
             <div class="w-full h-px forfait-divider mb-4"></div>
           </div>

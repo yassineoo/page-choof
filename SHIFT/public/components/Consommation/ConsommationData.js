@@ -16,7 +16,7 @@ export const consommationData = {
           },
           {
             subIcon: "dollar-phone",
-            subtitle: "Crédit recharge",
+            subtitle: "Bonus recharge",
             value: "500",
             date: "26/05/25",
             unit: "DA",
@@ -233,8 +233,7 @@ export const consommationData = {
             subtitle: "دقائق نحو Ooredoo",
             value: '<span class="font-rubik">15</span>',
             unit: '<span class="font-noto-kufi-arabic">د</span>',
-            extra:
-              '<span class="font-rubik">/30</span> <span class="font-noto-kufi-arabic">د</span>',
+            extra: '<span class="font-rubik">/30</span> <span class="font-noto-kufi-arabic">د</span>',
             date: "26/05/25",
             percentage: 50,
           },

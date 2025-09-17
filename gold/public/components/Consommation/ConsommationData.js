@@ -299,7 +299,7 @@ export const consommationData = {
       },
       {
         icon: "services",
-        title: "خدماتي",
+        title: "الخدمات",
         sections: [
           {
             subIcon: "youtube",

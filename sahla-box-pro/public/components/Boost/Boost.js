@@ -123,12 +123,14 @@ class BoostComponent {
       gap: 1rem;
     }
     .boost-title {
-      font-weight: bold;
+      font-weight: 500;
       font-size: 42px;
       margin-bottom: 24px;
       text-transform: uppercase;
     }
     .boost-description {
+      font-weight: 400;
+
       font-size: 22px;
       line-height: 1.5;
       margin-bottom: 1.5rem;
@@ -138,7 +140,7 @@ class BoostComponent {
       overflow: hidden;
     }
     .boost-price {
-      font-weight: bold;
+      font-weight: 600;
       display: flex;
       align-items: baseline;
       justify-content: center;
@@ -304,14 +306,8 @@ class BoostComponent {
   }
 
   setupEventListeners() {
-    window.removeEventListener(
-      "languageChanged",
-      this.boundHandlers.languageChange
-    );
-    window.addEventListener(
-      "languageChanged",
-      this.boundHandlers.languageChange
-    );
+    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
+    window.addEventListener("languageChanged", this.boundHandlers.languageChange);
 
     window.removeEventListener("resize", this.boundHandlers.resize);
     window.addEventListener("resize", this.boundHandlers.resize);
@@ -418,9 +414,7 @@ class BoostComponent {
             <div class="boost-card-shadow boost-hover-lift">
               <div class="boost-card-container">
                 <div class="boost-card-content">
-                  <h2 class="boost-title">${this.createMixedTitleHTML(
-                    data.title
-                  )}</h2>
+                  <h2 class="boost-title">${this.createMixedTitleHTML(data.title)}</h2>
                   <p class="boost-description">${data.description}</p>
                 </div>
                 <div class="boost-card-footer">
@@ -473,9 +467,7 @@ class BoostComponent {
   }
 
   closeAnyOpenModals() {
-    const modalContainer = this.container.querySelector(
-      "#boost-modal-container"
-    );
+    const modalContainer = this.container.querySelector("#boost-modal-container");
     if (modalContainer && modalContainer.innerHTML.trim()) {
       modalContainer.innerHTML = "";
     }
@@ -552,11 +544,11 @@ class BoostComponent {
       isRTL,
       onConfirm: () => {
         const isInsufficient = Math.random() > 0.7;
-        if (isInsufficient) {
-          this.showInsufficientModal(data, isRTL);
-        } else {
-          this.showSuccessModal(data, isRTL);
-        }
+        // if (isInsufficient) {
+        // this.showInsufficientModal(data, isRTL);
+        //  } else {
+        this.showSuccessModal(data, isRTL);
+        // }
       },
     });
   }
@@ -576,14 +568,16 @@ class BoostComponent {
       title: data.successTitle,
       message: data.successMessage,
       isRTL,
+      onConfirm: () => {
+        const isInsufficient = Math.random() > 0.7;
+        this.showInsufficientModal(data, isRTL);
+      },
     });
   }
 
   showModal({ type, title, message, isRTL = false, onConfirm }) {
     try {
-      const modalContainer = this.container.querySelector(
-        "#boost-modal-container"
-      );
+      const modalContainer = this.container.querySelector("#boost-modal-container");
       if (!modalContainer) {
         console.error("Modal container not found");
         return;
@@ -621,7 +615,7 @@ class BoostComponent {
           aria-modal="true"
           aria-labelledby="modal-title">
           <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
-              <button class="absolute top-4 ${closeButtonPosition} p-2 z-10 rounded-full transition-all duration-200 boost-modal-close"
+              <button class="absolute top-4 right-4 p-2 z-10 rounded-full transition-all duration-200 boost-modal-close"
                       aria-label="${isRTL ? "إغلاق" : "Fermer"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
@@ -685,10 +679,7 @@ class BoostComponent {
       modal.style.animation = "modalFadeOut 0.2s ease-in forwards";
       setTimeout(() => {
         modalContainer.innerHTML = "";
-        if (
-          this.previouslyFocusedElement &&
-          this.previouslyFocusedElement.focus
-        ) {
+        if (this.previouslyFocusedElement && this.previouslyFocusedElement.focus) {
           this.previouslyFocusedElement.focus();
         }
         this.previouslyFocusedElement = null;
@@ -711,7 +702,7 @@ class BoostComponent {
         closeModal();
 
         setTimeout(() => {
-          if (action === "confirm" && onConfirm) onConfirm();
+          if (onConfirm) onConfirm();
         }, 200);
       };
       button.addEventListener("click", actionClickHandler);
@@ -773,10 +764,7 @@ class BoostComponent {
       clearTimeout(this.languageChangeTimeout);
     }
 
-    window.removeEventListener(
-      "languageChanged",
-      this.boundHandlers.languageChange
-    );
+    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
     window.removeEventListener("resize", this.boundHandlers.resize);
 
     this.cleanupAllEventListeners();
@@ -785,9 +773,7 @@ class BoostComponent {
       this.container.removeEventListener("keydown", this.keyboardHandler);
     }
 
-    const modalContainer = this.container.querySelector(
-      "#boost-modal-container"
-    );
+    const modalContainer = this.container.querySelector("#boost-modal-container");
     if (modalContainer) {
       modalContainer.innerHTML = "";
     }

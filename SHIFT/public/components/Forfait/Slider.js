@@ -20,14 +20,8 @@ export class Slider {
   }
 
   setupEventListeners() {
-    window.removeEventListener(
-      "languageChanged",
-      this.boundHandlers.languageChange
-    );
-    window.addEventListener(
-      "languageChanged",
-      this.boundHandlers.languageChange
-    );
+    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
+    window.addEventListener("languageChanged", this.boundHandlers.languageChange);
 
     window.removeEventListener("resize", this.boundHandlers.resize);
     window.addEventListener("resize", this.boundHandlers.resize);
@@ -64,18 +58,14 @@ export class Slider {
     const dataFontClass = this.getFontClass(offer.data);
     const buttonFontClass = this.getFontClass(buyLabel);
 
-    const priceNumber = this.convertToLatinNumerals(
-      offer.price.replace(/[^0-9٠-٩]/g, "")
-    );
+    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
     const durationText = this.convertToLatinNumerals(offer.duration);
 
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
       <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
-        <div class="p-6 forfait-card-container h-full" ${
-          isRTL ? `dir="rtl"` : ``
-        }>
+        <div class="p-6 forfait-card-container h-full" ${isRTL ? `dir="rtl"` : ``}>
           <div class="pb-4">
             <h2 class="${titleFontClass} font-medium text-2xl text-center capitalize text-black dark:text-white mb-4 leading-tight">
                  ${
@@ -91,17 +81,13 @@ export class Slider {
 
           <div class="forfait-card-content flex-1">
             <div class="mb-5">
-              <h3 class="${dataFontClass} text-[28px] font-semibold text-ooredoo-red dark:text-white mb-2 ${textAlign} leading-10">${
-      offer.data
-    }</h3>
+              <h3 class="${dataFontClass} text-[28px] font-semibold text-ooredoo-red dark:text-white mb-2 ${textAlign} leading-10">${offer.data}</h3>
             </div>
 
             <div class="flex-1">
               ${
                 offer.features && offer.features.length > 0
-                  ? `<div class="${isRTL ? "text-right" : "text-left"}" dir="${
-                      isRTL ? "rtl" : "ltr"
-                    }">
+                  ? `<div class="${isRTL ? "text-right" : "text-left"}" dir="${isRTL ? "rtl" : "ltr"}">
                     <ul class="space-y-2">
                       ${offer.features
                         .map((feature) => {
@@ -170,52 +156,34 @@ export class Slider {
     ).join("");
   }
 
-  createResponsiveLayout(
-    offers,
-    labels,
-    gridType,
-    isRTL,
-    convertToLatinNumerals
-  ) {
-    const gridClass =
-      gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
-    const sliderId =
-      gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
-    const dotsId =
-      gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-    const startIndex =
-      gridType === "forfait-grid-5"
-        ? 0
-        : ForfaitData[this.currentLang].forfaits.length;
-
-    const classes = ["forfait-grid", gridClass];
+  createResponsiveLayout(offers, labels, gridType, isRTL, convertToLatinNumerals) {
+    const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
+    const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
+    const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
+    const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
 
     return `
-    <div class="${classes.filter(Boolean).join(" ")}">
-      ${offers
-        .map((offer, index) =>
-          this.createForfaitCard(offer, startIndex + index, labels)
-        )
-        .join("")}
-    </div>
-
-    <div class="forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
-      <div class="relative swiper">
-        <div class="swiper-wrapper">
-          ${offers
-            .map(
-              (offer, index) => `
-            <div class="swiper-slide flex justify-center p-4">
-              ${this.createForfaitCard(offer, startIndex + index, labels)}
+            <div class="forfait-grid ${gridClass}">
+              ${offers.map((offer, index) => this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
             </div>
-          `
-            )
-            .join("")}
-        </div>
-        <div class="absolute bottom-0 swiper-pagination"></div>
-      </div>
-    </div>
-  `;
+      
+            
+            <div class="forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
+                <div class="relative swiper">
+                <div class="swiper-wrapper">
+                    ${offers
+                      .map(
+                        (offer, index) => `
+                    <div class="swiper-slide flex justify-center p-4">
+                        ${this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)}
+                    </div>
+                    `
+                      )
+                      .join("")}
+                </div>
+                <div class="absolute bottom-0  swiper-pagination"></div>
+                </div>
+            </div>`;
   }
 
   initSwiper(containerId, forceRTL = null) {

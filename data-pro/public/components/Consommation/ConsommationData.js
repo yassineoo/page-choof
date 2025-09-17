@@ -77,10 +77,10 @@ export const consommationData = {
           {
             subIcon: "dollar-phone",
             subtitle: "رصيد التعبئة",
-            value: "<span class=\"font-rubik\">4000</span>",
+            value: '<span class="font-rubik">4000</span>',
             unit: "دج",
             date: "26/05/25",
-          }
+          },
         ],
       },
       {
@@ -118,15 +118,15 @@ export const consommationData = {
       },
       {
         icon: "services",
-        title: "خدماتي",
+        title: "الخدمات",
         sections: [
           {
             subIcon: "youtube",
             subtitle: "يوتيوب",
-            value: "<span class=\"font-rubik\">4Go</span>",
+            value: '<span class="font-rubik">4Go</span>',
             percentage: 80,
             date: "26/05/25",
-            extra: "<span class=\"font-rubik\">/5Go</span>",
+            extra: '<span class="font-rubik">/5Go</span>',
           },
         ],
       },

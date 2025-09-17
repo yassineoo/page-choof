@@ -36,6 +36,7 @@ const bitdefenderTranslations = {
     buyMessage: (plan) => `السعر الإجمالي: <span class="font-semibold">${plan.price}</span> دج/${plan.duration}`,
     terms: "أوافق على شروط الإستعمال ",
     congratsTitle: "هنيئًا!",
+
     congratsMessage: (plan) => `لقد تم تأكيد طلبك. ستتلقى رسالة قصيرة لتفعيل اشتراكك.`,
     creditTitle: "رصيد غير كافٍ",
     creditMessage: (plan) => `رصيدك غير كافٍ لتقديم طلبك. يرجى إعادة تعبئة حسابك والمحاولة مرة أخرى.`,
