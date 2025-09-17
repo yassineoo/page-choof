@@ -7,7 +7,7 @@ export default class Header {
     this.theme = this.detectInitialTheme();
     this.userData = {
       phone: "0509876543",
-      offer: "Offre VOX",
+      offer: "Offre Ooredoo Business",
       credit: "4000 DA",
       compayName: "Nom De L'entreprise",
       autoRenewal: true,
@@ -19,7 +19,9 @@ export default class Header {
 
   getStoredLanguage() {
     try {
-      return typeof localStorage !== "undefined" ? localStorage.getItem("language") || "fr" : "fr";
+      return typeof localStorage !== "undefined"
+        ? localStorage.getItem("language") || "fr"
+        : "fr";
     } catch (e) {
       return "fr";
     }
@@ -27,7 +29,9 @@ export default class Header {
 
   getStoredTheme() {
     try {
-      return typeof localStorage !== "undefined" ? localStorage.getItem("theme") : null;
+      return typeof localStorage !== "undefined"
+        ? localStorage.getItem("theme")
+        : null;
     } catch (e) {
       return null;
     }
@@ -74,7 +78,10 @@ export default class Header {
 
   render() {
     document.querySelectorAll("header").forEach((h) => h.remove());
-    document.body.insertAdjacentHTML("afterbegin", generateHeaderHTML(this.currentLanguage, this.userData, this.theme));
+    document.body.insertAdjacentHTML(
+      "afterbegin",
+      generateHeaderHTML(this.currentLanguage, this.userData, this.theme)
+    );
   }
 
   // iOS-STYLE SLIDING THEME SWITCHER
@@ -130,7 +137,8 @@ export default class Header {
     this.theme = theme;
 
     // Add smooth document transition
-    document.documentElement.style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+    document.documentElement.style.transition =
+      "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
     document.documentElement.classList.toggle("dark", theme === "dark");
 
     this.setStoredTheme(theme);
@@ -162,13 +170,19 @@ export default class Header {
 
   detectInitialTheme() {
     const storedTheme = this.getStoredTheme();
-    return storedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    return (
+      storedTheme ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light")
+    );
   }
 
   applyInitialTheme() {
     document.documentElement.classList.toggle("dark", this.theme === "dark");
     requestAnimationFrame(() => {
-      document.documentElement.style.transition = "background-color 0.3s ease-in-out, color 0.3s ease-in-out";
+      document.documentElement.style.transition =
+        "background-color 0.3s ease-in-out, color 0.3s ease-in-out";
     });
   }
 
@@ -274,7 +288,11 @@ export default class Header {
         this.toggleMobileMenu();
       };
       document.addEventListener("click", (e) => {
-        if (this.mobileMenuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+        if (
+          this.mobileMenuOpen &&
+          !mobileMenu.contains(e.target) &&
+          !menuBtn.contains(e.target)
+        ) {
           this.closeMobileMenu();
         }
       });
@@ -333,7 +351,10 @@ export default class Header {
       { id: "mobile-menu-icon", visible: !this.mobileMenuOpen && !isDark },
       { id: "mobile-menu-icon-dark", visible: !this.mobileMenuOpen && isDark },
       { id: "mobile-menu-close-icon", visible: this.mobileMenuOpen && !isDark },
-      { id: "mobile-menu-close-icon-dark", visible: this.mobileMenuOpen && isDark },
+      {
+        id: "mobile-menu-close-icon-dark",
+        visible: this.mobileMenuOpen && isDark,
+      },
     ].forEach(({ id, visible }) => {
       const element = document.getElementById(id);
       if (element) {
@@ -344,7 +365,9 @@ export default class Header {
   }
 
   initChargeButton() {
-    const chargeButtons = document.querySelectorAll('button:has([src*="baridi.svg"])');
+    const chargeButtons = document.querySelectorAll(
+      'button:has([src*="baridi.svg"])'
+    );
     chargeButtons.forEach((button) => {
       button.onclick = (e) => {
         e.preventDefault();
