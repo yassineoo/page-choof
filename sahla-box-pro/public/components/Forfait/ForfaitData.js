@@ -95,7 +95,7 @@ export default {
       {
         name: "اشتراك 2000",
         data: "<span class='font-rubik'>30Go</span> إنترنت",
-        features: ["رصيد <span class='font-rubik'>2000</span> دج"],
+        features: [" <span class='font-rubik'>2000</span> دج رصيد"],
         price: "2000 ",
         duration: "30 يوم",
         buy: "شراء",
@@ -103,7 +103,7 @@ export default {
       {
         name: "اشتراك 1000",
         data: "<span class='font-rubik'>15Go</span> إنترنت",
-        features: ["رصيد <span class='font-rubik'>1000</span> دج نحو Ooredoo"],
+        features: [" <span class='font-rubik'>1000</span> دج رصيد نحو Ooredoo"],
         price: "1000",
         duration: "30 يوم",
         buy: "شراء",
