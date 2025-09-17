@@ -274,10 +274,10 @@ export const consommationData = {
             subIcon: "phone",
             subtitle: "دقائق نحو <span class='font-rubik'>Ooredoo</span>",
             value: '<span class="font-rubik">15</span>',
-            unit: "دقيقة",
+            unit: "<span class='font-noto-kufi-arabic'>د</span>",
             date: "26/05/25",
             percentage: 50,
-            extra: "<span class='font-rubik'>/30</span> دقيقة",
+            extra: "<span class='font-rubik'>/30</span> <span class='font-noto-kufi-arabic'>د</span>",
           },
           {
             subIcon: "sms",

@@ -6,7 +6,7 @@ export default {
         data: "40Go internet",
         features: ["Youtube illimité"],
         price: "1500",
-        duration: "30 jours",
+        duration: "cycle de facturation",
         buy: "Acheter",
       },
       {
@@ -14,7 +14,7 @@ export default {
         data: "15Go internet",
         features: ["5Go Youtube"],
         price: "1000",
-        duration: "30 jours",
+        duration: "cycle de facturation",
         buy: "Acheter",
       },
       {
@@ -46,11 +46,7 @@ export default {
       {
         name: "Smart 100",
         data: "500Mo internet",
-        features: [
-          "Appels illimité vers Ooredoo",
-          "Facebook et Messenger illimités ",
-          "100 DA de crédit",
-        ],
+        features: ["Appels illimité vers Ooredoo", "Facebook et Messenger illimités ", "100 DA de crédit"],
         price: "100 ",
         duration: "24 heures",
         buy: "Acheter",
@@ -78,7 +74,7 @@ export default {
         data: "<span class='font-rubik'>40Go</span> إنترنت",
         features: ["يوتيوب غير محدود"],
         price: "1500 ",
-        duration: "30 يوم",
+        duration: "دورة فوترة",
         buy: "شراء",
       },
       {
@@ -86,7 +82,7 @@ export default {
         data: "<span class='font-rubik'>15Go</span> إنترنت",
         features: ["<span class='font-rubik'>5Go</span> يوتيوب"],
         price: "1000 ",
-        duration: "30 يوم",
+        duration: "دورة فوترة",
         buy: "شراء",
       },
       {
@@ -110,7 +106,7 @@ export default {
       {
         name: "Smart 200",
         data: "إنترنت مجاني",
-        features: ["مكالمات غير محدودة نحو Ooredoo", "رصيد 600 دج"],
+        features: ["مكالمات غير محدودة نحو Ooredoo", "600 دج رصيد "],
         price: "200 ",
         duration: "24 ساعة",
         buy: "شراء",
@@ -118,11 +114,7 @@ export default {
       {
         name: "Smart 100",
         data: "500Mo إنترنت",
-        features: [
-          "مكالمات غير محدودة نحو Ooredoo",
-          "فايسبوك & ماسنجر مجانيين",
-          "رصيد 100 دج",
-        ],
+        features: ["مكالمات غير محدودة نحو Ooredoo", "فايسبوك & ماسنجر مجانيين", "100 دج رصيد  "],
         price: "100 ",
         duration: "24 ساعة",
         buy: "شراء",

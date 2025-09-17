@@ -72,9 +72,38 @@ export class Slider {
             </h2>
           </div>
 
-          <div class="flex-1 text-center border-b-[1px] border-b-[#BBBEBE] border-dashed">
-            <div class="flex items-center justify-center">
-              <h3 class="font-rubik py-8 px-6 text-[50px] font-semibold text-ooredoo-red dark:text-white ${textAlign} leading-10">${offer.data}</h3>
+          <div class="flex-1 px-5 pb-4 border-b-[1px] border-b-[#BBBEBE] border-dashed">
+            <div class="">
+              <h3 class="font-rubik py-4 text-[26px] font-semibold text-ooredoo-red dark:text-white leading-10">${offer.data}</h3>
+              <div>
+                ${offer.features && offer.features.length > 0 ? 
+                  `<ul class="space-y-2">
+                  ${offer.features.map((feature) => `
+                    <li class="flex items-center gap-2 text-sm text-black dark:text-white">
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+                        <rect y="0.422852" width="14.91" height="14.91" rx="7.455" fill="#E31D23"/>
+                        <g clip-path="url(#clip0_113_17964)">
+                        <g clip-path="url(#clip1_113_17964)">
+                        <path d="M4.22656 7.87927L6.37732 10.03L10.6788 5.72852" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_113_17964">
+                        <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91211 3.33594)"/>
+                        </clipPath>
+                        <clipPath id="clip1_113_17964">
+                        <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91016 3.33691)"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+                      </span>
+                      <span class="text-[16px]">
+                        ${feature}
+                      </span>
+                    </li>`).join("")}
+                </ul>` : ``}
+              </div>
             </div>
           </div>
 
@@ -120,60 +149,64 @@ export class Slider {
     const currencyLabel = isRTL ? "دج" : "DA";
     const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
     const textAlign = isRTL ? "text-right" : "text-left";
-    const titleFontClass = this.getFontClass(offer.name);
+
+    const titleFontClass = this.getFontClass(offer.price);
     const dataFontClass = this.getFontClass(offer.data);
     const buttonFontClass = this.getFontClass(buyLabel);
 
-    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
     const durationText = this.convertToLatinNumerals(offer.duration);
 
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="relative w-full max-w-[350px] flex flex-col mx-auto overflow-hidden">
-        <div class="mb-2 h-[45px] flex items-center gap-1 justify-center text-ooredoo-red dark:text-white bg-[#ED1C2421] dark:bg-[#ED1C2421]/60 rounded-full font-semibold text-center">
-          <span class="font-rubik">${offer.topLabel}</span> ${isRTL ? "للسنة " : "PAR AN"}
-        </div>
-        <div class="h-full bg-white dark:bg-[#2C2C2C] pb-6 rounded-xl border-[1px] border-ooredoo-red dark:border-white"}>
-          <div class="h-14 bg-ooredoo-red dark:border-ooredoo-red -m-[1px] border-2 flex items-center justify-center rounded-t-xl">
-            <h2 class="text-white font-bold text-[20px] md:text-[25px]  text-center capitalize dark:text-white leading-tight">
-              <span class="font-rubik">${offer.price}</span> ${currencyLabel}
-            </h2>
-          </div>
-
-          <div class="flex-1 text-center">
-            <div class="flex items-center justify-center">
-              <h3 dir="ltr" class="font-rubik py-4 text-4xl font-semibold text-ooredoo-red dark:text-white ${textAlign} leading-10">${isRTL ? `12 x ${offer.data}` : `${offer.data} x 12`}</h3>
+      <div class="${
+        index - 12 === 2 && "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"
+      }relative bg-white pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
+        <div class="h-full flex flex-col justify-between" ${isRTL ? `dir="rtl"` : ``}>
+          <div class="">
+            <div class="border-b-[1px] border-b-[#BBBEBE] border-dashed text-center py-3">
+              <h2 class="font-medium text-2xl text-center capitalize dark:text-white leading-tight">
+                ${isRTL ? "اشتراك" : "Forfait"} <span class="font-rubik">${offer.price}</span>
+              </h2>
+            </div>
+            <div class="h-[54px] mt-6 px-4 text-xl">
+              <h3 class="text-ooredoo-red font-semibold text-[28px]">${offer.data}
+                 ${isRTL ?
+                  `<span class="font-noto-kufi-arabic">انترنت</span>`
+                  :
+                  `<span class="font-rubik">Internet</span>`
+                 }
+              </h3>
+              <div class="flex items-center gap-2 mt-8">
+                <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+                        <rect y="0.422852" width="14.91" height="14.91" rx="7.455" fill="#E31D23"/>
+                        <g clip-path="url(#clip0_113_17964)">
+                        <g clip-path="url(#clip1_113_17964)">
+                        <path d="M4.22656 7.87927L6.37732 10.03L10.6788 5.72852" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_113_17964">
+                        <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91211 3.33594)"/>
+                        </clipPath>
+                        <clipPath id="clip1_113_17964">
+                        <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91016 3.33691)"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+                      </span>
+                      <span class="text-[16px]">
+                        ${offer.features}
+                      </span>
+              </div>
+            </div>
+            <div class="px-4 flex justify-center pt-12">
+              <p class="font-semibold text-3xl"><span class="font-rubik">${offer.price}</span> <span class="text-lg">${currencyLabel}</span></p>
             </div>
           </div>
 
-          <div class="flex-1 py-4 text-center border-b-[1px] border-t-[1px] border-t-[#BBBEBE] border-b-[#BBBEBE] border-dashed">
-            <p>${this.currentLang === "ar" ? "قوموا بشراء" : "Payez"}</p>
-            <p class="text-ooredoo-red text-xl font-bold">${this.currentLang === "ar" ? "<span class='font-rubik'>10</span> اشتراكات" : "10 forfaits"}</p>
-            <p class="font-semibold text-lg md:text-xl font-rubik">Ooredoo Internet ${offer.sub}</p>
-            <p>${isRTL ? "و" : "&"}</p>
-            <p>${this.currentLang === "ar" ? "احصلوا على" : "Obtenez"}</p>
-            <p class="text-ooredoo-red font-bold text-xl">${this.currentLang === "ar" ? "اشتراكين مجانا" : "2 gratuits"} !</p>
-          </div>
-
-          <div class="py-4 px-2 flex items-center justify-between">
-            <div class="text-center">
-              <p class="text-sm">${this.currentLang === "ar" ? "احصلوا على" : "Recevez"}</p>
-              <p class="font-semibold text-lg md:text-xl"><span class="font-rubik">12</span> ${this.currentLang === "ar" ? "اشتراك" : "forfaits"}</p>
-            </div>
-            <div class="text-center">
-              <p class="text-[#7F7F7F] font-semibold text-xl">
-                <span class="font-rubik line-through decoration-red-500">${offer.oldPrice}</span> <span class="text-sm">${currencyLabel}</span>
-              </p>
-              <p class="font-semibold text-2xl md:text-3xl"><span class="font-rubik">${offer.price}</span> ${currencyLabel}</p>
-            </div>
-          </div>
-
-          <div class="text-center text-sm px-6">
-            <p>${isRTL ? "يتم تجديد الاشتراك تلقائيًا كل <span class='font-rubik'>4</span> أسابيع " : "Forfait renouvelable automatiquement chaque <span>4</span> semaines"}</p>
-          </div>
-
-          <div class="forfait-card-footer pt-4">
+          <div class="forfait-card-footer">
             <div class="forfait-button-zone flex justify-center w-full">
               <button class="forfait-buy-btn ${buttonFontClass} bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
                 style="
@@ -202,7 +235,7 @@ export class Slider {
     `;
   }
 
-  createForfaitCardHadra(offer, index, labels) {
+  createForfaitCardSmart(offer, index, labels) {
     const isRTL = this.currentLang === "ar";
     const currencyLabel = isRTL ? "دج" : "DA";
     const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
@@ -212,7 +245,6 @@ export class Slider {
     const dataFontClass = this.getFontClass(offer.data);
     const buttonFontClass = this.getFontClass(buyLabel);
 
-    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
     const durationText = this.convertToLatinNumerals(offer.duration);
 
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
@@ -220,24 +252,52 @@ export class Slider {
     return `
       <div class="${
         index - 12 === 2 && "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"
-      }relative bg-white px-4 pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
+      }relative bg-white pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
         <div class="h-full flex flex-col justify-between" ${isRTL ? `dir="rtl"` : ``}>
           <div class="">
             <div class="border-b-[1px] border-b-[#BBBEBE] border-dashed text-center py-3">
               <h2 class="font-medium text-2xl text-center capitalize dark:text-white leading-tight">
-                <span class="font-rubik">${offer.price}</span> ${currencyLabel}
+                ${offer.name}
               </h2>
             </div>
-            <div class="h-[54px] my-4 text-center px-[20px] justify-center text-xl">
-              <p>${offer.data}</p>
+            <div class="h-[54px] mt-6 px-4 text-xl">
+              <h3 class="text-ooredoo-red font-semibold text-[28px]">
+                 ${offer.data}
+              </h3>
             </div>
-            <div class="text-center">
-              <p class="font-semibold text-3xl py-4"><span class="font-rubik">${offer.price}</span> <span class="text-lg">${currencyLabel}</span></p>
-              <p class="text-sm">${isRTL ? "حسب صلاحية الاشتراك الجاري" : "Suit la validité du forfait en cours"}</p>
+            <div class="space-y-2 h-16">
+                ${offer.features.map((f)=> (
+                  `<div class="flex items-center gap-2 px-4">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+                        <rect y="0.422852" width="14.91" height="14.91" rx="7.455" fill="#E31D23"/>
+                        <g clip-path="url(#clip0_113_17964)">
+                        <g clip-path="url(#clip1_113_17964)">
+                        <path d="M4.22656 7.87927L6.37732 10.03L10.6788 5.72852" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_113_17964">
+                        <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91211 3.33594)"/>
+                        </clipPath>
+                        <clipPath id="clip1_113_17964">
+                        <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91016 3.33691)"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+                      </span>
+                      <span class="text-[16px]">
+                        ${f}
+                      </span>
+                  </div>`
+                )).join("")}
+              </div>
+            <div class="px-4 flex justify-center pt-8">
+              <p class="font-semibold text-3xl"><span class="font-rubik">${offer.price}</span> <span class="text-lg">${currencyLabel}</span></p>
             </div>
           </div>
 
-          <div class="forfait-card-footer pt-4">
+          <div class="forfait-card-footer">
             <div class="forfait-button-zone flex justify-center w-full">
               <button class="forfait-buy-btn ${buttonFontClass} bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
                 style="
@@ -284,7 +344,7 @@ export class Slider {
 
     return `
           <div class="hidden sm:flex w-full items-center justify-center">
-            <div class="gap-5 grid gap-y-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center max-w-[1000px]">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-[1000px]">
               ${offers.map((offer, index) => this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
             </div>
           </div>
@@ -342,14 +402,14 @@ export class Slider {
             </div>`;
   }
 
-  createResponsiveLayoutHadra(offers, labels, gridType, isRTL, convertToLatinNumerals) {
+  createResponsiveLayoutSmart(offers, labels, gridType, isRTL, convertToLatinNumerals) {
     const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "hadra-slider";
     const startIndex = 12;
 
     return `
           <div class="hidden sm:flex w-full items-center justify-center">
             <div class="gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              ${offers.map((offer, index) => this.createForfaitCardHadra(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
+              ${offers.map((offer, index) => this.createForfaitCardSmart(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
             </div>
           </div>
       
@@ -361,7 +421,7 @@ export class Slider {
                       .map(
                         (offer, index) => `
                     <div class="swiper-slide flex justify-center p-4">
-                        ${this.createForfaitCardHadra(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)}
+                        ${this.createForfaitCardSmart(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)}
                     </div>
                     `
                       )
