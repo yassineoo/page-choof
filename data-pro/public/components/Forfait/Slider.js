@@ -216,6 +216,14 @@ export class Slider {
             return `<span class="${className} custom-dot"></span>`;
           },
         },
+        on: {
+        init: () => {
+          this.equalizeSlideHeights(container);
+        },
+        resize: () => {
+          this.equalizeSlideHeights(container);
+        },
+      },
       });
 
       setTimeout(() => {
@@ -225,6 +233,27 @@ export class Slider {
       }, 50);
     }, 100);
   }
+
+  equalizeSlideHeights(container) {
+  const slides = container.querySelectorAll(".swiper-slide");
+  let maxHeight = 0;
+
+  // Reset heights first
+  slides.forEach(slide => {
+    slide.style.height = "auto";
+  });
+
+  // Find tallest slide
+  slides.forEach(slide => {
+    maxHeight = Math.max(maxHeight, slide.offsetHeight);
+  });
+
+  // Apply tallest height to all
+  slides.forEach(slide => {
+    slide.style.height = `${maxHeight}px`;
+  });
+}
+
   containsArabic(text) {
     if (!text) return false;
     const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
