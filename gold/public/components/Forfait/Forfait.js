@@ -865,7 +865,7 @@ class ForfaitComponent {
       <section class="w-full bg-white dark:bg-[#2c2c2c] pt-16">
         <div class="max-w-[1600px] mx-auto md:px-6">
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
-            ${this.currentLang === "ar" ? "اشتراكات <span class='font-rubik' dir='ltr'>OOREDOO INTERNET</span>" : "FORFAITS OOREDOO INTERNET"}
+            ${this.currentLang === "ar" ? "اشتراكات <span class='font-rubik' dir='ltr'>LA GOLD</span>" : "FORFAITS LA GOLD"}
           </h2>
           ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
         </div>
@@ -903,8 +903,8 @@ class ForfaitComponent {
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${
               this.currentLang === "ar"
-                ? "<span>اشتراكات<span class='font-rubik' dir='ltr'>12 x Ooredoo Internet</span></span>"
-                : "<span class='font-rubik'>forfaits ooredoo internet x 12</span>"
+                ? "<span>اشتراكات الانترنت</span>"
+                : "<span class='font-rubik'>forfaits internet</span>"
             }
           </h2>
           <div class="">
@@ -915,10 +915,10 @@ class ForfaitComponent {
 
       <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] py-16">
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
-            ${this.currentLang === "ar" ? "مزايا إضافية مكالمات ورصيد" : "Extra Hadra & Crédit"}
+            ${this.currentLang === "ar" ? "اشتراكات <span class='font-rubik'>Smart</span>" : "FORFAITS Smart"}
           </h2>
           <div class="">
-              ${this.slider.createResponsiveLayoutHadra(data.hadraForfaits, labels, "forfait-grid-4", this.isRTL, this.convertToLatinNumerals)}
+              ${this.slider.createResponsiveLayoutSmart(data.smartForfaits, labels, "forfait-grid-4", this.isRTL, this.convertToLatinNumerals)}
           </div>
       </section>
 
@@ -926,7 +926,7 @@ class ForfaitComponent {
     </div>
   `;
 
-    this.bindPurchaseButtons(language, [...data.forfaits, ...data.internetForfaits, ...data.hadraForfaits], labels);
+    this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits,...data.internetForfaits, ...data.hadraForfaits], labels);
 
     requestAnimationFrame(() => {
       this.slider.initSwiper("forfaits-slider");

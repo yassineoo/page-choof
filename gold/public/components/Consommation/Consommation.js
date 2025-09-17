@@ -569,7 +569,7 @@ export default class Consommation {
     const gapSideMargin = isRTL ? "margin-left: 0.5rem;" : "margin-right: 0.5rem;";
 
     const isOsn = section.subtitle?.includes("OSN");
-    const isFacebookMessenger = section.subtitle?.includes("Facebook & Messenger");
+    const isFacebookMessenger = section.subtitle?.includes("Facebook & Messenger") || section.subtitle?.includes("فيسبوك و ماسنجر");;
 
     let iconsAndTextContent = "";
 
@@ -619,14 +619,14 @@ export default class Consommation {
       <div class="flex items-center gap-0.5">
         ${facebookIcon}
         <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
-         Facebook
+          ${isRTL ? "فيسبوك" : "Facebook"}
         </span>
       </div>
       <span class="text-lg">&</span>
       <div class="flex items-center gap-0.5">
         ${messengerIcon}
         <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
-          Messenger
+          ${isRTL ? "ماسنجر" : "Messenger"}
         </span>
       </div>
     </div>
