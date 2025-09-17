@@ -5,25 +5,17 @@ export default {
         name: "Forfait 1500",
         data: "40Go internet",
         features: ["Youtube illimité"],
-        price: "1500",
+        price: "1500 ",
         duration: "cycle de facturation",
-        buy: "Acheter"
+        buy: "Acheter",
       },
       {
         name: "Forfait 1000",
         data: "15Go internet",
         features: ["5Go Youtube"],
-        price: "1000",
+        price: "1000 ",
         duration: "cycle de facturation",
-        buy: "Acheter"
-      },
-      {
-        name: "Forfait 500",
-        data: "12Go internet",
-        features: [],
-        price: "500 ",
-        duration: "cycle de facturation",
-        buy: "Acheter"
+        buy: "Acheter",
       },
       {
         name: "Forfait 300",
@@ -31,7 +23,7 @@ export default {
         features: ["Youtube illimité"],
         price: "300 ",
         duration: "72 heures",
-        buy: "Acheter"
+        buy: "Acheter",
       },
       {
         name: "Forfait 100",
@@ -39,123 +31,163 @@ export default {
         features: ["Youtube illimité"],
         price: "100 ",
         duration: "24 heures",
-        buy: "Acheter"
-      }
+        buy: "Acheter",
+      },
     ],
     smartForfaits: [
       {
         name: "Smart 200",
         data: "Internet gratuit",
-        features: ["600 DA de crédit"],
+        features: ["Appels illimité vers Ooredoo", "600 DA de crédit"],
         price: "200 ",
         duration: "24 heures",
-        buy: "Acheter"
+        buy: "Acheter",
       },
       {
         name: "Smart 100",
         data: "500Mo internet",
         features: [
+          "Appels illimité vers Ooredoo",
           "Facebook et Messenger illimités",
-          "100 DA de crédit"
+          "100 DA de crédit",
         ],
         price: "100 ",
         duration: "24 heures",
-        buy: "Acheter"
+        buy: "Acheter",
       },
       {
         name: "Smart 50",
         data: "200Mo internet",
-        features: [],
+        features: ["30 minutes vers Ooredoo"],
         price: "50 ",
         duration: "24 heures",
-        buy: "Acheter"
-      }
+        buy: "Acheter",
+      },
+    ],
+    callForfaits: [
+      {
+        name: "Forfait 150",
+        data: "",
+        features: [
+          "Appels illimités vers Ooredoo",
+          "15 min vers les autres réseaux",
+        ],
+        price: "150 ",
+        duration: "24 heures",
+        buy: "Acheter",
+      },
+      {
+        name: "Forfait 100",
+        data: "",
+        features: ["Appels illimités vers Ooredoo"],
+        price: "100 ",
+        duration: "24 heures",
+        buy: "Acheter",
+      },
     ],
     labels: {
       titleData: "FORFAITS INTERNET",
       titleSmart: "FORFAITS SMART",
-      buy: "Acheter"
-    }
+      titleCalls: "FORFAITS APPELS",
+      buy: "Acheter",
+    },
   },
 
-ar: {
-  forfaits: [
-    {
-      name: "اشتراك 1500",
-      data: "<span class='font-rubik'>40Go</span> إنترنت",
-      features: ["يوتيوب غير محدود"],
-      price: "1500 ",
-      duration: "دورة فوترة",
-      buy: "شراء"
-    },
-    {
-      name: "اشتراك 1000",
-      data: "<span class='font-rubik'>15Go</span> إنترنت",
-      features: ["<span class='font-rubik'>5Go</span> يوتيوب"],
-      price: "1000 ",
-      duration: "دورة فوترة",
-      buy: "شراء"
-    },
-    {
-      name: "اشتراك 500",
-      data: "<span class='font-rubik'>12Go</span> إنترنت",
-      features: [],
-      price: "500 ",
-      duration: "دورة فوترة",
-      buy: "شراء"
-    },
-    
-    {
-      name: "اشتراك 300",
-      data: "<span class='font-rubik'>3Go</span> إنترنت",
-      features: ["يوتيوب غير محدود"],
-      price: "300 ",
-      duration: "72 ساعة",
-      buy: "شراء"
-    },
-    {
-      name: "اشتراك 100",
-      data: "<span class='font-rubik'>700Mo</span> إنترنت",
-      features: ["يوتيوب غير محدود"],
-      price: "100 ",
-      duration: "24 ساعة",
-      buy: "شراء"
-    }
-  ],
-  smartForfaits: [
-    {
-      name: "Smart 200",
-      data: "إنترنت مجاني",
-      features: ["<span class='font-rubik'>600</span> دج رصيد"],
-      price: "200 ",
-      duration: "24 ساعة",
-      buy: "شراء"
-    },
-    {
-      name: "Smart 100",
-      data: "<span class='font-rubik'>500Mo</span> إنترنت",
-      features: [
-        "فايسبوك & ماسنجر مجانيين",
-        "<span class='font-rubik'>100</span> دج رصيد"
-      ],
-      price: "100 ",
-      duration: "24 ساعة",
-      buy: "شراء"
-    },
-    {
-      name: "Smart 50",
-      data: "<span class='font-rubik'>200Mo</span> إنترنت",
-      features: [],
-      price: "50 ",
-      duration: "24 ساعة",
-      buy: "شراء"
-    }
-  ],
-  labels: {
-    titleData: "اشتراكات الإنترنت",
-    titleSmart: "SMART اشتراكات",
-    buy: "شراء"
-  }
-}
+  ar: {
+    forfaits: [
+      {
+        name: "اشتراك 1500",
+        data: "<span class='font-rubik'>40Go</span> إنترنت",
+        features: ["يوتيوب غير محدود"],
+        price: "1500 ",
+        duration: "دورة فوترة",
+        buy: "شراء",
+      },
+      {
+        name: "اشتراك 1000",
+        data: "<span class='font-rubik'>15Go</span> إنترنت",
+        features: ["<span class='font-rubik'>5Go</span> يوتيوب"],
+        price: "1000 ",
+        duration: "دورة فوترة",
+        buy: "شراء",
+      },
+      {
+        name: "اشتراك 300",
+        data: "<span class='font-rubik'>3Go</span> إنترنت",
+        features: ["يوتيوب غير محدود"],
+        price: "300 ",
+        duration: "72 ساعة",
+        buy: "شراء",
+      },
+      {
+        name: "اشتراك 100",
+        data: "<span class='font-rubik'>700Mo</span> إنترنت",
+        features: ["يوتيوب غير محدود"],
+        price: "100 ",
+        duration: "24 ساعة",
+        buy: "شراء",
+      },
+    ],
+    smartForfaits: [
+      {
+        name: "Smart 200",
+        data: "إنترنت مجاني",
+        features: [
+          "مكالمات غير محدودة نحو Ooredoo",
+          "<span class='font-rubik'>600</span> دج رصيد",
+        ],
+        price: "200 ",
+        duration: "24 ساعة",
+        buy: "شراء",
+      },
+      {
+        name: "Smart 100",
+        data: "<span class='font-rubik'>500Mo</span> إنترنت",
+        features: [
+          "مكالمات غير محدودة نحو Ooredoo",
+          "فايسبوك & ماسنجر مجانيين",
+          "<span class='font-rubik'>100</span> دج رصيد",
+        ],
+        price: "100 ",
+        duration: "24 ساعة",
+        buy: "شراء",
+      },
+      {
+        name: "Smart 50",
+        data: "<span class='font-rubik'>200Mo</span> إنترنت",
+        features: ["30 دقيقة مكالمات نحو Ooredoo"],
+        price: "50 ",
+        duration: "24 ساعة",
+        buy: "شراء",
+      },
+    ],
+    callForfaits: [
+      {
+        name: "اشتراك 150",
+        data: "",
+        features: [
+          "مكالمات غير محدودة نحو Ooredoo",
+          "15 دقيقة مكالمات نحو الشبكات الأخرى",
+        ],
+        price: "150 ",
+        duration: "24 ساعة",
+        buy: "شراء",
+      },
+      {
+        name: "اشتراك 100",
+        data: "",
+        features: ["مكالمات غير محدودة نحو Ooredoo"],
+        price: "100 ",
+        duration: "24 ساعة",
+        buy: "شراء",
+      },
+    ],
 
+    labels: {
+      titleData: "اشتراكات الإنترنت",
+      titleSmart: "SMART اشتراكات",
+      titleCalls: "اشتراكات المكالمات",
+      buy: "شراء",
+    },
+  },
 };
