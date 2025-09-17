@@ -3,6 +3,8 @@ import Consommation from "../components/Consommation/Consommation.js";
 import Forfait from "../components/Forfait/Forfait.js";
 import DigitalServices from "../components/DigitalServices/DigitalServices.js";
 import Footer from "../components/Footer/footer.js";
+import Boost500Component from "../components/Boost/Boost.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const header = new Header();
@@ -16,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     initComponent("consommation-root", Consommation);
     initComponent("forfait-root", Forfait);
+    initComponent("boost-root", Boost500Component)
     initComponent("digitalServices-root", DigitalServices);
     initComponent("footer-root", Footer)
 
