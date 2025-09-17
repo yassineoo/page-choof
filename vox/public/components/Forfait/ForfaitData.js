@@ -4,7 +4,7 @@ export default {
       {
         name: "Forfait 1500",
         data: "40Go internet",
-        features: ["Youtube illimité"],
+        features: ["Youtube illimité","Youtube illimité"],
         price: "1500",
         duration: "cycle de facturation",
         buy: "Acheter"
