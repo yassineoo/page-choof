@@ -926,7 +926,7 @@ class ForfaitComponent {
     </div>
   `;
 
-    this.bindPurchaseButtons(language, [...data.forfaits, ...data.smartForfaits,...data.internetForfaits, ...data.hadraForfaits], labels);
+    this.bindPurchaseButtons(language, [...data.forfaits,...data.internetForfaits, ...data.smartForfaits], labels);
 
     requestAnimationFrame(() => {
       this.slider.initSwiper("forfaits-slider");

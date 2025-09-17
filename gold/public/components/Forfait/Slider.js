@@ -74,7 +74,7 @@ export class Slider {
 
           <div class="flex-1 px-5 pb-4 border-b-[1px] border-b-[#BBBEBE] border-dashed">
             <div class="">
-              <h3 class="font-rubik py-4 text-[26px] font-semibold text-ooredoo-red dark:text-white leading-10">${offer.data}</h3>
+              <h3 class="py-4 text-[26px] font-semibold text-ooredoo-red dark:text-white leading-10">${offer.data}</h3>
               <div>
                 ${offer.features && offer.features.length > 0 ? 
                   `<ul class="space-y-2">
@@ -154,6 +154,7 @@ export class Slider {
     const dataFontClass = this.getFontClass(offer.data);
     const buttonFontClass = this.getFontClass(buyLabel);
 
+    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
     const durationText = this.convertToLatinNumerals(offer.duration);
 
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
@@ -170,7 +171,8 @@ export class Slider {
               </h2>
             </div>
             <div class="h-[54px] mt-6 px-4 text-xl">
-              <h3 class="text-ooredoo-red font-semibold text-[28px]">${offer.data}
+              <h3 class="text-ooredoo-red font-semibold text-[28px]">
+                 <span class="font-rubik">${offer.data}</span>
                  ${isRTL ?
                   `<span class="font-noto-kufi-arabic">انترنت</span>`
                   :
@@ -201,8 +203,10 @@ export class Slider {
                       </span>
               </div>
             </div>
-            <div class="px-4 flex justify-center pt-12">
-              <p class="font-semibold text-3xl"><span class="font-rubik">${offer.price}</span> <span class="text-lg">${currencyLabel}</span></p>
+            <div class="flex items-baseline justify-center mt-20">
+              <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
+              <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
+              <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${index === 10 && "text-sm font-medium"}">/${durationText}</span>
             </div>
           </div>
 
@@ -246,17 +250,17 @@ export class Slider {
     const buttonFontClass = this.getFontClass(buyLabel);
 
     const durationText = this.convertToLatinNumerals(offer.duration);
-
+   
+    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-
     return `
       <div class="${
-        index - 12 === 2 && "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"
+        index - 11 === 2 && "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"
       }relative bg-white pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
         <div class="h-full flex flex-col justify-between" ${isRTL ? `dir="rtl"` : ``}>
           <div class="">
             <div class="border-b-[1px] border-b-[#BBBEBE] border-dashed text-center py-3">
-              <h2 class="font-medium text-2xl text-center capitalize dark:text-white leading-tight">
+              <h2 class="font-rubik font-medium text-2xl text-center capitalize dark:text-white leading-tight">
                 ${offer.name}
               </h2>
             </div>
@@ -292,8 +296,10 @@ export class Slider {
                   </div>`
                 )).join("")}
               </div>
-            <div class="px-4 flex justify-center pt-8">
-              <p class="font-semibold text-3xl"><span class="font-rubik">${offer.price}</span> <span class="text-lg">${currencyLabel}</span></p>
+              <div class="flex items-baseline justify-center mt-20">
+              <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
+              <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
+              <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span>
             </div>
           </div>
 
@@ -340,7 +346,7 @@ export class Slider {
     const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
     const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
     const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-    const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
+    const startIndex = 0;
 
     return `
           <div class="hidden sm:flex w-full items-center justify-center">
@@ -372,7 +378,7 @@ export class Slider {
     const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
     const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "internet-slider";
     const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-    const startIndex = 6;
+    const startIndex = 5;
 
     return `
           <div class="hidden sm:flex w-full items-center justify-center">
@@ -404,7 +410,7 @@ export class Slider {
 
   createResponsiveLayoutSmart(offers, labels, gridType, isRTL, convertToLatinNumerals) {
     const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "hadra-slider";
-    const startIndex = 12;
+    const startIndex = 11;
 
     return `
           <div class="hidden sm:flex w-full items-center justify-center">
