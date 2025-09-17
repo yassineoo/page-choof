@@ -4,8 +4,8 @@ import modalData from "./ModalData.js";
 const bitdefenderTranslations = {
   fr: {
     buttonText: "ACHETER",
-    buyModalTitle: "<span class='font-semibold'>تأكيد الشراء</span>",
-    buyMessage: (plan) => `<span class='font-semibold'>السعر الإجمالي: ${plan.price} دج / ${plan.duration}</span>`,
+    buyModalTitle: "<span class='font-semibold'> Confirmation d'achat</span>",
+    buyMessage: (plan) => `<span class='font-semibold'> Prix total :  ${plan.price} DA / ${plan.duration}</span>`,
     terms: `J'accepte les conditions générales`,
     congratsTitle: "Félicitations !",
     congratsMessage: (plan) => `Votre commande a été confirmée. Vous recevrez un SMS pour activer votre abonnement.`,
@@ -603,7 +603,9 @@ export default class DigitalBitdefenderServices {
                 <div class="md:hidden block h-8 lg:h-12 w-px bg-white bg-opacity-30"></div>
 
                 <!-- Right Side: Paragraph + Device Image -->
-                <div class="flex flex-1 md:flex-none flex-col-reverse md:flex-row items-center ${isArabic ? "flex-row-reverse" : ""} gap-2 sm:gap-3 lg:gap-4">
+                <div class="flex flex-1 md:flex-none flex-col-reverse md:flex-row items-center ${
+                  isArabic ? "flex-row-reverse" : ""
+                } gap-2 sm:gap-3 lg:gap-4">
                   <div class="text-white ${isArabic ? "text-left" : "text-right"} text-center sm:text-right">
                     <p class="text-white text-center text-opacity-90 text-sm sm:text-lg lg:text-[22px] font-medium lg:font-semibold">
                       ${isArabic ? "حماية تصل إلى 20 جهاز" : "Protégez jusqu'à 20 appareils"}
