@@ -7,7 +7,7 @@ export default class Header {
     this.theme = this.detectInitialTheme();
     this.userData = {
       phone: "0509876543",
-      offer: "Offre AMBITION",
+      offer: "Offre Elite",
       credit: "4000 DA",
       compayName: "Nom De L'entreprise",
       autoRenewal: true,
