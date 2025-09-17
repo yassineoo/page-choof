@@ -522,9 +522,9 @@ export default class Consommation {
     })();
 
     const renderedCard = `
-      <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}" style="min-height: 450px;">
+      <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}" >
         <div class="px-6 py-7 flex flex-col justify-between min-h-full relative">
-        <div class="mb-20">
+        <div class="">
           <!-- Title Section -->
           <div class="flex items-center gap-1 flex-shrink-0" style="padding-bottom: 24px; border-bottom: 0.87px solid #F4F4F4;">
             <div class="flex items-center justify-center">
