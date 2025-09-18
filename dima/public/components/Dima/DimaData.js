@@ -1,180 +1,167 @@
-// DimaData.js
 export const DimaFrench = {
-  title: "DIMA OFFERS",
+  title: "FORFAITS DIMA OOREDOO",
   offers: [
     {
       name: "Dima 4000",
-      nouveau: true,
-      highlight: "200 Go internet",
+      highlight: "200Go internet",
       features: [
-        "Appels illimités vers tous réseaux nationaux",
+        "Appels illimités vers tous les réseaux",
         "SMS illimités vers Ooredoo",
-        "200 SMS vers tous réseaux"
+        "200 SMS vers les autres réseaux",
       ],
       price: "4000",
-      duration: "30 jour"
+      duration: "30 jours",
     },
     {
       name: "Dima 2500",
-      nouveau: false,
-      highlight: "100 Go internet",
+      highlight: "100Go internet",
       features: [
-        "Appels illimités vers tous réseaux nationaux",
-        "120 SMS & illimités vers Ooredoo",
-        "ANAZIK & ANAFLIX & SHAHID & Facebook Gratuits"
+        "Appels illimités vers tous les réseaux",
+        "SMS illimités vers Ooredoo",
+        "100 SMS vers les autres réseaux",
+        "ANAZIK, ANAFLIX, SHAHID & Facebook Gratuits",
       ],
       price: "2500",
-      duration: "30 jour"
+      duration: "30 jours",
     },
     {
       name: "Dima 2000",
-      nouveau: false,
-      highlight: "50 Go internet",
+      highlight: "50Go internet",
       features: [
-        "200 SMS & 300 Min appels",
-        "Illimité vers tous réseaux",
-        "ANAZIK & ANAFLIX & Facebook Gratuits"
+        "Appels illimité vers Ooredoo",
+        "200 SMS & 300 min appels",
+        "ANAFLIX, ANAZIK & Facebook Gratuits",
       ],
       price: "2000",
-      duration: "30 jour"
+      duration: "30 jours",
     },
     {
       name: "Dima 1500",
-      nouveau: false,
-      highlight: "30 Go internet",
+      highlight: "30Go internet",
       features: [
-        "150 SMS & 150 Min appels",
-        "Illimité vers tous réseaux",
-        "ANAZIK & ANAFLIX & Facebook Gratuits"
+        "Appels illimité vers Ooredoo",
+        "150 SMS & 150 min appels",
+        "ANAFLIX & Facebook Gratuits",
       ],
       price: "1500",
-      duration: "30 jour"
+      duration: "30 jours",
     },
     {
       name: "Dima 1200",
-      nouveau: false,
-      highlight: "08 Go internet",
+      highlight: "8Go internet",
       features: [
-        "120 SMS & 100 Min appels",
-        "Illimité vers Ooredoo",
-        "ANAZIK & Facebook Gratuits"
+        "Appels illimités vers Ooredoo",
+        "120 SMS & 100 min appels",
+        "ANAZIK & Facebook Gratuits",
       ],
       price: "1200",
-      duration: "14 jour"
+      duration: "30 jours",
     },
     {
       name: "Dima 750",
-      nouveau: false,
-      highlight: "10 Go internet",
+      highlight: "10Go internet",
       features: [
-        "50 SMS & 100 Min appels",
-        "Illimité vers Ooredoo",
-        "Facebook Gratuits"
+        "Appels illimités vers Ooredoo",
+        "50 SMS & 100 min appels",
+        "Facebook Gratuit",
       ],
       price: "750",
-      duration: "14 jour"
+      duration: "14 jours",
     },
     {
       name: "Dima 500",
-      nouveau: false,
-      highlight: "03 Go internet",
+      highlight: "3Go internet",
       features: [
-        "50 SMS & 100 Min appels",
-        "Illimité vers Ooredoo",
-        "ANAZIK & ANAFLIX & Facebook Gratuits"
+        "Appels illimités vers Ooredoo",
+        "50 SMS & 100 min appels",
+        "Facebook Gratuit",
       ],
       price: "500",
-      duration: "14 jour"
-    }
-  ]
+      duration: "15 jours",
+    },
+  ],
 };
 
 export const DimaArabic = {
-  title: "عروض Dima",
+  title: "إشتراكات DIMA OOREDOO",
   offers: [
     {
-      name: "إشتراك Dima 4000",
-      nouveau: true,
-      highlight: "إنترنت 200 Go",
+      name: "Dima 4000",
+      highlight: "200Go إنترنت",
       features: [
         "مكالمات غير محدودة نحو كل الشبكات",
-        "رسالات غير محدودة نحو Ooredoo",
-        "200 رسالة قصيرة"
+        "رسائل قصيرة غير محدودة نحو Ooredoo",
+        "200 رسالة قصيرة نحو الشبكات الأخرى",
       ],
       price: "4000",
-      duration: "30يوم"
+      duration: "30 يوم",
     },
     {
-      name: "إشتراك Dima 2500",
-      nouveau: false,
-      highlight: "إنترنت 100 Go",
+      name: "Dima 2500",
+      highlight: "100Go إنترنت",
       features: [
         "مكالمات غير محدودة نحو كل الشبكات",
-        "120 رسالة قصيرة & وغير محدودة نحو ooredoo",
-        "ANAZIK وANAFLIX وshahid وفايسبوك مجانا"
+        "رسائل قصيرة غير محدودة نحو Ooredoo",
+        "100 رسالة قصيرة نحو الشبكات الأخرى",
+        "ANAZIK وANAFLIX وشاهد وفايسبوك مجانًا",
       ],
       price: "2500",
-      duration: "30يوم"
+      duration: "30 يوم",
     },
     {
-      name: "إشتراك Dima 2000",
-      nouveau: false,
-      highlight: "إنترنت 50 Go",
+      name: "Dima 2000",
+      highlight: "50Go إنترنت",
       features: [
-        "200 رسالة قصيرة & 300 دقيقة مكالمات",
-        "مكالمات غير محدودة نحو كل الشبكات",
-        "ANAZIK و ANAFLIX ,فايسبوك مجانا"
+        "مكالمات غير محدودة نحو Ooredoo",
+        "200 رسالة قصيرة و 300 دقيقة مكالمات",
+        "ANAFLIX و ANAZIK وفايسبوك مجانيين",
       ],
       price: "2000",
-      duration: "30يوم"
+      duration: "30 يوم",
     },
     {
-      name: "إشتراك Dima 1500",
-      nouveau: false,
-      highlight: "إنترنت 30 Go",
+      name: "Dima 1500",
+      highlight: "30Go إنترنت",
       features: [
-        "150 رسالة قصيرة & 150 دقيقة مكالمات",
-        "مكالمات غير محدودة نحو كل الشبكات",
-        "ANAZIK و ANAFLIX ,فايسبوك مجانا"
+        "مكالمات غير محدودة نحو Ooredoo",
+        "150 رسالة قصيرة و 150 دقيقة مكالمات",
+        "ANAFLIX وفايسبوك مجانيين",
       ],
       price: "1500",
-      duration: "30يوم"
+      duration: "30 يوم",
     },
     {
-      name: "إشتراك Dima 1200",
-      nouveau: false,
-      highlight: "إنترنت 08 Go",
+      name: "Dima 1200",
+      highlight: "8Go إنترنت",
       features: [
-        "120 رسالة قصيرة & 100 دقيقة مكالمات",
         "مكالمات غير محدودة نحو Ooredoo",
-        "ANAZIK و فايسبوك مجانا"
+        "120 رسالة قصيرة و 100 دقيقة مكالمات",
+        "ANAZIK وفايسبوك مجانيين",
       ],
       price: "1200",
-      duration: "14يوم"
+      duration: "30 يوم",
     },
     {
-      name: "إشتراك Dima 750",
-      nouveau: false,
-      highlight: "إنترنت 10 Go",
+      name: "Dima 750",
+      highlight: "10Go إنترنت",
       features: [
-        "50 رسالة قصيرة & 100 دقيقة مكالمات",
         "مكالمات غير محدودة نحو Ooredoo",
-        "فايسبوك مجاني"
+        "50 رسالة قصيرة و 150 دقيقة مكالمات",
+        "فايسبوك مجاني",
       ],
       price: "750",
-      duration: "14يوم"
+      duration: "14 يوم",
     },
     {
-      name: "إشتراك Dima 500",
-      nouveau: false,
-      highlight: "إنترنت 03 Go",
+      name: "Dima 500",
+      highlight: "3Go إنترنت",
       features: [
-        "50 رسالة قصيرة & 100 دقيقة مكالمات",
         "مكالمات غير محدودة نحو Ooredoo",
-        "ANAZIK و ANAFLIX ,فايسبوك مجانا"
+        "50 رسالة قصيرة و 150 دقيقة مكالمات",
+        "فايسبوك مجاني",
       ],
       price: "500",
-      duration: "14يوم"
-    }
-  ]
+      duration: "15 يوم",
+    },
+  ],
 };

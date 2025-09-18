@@ -36,7 +36,6 @@ const customCSS = `
   background-color: var(--ooredoo-red, #e50012);
   border: none;
   color: white;
-  font-family: Rubik, sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
   text-transform: uppercase;
@@ -103,17 +102,17 @@ function renderLogoBlock({ logo, subLogo, id }) {
 function renderTopCard(pkg, lang) {
   const topCard = document.createElement("div");
   topCard.className =
-    "flex items-center justify-between w-[430px] h-[108px] bg-white dark:bg-[#2C2C2C] dima-card-border rounded-[15px] px-[24px] py-[24px]";
+    "flex items-center justify-between w-full h-auto bg-white dark:bg-[#2C2C2C] dima-card-border mb-2 rounded-[15px] px-[24px] py-[24px]";
 
   const logoBlock = renderLogoBlock(pkg);
 
   const desc = document.createElement("div");
-  desc.className = "font-rubik font-normal text-[14px] text-black dark:text-gray-200 ";
+  desc.className = " font-normal text-sm text-black dark:text-gray-200 leading-1.3";
   desc.innerHTML =
     lang === "ar"
       ? pkg.description
       : pkg.description.replace(/<strong>(.*?)<\/strong>/g, `<strong class="font-semibold text-black dark:text-white">$1</strong>`);
-  desc.style.lineHeight = "1.3";
+  desc.style.lineHeight = "1.1";
   desc.style.verticalAlign = "middle";
   desc.style.letterSpacing = "0";
   desc.style.direction = lang === "ar" ? "rtl" : "ltr";
@@ -127,23 +126,23 @@ function renderTopCard(pkg, lang) {
 function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   const curr = pkg.durations[currentDuration];
   const downCard = document.createElement("div");
-  downCard.className = "w-[430px] flex flex-col items-center bg-white dark:bg-[#2C2C2C] dima-card-border rounded-[15px] pt-0 pb-[20px]";
+  downCard.className = "w-full flex flex-col items-center bg-white dark:bg-[#2C2C2C] dima-card-border rounded-[15px] pt-0 pb-[20px]";
 
   const titleBar = document.createElement("div");
   titleBar.className =
-    "w-full bg-[#ED1C24] text-white font-rubik font-medium text-[25px] leading-[1] text-center capitalize py-[20px] rounded-t-[15px] tracking-wide";
-  titleBar.innerText = pkg.title;
+    "w-full bg-[#ED1C24] text-white  font-medium text-[25px] leading-[1] text-center capitalize py-[20px] rounded-t-[15px] tracking-wide";
+  titleBar.innerHTML = pkg.title;
   downCard.appendChild(titleBar);
 
   // Tabs
   const tabs = document.createElement("div");
   tabs.className =
-    "flex items-center w-[390px] h-[41px] gap-[8px] border border-[#ED1C24] rounded-full px-[10px] py-[7px] bg-white dark:bg-[#2C2C2C] mb-[10px] mt-6 shadow-sm";
+    "flex items-center w-[95%] h-[41px] gap-[8px] border border-[#ED1C24] rounded-full px-[10px] py-[7px] bg-white dark:bg-[#2C2C2C] mb-[10px] mt-6 shadow-sm";
   pkg.durations.forEach((d, i) => {
     const tab = document.createElement("button");
     tab.type = "button";
     tab.className = [
-      "rounded-full px-[15px] py-[5px] font-rubik text-[15px] flex-1 transition-all duration-150 font-normal ring-0",
+      "rounded-full px-[15px] py-[5px]  text-[15px] flex-1 transition-all duration-150 font-normal ring-0",
       "shadow",
       i === currentDuration ? "bg-[#ED1C24] text-white tod-tab-shadow" : "bg-white dark:bg-[#2C2C2C] text-black dark:text-white",
     ].join(" ");
@@ -155,10 +154,10 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
 
   // Options
   const optsUL = document.createElement("ul");
-  optsUL.className = "flex flex-col gap-y-[9px] w-full px-2 mt-2";
+  optsUL.className = "flex flex-col gap-y-[9px] w-full px-[15px] py-5";
   curr.options.forEach((opt) => {
     const li = document.createElement("li");
-    li.className = "flex items-center font-rubik text-[15px] font-normal text-[#191919] dark:text-gray-200";
+    li.className = "flex items-center gap-2 text-[15px] font-normal text-[#191919] dark:text-gray-200";
     li.innerHTML = `<img src="./assets/images/dima/checkbox.svg" alt="" class="w-[19px] h-[19px] mr-2" /><span>${opt}</span>`;
     optsUL.appendChild(li);
   });
@@ -169,18 +168,32 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   dash.className = "dima-divider w-[97%]";
   downCard.appendChild(dash);
 
+  // conditional rendering text for 12 months duration
+  if (currentDuration === 2) {
+    const txt = document.createElement("div");
+  const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
+  txt.className = "text-center text-[14px] font-normal text-[#191919] dark:text-gray-200 px-5 mb-3";
+  txt.innerHTML = lang === "ar" ? 
+  `<div class="${fontClass}">ادفعوا <span class="font-semibold"><span class="font-rubik">10</span> اشهر</span> واحصلوا على <span class="font-semibold">شهرين مجانا</span></div>` 
+  : 
+  `<div class="${fontClass}">Payez <span class="font-semibold">10 mois</span> et obtenez <span class="font-semibold">2 gratuits</span></div>`  
+;
+    downCard.appendChild(txt);
+  }
+  
+
   // Price
   const priceRow = document.createElement("div");
   priceRow.className = "flex items-baseline justify-center gap-[10px]";
   priceRow.innerHTML = `
-    <span class="font-bold font-rubik text-[clamp(1.5rem,2vw,2.25rem)] dark:text-white">${curr.price}</span>
-    <span class="font-rubik text-[1.09em] text-[#6c6c6c] dark:text-gray-300">${lang === "ar" ? "دج/" : "DA /"}${curr.months}</span>
+    <span class="font-semibold font-rubik  text-[37.38px] dark:text-white">${curr.price}</span>
+    <span class="font-semibold text-[20px] dark:text-white">${lang === "ar" ? "دج/" : "DA /"}${curr.months}</span>
   `;
   downCard.appendChild(priceRow);
 
   // Button
   const buyBtn = document.createElement("button");
-  buyBtn.className = "acheter-button mt-1";
+  buyBtn.className = `acheter-button mt-1 ${lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"}`;
   buyBtn.innerText = lang === "ar" ? "شراء" : "ACHETER";
   buyBtn.onclick = () => onBuy();
   downCard.appendChild(buyBtn);
@@ -191,7 +204,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
 function TODCard({ packageData, lang, onBuyClick }) {
   let currentDuration = 0;
   const card = document.createElement("div");
-  card.className = "flex flex-col items-center w-[430px] gap-[4px]";
+  card.className = "flex flex-col items-center w-full gap-[4px]";
 
   const topCard = renderTopCard(packageData, lang);
   card.appendChild(topCard);
@@ -220,16 +233,12 @@ export default class TODServices {
     this.container = container;
     this.currentLang = this.getLang();
     this.injectStyles();
+    this.init();
+  }
 
-    window.addEventListener("languageChanged", () => {
-      const lang = this.getLang();
-      if (lang !== this.currentLang) {
-        this.currentLang = lang;
-        this.render();
-      }
-    });
-
+  init() {
     this.render();
+    this.bindEvents();
   }
 
   // Inject enhanced styles
@@ -247,20 +256,65 @@ export default class TODServices {
     return ["fr", "ar"].includes(stored) ? stored : "fr";
   }
 
+  bindEvents() {
+    this.unbindEvents();
+
+    this.boundHandleLanguageChange = this.handleLanguageChange.bind(this);
+    window.addEventListener("languageChanged", this.boundHandleLanguageChange);
+
+    this.langPoller = setInterval(this.checkLanguageChange.bind(this), 200);
+
+    this.boundStorageListener = (e) => {
+      if (e.key === "language") {
+        this.handleLanguageChange();
+      }
+    };
+    window.addEventListener("storage", this.boundStorageListener);
+  }
+
+  unbindEvents() {
+    if (this.boundHandleLanguageChange) {
+      window.removeEventListener("languageChanged", this.boundHandleLanguageChange);
+    }
+    if (this.boundStorageListener) {
+      window.removeEventListener("storage", this.boundStorageListener);
+    }
+    if (this.langPoller) {
+      clearInterval(this.langPoller);
+      this.langPoller = null;
+    }
+  }
+
+  handleLanguageChange() {
+    const newLang = this.getLang();
+    if (newLang !== this.currentLang) {
+      console.log(`TODServices: Language changed from ${this.currentLang} to ${newLang}`);
+      this.currentLang = newLang;
+      this.render();
+    }
+  }
+
+  checkLanguageChange() {
+    this.handleLanguageChange();
+  }
+
   render() {
     const lang = this.getLang();
     const pkgs = todPackages[lang];
     const isArabic = lang === "ar";
 
     this.container.innerHTML = `
-      <div class="w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-8" ${isArabic ? 'dir="rtl"' : ""}>
+      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-16" ${
+      isArabic ? 'dir="rtl"' : ""
+    }>
         <div class="max-w-7xl mx-auto">
           <div class="text-center mb-12">
-            <h2 class="font-rubik font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
-              ${isArabic ? "اشتراكات TOD" : "FORFAITS TOD"}
+            <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
+              ${isArabic ? "اشتراكات <span class='font-rubik'>TOD</span>" : "LES FORFAITS TOD"}
             </h2>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 place-items-center w-full" id="tod-packages-grid"></div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 place-items-center w-full" id="tod-packages-grid"></div>
           <div id="tod-modal-hook"></div>
         </div>
       </div>
@@ -280,26 +334,29 @@ export default class TODServices {
   handleBuyClick(selection, lang) {
     const isArabic = lang === "ar";
     const confirmMsg = isArabic
-      ? `اشتر الآن باقة ${selection.package.type} + ${selection.duration.giga}Go، ${selection.duration.price} دج / ${selection.duration.months}.`
-      : `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go pour ${selection.duration.price} DA / ${selection.duration.months}.`;
+      ? `احصل على دخول إلى ${selection.duration.giga}Go + ${selection.package.type} إنترنت صالحين شهر بـ <span class="whitespace-nowrap">${selection.duration.price} دج.</span>`
+      : `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go d'internet valables ${selection.duration.months} pour <span class="whitespace-nowrap">${selection.duration.price} DA.</span>`;
     const congratsMsg = isArabic
-      ? `لقد قمت بتفعيل باقة ${selection.package.type} + ${selection.duration.giga}Go بنجاح. <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">اضغط هنا</a>`
-      : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">Cliquez ici</a>`;
+      ? `لقد قمت بتفعيل اشتراكك  ${selection.package.type} + ${selection.duration.giga}Go بنجاح. قم بتحميل TOD الآن على هذا <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">الرابط</a>.`
+      : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur ce lien <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">Cliquez ici</a>.`;
     const noCreditMsg = isArabic
-      ? `رصيدك غير كافٍٍ لشراء باقة ${selection.package.type}. يرجى إعادة الشحن.`
-      : `Votre crédit est insuffisant pour acheter ${selection.package.type}. Veuillez recharger.`;
+      ? `عزيزي الزبون، رصيدك غير كافٍٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى..`
+      : `Cher client, votre crédit est insuffisant pour acheter le forfait ${selection.package.type}. Veuillez recharger votre compte et réessayer.`;
 
     this.showModal(
       "buy",
       selection.package.title,
       confirmMsg,
       () => {
-        const noCredit = false;
-        if (noCredit) {
-          this.showModal("credit", isArabic ? "معلومات" : "Information", noCreditMsg);
-        } else {
-          this.showModal("congrats", isArabic ? "تهانينا!" : "Félicitations !", congratsMsg);
-        }
+        this.showModal(
+          "congrats",
+          isArabic ? "تهانينا!" : "Félicitations!",
+          congratsMsg,
+          () => {
+            this.showModal("credit", isArabic ? "رصيد غير كافٍٍ" : "Crédit insuffisant", noCreditMsg, () => {}, isArabic);
+          },
+          isArabic
+        );
       },
       isArabic
     );
@@ -310,7 +367,7 @@ export default class TODServices {
     hook.innerHTML = "";
 
     const modalTitleClass = `
-      font-rubik font-semibold text-ooredoo-red
+      font-semibold text-ooredoo-red dark:text-white
       text-[34px] leading-[55.86px]
       uppercase text-center tracking-[-0.02em]
       mb-6
@@ -322,32 +379,33 @@ export default class TODServices {
       </button>
     `;
 
-    const primaryBtn = `flex items-center justify-center rounded-full bg-[#e50012] text-white font-rubik font-semibold uppercase text-sm min-w-[10rem] py-2 px-5`;
-    const secondaryBtn = `flex items-center justify-center rounded-full bg-white border-2 border-[#ED1C24] text-[#ED1C24] font-rubik font-semibold uppercase text-sm min-w-[10rem] py-2 px-5 transition`;
+    const primaryBtn = `flex items-center justify-center rounded-full bg-[#e50012] text-white font-semibold uppercase text-sm min-w-[8rem] sm:min-w-[10rem] py-2 px-5 dark:`;
+    const secondaryBtn = `flex items-center justify-center rounded-full bg-white border-2 border-[#ED1C24] text-[#ED1C24] font-semibold uppercase dark:text-white dark:bg-transparent dark:border-white text-sm min-w-[8rem] sm:min-w-[10rem] py-2 px-5 transition`;
 
     let buttonsHTML = "";
     if (type === "buy") {
+      console.log("type is buy");
       buttonsHTML = `
         <button class="${secondaryBtn}" id="modal-cancel">${isArabic ? "إلغاء" : "Annuler"}</button>
         <button class="${primaryBtn}" id="modal-confirm">${isArabic ? "تأكيد" : "Confirmer"}</button>
       `;
     } else if (type === "congrats") {
-      buttonsHTML = `<button class="${secondaryBtn}" id="modal-close">${isArabic ? "إغلاق" : "Fermer"}</button>`;
+      buttonsHTML = `<button class="${primaryBtn}" id="modal-confirm">${isArabic ? "حسنًا" : "OK"}</button>`;
     } else if (type === "credit") {
       buttonsHTML = `<button class="${primaryBtn}" id="modal-close">${isArabic ? "حسنًا" : "OK"}</button>`;
     }
 
     hook.innerHTML = `
-      <div class="fixed inset-0 z-[9999] flex items-center justify-center" style="background-color:#696969CC">
-        <div class="relative bg-white dark:bg-[#2c2c2c] rounded-[18px] shadow-xl w-full max-w-[640px] mx-auto px-8 pt-14 pb-10">
+      <div class="fixed inset-0 z-[9999] flex items-center justify-center px-4" style="background-color:#696969CC">
+        <div class="relative bg-white  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] mx-auto px-8 pt-14 pb-10">
           ${closeButton}
           <div class="${modalTitleClass}">
             ${title}
           </div>
-          <div class="font-rubik text-[#262626] leading-snug text-center max-w-[70%] mx-auto mb-8">
+          <div class=" dark:text-white text-[#262626] leading-snug text-center max-w-[70%] mx-auto mb-8">
             ${message}
           </div>
-          <div class="flex flex-wrap justify-center gap-3">
+          <div class="flex flex-nowrap justify-center gap-3">
             ${buttonsHTML}
           </div>
         </div>
@@ -365,12 +423,21 @@ export default class TODServices {
         closeModal();
         if (onConfirm) onConfirm();
       };
-    } else {
+    } else if (type === "congrats") {
+      hook.querySelector("#modal-confirm").onclick = () => {
+        closeModal();
+        if (onConfirm) onConfirm();
+      };
+    } else if (type === "credit") {
       hook.querySelector("#modal-close").onclick = closeModal;
     }
 
     hook.querySelector(".fixed").onclick = (e) => {
       if (e.target.classList.contains("fixed")) closeModal();
     };
+  }
+
+  destroy() {
+    this.unbindEvents();
   }
 }

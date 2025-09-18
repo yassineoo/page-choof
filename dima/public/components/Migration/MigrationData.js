@@ -1,25 +1,43 @@
-export default {
-  migration: {
+export const migrationData = {
+  fr: {
     title: "MIGRATION",
-    subtitle: "Voulez-vous changer vers\nune autre offre ?",
+    subtitle: "Voulez-vous changer vers une autre offre ?",
     options: [
-      { label: "DIMA +", value: "dima" },
-      { label: "N'YOOZ", value: "nyooz" },
-      { label: "OOREDOO", value: "ooredoo" },
+      { label: "DIMA+", hasCheckbox: true },
+      { label: "OOREDOO", hasCheckbox: false },
+      { label: "N'YOOZ", hasCheckbox: false },
     ],
+    checkboxText:
+      "J'atteste avoir lu et accepté les termes et conditions du contrat",
+    confirmTitleTemplate: "MIGRATION VERS {offer}",
+    confirmDescriptionTemplate:
+      "Vous allez changer vers l'offre {offer} gratuitement, ceci peut entraîner la perte de votre forfait en cours.",
+    confirmBtn: "CONFIRMER",
+    cancelBtn: "ANNULER",
+    successTitle: "MIGRATION",
+    successMessageTemplate:
+      "Vous êtes désormais sur l'offre {offer}. Pour plus d'infos, composez *500#.",
+    ok: "OK",
   },
-  conversions: {
-    title: "CONVERSIONS",
-    description: "Convertir ton forfait Dima 2500 en crédit",
+  ar: {
+    title: "الهجرة",
+    subtitle: "هل تريد التغيير إلى عرض آخر؟",
     options: [
-      { label: "Convertir en crédit", value: "credit" },
-      { label: "Autres conversions", value: "autres" },
+      { label: "ديما+", hasCheckbox: true },
+      { label: "أوريدو", hasCheckbox: false },
+      { label: "نيوز", hasCheckbox: false },
     ],
-  },
-  boost: {
-    title: "BOOST 500",
-    description: "11700 minutes vers les autres réseaux + 50 SMS vers tous les réseaux",
-    price: "2500 Da / 30 jourss",
-    button: "ACHETER",
+    checkboxText: "أشهد أنني قرأت وقبلت الشروط والأحكام التعاقدية",
+    confirmTitleTemplate: "الهجرة إلى {offer}",
+    confirmDescriptionTemplate:
+      "ستقوم بالتغيير إلى العرض {offer} مجانًا، قد يؤدي ذلك إلى فقدان باقتك الحالية.",
+    confirmBtn: "تأكيد",
+    cancelBtn: "إلغاء",
+    successTitle: "الهجرة",
+    successMessageTemplate:
+      "أنت الآن على العرض {offer}. لمزيد من المعلومات، اطلب *500#.",
+    ok: "موافق",
   },
 };
+
+export default migrationData;

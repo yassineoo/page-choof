@@ -19,7 +19,7 @@ export default class Consommation {
       PUBLIC_IMAGE_BASE: "./assets/images/consommation/",
       DARK_ICONS: ["dollar-phone", "infini", "internet", "rocket", "services", "sms", "telephone", "phone"],
       MAX_SECTIONS_BEFORE_EXPAND: 4,
-      EXPANDABLE_INDICES: new Set([2,3]),
+      EXPANDABLE_INDICES: new Set([3, 2]),
     };
 
     this.cache = {
@@ -569,6 +569,7 @@ export default class Consommation {
     const gapSideMargin = isRTL ? "margin-left: 0.5rem;" : "margin-right: 0.5rem;";
 
     const isOsn = section.subtitle?.includes("OSN");
+    const isFacebookMessenger = section.subtitle?.includes("Facebook & Messenger") || section.subtitle?.includes("فيسبوك و ماسنجر");;
 
     let iconsAndTextContent = "";
 
@@ -598,6 +599,34 @@ export default class Consommation {
         ${anghamiIcon}
         <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
           ANGHAMI
+        </span>
+      </div>
+    </div>
+  `;
+    } else 
+      if (isFacebookMessenger) {
+      const facebookIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}facebook-dark.svg` : `${this.config.IMAGE_BASE}facebook.svg`;
+      const messengerIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}messenger-dark.svg` : `${this.config.IMAGE_BASE}messenger.svg`;
+
+      const facebookIcon = `<img src="${facebookIconPath}" style="width:20px;height:20px;" alt="Facebook" />`;
+      const messengerIcon = `<img src="${messengerIconPath}" style="width:20px;height:20px;" alt="Messenger" />`;
+
+      const fontClassForText = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
+      const textColor = theme === "dark" ? "text-white" : textClass;
+
+      iconsAndTextContent = `
+    <div class="flex items-center gap-1 font-rubik font-medium" ${gapSideMargin}">
+      <div class="flex items-center gap-0.5">
+        ${facebookIcon}
+        <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
+          ${isRTL ? "فيسبوك" : "Facebook"}
+        </span>
+      </div>
+      <span class="text-lg">&</span>
+      <div class="flex items-center gap-0.5">
+        ${messengerIcon}
+        <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
+          ${isRTL ? "ماسنجر" : "Messenger"}
         </span>
       </div>
     </div>
@@ -721,7 +750,7 @@ export default class Consommation {
       content += `
         <div class="flex justify-start">
           <span class="${lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
-            ${lang === "ar" ? "إلى" : "Expire le"} <span class="font-rubik">${section.date}</span>
+            ${lang === "ar" ? "إلى غاية" : "Expire le"} <span class="font-rubik">${section.date}</span>
           </span>
         </div>
       `;

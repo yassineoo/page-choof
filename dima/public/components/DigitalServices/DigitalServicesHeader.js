@@ -1,81 +1,110 @@
-import { digitalServices } from './DigitalServicesHeaderData.js';
+import { digitalServices } from "./DigitalServicesHeaderData.js";
 
 export default class DigitalServicesHeader {
   constructor(container) {
     this.container = container;
     this.currentLang = this.getLang();
+    this.init();
+  }
 
-    // Watch for language changes
-    window.addEventListener('languageChanged', () => {
-      const lang = this.getLang();
-      if (lang !== this.currentLang) {
-        this.currentLang = lang;
-        this.render();
-      }
-    });
-
+  init() {
     this.render();
+    this.bindEvents();
   }
 
   getLang() {
-    const stored = localStorage.getItem('language');
-    return ['fr', 'ar'].includes(stored) ? stored : 'fr';
+    const stored = localStorage.getItem("language");
+    return ["fr", "ar"].includes(stored) ? stored : "fr";
+  }
+
+  bindEvents() {
+    this.unbindEvents();
+
+    this.boundHandleLanguageChange = this.handleLanguageChange.bind(this);
+    window.addEventListener("languageChanged", this.boundHandleLanguageChange);
+
+    this.langPoller = setInterval(this.checkLanguageChange.bind(this), 200);
+
+    this.boundStorageListener = (e) => {
+      if (e.key === "language") {
+        this.handleLanguageChange();
+      }
+    };
+    window.addEventListener("storage", this.boundStorageListener);
+  }
+
+  unbindEvents() {
+    if (this.boundHandleLanguageChange) {
+      window.removeEventListener("languageChanged", this.boundHandleLanguageChange);
+    }
+    if (this.boundStorageListener) {
+      window.removeEventListener("storage", this.boundStorageListener);
+    }
+    if (this.langPoller) {
+      clearInterval(this.langPoller);
+      this.langPoller = null;
+    }
+  }
+
+  handleLanguageChange() {
+    const newLang = this.getLang();
+    if (newLang !== this.currentLang) {
+      console.log(`DigitalServicesHeader: Language changed from ${this.currentLang} to ${newLang}`);
+      this.currentLang = newLang;
+      this.render();
+    }
+  }
+
+  checkLanguageChange() {
+    this.handleLanguageChange();
   }
 
   render() {
     const lang = this.getLang();
-    const isArabic = lang === 'ar';
-    const dir = isArabic ? 'rtl' : 'ltr';
-    const textAlign = isArabic ? 'text-right' : 'text-left';
+    const isArabic = lang === "ar";
+    const dir = isArabic ? "rtl" : "ltr";
+    const alignClass = isArabic ? "text-right md:text-right" : "text-left md:text-left";
+    const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-outfit";
+    const legalFontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
 
-    // Text content for the black circle
-    const circleText = isArabic ? 'طور عالمك' : 'Upgrade your world';
+    const headline = isArabic
+      ? 'قوموا بحماية أجهزتكم مع <span class="uppercase font-rubik" dir="ltr" >!BITDEFENDER</span>'
+      : 'Protégez vos  appareils avec <span class="uppercase"  >Bitdefender !</span>';
+    const legal = isArabic ? "يتم تطبيق الشروط و الأحكام" : "Conditions générales applicables.";
 
     this.container.innerHTML = `
-      <div class="bg-ooredoo-red w-full min-h-[clamp(200px,20vw,400px)] flex items-center justify-center" dir="${dir}">
-        <div class="w-full max-w-[2400px] flex flex-col md:flex-row items-center px-[clamp(1rem,5vw,5rem)] py-[clamp(2rem,5vw,4rem)] gap-8">
-          <div class="flex-1 flex flex-col items-start">
-
-            <h2 class="relative z-10 text-white font-outfit font-extrabold uppercase
-            text-[45px] leading-[141%] tracking-[0.02em]
-            mb-[clamp(1rem,2vw,2.5rem)] text-center md:text-left">
-  Protégez-vous avec Bitdefender !
-  <br>
-  <span class="relative inline-block z-10">
-    Sécurité + contrôle parental en un seul pack.
-
-    <!-- Black Circle in background -->
-    <div class="absolute left-[90%] -translate-x-1/2 
-                -top-[clamp(3rem,6vw,5rem)]
-                w-[clamp(60px,8vw,97px)] h-[clamp(60px,8vw,97px)]
-                bg-black rounded-full flex items-center justify-center z-0">
-      <span class="relative z-10 text-white font-rubik font-semibold uppercase 
-                   text-[13px] leading-[120%] tracking-[0.02em] text-center px-2">
-        ${circleText}
-      </span>
-    </div>
-  </span>
-</h2>
-
-
-            
-
-            <!-- Service Icons -->
-            <div class="flex flex-wrap gap-[clamp(1rem,2vw,3rem)] mb-6 justify-center md:justify-start">
-              ${digitalServices.map(service => `
-                <div class="aspect-square min-w-[clamp(50px,5vw,90px)] min-h-[clamp(50px,5vw,90px)] rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-105">
-                  <img src="${service.icon}" alt="${service.name}" 
-                    class="w-[clamp(30px,3vw,56px)] h-[clamp(30px,3vw,56px)] object-contain" />
+      <div class="bg-ooredoo-red w-full min-h-[clamp(100px,10vw,160px)] flex items-center justify-center" dir="${dir}">
+        <div class="w-full max-w-[1700px] flex flex-col md:flex-row items-center px-[clamp(1rem,5vw,5rem)] py-[clamp(1rem,3vw,2rem)]
+">
+          <div class="flex-1 flex flex-col items-start justify-center w-full">
+            <h2 class="relative z-10 text-white ${fontClass} font-extrabold uppercase
+              text-[2rem] md:text-[2.7rem] leading-[141%] tracking-[0.02em]
+              mb-6 mt-2 ${alignClass}">
+              ${headline}
+            </h2>
+            <div class="flex flex-wrap gap-3 md:gap-2 mb-4 justify-center ${
+              isArabic ? "justify-center md:justify-end" : "justify-center md:justify-start"
+            }">
+              ${digitalServices
+                .map(
+                  (service) => `
+                <div class="aspect-square min-w-[54px] min-h-[54px] rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-105 bg-transparent ">
+                  <img src="${service.icon}" alt="${service.name}" class="w-[36px] h-[36px] object-contain" />
                 </div>
-              `).join('')}
+              `
+                )
+                .join("")}
             </div>
-
-            <p class="text-white font-rubik text-[clamp(0.8rem,1.5vw,1.25rem)] leading-[170%] tracking-wide pl-2 mt-2 mb-2">
-              Conditions générales applicables.
+            <p class="text-white ${legalFontClass} text-[1.02rem] md:text-[1.13rem] leading-[170%] tracking-wide mt-1 mb-2 ${alignClass}">
+              ${legal}
             </p>
           </div>
         </div>
       </div>
     `;
+  }
+
+  destroy() {
+    this.unbindEvents();
   }
 }
