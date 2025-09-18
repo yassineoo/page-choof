@@ -407,7 +407,7 @@ class BoostComponent {
     this.cleanupAllEventListeners();
 
     this.container.innerHTML = `
-    <div class="w-full">
+    <div class="w-full ${isRTL ? 'font-noto-kufi-arabic' : 'font-rubik'}" ${isRTL ? 'dir="rtl"' : 'dir="ltr"'}>
       <section class="w-full bg-[#141B4D] dark:bg-[#2c2c2c] boost-section">
         <div class="max-w-[1600px] mx-auto md:px-6">
           <div class="boost-grid">
@@ -418,8 +418,8 @@ class BoostComponent {
                   <p class="boost-description">${data.description}</p>
                 </div>
                 <div class="boost-card-footer">
-                  <div class="boost-price">
-                    <span class="big">500</span>
+                  <div class="flex items-baseline gap-1 font-semibold">
+                    <span class="text-[36px]">500</span>
                     <span class="small">${isRTL ? "دج" : "DA"}</span>
                   </div>
                   <button class="boost-buy-btn boost-button-zone" data-index="0">
@@ -537,20 +537,39 @@ class BoostComponent {
   }
 
   showPurchaseFlow(data, isRTL) {
-    this.showModal({
+    const random = Math.floor(Math.random() * 3);
+    console.log("first", random);
+    if (random === 0) {
+      this.showModal({
       type: "confirm",
       title: data.confirmTitle,
-      message: data.confirmDescription,
+      message: data.confirmMessage1000,
       isRTL,
       onConfirm: () => {
-        const isInsufficient = Math.random() > 0.7;
-        // if (isInsufficient) {
-        // this.showInsufficientModal(data, isRTL);
-        //  } else {
-        this.showSuccessModal(data, isRTL);
-        // }
+        this.showSuccessModal(data, isRTL, data.successMessage1000);
       },
     });
+    } else if (random === 1) {
+      this.showModal({
+            type: "confirm",
+            title: data.confirmTitle,
+            message: data.confirmMessage1500,
+            isRTL,
+            onConfirm: () => {
+              this.showSuccessModal(data, isRTL, data.successMessage1500);
+            },
+      });
+    } else {
+      this.showModal({
+        type: "confirm",
+        title: data.confirmTitle,
+        message: data.confirmMessage2000,
+        isRTL,
+        onConfirm: () => {
+          this.showSuccessModal(data, isRTL, data.successMessage2000);
+        },
+      });
+    }
   }
 
   showInsufficientModal(data, isRTL) {
@@ -562,14 +581,13 @@ class BoostComponent {
     });
   }
 
-  showSuccessModal(data, isRTL) {
+  showSuccessModal(data, isRTL , message) {
     this.showModal({
       type: "success",
       title: data.successTitle,
-      message: data.successMessage,
+      message: message,
       isRTL,
       onConfirm: () => {
-        const isInsufficient = Math.random() > 0.7;
         this.showInsufficientModal(data, isRTL);
       },
     });
