@@ -1,7 +1,6 @@
-// BoostComponent.js
-import boostData from "./BoostData.js";
+import conversionsData from "./ConversionsData.js";
 
-class BoostComponent {
+class ConversionsComponent {
   constructor(container) {
     this.container = container;
     this.currentLang = this.getLanguage();
@@ -382,11 +381,11 @@ class BoostComponent {
   render() {
     try {
       const language = this.getLanguage();
-      const data = boostData[language];
+      const data = conversionsData[language];
 
       if (!data) {
         console.error("Missing data for language:", language);
-        const fallbackData = boostData.fr;
+        const fallbackData = conversionsData.fr;
         if (!fallbackData) {
           throw new Error("No fallback data available");
         }
@@ -531,7 +530,7 @@ class BoostComponent {
 
   handlePurchaseClick(language) {
     const currentLanguage = this.getLanguage();
-    const data = boostData[currentLanguage];
+    const data = conversionsData[currentLanguage];
 
     this.showPurchaseFlow(data, currentLanguage === "ar");
   }
@@ -636,7 +635,7 @@ class BoostComponent {
   }
 
   getModalButtons(type, isRTL) {
-    const data = boostData[this.currentLang];
+    const data = conversionsData[this.currentLang];
     const labels = {
       cancel: data.cancelBtn,
       confirm: data.confirmBtn,
@@ -782,4 +781,4 @@ class BoostComponent {
   }
 }
 
-export default BoostComponent;
+export default ConversionsComponent;

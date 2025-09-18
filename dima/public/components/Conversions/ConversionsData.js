@@ -1,5 +1,5 @@
 // BoostData.js
-export const boostData = {
+export const conversionsData = {
   fr: {
     title: "BOOST 500",
     description:
@@ -39,4 +39,4 @@ export const boostData = {
   },
 };
 
-export default boostData;
+export default conversionsData;
