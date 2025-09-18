@@ -4,6 +4,7 @@ import Forfait from "../components/Forfait/Forfait.js";
 import DigitalServices from "../components/DigitalServices/DigitalServices.js";
 import Footer from "../components/Footer/footer.js";
 import Boost500Component from "../components/Boost/Boost.js";
+import Migration from "../components/Migration/Migration.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     initComponent("consommation-root", Consommation);
     initComponent("forfait-root", Forfait);
     initComponent("boost-root", Boost500Component)
+    initComponent("migration-root", Migration)
     initComponent("digitalServices-root", DigitalServices);
     initComponent("footer-root", Footer)
 
