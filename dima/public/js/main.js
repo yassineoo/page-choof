@@ -1,22 +1,12 @@
 import Header from "../components/Header/Header.js";
 import Consommation from "../components/Consommation/Consommation.js";
-import Dima from "../components/Dima/Dima.js";
 import Forfait from "../components/Forfait/Forfait.js";
-import Service from "../components/Services/Services.js";
-import Migration from "../components/Migration/Migration.js";
 import DigitalServices from "../components/DigitalServices/DigitalServices.js";
-import DigitalFreeFireServices from "../components/DigitalServices/DigitalFreeFireServices.js";
-
-// 🆕 1. Import the shared Modals
-import Modals from "../components/Modals/Modals.js";
 import Footer from "../components/Footer/footer.js";
+import Boost500Component from "../components/Boost/Boost.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    // 🆕 2. Render modals once at app startup (before any components use them)
-    Modals.render();
-
-    // 1. Initialize Header
     const header = new Header();
     await header.init();
 
@@ -27,12 +17,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     initComponent("consommation-root", Consommation);
-    initComponent("dima-root", Dima);
     initComponent("forfait-root", Forfait);
-    initComponent("service-root", Service);
-    initComponent("migration-root", Migration);
+    initComponent("boost-root", Boost500Component)
     initComponent("digitalServices-root", DigitalServices);
-    initComponent("freefire-services", DigitalFreeFireServices);
     initComponent("footer-root", Footer)
 
   } catch (error) {

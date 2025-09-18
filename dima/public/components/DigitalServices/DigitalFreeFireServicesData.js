@@ -1,4 +1,10 @@
 export const freeFireData = {
-  description: "Obtenez votre pack de diamants en cliquant sur le bouton ci-dessous",
-  button: "OBTENEZ MAINTENANT!",
+  fr: {
+    description: "Obtenez votre pack de diamants en cliquant sur le bouton ci-dessous",
+    button: "OBTENEZ MAINTENANT!",
+  },
+  ar: {
+    description: "احصل على جواهر  <span class='font-rubik'>Free Fire</span> الخاصة بك من خلال الضغط على الزر أدناه ",
+    button: "احصل الآن!",
+  },
 };

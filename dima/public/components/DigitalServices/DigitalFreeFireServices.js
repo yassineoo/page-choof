@@ -37,7 +37,7 @@ export default class DigitalFreeFireServices {
 
     return {
       container: `
-        w-full
+        w-full 
         flex flex-col items-center gap-8
         px-4 py-8
         ${isDark ? "bg-[#141414]" : "bg-white"}
@@ -46,14 +46,14 @@ export default class DigitalFreeFireServices {
       cardWrapper: `
         w-full flex justify-center
         ${isDark ? "bg-[#141414]" : "bg-white"}
-        my-4
+        my-8
       `,
 
       card: `
         ${isDark ? "bg-[#2C2C2C]" : "bg-white"}
         rounded-xl flex flex-col justify-between
         w-full max-w-[800px]
-        min-h-[280px] h-[280px]
+        min-h-[280px] 
         border border-[#C5C5C5]
         py-6 px-8
         transition-all
@@ -81,8 +81,7 @@ export default class DigitalFreeFireServices {
         text-center mb-6
         ${isDark ? "text-[#CDCDCD]" : "text-gray-700"}
         leading-relaxed
-        flex-1 flex items-center justify-center
-        w-3/5 mx-auto
+        w-[90%] mx-auto
       `,
 
       logoContainer: `
@@ -113,20 +112,25 @@ export default class DigitalFreeFireServices {
 
     // Free Fire Card with same structure as Migration cards
     const freeFireCard = `
-      <div class="${styles.cardWrapper}">
+      <div id="freefire-section" class="${styles.cardWrapper} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"}">
         <div class="${styles.card}">
           <div class="${styles.logoContainer}">
-            <img src="./assets/images/services/freefire.svg" alt="Free Fire" 
-              class="${styles.logo}"/>
+            <img 
+              src="./assets/images/services/freefire.svg" alt="Free Fire" 
+              class="${styles.logo} dark:hidden"
+            />
+            <img 
+              src="./assets/images/services/freefire-dark.svg" alt="Free Fire" 
+              class="${styles.logo} hidden dark:block"
+            />
           </div>
           <div class="${styles.cardDesc}">
-            ${freeFireData.description}
+            ${isArabic ? freeFireData.ar.description : freeFireData.fr.description}
           </div>
-          <div class="${styles.buttonWrap}">
-            <button class="${styles.acheterButton} freefire-btn">
-              <span>${freeFireData.button}</span>
-            </button>
-          </div>
+          <div class="${styles.buttonWrap}" >
+            <a class="${styles.acheterButton} freefire-btn" href='https://shop2game.com/' >
+              <span>${isArabic ? freeFireData.ar.button : freeFireData.fr.button}</span>
+        </a>
         </div>
       </div>
     `;
