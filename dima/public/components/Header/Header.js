@@ -3,14 +3,14 @@ import { generateHeaderHTML } from "./HeaderHtml";
 
 export default class Header {
   constructor() {
-    this.currentLanguage = localStorage.getItem('language') || 'fr';
+    this.currentLanguage = localStorage.getItem("language") || "fr";
     this.mobileMenuOpen = false;
     this.theme = this.detectInitialTheme();
     this.userData = {
-      phone: '0509876543',
-      offer: 'Offre Dima',
-      credit: '1200 DA',
-      autoRenewal: true
+      phone: "0509876543",
+      offer: "Offre Dima",
+      credit: "4000 DA",
+      autoRenewal: true,
     };
   }
 
@@ -31,15 +31,21 @@ export default class Header {
   }
 
   render() {
-    document.querySelectorAll("header").forEach(h => h.remove());
-    document.body.insertAdjacentHTML("afterbegin", 
-      generateHeaderHTML(this.currentLanguage, this.userData, this.theme));
+    document.querySelectorAll("header").forEach((h) => h.remove());
+    document.body.insertAdjacentHTML(
+      "afterbegin",
+      generateHeaderHTML(this.currentLanguage, this.userData, this.theme)
+    );
   }
 
-  // Theme Methods
   detectInitialTheme() {
     const storedTheme = localStorage.getItem("theme");
-    return storedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    return (
+      storedTheme ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light")
+    );
   }
 
   applyInitialTheme() {
@@ -60,11 +66,10 @@ export default class Header {
     this.updateMobileMenuIcons();
   }
 
-  // Desktop Theme Switcher
   initThemeSwitcher() {
     const moonBtn = document.getElementById("moon-btn");
     const sunBtn = document.getElementById("sun-btn");
-    
+
     if (moonBtn && sunBtn) {
       moonBtn.addEventListener("click", () => this.setTheme("dark"));
       sunBtn.addEventListener("click", () => this.setTheme("light"));
@@ -75,15 +80,15 @@ export default class Header {
   updateDesktopThemeSwitcher() {
     const isDark = this.theme === "dark";
     const themeContainer = document.getElementById("theme-switcher");
-    
+
     if (themeContainer) {
       themeContainer.className = `relative w-36 h-12 rounded-full ${
         isDark ? "bg-ooredoo-red" : "bg-gray-200"
       } overflow-hidden transition-all duration-500`;
-      
+
       const moonBtn = document.getElementById("moon-btn");
       const sunBtn = document.getElementById("sun-btn");
-      
+
       if (moonBtn && sunBtn) {
         moonBtn.classList.toggle("bg-white", isDark);
         moonBtn.classList.toggle("bg-[#171717]", !isDark);
@@ -93,7 +98,6 @@ export default class Header {
     }
   }
 
-  // Mobile Theme Switcher
   initMobileThemeSwitcher() {
     const mobileThemeBtn = document.getElementById("theme-mobile-switcher");
     if (mobileThemeBtn) {
@@ -106,33 +110,44 @@ export default class Header {
 
   updateMobileThemeIcons() {
     const isDark = this.theme === "dark";
-    document.getElementById("mobile-sun-icon")?.classList.toggle("hidden", isDark);
-    document.getElementById("mobile-sun-icon-dark")?.classList.toggle("hidden", !isDark);
-    document.getElementById("mobile-moon-icon")?.classList.toggle("hidden", !isDark);
-    document.getElementById("mobile-moon-icon-dark")?.classList.toggle("hidden", isDark);
+    document
+      .getElementById("mobile-sun-icon")
+      ?.classList.toggle("hidden", isDark);
+    document
+      .getElementById("mobile-sun-icon-dark")
+      ?.classList.toggle("hidden", !isDark);
+    document
+      .getElementById("mobile-moon-icon")
+      ?.classList.toggle("hidden", !isDark);
+    document
+      .getElementById("mobile-moon-icon-dark")
+      ?.classList.toggle("hidden", isDark);
   }
 
-  // Language Switcher
   initLanguageSwitcher() {
-    // Desktop
     const desktopDropdown = document.getElementById("language-desktop");
     if (desktopDropdown) {
       const button = desktopDropdown.querySelector("button");
       const menu = desktopDropdown.querySelector(".language-dropdown-menu");
-      
-      button.addEventListener("click", (e) => {
-        e.stopPropagation();
-        menu.classList.toggle("hidden");
-      });
-      
-      document.addEventListener("click", () => menu.classList.add("hidden"));
+      if (button && menu) {
+        button.addEventListener("click", (e) => {
+          e.stopPropagation();
+          menu.classList.toggle("hidden");
+        });
+        document.addEventListener("click", () => menu.classList.add("hidden"));
+      }
     }
-    
-    // Mobile
-    document.querySelectorAll(".language-option").forEach(option => {
+
+    document.querySelectorAll(".language-option").forEach((option) => {
       option.addEventListener("click", (e) => {
         e.preventDefault();
-        this.setLanguage(option.dataset.lang);
+        const lang =
+          option.dataset && option.dataset.lang
+            ? option.dataset.lang
+            : option.textContent && option.textContent.trim() === "Français"
+            ? "fr"
+            : "ar";
+        this.setLanguage(lang);
         this.closeMobileMenu();
       });
     });
@@ -148,35 +163,30 @@ export default class Header {
     setTimeout(() => this.setupEventListeners(), 0);
   }
 
-  // Mobile Menu - Fixed Version
   initMobileMenu() {
     const menuBtn = document.getElementById("mobile-menu-btn");
     const mobileMenu = document.getElementById("mobile-menu");
-    
+
     if (menuBtn && mobileMenu) {
-      // Prevent zooming on mobile
       this.addViewportMeta();
-      
-      // Toggle menu on button click
+
       menuBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         this.toggleMobileMenu();
       });
-      
-      // Close menu when clicking outside
+
       document.addEventListener("click", (e) => {
         if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
           this.closeMobileMenu();
         }
       });
-      
-      // Close menu on escape key
+
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && this.mobileMenuOpen) {
           this.closeMobileMenu();
         }
       });
-      
+
       this.updateMobileMenuIcons();
     }
   }
@@ -184,9 +194,10 @@ export default class Header {
   addViewportMeta() {
     const existingMeta = document.querySelector('meta[name="viewport"]');
     if (!existingMeta) {
-      const meta = document.createElement('meta');
-      meta.name = 'viewport';
-      meta.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no';
+      const meta = document.createElement("meta");
+      meta.name = "viewport";
+      meta.content =
+        "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no";
       document.head.appendChild(meta);
     }
   }
@@ -194,12 +205,12 @@ export default class Header {
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
     const mobileMenu = document.getElementById("mobile-menu");
-    
+
     if (mobileMenu) {
       mobileMenu.classList.toggle("hidden", !this.mobileMenuOpen);
-      document.body.style.overflow = this.mobileMenuOpen ? 'hidden' : '';
+      document.body.style.overflow = this.mobileMenuOpen ? "hidden" : "";
     }
-    
+
     this.updateMobileMenuIcons();
   }
 
@@ -207,12 +218,12 @@ export default class Header {
     if (!this.mobileMenuOpen) return;
     this.mobileMenuOpen = false;
     const mobileMenu = document.getElementById("mobile-menu");
-    
+
     if (mobileMenu) {
       mobileMenu.classList.add("hidden");
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
-    
+
     this.updateMobileMenuIcons();
   }
 
@@ -221,8 +232,10 @@ export default class Header {
     const menuIcon = document.getElementById("mobile-menu-icon");
     const menuIconDark = document.getElementById("mobile-menu-icon-dark");
     const closeIcon = document.getElementById("mobile-menu-close-icon");
-    const closeIconDark = document.getElementById("mobile-menu-close-icon-dark");
-    
+    const closeIconDark = document.getElementById(
+      "mobile-menu-close-icon-dark"
+    );
+
     if (this.mobileMenuOpen) {
       menuIcon?.classList.add("hidden");
       menuIconDark?.classList.add("hidden");
@@ -236,9 +249,8 @@ export default class Header {
     }
   }
 
-  // Renewal Methods
   initAutoRenewal() {
-    document.querySelectorAll(".auto-renewal-switch").forEach(toggle => {
+    document.querySelectorAll(".auto-renewal-switch").forEach((toggle) => {
       toggle.addEventListener("change", (e) => {
         this.userData.autoRenewal = e.target.checked;
         this.render();
@@ -250,17 +262,28 @@ export default class Header {
   initRenewalInfoCard() {
     const infoBtn = document.getElementById("auto-renewal-info");
     const infoCard = document.getElementById("auto-renewal-card");
-    
+
     if (infoBtn && infoCard) {
-      infoBtn.addEventListener("mouseenter", () => infoCard.classList.remove("hidden"));
-      infoBtn.addEventListener("mouseleave", () => infoCard.classList.add("hidden"));
+      infoBtn.addEventListener("mouseenter", () =>
+        infoCard.classList.remove("hidden")
+      );
+      infoBtn.addEventListener("mouseleave", () =>
+        infoCard.classList.add("hidden")
+      );
+      infoBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        infoCard.classList.toggle("hidden");
+      });
+      document.addEventListener("click", () =>
+        infoCard.classList.add("hidden")
+      );
     }
   }
 
   initRenewalSwitcher() {
     const autoBtn = document.getElementById("renewal-auto");
     const manualBtn = document.getElementById("renewal-manual");
-    
+
     if (autoBtn && manualBtn) {
       autoBtn.addEventListener("click", () => this.setRenewalMode(true));
       manualBtn.addEventListener("click", () => this.setRenewalMode(false));

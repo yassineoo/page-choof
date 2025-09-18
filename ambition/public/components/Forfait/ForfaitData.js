@@ -36,18 +36,18 @@ export default {
     ],
     smartForfaits: [
       {
-        name: "Smart 200",
+        name: "SMART 200",
         data: "Internet gratuit",
-        features: ["Appels illimité vers Ooredoo", "600 DA de crédit"],
+        features: ["Appels illimités vers Ooredoo", "600 DA de crédit"],
         price: "200 ",
         duration: "24 heures",
         buy: "Acheter",
       },
       {
-        name: "Smart 100",
+        name: "SMART 100",
         data: "500Mo internet",
         features: [
-          "Appels illimité vers Ooredoo",
+          "Appels illimités vers Ooredoo",
           "Facebook et Messenger illimités",
           "100 DA de crédit",
         ],
@@ -56,7 +56,7 @@ export default {
         buy: "Acheter",
       },
       {
-        name: "Smart 50",
+        name: "SMART 50",
         data: "200Mo internet",
         features: ["30 minutes vers Ooredoo"],
         price: "50 ",
@@ -100,7 +100,7 @@ export default {
         data: "<span class='font-rubik'>40Go</span> إنترنت",
         features: ["يوتيوب غير محدود"],
         price: "1500 ",
-        duration: "دورة فوترة",
+        duration: "دورة الفوترة",
         buy: "شراء",
       },
       {
@@ -108,7 +108,7 @@ export default {
         data: "<span class='font-rubik'>15Go</span> إنترنت",
         features: ["<span class='font-rubik'>5Go</span> يوتيوب"],
         price: "1000 ",
-        duration: "دورة فوترة",
+        duration: "دورة الفوترة",
         buy: "شراء",
       },
       {
@@ -130,7 +130,7 @@ export default {
     ],
     smartForfaits: [
       {
-        name: "Smart 200",
+        name: "SMART 200",
         data: "إنترنت مجاني",
         features: [
           "مكالمات غير محدودة نحو Ooredoo",
@@ -141,7 +141,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "Smart 100",
+        name: "SMART 100",
         data: "<span class='font-rubik'>500Mo</span> إنترنت",
         features: [
           "مكالمات غير محدودة نحو Ooredoo",
@@ -153,7 +153,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "Smart 50",
+        name: "SMART 50",
         data: "<span class='font-rubik'>200Mo</span> إنترنت",
         features: ["30 دقيقة مكالمات نحو Ooredoo"],
         price: "50 ",
