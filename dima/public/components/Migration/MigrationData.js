@@ -9,7 +9,7 @@ export const migrationData = {
     ],
     checkboxText:
       "J'atteste avoir lu et accepté les termes et conditions du contrat",
-    confirmTitleTemplate: "MIGRATION VERS {offer}",
+    confirmTitleTemplate: "MIGRATION",
     confirmDescriptionTemplate:
       "Vous allez changer vers l'offre {offer} gratuitement, ceci peut entraîner la perte de votre forfait en cours.",
     confirmBtn: "CONFIRMER",

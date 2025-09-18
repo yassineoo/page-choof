@@ -1,41 +1,135 @@
-// BoostData.js
-export const conversionsData = {
+const conversionsData = {
   fr: {
-    title: "BOOST 500",
-    description:
-      "Booster votre forfait Dima 2000 et bénéficiez d'appels illimités vers tous les réseaux + 50Go et 50 SMS en plus, le tout selon la validité de votre forfait Dima 2000 en cours.",
+    title: "CONVERSIONS",
+    description: "Voulez-vous convertir votre forfait Dima 2500 en :",
+    convertToCredit: "CONVERTIR EN CRÉDIT",
+    otherConversions: "AUTRES CONVERSIONS",
+    confirmTitle: "Conversion",
     confirmDescription:
-      "Pour 500da seulement, vous pouvez booster votre forfait Dima 2000 et bénéficiez d'appels illimités vers tous les réseaux + 50Go et 50 SMS en plus, le tout selon la validité de votre forfait Dima 2000 en cours.",
-    price: "500 DA",
-    buy: "ACHETER",
-    confirmTitle: "BOOST 500",
-    confirmBtn: "CONFIRMER",
-    cancelBtn: "ANNULER",
-    successTitle: "FÉLICITATIONS !",
-    successMessage:
-      "Vous avez reçu des appels illimités vers tous les réseaux + 50Go + 50 SMS vers tous les réseaux nationaux, le tout selon la validité de votre forfait Dima 2000.",
-    insufficientTitle: "CRÉDIT INSUFFISANT",
-    insufficientMessage:
-      "Votre crédit est insuffisant pour acheter le Boost 500. Veuillez recharger votre compte.",
+      "Vous allez convertir votre forfait Dima 2500 en crédit.",
+    cancelBtn: "Annuler",
+    confirmBtn: "Confirmer",
     ok: "OK",
+    successTitle: "Félicitations !",
+    successDescription:
+      "Vous venez de recevoir le forfait {planName} qui vous offre {planDescription}.",
+    convertBtn: "CONVERTIR",
+    plans: [
+      {
+        name: "DIMA 2500",
+        description:
+          "Appels illimités vers tous les réseaux nationaux + 100Go internet + 250 SMS vers tous les réseaux + ANAZIK, ANAFLIX, SHAHID et Facebook gratuits.",
+        price: 2500,
+        duration: "30 jours",
+        priceUnit: "da/",
+      },
+      {
+        name: "DIMA 2000",
+        description:
+          "50Go internet + 300 min et 200 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAZIK, ANAFLIX et Facebook gratuits.",
+        price: 2000,
+        duration: "30 jours",
+        priceUnit: "da/",
+      },
+      {
+        name: "DIMA 1500",
+        description:
+          "30Go internet + 150 min et 150 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAFLIX et Facebook gratuits.",
+        price: 1500,
+        duration: "30 jours",
+        priceUnit: "da/",
+      },
+      {
+        name: "DIMA 1200",
+        description:
+          "8Go internet + 100 min et 120 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAZIK et Facebook gratuits.",
+        price: 1200,
+        duration: "30 jours",
+        priceUnit: "da/",
+      },
+      {
+        name: "DIMA 500",
+        description:
+          "3Go internet + 100 min et 50 SMS vers tous les réseaux + appels illimités vers Ooredoo.",
+        price: 500,
+        duration: "15 jours",
+        priceUnit: "da/",
+      },
+      {
+        name: "DIMA 500 HADRA",
+        description:
+          "100 min et 100 SMS vers tous les réseaux nationaux + appels illimités vers Ooredoo.",
+        price: 500,
+        duration: "30 jours",
+        priceUnit: "da/",
+      },
+    ],
   },
   ar: {
-    title: "BOOST 500",
-    description:
-      "مزايا إضافية في اشتراكك Dima 2000 والاستفادة من مكالمات غير محدودة نحو كل الشبكات + 50Go و50 رسالة قصيرة إضافية، الكل صالح حسب صلاحية اشتراكك Dima 2000",
-    confirmDescription:
-      "بـ 500 دج فقط، يمكنك تفعيل Boost على باقة Dima 2000: مكالمات غير محدودة نحو كل الشبكات + 50Go و 50 رسالة نصية إضافية، حسب صلاحية باقتك الحالية.",
-    price: "500 دج",
-    buy: "شراء",
-    confirmTitle: "BOOST 500",
-    confirmBtn: "تأكيد",
+    title: "التحويل",
+    description: "هل تريد تحويل اشتراكك Dima 2500 إلى:",
+    convertToCredit: "رصيد",
+    otherConversions: "عروض أخرى",
+    confirmTitle: "التحويل",
+    confirmDescription: "هل تريد تحويل اشتراكك Dima 2500 إلى رصيد ؟",
     cancelBtn: "إلغاء",
-    successTitle: "مبروك !",
-    successMessage:
-      "تمت إضافـة مكالمات غير محدودة نحو كل الشبكات + 50Go + 50 رسالة نصية وطنية، حسب صلاحية باقتك Dima 2000.",
-    insufficientTitle: "رصيد غير كافٍ",
-    insufficientMessage: "رصيدك غير كافٍ لشراء Boost 500. يرجى شحن رصيدك.",
-    ok: "تم",
+    confirmBtn: "تأكيد",
+    ok: "موافق",
+    successTitle: "مبروك!",
+    successDescription:
+      "لتو received الباقة {planName} التي تقدم لك {planDescription}.",
+    convertBtn: "تحويل",
+
+    plans: [
+      {
+        name: "اشتراك DIMA 2500",
+        description:
+          "مكالمات غير محدودة إلى جميع الشبكات الوطنية + 100 جيجا إنترنت + 250 رسالة قصيرة إلى جميع الشبكات + ANAZIK, ANAFLIX, SHAHID وFacebook مجانية.",
+        price: 2500,
+        duration: "30 يوم",
+        priceUnit: "دج/",
+      },
+      {
+        name: "اشتراك DIMA 2000",
+        description:
+          "50 جيجا إنترنت + 300 دقيقة و 200 رسالة قصيرة إلى جميع الشبكات + مكالمات غير محدودة إلى Ooredoo + ANAZIK, ANAFLIX وFacebook مجانية.",
+        price: 2000,
+        duration: "30 يوم",
+        priceUnit: "دج/",
+      },
+      {
+        name: "اشتراك DIMA 1500",
+        description:
+          "30 جيجا إنترنت + 150 دقيقة و 150 رسالة قصيرة إلى جميع الشبكات + مكالمات غير محدودة إلى Ooredoo + ANAFLIX وFacebook مجانية.",
+        price: 1500,
+        duration: "30 يوم",
+        priceUnit: "دج/",
+      },
+      {
+        name: "اشتراك DIMA 1200",
+        description:
+          "8 جيجا إنترنت + 100 دقيقة و 120 رسالة قصيرة إلى جميع الشبكات + مكالمات غير محدودة إلى Ooredoo + ANAZIK وFacebook مجانية.",
+        price: 1200,
+        duration: "30 يوم",
+        priceUnit: "دج/",
+      },
+      {
+        name: "اشتراك DIMA 500",
+        description:
+          "3 جيجا إنترنت + 100 دقيقة و 50 رسالة قصيرة إلى جميع الشبكات + مكالمات غير محدودة إلى Ooredoo.",
+        price: 500,
+        duration: "15 يوم",
+        priceUnit: "دج/",
+      },
+      {
+        name: "اشتراك DIMA 500 HADRA",
+        description:
+          "100 دقيقة و 100 رسالة قصيرة إلى جميع الشبكات الوطنية + مكالمات غير محدودة إلى Ooredoo.",
+        price: 500,
+        duration: "30 يوم",
+        priceUnit: "دج/",
+      },
+    ],
   },
 };
 
