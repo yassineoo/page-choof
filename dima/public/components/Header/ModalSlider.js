@@ -15,7 +15,7 @@ export class ModalSlider {
     const dirAttribute = this.lang === "ar" ? 'dir="rtl"' : "";
 
     return `
-      <div class="flex w-[287px] flex-col items-center gap-[10px] rounded-[20px] border border-[#C5C5C5] bg-white pb-[25px] h-full overflow-hidden" ${dirAttribute}>
+      <div class="flex w-full flex-shrink-0 flex-col items-center gap-[10px] rounded-[20px] border border-[#C5C5C5] bg-white pb-[25px] h-full overflow-hidden" ${dirAttribute}>
         <div class="flex flex-col items-center gap-[22px] self-stretch h-full">
           <div class="flex self-stretch items-center justify-center gap-[10px] py-[13px] px-[20px] border-b border-dashed border-[#CDCDCD] bg-white w-full">
             <div class="text-ooredoo-red font-rubik text-[22px] font-bold leading-normal uppercase">
@@ -32,8 +32,8 @@ export class ModalSlider {
                 <span class="text-[18px]"> ${currencyText}/</span>
                 <span class="text-[13px]">${durationText}</span>
               </div>
-              <button data-plan-name="${offer.planName}" class="modifier-btn flex w-[113px] h-[32px] justify-center items-center rounded-[22px] bg-ooredoo-red hover:bg-red-700 transition-colors">
-                <span class="text-white font-rubik text-[14px] font-bold leading-normal uppercase">
+              <button data-plan-name="${offer.planName}" class="modifier-btn justify-center items-center rounded-[22px] bg-ooredoo-red hover:bg-red-700 transition-colors" style="padding: 7.34px 26.62px; font-size: 15.4px;">
+                <span class="text-white font-rubik font-bold leading-normal uppercase">
                   ${buttonText}
                 </span>
               </button>
@@ -44,11 +44,11 @@ export class ModalSlider {
     `;
   }
 
-  render() {
+render() {
     const slidesHTML = this.slides
       .map(
         (offer) => `
-      <div class="swiper-slide" style="display: flex; justify-content: center; height: auto; padding-bottom: 10px;">
+      <div class="swiper-slide" style="width: 287px; height: auto; padding-bottom: 10px;">
         ${this.createCardHTML(offer)}
       </div>`
       )
@@ -70,24 +70,28 @@ export class ModalSlider {
       console.error("Swiper library is not loaded.");
       return;
     }
+
+    // Définit un espacement au début et à la fin du slider
+    const sideOffset = 16;
+
     this.swiper = new Swiper(this.container.querySelector(".swiper"), {
+      // Respecte la largeur CSS de chaque carte
       slidesPerView: "auto",
+
+      // Espace entre les cartes
       spaceBetween: 16,
-      centeredSlides: true,
-      loop: false,
+
+      // Ne centre pas les cartes, commence à gauche
+      centeredSlides: false,
+
+      // Ajoute un "padding" interne au slider pour éviter que les cartes ne soient coupées
+      slidesOffsetBefore: sideOffset,
+      slidesOffsetAfter: sideOffset,
+
+      // Affiche les points de navigation
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 2.5,
-          centeredSlides: false,
-        },
-        1024: {
-          slidesPerView: 3,
-          centeredSlides: false,
-        },
       },
     });
   }

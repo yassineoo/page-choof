@@ -296,7 +296,7 @@ export const generateHeaderHTML = (
   </div>
 
   <div id="global-modal-overlay" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" style="backdrop-filter: blur(8px);">
-    <div id="global-modal-container" class="max-w-lg lg:max-w-5xl">
+    <div id="global-modal-container" class="w-full max-w-[703px]">
     </div>
   </div>
 </header>
