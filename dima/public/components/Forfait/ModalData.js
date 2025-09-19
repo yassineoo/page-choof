@@ -26,7 +26,9 @@ function generateModalContent(offers, lang) {
 
     const hasShahid = (featuresString || "").toUpperCase().includes("SHAHID");
 
-    modalContent[offer.name] = {
+    const uniqueKey = `${offer.type || "forfait"}-${offer.name}`;
+
+    modalContent[uniqueKey] = {
       confirm: fullDescription,
       success: `${successPreamble} ${successDescription}`,
       insufficient: isArabic
@@ -39,15 +41,27 @@ function generateModalContent(offers, lang) {
 }
 
 const allForfaitsFR = [
-  ...(ForfaitData.fr?.forfaits || []),
-  ...(ForfaitData.fr?.internetForfaits || []),
-  ...(ForfaitData.fr?.smartForfaits || []),
+  ...(ForfaitData.fr?.forfaits || []).map((f) => ({ ...f, type: "forfait" })),
+  ...(ForfaitData.fr?.internetForfaits || []).map((f) => ({
+    ...f,
+    type: "internet",
+  })),
+  ...(ForfaitData.fr?.smartForfaits || []).map((f) => ({
+    ...f,
+    type: "smart",
+  })),
 ];
 
 const allForfaitsAR = [
-  ...(ForfaitData.ar?.forfaits || []),
-  ...(ForfaitData.ar?.internetForfaits || []),
-  ...(ForfaitData.ar?.smartForfaits || []),
+  ...(ForfaitData.ar?.forfaits || []).map((f) => ({ ...f, type: "forfait" })),
+  ...(ForfaitData.ar?.internetForfaits || []).map((f) => ({
+    ...f,
+    type: "internet",
+  })),
+  ...(ForfaitData.ar?.smartForfaits || []).map((f) => ({
+    ...f,
+    type: "smart",
+  })),
 ];
 
 export const ModalData = {
