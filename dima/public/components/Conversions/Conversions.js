@@ -38,7 +38,6 @@ class ConversionsComponent {
     --shadow: -0.861px 6.891px 15.505px 0 rgba(79, 79, 79, 0.10);
   }
 
-  /* Conversions Modal Styles */
   .conversions-backdrop {
     min-height: 100vh;
     display: flex;
@@ -219,52 +218,7 @@ class ConversionsComponent {
     background: #d1182f;
   }
 
-  .boost-card-shadow {
-    box-shadow: 0px 3.92px 7.84px 0px #0505050A;
-    border: 0.92px solid #C5C5C5;
-    border-radius: 0.75rem;
-    width: 100%;
-    max-width: none;
-    min-width: auto;
-    height: 100%;
-    background: white;
-    color: #000;
-    text-align: center;
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 250px;
-  }
-
-  .boost-grid {
-    display: grid;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    gap: 0.875rem;
-    justify-items: center;
-    align-items: stretch;
-    grid-template-columns: 1fr;
-    justify-content: center;
-  }
-
-  .boost-card-container {
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    justify-content: space-between;
-  }
-
-  .boost-card-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: center;
-  }
-
-  .boost-card-footer {
+  .conv-card-footer {
     margin-top: auto;
     display: flex;
     flex-direction: row;
@@ -272,45 +226,11 @@ class ConversionsComponent {
     gap: 1rem;
   }
 
-  .boost-title {
-    font-weight: 500;
-    font-size: 42px;
-    margin-bottom: 16px;
-    text-transform: uppercase;
-  }
-
-  .boost-description {
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 1.4;
-    margin-bottom: 24px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .boost-buy-btn {
-    background-color: #e30613;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 9999px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    text-transform: uppercase;
-    min-width: 200px;
-    height: 50px;
-  }
-
   .boost-buy-btn:hover {
     background-color: #c50510;
     color: white;
   }
 
-  /* Responsive styles */
   @media (max-width: 768px) {
     .conversions-header {
       padding: 40px 16px 24px 16px;
@@ -353,7 +273,7 @@ class ConversionsComponent {
       line-height: 18px;
     }
 
-    .boost-card-footer {
+    .conv-card-footer {
       flex-direction: column;
       align-items: center;
       padding-top: 16px;
@@ -520,7 +440,7 @@ class ConversionsComponent {
                   )}</h2>
                   <p class="boost-description">${data.description}</p>
                 </div>
-                <div class="boost-card-footer">
+                <div class="conv-card-footer">
                   <button class="boost-buy-btn boost-button-zone" data-action="convert-to-credit">
                     ${data.convertToCredit}
                   </button>
