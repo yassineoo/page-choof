@@ -1477,6 +1477,7 @@ class ForfaitComponent {
       modalContent && modalContent[offer.name]
         ? modalContent[offer.name]
         : this.getDefaultModalContent(offer, currentLanguage);
+
     this.showPurchaseFlow(offer.name, content, this.currentLang === "ar");
   }
 
@@ -1506,10 +1507,35 @@ class ForfaitComponent {
       message: content.confirm,
       isRTL,
       onConfirm: () => {
-        this.showSuccessModal(content, isRTL, () => {
-          this.showInsufficientCreditModal(content, isRTL);
-        });
+        if (content.hasShahid) {
+          this.showShahidModal(isRTL, () => {
+            this.showSuccessModal(content, isRTL, () => {
+              this.showInsufficientCreditModal(content, isRTL);
+            });
+          });
+        } else {
+          this.showSuccessModal(content, isRTL, () => {
+            this.showInsufficientCreditModal(content, isRTL);
+          });
+        }
       },
+    });
+  }
+
+  showShahidModal(isRTL, onClose) {
+    const shahidContent = {
+      title: isRTL ? "شاهد" : "Service Shahid activé !",
+      message: isRTL
+        ? "لقد تم تفعيل خدمة شاهد! بعد قليل، ستصلك رسالة قصيرة تحتوي على رابط."
+        : "Vous recevrez un SMS avec un lien sous peu.",
+    };
+
+    this.showModal({
+      type: "info",
+      title: shahidContent.title,
+      message: shahidContent.message,
+      isRTL,
+      onClose,
     });
   }
 
