@@ -29,327 +29,120 @@ class BoostComponent {
 
   getStylesheet() {
     return `
+    .boost-section {
+      padding: 3rem 1rem; /* Responsive padding */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+    }
+    .dark .boost-section {
+      background: #2c2c2c;
+    }
+
     .boost-card-shadow {
-      box-shadow: 0px 3.92px 7.84px 0px #0505050A;
-      border: 0.92px solid #C5C5C5;
-      border-radius: 0.75rem;
-      width: 900px;
-      height: 100%;
+      box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);
+      border: 1px solid #C5C5C5;
+      border-radius: 22px;
+      width: 100%;
+      max-width: 900px; /* Use max-width instead of fixed width */
+      height: auto; /* Use auto height */
       background: white;
       color: #000;
-      text-align: center;
-      margin: 1rem auto;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      min-height: 300px;
-      box-sizing: border-box;
-    }
-
-    .dark .boost-card-shadow {
-      box-shadow: none;
-      border: 0.92px solid #C5C5C5;
-      background: #2C2C2C;
-      color: #d1d5db;
-    }
-
-    [dir="rtl"] .boost-card-shadow {
-      text-align: right;
-    }
-    [dir="rtl"] .boost-price {
-      flex-direction: row-reverse;
-    }
-    [dir="rtl"] .boost-price .small {
-      margin-left: 0;
-      margin-right: 4px;
-    }
-
-    .boost-modal-fade {
-      animation: modalFadeIn 0.3s ease-out forwards;
-      backdrop-filter: blur(8px);
-      background-color: rgba(105, 105, 105, 0.8);
-    }
-
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: scale(0.95) translateY(-8px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    .boost-hover-lift {
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem 1rem; /* Responsive padding */
+      gap: 2rem; /* Consistent gap */
       transition: all 0.3s ease;
     }
-    .boost-hover-lift:hover {
-      transform: translateY(-3px);
-      box-shadow: 0px 8px 16px 0px #0505051A;
-      border: 0.92px solid #C5C5C5;
+    .dark .boost-card-shadow {
+      background: #2c2c2c;
+      color: #d1d5db;
     }
-    .dark .boost-hover-lift:hover {
-      box-shadow: none;
-      border: 0.92px solid #C5C5C5;
-    }
-
-    .boost-grid {
-      display: grid;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      gap: 0.875rem;
-      justify-items: center;
-      align-items: stretch;
-      grid-template-columns: 1fr;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-
-    .boost-card-container {
-      width: 900px;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      padding: 1.5rem;
-      justify-content: space-between;
-      align-items: center;
-      box-sizing: border-box;
-      margin: 0 auto;
-      overflow: visible;
-    }
-
-    .boost-card-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      text-align: center;
-      overflow: visible;
-    }
-
-    .boost-card-footer {
-      margin-top: auto;
-      display: flex;
-      flex-direction: column !important;
-      align-items: center;
-      gap: 1rem;
-      width: 100%;
+    .boost-card-shadow:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 12px 24px 0px rgba(79,79,79,0.12);
     }
 
     .boost-title {
       font-weight: 500;
-      font-size: 42px;
-      margin-bottom: 24px;
+      font-size: clamp(1.75rem, 5vw, 2.625rem); /* Fluid font size */
       text-transform: uppercase;
+      line-height: 1.1;
+      text-align: center;
       word-break: break-word;
     }
 
     .boost-description {
       font-weight: 400;
-      font-size: 22px;
+      font-size: clamp(1rem, 2.5vw, 1.375rem); /* Fluid font size */
       line-height: 1.5;
-      margin-bottom: 0.8rem !important;
       max-width: 668px;
-      white-space: normal !important;
-      overflow: visible !important;
-      text-overflow: clip !important;
-      display: block !important;
-      -webkit-line-clamp: unset !important;
-      -webkit-box-orient: unset !important;
-      -webkit-box-pack: unset !important;
-      word-wrap: break-word;
-      overflow-wrap: anywhere;
-      box-sizing: border-box;
-      margin-left: auto;
-      margin-right: auto;
+      text-align: center;
+      margin: 0 auto;
     }
 
     .boost-price {
-      font-weight: 600;
       display: flex;
       align-items: baseline;
       justify-content: center;
-      gap: 8px;
+      gap: 0.5rem;
     }
     .boost-price .big {
-      font-size: 36px;
+      font-size: clamp(1.75rem, 5vw, 2.25rem); /* Fluid font size */
+      font-weight: 700;
     }
     .boost-price .small {
-      font-size: 22px;
+      font-size: clamp(1.125rem, 3vw, 1.375rem); /* Fluid font size */
+      font-weight: 700;
     }
+
     .boost-buy-btn {
-      position: relative;
-      overflow: visible;
-      z-index: 10;
-      touch-action: manipulation;
       background-color: #e30613;
       color: white;
       border: none;
-      padding: 12px 24px;
+      padding: 0.75rem 2rem; /* Responsive padding */
       border-radius: 9999px;
-      font-size: 1em;
+      font-size: clamp(0.875rem, 2.5vw, 1.125rem); /* Fluid font size */
       cursor: pointer;
       transition: all 0.3s ease;
-      font-weight: bold;
+      font-weight: 600;
       text-transform: uppercase;
-      min-width: 200px;
+      min-width: 180px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
     .boost-buy-btn:hover {
       background-color: #c50510;
-      color: white;
+      transform: scale(1.05);
     }
 
-    .boost-section {
-      width: 100%;
-      background: #ffffffff;
-      padding: 70px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
+    .boost-modal-fade {
+      animation: modalFadeIn 0.3s ease-out forwards;
+      backdrop-filter: blur(8px);
     }
-    .dark .boost-section {
-      background: #2c2c2c;
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
-
     @keyframes modalFadeOut {
-      from { opacity: 1; transform: scale(1) translateY(0); }
-      to { opacity: 0; transform: scale(0.95) translateY(-10px); }
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.95); }
     }
-
-    .boost-modal-close {
-      transition: all 0.2s ease;
-    }
-    .boost-modal-close:hover {
-      transform: scale(1.1);
-    }
-
-    .boost-modal-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .boost-modal-button {
-      padding: 0.75rem 1.5rem;
-      border-radius: 9999px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      font-size: 0.875rem;
-    }
-
-    .boost-modal-button.primary {
-      background: #e30613;
-      color: white;
-      border: none;
-    }
-
-    .boost-modal-button.primary:hover {
-      background: #c50510;
-    }
-
-    .boost-modal-button.secondary {
-      background: white;
-      color: #e30613;
-      border: 2px solid #e30613;
-    }
-
-    .boost-modal-button.secondary:hover {
-      background: #e30613;
-      color: white;
-    }
-
-    @media (max-width: 1000px) {
-      .boost-grid {
-        max-width: 100%;
-        padding: 0 1rem;
-      }
-      .boost-card-container {
-        padding: 1rem;
-        width: calc(100% - 2rem);
-      }
-      .boost-card-shadow {
-        margin: 0.75rem auto;
-        width: calc(100% - 1.5rem);
-      }
-      .boost-description {
-        max-width: 100%;
-        font-size: 20px;
-        margin-bottom: 0.75rem !important;
-        padding: 0;
-      }
-      .boost-title {
-        font-size: 34px;
-        margin-bottom: 16px;
-      }
-      .boost-price .big {
-        font-size: 30px;
-      }
-      .boost-price .small {
-        font-size: 18px;
-      }
-      .boost-buy-btn {
-        min-width: 160px;
-        padding: 10px 20px;
-      }
-    }
-
+    
+    /* Simplified Media Query */
     @media (max-width: 640px) {
       .boost-section {
-        padding: 40px 0;
+        padding: 2rem 1rem;
       }
       .boost-card-shadow {
-        min-height: 320px;
-        padding: 1rem;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
       }
-      .boost-title {
-        font-size: 28px;
-        margin-bottom: 12px;
-      }
-      .boost-description {
-        font-size: 18px;
-        line-height: 1.4;
-      }
-      .boost-price .big {
-        font-size: 24px;
-      }
-      .boost-price .small {
-        font-size: 16px;
-      }
-      .boost-buy-btn {
-        min-width: 140px;
-        padding: 10px 18px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .boost-card-shadow {
-        min-height: 300px;
-        margin: 0.5rem;
-        padding: 0.75rem;
-      }
-      .boost-title {
-        font-size: 22px;
-      }
-      .boost-description {
-        font-size: 16px;
-      }
-      .boost-buy-btn {
-        min-width: 120px;
-        padding: 8px 14px;
-      }
-    }
-
-    /* Ensure no truncation from parents */
-    .boost-card-shadow,
-    .boost-card-container,
-    .boost-card-content,
-    .boost-description {
-      overflow: visible !important;
-      text-overflow: clip !important;
-      white-space: normal !important;
     }
   `;
   }
@@ -458,45 +251,46 @@ class BoostComponent {
 
   renderWithData(data, language) {
     const isRTL = this.isRTL();
-
     this.cleanupAllEventListeners();
 
     this.container.innerHTML = `
     <div class="w-full">
-      <section class="w-full bg-[#141B4D] dark:bg-[#2c2c2c] boost-section">
-        <div class="max-w-[1600px] mx-auto md:px-6">
-          <div class="boost-grid">
-            <div class="boost-card-shadow boost-hover-lift">
-              <div class="boost-card-container">
-                <div class="boost-card-content">
-                  <h2 class="boost-title">${this.createMixedTitleHTML(
-                    data.title
-                  )}</h2>
-                  <p class="boost-description">${data.description}</p>
-                </div>
-                <div class="boost-card-footer">
-                  <div class="boost-price">
-                    <span class="big">500</span>
-                    <span class="small">${isRTL ? "دج" : "DA"}</span>
-                  </div>
-                  <button class="boost-buy-btn boost-button-zone" data-index="0">
-                    ${data.buy}
-                  </button>
-                </div>
-              </div>
-            </div>
+      <section class="boost-section">
+        <div class="boost-card-shadow">
+          
+          <div class="flex flex-col items-center gap-4 md:gap-6 text-center">
+            <h2 class="boost-title">
+              ${this.createMixedTitleHTML(data.title)}
+            </h2>
+            <p class="boost-description dark:text-gray-200">
+              ${data.description}
+            </p>
           </div>
+
+          <div class="flex flex-col items-center gap-4 md:gap-5">
+            <div class="boost-price dark:text-white">
+              <span class="big">500</span>
+              <span class="small">${isRTL ? "دج" : "DA"}</span>
+            </div>
+
+            <button class="boost-buy-btn" data-index="0">
+              <span class="text-white font-rubik font-semibold leading-normal uppercase">
+                ${data.buy}
+              </span>
+            </button>
+          </div>
+
         </div>
       </section>
 
       <div id="boost-modal-container"></div>
     </div>
-    `;
+  `;
 
     this.bindPurchaseButtons(language);
 
     setTimeout(() => {
-      this.addAccessibility();
+      this.addAccessibility && this.addAccessibility();
     }, 50);
   }
 
@@ -603,11 +397,7 @@ class BoostComponent {
       isRTL,
       onConfirm: () => {
         const isInsufficient = Math.random() > 0.7;
-        // if (isInsufficient) {
-        // this.showInsufficientModal(data, isRTL);
-        //  } else {
         this.showSuccessModal(data, isRTL);
-        // }
       },
     });
   }
@@ -665,9 +455,8 @@ class BoostComponent {
 
   createModalHTML({ type, title, message, isRTL }) {
     const dirAttribute = isRTL ? `dir="rtl"` : "";
-    const closeButtonPosition = isRTL ? "left-4" : "right-4";
-    const buttons = this.getModalButtons(type, isRTL);
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
+    const buttons = this.getModalButtons(type, isRTL);
 
     return `
       <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 boost-modal-fade"
@@ -762,7 +551,6 @@ class BoostComponent {
 
     actionButtons.forEach((button) => {
       const actionClickHandler = () => {
-        const action = button.getAttribute("data-action");
         closeModal();
 
         setTimeout(() => {

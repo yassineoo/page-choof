@@ -28,304 +28,257 @@ class ConversionsComponent {
 
   getStylesheet() {
     return `
-  :root {
-    --bg: #F5F5F5;
-    --modal-bg: #ffffff;
-    --muted: #F8F8F8;
-    --red: #ED1C24;
-    --border: #C5C5C5;
-    --border-dashed: #CDCDCD;
-    --shadow: -0.861px 6.891px 15.505px 0 rgba(79, 79, 79, 0.10);
-  }
+    :root {
+      --bg: #F5F5F5;
+      --modal-bg: #ffffff;
+      --muted: #F8F8F8;
+      --red: #e30613;
+      --border: #C5C5C5;
+      --border-dashed: #CDCDCD;
+      --shadow: 0px 7px 15px rgba(79, 79, 79, 0.10);
+    }
 
-  .conversions-backdrop {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 28px;
-    background: var(--bg);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9999;
-  }
+    .conversions-backdrop {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem; /* 16px */
+      background: var(--bg);
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      box-sizing: border-box;
+    }
 
-  .conversions-modal {
-    width: 100%;
-    max-width: 908px;
-    background: var(--modal-bg);
-    border-radius: 22px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
+    .conversions-modal {
+      width: 100%;
+      max-width: 908px;
+      background: var(--modal-bg);
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .conversions-modal-content {
+      overflow-y: auto;
+    }
 
-  .conversions-header {
-    padding: 70px 20px 45px 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-  }
-
-  .conversions-title {
-    font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: 42px;
-    text-transform: uppercase;
-    margin: 0;
-    color: #000;
-  }
-
-  .conversions-question {
-    font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
-    font-size: 22px;
-    color: #000;
-    margin: 0;
-    max-width: 554px;
-  }
-
-  .btn-cancel {
-    width: 205px;
-    height: 47px;
-    border: 2px solid var(--red);
-    border-radius: 22px;
-    background: transparent;
-    color: var(--red);
-    font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
-    font-weight: 700;
-    font-size: 17px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .btn-cancel:hover {
-    background: var(--red);
-    color: white;
-  }
-
-  .conversions-content {
-    background: var(--muted);
-    border-top: 1px solid var(--border);
-    padding: 70px 20px;
-  }
-
-  .plans-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px 36px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .plan-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    width: 380px;
-    max-width: 100%;
-  }
-
-  .plan-header {
-    padding: 13px;
-    border-bottom: 1px dashed var(--border-dashed);
-    text-align: center;
-  }
-
-  .plan-name {
-    font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
-    font-weight: 700;
-    font-size: 22px;
-    color: var(--red);
-    text-transform: uppercase;
-    margin: 0;
-  }
-
-  .plan-body {
-    padding: 22px 17px 25px 17px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .plan-description {
-    font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    color: #000;
-    text-align: center;
-    margin: 0;
-    max-width: 347px;
-    min-height: 66px;
-    display: flex;
-    align-items: center;
-  }
-
-  .plan-pricing {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: auto;
-  }
-
-  .plan-price {
-    text-align: center;
-    font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
-    color: #000;
-  }
-
-  .price-amount {
-    font-weight: 700;
-    font-size: 28px;
-  }
-
-  .price-currency {
-    font-weight: 700;
-    font-size: 18px;
-  }
-
-  .price-duration {
-    font-weight: 700;
-    font-size: 13px;
-  }
-
-  .btn-convert {
-    width: 113px;
-    height: 32px;
-    background: var(--red);
-    border: none;
-    border-radius: 22px;
-    color: white;
-    font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-
-  .btn-convert:hover {
-    background: #d1182f;
-  }
-
-  .conv-card-footer {
-    margin-top: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .boost-buy-btn:hover {
-    background-color: #c50510;
-    color: white;
-  }
-
-  @media (max-width: 768px) {
     .conversions-header {
-      padding: 40px 16px 24px 16px;
+      padding: 70px 20px 45px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      flex-shrink: 0;
     }
 
     .conversions-title {
-      font-size: 28px;
+      font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
+      font-weight: 500;
+      font-size: 42px;
+      text-transform: uppercase;
+      color: #000;
+      line-height: 1.1;
+      word-break: break-word;
     }
 
     .conversions-question {
-      font-size: 18px;
+      font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
+      font-size: 22px;
+      color: #000;
+      max-width: 554px;
     }
 
     .btn-cancel {
-      width: 160px;
-      height: 40px;
-      font-size: 15px;
+      width: 205px;
+      height: 47px;
+      border: 2px solid var(--red);
+      border-radius: 22px;
+      background: transparent;
+      color: var(--red);
+      font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-cancel:hover {
+      background: var(--red);
+      color: white;
     }
 
     .conversions-content {
-      padding: 40px 16px;
+      background: var(--muted);
+      border-top: 1px solid var(--border);
+      padding: 70px 20px;
     }
 
     .plans-grid {
-      grid-template-columns: 1fr;
-      gap: 24px;
-      max-width: 380px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 36px;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .plan-card {
-      width: 100%;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      width: 100%; /* Changed from fixed width */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plan-header {
+      padding: 13px;
+      border-bottom: 1px dashed var(--border-dashed);
+      text-align: center;
+    }
+
+    .plan-name {
+      font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--red);
+      text-transform: uppercase;
     }
 
     .plan-body {
-      padding: 18px 14px 20px 14px;
+      padding: 22px 17px 25px 17px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      flex-grow: 1; /* Allows footer to stick to bottom */
     }
 
     .plan-description {
-      font-size: 13px;
-      line-height: 18px;
+      font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      color: #000;
+      text-align: center;
+      flex-grow: 1; /* Pushes pricing down */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 60px;
     }
 
-    .conv-card-footer {
+    .plan-pricing {
+      display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 16px;
+      gap: 15px;
+      margin-top: auto; /* Sticks to bottom */
     }
 
-    .boost-title {
-      font-size: 32px;
-      margin-bottom: 16px;
+    .plan-price {
+      text-align: center;
+      font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
+      color: #000;
     }
 
-    .boost-description {
+    .price-amount {
+      font-weight: 700;
+      font-size: 28px;
+    }
+
+    .price-currency {
+      font-weight: 700;
       font-size: 18px;
-      margin-bottom: 20px;
     }
 
-    .boost-buy-btn {
-      width: 100%;
-      max-width: 250px;
-      margin: 0 auto;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .conversions-backdrop {
-      padding: 16px;
+    .price-duration {
+      font-weight: 700;
+      font-size: 13px;
     }
 
-    .conversions-header {
-      padding: 30px 12px 20px 12px;
+    .btn-convert {
+      width: 113px;
+      height: 32px;
+      background: var(--red);
+      border: none;
+      border-radius: 22px;
+      color: white;
+      font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
     }
 
-    .conversions-title {
-      font-size: 24px;
+    .btn-convert:hover {
+      background: #d1182f;
     }
 
-    .conversions-question {
-      font-size: 16px;
+    /* Responsive adjustments */
+    @media (max-width: 920px) {
+      .plans-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        max-width: 420px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .conversions-header {
+        padding: 40px 1.5rem 30px 1.5rem;
+      }
+      .conversions-title {
+        font-size: 32px;
+      }
+      .conversions-question {
+        font-size: 18px;
+      }
+      .btn-cancel {
+        width: 180px;
+        height: 44px;
+        font-size: 16px;
+      }
+      .conversions-content {
+        padding: 40px 1.5rem;
+      }
     }
 
-    .conversions-content {
-      padding: 30px 12px;
+    @media (max-width: 480px) {
+      .conversions-backdrop {
+        padding: 0;
+        align-items: flex-end;
+      }
+      .conversions-modal {
+        max-height: 85vh;
+        border-radius: 22px 22px 0 0;
+      }
+      .conversions-header {
+        padding: 30px 1rem 20px 1rem;
+        gap: 16px;
+      }
+      .conversions-title {
+        font-size: 24px;
+      }
+      .conversions-question {
+        font-size: 16px;
+      }
+      .conversions-content {
+        padding: 30px 1rem;
+      }
+      .plan-name {
+        font-size: 20px;
+      }
+      .price-amount {
+        font-size: 24px;
+      }
     }
-
-    .plans-grid {
-      gap: 20px;
-    }
-
-    .boost-card-shadow {
-      min-height: 360px;
-      padding: 1rem;
-    }
-  }
   `;
   }
 
@@ -429,34 +382,48 @@ class ConversionsComponent {
     this.cleanupAllEventListeners();
     this.container.innerHTML = `
     <div class="w-full">
-      <section class="w-full bg-[#141B4D] dark:bg-[#2c2c2c] boost-section">
-        <div class="max-w-[1600px] mx-auto md:px-6">
-          <div class="boost-grid">
-            <div class="boost-card-shadow boost-hover-lift">
-              <div class="boost-card-container">
-                <div class="boost-card-content">
-                  <h2 class="boost-title">${this.createMixedTitleHTML(
-                    data.title
-                  )}</h2>
-                  <p class="boost-description">${data.description}</p>
-                </div>
-                <div class="conv-card-footer">
-                  <button class="boost-buy-btn boost-button-zone" data-action="convert-to-credit">
-                    ${data.convertToCredit}
-                  </button>
-                  <button class="boost-buy-btn boost-button-zone" data-action="other-conversions">
-                    ${data.otherConversions}
-                  </button>
-                </div>
-              </div>
+      <section class="flex py-16 md:py-[70px] flex-col justify-center items-center gap-4 w-full bg-white boost-section">
+        <div class="flex w-full max-w-4xl h-auto flex-col justify-center items-center gap-4 p-6 md:p-2 rounded-3xl border border-[#C5C5C5] bg-white shadow-[0_7px_15px_rgba(79,79,79,0.10)] boost-card-shadow boost-hover-lift">
+          <div class="flex flex-col justify-center items-center gap-6 self-stretch">
+            
+            <div class="self-stretch">
+              <h2 class="text-black text-center font-rubik text-3xl md:text-[42px] font-medium leading-tight uppercase">
+                ${this.createMixedTitleHTML(data.title)}
+              </h2>
             </div>
+            
+            <div class="w-full max-w-2xl">
+              <p class="text-black text-center font-rubik text-lg md:text-[22px] font-normal leading-normal">
+                ${data.description}
+              </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row w-full max-w-xl justify-center items-center gap-4 md:gap-6 flex-wrap px-4">
+              <button 
+                class="flex px-8 py-3 justify-center items-center gap-3 rounded-full bg-[#e30613] hover:bg-[#c50510] transition-colors boost-buy-btn w-full sm:w-auto"
+                data-action="convert-to-credit"
+              >
+                <span class="text-white font-rubik text-base md:text-[18px] font-semibold leading-normal uppercase">
+                  ${data.convertToCredit}
+                </span>
+              </button>
+              <button 
+                class="flex px-8 py-3 justify-center items-center gap-3 rounded-full bg-[#e30613] hover:bg-[#c50510] transition-colors boost-buy-btn w-full sm:w-auto"
+                data-action="other-conversions"
+              >
+                <span class="text-white font-rubik text-base md:text-[18px] font-semibold leading-normal uppercase">
+                  ${data.otherConversions}
+                </span>
+              </button>
+            </div>
+
           </div>
         </div>
       </section>
       <div id="boost-modal-container"></div>
       <div id="conversions-modal-container"></div>
     </div>
-    `;
+  `;
     this.bindPurchaseButtons(language);
   }
 
@@ -621,7 +588,7 @@ class ConversionsComponent {
             <div class="plans-grid">
               ${plans
                 .map(
-                  (plan) => `
+                  (plan, idx) => `
                 <div key="${plan.name}" class="plan-card">
                   <div class="plan-header">
                     <h3 class="plan-name">${plan.name}</h3>
@@ -635,9 +602,7 @@ class ConversionsComponent {
                         <span class="price-duration">${plan.duration}</span>
                       </div>
 
-                      <button class="btn-convert" data-action="convert-to-${plans.indexOf(
-                        plan
-                      )}">
+                      <button class="btn-convert" data-action="convert-to-${idx}">
   ${data.convertBtn}
 </button>
                     </div>
