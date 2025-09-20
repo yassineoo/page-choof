@@ -1,22 +1,26 @@
-import migrationData from "./MigrationData.js";
+import migrationData from "./MigrationData";
 
-class MigrationComponent {
+class Migration {
   constructor(container) {
     this.container = container;
     this.currentLang = this.getLanguage();
+    this.currentView = "main";
     this.boundHandlers = {
       languageChange: this.handleLanguageChange.bind(this),
       resize: this.handleResize.bind(this),
     };
+    this.providers = [
+      { id: "dima", label: "DIMA +", displayName: "Dima +" },
+      { id: "ooredoo", label: "OOREDOO", displayName: "Ooredoo" },
+      { id: "nyooz", label: "N'YOOZ", displayName: "N'YOOZ" },
+    ];
     this.initialize();
   }
-
   initialize() {
     this.loadStyles();
     this.render();
     this.setupEventListeners();
   }
-
   loadStyles() {
     if (!document.getElementById("migration-styles")) {
       const styleElement = document.createElement("style");
@@ -25,308 +29,395 @@ class MigrationComponent {
       document.head.appendChild(styleElement);
     }
   }
-
   getStylesheet() {
     return `
-:root{
-  --bg:#F5F5F5;
-  --modal-bg:#ffffff;
-  --muted:#F8F8F8;
-  --red:#e30613;
-  --link:#0076B2;
-  --border:#C5C5C5;
-  --shadow: 0px 7px 15px rgba(79,79,79,0.10);
-}
-
-.migration-section {
-  width: 100%;
-  background: #F8F8F8;
-  padding: 40px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
-.dark .migration-section {
-  background: #2c2c2c;
-}
-
-.migration-grid {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 0 1rem;
-  box-sizing: border-box;
-}
-
-.migration-card-shadow {
-  box-shadow: 0px 22px 22px rgba(79,79,79,0.09);
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  width: 900px;
-  max-width: 100%;
-  height: 345px;
-  background: white;
-  color: #000;
-  text-align: center;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-.dark .migration-card-shadow {
-  box-shadow: none;
-  border: 1px solid var(--border);
-  background: #2C2C2C;
-  color: #d1d5db;
-}
-
-.migration-hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.migration-hover-lift:hover {
-  transform: translateY(-3px);
-  box-shadow: 0px 7px 15px rgba(79,79,79,0.10);
-}
-
-.migration-card-container {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  padding: 24px;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  flex-grow: 1;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-.migration-card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 24px;
-}
-
-.migration-title {
-  font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
-  font-weight: 500;
-  font-size: 42px;
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 1;
-  word-break: break-word;
-}
-
-.migration-subtitle {
-  font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
-  font-size: 22px;
-  max-width: 600px;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.migration-buttons-grid {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  padding: 0 1rem;
-  box-sizing: border-box;
-}
-
-.migration-option-btn {
-  background-color: var(--red);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 28px;
-  font-size: 18px;
-  min-width: 205px;
-  height: 47px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  font-family: Rubik, sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  box-sizing: border-box;
-}
-.migration-option-btn:hover {
-  background-color: #c50510;
-  transform: translateY(-2px);
-}
-
-.migration-modal-fade {
-  animation: modalFadeIn 0.3s ease-out forwards;
-  backdrop-filter: blur(8px);
-  background-color: rgba(105, 105, 105, 0.8);
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-.migration-modal {
-  width: 100%;
-  max-width: 908px;
-  background: var(--modal-bg);
-  border-radius: 22px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  box-sizing: border-box;
-}
-.migration-header {
-  padding: 48px 24px 24px 24px;
-  text-align: center;
-}
-.migration-header .migration-title {
-  margin-bottom: 24px;
-}
-.migration-question {
-  max-width: 668px;
-  margin: 0 auto;
-  font-family: Rubik, sans-serif;
-  font-size: 22px;
-  line-height: 1.5;
-}
-
-.migration-footer {
-  background: var(--muted);
-  border-top: 1px solid var(--border);
-  padding: 24px;
-  box-sizing: border-box;
-}
-.migration-footer-inner {
-  max-width: 672px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  box-sizing: border-box;
-}
-.migration-subquestion {
-  font-family: Rubik, sans-serif;
-  font-size: 21px;
-  margin: 0;
-  text-align: center;
-}
-.migration-accept {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  justify-content: center;
-}
-.migration-checkbox {
-  width: 18px;
-  height: 18px;
-  background: var(--red);
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-.migration-terms {
-  font-family: Rubik, sans-serif;
-  font-size: 18px;
-}
-.migration-terms-link {
-  color: var(--link);
-  text-decoration: underline;
-}
-.migration-actions {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  box-sizing: border-box;
-}
-.btn {
-  min-width: 180px;
-  height: 42px;
-  border-radius: 24px;
-  font-family: Rubik, sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  text-transform: uppercase;
-  cursor: pointer;
-  padding: 0 1.5rem;
-  box-sizing: border-box;
-}
-.btn--outline {
-  background: transparent;
-  border: 2px solid var(--red);
-  color: var(--red);
-}
-.btn--outline:hover {
-  background: var(--red);
-  color: white;
-}
-.btn--primary {
-  background: var(--red);
-  color: #fff;
-  border: none;
-}
-.btn--primary:hover {
-  background: #c50510;
-}
-@keyframes modalFadeIn {
-  from { opacity: 0; transform: scale(0.95) translateY(-8px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-@keyframes modalFadeOut {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(-6px) scale(0.99); }
-}
-
-@media (max-width: 1000px) {
-  .migration-card-shadow { width: calc(100% - 32px); height: auto; padding: 24px; }
-  .migration-title { font-size: 34px; }
-  .migration-subtitle, .migration-question { font-size: 20px; max-width: 100%; }
-  .migration-option-btn { min-width: 160px; height: 44px; padding: 10px 20px; font-size: 16px; }
-}
-
-@media (max-width: 640px) {
-  .migration-card-container { padding: 2rem 1rem; }
-  .migration-title { font-size: 28px; }
-  .migration-subtitle, .migration-question { font-size: 18px; }
-  .migration-header { padding: 40px 24px 24px 24px; }
-  .migration-footer { padding: 18px; }
-  .migration-subquestion { font-size: 18px; }
-  .migration-terms { font-size: 17px; }
-  .btn { min-width: 140px; }
-  .migration-footer-inner { gap: 20px; }
-  .migration-actions { flex-direction: column; }
-}
-
-@media (max-width: 480px) {
-  .migration-card-shadow { padding: 12px; min-height: 300px; }
-  .migration-title { font-size: 22px; }
-  .migration-subtitle, .migration-question { font-size: 16px; }
-  .migration-option-btn { min-width: 120px; padding: 8px 14px; font-size: 14px; }
-}
-`;
+    :root{
+      --container-max: 900px;
+      --gutter: 24px;
+      --accordion-gray: #F8F8F8;
+      --border: #C5C5C5;
+      --card-radius: 22px;
+      --card-min-height: 300px;
+    }
+    .dark .migration-section {
+      background: #2c2c2c;
+    }
+    .migration-card-shadow {
+      box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);
+      border: 1px solid var(--border);
+      border-radius: var(--card-radius);
+      box-sizing: border-box;
+      width: var(--container-max);
+      height: auto;
+      background: white;
+      color: #000;
+      text-align: center;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem 1rem;
+      gap: 1.25rem;
+      transition: all 0.3s ease;
+      min-height: var(--card-min-height);
+    }
+    .dark .migration-card-shadow {
+      background: #2c2c2c;
+      color: #d1d5db;
+      box-shadow: none;
+    }
+    [dir="rtl"] .migration-card-shadow {
+      text-align: right;
+    }
+    [dir="rtl"] .migration-price {
+      flex-direction: row-reverse;
+    }
+    [dir="rtl"] .migration-price .small {
+      margin-left: 0;
+      margin-right: 4px;
+    }
+    .migration-modal-fade {
+      animation: modalFadeIn 0.3s ease-out forwards;
+      backdrop-filter: blur(8px);
+      background-color: rgba(105, 105, 105, 0.8);
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95) translateY(-8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .migration-hover-lift {
+      transition: all 0.3s ease;
+    }
+    .migration-hover-lift:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 8px 16px 0px #0505051A;
+      border: 0.92px solid var(--border);
+    }
+    .dark .migration-hover-lift:hover {
+      box-shadow: none;
+      border: 0.92px solid var(--border);
+    }
+    .migration-grid {
+      max-width: 1400px;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+    }
+    .migration-card-container {
+      display: flex;
+      width: 100%;
+      max-width: var(--container-max);
+      flex-direction: column;
+      height: auto;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+    }
+    .migration-card-content {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .migration-card-footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+    }
+    .migration-title {
+      font-weight: 500;
+      font-size: clamp(2rem, 4.5vw, 2.625rem);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      text-align: center;
+      width: 100%;
+      line-height: 1.05;
+      word-break: break-word;
+    }
+    .migration-description {
+      font-weight: 400;
+      font-size: clamp(1rem, 2.2vw, 1.375rem);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      max-width: 668px;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+    }
+    .migration-price {
+      font-weight: 600;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: .5rem;
+    }
+    .migration-price .big {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+    }
+    .migration-price .small {
+      font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+    }
+    .migration-buy-btn {
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+      touch-action: manipulation;
+      background-color: #e30613;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-size: clamp(0.875rem, 2.2vw, 1rem);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+      min-width: 180px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .migration-cancel-btn {
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+      touch-action: manipulation;
+      background-color: #fff;
+      color: white;
+      border: 1px solid #e30613;
+      padding: 10px 24px;
+      border-radius: 9999px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+      min-width: 200px;
+    }
+    .migration-buy-btn:hover {
+      background-color: #c50510;
+      color: white;
+    }
+    .migration-confirm-panel {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 1rem auto 0;
+      background: var(--accordion-gray);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border: 1px solid #E6E6E6;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: max-height 0.45s ease-in-out, opacity 0.3s ease-in, padding 0.35s ease-in-out, margin 0.35s ease-in-out;
+    }
+    .migration-confirm-panel.visible {
+      max-height: 420px;
+      opacity: 1;
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .migration-confirm-inner {
+      max-width: calc(var(--container-max) - 2 * var(--gutter));
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      box-sizing: border-box;
+    }
+    .migration-section {
+      width: 100%;
+      background: #ffffffff;
+      padding : 32px 16px;
+    }
+    .dark .migration-section {
+      background: #2c2c2c;
+    }
+    .migration-back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: transparent;
+      border: 2px solid #e30613;
+      color: #e30613;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+      z-index: 10;
+    }
+    .migration-back-btn:hover {
+      background-color: #e30613;
+      color: white;
+    }
+    [dir="rtl"] .migration-back-btn {
+      left: auto;
+      right: 20px;
+    }
+    @keyframes modalFadeOut {
+      from { opacity: 1; transform: scale(1) translateY(0); }
+      to { opacity: 0; transform: scale(0.95) translateY(-10px); }
+    }
+    .migration-modal-close {
+      transition: all 0.2s ease;
+    }
+    .migration-modal-close:hover {
+      transform: scale(1.1);
+    }
+    .migration-modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .migration-modal-button {
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      font-size: 0.875rem;
+    }
+    .migration-modal-button.primary {
+      background: #e30613;
+      color: white;
+      border: none;
+    }
+    .migration-modal-button.primary[disabled] {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .migration-modal-button.primary:hover {
+      background: #c50510;
+    }
+    .migration-modal-button.secondary {
+      background: white;
+      color: #e30613;
+      border: 2px solid #e30613;
+    }
+    .migration-modal-button.secondary:hover {
+      background: #e30613;
+      color: white;
+    }
+    @media (max-width: 1000px) {
+    .migration-card-shadow {
+        width: 100%;
+        max-width: 100%;
+        padding: 1.5rem;
+        min-height: 320px;
+      }
+      .migration-confirm-panel.visible { max-height: 380px; }
+    }
+    @media (max-width: 640px) {
+      .migration-card-shadow {
+        min-height: 300px;
+        padding: 1.25rem;
+        margin: 0 auto;
+      }
+      .migration-title {
+        font-size: clamp(1.6rem, 6vw, 2rem);
+        margin-bottom: 20px;
+      }
+      .migration-description {
+        font-size: 18px;
+        -webkit-line-clamp: 3;
+      }
+      .migration-price .big {
+        font-size: 28px;
+      }
+      .migration-price .small {
+        font-size: 18px;
+      }
+      .migration-modal-buttons {
+        flex-direction: row !important;
+        gap: 12px !important;
+        justify-content: center;
+        align-items: center;
+      }
+      .migration-modal-button {
+        width: auto !important;
+        min-width: 120px !important;
+        flex: 1;
+        max-width: 150px;
+      }
+      .migration-back-btn {
+        top: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+      [dir="rtl"] .migration-back-btn {
+        left: auto;
+        right: 10px;
+      }
+      .migration-confirm-panel.visible { max-height: 520px; padding: 12px; }
+      .migration-buy-btn { min-width: 140px; padding: 0.6rem 1rem; }
+    }
+    @media (max-width: 480px) {
+      .migration-card-shadow {
+        min-height: 280px;
+        padding: 1rem;
+      }
+    }
+    @media (max-width: 1279px) {
+      .migration-card-container {
+        min-height: 360px;
+      }
+    }
+    @media (max-width: 991px) {
+      .migration-card-container {
+        min-height: 340px;
+      }
+    }
+    @media (max-width: 767px) {
+      .migration-card-container {
+        min-height: 320px;
+      }
+    }
+    @media (min-width: 768px) and (max-width: 1279px) and ([dir="rtl"]) {
+      .migration-card-container {
+        text-align: right;
+      }
+      .migration-card-content ul {
+        padding-right: 0;
+        padding-left: 1rem;
+      }
+    }
+    .migration-card-shadow, .migration-card-container, .migration-card-content {
+      box-sizing: border-box;
+    }
+    .migration-card-shadow .buttons-row,
+    .migration-card-shadow .flex.items-center.justify-center {
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    `;
   }
-
   setupEventListeners() {
     window.removeEventListener(
       "languageChanged",
@@ -341,7 +432,6 @@ class MigrationComponent {
     this.setupLanguagePolling();
     this.setupAccessibility();
   }
-
   setupLanguagePolling() {
     if (this.languagePolling) clearInterval(this.languagePolling);
     this.languagePolling = setInterval(() => {
@@ -354,7 +444,6 @@ class MigrationComponent {
       }
     }, 500);
   }
-
   setupAccessibility() {
     if (this.keyboardHandler) {
       this.container.removeEventListener("keydown", this.keyboardHandler);
@@ -366,22 +455,18 @@ class MigrationComponent {
     };
     this.container.addEventListener("keydown", this.keyboardHandler);
   }
-
   getLanguage() {
     const storedLanguage = localStorage.getItem("language");
     return ["fr", "ar"].includes(storedLanguage) ? storedLanguage : "fr";
   }
-
   isRTL() {
     return this.currentLang === "ar";
   }
-
   containsArabic(text) {
     if (!text) return false;
     const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
     return arabicPattern.test(text);
   }
-
   createMixedTitleHTML(title, baseClasses = "") {
     if (!title) return "";
     if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
@@ -400,48 +485,65 @@ class MigrationComponent {
     }
     return `<span class="font-rubik ${baseClasses}">${title}</span>`;
   }
-
   render() {
     try {
       const language = this.getLanguage();
       const data = migrationData[language];
       if (!data) {
+        console.error("Missing data for language:", language);
         const fallbackData = migrationData.fr;
-        this.renderWithData(fallbackData, "fr");
+        if (!fallbackData) {
+          throw new Error("No fallback data available");
+        }
+        this.renderWithData(fallbackData, language);
         return;
       }
       this.renderWithData(data, language);
     } catch (error) {
-      const fallbackData = migrationData.fr;
-      this.renderWithData(fallbackData, "fr");
+      console.error("Error rendering component:", error);
+      this.renderErrorState();
     }
   }
-
   renderWithData(data, language) {
     const isRTL = this.isRTL();
     this.cleanupAllEventListeners();
+    if (this.currentView && this.currentView.endsWith("Migration")) {
+      const providerId = this.currentView.replace("Migration", "");
+      this.renderProviderView(providerId, data, language, isRTL);
+    } else {
+      this.renderMainView(data, language, isRTL);
+    }
+    setTimeout(() => {
+      this.addAccessibility();
+    }, 50);
+  }
+  renderMainView(data, language, isRTL) {
+    const buttonsHTML = this.providers
+      .map(
+        (p) =>
+          `<button class="migration-buy-btn migration-button-zone py-[10px]" data-provider="${p.id}" aria-label="${p.displayName}">
+            <span class="text-[16px]">${p.label}</span>
+          </button>`
+      )
+      .join("\n");
     this.container.innerHTML = `
-    <div class="w-full">
-      <section class="w-full migration-section">
-        <div class="migration-grid">
-          <div class="migration-card-shadow migration-hover-lift">
-            <div class="migration-card-container">
-              <div class="migration-card-content">
-                <h2 class="migration-title">${this.createMixedTitleHTML(
-                  data.title
-                )}</h2>
-                <p class="migration-subtitle">${data.subtitle}</p>
-              </div>
-              <div class="migration-buttons-grid">
-                ${data.options
-                  .map(
-                    (opt, index) => `
-                  <button class="migration-option-btn" data-index="${index}">
-                    ${opt.label}
-                  </button>
-                `
-                  )
-                  .join("")}
+    <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
+      isRTL ? 'dir="rtl"' : 'dir="ltr"'
+    }>
+      <section class="w-full bg-[#141B4D] dark:bg-[#2c2c2c] migration-section">
+        <div>
+          <div style={width: 100%}>
+            <div class="migration-card-shadow migration-hover-lift">
+              <div class="migration-card-container">
+                <div class="migration-card-content">
+                  <h2 class="migration-title">${this.createMixedTitleHTML(
+                    data.title
+                  )}</h2>
+                  <p class="migration-description">Voulez-vous changer vers une autre offre ?</p>
+                </div>
+                <div class="flex items-center gap-4 justify-center buttons-row">
+                  ${buttonsHTML}
+                </div>
               </div>
             </div>
           </div>
@@ -453,17 +555,94 @@ class MigrationComponent {
     this.bindPurchaseButtons(language);
   }
 
+renderProviderView(providerId, data, language, isRTL) {
+    const cap = providerId.charAt(0).toUpperCase() + providerId.slice(1);
+    const changeKey = `change${cap}`;
+    // Le message spécifique à l'offre (ex: "Voulez-vous changer vers l'offre Dima+ ?")
+    const changeSpecific = data[changeKey] || data.change || "";
+    const cancelBtn = data.cancelBtn || "Annuler";
+    const confirmBtn = data.confirmBtn || "Confirmer";
+
+    let termsHTML = "";
+    if (providerId === "dima") {
+      const termsText = data.termsAndConditions || "";
+      termsHTML = `
+        <div class="mt-4 mb-8 px-4 text-center">
+          <label style="display:inline-flex; gap:8px; align-items:center; max-width:100%; line-height:1.4; cursor:pointer; font-size:16px; text-align:left;">
+            <input type="checkbox" id="dima-terms-checkbox-view" style="transform:scale(1.05);">
+            <span>${termsText}</span>
+          </label>
+        </div>
+      `;
+    }
+
+    this.container.innerHTML = `
+    <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${ isRTL ? 'dir="rtl"' : 'dir="ltr"' }>
+      <section class="w-full bg-[#141B4D] dark:bg-[#2c2c2c] migration-section relative">
+        <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
+          <div class="text-center flex flex-col items-center gap-6 justify-center min-h-[200px] px-4">
+            <h2 class="text-[42px] font-semibold">${this.createMixedTitleHTML(data.title || "")}</h2>
+            <p class="text-[21px]">${data.description || ""}</p>
+          </div>
+          <div class="rounded-b-[22.5px] bg-[#F8F8F8] min-h-[200px] pt-14 pb-6">
+            <p class="text-center mb-8 px-4">
+              <span class="text-[21px]">${changeSpecific}</span>
+            </p>
+            
+            ${termsHTML}
+
+            <div class="flex items-center gap-4 justify-center">
+              <button id="back-to-main" class="relative overflow-hidden z-10 touch-manipulation border-[#e30613] bg-white text-[#e30613] border-[2px] px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
+                <span class="text-[16px]">${cancelBtn}</span>
+              </button>
+              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
+                <span class="text-[16px]">${confirmBtn}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div id="migration-modal-container"></div>
+    </div>
+    `;
+
+    if (providerId === "dima") {
+      const checkbox = this.container.querySelector("#dima-terms-checkbox-view");
+      const confirmButton = this.container.querySelector(`#start-${providerId}-migration`);
+      
+      confirmButton.disabled = true;
+      confirmButton.style.opacity = "0.5";
+      confirmButton.style.cursor = "not-allowed";
+
+      checkbox.addEventListener("change", () => {
+        if (checkbox.checked) {
+          confirmButton.disabled = false;
+          confirmButton.style.opacity = "1";
+          confirmButton.style.cursor = "pointer";
+        } else {
+          confirmButton.disabled = true;
+          confirmButton.style.opacity = "0.5";
+          confirmButton.style.cursor = "not-allowed";
+        }
+      });
+    }
+
+    this.bindViewButtons(language);
+  }
+
   renderErrorState() {
     this.container.innerHTML = `
       <div class="w-full flex items-center justify-center py-16">
         <div class="text-center">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Une erreur s'est produite lors du chargement de la migration</p>
-          <button onclick="location.reload()" class="bg-red-600 text-white px-4 py-2 rounded-full">Recharger</button>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Une erreur s'est produite lors du chargement du boost</p>
+          <button onclick="location.reload()"
+                  class="bg-ooredoo-red text-white px-4 py-2 rounded-full">
+            Recharger
+          </button>
         </div>
       </div>
     `;
   }
-
   handleLanguageChange() {
     const newLanguage = this.getLanguage();
     if (newLanguage !== this.currentLang) {
@@ -472,7 +651,6 @@ class MigrationComponent {
       this.render();
     }
   }
-
   closeAnyOpenModals() {
     const modalContainer = this.container.querySelector(
       "#migration-modal-container"
@@ -481,14 +659,12 @@ class MigrationComponent {
       modalContainer.innerHTML = "";
     }
   }
-
   handleResize() {
     clearTimeout(this.resizeTimeout);
     this.resizeTimeout = setTimeout(() => {
       this.render();
     }, 100);
   }
-
   bindPurchaseButtons(language) {
     if (this.purchaseClickHandler) {
       this.container.removeEventListener("click", this.purchaseClickHandler);
@@ -496,248 +672,314 @@ class MigrationComponent {
     if (this.purchaseTouchHandler) {
       this.container.removeEventListener("touchend", this.purchaseTouchHandler);
     }
+    const handler = (e) => {
+      const button = e.target.closest(".migration-buy-btn");
+      if (!button) return;
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      const provider = button.getAttribute("data-provider");
+      if (!provider) return;
+      this.currentView = `${provider}Migration`;
+      this.render();
+    };
+    this.purchaseClickHandler = handler;
+    this.purchaseTouchHandler = handler;
+    this.container.addEventListener("click", handler);
+    this.container.addEventListener("touchend", handler, { passive: false });
+  }
+
+  bindViewButtons(language) {
+    if (this.viewClickHandler) {
+      this.container.removeEventListener("click", this.viewClickHandler);
+    }
     const clickHandler = (e) => {
-      const button = e.target.closest(".migration-option-btn");
-      if (!button) return;
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-      const index = parseInt(button.getAttribute("data-index"), 10);
-      setTimeout(() => {
-        this.handlePurchaseClick(language, index);
-      }, 50);
-    };
-    const touchHandler = (e) => {
-      const button = e.target.closest(".migration-option-btn");
-      if (!button) return;
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-      const index = parseInt(button.getAttribute("data-index"), 10);
-      setTimeout(() => {
-        this.handlePurchaseClick(language, index);
-      }, 50);
-    };
-    this.purchaseClickHandler = clickHandler;
-    this.purchaseTouchHandler = touchHandler;
-    this.container.addEventListener("click", clickHandler);
-    this.container.addEventListener("touchend", touchHandler, {
-      passive: false,
-    });
-  }
-
-  handlePurchaseClick(language, index) {
-    const data = migrationData[language];
-    const offer = data.options[index].label;
-    const confirmTitle = data.confirmTitleTemplate.replace("{offer}", offer);
-    const confirmDescription = data.confirmDescriptionTemplate.replace(
-      "{offer}",
-      offer
-    );
-    const checkboxText = data.checkboxText;
-    const subquestion =
-      language === "ar"
-        ? `هل تريد التغيير إلى العرض "${offer}"؟`
-        : `Voulez-vous changer vers l'offre "${offer}" ?`;
-    this.showConfirmModal({
-      title: confirmTitle,
-      question: data.subtitle,
-      subquestion,
-      message: confirmDescription,
-      checkboxText,
-      confirmLabel: data.confirmBtn,
-      cancelLabel: data.cancelBtn,
-      successTitle: data.successTitle,
-      successMessageTemplate: data.successMessageTemplate,
-      lang: language,
-      offer,
-    });
-  }
-
-  showConfirmModal({
-    title,
-    question,
-    subquestion,
-    message,
-    checkboxText,
-    confirmLabel,
-    cancelLabel,
-    successTitle,
-    successMessageTemplate,
-    lang,
-    offer,
-  }) {
-    const modalContainer = this.container.querySelector(
-      "#migration-modal-container"
-    );
-    if (!modalContainer) return;
-    modalContainer.innerHTML = `
-      <div class="migration-backdrop migration-modal-fade" role="presentation">
-        <div class="migration-modal" role="dialog" aria-modal="true" aria-labelledby="migration-modal-title">
-          <header class="migration-header">
-            <h1 id="migration-modal-title" class="migration-title">${this.createMixedTitleHTML(
-              title
-            )}</h1>
-            <div class="migration-question">${message}</div>
-          </header>
-          <div class="migration-footer">
-            <div class="migration-footer-inner">
-              <p class="migration-subquestion">${subquestion}</p>
-              <div class="migration-accept">
-                <button id="migration-checkbox-btn" class="migration-checkbox" type="button" aria-pressed="false" aria-label="${
-                  lang === "ar" ? "غير مقبول" : "unchecked"
-                }"></button>
-                <div class="migration-terms">
-                  <span>${checkboxText}</span>
-                  <a href="#" class="migration-terms-link">${
-                    lang === "ar"
-                      ? "الشروط والأحكام"
-                      : "les termes et conditions du contrat"
-                  }</a>
-                </div>
-              </div>
-              <div class="migration-actions">
-                <button class="btn btn--outline" data-action="cancel">${cancelLabel}</button>
-                <button class="btn btn--primary" data-action="confirm">${confirmLabel}</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-    this.setupModalHandlers(modalContainer, {
-      successTitle,
-      successMessageTemplate,
-      lang,
-      offer,
-    });
-    this.manageFocusForModal(modalContainer);
-  }
-
-  setupModalHandlers(
-    modalContainer,
-    { successTitle, successMessageTemplate, lang, offer }
-  ) {
-    const backdrop = modalContainer.querySelector(".migration-backdrop");
-    const checkboxBtn = modalContainer.querySelector("#migration-checkbox-btn");
-    const cancelBtn = modalContainer.querySelector('[data-action="cancel"]');
-    const confirmBtn = modalContainer.querySelector('[data-action="confirm"]');
-    const setChecked = (el, checked) => {
-      if (!el) return;
-      el.setAttribute("aria-pressed", checked ? "true" : "false");
-      el.innerHTML = checked
-        ? `<svg width="18" height="17" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M17 -0.000488281H3C2.46957 -0.000488281 1.96086 0.210225 1.58579 0.585298C1.21071 0.960371 1 1.46908 1 1.99951V15.9995C1 16.5299 1.21071 17.0387 1.58579 17.4137C1.96086 17.7888 2.46957 17.9995 3 17.9995H17C17.5304 17.9995 18.0391 17.7888 18.4142 17.4137C18.7893 17.0387 19 16.5299 19 15.9995V1.99951C19 1.46908 18.7893 0.960371 18.4142 0.585298C18.0391 0.210225 17.5304 -0.000488281 17 -0.000488281Z" fill="#e30613"/><path d="M8 13.9996L4 9.99959L5.41 8.57959L8 11.1696L14.59 4.57959L16 5.99959" fill="white"/></svg>`
-        : ``;
-    };
-    setChecked(checkboxBtn, false);
-    const toggle = (e) => {
-      e.stopPropagation();
-      const cur = checkboxBtn.getAttribute("aria-pressed") === "true";
-      setChecked(checkboxBtn, !cur);
-    };
-    checkboxBtn.addEventListener("click", toggle);
-    const closeModal = () => {
-      if (backdrop)
-        backdrop.style.animation = "modalFadeOut 0.2s ease-in forwards";
-      setTimeout(() => {
-        modalContainer.innerHTML = "";
-      }, 200);
-    };
-    cancelBtn.addEventListener("click", closeModal);
-    confirmBtn.addEventListener("click", () => {
-      const checked = checkboxBtn.getAttribute("aria-pressed") === "true";
-      if (!checked) {
-        alert(
-          lang === "ar"
-            ? "يرجى قبول الشروط والأحكام."
-            : "Veuillez accepter les termes et conditions."
-        );
+      if (e.target.closest("#back-to-main")) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.currentView = "main";
+        this.render();
         return;
       }
-      closeModal();
-      setTimeout(() => {
-        this.showSuccessModal({
-          title: successTitle,
-          message: (successMessageTemplate || "").replace("{offer}", offer),
-          lang,
+
+      const startBtn = e.target.closest("[id^='start-'][id$='-migration']");
+      if (startBtn) {
+        // Si le bouton est désactivé (cas de Dima avec checkbox non cochée), ne rien faire
+        if (startBtn.disabled) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+
+        e.preventDefault();
+        e.stopPropagation();
+        const id = startBtn.id
+          .replace(/^start-/, "")
+          .replace(/-migration$/, "");
+        const providerId = id;
+        const lang = this.getLanguage();
+        const baseModalData = migrationData[lang] || {};
+        let modalData = {};
+        let message = "";
+
+        // On cherche le nom d'affichage correspondant à l'ID
+        const provider = this.providers.find((p) => p.id === providerId);
+        const displayName = provider ? provider.displayName : providerId;
+
+        if (providerId === "dima") {
+          modalData = baseModalData.migrationDimaModal || {};
+          // Le message est maintenant juste la description, sans la checkbox
+          message = modalData.confirmDescription || "";
+        } else if (providerId === "ooredoo") {
+          modalData = baseModalData.migrationOoredooModal || {};
+          message =
+            modalData.confirmDescription ||
+            baseModalData.changeOfferGeneric.replace(
+              "{offerName}",
+              displayName
+            );
+        } else if (providerId === "nyooz") {
+          modalData = baseModalData.migrationNyoozModal || {};
+          message =
+            modalData.confirmDescription ||
+            baseModalData.changeOfferGeneric.replace(
+              "{offerName}",
+              displayName
+            );
+        } else {
+          modalData = baseModalData.migrationDimaModal || {};
+          message = baseModalData.changeOfferGeneric.replace(
+            "{offerName}",
+            displayName
+          );
+        }
+
+        this.handlePurchaseClick(lang, {
+          ...modalData,
+          confirmDescription: message,
         });
-      }, 220);
+        return;
+      }
+    };
+    this.viewClickHandler = clickHandler;
+    this.container.addEventListener("click", clickHandler);
+  }
+
+  handlePurchaseClick(language, data) {
+    const currentLanguage = this.getLanguage();
+    const isRTL = currentLanguage === "ar";
+    const message = data.confirmDescription || "";
+    const title = data.confirmTitle || "";
+    this.showModal({
+      type: "confirm",
+      title,
+      message,
+      isRTL,
+      onConfirm: () => {
+        this.showSuccessModal(data, isRTL, data.successMessage || "");
+      },
     });
-    const backdropClick = (ev) => {
-      if (ev.target === backdrop) closeModal();
-    };
-    backdrop.addEventListener("click", backdropClick);
-    const esc = (ev) => {
-      if (ev.key === "Escape") {
-        closeModal();
-        document.removeEventListener("keydown", esc);
-      }
-    };
-    document.addEventListener("keydown", esc);
   }
-
-  showSuccessModal({ title, message, lang }) {
-    const modalContainer = this.container.querySelector(
-      "#migration-modal-container"
-    );
-    if (!modalContainer) return;
-    modalContainer.innerHTML = `
-      <div class="migration-backdrop migration-modal-fade" role="presentation">
-        <div class="migration-modal" role="dialog" aria-modal="true" aria-labelledby="migration-success-title">
-          <header class="migration-header">
-            <h1 id="migration-success-title" class="migration-title">${this.createMixedTitleHTML(
-              title
-            )}</h1>
-            <div class="migration-question">${
-              lang === "ar" ? "تم" : "Succès"
-            }</div>
-          </header>
-          <div class="migration-footer">
-            <div class="migration-footer-inner">
-              <p class="migration-subquestion">${message}</p>
-              <div class="migration-actions">
-                <button class="btn btn--primary" data-action="close">${
-                  migrationData[lang].ok
-                }</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-    const backdrop = modalContainer.querySelector(".migration-backdrop");
-    const closeBtn = modalContainer.querySelector('[data-action="close"]');
-    const close = () => {
-      if (backdrop)
-        backdrop.style.animation = "modalFadeOut 0.2s ease-in forwards";
-      setTimeout(() => {
-        modalContainer.innerHTML = "";
-      }, 200);
-    };
-    closeBtn.addEventListener("click", close);
-    const backdropClick = (ev) => {
-      if (ev.target === backdrop) close();
-    };
-    backdrop.addEventListener("click", backdropClick);
-    const esc = (ev) => {
-      if (ev.key === "Escape") {
-        close();
-        document.removeEventListener("keydown", esc);
-      }
-    };
-    document.addEventListener("keydown", esc);
+  showInsufficientModal(data, isRTL) {
+    this.showModal({
+      type: "info",
+      title: data.insufficientTitle || "",
+      message: data.insufficientMessage || "",
+      isRTL,
+    });
   }
-
+  showSuccessModal(data, isRTL, message) {
+    this.showModal({
+      type: "success",
+      title: (data && data.successTitle) || "",
+      message: message || "",
+      isRTL,
+      onConfirm: () => {
+        this.currentView = "main";
+        this.render();
+      },
+    });
+  }
+  showModal({ type, title, message, isRTL = false, onConfirm }) {
+    try {
+      const modalContainer = this.container.querySelector(
+        "#migration-modal-container"
+      );
+      if (!modalContainer) {
+        console.error("Modal container not found");
+        return;
+      }
+      const modalHTML = this.createModalHTML({ type, title, message, isRTL });
+      modalContainer.innerHTML = modalHTML;
+      this.setupModalEvents({ type, onConfirm, modalContainer });
+      this.manageFocusForModal(modalContainer);
+    } catch (error) {
+      console.error("Error showing modal:", error);
+    }
+  }
   manageFocusForModal(modalContainer) {
     this.previouslyFocusedElement = document.activeElement;
     setTimeout(() => {
-      const firstButton = modalContainer.querySelector(
-        "[data-action], #migration-checkbox-btn"
-      );
-      if (firstButton) firstButton.focus();
+      const firstButton = modalContainer.querySelector("[data-action]");
+      if (firstButton) {
+        firstButton.focus();
+      }
     }, 100);
   }
+  createModalHTML({ type, title, message, isRTL }) {
+    const dirAttribute = isRTL ? `dir="rtl"` : "";
+    const closeButtonPosition = isRTL ? "left-4" : "right-4";
+    const buttons = this.getModalButtons(type, isRTL);
+    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
+    const containsHTML = /<[^>]+>/.test(message);
+    return `
+      <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 migration-modal-fade"
+          style="background-color: rgba(105, 105, 105, 0.8);"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title">
+          <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
+              <button class="absolute top-4 right-4 p-2 z-10 rounded-full transition-all duration-200 migration-modal-close"
+                      aria-label="${isRTL ? "إغلاق" : "Fermer"}">
+                  <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
+              </button>
+              <div class="text-center mb-6">
+                  <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                      ${this.createMixedTitleHTML(title)}
+                  </h2>
+              </div>
+              <div class="text-center mb-10 px-2">
+                  ${
+                    containsHTML
+                      ? message
+                      : `<p class="${fontClass} text-gray-800 dark:text-gray-200 leading-relaxed text-base md:text-lg">${message}</p>`
+                  }
+              </div>
+              <div class="flex justify-center migration-modal-buttons">${buttons}</div>
+          </div>
+      </div>
+    `;
+  }
+  getModalButtons(type, isRTL) {
+    const data = migrationData[this.currentLang] || {};
+    const labels = {
+      cancel: data.cancelBtn || "Annuler",
+      confirm: data.confirmBtn || "Confirmer",
+      close: data.ok || "OK",
+    };
+    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
+    const primaryBtn = `migration-modal-button primary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
+    const buttonConfigs = {
+      confirm: `
+        <div class="flex ${buttonGap}">
+          <button class="${secondaryBtn}" data-action="cancel">${labels.cancel}</button>
+          <button class="${primaryBtn}" data-action="confirm">${labels.confirm}</button>
+        </div>
+      `,
+      success: `
+        <div class="flex ${buttonGap}">
+          <button class="${primaryBtn}" data-action="close">${labels.close}</button>
+        </div>
+      `,
+      info: `
+        <div class="flex ${buttonGap}">
+          <button class="${primaryBtn}" data-action="close">${labels.close}</button>
+        </div>
+      `,
+    };
+    return buttonConfigs[type] || buttonConfigs.success;
+  }
+  setupModalEvents({ type, onConfirm, modalContainer }) {
+    const modal = modalContainer.querySelector(".migration-modal-fade");
+    if (!modal) return;
+    const closeButton = modal.querySelector(".migration-modal-close");
+    const actionButtons = modal.querySelectorAll("[data-action]");
+    const closeModal = () => {
+      modal.style.animation = "modalFadeOut 0.2s ease-in forwards";
+      setTimeout(() => {
+        modalContainer.innerHTML = "";
+        if (
+          this.previouslyFocusedElement &&
+          this.previouslyFocusedElement.focus
+        ) {
+          this.previouslyFocusedElement.focus();
+        }
+        this.previouslyFocusedElement = null;
+      }, 200);
+    };
+    const modalHandlers = new Map();
+    const closeClickHandler = () => closeModal();
+    if (closeButton) {
+      closeButton.addEventListener("click", closeClickHandler);
+      modalHandlers.set("close-click", {
+        element: closeButton,
+        type: "click",
+        handler: closeClickHandler,
+      });
+    }
 
+    const dimaCheckbox = modal.querySelector("#dima-terms-checkbox");
+    let confirmButton = modal.querySelector('[data-action="confirm"]');
+    if (dimaCheckbox && confirmButton) {
+      confirmButton.disabled = !dimaCheckbox.checked;
+      const onCheckboxChange = (ev) => {
+        confirmButton.disabled = !ev.target.checked;
+      };
+      dimaCheckbox.addEventListener("change", onCheckboxChange);
+      modalHandlers.set("dima-checkbox-change", {
+        element: dimaCheckbox,
+        type: "change",
+        handler: onCheckboxChange,
+      });
+    }
+    actionButtons.forEach((button) => {
+      const actionClickHandler = (ev) => {
+        const action = button.getAttribute("data-action");
+        if (action === "confirm" && button.disabled) {
+          ev.preventDefault();
+          ev.stopPropagation();
+          return;
+        }
+        closeModal();
+        setTimeout(() => {
+          if (onConfirm && action === "confirm") onConfirm();
+        }, 200);
+      };
+      button.addEventListener("click", actionClickHandler);
+      modalHandlers.set(`action-${button.getAttribute("data-action")}`, {
+        element: button,
+        type: "click",
+        handler: actionClickHandler,
+      });
+    });
+    const backdropClickHandler = (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+    modal.addEventListener("click", backdropClickHandler);
+    modalHandlers.set("backdrop-click", {
+      element: modal,
+      type: "click",
+      handler: backdropClickHandler,
+    });
+    const escapeHandler = (event) => {
+      if (event.key === "Escape") {
+        closeModal();
+        document.removeEventListener("keydown", escapeHandler);
+        modalHandlers.delete("escape");
+      }
+    };
+    document.addEventListener("keydown", escapeHandler);
+    modalHandlers.set("escape", {
+      element: document,
+      type: "keydown",
+      handler: escapeHandler,
+    });
+    modal.modalHandlers = modalHandlers;
+  }
   cleanupAllEventListeners() {
     if (this.purchaseClickHandler) {
       this.container.removeEventListener("click", this.purchaseClickHandler);
@@ -747,26 +989,38 @@ class MigrationComponent {
       this.container.removeEventListener("touchend", this.purchaseTouchHandler);
       this.purchaseTouchHandler = null;
     }
+    if (this.viewClickHandler) {
+      this.container.removeEventListener("click", this.viewClickHandler);
+      this.viewClickHandler = null;
+    }
   }
-
+  addAccessibility() {}
   destroy() {
-    if (this.languagePolling) clearInterval(this.languagePolling);
-    if (this.resizeTimeout) clearTimeout(this.resizeTimeout);
-    if (this.languageChangeTimeout) clearTimeout(this.languageChangeTimeout);
+    if (this.languagePolling) {
+      clearInterval(this.languagePolling);
+    }
+    if (this.resizeTimeout) {
+      clearTimeout(this.resizeTimeout);
+    }
+    if (this.languageChangeTimeout) {
+      clearTimeout(this.languageChangeTimeout);
+    }
     window.removeEventListener(
       "languageChanged",
       this.boundHandlers.languageChange
     );
     window.removeEventListener("resize", this.boundHandlers.resize);
     this.cleanupAllEventListeners();
-    if (this.keyboardHandler)
+    if (this.keyboardHandler) {
       this.container.removeEventListener("keydown", this.keyboardHandler);
+    }
     const modalContainer = this.container.querySelector(
       "#migration-modal-container"
     );
-    if (modalContainer) modalContainer.innerHTML = "";
+    if (modalContainer) {
+      modalContainer.innerHTML = "";
+    }
     this.container.innerHTML = "";
   }
 }
-
-export default MigrationComponent;
+export default Migration;
