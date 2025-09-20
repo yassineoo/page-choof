@@ -211,6 +211,7 @@ class Migration {
     }
     .migration-buy-btn:hover {
       background-color: #c50510;
+      transform: scale(1.05);
       color: white;
     }
     .migration-confirm-panel {
@@ -555,7 +556,7 @@ class Migration {
     this.bindPurchaseButtons(language);
   }
 
-renderProviderView(providerId, data, language, isRTL) {
+  renderProviderView(providerId, data, language, isRTL) {
     const cap = providerId.charAt(0).toUpperCase() + providerId.slice(1);
     const changeKey = `change${cap}`;
     // Le message spécifique à l'offre (ex: "Voulez-vous changer vers l'offre Dima+ ?")
@@ -577,11 +578,15 @@ renderProviderView(providerId, data, language, isRTL) {
     }
 
     this.container.innerHTML = `
-    <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${ isRTL ? 'dir="rtl"' : 'dir="ltr"' }>
+    <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
+      isRTL ? 'dir="rtl"' : 'dir="ltr"'
+    }>
       <section class="w-full bg-[#141B4D] dark:bg-[#2c2c2c] migration-section relative">
         <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
           <div class="text-center flex flex-col items-center gap-6 justify-center min-h-[200px] px-4">
-            <h2 class="text-[42px] font-semibold">${this.createMixedTitleHTML(data.title || "")}</h2>
+            <h2 class="text-[42px] font-semibold">${this.createMixedTitleHTML(
+              data.title || ""
+            )}</h2>
             <p class="text-[21px]">${data.description || ""}</p>
           </div>
           <div class="rounded-b-[22.5px] bg-[#F8F8F8] min-h-[200px] pt-14 pb-6">
@@ -607,9 +612,13 @@ renderProviderView(providerId, data, language, isRTL) {
     `;
 
     if (providerId === "dima") {
-      const checkbox = this.container.querySelector("#dima-terms-checkbox-view");
-      const confirmButton = this.container.querySelector(`#start-${providerId}-migration`);
-      
+      const checkbox = this.container.querySelector(
+        "#dima-terms-checkbox-view"
+      );
+      const confirmButton = this.container.querySelector(
+        `#start-${providerId}-migration`
+      );
+
       confirmButton.disabled = true;
       confirmButton.style.opacity = "0.5";
       confirmButton.style.cursor = "not-allowed";
