@@ -67,53 +67,50 @@ export class Slider {
     const durationText = this.convertToLatinNumerals(offer.duration || "");
 
     return `
-    <div class="w-[290px] ${cardHeightClass} flex justify-center items-start rounded-xl rounded-xl border-[0.84px] border-[#C5C5C5] bg-white shadow-sm">
+    <div class="w-[290px] ${cardHeightClass} flex justify-center items-start rounded-xl border-[0.84px] border-[#C5C5C5] bg-white dark:bg-[#2C2C2C] shadow-sm dark:shadow-none">
       <div class="flex flex-col justify-between items-center flex-1 h-full pb-6">
-        <!-- Header -->
-        <div class="flex flex-col items-start gap-3.5 w-full">
-          <div class="flex  h-14 px-2.5 justify-center items-center w-full rounded-t-[11px] bg-ooredoo-red">
+        <div class="flex flex-col items-start gap-3.5 w-full px-[0.9px]">
+          <div class="flex h-14 px-2.5 justify-center items-center  w-full rounded-t-[11px] bg-ooredoo-red">
             <h3 class="text-white text-center font-rubik text-2xl font-bold capitalize">
               ${offer.name}
             </h3>
           </div>
 
-          <!-- Data amount -->
           <div class="flex px-5 items-center w-full">
             <div class="text-ooredoo-red font-rubik text-[26px] font-bold leading-[45px] tracking-[-0.52px]">
               ${offer.data}
             </div>
           </div>
 
-          <!-- Features -->
           <div class="flex px-5 flex-col items-start gap-1.5 w-full">
             ${
               offer.features && offer.features.length
                 ? offer.features
                     .map(
                       (feature) => `
-              <div class="flex items-center gap-2.5 w-full">
-                <div class="flex w-[15px] h-[15px] p-[3px] items-center rounded-full" style="background:#E30613;">
-                   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+                  <div class="flex items-center gap-2.5 w-full">
+                    <div class="flex w-[15px] h-[15px] p-[3px] items-center rounded-full" style="background:#E30613;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
                         <rect y="0.422852" width="14.91" height="14.91" rx="7.455" fill="#E31D23"/>
                         <g clip-path="url(#clip0_113_17964)">
-                        <g clip-path="url(#clip1_113_17964)">
-                        <path d="M4.22656 7.87927L6.37732 10.03L10.6788 5.72852" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </g>
+                          <g clip-path="url(#clip1_113_17964)">
+                            <path d="M4.22656 7.87927L6.37732 10.03L10.6788 5.72852" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </g>
                         </g>
                         <defs>
-                        <clipPath id="clip0_113_17964">
-                        <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91211 3.33594)"/>
-                        </clipPath>
-                        <clipPath id="clip1_113_17964">
-                        <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91016 3.33691)"/>
-                        </clipPath>
+                          <clipPath id="clip0_113_17964">
+                            <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91211 3.33594)"/>
+                          </clipPath>
+                          <clipPath id="clip1_113_17964">
+                            <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91016 3.33691)"/>
+                          </clipPath>
                         </defs>
-                        </svg>
-                </div>
-                <div class="flex-1 text-black font-rubik text-base font-normal leading-[22px]">
-                  ${feature}
-                </div>
-              </div>`
+                      </svg>
+                    </div>
+                    <div class="flex-1 text-black dark:text-white font-rubik text-base font-normal leading-[22px]">
+                      ${feature}
+                    </div>
+                  </div>`
                     )
                     .join("")
                 : ``
@@ -121,36 +118,34 @@ export class Slider {
           </div>
         </div>
 
-        <!-- Bottom section -->
         <div class="flex flex-col items-center gap-5 w-full">
-          <!-- dotted separator (points) -->
-          <div class="w-[290px] border-b-[1px] border-b-[#BBBEBE] border-dashed text-center py-3"></div>
+          <div class="w-[290px] border-b-[1px] border-b-[#BBBEBE] dark:border-b-gray-600 border-dashed text-center py-3"></div>
           <div class="flex flex-col justify-end items-center gap-2.5">
-            <div class="text-black text-center font-rubik font-bold text-base lowercase">
+            <div class="text-black dark:text-white text-center font-rubik font-bold text-base lowercase">
               <span class="text-[28px]">${priceNumber}</span>
               <span class="text-base"> ${currencyLabel}/${durationText}</span>
             </div>
-           <button class="forfait-buy-btn bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
-                style="
-                  font-weight: 500;
-                  font-size: 16px;
-                  line-height: 100%;
-                  letter-spacing: 0;
-                  text-align: center;
-                  text-transform: uppercase;
-                  padding: 20px 24px;
-                  height: 32px;
-                  width: auto;
-                  min-width: 96px;
-                  display: inline-flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-     data-type="internet"
-  data-index="${index}"
-  data-offer-name="${offer.name}">
-  ${buyLabel}
-              </button>
+            <button class="forfait-buy-btn bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
+              style="
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 100%;
+                letter-spacing: 0;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 20px 24px;
+                height: 32px;
+                width: auto;
+                min-width: 96px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+              "
+              data-type="internet"
+              data-index="${index}"
+              data-offer-name="${offer.name}">
+              ${buyLabel}
+            </button>
           </div>
         </div>
       </div>
