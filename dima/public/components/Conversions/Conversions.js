@@ -266,6 +266,16 @@ class ConversionsComponent {
   margin-bottom: -2rem;
 }
     }
+
+      .conversions-credit-message {
+      margin-top: 50px;
+    }
+
+        @media (max-width: 768px) {
+      .conversions-credit-message {
+        margin-top: 30px;
+      }
+    }
   `;
   }
 
@@ -621,14 +631,14 @@ class ConversionsComponent {
   showCreditSuccessModal(data, isRTL) {
     const currentLanguage = this.getLanguage();
     const felicitationsText =
-      currentLanguage === "ar" ? "هنيئًا!" : "Félicitations !";
-
+      data.successTitle ||
+      (currentLanguage === "ar" ? "هنيئًا!" : "Félicitations !");
     const message = data.creditSuccessMessage || "";
 
     this.showModal({
       type: "credit-success",
       title: felicitationsText,
-      message,
+      message: message,
       isRTL,
     });
   }
@@ -878,36 +888,34 @@ class ConversionsComponent {
     const buttons = this.getModalButtons(type, isRTL);
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
+    const messageContainerClass =
+      type === "credit-success" ? "conversions-credit-message" : "";
+
     const messageHTML = message
       ? `
-  <div class="text-center mb-10 conversions-credit-message">
-      <p class="${fontClass} text-gray-800 dark:text-gray-200 leading-relaxed text-base md:text-lg px-2">
-          ${message}
-      </p>
-  </div>
-  `
+      <div class="text-center mb-10 ${messageContainerClass}">
+        <p class="${fontClass} text-gray-800 dark:text-gray-200 leading-relaxed text-base md:text-lg px-2">
+            ${message}
+        </p>
+      </div>`
       : "";
 
     return `
-      <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 conversions-modal-fade"
-          style="background-color: rgba(105, 105, 105, 0.8);"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-title">
-          <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
-              <button class="absolute top-4 right-4 p-2 z-10 rounded-full transition-all duration-200 conversions-modal-close"
-                      aria-label="${isRTL ? "إغلاق" : "Fermer"}">
-                  <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
-              </button>
-              <div class="text-center mb-6">
-                  <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
-                      ${this.createMixedTitleHTML(title)}
-                  </h2>
-              </div>
-${messageHTML}
-
-              <div class="flex justify-center conversions-modal-buttons">${buttons}</div>
+      <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 conversions-modal-fade" style="background-color: rgba(105, 105, 105, 0.8);" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
+          <button class="absolute top-4 right-4 p-2 z-10 rounded-full transition-all duration-200 conversions-modal-close" aria-label="${
+            isRTL ? "إغلاق" : "Fermer"
+          }">
+            <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
+          </button>
+          <div class="text-center mb-6">
+            <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">${this.createMixedTitleHTML(
+      title
+    )}</h2>
           </div>
+          ${messageHTML}
+          <div class="flex justify-center conversions-modal-buttons">${buttons}</div>
+        </div>
       </div>
     `;
   }
