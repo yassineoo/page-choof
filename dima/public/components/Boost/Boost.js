@@ -37,7 +37,7 @@ class BoostComponent {
       background: white;
     }
     .dark .boost-section {
-      background: #2c2c2c;
+      background: #141414
     }
 
     .boost-card-shadow {

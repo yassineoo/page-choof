@@ -46,7 +46,7 @@ class ConversionsComponent {
       background: white;
     }
     .dark .conversions-section {
-      background: #2c2c2c;
+      background: #141414
     }
     .conversions-card-shadow{
       box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);
@@ -68,7 +68,7 @@ class ConversionsComponent {
     }
     .dark .conversions-card-shadow{
       background: #2c2c2c;
-      color: #d1d5db;
+      color: #fff;
     }
     .conversions-card-shadow:hover {
       transform: translateY(-5px);
@@ -202,6 +202,26 @@ class ConversionsComponent {
     }
     .btn-convert:hover {
       background: #d1182f;
+    }
+
+        .dark .plan-card {
+      background: #2c2c2c;
+      border-color: #666;
+    }
+   .dark .plan-header {
+      border-color: #666;
+    }
+         .dark .plan-description {
+      color: #e0e0e0;
+    }
+
+       .dark .plan-price {
+      color: #fff;
+    }
+
+        .dark .conversions-accordion-panel.visible {
+        background: #2c2c2c;
+        border-top-color: #555;
     }
 
     .conversions-accordion-panel {
@@ -412,12 +432,12 @@ class ConversionsComponent {
         <div class="conversions-card-shadow">
           <div class="flex flex-col justify-center items-center gap-6 self-stretch">
             <div class="self-stretch">
-              <h2 class="text-black text-center font-rubik text-3xl md:text-[42px] font-medium leading-tight uppercase">
+              <h2 class="text-black dark:text-white text-center font-rubik text-3xl md:text-[42px] font-medium leading-tight uppercase">
                 ${this.createMixedTitleHTML(data.title)}
               </h2>
             </div>
             <div class="w-full max-w-2xl">
-              <p class="text-black text-center font-rubik text-lg md:text-[22px] font-normal leading-normal">
+              <p class="text-black dark:text-white text-center font-rubik text-lg md:text-[22px] font-normal leading-normal">
                 ${data.description}
               </p>
             </div>

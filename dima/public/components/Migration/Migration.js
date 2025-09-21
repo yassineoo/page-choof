@@ -31,7 +31,7 @@ class Migration {
   }
   getStylesheet() {
     return `
-    :root{
+ :root{
       --container-max: 900px;
       --gutter: 24px;
       --accordion-gray: #F8F8F8;
@@ -40,9 +40,15 @@ class Migration {
       --card-min-height: 300px;
     }
     
-    .dark .migration-section {
+     .dark .migration-section {
       background: #2c2c2c;
     }
+    .dark .migration-card-shadow {
+      background: #2c2c2c;
+      color: #d1d5db;
+      box-shadow: none;
+    }
+
     .migration-card-shadow {
       box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);
       border: 1px solid var(--border);
@@ -63,11 +69,7 @@ class Migration {
       transition: all 0.3s ease;
       min-height: var(--card-min-height);
     }
-    .dark .migration-card-shadow {
-      background: #2c2c2c;
-      color: #d1d5db;
-      box-shadow: none;
-    }
+
     [dir="rtl"] .migration-card-shadow {
       text-align: right;
     }
@@ -250,9 +252,18 @@ class Migration {
       padding : 70px 16px;
     }
       
-    .dark .migration-section {
-      background: #2c2c2c;
+    .dark .text-center.bg-\\[\\#fff\\] h2,
+    .dark .text-center.bg-\\[\\#fff\\] p {
+      color: #d1d5db;
     }
+    .dark .text-center.bg-\\[\\#fff\\] {
+      background-color: #3a3a3a;
+    }
+    
+    .dark .rounded-b-\\[22\\.5px\\] {
+       background-color: #3a3a3a;
+    }
+
     .migration-back-btn {
       position: absolute;
       top: 20px;
