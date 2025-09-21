@@ -13,8 +13,14 @@ const conversionsData = {
     successTitle: "Félicitations !",
     successDescription:
       "Vous venez de recevoir le forfait {planName} qui vous offre {planDescription}.",
-    creditSuccessMessage: "Vous avez maintenant 2500 DA de crédit.",
     convertBtn: "CONVERTIR",
+
+    alreadyOnPlanTitle: "Conversions",
+    alreadyOnPlanMessage: "Vous êtes déjà sur la Dima 2500.",
+    insufficientCreditTitle: "Conversions",
+    insufficientCreditMessage:
+      "Votre crédit est insuffisant pour convertir votre forfait.",
+
     plans: [
       {
         name: "DIMA 2500",
@@ -78,9 +84,13 @@ const conversionsData = {
     ok: "موافق",
     successTitle: "مبروك!",
     successDescription:
-      "لتو received الباقة {planName} التي تقدم لك {planDescription}.",
-    creditSuccessMessage: "لديك الآن 2500 دج رصيد.",
+      "لقد تلقيت للتو باقة {planName} التي تمنحك {planDescription}.",
     convertBtn: "تحويل",
+
+    alreadyOnPlanTitle: "التحويل",
+    alreadyOnPlanMessage: "أنت مشترك بالفعل في Dima 2500.",
+    insufficientCreditTitle: "التحويل",
+    insufficientCreditMessage: "رصيدك غير كافٍ لتحويل اشتراكك.",
 
     plans: [
       {

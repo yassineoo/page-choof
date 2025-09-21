@@ -717,11 +717,9 @@ class ConversionsComponent {
       return;
     }
 
-    // Message fully localized (FR/AR)
     const currentLanguage = this.getLanguage();
     let confirmTitle =
-      conversionsData[currentLanguage].confirmTitle ||
-      (currentLanguage === "ar" ? "التحويل" : "Conversion");
+      conversionsData[currentLanguage].confirmTitle || "Conversion";
     let confirmMessage;
     if (currentLanguage === "ar") {
       confirmMessage = `هل تريد تحويل اشتراكك Dima 2500 إلى ${selectedPlan.name}؟`;
@@ -735,15 +733,104 @@ class ConversionsComponent {
       message: confirmMessage,
       isRTL,
       onConfirm: () => {
-        this.showSuccessModal(selectedPlan, isRTL);
+        this.startModalSequence(selectedPlan, isRTL);
       },
       onCancel: () => {
-        this.showConversionsModal(conversionsData[this.currentLang], isRTL);
+        this.isAccordionOpen = true;
+        this.render();
       },
     });
   }
 
-  showSuccessModal(plan, isRTL) {
+  startModalSequence(plan, isRTL) {
+    const data = conversionsData[this.getLanguage()];
+
+    const showInsufficientCreditModal = () => {
+      this.showModal({
+        type: "info",
+        title: data.insufficientCreditTitle,
+        message: data.insufficientCreditMessage,
+        isRTL: isRTL,
+        onConfirm: () => {
+          this.isAccordionOpen = false;
+          this.render();
+        },
+      });
+    };
+
+    const showAlreadyOnPlanModal = () => {
+      this.showModal({
+        type: "info",
+        title: data.alreadyOnPlanTitle,
+        message: data.alreadyOnPlanMessage,
+        isRTL: isRTL,
+        onConfirm: showInsufficientCreditModal,
+      });
+    };
+
+    this.showSuccessModal(plan, isRTL, showAlreadyOnPlanModal);
+  }
+
+  processConversion(plan, isRTL) {
+    const data = conversionsData[this.getLanguage()];
+
+    if (plan.name === "DIMA 2500") {
+      this.showInfoModal(
+        data.alreadyOnPlanTitle,
+        data.alreadyOnPlanMessage,
+        isRTL
+      );
+      return;
+    }
+
+    const shouldFailForCredit = Math.random() > 0.5;
+    if (shouldFailForCredit) {
+      this.showInfoModal(
+        data.insufficientCreditTitle,
+        data.insufficientCreditMessage,
+        isRTL
+      );
+      return;
+    }
+
+    this.showSuccessModal(plan, isRTL);
+  }
+
+  showInfoModal(title, message, isRTL) {
+    const onConfirmClose = () => {
+      const data = conversionsData[this.getLanguage()];
+      const shouldShowInsufficientCredit = Math.random() > 0.5;
+
+      if (
+        message === data.alreadyOnPlanMessage &&
+        shouldShowInsufficientCredit
+      ) {
+        this.showModal({
+          type: "info",
+          title: data.insufficientCreditTitle,
+          message: data.insufficientCreditMessage,
+          isRTL: isRTL,
+          onConfirm: () => {
+            this.isAccordionOpen = false;
+            this.render();
+          },
+        });
+      } else {
+        this.isAccordionOpen = false;
+        this.render();
+      }
+    };
+
+    this.showModal({
+      type: "info",
+      title: title,
+      message: message,
+      isRTL: isRTL,
+      onConfirm: onConfirmClose,
+    });
+  }
+
+  showSuccessModal(plan, isRTL, onConfirmCallback) {
     const currentLanguage = this.getLanguage();
     const data = conversionsData[currentLanguage];
     const message = (data.successDescription || "")
@@ -754,6 +841,7 @@ class ConversionsComponent {
       title: data.successTitle,
       message: message,
       isRTL,
+      onConfirm: onConfirmCallback,
     });
   }
 
@@ -865,7 +953,8 @@ ${messageHTML}
     const modal = modalContainer.querySelector(".conversions-modal-fade");
     const closeButton = modal.querySelector(".conversions-modal-close");
     const actionButtons = modal.querySelectorAll("[data-action]");
-    const closeModal = () => {
+
+    const closeModal = (callback) => {
       modal.style.animation = "modalFadeOut 0.2s ease-in forwards";
       setTimeout(() => {
         modalContainer.innerHTML = "";
@@ -876,57 +965,49 @@ ${messageHTML}
           this.previouslyFocusedElement.focus();
         }
         this.previouslyFocusedElement = null;
+        if (callback) {
+          callback();
+        }
       }, 200);
     };
-    const modalHandlers = new Map();
-    const closeClickHandler = () => closeModal();
-    closeButton.addEventListener("click", closeClickHandler);
-    modalHandlers.set("close-click", {
-      element: closeButton,
-      type: "click",
-      handler: closeClickHandler,
-    });
-    actionButtons.forEach((button) => {
-      const actionClickHandler = () => {
-        const action = button.getAttribute("data-action");
-        closeModal();
-        setTimeout(() => {
-          if (action === "confirm" && onConfirm) onConfirm();
-          if (action === "cancel" && onCancel) onCancel();
-        }, 200);
+
+    const handlers = new Map();
+
+    const createHandler = (element, eventType, actionFn) => {
+      if (!element) return;
+      const handler = () => {
+        closeModal(actionFn);
       };
-      button.addEventListener("click", actionClickHandler);
-      modalHandlers.set(`action-${button.getAttribute("data-action")}`, {
-        element: button,
-        type: "click",
-        handler: actionClickHandler,
-      });
+      element.addEventListener(eventType, handler);
+      handlers.set(element, { eventType, handler });
+    };
+
+    createHandler(closeButton, "click", onCancel);
+
+    actionButtons.forEach((button) => {
+      const action = button.getAttribute("data-action");
+      if (action === "confirm" || action === "close") {
+        createHandler(button, "click", onConfirm);
+      }
+      if (action === "cancel") {
+        createHandler(button, "click", onCancel);
+      }
     });
+
     const backdropClickHandler = (event) => {
       if (event.target === modal) {
-        closeModal();
+        closeModal(onCancel);
       }
     };
     modal.addEventListener("click", backdropClickHandler);
-    modalHandlers.set("backdrop-click", {
-      element: modal,
-      type: "click",
-      handler: backdropClickHandler,
-    });
+
     const escapeHandler = (event) => {
       if (event.key === "Escape") {
-        closeModal();
+        closeModal(onCancel);
         document.removeEventListener("keydown", escapeHandler);
-        modalHandlers.delete("escape");
       }
     };
     document.addEventListener("keydown", escapeHandler);
-    modalHandlers.set("escape", {
-      element: document,
-      type: "keydown",
-      handler: escapeHandler,
-    });
-    modal.modalHandlers = modalHandlers;
   }
 
   cleanupAllEventListeners() {
