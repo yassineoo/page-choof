@@ -59,7 +59,7 @@ export class Slider {
     const currencyLabel = isRTL ? "دج" : "DA";
 
     const cardHeightClass =
-      offer.height === "short" ? "h-[365px]" : "h-[440px]";
+      offer.height === "short" ? "h-[365px]" : "h-[460px]";
 
     const priceNumber = this.convertToLatinNumerals(
       String(offer.price ?? "").replace(/[^0-9٠-٩]/g, "")
@@ -141,7 +141,7 @@ export class Slider {
                 align-items: center;
                 justify-content: center;
               "
-              data-type="internet"
+              data-type="forfait"
               data-index="${index}"
               data-offer-name="${offer.name}">
               ${buyLabel}
@@ -370,168 +370,100 @@ export class Slider {
     ).join("");
   }
 
-  // Remplace la fonction createResponsiveLayout existante (pour la partie "forfaits")
-  createResponsiveLayout(
-    offers,
-    labels,
-    gridType,
-    isRTL,
-    convertToLatinNumerals
-  ) {
-    // Cette version touche uniquement la partie "forfaits" (desktop grid + mobile swiper)
-    const sliderId =
-      gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
-    const startIndex = 0;
+createResponsiveLayout(offers, labels, gridType, isRTL, convertToLatinNumerals) {
+  const sliderId = "forfaits-slider";
+  const dotsId = "forfaits-dots";
 
-    return `
-    <!-- Desktop: same visual as React layout (flex wrap, gaps, max width) -->
+  return `
     <div class="hidden sm:flex w-full items-center justify-center">
       <div class="flex justify-center items-center content-center gap-4 sm:gap-6 lg:gap-[18px] flex-wrap max-w-[1215px]">
-        ${offers
-          .map((offer, i) =>
-            this.createForfaitCard(offer, startIndex + i, labels)
-          )
-          .join("")}
+        ${offers.map((offer, i) => this.createForfaitCard(offer, i, labels)).join("")}
       </div>
     </div>
 
-    <!-- Mobile: Swiper-based slider (kept compatible) -->
     <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
-      <div class="relative swiper">
-        <div class="swiper-wrapper">
-          ${offers
-            .map(
-              (offer, i) => `
-            <div class="swiper-slide flex justify-center p-4">
-              ${this.createForfaitCard(offer, startIndex + i, labels)}
-            </div>
-          `
-            )
-            .join("")}
+      <div class="forfait-slider-track">
+        <div class="relative swiper">
+          <div class="swiper-wrapper">
+            ${offers.map((offer, i) => `
+              <div class="swiper-slide flex justify-center p-4">
+                ${this.createForfaitCard(offer, i, labels)}
+              </div>
+            `).join("")}
+          </div>
+          <div class="absolute bottom-0 swiper-pagination"></div>
         </div>
-        <div class="absolute bottom-0 swiper-pagination"></div>
       </div>
     </div>
+
+    <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
   `;
-  }
+}
 
-  createResponsiveLayoutInternet(
-    offers,
-    labels,
-    gridType,
-    isRTL,
-    convertToLatinNumerals
-  ) {
-    const gridClass =
-      gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
-    const sliderId =
-      gridType === "forfait-grid-5" ? "forfaits-slider" : "internet-slider";
-    const dotsId =
-      gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-    const startIndex = 5;
+createResponsiveLayoutInternet(offers, labels, gridType, isRTL, convertToLatinNumerals) {
+  const sliderId = "internet-slider";
+  const dotsId = "internet-dots";
 
-    return `
-          <div class="hidden sm:flex w-full items-center justify-center">
-            <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-  ${offers
-    .map((offer, index) =>
-      this.createForfaitCardInternet(
-        offer,
-        index,
-        labels,
-        isRTL,
-        convertToLatinNumerals
-      )
-    )
-    .join("")}
+  return `
+    <div class="hidden sm:flex w-full items-center justify-center">
+      <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        ${offers.map((offer, index) => this.createForfaitCardInternet(offer, index, labels, isRTL, convertToLatinNumerals)).join("")}
+      </div>
+    </div>
 
-            </div>
+    <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
+      <div class="forfait-slider-track">
+        <div class="relative swiper">
+          <div class="swiper-wrapper">
+            ${offers.map((offer, index) => `
+              <div class="swiper-slide flex justify-center p-4">
+                ${this.createForfaitCardInternet(offer, index, labels, isRTL, convertToLatinNumerals)}
+              </div>
+            `).join("")}
           </div>
-      
-            
-            <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
-                <div class="relative swiper">
-                <div class="swiper-wrapper">
-                    ${offers
-                      .map(
-                        (offer, index) => `
-                    <div class="swiper-slide flex justify-center p-4">
-                        ${this.createForfaitCardInternet(
-                          offer,
-                          startIndex + index,
-                          labels,
-                          isRTL,
-                          convertToLatinNumerals
-                        )}
-                    </div>
-                    `
-                      )
-                      .join("")}
-                </div>
-                <div class="absolute bottom-0  swiper-pagination"></div>
-                </div>
-            </div>`;
-  }
+          <div class="absolute bottom-0 swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
 
-  createResponsiveLayoutSmart(
-    offers,
-    labels,
-    gridType,
-    isRTL,
-    convertToLatinNumerals
-  ) {
-    const sliderId =
-      gridType === "forfait-grid-5" ? "forfaits-slider" : "hadra-slider";
-    const startIndex = 11;
+    <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
+  `;
+}
 
-    return `
-          <div class="hidden sm:flex w-full items-center justify-center">
-            <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-${offers
-  .map((offer, index) =>
-    this.createForfaitCardSmart(
-      offer,
-      index,
-      labels,
-      isRTL,
-      convertToLatinNumerals
-    )
-  )
-  .join("")}
+createResponsiveLayoutSmart(offers, labels, gridType, isRTL, convertToLatinNumerals) {
+  const sliderId = "smart-slider";
+  const dotsId = "smart-dots";
 
-            </div>
+  return `
+    <div class="hidden sm:flex w-full items-center justify-center">
+      <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        ${offers.map((offer, index) => this.createForfaitCardSmart(offer, index, labels, isRTL, convertToLatinNumerals)).join("")}
+      </div>
+    </div>
+
+    <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
+      <div class="forfait-slider-track">
+        <div class="relative swiper">
+          <div class="swiper-wrapper">
+            ${offers.map((offer, index) => `
+              <div class="swiper-slide flex justify-center p-4">
+                ${this.createForfaitCardSmart(offer, index, labels, isRTL, convertToLatinNumerals)}
+              </div>
+            `).join("")}
           </div>
-      
-            
-            <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
-                <div class="relative swiper">
-                <div class="swiper-wrapper">
-                    ${offers
-                      .map(
-                        (offer, index) => `
-                    <div class="swiper-slide flex justify-center p-4">
-                        ${this.createForfaitCardSmart(
-                          offer,
-                          startIndex + index,
-                          labels,
-                          isRTL,
-                          convertToLatinNumerals
-                        )}
-                    </div>
-                    `
-                      )
-                      .join("")}
-                </div>
-                <div class="absolute bottom-0  swiper-pagination"></div>
-                </div>
-            </div>`;
-  }
+          <div class="absolute bottom-0 swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
+  `;
+}
+
 
   initSwiper(containerId, forceRTL = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
-
-    // Find and destroy existing Swiper instance
     const existingSwiper = container.querySelector(".swiper");
     if (existingSwiper && existingSwiper.swiper) {
       existingSwiper.swiper.destroy(true, true);

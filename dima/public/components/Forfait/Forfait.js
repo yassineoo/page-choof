@@ -850,7 +850,7 @@ class ForfaitComponent {
             data.forfaits,
             labels,
             "forfait-grid-5",
-            this.isRTL,
+            this.isRTL(),
             true
           )}
         </div>
@@ -896,7 +896,7 @@ class ForfaitComponent {
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${
               this.currentLang === "ar"
-                ? "<span>اشتراكات الانترنت</span>"
+                ? "<span>إشتراكات الإنترنت</span>"
                 : "<span class='font-rubik'>forfaits internet</span>"
             }
           </h2>
@@ -905,7 +905,7 @@ class ForfaitComponent {
                 data.internetForfaits,
                 labels,
                 "forfait-grid-4",
-                this.isRTL,
+                this.isRTL(),
                 this.convertToLatinNumerals
               )}
           </div>
@@ -925,7 +925,7 @@ class ForfaitComponent {
                 data.smartForfaits,
                 labels,
                 "forfait-grid-4",
-                this.isRTL,
+                this.isRTL(),
                 this.convertToLatinNumerals
               )}
           </div>
@@ -944,8 +944,9 @@ class ForfaitComponent {
     requestAnimationFrame(() => {
       this.slider.initSwiper("forfaits-slider");
       this.slider.initSwiper("internet-slider");
-      this.slider.initSwiper("hadra-slider");
+      this.slider.initSwiper("smart-slider");
     });
+
     setTimeout(() => {
       this.initializeSliders();
       this.addSliderAccessibility();
@@ -1413,10 +1414,15 @@ class ForfaitComponent {
       if (!offer) return;
 
       if (!offer.type) {
-        if (typeAttr === "forfaits") offer.type = "forfait";
-        else if (typeAttr === "internetForfaits") offer.type = "internet";
-        else if (typeAttr === "smartForfaits") offer.type = "smart";
-        else offer.type = typeAttr;
+        if (typeAttr === "forfait" || typeAttr === "forfaits") {
+          offer.type = "forfait";
+        } else if (typeAttr === "internet" || typeAttr === "internetForfaits") {
+          offer.type = "internet";
+        } else if (typeAttr === "smart" || typeAttr === "smartForfaits") {
+          offer.type = "smart";
+        } else {
+          offer.type = typeAttr;
+        }
       }
 
       setTimeout(() => {
@@ -1472,10 +1478,17 @@ class ForfaitComponent {
       isRTL,
       onConfirm: () => {
         if (content.hasShahid) {
-          this.showShahidModal(isRTL, () => {
-            this.showSuccessModal(content, isRTL, () => {
-              this.showInsufficientCreditModal(content, isRTL);
-            });
+          this.showModal({
+            type: "success-shahid",
+            title: isRTL ? "هنيئًا !" : "Félicitations !",
+            message: content.success,
+            isRTL,
+            onActivate: () => {
+              this.showShahidModal(isRTL, () => {
+                this.showInsufficientCreditModal(content, isRTL);
+              });
+            },
+            onClose: () => {},
           });
         } else {
           this.showSuccessModal(content, isRTL, () => {
@@ -1522,7 +1535,15 @@ class ForfaitComponent {
     });
   }
 
-  showModal({ type, title, message, isRTL = false, onConfirm, onClose }) {
+  showModal({
+    type,
+    title,
+    message,
+    isRTL = false,
+    onConfirm,
+    onClose,
+    onActivate,
+  }) {
     try {
       const modalContainer = this.container.querySelector(
         "#forfait-modal-container"
@@ -1534,7 +1555,14 @@ class ForfaitComponent {
 
       const modalHTML = this.createModalHTML({ type, title, message, isRTL });
       modalContainer.innerHTML = modalHTML;
-      this.setupModalEvents({ type, onConfirm, onClose, modalContainer });
+
+      this.setupModalEvents({
+        type,
+        onConfirm,
+        onClose,
+        onActivate,
+        modalContainer,
+      });
       this.manageFocusForModal(modalContainer);
     } catch (error) {
       console.error("Error showing modal:", error);
@@ -1590,6 +1618,7 @@ class ForfaitComponent {
       confirm: isRTL ? "تأكيد" : "Confirmer",
       close: isRTL ? "تم" : "OK",
       ok: isRTL ? "تم" : "OK",
+      activateShahid: isRTL ? "تفعيل تطبيق شاهد" : "Activer Shahid",
     };
 
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
@@ -1599,27 +1628,33 @@ class ForfaitComponent {
 
     const buttonConfigs = {
       confirm: `
-        <div class="flex ${buttonGap}">
-          <button class="${secondaryBtn}" data-action="cancel">${labels.cancel}</button>
-          <button class="${primaryBtn}" data-action="confirm">${labels.confirm}</button>
-        </div>
-      `,
+      <div class="flex ${buttonGap}">
+        <button class="${secondaryBtn}" data-action="cancel">${labels.cancel}</button>
+        <button class="${primaryBtn}" data-action="confirm">${labels.confirm}</button>
+      </div>
+    `,
       success: `
-        <div class="flex ${buttonGap}">
-          <button class="${primaryBtn}" data-action="close">${labels.close}</button>
-        </div>
-      `,
+      <div class="flex ${buttonGap}">
+        <button class="${primaryBtn}" data-action="close">${labels.close}</button>
+      </div>
+    `,
       info: `
-        <div class="flex ${buttonGap}">
-          <button class="${primaryBtn}" data-action="close">${labels.ok}</button>
-        </div>
-      `,
+      <div class="flex ${buttonGap}">
+        <button class="${primaryBtn}" data-action="close">${labels.ok}</button>
+      </div>
+    `,
+      "success-shahid": `
+      <div class="flex ${buttonGap}">
+        <button class="${primaryBtn}" data-action="activate">${labels.activateShahid}</button>
+        <button class="${secondaryBtn}" data-action="close">${labels.ok}</button>
+      </div>
+    `,
     };
 
     return buttonConfigs[type] || buttonConfigs.success;
   }
 
-  setupModalEvents({ type, onConfirm, onClose, modalContainer }) {
+  setupModalEvents({ type, onConfirm, onClose, onActivate, modalContainer }) {
     const modal = modalContainer.querySelector(".forfait-modal-fade");
     const closeButton = modal.querySelector(".forfait-modal-close");
     const actionButtons = modal.querySelectorAll("[data-action]");
@@ -1657,7 +1692,9 @@ class ForfaitComponent {
 
         setTimeout(() => {
           if (action === "confirm" && onConfirm) onConfirm();
-          if (action === "close" && onClose) onClose();
+          else if (action === "activate" && onActivate) onActivate();
+          else if ((action === "close" || action === "cancel") && onClose)
+            onClose();
         }, 200);
       };
       button.addEventListener("click", actionClickHandler);

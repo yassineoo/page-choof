@@ -24,7 +24,7 @@ function generateModalContent(offers, lang) {
       isArabic ? "الكل صالح لمدة" : "le tout valable"
     } ${offer.duration}.`;
 
-    const hasShahid = (featuresString || "").toUpperCase().includes("SHAHID");
+    const hasShahid = /SHAHID|شاهد/i.test(featuresString || "");
 
     const uniqueKey = `${offer.type || "forfait"}-${offer.name}`;
 
