@@ -13,9 +13,8 @@ const conversionsData = {
     successTitle: "Félicitations !",
     creditSuccessMessage: "Vous avez maintenant 2500 DA de crédit.",
     successDescription:
-      "Vous venez de recevoir le forfait {planName} qui vous offre {planDescription}.",
+      "Vous avez reçu {planName} qui vous donne {planDescription}, le tout valable {duration}.",
     convertBtn: "CONVERTIR",
-
     alreadyOnPlanTitle: "Conversions",
     alreadyOnPlanMessage: "Vous êtes déjà sur la Dima 2500.",
     insufficientCreditTitle: "Conversions",
@@ -83,10 +82,10 @@ const conversionsData = {
     cancelBtn: "إلغاء",
     confirmBtn: "تأكيد",
     ok: "موافق",
-    successTitle: "مبروك!",
+    successTitle: "هنيئًا!",
     creditSuccessMessage: "لديك الآن رصيد 2500 دج.",
     successDescription:
-      "لقد تلقيت للتو باقة {planName} التي تمنحك {planDescription}.",
+      "لقد حصلت على {planName} الذي يمنحك {planDescription}، الكل صالح لمدة {duration}.",
     convertBtn: "تحويل",
 
     alreadyOnPlanTitle: "التحويل",
@@ -96,49 +95,49 @@ const conversionsData = {
 
     plans: [
       {
-        name: "اشتراك DIMA 2500",
+        name: "إشتراك DIMA 2500",
         description:
-          "مكالمات غير محدودة إلى جميع الشبكات الوطنية + 100 جيجا إنترنت + 250 رسالة قصيرة إلى جميع الشبكات + ANAZIK, ANAFLIX, SHAHID وFacebook مجانية.",
+          "100Go إنترنت + مكالمات غير محدودة نحو كل الشبكات + 250 رسائل قصيرة نحو كل الشبكات + فايسبوك و ANAZIK  و ANAFLIX",
         price: 2500,
         duration: "30 يوم",
         priceUnit: "دج/",
       },
       {
-        name: "اشتراك DIMA 2000",
+        name: "إشتراك DIMA 2000",
         description:
-          "50 جيجا إنترنت + 300 دقيقة و 200 رسالة قصيرة إلى جميع الشبكات + مكالمات غير محدودة إلى Ooredoo + ANAZIK, ANAFLIX وFacebook مجانية.",
+          "50Go إنترنت + 300 دقيقة و 200 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo و فايسبوك و ANAZIK و ANAFLIX.",
         price: 2000,
         duration: "30 يوم",
         priceUnit: "دج/",
       },
       {
-        name: "اشتراك DIMA 1500",
+        name: "إشتراك DIMA 1500",
         description:
-          "30 جيجا إنترنت + 150 دقيقة و 150 رسالة قصيرة إلى جميع الشبكات + مكالمات غير محدودة إلى Ooredoo + ANAFLIX وFacebook مجانية.",
+          "30Go إنترنت + 150 دقيقة و 150 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo و فايسبوك + ANAZIK",
         price: 1500,
         duration: "30 يوم",
         priceUnit: "دج/",
       },
       {
-        name: "اشتراك DIMA 1200",
+        name: "إشتراك DIMA 1200",
         description:
-          "8 جيجا إنترنت + 100 دقيقة و 120 رسالة قصيرة إلى جميع الشبكات + مكالمات غير محدودة إلى Ooredoo + ANAZIK وFacebook مجانية.",
+          "8Go إنترنت + 100 دقيقة و 120 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo و فايسبوك + ANAZIK",
         price: 1200,
         duration: "30 يوم",
         priceUnit: "دج/",
       },
       {
-        name: "اشتراك DIMA 500",
+        name: "إشتراك DIMA 500",
         description:
-          "3 جيجا إنترنت + 100 دقيقة و 50 رسالة قصيرة إلى جميع الشبكات + مكالمات غير محدودة إلى Ooredoo.",
+          "3Go إنترنت + 100 دقيقة و 50 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo وفايسبوك ",
         price: 500,
         duration: "15 يوم",
         priceUnit: "دج/",
       },
       {
-        name: "اشتراك DIMA 500 HADRA",
+        name: "إشتراك DIMA 500 HADRA",
         description:
-          "100 دقيقة و 100 رسالة قصيرة إلى جميع الشبكات الوطنية + مكالمات غير محدودة إلى Ooredoo.",
+          "100 دقيقة و 100 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo  ",
         price: 500,
         duration: "30 يوم",
         priceUnit: "دج/",
