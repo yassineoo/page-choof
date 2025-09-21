@@ -400,6 +400,7 @@ export default class Header {
         this.modal.showAlert({
           title: texts.manualSuccessTitle,
           text: texts.manualSuccessDesc,
+          buttonText: texts.okBtn,
         });
       }, 350);
     };
@@ -490,7 +491,9 @@ export default class Header {
   showOfferConfirmation(offer, modalTexts) {
     this.modal.showConfirmation({
       title: offer.planName,
-      text: offer.description,
+      text: `${offer.description}${modalTexts.allValidFor}${offer.duration}.`,
+      confirmText: modalTexts.confirmBtn,
+      cancelText: modalTexts.cancelBtn,
       onConfirm: () => {
         this.modal.close();
         setTimeout(() => {
@@ -504,6 +507,7 @@ export default class Header {
             this.modal.showAlert({
               title: modalTexts.autoSuccessTitle,
               text: modalTexts.autoSuccessDesc(offer.price, offer.planName),
+              buttonText: modalTexts.okBtn,
             });
           }, 50);
         }, 350);
