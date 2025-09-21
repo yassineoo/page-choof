@@ -268,8 +268,8 @@ class BoostComponent {
 
           <div class="flex flex-col items-center gap-4 md:gap-5">
             <div class="boost-price dark:text-white">
+              <span class="small">${isRTL ? "DA" : "DA"}</span>
               <span class="big">500</span>
-              <span class="small">${isRTL ? "دج" : "DA"}</span>
             </div>
 
             <button class="boost-buy-btn" data-index="0">
