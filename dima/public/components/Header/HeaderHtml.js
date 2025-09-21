@@ -1,14 +1,28 @@
-// HeaderHtml.js
+import { offerData } from "./OfferData.js";
+
 export const generateHeaderHTML = (
   language = "fr",
   userData = {},
   theme = "light"
 ) => {
+  const texts = offerData.text[language] || offerData.text.fr;
   const isAuto = userData.autoRenewal;
-  const helpText = language === "ar" ? "مساعدة" : "Aide";
-  const currentLanguage = language === "ar" ? "العربية" : "Français";
-  const renewalMode = isAuto ? "Automatique" : "Manuel";
-  const renewalLabel = language === "ar" ? "طريقة التجديد" : "Renouvellement :";
+
+  const getOfferDetails = (offer) => {
+    if (!offer || typeof offer !== "string")
+      return { name: "Dima", price: "XXXX" };
+    const parts = offer.split(" ");
+    if (parts.length < 2) return { name: offer, price: "XXXX" };
+    const price = parts[parts.length - 1];
+    const name = parts.slice(1).join(" ");
+    return { name, price };
+  };
+
+  const offerDetails = getOfferDetails(userData.offer);
+
+  const infoCardDesc = isAuto
+    ? texts.renewalInfoAuto(offerDetails.name, offerDetails.price)
+    : texts.renewalInfoManual;
 
   const commonTextStyle = `
     font-family: 'Rubik', sans-serif;
@@ -21,23 +35,12 @@ export const generateHeaderHTML = (
   `;
 
   const priceHeader = `
-  font-family: Rubik;
-font-weight: 500;
-font-style: Medium;
-font-size: 24px;
-leading-trim: NONE;
-line-height: 170%;
-letter-spacing: 2%;
-`;
-
-  const infoCardTitleStyle = `
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    line-height: 1.25rem;
-    text-transform: capitalize;
-    color: #263238;
-    margin-bottom: 0.5rem;
+    font-family: Rubik;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 24px;
+    line-height: 170%;
+    letter-spacing: 2%;
   `;
 
   const infoCardDescStyle = `
@@ -46,8 +49,16 @@ letter-spacing: 2%;
     font-size: 0.875rem;
     line-height: 1.25rem;
     text-align: justify;
-    text-transform: capitalize;
     color: #575757;
+  `;
+
+  const infoCardDescStyleDark = `
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: justify;
+    color: #d1d5db;
   `;
 
   const getOfferText = (offer) => {
@@ -72,6 +83,7 @@ letter-spacing: 2%;
     if (!text) return [];
     const parts = [];
     let currentPart = "";
+    if (text.length === 0) return parts;
     let isArabic = containsArabic(text[0]);
     for (let char of text) {
       const charIsArabic = containsArabic(char);
@@ -99,21 +111,33 @@ letter-spacing: 2%;
       .join("");
   };
 
-  const phoneHTML = formatMixedText(userData.phone || "");
-  const companyHTML = formatMixedText(userData.compayName || "");
   const offerHTML = formatMixedText(
     getOfferText(userData.offer || "Offre Dima")
   );
 
-  const formatCredit = (credit, language) => {
-    const creditValue = credit || "1200";
-    const currency = language === "ar" ? "دج" : "DA";
-    const cleanCredit = String(creditValue).replace(/\s*(DA|دج)\s*$/i, "");
-    return `<span class="font-rubik">${cleanCredit}</span> ${currency}`;
-  };
-
   return `
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=DM+Sans:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Noto+Kufi+Arabic:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  .font-noto-kufi-arabic { font-family: 'Noto Kufi Arabic', sans-serif; }
+  .font-rubik { font-family: 'Rubik', sans-serif; }
+  .bg-ooredoo-red { background-color: #E30613; }
+  .text-ooredoo-red { color: #E30613; }
+
+  @keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.95) translateY(-8px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes modalFadeOut {
+    from { opacity: 1; transform: scale(1) translateY(0); }
+    to { opacity: 0; transform: scale(0.95) translateY(-10px); }
+  }
+  .modal-animating-in {
+    animation: modalFadeIn 0.3s ease-out forwards;
+  }
+  .modal-animating-out {
+    animation: modalFadeOut 0.3s ease-in forwards;
+  }
+</style>
 
 <header class="bg-white dark:bg-[#171717] border-b border-gray-200 dark:border-gray-700 z-30 relative w-full">
   <div class="w-[95vw] mx-auto px-4">
@@ -142,26 +166,29 @@ letter-spacing: 2%;
           </button>
         </div>
         
-<a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank" class="flex items-center h-[40px] lg:h-[48px] px-4 lg:px-6 text-dark-text dark:text-white rounded-lg transition-all duration-300">
+        <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank" class="flex items-center h-[40px] lg:h-[48px] px-4 lg:px-6 text-black dark:text-white rounded-lg transition-all duration-300">
             <span id="help-text" class="${
               language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-            } text-sm lg:text-base mx-2">${helpText}</span>
+            } text-sm lg:text-base mx-2">${texts.helpText}</span>
             <img src="./assets/images/header/help.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/help-white.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 hidden dark:inline transition-opacity duration-300" />
-          </a>
+        </a>
         
         <div class="relative h-[40px] lg:h-[48px]" id="language-desktop">
-            <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] hover:bg-gray-50 transition-all duration-300 text-black">
+            <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white dark:bg-gray-800 border border-[#E4E4E7] dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 text-black dark:text-white">
               <span id="current-language" class="${
                 language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-              } text-sm lg:text-base font-medium">${currentLanguage}</span>
-              <img src="./assets/images/header/chevron-down.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2 transition-all duration-300" />
+              } text-sm lg:text-base font-medium">${
+    texts.currentLanguage
+  }</span>
+              <img src="./assets/images/header/chevron-down.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2 dark:hidden" />
+              <img src="./assets/images/header/chevron-down-white.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2 hidden dark:inline" />
             </button>
-            <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white rounded-lg shadow-lg z-50 border border-gray-200 overflow-hidden transition-all duration-300">
-              <a href="#" class="language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 text-black transition-all duration-300 ${
+            <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300">
+              <a href="#" class="language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-black dark:text-white transition-all duration-300 ${
                 language === "fr" ? "font-semibold text-ooredoo-red" : ""
               }">Français</a>
-              <a href="#" class="font-noto-kufi-arabic language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 text-black transition-all duration-300 ${
+              <a href="#" class="font-noto-kufi-arabic language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-black dark:text-white transition-all duration-300 ${
                 language === "ar" ? "font-semibold text-ooredoo-red" : ""
               }">العربية</a>
             </div>
@@ -176,36 +203,38 @@ letter-spacing: 2%;
       </button>
     </div>
     
-    <div id="mobile-menu" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40">
-      <div class="flex flex-col space-y-4 pt-4 px-4">
+    <div id="mobile-menu" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-gray-800 md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40">
+      <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
-          <button id="theme-mobile-switcher" class="flex items-center w-full">
+          <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white">
             <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden" id="mobile-sun-icon" />
             <img src="./assets/images/header/sun-white.svg" class="w-5 h-5 hidden dark:inline" id="mobile-sun-icon-dark" />
-            <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:hidden" id="mobile-moon-icon" />
-            <img src="./assets/images/header/moon.svg" class="w-5 h-5 hidden dark:inline" id="mobile-moon-icon-dark" />
-            <span class="ml-2">Changer de mode</span>
+            <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
+            <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
+            <span class="ml-2">${texts.changeModeLabel}</span>
           </button>
         </div>
         
-<div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
+        <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
             <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/help-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" />
             <span id="help-text-mobile" class="${
               language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
             } text-sm text-black dark:text-white">
-              <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${helpText}</a>
+              <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${
+                texts.helpText
+              }</a>
             </span>
-          </div>
+        </div>
         
         <div class="flex items-center gap-3 py-2">
           <img src="./assets/images/header/language.svg" class="w-5 h-5 dark:hidden" />
           <img src="./assets/images/header/language-white.svg" class="w-5 h-5 hidden dark:inline" />
           <div class="flex gap-2">
-            <button type="button" class="language-option px-3 py-1 rounded-lg ${
+            <button type="button" class="language-option px-3 py-1 rounded-lg text-black dark:text-white ${
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
             }" data-lang="fr">Français</button>
-            <button type="button" class="language-option px-3 py-1 rounded-lg ${
+            <button type="button" class="language-option px-3 py-1 rounded-lg text-black dark:text-white ${
               language === "ar" ? "font-semibold text-ooredoo-red" : ""
             } font-noto-kufi-arabic" data-lang="ar">العربية</button>
           </div>
@@ -227,13 +256,11 @@ letter-spacing: 2%;
           
           <div class="flex items-center gap-2">
             <img src="./assets/images/header/Puce.svg" class="w-6 h-6" />
-            <span style="${commonTextStyle}">${
-    userData.offer || "Offre Dima"
-  }</span>
+            <span style="${commonTextStyle}">${offerHTML}</span>
           </div>
           
           <div class="flex items-center gap-2">
-            <span style="${commonTextStyle}">${renewalLabel}</span>
+            <span style="${commonTextStyle}">${texts.renewalLabel}</span>
             <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
               <button 
                 id="renewal-auto"
@@ -246,7 +273,7 @@ letter-spacing: 2%;
                 <img src="./assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${
                   isAuto ? "" : "hidden"
                 }" />
-                Auto
+                ${texts.autoLabel}
               </button>
               <button 
                 id="renewal-manual"
@@ -259,23 +286,17 @@ letter-spacing: 2%;
                 <img src="./assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${
                   !isAuto ? "" : "hidden"
                 }" />
-                Manuel
+                ${texts.manualLabel}
               </button>
             </div>
             
             <button id="auto-renewal-info" class="w-6 h-6 flex items-center justify-center rounded-full text-ooredoo-red relative">
               <img src="./assets/images/header/Info.svg" class="w-6 h-6" alt="Info" />
-              <div id="auto-renewal-card" class="absolute bg-white left-1/2 transform -translate-x-1/2 top-full mt-3 mx-48 z-100 w-[22.5rem] py-3 px-6 shadow-lg rounded-tl rounded-tr-[15px] rounded-br-[15px] rounded-bl-[15px] border border-gray-200 hidden"
-                style="font-family:'Rubik',sans-serif;">
-                <div class="text-left" style="${infoCardTitleStyle}">
-                  Mode : ${renewalMode}
-                </div>
-                <div style="${infoCardDescStyle}">
-                  ${
-                    isAuto
-                      ? `Le mode de renouvellement automatique permet d'activer votre offre chaque mois sans action de votre part. Désactivez-le si vous souhaitez renouveler manuellement.`
-                      : `Le mode manuel permet de renouveler votre offre chaque mois seulement si vous le demandez. Activez le mode automatique pour ne pas oublier.`
-                  }
+              <div id="auto-renewal-card" class="absolute bg-white dark:bg-gray-800 text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 dark:border-gray-600 hidden z-50">
+                <div style="${
+                  theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
+                }">
+                  ${infoCardDesc}
                 </div>
               </div>
             </button>
@@ -287,6 +308,11 @@ letter-spacing: 2%;
           <span style="${priceHeader}">${userData.credit || "1200 DA"}</span>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div id="global-modal-overlay" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" style="backdrop-filter: blur(8px);">
+    <div id="global-modal-container" class="w-full max-w-[703px]">
     </div>
   </div>
 </header>

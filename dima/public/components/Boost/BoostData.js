@@ -1,4 +1,3 @@
-// BoostData.js
 export const boostData = {
   fr: {
     title: "BOOST 500",

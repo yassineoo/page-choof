@@ -8,10 +8,13 @@ class ForfaitComponent {
     this.slider = new Slider();
     this.currentLang = this.getLanguage();
     this.lastIsMobile = this.isMobile();
+
     this.sliders = new Map([
       ["forfaits", this.createSliderState()],
+      ["internet", this.createSliderState()],
       ["smart", this.createSliderState()],
     ]);
+
     this.boundHandlers = {
       languageChange: this.handleLanguageChange.bind(this),
       resize: this.handleResize.bind(this),
@@ -1029,6 +1032,7 @@ class ForfaitComponent {
     });
 
     this.setupSlider("forfaits", data.forfaits.length);
+    this.setupSlider("internet", data.internetForfaits.length);
     this.setupSlider("smart", data.smartForfaits.length);
   }
   setupSlider(sliderType, totalSlides) {
@@ -1416,67 +1420,76 @@ class ForfaitComponent {
     }, 100);
   }
 
-  bindPurchaseButtons(language, allOffers) {
+  bindPurchaseButtons() {
     if (this.purchaseClickHandler) {
       this.container.removeEventListener("click", this.purchaseClickHandler);
+      this.purchaseClickHandler = null;
     }
     if (this.purchaseTouchHandler) {
       this.container.removeEventListener("touchend", this.purchaseTouchHandler);
+      this.purchaseTouchHandler = null;
     }
 
-    const clickHandler = (e) => {
+    const handler = (e) => {
       const button = e.target.closest(".forfait-buy-btn");
       if (!button) return;
 
       e.preventDefault();
       e.stopPropagation();
-      e.stopImmediatePropagation();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
 
+      const typeAttr =
+        button.getAttribute("data-type") ||
+        button.getAttribute("data-group") ||
+        "forfait";
       const index = parseInt(button.getAttribute("data-index"), 10);
-      const offer = allOffers[index];
-      if (offer) {
-        setTimeout(() => {
-          this.handlePurchaseClick(offer, language);
-        }, 50);
+      const lang = this.getLanguage();
+      const data = ForfaitData[lang] || ForfaitData.fr;
+
+      const groups = {
+        forfait: data.forfaits,
+        internet: data.internetForfaits,
+        smart: data.smartForfaits,
+        forfaits: data.forfaits,
+        internetForfaits: data.internetForfaits,
+        smartForfaits: data.smartForfaits,
+      };
+
+      const offersArray = groups[typeAttr] || [];
+      const offer = offersArray[index];
+      if (!offer) return;
+
+      if (!offer.type) {
+        if (typeAttr === "forfaits") offer.type = "forfait";
+        else if (typeAttr === "internetForfaits") offer.type = "internet";
+        else if (typeAttr === "smartForfaits") offer.type = "smart";
+        else offer.type = typeAttr;
       }
+
+      setTimeout(() => {
+        this.handlePurchaseClick(offer, lang);
+      }, 50);
     };
 
-    const touchHandler = (e) => {
-      const button = e.target.closest(".forfait-buy-btn");
-      if (!button) return;
+    this.purchaseClickHandler = handler;
+    this.purchaseTouchHandler = handler;
 
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-
-      const index = parseInt(button.getAttribute("data-index"), 10);
-      "Touch event on purchase button, index:", index;
-      const offer = allOffers[index];
-      "OFFER SENDED from touchHandler", offer;
-
-      if (offer) {
-        setTimeout(() => {
-          this.handlePurchaseClick(offer, language);
-        }, 50);
-      }
-    };
-
-    this.purchaseClickHandler = clickHandler;
-    this.purchaseTouchHandler = touchHandler;
-
-    this.container.addEventListener("click", clickHandler);
-    this.container.addEventListener("touchend", touchHandler, {
-      passive: false,
-    });
+    this.container.addEventListener("click", handler);
+    this.container.addEventListener("touchend", handler, { passive: false });
   }
 
   handlePurchaseClick(offer, language) {
     const currentLanguage = this.getLanguage();
     const modalContent = ModalData[currentLanguage];
+
+    // Utilisez la même clé unique que celle générée dans ModalData.js
+    const uniqueKey = `${offer.type || "forfait"}-${offer.name}`;
+
     const content =
-      modalContent && modalContent[offer.name]
-        ? modalContent[offer.name]
+      modalContent && modalContent[uniqueKey]
+        ? modalContent[uniqueKey]
         : this.getDefaultModalContent(offer, currentLanguage);
+
     this.showPurchaseFlow(offer.name, content, this.currentLang === "ar");
   }
 
@@ -1506,10 +1519,35 @@ class ForfaitComponent {
       message: content.confirm,
       isRTL,
       onConfirm: () => {
-        this.showSuccessModal(content, isRTL, () => {
-          this.showInsufficientCreditModal(content, isRTL);
-        });
+        if (content.hasShahid) {
+          this.showShahidModal(isRTL, () => {
+            this.showSuccessModal(content, isRTL, () => {
+              this.showInsufficientCreditModal(content, isRTL);
+            });
+          });
+        } else {
+          this.showSuccessModal(content, isRTL, () => {
+            this.showInsufficientCreditModal(content, isRTL);
+          });
+        }
       },
+    });
+  }
+
+  showShahidModal(isRTL, onClose) {
+    const shahidContent = {
+      title: isRTL ? "شاهد" : "Service Shahid activé !",
+      message: isRTL
+        ? "لقد تم تفعيل خدمة شاهد! بعد قليل، ستصلك رسالة قصيرة تحتوي على رابط."
+        : "Vous recevrez un SMS avec un lien sous peu.",
+    };
+
+    this.showModal({
+      type: "info",
+      title: shahidContent.title,
+      message: shahidContent.message,
+      isRTL,
+      onClose,
     });
   }
 

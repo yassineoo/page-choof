@@ -1,22 +1,26 @@
-import migrationData from "./MigrationData.js";
+import migrationData from "./MigrationData";
 
-class MigrationComponent {
+class Migration {
   constructor(container) {
     this.container = container;
     this.currentLang = this.getLanguage();
+    this.currentView = "main";
     this.boundHandlers = {
       languageChange: this.handleLanguageChange.bind(this),
       resize: this.handleResize.bind(this),
     };
+    this.providers = [
+      { id: "dima", label: "DIMA +", displayName: "Dima +" },
+      { id: "ooredoo", label: "OOREDOO", displayName: "Ooredoo" },
+      { id: "nyooz", label: "N'YOOZ", displayName: "N'YOOZ" },
+    ];
     this.initialize();
   }
-
   initialize() {
     this.loadStyles();
     this.render();
     this.setupEventListeners();
   }
-
   loadStyles() {
     if (!document.getElementById("migration-styles")) {
       const styleElement = document.createElement("style");
@@ -25,144 +29,281 @@ class MigrationComponent {
       document.head.appendChild(styleElement);
     }
   }
-
   getStylesheet() {
     return `
+ :root{
+      --container-max: 900px;
+      --gutter: 24px;
+      --accordion-gray: #F8F8F8;
+      --border: #C5C5C5;
+      --card-radius: 22px;
+      --card-min-height: 300px;
+    }
+    
+     .dark .migration-section {
+      background: #2c2c2c;
+    }
+    .dark .migration-card-shadow {
+      background: #2c2c2c;
+      color: #d1d5db;
+      box-shadow: none;
+    }
+
     .migration-card-shadow {
-      box-shadow: 0px 3.92px 7.84px 0px #0505050A;
-      border: 0.92px solid #C5C5C5;
-      border-radius: 0.75rem;
-      width: 100%;
-      max-width: none;
-      min-width: auto;
-      height: 100%;
+      box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);
+      border: 1px solid var(--border);
+      border-radius: var(--card-radius);
+      box-sizing: border-box;
+      width: var(--container-max);
+      height: auto;
       background: white;
       color: #000;
       text-align: center;
-      margin: 1rem;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      min-height: 300px;
-    }
-
-    .dark .migration-card-shadow {
-      box-shadow: none;
-      border: 0.92px solid #C5C5C5;
-      background: #2C2C2C;
-      color: #d1d5db;
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem 1rem;
+      gap: 1.25rem;
+      transition: all 0.3s ease;
+      min-height: var(--card-min-height);
     }
 
     [dir="rtl"] .migration-card-shadow {
       text-align: right;
     }
-
+    [dir="rtl"] .migration-price {
+      flex-direction: row-reverse;
+    }
+    [dir="rtl"] .migration-price .small {
+      margin-left: 0;
+      margin-right: 4px;
+    }
     .migration-modal-fade {
       animation: modalFadeIn 0.3s ease-out forwards;
       backdrop-filter: blur(8px);
       background-color: rgba(105, 105, 105, 0.8);
     }
-
     @keyframes modalFadeIn {
       from { opacity: 0; transform: scale(0.95) translateY(-8px); }
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
-
     .migration-hover-lift {
       transition: all 0.3s ease;
     }
     .migration-hover-lift:hover {
       transform: translateY(-3px);
       box-shadow: 0px 8px 16px 0px #0505051A;
-      border: 0.92px solid #C5C5C5;
+      border: 0.92px solid var(--border);
     }
     .dark .migration-hover-lift:hover {
       box-shadow: none;
-      border: 0.92px solid #C5C5C5;
+      border: 0.92px solid var(--border);
     }
-
     .migration-grid {
-      display: grid;
       max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      gap: 0.875rem;
-      justify-items: center;
-      align-items: stretch;
-      grid-template-columns: 1fr;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
       justify-content: center;
     }
-
     .migration-card-container {
       display: flex;
+      width: 100%;
+      max-width: var(--container-max);
       flex-direction: column;
-      height: 100%;
-      padding: 1.5rem;
+      height: auto;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
       justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
     }
     .migration-card-content {
-      flex: 1;
+      flex: 0 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       text-align: center;
+      width: 100%;
+      box-sizing: border-box;
     }
-    .migration-buttons-grid {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+    .migration-card-footer {
       margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
     }
-    .migration-option-btn {
+    .migration-title {
+      font-weight: 500;
+      font-size: clamp(2rem, 4.5vw, 2.625rem);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      text-align: center;
+      width: 100%;
+      line-height: 1.05;
+      word-break: break-word;
+    }
+    .migration-description {
+      font-weight: 400;
+      font-size: clamp(1rem, 2.2vw, 1.375rem);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      max-width: 668px;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+    }
+    .migration-price {
+      font-weight: 600;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: .5rem;
+    }
+    .migration-price .big {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+    }
+    .migration-price .small {
+      font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+    }
+    .migration-buy-btn {
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+      touch-action: manipulation;
       background-color: #e30613;
       color: white;
       border: none;
-      padding: 12px 24px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-size: clamp(0.875rem, 2.2vw, 1rem);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+      min-width: 180px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .migration-cancel-btn {
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+      touch-action: manipulation;
+      background-color: #fff;
+      color: white;
+      border: 1px solid #e30613;
+      padding: 10px 24px;
       border-radius: 9999px;
       font-size: 1em;
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: bold;
       text-transform: uppercase;
-      min-width: 150px;
+      min-width: 200px;
     }
-    .migration-option-btn:hover {
+    .migration-buy-btn:hover {
       background-color: #c50510;
+      transform: scale(1.05);
       color: white;
     }
-
+    .migration-confirm-panel {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 1rem auto 0;
+      background: var(--accordion-gray);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border: 1px solid #E6E6E6;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: max-height 0.45s ease-in-out, opacity 0.3s ease-in, padding 0.35s ease-in-out, margin 0.35s ease-in-out;
+    }
+    .migration-confirm-panel.visible {
+      max-height: 100%;
+      opacity: 1;
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .migration-confirm-inner {
+      max-width: calc(var(--container-max) - 2 * var(--gutter));
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      box-sizing: border-box;
+    }
     .migration-section {
       width: 100%;
-      background: #ffffffff;
-      padding: 70px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding : 70px 16px;
     }
-    .dark .migration-section {
-      background: #2c2c2c;
+      
+    .dark .text-center.bg-\\[\\#fff\\] h2,
+    .dark .text-center.bg-\\[\\#fff\\] p {
+      color: #d1d5db;
+    }
+    .dark .text-center.bg-\\[\\#fff\\] {
+      background-color: #3a3a3a;
+    }
+    
+    .dark .rounded-b-\\[22\\.5px\\] {
+       background-color: #3a3a3a;
     }
 
+    .migration-back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: transparent;
+      border: 2px solid #e30613;
+      color: #e30613;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+      z-index: 10;
+    }
+    .migration-back-btn:hover {
+      background-color: #e30613;
+      color: white;
+    }
+    [dir="rtl"] .migration-back-btn {
+      left: auto;
+      right: 20px;
+    }
     @keyframes modalFadeOut {
       from { opacity: 1; transform: scale(1) translateY(0); }
       to { opacity: 0; transform: scale(0.95) translateY(-10px); }
     }
-
     .migration-modal-close {
       transition: all 0.2s ease;
     }
     .migration-modal-close:hover {
       transform: scale(1.1);
     }
-
     .migration-modal-buttons {
       display: flex;
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
     }
-
     .migration-modal-button {
       padding: 0.75rem 1.5rem;
       border-radius: 9999px;
@@ -172,73 +313,56 @@ class MigrationComponent {
       text-transform: uppercase;
       font-size: 0.875rem;
     }
-
     .migration-modal-button.primary {
       background: #e30613;
       color: white;
       border: none;
     }
-
+    .migration-modal-button.primary[disabled] {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
     .migration-modal-button.primary:hover {
       background: #c50510;
     }
-
     .migration-modal-button.secondary {
       background: white;
       color: #e30613;
       border: 2px solid #e30613;
     }
-
     .migration-modal-button.secondary:hover {
       background: #e30613;
       color: white;
     }
-
-    .migration-checkbox {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      margin: 1rem 0;
-      font-size: 0.875rem;
-      color: #e30613;
+    @media (max-width: 1000px) {
+    .migration-card-shadow {
+        width: 100%;
+        max-width: 100%;
+        padding: 1.5rem;
+        min-height: 320px;
+      }
+      .migration-confirm-panel.visible { max-height: 380px; }
     }
-
-    .migration-checkbox input[type="checkbox"] {
-      margin-top: 0.25rem;
-    }
-
-    .migration-modal-top {
-      background: white;
-      padding: 2rem 1.5rem 1rem;
-      border-radius: 1rem 1rem 0 0;
-    }
-
-    .dark .migration-modal-top {
-      background: #2C2C2C;
-    }
-
-    .migration-modal-bottom {
-      background: #F5F5F5;
-      padding: 1rem 1.5rem;
-      border-radius: 0 0 1rem 1rem;
-      margin-top: -1px;
-    }
-
-    .dark .migration-modal-bottom {
-      background: #3A3A3A;
-    }
-
     @media (max-width: 640px) {
       .migration-card-shadow {
-        min-height: 380px;
+        min-height: 300px;
         padding: 1.25rem;
         margin: 0 auto;
       }
       .migration-title {
-        font-size: 32px;
+        font-size: clamp(1.6rem, 6vw, 2rem);
         margin-bottom: 20px;
       }
-      .migration-subtitle {
+      .migration-description {
+        font-size: 18px;
+        -webkit-line-clamp: 3;
+      }
+      .migration-price .big {
+        font-size: 28px;
+      }
+      .migration-price .small {
         font-size: 18px;
       }
       .migration-modal-buttons {
@@ -253,16 +377,60 @@ class MigrationComponent {
         flex: 1;
         max-width: 150px;
       }
+      .migration-back-btn {
+        top: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+      [dir="rtl"] .migration-back-btn {
+        left: auto;
+        right: 10px;
+      }
+      .migration-confirm-panel.visible { max-height: 520px; padding: 12px; }
+      .migration-buy-btn { min-width: 140px; padding: 0.6rem 1rem; }
     }
     @media (max-width: 480px) {
       .migration-card-shadow {
-        min-height: 360px;
+        min-height: 280px;
         padding: 1rem;
       }
     }
+    @media (max-width: 1279px) {
+      .migration-card-container {
+        min-height: 360px;
+      }
+    }
+    @media (max-width: 991px) {
+      .migration-card-container {
+        min-height: 340px;
+      }
+    }
+    @media (max-width: 767px) {
+      .migration-card-container {
+        min-height: 320px;
+      }
+    }
+    @media (min-width: 768px) and (max-width: 1279px) and ([dir="rtl"]) {
+      .migration-card-container {
+        text-align: right;
+      }
+      .migration-card-content ul {
+        padding-right: 0;
+        padding-left: 1rem;
+      }
+    }
+    .migration-card-shadow, .migration-card-container, .migration-card-content {
+      box-sizing: border-box;
+    }
+    .migration-card-shadow .buttons-row,
+    .migration-card-shadow .flex.items-center.justify-center {
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
     `;
   }
-
   setupEventListeners() {
     window.removeEventListener(
       "languageChanged",
@@ -272,14 +440,11 @@ class MigrationComponent {
       "languageChanged",
       this.boundHandlers.languageChange
     );
-
     window.removeEventListener("resize", this.boundHandlers.resize);
     window.addEventListener("resize", this.boundHandlers.resize);
-
     this.setupLanguagePolling();
     this.setupAccessibility();
   }
-
   setupLanguagePolling() {
     if (this.languagePolling) clearInterval(this.languagePolling);
     this.languagePolling = setInterval(() => {
@@ -292,7 +457,6 @@ class MigrationComponent {
       }
     }, 500);
   }
-
   setupAccessibility() {
     if (this.keyboardHandler) {
       this.container.removeEventListener("keydown", this.keyboardHandler);
@@ -304,30 +468,23 @@ class MigrationComponent {
     };
     this.container.addEventListener("keydown", this.keyboardHandler);
   }
-
   getLanguage() {
     const storedLanguage = localStorage.getItem("language");
     return ["fr", "ar"].includes(storedLanguage) ? storedLanguage : "fr";
   }
-
   isRTL() {
     return this.currentLang === "ar";
   }
-
   containsArabic(text) {
     if (!text) return false;
     const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
     return arabicPattern.test(text);
   }
-
   createMixedTitleHTML(title, baseClasses = "") {
     if (!title) return "";
-    const isRTL = this.isRTL();
-
     if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
       return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
     }
-
     if (this.containsArabic(title) && title.match(/[a-zA-Z]/)) {
       const parts = title.split(/([a-zA-Z]+)/).filter((part) => part.trim());
       return parts
@@ -339,15 +496,12 @@ class MigrationComponent {
         })
         .join("");
     }
-
     return `<span class="font-rubik ${baseClasses}">${title}</span>`;
   }
-
   render() {
     try {
       const language = this.getLanguage();
       const data = migrationData[language];
-
       if (!data) {
         console.error("Missing data for language:", language);
         const fallbackData = migrationData.fr;
@@ -357,76 +511,159 @@ class MigrationComponent {
         this.renderWithData(fallbackData, language);
         return;
       }
-
       this.renderWithData(data, language);
     } catch (error) {
       console.error("Error rendering component:", error);
       this.renderErrorState();
     }
   }
-
   renderWithData(data, language) {
     const isRTL = this.isRTL();
-
     this.cleanupAllEventListeners();
-
+    if (this.currentView && this.currentView.endsWith("Migration")) {
+      const providerId = this.currentView.replace("Migration", "");
+      this.renderProviderView(providerId, data, language, isRTL);
+    } else {
+      this.renderMainView(data, language, isRTL);
+    }
+    setTimeout(() => {
+      this.addAccessibility();
+    }, 50);
+  }
+  renderMainView(data, language, isRTL) {
+    const buttonsHTML = this.providers
+      .map(
+        (p) =>
+          `<button class="migration-buy-btn migration-button-zone py-[10px]" data-provider="${p.id}" aria-label="${p.displayName}">
+            <span class="text-[16px]">${p.label}</span>
+          </button>`
+      )
+      .join("\n");
     this.container.innerHTML = `
-    <div class="w-full">
-      <section class="w-full bg-[#141B4D] dark:bg-[#2c2c2c] migration-section">
-        <div class="max-w-[1600px] mx-auto md:px-6">
-          <div class="migration-grid">
+    <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
+      isRTL ? 'dir="rtl"' : 'dir="ltr"'
+    }>
+      <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] migration-section">
+        <div>
+          <div style={width: 100%}>
             <div class="migration-card-shadow migration-hover-lift">
               <div class="migration-card-container">
                 <div class="migration-card-content">
-                  <h2 class="migration-title font-weight-500 text-5xl mb-6 uppercase">${this.createMixedTitleHTML(
+                  <h2 class="migration-title">${this.createMixedTitleHTML(
                     data.title
                   )}</h2>
-                  <p class="migration-subtitle font-normal text-2xl leading-relaxed mb-8">${
-                    data.subtitle
-                  }</p>
+                  <p class="migration-description">Voulez-vous changer vers une autre offre ?</p>
                 </div>
-                <div class="migration-buttons-grid">
-                  ${data.options
-                    .map(
-                      (opt, index) => `
-                    <button class="migration-option-btn migration-button-zone" data-index="${index}">
-                      ${opt.label}
-                    </button>
-                  `
-                    )
-                    .join("")}
+                <div class="flex items-center gap-4 justify-center buttons-row">
+                  ${buttonsHTML}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <div id="migration-modal-container"></div>
+    </div>
+    `;
+    this.bindPurchaseButtons(language);
+  }
 
+  renderProviderView(providerId, data, language, isRTL) {
+    const cap = providerId.charAt(0).toUpperCase() + providerId.slice(1);
+    const changeKey = `change${cap}`;
+    // Le message spécifique à l'offre (ex: "Voulez-vous changer vers l'offre Dima+ ?")
+    const changeSpecific = data[changeKey] || data.change || "";
+    const cancelBtn = data.cancelBtn || "Annuler";
+    const confirmBtn = data.confirmBtn || "Confirmer";
+
+    let termsHTML = "";
+    if (providerId === "dima") {
+      const termsText = data.termsAndConditions || "";
+      termsHTML = `
+        <div class="mt-4 mb-8 px-4 text-center">
+          <label style="display:inline-flex; gap:8px; align-items:center; max-width:100%; line-height:1.4; cursor:pointer; font-size:16px; text-align:left;">
+            <input type="checkbox" id="dima-terms-checkbox-view" style="transform:scale(1.05);">
+            <span>${termsText}</span>
+          </label>
+        </div>
+      `;
+    }
+
+    this.container.innerHTML = `
+    <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
+      isRTL ? 'dir="rtl"' : 'dir="ltr"'
+    }>
+      <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
+        <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
+<div class="text-center bg-[#fff] flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
+            <h2 class="text-[42px] font-semibold">${this.createMixedTitleHTML(
+              data.title || ""
+            )}</h2>
+            <p class="text-[21px]">${data.description || ""}</p>
+          </div>
+          <div class="rounded-b-[22.5px] bg-[#F8F8F8] min-h-[200px] pt-14 pb-6">
+            <p class="text-center mb-8 px-4">
+              <span class="text-[21px]">${changeSpecific}</span>
+            </p>
+            
+            ${termsHTML}
+
+            <div class="flex items-center gap-4 justify-center">
+              <button id="back-to-main" class="relative overflow-hidden z-10 touch-manipulation border-[#e30613] bg-white text-[#e30613] border-[2px] px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
+                <span class="text-[16px]">${cancelBtn}</span>
+              </button>
+              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
+                <span class="text-[16px]">${confirmBtn}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
       <div id="migration-modal-container"></div>
     </div>
     `;
 
-    this.bindPurchaseButtons(language);
+    if (providerId === "dima") {
+      const checkbox = this.container.querySelector(
+        "#dima-terms-checkbox-view"
+      );
+      const confirmButton = this.container.querySelector(
+        `#start-${providerId}-migration`
+      );
 
-    setTimeout(() => {
-      this.addAccessibility();
-    }, 50);
+      confirmButton.disabled = true;
+      confirmButton.style.opacity = "0.5";
+      confirmButton.style.cursor = "not-allowed";
+
+      checkbox.addEventListener("change", () => {
+        if (checkbox.checked) {
+          confirmButton.disabled = false;
+          confirmButton.style.opacity = "1";
+          confirmButton.style.cursor = "pointer";
+        } else {
+          confirmButton.disabled = true;
+          confirmButton.style.opacity = "0.5";
+          confirmButton.style.cursor = "not-allowed";
+        }
+      });
+    }
+
+    this.bindViewButtons(language);
   }
 
   renderErrorState() {
     this.container.innerHTML = `
       <div class="w-full flex items-center justify-center py-16">
         <div class="text-center">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Une erreur s'est produite lors du chargement de la migration</p>
-          <button onclick="location.reload()" 
-                  class="bg-red-600 text-white px-4 py-2 rounded-full">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Une erreur s'est produite lors du chargement du boost</p>
+          <button onclick="location.reload()"
+                  class="bg-ooredoo-red text-white px-4 py-2 rounded-full">
             Recharger
           </button>
         </div>
       </div>
     `;
   }
-
   handleLanguageChange() {
     const newLanguage = this.getLanguage();
     if (newLanguage !== this.currentLang) {
@@ -435,7 +672,6 @@ class MigrationComponent {
       this.render();
     }
   }
-
   closeAnyOpenModals() {
     const modalContainer = this.container.querySelector(
       "#migration-modal-container"
@@ -444,14 +680,12 @@ class MigrationComponent {
       modalContainer.innerHTML = "";
     }
   }
-
   handleResize() {
     clearTimeout(this.resizeTimeout);
     this.resizeTimeout = setTimeout(() => {
       this.render();
     }, 100);
   }
-
   bindPurchaseButtons(language) {
     if (this.purchaseClickHandler) {
       this.container.removeEventListener("click", this.purchaseClickHandler);
@@ -459,108 +693,135 @@ class MigrationComponent {
     if (this.purchaseTouchHandler) {
       this.container.removeEventListener("touchend", this.purchaseTouchHandler);
     }
+    const handler = (e) => {
+      const button = e.target.closest(".migration-buy-btn");
+      if (!button) return;
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      const provider = button.getAttribute("data-provider");
+      if (!provider) return;
+      this.currentView = `${provider}Migration`;
+      this.render();
+    };
+    this.purchaseClickHandler = handler;
+    this.purchaseTouchHandler = handler;
+    this.container.addEventListener("click", handler);
+    this.container.addEventListener("touchend", handler, { passive: false });
+  }
 
+  bindViewButtons(language) {
+    if (this.viewClickHandler) {
+      this.container.removeEventListener("click", this.viewClickHandler);
+    }
     const clickHandler = (e) => {
-      const button = e.target.closest(".migration-option-btn");
-      if (!button) return;
+      if (e.target.closest("#back-to-main")) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.currentView = "main";
+        this.render();
+        return;
+      }
 
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
+      const startBtn = e.target.closest("[id^='start-'][id$='-migration']");
+      if (startBtn) {
+        // Si le bouton est désactivé (cas de Dima avec checkbox non cochée), ne rien faire
+        if (startBtn.disabled) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
 
-      const index = parseInt(button.getAttribute("data-index"), 10);
-      setTimeout(() => {
-        this.handlePurchaseClick(language, index);
-      }, 50);
+        e.preventDefault();
+        e.stopPropagation();
+        const id = startBtn.id
+          .replace(/^start-/, "")
+          .replace(/-migration$/, "");
+        const providerId = id;
+        const lang = this.getLanguage();
+        const baseModalData = migrationData[lang] || {};
+        let modalData = {};
+        let message = "";
+
+        // On cherche le nom d'affichage correspondant à l'ID
+        const provider = this.providers.find((p) => p.id === providerId);
+        const displayName = provider ? provider.displayName : providerId;
+
+        if (providerId === "dima") {
+          modalData = baseModalData.migrationDimaModal || {};
+          // Le message est maintenant juste la description, sans la checkbox
+          message = modalData.confirmDescription || "";
+        } else if (providerId === "ooredoo") {
+          modalData = baseModalData.migrationOoredooModal || {};
+          message =
+            modalData.confirmDescription ||
+            baseModalData.changeOfferGeneric.replace(
+              "{offerName}",
+              displayName
+            );
+        } else if (providerId === "nyooz") {
+          modalData = baseModalData.migrationNyoozModal || {};
+          message =
+            modalData.confirmDescription ||
+            baseModalData.changeOfferGeneric.replace(
+              "{offerName}",
+              displayName
+            );
+        } else {
+          modalData = baseModalData.migrationDimaModal || {};
+          message = baseModalData.changeOfferGeneric.replace(
+            "{offerName}",
+            displayName
+          );
+        }
+
+        this.handlePurchaseClick(lang, {
+          ...modalData,
+          confirmDescription: message,
+        });
+        return;
+      }
     };
-
-    const touchHandler = (e) => {
-      const button = e.target.closest(".migration-option-btn");
-      if (!button) return;
-
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-
-      const index = parseInt(button.getAttribute("data-index"), 10);
-      setTimeout(() => {
-        this.handlePurchaseClick(language, index);
-      }, 50);
-    };
-
-    this.purchaseClickHandler = clickHandler;
-    this.purchaseTouchHandler = touchHandler;
-
+    this.viewClickHandler = clickHandler;
     this.container.addEventListener("click", clickHandler);
-    this.container.addEventListener("touchend", touchHandler, {
-      passive: false,
-    });
   }
 
-  handlePurchaseClick(language, index) {
-    const data = migrationData[language];
-    const offer = data.options[index].label;
-    const hasCheckbox = data.options[index].hasCheckbox;
-    const isRTL = language === "ar";
-
-    const confirmTitle = data.confirmTitleTemplate.replace("{offer}", offer);
-    const confirmDescription = data.confirmDescriptionTemplate.replace(
-      "{offer}",
-      offer
-    );
-    const checkboxText = hasCheckbox ? data.checkboxText : null;
-
-    this.showConfirmModal(
-      data,
-      isRTL,
-      confirmTitle,
-      confirmDescription,
-      checkboxText,
-      offer
-    );
-  }
-
-  showConfirmModal(
-    data,
-    isRTL,
-    confirmTitle,
-    confirmDescription,
-    checkboxText,
-    offer
-  ) {
+  handlePurchaseClick(language, data) {
+    const currentLanguage = this.getLanguage();
+    const isRTL = currentLanguage === "ar";
+    const message = data.confirmDescription || "";
+    const title = data.confirmTitle || "";
     this.showModal({
       type: "confirm",
-      title: confirmTitle,
-      message: confirmDescription,
-      checkboxText,
+      title,
+      message,
       isRTL,
       onConfirm: () => {
-        this.showSuccessModal(data, isRTL, offer);
+        this.showSuccessModal(data, isRTL, data.successMessage || "");
       },
     });
   }
-
-  showSuccessModal(data, isRTL, offer) {
-    const successMessage = data.successMessageTemplate.replace(
-      "{offer}",
-      offer === "DIMA+" ? "Dima Ooredoo" : offer
-    );
+  showInsufficientModal(data, isRTL) {
     this.showModal({
-      type: "success",
-      title: data.successTitle,
-      message: successMessage,
+      type: "info",
+      title: data.insufficientTitle || "",
+      message: data.insufficientMessage || "",
       isRTL,
     });
   }
-
-  showModal({
-    type,
-    title,
-    message,
-    checkboxText = null,
-    isRTL = false,
-    onConfirm,
-  }) {
+  showSuccessModal(data, isRTL, message) {
+    this.showModal({
+      type: "success",
+      title: (data && data.successTitle) || "",
+      message: message || "",
+      isRTL,
+      onConfirm: () => {
+        this.currentView = "main";
+        this.render();
+      },
+    });
+  }
+  showModal({ type, title, message, isRTL = false, onConfirm }) {
     try {
       const modalContainer = this.container.querySelector(
         "#migration-modal-container"
@@ -569,14 +830,7 @@ class MigrationComponent {
         console.error("Modal container not found");
         return;
       }
-
-      const modalHTML = this.createModalHTML({
-        type,
-        title,
-        message,
-        checkboxText,
-        isRTL,
-      });
+      const modalHTML = this.createModalHTML({ type, title, message, isRTL });
       modalContainer.innerHTML = modalHTML;
       this.setupModalEvents({ type, onConfirm, modalContainer });
       this.manageFocusForModal(modalContainer);
@@ -584,7 +838,6 @@ class MigrationComponent {
       console.error("Error showing modal:", error);
     }
   }
-
   manageFocusForModal(modalContainer) {
     this.previouslyFocusedElement = document.activeElement;
     setTimeout(() => {
@@ -594,66 +847,51 @@ class MigrationComponent {
       }
     }, 100);
   }
-
-  createModalHTML({ type, title, message, checkboxText, isRTL }) {
+  createModalHTML({ type, title, message, isRTL }) {
     const dirAttribute = isRTL ? `dir="rtl"` : "";
     const closeButtonPosition = isRTL ? "left-4" : "right-4";
     const buttons = this.getModalButtons(type, isRTL);
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const checkboxHTML = checkboxText
-      ? `
-      <div class="migration-checkbox text-left ${isRTL ? "text-right" : ""}">
-        <input type="checkbox" id="terms-checkbox" required>
-        <label for="terms-checkbox" class="${fontClass}">${checkboxText}</label>
-      </div>
-    `
-      : "";
-
+    const containsHTML = /<[^>]+>/.test(message);
     return `
       <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 migration-modal-fade"
           style="background-color: rgba(105, 105, 105, 0.8);"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title">
-          <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px]" ${dirAttribute}>
-              <div class="migration-modal-top">
-                  <button class="absolute top-4 ${closeButtonPosition} p-2 z-10 rounded-full transition-all duration-200 migration-modal-close"
-                          aria-label="${isRTL ? "إغلاق" : "Fermer"}">
-                      <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
-                  </button>
-                  <div class="text-center mb-6">
-                      <h2 id="modal-title" class="${fontClass} font-semibold text-red-600 dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
-                          ${this.createMixedTitleHTML(title)}
-                      </h2>
-                  </div>
-                  <div class="text-center mb-10">
-                      <p class="${fontClass} text-gray-800 dark:text-gray-200 leading-relaxed text-base md:text-lg px-2">
-                          ${message}
-                      </p>
-                  </div>
+          <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
+              <button class="absolute top-4 right-4 p-2 z-10 rounded-full transition-all duration-200 migration-modal-close"
+                      aria-label="${isRTL ? "إغلاق" : "Fermer"}">
+                  <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
+              </button>
+              <div class="text-center mb-6">
+                  <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                      ${this.createMixedTitleHTML(title)}
+                  </h2>
               </div>
-              <div class="migration-modal-bottom">
-                  ${checkboxHTML}
-                  <div class="flex justify-center migration-modal-buttons">${buttons}</div>
+              <div class="text-center mb-10 px-2">
+                  ${
+                    containsHTML
+                      ? message
+                      : `<p class="${fontClass} text-gray-800 dark:text-gray-200 leading-relaxed text-base md:text-lg">${message}</p>`
+                  }
               </div>
+              <div class="flex justify-center migration-modal-buttons">${buttons}</div>
           </div>
       </div>
     `;
   }
-
   getModalButtons(type, isRTL) {
-    const data = migrationData[this.currentLang];
+    const data = migrationData[this.currentLang] || {};
     const labels = {
-      cancel: data.cancelBtn,
-      confirm: data.confirmBtn,
-      close: data.ok,
+      cancel: data.cancelBtn || "Annuler",
+      confirm: data.confirmBtn || "Confirmer",
+      close: data.ok || "OK",
     };
-
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `migration-modal-button primary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-red-600 text-white shadow-lg`;
-    const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-red-600 border-2 border-red-600 shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const primaryBtn = `migration-modal-button primary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
     const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
-
     const buttonConfigs = {
       confirm: `
         <div class="flex ${buttonGap}">
@@ -666,17 +904,19 @@ class MigrationComponent {
           <button class="${primaryBtn}" data-action="close">${labels.close}</button>
         </div>
       `,
+      info: `
+        <div class="flex ${buttonGap}">
+          <button class="${primaryBtn}" data-action="close">${labels.close}</button>
+        </div>
+      `,
     };
-
     return buttonConfigs[type] || buttonConfigs.success;
   }
-
   setupModalEvents({ type, onConfirm, modalContainer }) {
     const modal = modalContainer.querySelector(".migration-modal-fade");
+    if (!modal) return;
     const closeButton = modal.querySelector(".migration-modal-close");
     const actionButtons = modal.querySelectorAll("[data-action]");
-    const checkbox = modal.querySelector("#terms-checkbox");
-
     const closeModal = () => {
       modal.style.animation = "modalFadeOut 0.2s ease-in forwards";
       setTimeout(() => {
@@ -690,30 +930,40 @@ class MigrationComponent {
         this.previouslyFocusedElement = null;
       }, 200);
     };
-
     const modalHandlers = new Map();
-
     const closeClickHandler = () => closeModal();
-    closeButton.addEventListener("click", closeClickHandler);
-    modalHandlers.set("close-click", {
-      element: closeButton,
-      type: "click",
-      handler: closeClickHandler,
-    });
+    if (closeButton) {
+      closeButton.addEventListener("click", closeClickHandler);
+      modalHandlers.set("close-click", {
+        element: closeButton,
+        type: "click",
+        handler: closeClickHandler,
+      });
+    }
 
+    const dimaCheckbox = modal.querySelector("#dima-terms-checkbox");
+    let confirmButton = modal.querySelector('[data-action="confirm"]');
+    if (dimaCheckbox && confirmButton) {
+      confirmButton.disabled = !dimaCheckbox.checked;
+      const onCheckboxChange = (ev) => {
+        confirmButton.disabled = !ev.target.checked;
+      };
+      dimaCheckbox.addEventListener("change", onCheckboxChange);
+      modalHandlers.set("dima-checkbox-change", {
+        element: dimaCheckbox,
+        type: "change",
+        handler: onCheckboxChange,
+      });
+    }
     actionButtons.forEach((button) => {
-      const actionClickHandler = () => {
+      const actionClickHandler = (ev) => {
         const action = button.getAttribute("data-action");
-        if (action === "confirm" && checkbox && !checkbox.checked) {
-          alert(
-            this.currentLang === "fr"
-              ? "Veuillez accepter les termes et conditions."
-              : "يرجى قبول الشروط والأحكام."
-          );
+        if (action === "confirm" && button.disabled) {
+          ev.preventDefault();
+          ev.stopPropagation();
           return;
         }
         closeModal();
-
         setTimeout(() => {
           if (onConfirm && action === "confirm") onConfirm();
         }, 200);
@@ -725,7 +975,6 @@ class MigrationComponent {
         handler: actionClickHandler,
       });
     });
-
     const backdropClickHandler = (event) => {
       if (event.target === modal) {
         closeModal();
@@ -737,7 +986,6 @@ class MigrationComponent {
       type: "click",
       handler: backdropClickHandler,
     });
-
     const escapeHandler = (event) => {
       if (event.key === "Escape") {
         closeModal();
@@ -751,10 +999,8 @@ class MigrationComponent {
       type: "keydown",
       handler: escapeHandler,
     });
-
     modal.modalHandlers = modalHandlers;
   }
-
   cleanupAllEventListeners() {
     if (this.purchaseClickHandler) {
       this.container.removeEventListener("click", this.purchaseClickHandler);
@@ -764,8 +1010,12 @@ class MigrationComponent {
       this.container.removeEventListener("touchend", this.purchaseTouchHandler);
       this.purchaseTouchHandler = null;
     }
+    if (this.viewClickHandler) {
+      this.container.removeEventListener("click", this.viewClickHandler);
+      this.viewClickHandler = null;
+    }
   }
-
+  addAccessibility() {}
   destroy() {
     if (this.languagePolling) {
       clearInterval(this.languagePolling);
@@ -776,28 +1026,22 @@ class MigrationComponent {
     if (this.languageChangeTimeout) {
       clearTimeout(this.languageChangeTimeout);
     }
-
     window.removeEventListener(
       "languageChanged",
       this.boundHandlers.languageChange
     );
     window.removeEventListener("resize", this.boundHandlers.resize);
-
     this.cleanupAllEventListeners();
-
     if (this.keyboardHandler) {
       this.container.removeEventListener("keydown", this.keyboardHandler);
     }
-
     const modalContainer = this.container.querySelector(
       "#migration-modal-container"
     );
     if (modalContainer) {
       modalContainer.innerHTML = "";
     }
-
     this.container.innerHTML = "";
   }
 }
-
-export default MigrationComponent;
+export default Migration;
