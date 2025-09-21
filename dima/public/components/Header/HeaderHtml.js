@@ -130,7 +130,7 @@ export const generateHeaderHTML = (
   }
 </style>
 
-<header class="bg-white dark:bg-[#171717] border-b border-gray-200 dark:border-gray-700 z-30 relative w-full">
+<header class="bg-white dark:bg-[#171717] border-b border-gray-200 dark:border-white z-30 relative w-full">
   <div class="w-[95vw] mx-auto px-4">
     <div class="flex items-center justify-between h-16 md:h-20">
       <div class="flex items-center space-x-3">
@@ -191,7 +191,7 @@ export const generateHeaderHTML = (
       </button>
     </div>
     
-    <div id="mobile-menu" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40">
+    <div id="mobile-menu" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-white hidden z-40">
       <div class="flex flex-col space-y-4 pt-4 px-4">
         <div class="flex items-center gap-3 py-2">
           <button id="theme-mobile-switcher" class="flex items-center w-full">
@@ -248,7 +248,7 @@ export const generateHeaderHTML = (
           <div class="flex items-center gap-2">
             <span style="${commonTextStyle}">${renewalLabel}</span>
             <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
-              <button 
+<button 
                 id="renewal-auto"
                 class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300"
                 style="font-family:'Rubik',sans-serif;font-weight:500;font-size:0.95rem;${
@@ -274,6 +274,7 @@ export const generateHeaderHTML = (
                 }" />
                 Manuel
               </button>
+
             </div>
             
             <button id="auto-renewal-info" class="w-6 h-6 flex items-center justify-center rounded-full text-ooredoo-red relative">

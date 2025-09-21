@@ -15,19 +15,19 @@ export class ModalSlider {
     const dirAttribute = this.lang === "ar" ? 'dir="rtl"' : "";
 
     return `
-      <div class="flex w-full flex-shrink-0 flex-col items-center gap-[10px] rounded-[20px] border border-[#C5C5C5] bg-white pb-[25px] h-full overflow-hidden" ${dirAttribute}>
+      <div class="flex w-full flex-shrink-0 flex-col items-center gap-[10px] rounded-[20px] border border-[#C5C5C5] bg-white dark:bg-[#2C2C2C] dark:border-white pb-[25px] h-full overflow-hidden" ${dirAttribute}>
         <div class="flex flex-col items-center gap-[22px] self-stretch h-full">
-          <div class="flex self-stretch items-center justify-center gap-[10px] py-[13px] px-[20px] border-b border-dashed border-[#CDCDCD] bg-white w-full">
+          <div class="flex self-stretch items-center justify-center gap-[10px] py-[13px] px-[20px] border-b border-dashed border-[#CDCDCD] dark:border-white bg-white dark:bg-[#2C2C2C] w-full">
             <div class="text-ooredoo-red font-rubik text-[22px] font-bold leading-normal uppercase">
               ${offer.planName}
             </div>
           </div>
           <div class="flex flex-col items-center gap-[10px] self-stretch px-[10px] h-full justify-between">
-            <div class="self-stretch text-black text-center font-rubik text-[12px] font-normal leading-[20px] min-h-[60px]">
+            <div class="self-stretch text-black dark:text-white text-center font-rubik text-[12px] font-normal leading-[20px] min-h-[60px]">
               ${offer.description}
             </div>
             <div class="flex w-[257px] flex-col justify-end items-center gap-[15px]">
-              <div class="h-[29px] flex-shrink-0 text-black text-center font-rubik font-bold leading-normal capitalize">
+              <div class="h-[29px] flex-shrink-0 text-black dark:text-gray-200 text-center font-rubik font-bold leading-normal capitalize">
                 <span class="text-[26px]">${offer.price}</span>
                 <span class="text-[18px]"> ${currencyText}/</span>
                 <span class="text-[13px]">${durationText}</span>
@@ -44,7 +44,7 @@ export class ModalSlider {
     `;
   }
 
-render() {
+  render() {
     const slidesHTML = this.slides
       .map(
         (offer) => `

@@ -58,12 +58,12 @@ class Modal {
     onConfirm,
   }) {
     const contentHTML = `
-      <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 text-center relative">
+      <div class="bg-white dark:bg-[#2C2C2C] dark:border dark:border-white rounded-lg shadow-xl p-6 md:p-8 text-center relative">
         <button id="modal-close-btn" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-ooredoo-red text-white flex items-center justify-center text-2xl font-bold">&times;</button>
         <h2 class="text-2xl font-bold text-ooredoo-red mb-4">${title}</h2>
-        <p class="text-gray-600 mb-6">${text}</p>
+        <p class="text-gray-600 dark:text-white mb-6">${text}</p>
         <div class="flex justify-center gap-4">
-          <button id="modal-cancel-btn" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${cancelText}</button>
+          <button id="modal-cancel-btn" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${cancelText}</button>
           <button id="modal-confirm-btn" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${confirmText}</button>
         </div>
       </div>
@@ -79,10 +79,10 @@ class Modal {
 
   showAlert({ title, text, buttonText = "OK" }) {
     const contentHTML = `
-      <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 text-center relative">
+      <div class="bg-white dark:bg-[#2C2C2C] dark:border dark:border-white rounded-lg shadow-xl p-6 md:p-8 text-center relative">
         <button id="modal-close-btn" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-ooredoo-red text-white flex items-center justify-center text-2xl font-bold">&times;</button>
         <h2 class="text-2xl font-bold text-ooredoo-red mb-4">${title}</h2>
-        <p class="text-gray-600 mb-6">${text}</p>
+        <p class="text-gray-600 dark:text-white mb-6">${text}</p>
         <div class="flex justify-center">
           <button id="modal-ok-btn" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${buttonText}</button>
         </div>
@@ -91,6 +91,10 @@ class Modal {
     this.open(contentHTML);
     document.getElementById("modal-ok-btn").onclick = () => this.close();
     document.getElementById("modal-close-btn").onclick = () => this.close();
+  }
+
+  showCustom(contentHTML) {
+    this.open(contentHTML);
   }
 
   showCustom(contentHTML) {
@@ -399,7 +403,7 @@ export default class Header {
     const confirmText = this.currentLanguage === "ar" ? "تأكيد" : "CONFIRMER";
 
     const customContent = `
-      <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
+      <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] dark:border dark:border-gray-600 rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
         <button id="modal-close-btn" class="absolute top-[15px] right-[15px] w-[34px] h-[34px] bg-ooredoo-red rounded-full flex items-center justify-center hover:bg-red-700 transition-colors z-10">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
@@ -407,12 +411,12 @@ export default class Header {
           <h1 class="text-ooredoo-red font-rubik text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
             MODE DE RECHARGEMENT
           </h1>
-          <p class="text-black font-rubik text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">
+          <p class="text-black dark:text-white font-rubik text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">
             Vous allez activer votre mode de rechargement en "Manuel", vous receverez du crédit non activé à chaque rechargement.
           </p>
         </div>
         <div class="flex justify-center items-center gap-[13px] flex-col sm:flex-row w-full max-w-md px-4 pb-4 md:pb-0">
-          <button id="modal-cancel-btn" class="flex w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red font-rubik font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+          <button id="modal-cancel-btn" class="flex w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-rubik font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
             ${cancelText}
           </button>
           <button id="modal-confirm-btn" class="flex w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white font-rubik font-semibold uppercase hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
@@ -437,23 +441,22 @@ export default class Header {
       this.currentLanguage === "ar" ? "إلغاء" : "ANNULER";
 
     const customContent = `
-      <div class="relative w-full max-w-5xl bg-white rounded-lg flex flex-col overflow-hidden">
+      <div class="relative w-full max-w-5xl bg-white dark:bg-[#2C2C2C] dark:border dark:border-white rounded-lg flex flex-col overflow-hidden">
         <button id="modal-close-btn" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-ooredoo-red text-white flex items-center justify-center text-2xl font-bold z-20">&times;</button>
         
         <div class="p-6 md:p-8 text-center">
           <h2 class="text-2xl font-bold text-ooredoo-red mb-2">MODE DE RECHARGEMENT</h2>
-      <p class="text-gray-600 mb-4 px-0 md:px-[30px]">
-  Vous allez modifier votre mode de rechargement en "Automatique" :
-</p>
-
+          <p class="text-gray-600 dark:text-white mb-4 px-0 md:px-[30px]">
+            Vous allez modifier votre mode de rechargement en "Automatique" :
+          </p>
           <div class="mt-6">
-                  <button id="modal-cancel-btn" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${cancelButtonText}</button>
+            <button id="modal-cancel-btn" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${cancelButtonText}</button>
           </div>
         </div>
 
-        <div class="border-b border-gray-200"></div>
+        <div class="border-b border-gray-200 dark:border-white"></div>
 
-        <div class="bg-[#F8F8F8] p-6 md:p-8">
+        <div class="bg-[#fff] dark:bg-[#2C2C2C] p-6 md:p-8">
             <div id="modal-slider-container"></div>
         </div>
       </div>`;
