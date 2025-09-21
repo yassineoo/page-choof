@@ -69,8 +69,15 @@ export class Slider {
 
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
+    const cardSizeClass =
+      offer.height === "short"
+        ? "dima-card dima-card--short"
+        : "dima-card dima-card--normal";
+
     return `
-      <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 400px;">
+
+      <div class="${cardSizeClass} relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 400px;">
+
         <div class="h-full pb-6" ${isRTL ? `dir="rtl"` : ``}>
           <div class="h-14 -mx-[0.84px] bg-ooredoo-red flex items-center justify-center p-5">
             <h2 class="text-white font-rubik text-xl md:text-2xl font-medium text-center capitalize dark:text-white leading-tight">
@@ -384,54 +391,46 @@ export class Slider {
     isRTL,
     convertToLatinNumerals
   ) {
-    const gridClass =
-      gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
     const sliderId =
       gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
-    const dotsId =
-      gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
     const startIndex = 0;
 
-    return `
-          <div class="hidden sm:flex w-full items-center justify-center">
-            <div class="grid items-stretch grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-[1000px]">
-              ${offers
-                .map((offer, index) =>
-                  this.createForfaitCard(
-                    offer,
-                    startIndex + index,
-                    labels,
-                    isRTL,
-                    convertToLatinNumerals
-                  )
-                )
-                .join("")}
-            </div>
-          </div>
-      
-            
-            <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
-                <div class="relative swiper">
-                <div class="swiper-wrapper">
-                    ${offers
-                      .map(
-                        (offer, index) => `
-                    <div class="swiper-slide flex justify-center p-4">
-                        ${this.createForfaitCard(
-                          offer,
-                          startIndex + index,
-                          labels,
-                          isRTL,
-                          convertToLatinNumerals
-                        )}
-                    </div>
-                    `
-                      )
-                      .join("")}
-                </div>
-                <div class="absolute bottom-0  swiper-pagination"></div>
-                </div>
-            </div>`;
+    // desktop: use .forfait-grid-wrapper (flex-wrap)
+    const desktopHtml = `
+    <div class="hidden sm:flex w-full items-center justify-center">
+      <div class="forfait-grid-wrapper" role="list" aria-label="forfaits-list">
+        ${offers
+          .map(
+            (offer, index) => `<div role="listitem" class="forfait-grid-item">
+              ${this.createForfaitCard(offer, startIndex + index, labels)}
+            </div>`
+          )
+          .join("")}
+      </div>
+    </div>
+  `;
+
+    // mobile slider (unchanged behavior)
+    const mobileHtml = `
+    <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
+      <div class="relative swiper">
+        <div class="swiper-wrapper">
+          ${offers
+            .map(
+              (offer, index) => `
+              <div class="swiper-slide flex justify-center p-4">
+                ${this.createForfaitCard(offer, startIndex + index, labels)}
+              </div>
+            `
+            )
+            .join("")}
+        </div>
+        <div class="absolute bottom-0 swiper-pagination"></div>
+      </div>
+    </div>
+  `;
+
+    return desktopHtml + mobileHtml;
   }
 
   createResponsiveLayoutInternet(
