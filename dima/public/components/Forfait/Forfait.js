@@ -40,154 +40,571 @@ class ForfaitComponent {
 
   getStylesheet() {
     return `
-:root{
-  --dima-card-min: 290px;
-  --dima-card-max: 380px;
-  --dima-gap-xs: 16px;   /* gap small (mobile) */
-  --dima-gap-sm: 24px;   /* gap medium (sm/md) */
-  --dima-gap-lg: 18px;   /* gap large (lg) -> same as your React lg:gap-[18px] */
-  --ooredoo-red: #ED1C23;
-  --card-border: #C5C5C5;
-  --card-shadow: 0px 3.92px 7.84px rgba(5,5,5,0.04);
-  /* desktop container width CALCULATED so that 4 cards of 290px + 3 gaps fit exactly:
-     4*290 + 3*18 = 1214px -> keeps first row with 4 cards */
-  --desktop-max-width: calc(4 * var(--dima-card-min) + 3 * var(--dima-gap-lg));
-  --mobile-break: 640px;
+    /* Base Styles */
+    .forfait-slider-container {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      touch-action: pan-y;
+      margin: 0 auto;
+    }
+
+    /* Make sure the swiper container is relative */
+.forfait-mobile-container .swiper {
+  position: relative;
+  padding-bottom: 40px; /* space for dots */
 }
 
-/* Reset & base */
-* { box-sizing: border-box; }
-html,body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-
-/* Swiper mobile tweaks */
-.forfait-mobile-container .swiper { position: relative; padding-bottom: 40px; }
-.forfait-mobile-container .swiper-pagination { position: absolute; bottom: 10px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: auto; }
-.forfait-mobile-container .swiper-pagination-bullet { width: 12px; height: 12px; border-radius: 50%; background: #ddd; opacity: 1; transition: all .3s; }
-.forfait-mobile-container .swiper-pagination-bullet-active { background: var(--ooredoo-red); transform: scale(1.3); }
-
-/* Card visuals */
-.forfait-card-shadow {
-  box-shadow: var(--card-shadow);
-  border: 0.84px solid var(--card-border);
-  border-radius: 0.75rem;
+/* Move pagination to the bottom */
+.forfait-mobile-container .swiper-pagination {
+  position: absolute;
+  bottom: 10px; /* distance from bottom */
+  left: 0;
   width: 100%;
-  max-width: var(--dima-card-max);
-  min-width: var(--dima-card-min);
-  height: 100%;
-  background: #fff;
-  overflow: hidden;
-}
-.dark .forfait-card-shadow { box-shadow: none; border-color: var(--card-border); background: #2C2C2C; }
-
-/* Card internals (structure preserved) */
-.forfait-card-container { display:flex; flex-direction:column; height:100%; padding:1.5rem; box-sizing:border-box; }
-.forfait-card-content { flex:1; display:flex; flex-direction:column; justify-content:flex-start; }
-.forfait-card-footer { margin-top:auto; display:flex; flex-direction:column; align-items:center; gap:1rem; padding-top:1rem; }
-.forfait-feature-item { font-weight:400; font-size:18px; line-height:22.37px; color:#000; }
-.dark .forfait-feature-item { color:#d1d5db; }
-
-/* heights matching your React */
-.dima-card { width: var(--dima-card-min); flex: 0 0 var(--dima-card-min); display:flex; justify-content:center; align-items:stretch; box-sizing:border-box; }
-.dima-card--normal .forfait-card-container { min-height: 440px; } /* h-[440px] */
-.dima-card--short  .forfait-card-container { min-height: 365px; } /* h-[365px] */
-
-/* Hover */
-.forfait-hover-lift { transition: all .3s; }
-.forfait-hover-lift:hover { transform: translateY(-3px); box-shadow: 0px 8px 16px rgba(5,5,5,0.10); border-color: var(--card-border); }
-.dark .forfait-hover-lift:hover { box-shadow: none; }
-
-/* Modal animation */
-.forfait-modal-fade { animation: modalFadeIn .28s ease-out forwards; backdrop-filter: blur(6px); background-color: rgba(0,0,0,0.45); }
-@keyframes modalFadeIn { from { opacity: 0; transform: scale(.98) translateY(-6px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-
-/* Dots (fallback) */
-.forfait-dot { width:12px; height:12px; border-radius:50%; border:none; cursor:pointer; background:#d1d5db; transition: all .25s; }
-.forfait-dot:hover { transform: scale(1.15); background:#9ca3af; }
-.forfait-dot.active { background: var(--ooredoo-red); transform: scale(1.05); }
-.forfait-dots-container { display:flex; justify-content:center; gap:10px; margin-top:24px; padding:10px; }
-
-/* RTL helpers */
-[dir="rtl"] .forfait-card-shadow { direction: rtl; text-align: right; }
-[dir="rtl"] .forfait-card-content { direction: rtl; }
-
-/* ================= FLEX-WRAP LAYOUT (identique à ton React) ================= */
-/* Wrapper used by createResponsiveLayout(): same behaviour as
-   <div class="flex justify-center items-center content-center gap-4 sm:gap-6 lg:gap-[18px] flex-wrap max-w-[1215px]"> */
-.forfait-grid-wrapper {
-  width: 100%;
-  max-width: var(--desktop-max-width); /* ensures first row can hold exactly 4 cards */
-  margin: 0 auto;
-  padding: 0 1rem;
-  box-sizing: border-box;
-
   display: flex;
-  flex-wrap: wrap;            /* allow wrapping */
-  gap: var(--dima-gap-xs);    /* default gap on very small screens */
-  justify-content: center;    /* center content horizontally */
-  align-items: flex-start;
+  justify-content: center; /* center horizontally */
+  gap: 8px; /* spacing between dots */
 }
 
-/* each item container holds card (keeps same spacing as react's <PackageCard /> wrapper) */
-.forfait-grid-item { display:flex; align-items:stretch; justify-content:center; width: var(--dima-card-min); flex: 0 0 var(--dima-card-min); box-sizing:border-box; }
-
-/* Mobile-first: show slider under breakpoint */
-.forfait-mobile-slider { display:block; }
-.forfait-grid-wrapper, .forfait-grid, .forfait-grid-5, .forfait-grid-3, .forfait-grid-4 { display: none; }
-
-/* >= 640px : show wrapper, increase gap to sm */
-@media (min-width: 640px) {
-  .forfait-mobile-slider { display: none; }
-  .forfait-grid-wrapper { display:flex; gap: var(--dima-gap-sm); }
+/* Style custom dots */
+.forfait-mobile-container .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  opacity: 1;
+  transition: all 0.3s ease;
 }
 
-/* >= 768px: keep same layout (cards still 290px, wrap naturally) */
-@media (min-width: 768px) {
-  .forfait-grid-wrapper { gap: var(--dima-gap-sm); }
-  .forfait-grid-item { width: var(--dima-card-min); flex-basis: var(--dima-card-min); }
+.forfait-mobile-container .swiper-pagination-bullet-active {
+  background: #e30613; /* Ooredoo red */
+  transform: scale(1.3);
 }
 
-/* >= 1024px (or >=1200) use lg gap to match your react lg:gap-[18px] */
-@media (min-width: 1024px) {
-  .forfait-grid-wrapper { gap: var(--dima-gap-lg); max-width: var(--desktop-max-width); }
+
+    .forfait-card-shadow {
+      box-shadow: 0px 3.92px 7.84px 0px #0505050A;
+      border: 0.84px solid #C5C5C5;
+      border-radius: 0.75rem;
+      width: 100%;
+      max-width: 340px;
+      min-width: 280px;
+      height: 100%;
+    }
+
+    .dark .forfait-card-shadow {
+      box-shadow: none;
+      border: 0.84px solid #C5C5C5;
+    }
+
+    .forfait-divider {
+      background-image: repeating-linear-gradient(to right, #D1D5DB 0px, #D1D5DB 8px, transparent 8px, transparent 16px);
+      background-size: 16px 1px;
+      background-repeat: repeat-x;
+      height: 1px;
+    }
+
+    .dark .forfait-divider {
+      background-image: repeating-linear-gradient(to right, #6B7280 0px, #6B7280 8px, transparent 8px, transparent 16px);
+    }
+
+    .forfait-slider-track {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    .forfait-slider-slide {
+      flex: 0 0 calc(100% - 30px);
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      padding: 0 15px;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    /* RTL Support */
+    [dir="rtl"] .forfait-slider-track {
+      flex-direction: row-reverse;
+    }
+    [dir="rtl"] .forfait-grid-5 {
+      direction: rtl;
+    }
+    [dir="rtl"] .forfait-card-shadow {
+      text-align: right;
+    }
+    [dir="rtl"] .forfait-card-content {
+      direction: rtl;
+    }
+    [dir="rtl"] .forfait-feature-item {
+      text-align: right;
+    }
+    [dir="rtl"] .forfait-mixed-title {
+      flex-direction: row-reverse;
+    }
+
+    /* Modal Styles */
+    .forfait-modal-fade {
+      animation: modalFadeIn 0.3s ease-out forwards;
+      backdrop-filter: blur(8px);
+      background-color: rgba(105, 105, 105, 0.8);
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Hover Effects */
+    .forfait-hover-lift {
+      transition: all 0.3s ease;
+    }
+    .forfait-hover-lift:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 8px 16px 0px #0505051A;
+      border: 0.84px solid #C5C5C5;
+    }
+    .dark .forfait-hover-lift:hover {
+      box-shadow: none;
+      border: 0.84px solid #C5C5C5;
+    }
+
+    /* Grid System */
+    .forfait-grid {
+      display: grid;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      gap: 0.875rem !important;
+      justify-items: center;
+      align-items: stretch;
+    }
+
+    .forfait-mobile-slider {
+      display: none;
+    }
+
+    .forfait-mobile-container {
+      padding: 0;
+    }
+
+    /* 5-card grid (Forfaits) - V-shape layout on desktop screens */
+    .forfait-grid-5 {
+      grid-template-columns: repeat(3, minmax(280px, 320px));
+      grid-template-rows: auto auto;
+      
+      justify-content: center;
+    }
+    .forfait-grid-5 > *:nth-child(1),
+    .forfait-grid-5 > *:nth-child(2),
+    .forfait-grid-5 > *:nth-child(3) {
+      grid-row: 1;
+    }
+    .forfait-grid-5 > *:nth-child(4),
+    .forfait-grid-5 > *:nth-child(5) {
+      grid-row: 2;
+      justify-self: center;
+    }
+    .forfait-grid-5 > *:nth-child(4) {
+      grid-column: 1 / 3;
+      justify-self: end;
+    }
+    .forfait-grid-5 > *:nth-child(5) {
+      grid-column: 2 / 6;
+      justify-self: start;
+    }
+
+    /* 3-card grid (Smart) */
+    .forfait-grid-3 {
+      grid-template-columns: repeat(3, minmax(280px, 320px));
+      justify-content: center;
+    }
+
+    /* Large Desktop (1920px+) */
+    @media (min-width: 1920px) {
+      .forfait-grid-5 {
+        grid-template-columns: repeat(3, minmax(280px, 320px));
+        grid-template-rows: auto;
+        gap: 1.5rem 0.5rem;
+      }
+    
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(320px, 380px));
+        gap: 0.875rem;
+      }
+    }
+
+    /* Desktop (1440px - 1919px) */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+      .forfait-grid-5 {
+        grid-template-columns: repeat(3, minmax(280px, 320px));
+        gap: 1.2rem 0.5rem;
+        
+      }
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(280px, 320px));
+        gap: 0.875rem;
+      }
+    }
+
+    /* Small Desktop (1280px - 1439px) */
+    @media (min-width: 1280px) and (max-width: 1439px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: repeat(3, minmax(250px, 280px));
+        gap: 1rem 1rem;
+        justify-content: center;
+      }
+      .forfait-grid-5 > *:nth-child(4) {
+        justify-self: end;
+      }
+      .forfait-grid-5 > *:nth-child(5) {
+        justify-self: start;
+      }
+    }
+
+    /* Middle Screen Fix: 2-column grid */
+    @media (min-width: 992px) and (max-width: 1279px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: repeat(2, minmax(280px, 300px)) !important;
+        gap: 1rem !important;
+        justify-content: center !important;
+        max-width: 600px !important;
+        margin: 0 auto !important;
+      }
+      .forfait-grid-5 > *:nth-child(n) {
+        grid-row: auto !important;
+        grid-column: auto !important;
+        justify-self: auto !important;
+      }
+      .forfait-grid-5 > *:nth-child(5),
+      .forfait-grid-3 > *:nth-child(3) {
+        grid-column: 1 / 3 !important;
+        justify-self: center !important;
+        max-width: 300px !important;
+        margin-top: 1rem !important;
+      }
+    }
+
+    /* Tablet Portrait (768px - 991px) */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: repeat(2, minmax(260px, 280px));
+        gap: 1rem;
+        justify-content: center;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .forfait-grid-5 > *:nth-child(5),
+      .forfait-grid-3 > *:nth-child(3) {
+        grid-column: 1 / 3;
+        justify-self: center;
+        max-width: 280px;
+        margin-top: 1rem;
+      }
+    }
+
+    /* Mobile Landscape (640px - 767px) */
+    @media (min-width: 640px) and (max-width: 767px) {
+      .forfait-grid-5,
+      .forfait-grid-3 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        justify-content: center;
+        max-width: 400px;
+      }
+      .forfait-grid-5 > *:nth-child(5),
+      .forfait-grid-3 > *:nth-child(3) {
+        justify-self: center;
+        max-width: 300px;
+        margin-top: 0;
+      }
+    }
+
+    /* Mobile (up to 639px): slider mode */
+    @media (max-width: 639px) {
+      .forfait-grid {
+        display: none !important;
+      }
+      .forfait-mobile-slider {
+        display: block !important;
+      }
+      .forfait-mobile-slider .forfait-card-shadow {
+        background: white !important;
+        box-shadow: 0px 3.92px 7.84px 0px #0505050A !important;
+        border: 0.84px solid #C5C5C5 !important;
+        max-width: 320px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .dark .forfait-mobile-slider .forfait-card-shadow {
+        background: #2C2C2C !important;
+        box-shadow: none !important;
+        border: 0.84px solid #C5C5C5 !important;
+      }
+      .forfait-mobile-slider-wrapper {
+        overflow: visible;
+        margin: 0 -15px;
+        padding: 0 15px;
+      }
+      .forfait-slider-slide {
+        flex: 0 0 calc(100% - 30px);
+        padding: 0 15px;
+      }
+      .forfait-slider-container {
+        overflow: visible;
+      }
+    }
+
+    /* Component Styles */
+    .forfait-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #d1d5db;
+    }
+    .forfait-dot:hover {
+      transform: scale(1.2);
+      background-color: #9ca3af;
+    }
+    .forfait-dot.active {
+      background-color: #ED1C23;
+      transform: scale(1.1);
+    }
+    .forfait-dots-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 10px;
+    }
+    .forfait-buy-btn {
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+      touch-action: manipulation;
+    }
+    .forfait-card-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 340px;
+      padding: 1.5rem;
+    }
+    .forfait-card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .forfait-card-footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1rem;
+    }
+    .forfait-feature-item {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22.37px;
+      letter-spacing: 0;
+      color: #000000;
+    }
+    .dark .forfait-feature-item {
+      color: #d1d5db;
+    }
+    .forfait-button-zone {
+      touch-action: manipulation;
+      pointer-events: auto;
+      z-index: 10;
+      position: relative;
+    }
+    .forfait-mixed-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .forfait-check-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* Mobile Optimizations */
+    @media (max-width: 640px) {
+      .forfait-modal-buttons {
+        flex-direction: row !important;
+        gap: 12px !important;
+        justify-content: center;
+        align-items: center;
+      }
+      .forfait-modal-button {
+        width: auto !important;
+        min-width: 120px !important;
+        flex: 1;
+        max-width: 150px;
+      }
+      .forfait-card-container {
+        min-height: 380px;
+        padding: 1.25rem;
+      }
+      .forfait-feature-item {
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+    @media (max-width: 480px) {
+      .forfait-card-container {
+        min-height: 360px;
+        padding: 1rem;
+      }
+      .forfait-feature-item {
+        font-size: 15px;
+        line-height: 18px;
+      }
+      .forfait-slider-slide {
+        flex: 0 0 85%;
+      }
+      .forfait-mobile-slider-wrapper {
+        margin: 0 -10px;
+        padding: 0 10px;
+      }
+    }
+
+    /* Card height adjustments */
+    @media (max-width: 1279px) {
+      .forfait-card-container {
+        min-height: 360px !important;
+      }
+    }
+    @media (max-width: 991px) {
+      .forfait-card-container {
+        min-height: 340px !important;
+      }
+    }
+    @media (max-width: 767px) {
+      .forfait-card-container {
+        min-height: 320px !important;
+      }
+    }
+
+    /* Additional tablet-specific fixes */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      /* Ensure proper text wrapping */
+      .forfait-feature-item {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      /* Adjust button sizes */
+      .forfait-buy-btn {
+        padding: 8px 20px !important;
+        font-size: 14px !important;
+      }
+      /* Adjust price font sizes */
+    
+    }
+
+    /* Arabic specific tablet fixes */
+    @media (min-width: 768px) and (max-width: 1279px) and ([dir="rtl"]) {
+      .forfait-card-container {
+        text-align: right;
+      }
+      .forfait-feature-item {
+        text-align: right;
+      }
+      /* Adjust RTL spacing */
+      .forfait-card-content ul {
+        padding-right: 0;
+        padding-left: 1rem;
+      }
+    }
+
+    /* Text overflow prevention */
+    .forfait-card-container h2,
+    .forfait-card-container h3,
+    .forfait-feature-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .forfait-card-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .forfait-card-content li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+
+
+    /* Tablet Portrait (768px - 991px) - FIXED */
+@media (min-width: 768px) and (max-width: 991px) {
+  .forfait-grid-5,
+  .forfait-grid-3 {
+    grid-template-columns: repeat(2, minmax(260px, 280px));
+    gap: 1rem;
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto;
+    gap: 30px;
+  }
+  
+  /* RESET V-shape positioning for cards 1-4 */
+  .forfait-grid-5 > *:nth-child(1),
+  .forfait-grid-5 > *:nth-child(2),
+  .forfait-grid-5 > *:nth-child(3),
+  .forfait-grid-5 > *:nth-child(4) {
+    grid-row: auto !important;
+    grid-column: auto !important;
+    justify-self: auto !important;
+    
+    
+  }
+  
+  /* Only 5th card spans both columns */
+  .forfait-grid-5 > *:nth-child(5),
+  .forfait-grid-3 > *:nth-child(3) {
+    grid-column: 1 / 3;
+    justify-self: center;
+    max-width: 280px;
+    margin-top: 1rem;
+    
+   
+  }
+
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+  
+
 }
-
-/* >= 1200px ensure wrapper still uses the previously calculated width, so 4 cards appear on the first row */
-@media (min-width: 1200px) {
-  .forfait-grid-wrapper { gap: var(--dima-gap-lg); max-width: var(--desktop-max-width); }
-}
-
-/* Larger screens tweak */
-@media (min-width: 1600px) {
-  :root { --dima-card-max: 420px; } /* optional enlarge */
-  .forfait-grid-wrapper { max-width: var(--desktop-max-width); }
-}
-
-/* Ensure children fill correctly */
-.forfait-grid-wrapper > * { display:flex; align-items:stretch; justify-content:center; }
-
-/* Mobile slider tweaks */
-.forfait-mobile-slider .forfait-card-shadow { margin: 0 auto; width: 100%; max-width: 320px; }
-.forfait-mobile-slider-wrapper { overflow: visible; margin: 0 -15px; padding: 0 15px; }
-
-/* small screen adjustments */
-@media (max-width: 640px) {
-  .forfait-card-container { padding: 1.25rem; min-height: 360px; }
-  .forfait-card-shadow { max-width: 320px; }
-}
-@media (max-width: 480px) {
-  .forfait-card-container { padding: 1rem; min-height: 320px; }
-}
-
-/* accessibility focus */
-.forfait-grid-wrapper :focus, .forfait-grid-wrapper > * :focus { outline: 3px solid rgba(237,28,35,0.12); outline-offset:2px; }
-
-/* small helpers kept */
-.forfait-buy-btn { position: relative; overflow: hidden; z-index: 10; touch-action: manipulation; }
-.forfait-button-zone { touch-action: manipulation; pointer-events: auto; z-index: 10; position: relative; }
-
-/* Truncate long text */
-.forfait-card-container h2, .forfait-card-container h3, .forfait-feature-item { overflow: hidden; text-overflow: ellipsis; white-space: normal; }
-`;
+  `;
   }
 
   setupEventListeners() {
@@ -338,42 +755,6 @@ html,body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscal
     return parts;
   }
 
-  createMixedTitleHTML(title, baseClasses = "") {
-    if (!title) return "";
-    const isRTL = this.isRTL();
-
-    // Specific fix for 'SMART اشتراكات' to show Arabic first then English
-    if (title === "SMART اشتراكات" && isRTL) {
-      return `
-      <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
-      <span class="font-rubik ${baseClasses}"> SMART</span>
-    `;
-    }
-
-    // General Arabic text only (no Latin)
-    if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
-      return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
-    }
-
-    // Mixed Arabic + English text
-    if (this.containsArabic(title) && title.match(/[a-zA-Z]/)) {
-      const parts = title.split(/([a-zA-Z]+)/).filter((part) => part.trim());
-      return parts
-        .map((part) => {
-          const isArabic = this.containsArabic(part);
-          const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
-          const direction = isArabic ? "rtl" : "ltr";
-          // Display Arabic first followed by English when RTL mode
-          // If you want to reverse order for all mixed text, add custom logic here
-          return `<span class="${fontClass} ${baseClasses}" dir="${direction}">${part}</span>`;
-        })
-        .join("");
-    }
-
-    // Non-Arabic text only
-    return `<span class="font-rubik ${baseClasses}">${title}</span>`;
-  }
-
   render() {
     try {
       const language = this.getLanguage();
@@ -400,7 +781,6 @@ html,body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscal
     if (!title) return "";
     const isRTL = this.isRTL();
 
-    // Specific fix for 'SMART اشتراكات' to show Arabic first then English
     if (title === "SMART اشتراكات" && isRTL) {
       return `
       <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
@@ -408,12 +788,10 @@ html,body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscal
     `;
     }
 
-    // General Arabic text only (no Latin)
     if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
       return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
     }
 
-    // Mixed Arabic + English text
     if (this.containsArabic(title) && title.match(/[a-zA-Z]/)) {
       const parts = title.split(/([a-zA-Z]+)/).filter((part) => part.trim());
       return parts
@@ -421,14 +799,11 @@ html,body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscal
           const isArabic = this.containsArabic(part);
           const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
           const direction = isArabic ? "rtl" : "ltr";
-          // Display Arabic first followed by English when RTL mode
-          // If you want to reverse order for all mixed text, add custom logic here
           return `<span class="${fontClass} ${baseClasses}" dir="${direction}">${part}</span>`;
         })
         .join("");
     }
 
-    // Non-Arabic text only
     return `<span class="font-rubik ${baseClasses}">${title}</span>`;
   }
 
@@ -475,7 +850,8 @@ html,body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscal
             data.forfaits,
             labels,
             "forfait-grid-5",
-            this.isRTL
+            this.isRTL,
+            true
           )}
         </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-[clamp(1rem,5vw,5rem)]">
@@ -573,8 +949,6 @@ html,body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscal
     setTimeout(() => {
       this.initializeSliders();
       this.addSliderAccessibility();
-      // after DOM is rendered
-      this.updateGridLastRowClasses();
     }, 50);
   }
 
@@ -974,15 +1348,11 @@ html,body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscal
     return window.innerWidth <= 639;
   }
 
-  isMobile() {
-    return window.innerWidth <= 639;
-  }
   handleResize() {
     clearTimeout(this.resizeTimeout);
     this.resizeTimeout = setTimeout(() => {
       const newIsMobile = this.isMobile();
 
-      // Check if layout needs to change (mobile/desktop transition)
       if (newIsMobile !== this.lastIsMobile) {
         console.log(
           `ForfaitComponent: Layout changed from ${
@@ -991,12 +1361,10 @@ html,body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscal
         );
         this.lastIsMobile = newIsMobile;
 
-        // Re-render to switch between grid and slider layouts
         this.render();
         return;
       }
 
-      // Just update slider positions for same layout
       this.sliders.forEach((slider, sliderType) => {
         if (slider.track) {
           this.updateSlider(sliderType, slider.currentIndex);
@@ -1067,7 +1435,6 @@ html,body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscal
     const currentLanguage = this.getLanguage();
     const modalContent = ModalData[currentLanguage];
 
-    // Utilisez la même clé unique que celle générée dans ModalData.js
     const uniqueKey = `${offer.type || "forfait"}-${offer.name}`;
 
     const content =
@@ -1355,17 +1722,6 @@ html,body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscal
       this.container.removeEventListener("touchend", this.purchaseTouchHandler);
       this.purchaseTouchHandler = null;
     }
-  }
-
-  updateGridLastRowClasses() {
-    const grids = this.container.querySelectorAll(
-      ".forfait-grid, .forfait-grid-5, .forfait-grid-3, .forfait-grid-4"
-    );
-    grids.forEach((grid) => {
-      Array.from(grid.classList).forEach((cl) => {
-        if (/^last-\d-\d$/.test(cl)) grid.classList.remove(cl);
-      });
-    });
   }
 
   destroy() {
