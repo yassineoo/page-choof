@@ -368,7 +368,7 @@ export default class Header {
     const manualBtn = document.getElementById("renewal-manual");
 
     if (autoBtn && manualBtn) {
-      const activeStyle = { background: "#E30613", color: "#575757" };
+      const activeStyle = { background: "#E30613", color: "#ffffffff" };
       const inactiveStyle = {
         background: "transparent",
         color: "#575757",
