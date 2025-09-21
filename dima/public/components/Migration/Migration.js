@@ -231,7 +231,7 @@ class Migration {
       transition: max-height 0.45s ease-in-out, opacity 0.3s ease-in, padding 0.35s ease-in-out, margin 0.35s ease-in-out;
     }
     .migration-confirm-panel.visible {
-      max-height: 420px;
+      max-height: 100%;
       opacity: 1;
       padding: 1.25rem;
       margin-top: 1.5rem;
@@ -248,7 +248,6 @@ class Migration {
     .migration-section {
       width: 100%;
       padding : 70px 16px;
-      background: #fff;
     }
       
     .dark .migration-section {
@@ -583,9 +582,9 @@ class Migration {
     <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-      <section class="w-full bg-[#141B4D] dark:bg-[#2c2c2c] migration-section relative">
+      <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
         <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
-          <div class="text-center flex flex-col items-center gap-6 justify-center min-h-[200px] px-4">
+<div class="text-center bg-[#fff] flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
             <h2 class="text-[42px] font-semibold">${this.createMixedTitleHTML(
               data.title || ""
             )}</h2>
