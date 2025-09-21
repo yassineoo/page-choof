@@ -1,60 +1,90 @@
-// BoostData.js
 export const migrationData = {
   fr: {
     title: "MIGRATION",
-    description: "Voulez-vous changer vers une autre offre ?",
+    description: "Voulez-vous changer vers une autre offre ?",
     price: "500 DA",
     dima: "Dima ooredoo",
-    nyooz:"n’yooz",
+    nyooz: "n’yooz",
     confirmTitle: "MIGRATION",
     confirmBtn: "CONFIRMER",
     cancelBtn: "ANNULER",
     successTitle: "FÉLICITATIONS !",
-    change: "Voulez-vous changer vers une autre offre ?",
-    changeDima: "Voulez-vous changer vers l'offre « Dima Ooredoo » ?",
-    changeNyooz:"Voulez-vous changer vers l'offre « N’YOOZ » ?",
+    change: 'Voulez-vous changer vers l\'offre "Dima Ooredoo " ?',
+    changeNyooz: "Voulez-vous changer vers l'offre « N’YOOZ » ?",
     ok: "OK",
-    migrationDimaModal:{
-      confirmTitle: "Migration vers Ooredoo Dima",
-      confirmDescription: "Vous allez changer vers l'offre OOREDOO Dima gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
+    changeOfferGeneric: 'Voulez-vous changer vers l\'offre "{offerName}" ?',
+
+    termsAndConditions:
+      "J’atteste avoir lu et accepté les termes et conditions du contrat",
+    insufficientTitle: "SOLDE INSUFFISANT",
+    insufficientMessage:
+      "Votre solde est insuffisant pour effectuer cette opération.",
+    migrationDimaModal: {
+      confirmTitle: "Migration vers DIMA",
+      confirmDescription:
+        "Vous allez changer vers l'offre Dima + gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
-      successMessage: "Vous êtes désormais sur l'offre OOREDOO Dima. Pour plus d'infos, composez *500#."
+      successMessage:
+        "Vous êtes désormais sur l'offre OOREDOO Dima. Pour plus d'infos, composez *500#.",
     },
-    migrationNyoozModal:{
-      confirmTitle: "Migration vers Ooredoo N'yooz",
-      confirmDescription: "Vous allez changer vers l'offre N'yooz gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
+    migrationOoredooModal: {
+      confirmTitle: "Migration vers Dima Ooredoo",
+      confirmDescription:
+        "Vous allez changer vers l'offre Dima Ooredoo gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
-      successMessage: "Vous êtes désormais sur l'offre N'yooz. Pour plus d'infos, composez *500#."
-    }
+      successMessage:
+        "Vous êtes désormais sur l'offre Dima Ooredoo. Pour plus d'infos, composez *500#.",
+    },
+    migrationNyoozModal: {
+      confirmTitle: "Migration vers N'yooz",
+      confirmDescription:
+        "Vous allez changer vers l'offre N'yooz gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
+      successTitle: "MIGRATION",
+      successMessage:
+        "Bienvenue sur N'YOOZ ! Télécharge vite l'application My Ooredoo gratuitement pour acheter ou composer le forfait de ton choix et vis pleinement l'aventure N'YOOZ http://ore.do/yo . Retrouve tes forfaits sur *151#.",
+    },
   },
   ar: {
     title: "التغيير",
     description: "هل تريد التغيير إلى عرض آخر؟",
     price: "500 دج",
     dima: "Dima ooredoo",
-    nyooz:"n’yooz",
-    confirmTitle: "MIGRATION",
+    nyooz: "n’yooz",
+    confirmTitle: "تأكيد التغيير",
     confirmBtn: "تأكيد",
     cancelBtn: "إلغاء",
     successTitle: "مبروك !",
-    change: "هل ترغب في التبديل إلى عرض آخر؟",
-    changeDima: "هل تريد التغيير إلى عرض <span class='font-rubik'>« Dima Ooredoo »</span> ؟",
-    changeNyooz:"هل تريد التغيير إلى عرض <span class='font-rubik'>« N’YOOZ »</span> ؟",
+    change: 'هل تريد التغيير إلى عرض "Dima Ooredoo " ؟',
+    changeNyooz: "هل تريد التغيير إلى عرض « N’YOOZ » ؟",
     ok: "تم",
-    migrationDimaModal:{
-      confirmTitle: "التغيير إلى Ooredoo Dima",
-      confirmDescription: "سوف تقوم بالتغيير إلى عرض OOREDOO Dima مجانًا، قد يؤدي ذلك إلى فقدان باقتك الحالية.",
+    changeOfferGeneric: 'هل تريد التغيير إلى عرض "{offerName}"؟',
+    termsAndConditions: "أقر بأنني قرأت وقبلت شروط وأحكام العقد",
+    insufficientTitle: "رصيد غير كاف",
+    insufficientMessage: "رصيدك غير كافٍ لإتمام هذه العملية.",
+    migrationDimaModal: {
+      confirmTitle: "التغيير إلى",
+      confirmDescription:
+        "سوف تقوم بالتغيير إلى عرض OOREDOO Dima مجانًا، قد يؤدي ذلك إلى فقدان باقتك الحالية.",
       successTitle: "التغيير",
-      successMessage: "أنت الآن على عرض OOREDOO Dima. لمزيد من المعلومات، اطلب *500#."
+      successMessage:
+        "أنت الآن على عرض OOREDOO Dima. لمزيد من المعلومات، اطلب *500#.",
     },
-    migrationNyoozModal:{
-      confirmTitle: "التغيير إلى Ooredoo N'yooz",
-      confirmDescription: "سوف تقوم بالتغيير إلى عرض N'yooz مجانًا، قد يؤدي ذلك إلى فقدان باقتك الحالية.",
+    migrationOoredooModal: {
+      confirmTitle: "التغيير إلى Dima Ooredoo",
+      confirmDescription:
+        "سوف تقوم بالتغيير إلى عرض Dima Ooredoo مجانًا، قد يؤدي ذلك إلى فقدان باقتك الحالية.",
       successTitle: "التغيير",
-      successMessage: "أنت الآن على عرض N'yooz. لمزيد من المعلومات، اطلب *500#."
-    }
+      successMessage:
+        "أنت الآن على عرض Dima Ooredoo. لمزيد من المعلومات، اطلب *500#.",
+    },
+    migrationNyoozModal: {
+      confirmTitle: "التغيير إلى Ooredoo N'yooz",
+      confirmDescription:
+        "سوف تقوم بالتغيير إلى عرض N'yooz مجانًا، قد يؤدي ذلك إلى فقدان باقتك الحالية.",
+      successTitle: "التغيير",
+      successMessage:
+        "أنت الآن على عرض N'yooz. لمزيد من المعلومات، اطلب *500#.",
+    },
   },
 };
-
-
 export default migrationData;

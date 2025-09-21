@@ -1,41 +1,39 @@
-// BoostData.js
 export const boostData = {
   fr: {
     title: "BOOST 500",
-    description: "Booster votre forfait Gold 2000 et bénéficier de 30Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 100 SMS vers les autres réseaux nationaux, le tout selon la validité de votre forfait Gold 2000 en cours.",
-    confirmMessage1000:"25Go + 1000 DA de crédit, le tout suivera la validité de votre forfait en cours.", 
-    confirmMessage1500:"30Go + 3000 da de crédit, le tout suivera la validité de votre forfait en cours.",
-    confirmMessage2000:"30Go + appels illimités vers tous + SMS illimités vers Ooredoo + 100 SMS vers tous, le tout suivant la validité de votre forfait en cours.",
+    description:
+      "Booster votre forfait Gold 2000 et bénéficier de 30Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 100 SMS vers les autres réseaux nationaux, le tout selon la validité de votre forfait Gold 2000 en cours.",
+    confirmDescription:
+      "Pour 500da seulement, vous pouvez booster votre forfait Dima 2000 et bénéficiez d'appels illimités vers tous les réseaux + 50Go et 50 SMS en plus, le tout selon la validité de votre forfait Dima 2000 en cours.",
     price: "500 DA",
     buy: "ACHETER",
     confirmTitle: "BOOST 500",
     confirmBtn: "CONFIRMER",
     cancelBtn: "ANNULER",
     successTitle: "FÉLICITATIONS !",
-    successMessage1000:"",
-    successMessage1500:"",
-    successMessage2000:"",
+    successMessage:
+      "Vous avez reçu des appels illimités vers tous les réseaux + 50Go + 50 SMS vers tous les réseaux nationaux, le tout selon la validité de votre forfait Dima 2000.",
     insufficientTitle: "CRÉDIT INSUFFISANT",
-    insufficientMessage: "Votre crédit est insuffisant pour acheter le Boost 500. Veuillez recharger votre compte.",
+    insufficientMessage:
+      "Votre crédit est insuffisant pour acheter le Boost 500. Veuillez recharger votre compte.",
     ok: "OK",
   },
   ar: {
     title: "BOOST 500",
-    description: "<span class=\"font-rubik\">5Go</span> إنترنت صالحة حتى نهاية دورة الفوترة الخاصة بك",
-    confirmMessage1000:"25Go + 1000 دج، حسب صلاحية باقتك Dima 2000.", 
-    confirmMessage1500:"30Go + 3000 دج، حسب صلاحية باقتك Dima 2000.",
-    confirmMessage2000:"30Go + مكالمات غير محدودة نحو كل الشبكات + رسائل نصية غير محدودة نحو Ooredoo + 100 رسالة نصية نحو كل الشبكات، حسب صلاحية باقتك Dima 2000.",
+    description:
+      "مزايا إضافية في اشتراكك Gold 2000 وهي: 30Go إنترنت + مكالمات غير محدودة نحو كل الشبكات الوطنية + رسائل قصيرة غير محدودة نحو Ooredoo و 100 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح حسب صلاحية اشتراكك Gold 2000 الحالي.",
+    confirmDescription:
+      "بـ 500 دج فقط، بإمكانك الحصول على مزايا إضافية في اشتراكك Dima 2000 والاستفادة من مكالمات غير محدودة نحو كل الشبكات + 50Go و50 رسالة قصيرة إضافية، الكل صالح حسب صلاحية اشتراكك Dima 2000.",
     price: "500 دج",
     buy: "شراء",
     confirmTitle: "BOOST 500",
     confirmBtn: "تأكيد",
     cancelBtn: "إلغاء",
-    successTitle: "مبروك !",
-    successMessage1000: "تمت إضافـة مكالمات غير محدودة نحو كل الشبكات + 25Go + 1000 دج، حسب صلاحية باقتك Dima 2000.",
-    successMessage1500: "تمت إضافـة مكالمات غير محدودة نحو كل الشبكات + 30Go + 3000 دج، حسب صلاحية باقتك Dima 2000.",
-    successMessage2000: "تمت إضافـة مكالمات غير محدودة نحو كل الشبكات + 30Go + رسائل نصية غير محدودة نحو Ooredoo + 100 رسالة نصية نحو كل الشبكات، حسب صلاحية باقتك Dima 2000.",
+    successTitle: "هنيئًا!",
+    successMessage:
+      " لقد حصلت على مكالمات غير محدودة نحو كل الشبكات + 50Go و50 رسالة قصيرة ، الكل صالح حسب صلاحية اشتراكك Dima 2000.",
     insufficientTitle: "رصيد غير كافٍ",
-    insufficientMessage: "رصيدك غير كافٍ لشراء Boost 500. يرجى شحن رصيدك.",
+    insufficientMessage: "رصيدك غير كافٍ لشراء Boost 500. يرجى تعبئة رصيدك.",
     ok: "تم",
   },
 };
