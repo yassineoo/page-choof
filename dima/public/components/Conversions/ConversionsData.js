@@ -13,7 +13,7 @@ const conversionsData = {
     successTitle: "Félicitations !",
     creditSuccessMessage: "Vous avez maintenant 2500 DA de crédit.",
     successDescription:
-      "Vous avez reçu {planName} qui vous donne {planDescription}, le tout valable {duration}.",
+      "Vous venez de recevoir le forfait {planName} qui vous offre {planDescription}, le tout valable {duration}.",
     convertBtn: "CONVERTIR",
     alreadyOnPlanTitle: "Conversions",
     alreadyOnPlanMessage: "Vous êtes déjà sur la Dima 2500.",
@@ -25,50 +25,50 @@ const conversionsData = {
       {
         name: "DIMA 2500",
         description:
-          "Appels illimités vers tous les réseaux nationaux + 100Go internet + 250 SMS vers tous les réseaux + ANAZIK, ANAFLIX, SHAHID et Facebook gratuits.",
+          "Appels illimités vers tous les réseaux nationaux + 100Go internet + 250 SMS vers tous les réseaux + ANAZIK, ANAFLIX, SHAHID et Facebook gratuits",
         price: 2500,
         duration: "30 jours",
-        priceUnit: "da/",
+        priceUnit: "Da/",
       },
       {
         name: "DIMA 2000",
         description:
-          "50Go internet + 300 min et 200 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAZIK, ANAFLIX et Facebook gratuits.",
+          "50Go internet + 300 min et 200 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAZIK, ANAFLIX et Facebook gratuits",
         price: 2000,
         duration: "30 jours",
-        priceUnit: "da/",
+        priceUnit: "Da/",
       },
       {
         name: "DIMA 1500",
         description:
-          "30Go internet + 150 min et 150 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAFLIX et Facebook gratuits.",
+          "30Go internet + 150 min et 150 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAFLIX et Facebook gratuits",
         price: 1500,
         duration: "30 jours",
-        priceUnit: "da/",
+        priceUnit: "Da/",
       },
       {
         name: "DIMA 1200",
         description:
-          "8Go internet + 100 min et 120 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAZIK et Facebook gratuits.",
+          "8Go internet + 100 min et 120 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAZIK et Facebook gratuits",
         price: 1200,
         duration: "30 jours",
-        priceUnit: "da/",
+        priceUnit: "Da/",
       },
       {
         name: "DIMA 500",
         description:
-          "3Go internet + 100 min et 50 SMS vers tous les réseaux + appels illimités vers Ooredoo.",
+          "3Go internet + 100 min et 50 SMS vers tous les réseaux + appels illimités vers Ooredoo",
         price: 500,
         duration: "15 jours",
-        priceUnit: "da/",
+        priceUnit: "Da/",
       },
       {
         name: "DIMA 500 HADRA",
         description:
-          "100 min et 100 SMS vers tous les réseaux nationaux + appels illimités vers Ooredoo.",
+          "100 min et 100 SMS vers tous les réseaux nationaux + appels illimités vers Ooredoo",
         price: 500,
         duration: "30 jours",
-        priceUnit: "da/",
+        priceUnit: "Da/",
       },
     ],
   },
