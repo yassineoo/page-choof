@@ -1,12 +1,12 @@
+import { offerData } from "./OfferData.js";
+
 export const generateHeaderHTML = (
   language = "fr",
   userData = {},
   theme = "light"
 ) => {
+  const texts = offerData.text[language] || offerData.text.fr;
   const isAuto = userData.autoRenewal;
-  const helpText = language === "ar" ? "مساعدة" : "Aide";
-  const currentLanguage = language === "ar" ? "العربية" : "Français";
-  const renewalLabel = language === "ar" ? "طريقة التجديد" : "Renouvellement :";
 
   const getOfferDetails = (offer) => {
     if (!offer || typeof offer !== "string")
@@ -21,8 +21,8 @@ export const generateHeaderHTML = (
   const offerDetails = getOfferDetails(userData.offer);
 
   const infoCardDesc = isAuto
-    ? `Vous êtes actuellement sur le mode "Renouvellement Automatique" de ${offerDetails.name}. Vos rechargements de ${offerDetails.price} DA et plus vous donneront les avantages de ${offerDetails.name}. Si vous souhaitez recevoir du crédit au prochain rechargement ou changer de forfait, cliquez sur la flèche.`
-    : `Votre renouvellement automatique est désactivé, vous receverez du crédit au prochain rechargements.`;
+    ? texts.renewalInfoAuto(offerDetails.name, offerDetails.price)
+    : texts.renewalInfoManual;
 
   const commonTextStyle = `
     font-family: 'Rubik', sans-serif;
@@ -50,6 +50,15 @@ export const generateHeaderHTML = (
     line-height: 1.25rem;
     text-align: justify;
     color: #575757;
+  `;
+
+  const infoCardDescStyleDark = `
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: justify;
+    color: #d1d5db;
   `;
 
   const getOfferText = (offer) => {
@@ -107,7 +116,7 @@ export const generateHeaderHTML = (
   );
 
   return `
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=DM+Sans:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Noto+Kufi+Arabic:wght@400;500&display=swap" rel="stylesheet">
 <style>
   .font-noto-kufi-arabic { font-family: 'Noto Kufi Arabic', sans-serif; }
   .font-rubik { font-family: 'Rubik', sans-serif; }
@@ -130,7 +139,7 @@ export const generateHeaderHTML = (
   }
 </style>
 
-<header class="bg-white dark:bg-[#171717] border-b border-gray-200 dark:border-white z-30 relative w-full">
+<header class="bg-white dark:bg-[#171717] border-b border-gray-200 dark:border-gray-700 z-30 relative w-full">
   <div class="w-[95vw] mx-auto px-4">
     <div class="flex items-center justify-between h-16 md:h-20">
       <div class="flex items-center space-x-3">
@@ -157,26 +166,29 @@ export const generateHeaderHTML = (
           </button>
         </div>
         
-        <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank" class="flex items-center h-[40px] lg:h-[48px] px-4 lg:px-6 text-dark-text dark:text-white rounded-lg transition-all duration-300">
+        <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank" class="flex items-center h-[40px] lg:h-[48px] px-4 lg:px-6 text-black dark:text-white rounded-lg transition-all duration-300">
             <span id="help-text" class="${
               language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-            } text-sm lg:text-base mx-2">${helpText}</span>
+            } text-sm lg:text-base mx-2">${texts.helpText}</span>
             <img src="./assets/images/header/help.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/help-white.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 hidden dark:inline transition-opacity duration-300" />
         </a>
         
         <div class="relative h-[40px] lg:h-[48px]" id="language-desktop">
-            <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] hover:bg-gray-50 transition-all duration-300 text-black">
+            <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white dark:bg-gray-800 border border-[#E4E4E7] dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 text-black dark:text-white">
               <span id="current-language" class="${
                 language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-              } text-sm lg:text-base font-medium">${currentLanguage}</span>
-              <img src="./assets/images/header/chevron-down.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2 transition-all duration-300" />
+              } text-sm lg:text-base font-medium">${
+    texts.currentLanguage
+  }</span>
+              <img src="./assets/images/header/chevron-down.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2 dark:hidden" />
+              <img src="./assets/images/header/chevron-down-white.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2 hidden dark:inline" />
             </button>
-            <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white rounded-lg shadow-lg z-50 border border-gray-200 overflow-hidden transition-all duration-300">
-              <a href="#" class="language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 text-black transition-all duration-300 ${
+            <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300">
+              <a href="#" class="language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-black dark:text-white transition-all duration-300 ${
                 language === "fr" ? "font-semibold text-ooredoo-red" : ""
               }">Français</a>
-              <a href="#" class="font-noto-kufi-arabic language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 text-black transition-all duration-300 ${
+              <a href="#" class="font-noto-kufi-arabic language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-black dark:text-white transition-all duration-300 ${
                 language === "ar" ? "font-semibold text-ooredoo-red" : ""
               }">العربية</a>
             </div>
@@ -191,15 +203,15 @@ export const generateHeaderHTML = (
       </button>
     </div>
     
-    <div id="mobile-menu" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-white hidden z-40">
-      <div class="flex flex-col space-y-4 pt-4 px-4">
+    <div id="mobile-menu" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-gray-800 md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40">
+      <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
-          <button id="theme-mobile-switcher" class="flex items-center w-full">
+          <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white">
             <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden" id="mobile-sun-icon" />
             <img src="./assets/images/header/sun-white.svg" class="w-5 h-5 hidden dark:inline" id="mobile-sun-icon-dark" />
-            <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:hidden" id="mobile-moon-icon" />
-            <img src="./assets/images/header/moon.svg" class="w-5 h-5 hidden dark:inline" id="mobile-moon-icon-dark" />
-            <span class="ml-2">Changer de mode</span>
+            <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
+            <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
+            <span class="ml-2">${texts.changeModeLabel}</span>
           </button>
         </div>
         
@@ -209,7 +221,9 @@ export const generateHeaderHTML = (
             <span id="help-text-mobile" class="${
               language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
             } text-sm text-black dark:text-white">
-              <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${helpText}</a>
+              <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${
+                texts.helpText
+              }</a>
             </span>
         </div>
         
@@ -217,10 +231,10 @@ export const generateHeaderHTML = (
           <img src="./assets/images/header/language.svg" class="w-5 h-5 dark:hidden" />
           <img src="./assets/images/header/language-white.svg" class="w-5 h-5 hidden dark:inline" />
           <div class="flex gap-2">
-            <button type="button" class="language-option px-3 py-1 rounded-lg ${
+            <button type="button" class="language-option px-3 py-1 rounded-lg text-black dark:text-white ${
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
             }" data-lang="fr">Français</button>
-            <button type="button" class="language-option px-3 py-1 rounded-lg ${
+            <button type="button" class="language-option px-3 py-1 rounded-lg text-black dark:text-white ${
               language === "ar" ? "font-semibold text-ooredoo-red" : ""
             } font-noto-kufi-arabic" data-lang="ar">العربية</button>
           </div>
@@ -246,9 +260,9 @@ export const generateHeaderHTML = (
           </div>
           
           <div class="flex items-center gap-2">
-            <span style="${commonTextStyle}">${renewalLabel}</span>
+            <span style="${commonTextStyle}">${texts.renewalLabel}</span>
             <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
-<button 
+              <button 
                 id="renewal-auto"
                 class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300"
                 style="font-family:'Rubik',sans-serif;font-weight:500;font-size:0.95rem;${
@@ -259,7 +273,7 @@ export const generateHeaderHTML = (
                 <img src="./assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${
                   isAuto ? "" : "hidden"
                 }" />
-                Auto
+                ${texts.autoLabel}
               </button>
               <button 
                 id="renewal-manual"
@@ -272,15 +286,16 @@ export const generateHeaderHTML = (
                 <img src="./assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${
                   !isAuto ? "" : "hidden"
                 }" />
-                Manuel
+                ${texts.manualLabel}
               </button>
-
             </div>
             
             <button id="auto-renewal-info" class="w-6 h-6 flex items-center justify-center rounded-full text-ooredoo-red relative">
               <img src="./assets/images/header/Info.svg" class="w-6 h-6" alt="Info" />
-              <div id="auto-renewal-card" class="absolute bg-white text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
-                <div style="${infoCardDescStyle}">
+              <div id="auto-renewal-card" class="absolute bg-white dark:bg-gray-800 text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 dark:border-gray-600 hidden z-50">
+                <div style="${
+                  theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
+                }">
                   ${infoCardDesc}
                 </div>
               </div>

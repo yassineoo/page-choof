@@ -58,10 +58,10 @@ class Modal {
     onConfirm,
   }) {
     const contentHTML = `
-      <div class="bg-white dark:bg-[#2C2C2C] dark:border dark:border-white rounded-lg shadow-xl p-6 md:p-8 text-center relative">
+      <div class="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-xl p-6 md:p-8 text-center relative">
         <button id="modal-close-btn" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-ooredoo-red text-white flex items-center justify-center text-2xl font-bold">&times;</button>
         <h2 class="text-2xl font-bold text-ooredoo-red mb-4">${title}</h2>
-        <p class="text-gray-600 dark:text-white mb-6">${text}</p>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">${text}</p>
         <div class="flex justify-center gap-4">
           <button id="modal-cancel-btn" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${cancelText}</button>
           <button id="modal-confirm-btn" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${confirmText}</button>
@@ -79,10 +79,10 @@ class Modal {
 
   showAlert({ title, text, buttonText = "OK" }) {
     const contentHTML = `
-      <div class="bg-white dark:bg-[#2C2C2C] dark:border dark:border-white rounded-lg shadow-xl p-6 md:p-8 text-center relative">
+      <div class="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-xl p-6 md:p-8 text-center relative">
         <button id="modal-close-btn" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-ooredoo-red text-white flex items-center justify-center text-2xl font-bold">&times;</button>
         <h2 class="text-2xl font-bold text-ooredoo-red mb-4">${title}</h2>
-        <p class="text-gray-600 dark:text-white mb-6">${text}</p>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">${text}</p>
         <div class="flex justify-center">
           <button id="modal-ok-btn" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${buttonText}</button>
         </div>
@@ -96,10 +96,6 @@ class Modal {
   showCustom(contentHTML) {
     this.open(contentHTML);
   }
-
-  showCustom(contentHTML) {
-    this.open(contentHTML);
-  }
 }
 
 export default class Header {
@@ -108,10 +104,8 @@ export default class Header {
     this.mobileMenuOpen = false;
     this.theme = this.detectInitialTheme();
     this.modalSliderInstance = null;
-
     const storedRenewal = localStorage.getItem("autoRenewal");
     const storedOffer = localStorage.getItem("selectedOffer");
-
     this.userData = {
       phone: "0509876543",
       offer: storedOffer || "Offre Dima 2500",
@@ -170,6 +164,7 @@ export default class Header {
     this.updateDesktopThemeSwitcher();
     this.updateMobileThemeIcons();
     this.updateMobileMenuIcons();
+    this.updateRenewalUI(); // Ajout important
   }
 
   initThemeSwitcher() {
@@ -368,16 +363,23 @@ export default class Header {
 
   updateRenewalUI() {
     const isAuto = this.userData.autoRenewal;
+    const isDark = this.theme === "dark";
     const autoBtn = document.getElementById("renewal-auto");
     const manualBtn = document.getElementById("renewal-manual");
+
+    if (autoBtn && manualBtn) {
+      const activeStyle = { background: "#E30613", color: "#575757" };
+      const inactiveStyle = {
+        background: "transparent",
+        color: "#575757",
+      };
+
+      Object.assign(autoBtn.style, isAuto ? activeStyle : inactiveStyle);
+      Object.assign(manualBtn.style, !isAuto ? activeStyle : inactiveStyle);
+    }
+
     const autoIcon = autoBtn?.querySelector("img");
     const manualIcon = manualBtn?.querySelector("img");
-    if (autoBtn && manualBtn) {
-      autoBtn.style.background = isAuto ? "#E30613" : "#fff";
-      autoBtn.style.color = isAuto ? "#fff" : "#2A2A2A";
-      manualBtn.style.background = !isAuto ? "#E30613" : "#fff";
-      manualBtn.style.color = !isAuto ? "#fff" : "#2A2A2A";
-    }
     if (autoIcon && manualIcon) {
       autoIcon.classList.toggle("hidden", !isAuto);
       manualIcon.classList.toggle("hidden", isAuto);
@@ -386,6 +388,9 @@ export default class Header {
 
   handleManualRenewalClick() {
     if (!this.userData.autoRenewal) return;
+
+    const texts = offerData.text[this.currentLanguage];
+
     const onConfirm = () => {
       this.modal.close();
       setTimeout(() => {
@@ -393,34 +398,31 @@ export default class Header {
         localStorage.setItem("autoRenewal", "false");
         this.updateRenewalUI();
         this.modal.showAlert({
-          title: "FÉLICITATIONS !",
-          text: 'Vous êtes sur le mode "Manuel".',
+          title: texts.manualSuccessTitle,
+          text: texts.manualSuccessDesc,
         });
       }, 350);
     };
 
-    const cancelText = this.currentLanguage === "ar" ? "إلغاء" : "ANNULER";
-    const confirmText = this.currentLanguage === "ar" ? "تأكيد" : "CONFIRMER";
-
     const customContent = `
-      <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] dark:border dark:border-gray-600 rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
+      <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-gray-800 dark:border dark:border-gray-600 rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
         <button id="modal-close-btn" class="absolute top-[15px] right-[15px] w-[34px] h-[34px] bg-ooredoo-red rounded-full flex items-center justify-center hover:bg-red-700 transition-colors z-10">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="w-full text-center pt-8 md:pt-0">
           <h1 class="text-ooredoo-red font-rubik text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
-            MODE DE RECHARGEMENT
+            ${texts.manualModalTitle}
           </h1>
-          <p class="text-black dark:text-white font-rubik text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">
-            Vous allez activer votre mode de rechargement en "Manuel", vous receverez du crédit non activé à chaque rechargement.
+          <p class="text-black dark:text-gray-300 font-rubik text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">
+            ${texts.manualModalDesc}
           </p>
         </div>
         <div class="flex justify-center items-center gap-[13px] flex-col sm:flex-row w-full max-w-md px-4 pb-4 md:pb-0">
           <button id="modal-cancel-btn" class="flex w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-rubik font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
-            ${cancelText}
+            ${texts.cancelBtn}
           </button>
           <button id="modal-confirm-btn" class="flex w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white font-rubik font-semibold uppercase hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
-            ${confirmText}
+            ${texts.confirmBtn}
           </button>
         </div>
       </div>
@@ -437,29 +439,27 @@ export default class Header {
   handleAutoRenewalClick() {
     if (this.userData.autoRenewal) return;
 
-    const cancelButtonText =
-      this.currentLanguage === "ar" ? "إلغاء" : "ANNULER";
+    const texts = offerData.text[this.currentLanguage];
 
     const customContent = `
-      <div class="relative w-full max-w-5xl bg-white dark:bg-[#2C2C2C] dark:border dark:border-white rounded-lg flex flex-col overflow-hidden">
+      <div class="relative w-full max-w-5xl bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg flex flex-col overflow-hidden">
         <button id="modal-close-btn" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-ooredoo-red text-white flex items-center justify-center text-2xl font-bold z-20">&times;</button>
-        
         <div class="p-6 md:p-8 text-center">
-          <h2 class="text-2xl font-bold text-ooredoo-red mb-2">MODE DE RECHARGEMENT</h2>
-          <p class="text-gray-600 dark:text-white mb-4 px-0 md:px-[30px]">
-            Vous allez modifier votre mode de rechargement en "Automatique" :
+          <h2 class="text-2xl font-bold text-ooredoo-red mb-2">${texts.autoModalTitle}</h2>
+          <p class="text-gray-600 dark:text-gray-300 mb-4 px-0 md:px-[30px]">
+            ${texts.autoModalDesc}
           </p>
           <div class="mt-6">
-            <button id="modal-cancel-btn" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${cancelButtonText}</button>
+            <button id="modal-cancel-btn" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${texts.cancelBtn}</button>
           </div>
         </div>
-
-        <div class="border-b border-gray-200 dark:border-white"></div>
-
-        <div class="bg-[#fff] dark:bg-[#2C2C2C] p-6 md:p-8">
-            <div id="modal-slider-container"></div>
+        <div class="border-b border-gray-200 dark:border-gray-700"></div>
+        <div class="bg-[#F8F8F8] dark:bg-gray-900 p-6 md:p-8">
+          <div id="modal-slider-container"></div>
         </div>
       </div>`;
+
+    this.modal.showCustom(customContent);
 
     this.modal.showCustom(customContent);
 
@@ -471,8 +471,9 @@ export default class Header {
         container: sliderContainer,
         slides: currentOffers,
         lang: this.currentLanguage,
+        texts: texts,
         onSelect: (offer) => {
-          this.showOfferConfirmation(offer);
+          this.showOfferConfirmation(offer, texts);
         },
       });
     }
@@ -486,7 +487,7 @@ export default class Header {
     document.getElementById("modal-cancel-btn").onclick = cleanupAndClose;
   }
 
-  showOfferConfirmation(offer) {
+  showOfferConfirmation(offer, modalTexts) {
     this.modal.showConfirmation({
       title: offer.planName,
       text: offer.description,
@@ -497,14 +498,12 @@ export default class Header {
           this.userData.offer = `Offre ${offer.planName}`;
           localStorage.setItem("autoRenewal", "true");
           localStorage.setItem("selectedOffer", this.userData.offer);
-
           this.render();
           setTimeout(() => {
             this.setupEventListeners();
-
             this.modal.showAlert({
-              title: "FÉLICITATIONS !",
-              text: `Vos prochains rechargements de ${offer.price} DA et plus vous donneront les avantages de ${offer.planName}, après expiration de votre forfait.`,
+              title: modalTexts.autoSuccessTitle,
+              text: modalTexts.autoSuccessDesc(offer.price, offer.planName),
             });
           }, 50);
         }, 350);
