@@ -13,6 +13,7 @@ const conversionsData = {
     successTitle: "Félicitations !",
     successDescription:
       "Vous venez de recevoir le forfait {planName} qui vous offre {planDescription}.",
+    creditSuccessMessage: "Vous avez maintenant 2500 DA de crédit.",
     convertBtn: "CONVERTIR",
     plans: [
       {
@@ -78,6 +79,7 @@ const conversionsData = {
     successTitle: "مبروك!",
     successDescription:
       "لتو received الباقة {planName} التي تقدم لك {planDescription}.",
+    creditSuccessMessage: "لديك الآن 2500 دج رصيد.",
     convertBtn: "تحويل",
 
     plans: [

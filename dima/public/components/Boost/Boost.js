@@ -30,7 +30,7 @@ class BoostComponent {
   getStylesheet() {
     return `
     .boost-section {
-      padding: 3rem 1rem; /* Responsive padding */
+      padding: 70px 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -134,7 +134,6 @@ class BoostComponent {
       to { opacity: 0; transform: scale(0.95); }
     }
     
-    /* Simplified Media Query */
     @media (max-width: 640px) {
       .boost-section {
         padding: 2rem 1rem;

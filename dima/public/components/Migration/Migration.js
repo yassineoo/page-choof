@@ -39,6 +39,7 @@ class Migration {
       --card-radius: 22px;
       --card-min-height: 300px;
     }
+    
     .dark .migration-section {
       background: #2c2c2c;
     }
@@ -246,9 +247,10 @@ class Migration {
     }
     .migration-section {
       width: 100%;
-      background: #ffffffff;
-      padding : 32px 16px;
+      padding : 70px 16px;
+      background: #fff;
     }
+      
     .dark .migration-section {
       background: #2c2c2c;
     }
@@ -531,7 +533,7 @@ class Migration {
     <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-      <section class="w-full bg-[#141B4D] dark:bg-[#2c2c2c] migration-section">
+      <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] migration-section">
         <div>
           <div style={width: 100%}>
             <div class="migration-card-shadow migration-hover-lift">
