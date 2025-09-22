@@ -11,6 +11,7 @@ export default class Header {
       credit: "2000 DA",
       autoRenewal: true,
       charge: "CHARGER",
+      mode: "mactivia",
     };
     this.isTransitioning = false;
     this.boundOnClick = null;
@@ -389,11 +390,13 @@ export default class Header {
       okBtn: "OK",
       offers: {
         mactivia: {
-          confirmDesc: "Vous allez modifier votre mode de rechargement et vous recevrez désormais votre Gold \"M'activia\" à chaque rechargement de 1000 DA et plus.",
+          confirmDesc:
+            'Vous allez modifier votre mode de rechargement et vous recevrez désormais votre Gold "M\'activia" à chaque rechargement de 1000 DA et plus.',
           felicitationDesc: 'Vous êtes sur le mode "Mactivia"',
         },
         credit: {
-          confirmDesc: "Vous allez modifier votre mode de rechargement et vous recevrez désormais du crédit non activé à chaque rechargement de 1000 DA et plus.",
+          confirmDesc:
+            "Vous allez modifier votre mode de rechargement et vous recevrez désormais du crédit non activé à chaque rechargement de 1000 DA et plus.",
           felicitationDesc: 'Vous êtes sur le mode "Crédit"',
         },
       },
@@ -406,11 +409,13 @@ export default class Header {
       okBtn: "تمّ",
       offers: {
         mactivia: {
-          confirmDesc: "ستقوم بتغيير وضع التعبئة وستحصل من الآن فصاعدًا على اشتراكك Gold M'activia عند كل تعبئة بقيمة 1000 دج وأكثر.",
+          confirmDesc:
+            "ستقوم بتغيير وضع التعبئة وستحصل من الآن فصاعدًا على اشتراكك Gold M'activia عند كل تعبئة بقيمة 1000 دج وأكثر.",
           felicitationDesc: 'أنت الآن في وضع "ماكتيفيا"',
         },
         credit: {
-          confirmDesc: "ستقوم بتغيير وضع التعبئة وستحصل من الآن فصاعدًا على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر.",
+          confirmDesc:
+            "ستقوم بتغيير وضع التعبئة وستحصل من الآن فصاعدًا على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر.",
           felicitationDesc: 'أنت الآن في وضع "الرصيد"',
         },
       },
@@ -435,7 +440,7 @@ export default class Header {
       "fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4";
 
     modal.innerHTML = `
-      <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-gray-800 dark:border dark:border-gray-600 rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
+      <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] dark:border dark:border-gray-600 rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
         
         <button id="modal-close-btn" class="absolute top-[15px] right-[15px] w-[34px] h-[34px] bg-ooredoo-red rounded-full flex items-center justify-center hover:bg-red-700 transition-colors z-10">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -458,12 +463,29 @@ export default class Header {
 
     document.body.appendChild(modal);
 
-    modal.querySelector("#modal-close-btn").addEventListener("click", () => modal.remove());
+    // Close button
+    modal.querySelector("#modal-close-btn").addEventListener("click", () =>
+      modal.remove()
+    );
+
+    // Close on outside click
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.remove();
+      }
+    });
+
     return modal;
   };
 
-  const openConfirmationModal = (selectedBtn, otherBtn, confirmDesc, felicitationDesc) => {
-    pendingSelection = { selectedBtn, otherBtn, felicitationDesc };
+  const openConfirmationModal = (
+    selectedBtn,
+    otherBtn,
+    confirmDesc,
+    felicitationDesc,
+    modeKey
+  ) => {
+    pendingSelection = { selectedBtn, otherBtn, felicitationDesc, modeKey };
 
     const buttonsHtml = `
       <div class="flex justify-center items-center gap-[13px] flex-col sm:flex-row w-full max-w-md px-4 pb-4 md:pb-0">
@@ -476,20 +498,31 @@ export default class Header {
       </div>
     `;
 
-    const modal = createModal(texts.confirmationTitle, confirmDesc, buttonsHtml);
+    const modal = createModal(
+      texts.confirmationTitle,
+      confirmDesc,
+      buttonsHtml
+    );
 
-    modal.querySelector("#modal-cancel-btn").addEventListener("click", () => modal.remove());
+    modal.querySelector("#modal-cancel-btn").addEventListener("click", () =>
+      modal.remove()
+    );
 
     modal.querySelector("#modal-confirm-btn").addEventListener("click", () => {
       modal.remove();
 
       if (pendingSelection) {
-        const { selectedBtn, otherBtn } = pendingSelection;
+        const { selectedBtn, otherBtn, modeKey } = pendingSelection;
+
+        // Update button styles
         selectedBtn.classList.add("bg-ooredoo-red", "text-white");
         selectedBtn.classList.remove("bg-white", "text-black");
 
         otherBtn.classList.remove("bg-ooredoo-red", "text-white");
         otherBtn.classList.add("bg-white", "text-black");
+
+        // ✅ Update userData.mode
+        this.userData.mode = modeKey;
       }
 
       openFelicitationModal(pendingSelection.felicitationDesc);
@@ -505,7 +538,11 @@ export default class Header {
       </div>
     `;
 
-    const modal = createModal(texts.felicitationTitle, felicitationDesc, buttonsHtml);
+    const modal = createModal(
+      texts.felicitationTitle,
+      felicitationDesc,
+      buttonsHtml
+    );
 
     modal.querySelector("#modal-ok-btn").addEventListener("click", () => {
       modal.remove();
@@ -519,7 +556,8 @@ export default class Header {
       mactiviaBtn,
       creditBtn,
       texts.offers.mactivia.confirmDesc,
-      texts.offers.mactivia.felicitationDesc
+      texts.offers.mactivia.felicitationDesc,
+      "mactivia"
     )
   );
 
@@ -528,10 +566,12 @@ export default class Header {
       creditBtn,
       mactiviaBtn,
       texts.offers.credit.confirmDesc,
-      texts.offers.credit.felicitationDesc
+      texts.offers.credit.felicitationDesc,
+      "credit"
     )
   );
 }
+
 
 
 
