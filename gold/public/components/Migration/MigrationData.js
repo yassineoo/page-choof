@@ -67,7 +67,7 @@ export const migrationData = {
         "سوف تقوم بالتغيير إلى عرض OOREDOO Dima مجانًا، قد يؤدي ذلك إلى فقدان باقتك الحالية.",
       successTitle: "التغيير",
       successMessage:
-        "أنت الآن على عرض OOREDOO Dima. لمزيد من المعلومات، اطلب *500#.",
+        "أنت الآن على عرض OOREDOO Dima. لمزيد من المعلومات، اطلب <span>*500#</span>.",
     },
     migrationOoredooModal: {
       confirmTitle: "التغيير إلى Dima Ooredoo",
@@ -75,7 +75,7 @@ export const migrationData = {
         "سوف تقوم بالتغيير إلى عرض Dima Ooredoo مجانًا، قد يؤدي ذلك إلى فقدان باقتك الحالية.",
       successTitle: "التغيير",
       successMessage:
-        "أنت الآن على عرض Dima Ooredoo. لمزيد من المعلومات، اطلب *500#.",
+        "أنت الآن على عرض Dima Ooredoo. لمزيد من المعلومات، اطلب <span dir='ltr'>*500#</span>.",
     },
     migrationNyoozModal: {
       confirmTitle: "التغيير إلى Ooredoo N'yooz",
@@ -83,7 +83,7 @@ export const migrationData = {
         "سوف تقوم بالتغيير إلى عرض N'yooz مجانًا، قد يؤدي ذلك إلى فقدان باقتك الحالية.",
       successTitle: "التغيير",
       successMessage:
-        "أنت الآن على عرض N'yooz. لمزيد من المعلومات، اطلب *500#.",
+        "أنت الآن على عرض N'yooz. لمزيد من المعلومات، اطلب <span dir='ltr'>*500#</span>.",
     },
   },
 };

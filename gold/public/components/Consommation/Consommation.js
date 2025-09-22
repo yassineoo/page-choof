@@ -384,12 +384,12 @@ export default class Consommation {
 
     return `
       <div class="w-full flex flex-col ${bgClass} ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
-        <div class="bg-ooredoo-red w-full px-6 pt-2 pb-14 -my-7"> 
+        <div class="bg-ooredoo-red w-full mt-[-2px] px-6 pt-2 pb-14 -my-7"> 
           <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center py-4" style="font-weight: 500; font-size: 24px;">
             ${data.title}
           </h1>
         </div>
-        <div class="w-full px-4 -mt-7">
+        <div class="w-full px-4 -mt-7 bg-[#F8F8F8]">
           <div class="cards-container flex flex-col gap-6 max-w-full mx-auto">
             ${this.renderMobileCard(data.cards[0], 0, lang, theme, true, this.isCardExpanded(0))}
             ${

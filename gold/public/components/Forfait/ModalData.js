@@ -21,7 +21,7 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait GOLD 2500. Veuillez recharger votre compte.`,
     },
     "Gold 4000": {
-      confirm: `Gold 4000 = 200Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 200 SMS vers les autres réseaux nationaux, le tout valable 4 semaines.`,
+      confirm: `Gold 4000 = 200Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 200 SMS vers les autres réseaux nationaux, le tout valable 30 jours.`,
       success: `Félicitations ! Vous venez de recevoir le forfait Gold 4000 qui vous offre 200Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 200 SMS vers les autres réseaux nationaux, le tout valable 4 semaines.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait Gold 4000. Veuillez recharger votre compte.`,
     },
@@ -75,7 +75,7 @@ export default {
   ar: {
     "Gold 1000": {
       confirm: `Gold 1000 يمنحك 15Go و2000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح لمدة 30 يوم.`,
-      success: `هنيئًا! لقد حصلت على 15Go و2000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح لمدة 30 يوم30 يوم`,
+      success: `هنيئًا! لقد حصلت على 15Go و2000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح لمدة 30 يوم`,
       insufficient: `رصيدك غير كافٍ لشراء اشتراك GOLD 1000. يُرجى تعبئة حسابك`,
     },
     "Gold 1500": {
@@ -94,7 +94,7 @@ export default {
       insufficient:`رصيدك غير كافٍ لشراء اشتراك GOLD 2500. يرجى تعبئة حسابك. `,
     },
     "Gold 4000": {
-      confirm:`Gold 4000 = 200Go + مكالمات غير محدودة نحو كل الشبكات + رسائل قصيرة غير محدودة نحو Ooredoo + 200 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح لمدة 4 أسابيع.`,
+      confirm:`Gold 4000 = 200Go + مكالمات غير محدودة نحو كل الشبكات + رسائل قصيرة غير محدودة نحو Ooredoo + 200 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح لمدة 30 يوم.`,
       success:`هنيئًا! لقد حصلت على الاشتراك Gold 4000 الذي يمنحك 200Go + مكالمات غير محدودة نحو كل الشبكات + رسائل قصيرة غير محدودة نحو Ooredoo + 200 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح لمدة 4 أسابيع.`,
       insufficient:`رصيدك غير كافٍ لشراء اشتراك GOLD 4000. يرجى تعبئة حسابك. `,
     },
