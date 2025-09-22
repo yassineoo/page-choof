@@ -389,80 +389,80 @@ export default class Header {
     }
   }
 
-// REPLACE: toggleMobileMenu
-toggleMobileMenu() {
-  this.mobileMenuOpen = !this.mobileMenuOpen;
-  const mobileMenu = document.getElementById("mobile-menu");
-  const menuBtn = document.getElementById("mobile-menu-btn");
-  if (mobileMenu && menuBtn) {
-    mobileMenu.style.willChange = "transform, opacity";
-    if (this.mobileMenuOpen) {
-      mobileMenu.classList.remove("hidden");
-      requestAnimationFrame(() => {
-        mobileMenu.style.transform = "translateY(0)";
-        mobileMenu.style.opacity = "1";
-      });
-      document.body.style.overflow = "hidden";
-      mobileMenu.setAttribute("aria-hidden", "false");
-      menuBtn.setAttribute("aria-expanded", "true");
-    } else {
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    if (mobileMenu && menuBtn) {
+      mobileMenu.style.willChange = "transform, opacity";
+      if (this.mobileMenuOpen) {
+        mobileMenu.classList.remove("hidden");
+        requestAnimationFrame(() => {
+          mobileMenu.style.transform = "translateY(0)";
+          mobileMenu.style.opacity = "1";
+        });
+        document.body.style.overflow = "hidden";
+        mobileMenu.setAttribute("aria-hidden", "false");
+        menuBtn.setAttribute("aria-expanded", "true");
+      } else {
+        mobileMenu.style.transform = "translateY(-10px)";
+        mobileMenu.style.opacity = "0";
+        setTimeout(() => {
+          mobileMenu.classList.add("hidden");
+        }, 300);
+        document.body.style.overflow = "";
+        mobileMenu.setAttribute("aria-hidden", "true");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    }
+    this.updateMobileMenuIcons();
+  }
+
+  closeMobileMenu() {
+    if (!this.mobileMenuOpen) return;
+    this.mobileMenuOpen = false;
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    if (mobileMenu) {
       mobileMenu.style.transform = "translateY(-10px)";
       mobileMenu.style.opacity = "0";
       setTimeout(() => {
         mobileMenu.classList.add("hidden");
       }, 300);
-      document.body.style.overflow = "";
       mobileMenu.setAttribute("aria-hidden", "true");
+    }
+    if (menuBtn) {
       menuBtn.setAttribute("aria-expanded", "false");
     }
+    document.body.style.overflow = "";
+    this.updateMobileMenuIcons();
   }
-  this.updateMobileMenuIcons();
-}
 
-
-// REPLACE: closeMobileMenu
-closeMobileMenu() {
-  if (!this.mobileMenuOpen) return;
-  this.mobileMenuOpen = false;
-  const mobileMenu = document.getElementById("mobile-menu");
-  const menuBtn = document.getElementById("mobile-menu-btn");
-  if (mobileMenu) {
-    mobileMenu.style.transform = "translateY(-10px)";
-    mobileMenu.style.opacity = "0";
-    setTimeout(() => {
-      mobileMenu.classList.add("hidden");
-    }, 300);
-    mobileMenu.setAttribute("aria-hidden", "true");
+  updateMobileMenuIcons() {
+    const isDark = this.theme === "dark";
+    [
+      { id: "mobile-menu-icon", visible: !this.mobileMenuOpen && !isDark },
+      { id: "mobile-menu-icon-dark", visible: !this.mobileMenuOpen && isDark },
+      { id: "mobile-menu-close-icon", visible: this.mobileMenuOpen && !isDark },
+      {
+        id: "mobile-menu-close-icon-dark",
+        visible: this.mobileMenuOpen && isDark,
+      },
+    ].forEach(({ id, visible }) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.style.transition = "all 0.25s ease";
+        el.classList.toggle("hidden", !visible);
+      }
+    });
   }
-  if (menuBtn) {
-    menuBtn.setAttribute("aria-expanded", "false");
-  }
-  document.body.style.overflow = "";
-  this.updateMobileMenuIcons();
-}
-
-
- // REPLACE: updateMobileMenuIcons
-updateMobileMenuIcons() {
-  const isDark = this.theme === "dark";
-  [
-    { id: "mobile-menu-icon", visible: !this.mobileMenuOpen && !isDark },
-    { id: "mobile-menu-icon-dark", visible: !this.mobileMenuOpen && isDark },
-    { id: "mobile-menu-close-icon", visible: this.mobileMenuOpen && !isDark },
-    { id: "mobile-menu-close-icon-dark", visible: this.mobileMenuOpen && isDark },
-  ].forEach(({ id, visible }) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.style.transition = "all 0.25s ease";
-      el.classList.toggle("hidden", !visible);
-    }
-  });
-}
-
 
   initRenewalInfoCard() {
     const infoBtn = document.getElementById("auto-renewal-info");
     const infoCard = document.getElementById("auto-renewal-card");
+    const infoBtnMobile = document.getElementById("auto-renewal-info-mobile");
+    const infoCardMobile = document.getElementById("auto-renewal-card-mobile");
+
     if (infoBtn && infoCard) {
       infoBtn.addEventListener("mouseenter", () =>
         infoCard.classList.remove("hidden")
@@ -474,8 +474,61 @@ updateMobileMenuIcons() {
         e.stopPropagation();
         infoCard.classList.toggle("hidden");
       });
+    }
+
+    if (infoBtnMobile && infoCardMobile) {
+      let mobileAnchor = infoBtnMobile.closest("div");
+      if (!mobileAnchor) mobileAnchor = document.body;
+      if (getComputedStyle(mobileAnchor).position === "static") {
+        mobileAnchor.style.position = "relative";
+      }
+      if (infoCardMobile.parentNode !== mobileAnchor) {
+        mobileAnchor.appendChild(infoCardMobile);
+      }
+
+      Object.assign(infoCardMobile.style, {
+        position: "absolute",
+        left: "0",
+        right: "0",
+        width: "100%",
+        top: "calc(100% + 8px)",
+        transform: "none",
+        margin: "0",
+        boxSizing: "border-box",
+        padding: infoCardMobile.style.padding || "12px",
+        zIndex: "60",
+      });
+
+      infoBtnMobile.addEventListener("click", (e) => {
+        e.stopPropagation();
+        infoCardMobile.classList.toggle("hidden");
+      });
+      infoBtnMobile.addEventListener(
+        "touchstart",
+        (e) => {
+          e.stopPropagation();
+          infoCardMobile.classList.toggle("hidden");
+        },
+        { passive: true }
+      );
+
       document.addEventListener("click", (e) => {
-        if (!infoBtn.contains(e.target)) infoCard.classList.add("hidden");
+        if (
+          !infoBtnMobile.contains(e.target) &&
+          !infoCardMobile.contains(e.target)
+        ) {
+          infoCardMobile.classList.add("hidden");
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 767) {
+          infoCardMobile.classList.add("hidden");
+        } else {
+          if (getComputedStyle(mobileAnchor).position === "static") {
+            mobileAnchor.style.position = "relative";
+          }
+        }
       });
     }
   }
@@ -483,36 +536,69 @@ updateMobileMenuIcons() {
   initRenewalSwitcher() {
     const autoBtn = document.getElementById("renewal-auto");
     const manualBtn = document.getElementById("renewal-manual");
+    const autoBtnMobile = document.getElementById("renewal-auto-mobile");
+    const manualBtnMobile = document.getElementById("renewal-manual-mobile");
+
     if (autoBtn && manualBtn) {
-      autoBtn.addEventListener("click", () => this.handleAutoRenewalClick());
-      manualBtn.addEventListener("click", () =>
-        this.handleManualRenewalClick()
-      );
+      autoBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.handleAutoRenewalClick();
+      });
+      manualBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.handleManualRenewalClick();
+      });
     }
+
+    if (autoBtnMobile && manualBtnMobile) {
+      autoBtnMobile.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.handleAutoRenewalClick();
+      });
+      manualBtnMobile.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.handleManualRenewalClick();
+      });
+    }
+
+    this.updateRenewalUI();
   }
 
   updateRenewalUI() {
     const isAuto = this.userData.autoRenewal;
-    const isDark = this.theme === "dark";
     const autoBtn = document.getElementById("renewal-auto");
     const manualBtn = document.getElementById("renewal-manual");
+    const autoBtnMobile = document.getElementById("renewal-auto-mobile");
+    const manualBtnMobile = document.getElementById("renewal-manual-mobile");
 
-    if (autoBtn && manualBtn) {
-      const activeStyle = { background: "#E30613", color: "#ffffffff" };
-      const inactiveStyle = {
-        background: "transparent",
-        color: "#575757",
-      };
+    const activeStyle = { background: "#E30613", color: "#ffffffff" };
+    const inactiveStyle = { background: "transparent", color: "#575757" };
 
+    if (autoBtn)
       Object.assign(autoBtn.style, isAuto ? activeStyle : inactiveStyle);
+    if (manualBtn)
       Object.assign(manualBtn.style, !isAuto ? activeStyle : inactiveStyle);
-    }
+
+    if (autoBtnMobile)
+      Object.assign(autoBtnMobile.style, isAuto ? activeStyle : inactiveStyle);
+    if (manualBtnMobile)
+      Object.assign(
+        manualBtnMobile.style,
+        !isAuto ? activeStyle : inactiveStyle
+      );
 
     const autoIcon = autoBtn?.querySelector("img");
     const manualIcon = manualBtn?.querySelector("img");
     if (autoIcon && manualIcon) {
       autoIcon.classList.toggle("hidden", !isAuto);
       manualIcon.classList.toggle("hidden", isAuto);
+    }
+
+    const autoIconMobile = autoBtnMobile?.querySelector("img");
+    const manualIconMobile = manualBtnMobile?.querySelector("img");
+    if (autoIconMobile && manualIconMobile) {
+      autoIconMobile.classList.toggle("hidden", !isAuto);
+      manualIconMobile.classList.toggle("hidden", isAuto);
     }
   }
 

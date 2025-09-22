@@ -141,6 +141,28 @@ export const generateHeaderHTML = (
   .modal-animating-out {
     animation: modalFadeOut 0.3s ease-in forwards;
   }
+
+  @media (max-width: 767px) {
+  #auto-renewal-info-mobile { position: relative; z-index: 70; }
+  #auto-renewal-card-mobile {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    top: calc(100% + 8px) !important;
+    transform: none !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    padding: 12px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
+    z-index: 60 !important;
+  }
+  #auto-renewal-card-mobile.hidden { display: none !important; }
+  #auto-renewal-card-mobile:not(.hidden) { display: block !important; }
+}
+
 </style>
 
 <header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${
