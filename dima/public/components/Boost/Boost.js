@@ -261,7 +261,7 @@ class BoostComponent {
             <h2 class="boost-title">
               ${this.createMixedTitleHTML(data.title)}
             </h2>
-            <p class="boost-description dark:text-gray-200">
+            <p class="boost-description dark:text-white">
               ${data.description}
             </p>
           </div>
@@ -298,7 +298,7 @@ class BoostComponent {
     this.container.innerHTML = `
       <div class="w-full flex items-center justify-center py-16">
         <div class="text-center">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Une erreur s'est produite lors du chargement du boost</p>
+          <p class="text-gray-600 dark:text-white mb-4">Une erreur s'est produite lors du chargement du boost</p>
           <button onclick="location.reload()" 
                   class="bg-ooredoo-red text-white px-4 py-2 rounded-full">
             Recharger
@@ -475,7 +475,7 @@ class BoostComponent {
                   </h2>
               </div>
               <div class="text-center mb-10">
-                  <p class="${fontClass} text-gray-800 dark:text-gray-200 leading-relaxed text-base md:text-lg px-2">
+                  <p class="${fontClass} text-gray-800 dark:text-white leading-relaxed text-base md:text-lg px-2">
                       ${message}
                   </p>
               </div>

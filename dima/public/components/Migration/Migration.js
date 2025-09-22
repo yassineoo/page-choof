@@ -172,6 +172,11 @@ class Migration {
       margin-right: auto;
       box-sizing: border-box;
     }
+
+     .dark .migration-title, .dark .migration-description {
+     color: white;
+     }
+
     .migration-price {
       font-weight: 600;
       display: flex;
@@ -228,6 +233,9 @@ class Migration {
       transform: scale(1.05);
       color: white;
     }
+      .dark .migration-cancel-btn {
+  background-color: transparent;
+}
     .migration-confirm-panel {
       width: 100%;
       max-width: var(--container-max);
@@ -265,7 +273,7 @@ class Migration {
       
     .dark .text-center.bg-\\[\\#fff\\] h2,
     .dark .text-center.bg-\\[\\#fff\\] p {
-      color: #d1d5db;
+      color: #ffffffff;
     }
     .dark .text-center.bg-\\[\\#fff\\] {
       background-color: #3a3a3a;
@@ -339,13 +347,18 @@ class Migration {
       background: #c50510;
     }
     .migration-modal-button.secondary {
-      background: white;
+  background: white;
       color: #e30613;
       border: 2px solid #e30613;
     }
     .migration-modal-button.secondary:hover {
       background: #e30613;
       color: white;
+    }
+      .dark     .migration-modal-button.secondary {
+  background: transparent;
+      color: #ffffffff;
+      border: 2px solid #ffffffff;
     }
 
 .migration-terms-checkbox {
@@ -804,7 +817,7 @@ class Migration {
     this.container.innerHTML = `
       <div class="w-full flex items-center justify-center py-16">
         <div class="text-center">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Une erreur s'est produite lors du chargement du boost</p>
+          <p class="text-gray-600 dark:text-white mb-4">Une erreur s'est produite lors du chargement du boost</p>
           <button onclick="location.reload()"
                   class="bg-ooredoo-red text-white px-4 py-2 rounded-full">
             Recharger
@@ -1013,7 +1026,7 @@ class Migration {
                   ${
                     containsHTML
                       ? message
-                      : `<p class="${fontClass} text-gray-800 dark:text-gray-200 leading-relaxed text-base md:text-lg">${message}</p>`
+                      : `<p class="${fontClass} text-gray-800 dark:text-white leading-relaxed text-base md:text-lg">${message}</p>`
                   }
               </div>
               <div class="flex justify-center migration-modal-buttons">${buttons}</div>
@@ -1030,7 +1043,7 @@ class Migration {
     };
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
     const primaryBtn = `migration-modal-button primary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-transparent dark:text-white dark:border-white`;
     const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
     const buttonConfigs = {
       confirm: `
