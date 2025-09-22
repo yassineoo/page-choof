@@ -209,7 +209,7 @@ export default {
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>200</span> رسالة قصيرة و <span class='font-rubik'>300</span> دقيقة مكالمات",
-          "ANAZIK و ANAFLIX و فيسبوك مجانيين",
+          "ANAZIK و ANAFLIX وفايسبوك مجانيين",
         ],
         buy: "شراء",
       },
@@ -221,7 +221,7 @@ export default {
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>150</span> رسالة قصيرة و <span class='font-rubik'>150</span> دقيقة مكالمات",
-          "ANAFLIX و فيسبوك مجانيين",
+          "ANAFLIX وفايسبوك مجانيين",
         ],
         buy: "شراء",
       },
@@ -233,7 +233,7 @@ export default {
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>120</span> رسالة قصيرة و <span class='font-rubik'>100</span> دقيقة مكالمات",
-          "ANAZIK و فيسبوك مجانيين",
+          "ANAFLIX وفايسبوك مجانيين",
         ],
         buy: "شراء",
       },
@@ -244,8 +244,8 @@ export default {
         duration: "14 يوم",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "<span class='font-rubik'>50</span> رسالة قصيرة و <span class='font-rubik'>100</span> دقيقة مكالمات",
-          "فيسبوك مجاني",
+          "<span class='font-rubik'>50</span> رسالة قصيرة و <span class='font-rubik'>150</span> دقيقة مكالمات",
+          "فايسبوك مجاني",
         ],
         buy: "شراء",
       },
@@ -257,7 +257,7 @@ export default {
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>50</span> رسالة قصيرة و <span class='font-rubik'>150</span> دقيقة مكالمات",
-          "فيسبوك مجاني",
+          "فايسبوك مجاني",
         ],
         buy: "شراء",
       },
@@ -329,7 +329,7 @@ export default {
         data: "<span class='font-rubik'>500Mo</span> إنترنت",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "فايسبوك و ماسنجر غير محدودين",
+          "فايسبوك & ماسنجر مجانيين",
           "<span class='font-rubik'>100</span> دج رصيد",
         ],
         price: "100",

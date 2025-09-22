@@ -51,8 +51,8 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 300. Veuillez recharger votre compte.`,
     },
     "Forfait 1000": {
-      confirm: `15Go + 5Go YouTube valables jusqu'à la fin de votre cycle de facturation, pour 1000 DA seulement.`,
-      success: `15Go + 5Go YouTube attribués, valables jusqu'à la fin de votre cycle de facturation.`,
+      confirm: `1000 DA de crédit vers Ooredoo + 15Go d'internet pour 1000 DA, valables 30 jours.`,
+      success: `1000 DA de crédit vers Ooredoo + forfait internet 15Go attribués, valables 30 jours. Profitez-en !`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 1000. Veuillez recharger votre compte.`,
     },
     "Forfait 1500": {
@@ -74,8 +74,8 @@ export default {
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 4000. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 1000": {
-      confirm: `1000 دج رصيد نحو Ooredoo و 15Go إنترنت بـ 1000 دج، الكل صالح مدة 30 يوم.`,
-      success: `لقد حصلت على 1000 دج رصيد نحو Ooredoo و 15Go إنترنت، الكل صالح مدة 30 يوم.`,
+      confirm: `40Go + يوتيوب غير محدود، صالحين إلى غاية نهاية دورة الفوترة الخاصة بك، بـ 1500 دج فقط`,
+      success: `	لقد حصلت على  40Go + يوتيوب غير محدود، صالحين إلى غاية نهاية دورة الفوترة الخاصة بك`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 1000. يُرجى تعبئة رصيدك.`,
     },
     "Booster 500": {
@@ -112,11 +112,6 @@ export default {
       confirm: `3Go + يوتيوب غير محدود، صالحين 72 ساعة بـ 300 دج فقط.`,
       success: `لقد حصلت على 3Go + يوتيوب غير محدود، صالحين 72 ساعة.`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 300. يُرجى تعبئة رصيدك.`,
-    },
-    "اشتراك 1000": {
-      confirm: `15Go + 5Go يوتيوب صالحين إلى غاية نهاية دورة الفوترة الخاصة بك، بـ 1000 دج فقط.`,
-      success: `لقد حصلت على 15Go + 5Go يوتيوب، صالحين إلى غاية نهاية دورة الفوترة الخاصة بك.`,
-      insufficient: `رصيدك غير كافٍ لشراء الاشتراك 1000. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 1500": {
       confirm: `40Go + يوتيوب غير محدود، صالحين إلى غاية نهاية دورة الفوترة الخاصة بك، بـ 1500 دج فقط.`,

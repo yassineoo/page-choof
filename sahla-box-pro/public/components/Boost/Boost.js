@@ -306,8 +306,14 @@ class BoostComponent {
   }
 
   setupEventListeners() {
-    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
-    window.addEventListener("languageChanged", this.boundHandlers.languageChange);
+    window.removeEventListener(
+      "languageChanged",
+      this.boundHandlers.languageChange
+    );
+    window.addEventListener(
+      "languageChanged",
+      this.boundHandlers.languageChange
+    );
 
     window.removeEventListener("resize", this.boundHandlers.resize);
     window.addEventListener("resize", this.boundHandlers.resize);
@@ -403,6 +409,7 @@ class BoostComponent {
 
   renderWithData(data, language) {
     const isRTL = this.isRTL();
+    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     this.cleanupAllEventListeners();
 
@@ -414,14 +421,26 @@ class BoostComponent {
             <div class="boost-card-shadow boost-hover-lift">
               <div class="boost-card-container">
                 <div class="boost-card-content">
-                  <h2 class="boost-title">${this.createMixedTitleHTML(data.title)}</h2>
+                  <h2 class="boost-title">${this.createMixedTitleHTML(
+                    data.title
+                  )}</h2>
                   <p class="boost-description">${data.description}</p>
                 </div>
                 <div class="boost-card-footer">
-                  <div class="boost-price">
-                    <span class="big">500</span>
-                    <span class="small">${isRTL ? "دج" : "DA"}</span>
+                  <div class="flex items-baseline gap-x-2 text-center" ${
+                    isRTL ? 'dir="rtl"' : 'dir="ltr"'
+                  }>
+                    ${
+                      isRTL
+                        ? `
+                          <span class="${fontClass} font-semibold text-[36px] leading-[43px]" dir="ltr" style="unicode-bidi:isolate; white-space:nowrap;">500</span>
+                          <span class="${fontClass} font-semibold text-[22px] leading-[28px]" dir="rtl">دج</span>
+     `
+                        : `<span class="${fontClass} font-semibold text-[36px] leading-[43px]" dir="ltr" style="unicode-bidi:isolate; white-space:nowrap;">500</span>
+                           <span class="${fontClass} font-semibold text-[22px] leading-[28px]" dir="ltr">DA</span>`
+                    }
                   </div>
+
                   <button class="boost-buy-btn boost-button-zone" data-index="0">
                     ${data.buy}
                   </button>
@@ -434,13 +453,10 @@ class BoostComponent {
 
       <div id="boost-modal-container"></div>
     </div>
-    `;
+  `;
 
     this.bindPurchaseButtons(language);
-
-    setTimeout(() => {
-      this.addAccessibility();
-    }, 50);
+    setTimeout(() => this.addAccessibility(), 50);
   }
 
   renderErrorState() {
@@ -467,7 +483,9 @@ class BoostComponent {
   }
 
   closeAnyOpenModals() {
-    const modalContainer = this.container.querySelector("#boost-modal-container");
+    const modalContainer = this.container.querySelector(
+      "#boost-modal-container"
+    );
     if (modalContainer && modalContainer.innerHTML.trim()) {
       modalContainer.innerHTML = "";
     }
@@ -577,7 +595,9 @@ class BoostComponent {
 
   showModal({ type, title, message, isRTL = false, onConfirm }) {
     try {
-      const modalContainer = this.container.querySelector("#boost-modal-container");
+      const modalContainer = this.container.querySelector(
+        "#boost-modal-container"
+      );
       if (!modalContainer) {
         console.error("Modal container not found");
         return;
@@ -679,7 +699,10 @@ class BoostComponent {
       modal.style.animation = "modalFadeOut 0.2s ease-in forwards";
       setTimeout(() => {
         modalContainer.innerHTML = "";
-        if (this.previouslyFocusedElement && this.previouslyFocusedElement.focus) {
+        if (
+          this.previouslyFocusedElement &&
+          this.previouslyFocusedElement.focus
+        ) {
           this.previouslyFocusedElement.focus();
         }
         this.previouslyFocusedElement = null;
@@ -764,7 +787,10 @@ class BoostComponent {
       clearTimeout(this.languageChangeTimeout);
     }
 
-    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
+    window.removeEventListener(
+      "languageChanged",
+      this.boundHandlers.languageChange
+    );
     window.removeEventListener("resize", this.boundHandlers.resize);
 
     this.cleanupAllEventListeners();
@@ -773,7 +799,9 @@ class BoostComponent {
       this.container.removeEventListener("keydown", this.keyboardHandler);
     }
 
-    const modalContainer = this.container.querySelector("#boost-modal-container");
+    const modalContainer = this.container.querySelector(
+      "#boost-modal-container"
+    );
     if (modalContainer) {
       modalContainer.innerHTML = "";
     }

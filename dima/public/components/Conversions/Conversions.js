@@ -863,9 +863,14 @@ class ConversionsComponent {
   showSuccessModal(plan, isRTL, onConfirmCallback) {
     const currentLanguage = this.getLanguage();
     const data = conversionsData[currentLanguage];
-    const message = (data.successDescription || "")
-      .replace("{planName}", plan.name)
-      .replace("{planDescription}", plan.description);
+
+    const template = data.successDescription || "";
+
+    const message = template
+      .replace(/\{planName\}/g, plan.name || "")
+      .replace(/\{planDescription\}/g, plan.description || "")
+      .replace(/\{duration\}/g, plan.duration || "");
+
     this.showModal({
       type: "info",
       title: data.successTitle,

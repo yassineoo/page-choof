@@ -54,45 +54,43 @@ export class Slider {
 
   createForfaitCard(offer, index, labels) {
     const isRTL = this.currentLang === "ar";
+    const buyLabel =
+      (labels && labels.buy) || offer.buy || (isRTL ? "شراء" : "Acheter");
     const currencyLabel = isRTL ? "دج" : "DA";
-    const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
-    const textAlign = isRTL ? "text-right" : "text-left";
 
-    const titleFontClass = this.getFontClass(offer.name);
-    const dataFontClass = this.getFontClass(offer.data);
-    const buttonFontClass = this.getFontClass(buyLabel);
+    const cardHeightClass =
+      offer.height === "short" ? "h-[365px]" : "h-[460px]";
 
     const priceNumber = this.convertToLatinNumerals(
-      offer.price.replace(/[^0-9٠-٩]/g, "")
+      String(offer.price ?? "").replace(/[^0-9٠-٩]/g, "")
     );
-    const durationText = this.convertToLatinNumerals(offer.duration);
-
-    const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
+    const durationText = this.convertToLatinNumerals(offer.duration || "");
 
     return `
-      <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 400px;">
-        <div class="h-full pb-6" ${isRTL ? `dir="rtl"` : ``}>
-          <div class="h-14 -mx-[0.84px] bg-ooredoo-red flex items-center justify-center p-5">
-            <h2 class="text-white font-rubik text-xl md:text-2xl font-medium text-center capitalize dark:text-white leading-tight">
+    <div class="w-[290px] ${cardHeightClass} flex justify-center items-start rounded-xl border-[0.84px] border-[#C5C5C5] bg-white dark:bg-[#2C2C2C] shadow-sm dark:shadow-none">
+      <div class="flex flex-col justify-between items-center flex-1 h-full pb-6">
+        <div class="flex flex-col items-start gap-3.5 w-full px-[0.9px]">
+          <div class="flex h-14 px-2.5 justify-center items-center  w-full rounded-t-[11px] bg-ooredoo-red">
+            <h3 class="text-white text-center font-rubik text-2xl font-bold capitalize">
               ${offer.name}
-            </h2>
+            </h3>
           </div>
 
-          <div class="flex-1 px-5 pb-4 border-b-[1px] border-b-[#BBBEBE] border-dashed">
-            <div class="">
-              <h3 class="py-4 text-[26px] font-semibold text-ooredoo-red dark:text-white leading-10">${
-                offer.data
-              }</h3>
-              <div>
-                ${
-                  offer.features && offer.features.length > 0
-                    ? `<ul class="space-y-2">
-                  ${offer.features
+          <div class="flex px-5 items-center w-full">
+            <div class="text-ooredoo-red font-rubik text-[26px] font-bold leading-[45px] tracking-[-0.52px]">
+              ${offer.data}
+            </div>
+          </div>
+
+          <div class="flex px-5 flex-col items-start gap-1.5 w-full">
+            ${
+              offer.features && offer.features.length
+                ? offer.features
                     .map(
                       (feature) => `
-                    <li class="flex items-center gap-2 text-sm text-black dark:text-white">
-                      <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+                  <div class="flex items-center gap-2.5 w-full">
+                    <div>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
                         <rect y="0.422852" width="14.91" height="14.91" rx="7.455" fill="#E31D23"/>
                         <g clip-path="url(#clip0_113_17964)">
                         <g clip-path="url(#clip1_113_17964)">
@@ -108,56 +106,51 @@ export class Slider {
                         </clipPath>
                         </defs>
                         </svg>
-                      </span>
-                      <span class="text-[16px]">
-                        ${feature}
-                      </span>
-                    </li>`
+                    </div>
+                    <div class="flex-1 text-black dark:text-white font-rubik text-base font-normal leading-[22px]">
+                      ${feature}
+                    </div>
+                  </div>`
                     )
-                    .join("")}
-                </ul>`
-                    : ``
-                }
-              </div>
-            </div>
+                    .join("")
+                : ``
+            }
           </div>
+        </div>
 
-          <div class="forfait-card-footer">
-            <div class="flex justify-center items-baseline w-full mt-5">
-              <div class="flex items-baseline justify-center" style="width:70%;">
-                <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
-                <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
-                <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span>
-              </div>
+        <div class="flex flex-col items-center gap-5 w-full">
+          <div class="w-[290px] border-b-[1px] border-b-[#BBBEBE] dark:border-b-gray-600 border-dashed text-center py-3"></div>
+          <div class="flex flex-col justify-end items-center gap-2.5">
+            <div class="text-black dark:text-white text-center font-rubik font-bold text-base">
+              <span class="text-[28px]">${priceNumber}</span>
+              <span class="text-[16px]"> ${currencyLabel}/${durationText}</span>
             </div>
-
-            <div class="forfait-button-zone flex justify-center w-full">
-              <button class="forfait-buy-btn ${buttonFontClass} bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
-                style="
-                  font-weight: 500;
-                  font-size: 16px;
-                  line-height: 100%;
-                  letter-spacing: 0;
-                  text-align: center;
-                  text-transform: uppercase;
-                  padding: 20px 24px;
-                  height: 32px;
-                  width: auto;
-                  min-width: 96px;
-                  display: inline-flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-       data-type="forfait"
-  data-index="${index}"
-  data-offer-name="${offer.name}">
-  ${buyLabel}
-              </button>
-            </div>
+            <button class="forfait-buy-btn bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
+              style="
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 100%;
+                letter-spacing: 0;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 20px 24px;
+                height: 32px;
+                width: auto;
+                min-width: 96px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+              "
+              data-type="forfait"
+              data-index="${index}"
+              data-offer-name="${offer.name}">
+              ${buyLabel}
+            </button>
           </div>
         </div>
       </div>
-    `;
+    </div>
+  `;
   }
 
   createForfaitCardInternet(offer, index, labels) {
@@ -227,11 +220,8 @@ export class Slider {
               </div>
             </div>
             <div class="flex items-baseline justify-center mt-20">
-              <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
-              <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
-              <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${
-      index === 10 && "text-sm font-medium"
-    }">/${durationText}</span>
+              <span class="font-rubik font-semibold mx-2 text-[28px] leading-none text-black dark:text-white">${priceNumber}</span>
+                <span class="text-[16px] text-black dark:text-white font-semibold "> ${currencyLabel}/${durationText}</span>
             </div>
           </div>
 
@@ -332,8 +322,7 @@ export class Slider {
               </div>
               <div class="flex items-baseline justify-center mt-20">
               <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
-              <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
-              <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span>
+                 <span class="text-[16px] text-black dark:text-white font-semibold "> ${currencyLabel}/${durationText}</span>
             </div>
           </div>
 
@@ -384,54 +373,39 @@ export class Slider {
     isRTL,
     convertToLatinNumerals
   ) {
-    const gridClass =
-      gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
-    const sliderId =
-      gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
-    const dotsId =
-      gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-    const startIndex = 0;
+    const sliderId = "forfaits-slider";
+    const dotsId = "forfaits-dots";
 
     return `
-          <div class="hidden sm:flex w-full items-center justify-center">
-            <div class="grid items-stretch grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-[1000px]">
-              ${offers
-                .map((offer, index) =>
-                  this.createForfaitCard(
-                    offer,
-                    startIndex + index,
-                    labels,
-                    isRTL,
-                    convertToLatinNumerals
-                  )
-                )
-                .join("")}
-            </div>
+    <div class="hidden sm:flex w-full items-center justify-center">
+      <div class="flex justify-center items-center content-center gap-4 sm:gap-6 lg:gap-[18px] flex-wrap max-w-[1215px]">
+        ${offers
+          .map((offer, i) => this.createForfaitCard(offer, i, labels))
+          .join("")}
+      </div>
+    </div>
+
+    <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
+      <div class="forfait-slider-track">
+        <div class="relative swiper">
+          <div class="swiper-wrapper">
+            ${offers
+              .map(
+                (offer, i) => `
+              <div class="swiper-slide flex justify-center p-4">
+                ${this.createForfaitCard(offer, i, labels)}
+              </div>
+            `
+              )
+              .join("")}
           </div>
-      
-            
-            <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
-                <div class="relative swiper">
-                <div class="swiper-wrapper">
-                    ${offers
-                      .map(
-                        (offer, index) => `
-                    <div class="swiper-slide flex justify-center p-4">
-                        ${this.createForfaitCard(
-                          offer,
-                          startIndex + index,
-                          labels,
-                          isRTL,
-                          convertToLatinNumerals
-                        )}
-                    </div>
-                    `
-                      )
-                      .join("")}
-                </div>
-                <div class="absolute bottom-0  swiper-pagination"></div>
-                </div>
-            </div>`;
+          <div class="absolute bottom-0 swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
+  `;
   }
 
   createResponsiveLayoutInternet(
@@ -441,55 +415,53 @@ export class Slider {
     isRTL,
     convertToLatinNumerals
   ) {
-    const gridClass =
-      gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
-    const sliderId =
-      gridType === "forfait-grid-5" ? "forfaits-slider" : "internet-slider";
-    const dotsId =
-      gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-    const startIndex = 5;
+    const sliderId = "internet-slider";
+    const dotsId = "internet-dots";
 
     return `
-          <div class="hidden sm:flex w-full items-center justify-center">
-            <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-  ${offers
-    .map((offer, index) =>
-      this.createForfaitCardInternet(
-        offer,
-        index,
-        labels,
-        isRTL,
-        convertToLatinNumerals
-      )
-    )
-    .join("")}
+    <div class="hidden sm:flex w-full items-center justify-center">
+      <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        ${offers
+          .map((offer, index) =>
+            this.createForfaitCardInternet(
+              offer,
+              index,
+              labels,
+              isRTL,
+              convertToLatinNumerals
+            )
+          )
+          .join("")}
+      </div>
+    </div>
 
-            </div>
+    <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
+      <div class="forfait-slider-track">
+        <div class="relative swiper">
+          <div class="swiper-wrapper">
+            ${offers
+              .map(
+                (offer, index) => `
+              <div class="swiper-slide flex justify-center p-4">
+                ${this.createForfaitCardInternet(
+                  offer,
+                  index,
+                  labels,
+                  isRTL,
+                  convertToLatinNumerals
+                )}
+              </div>
+            `
+              )
+              .join("")}
           </div>
-      
-            
-            <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
-                <div class="relative swiper">
-                <div class="swiper-wrapper">
-                    ${offers
-                      .map(
-                        (offer, index) => `
-                    <div class="swiper-slide flex justify-center p-4">
-                        ${this.createForfaitCardInternet(
-                          offer,
-                          startIndex + index,
-                          labels,
-                          isRTL,
-                          convertToLatinNumerals
-                        )}
-                    </div>
-                    `
-                      )
-                      .join("")}
-                </div>
-                <div class="absolute bottom-0  swiper-pagination"></div>
-                </div>
-            </div>`;
+          <div class="absolute bottom-0 swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
+  `;
   }
 
   createResponsiveLayoutSmart(
@@ -499,58 +471,58 @@ export class Slider {
     isRTL,
     convertToLatinNumerals
   ) {
-    const sliderId =
-      gridType === "forfait-grid-5" ? "forfaits-slider" : "hadra-slider";
-    const startIndex = 11;
+    const sliderId = "smart-slider";
+    const dotsId = "smart-dots";
 
     return `
-          <div class="hidden sm:flex w-full items-center justify-center">
-            <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-${offers
-  .map((offer, index) =>
-    this.createForfaitCardSmart(
-      offer,
-      index,
-      labels,
-      isRTL,
-      convertToLatinNumerals
-    )
-  )
-  .join("")}
+    <div class="hidden sm:flex w-full items-center justify-center">
+      <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        ${offers
+          .map((offer, index) =>
+            this.createForfaitCardSmart(
+              offer,
+              index,
+              labels,
+              isRTL,
+              convertToLatinNumerals
+            )
+          )
+          .join("")}
+      </div>
+    </div>
 
-            </div>
+    <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
+      <div class="forfait-slider-track">
+        <div class="relative swiper">
+          <div class="swiper-wrapper">
+            ${offers
+              .map(
+                (offer, index) => `
+              <div class="swiper-slide flex justify-center p-4">
+                ${this.createForfaitCardSmart(
+                  offer,
+                  index,
+                  labels,
+                  isRTL,
+                  convertToLatinNumerals
+                )}
+              </div>
+            `
+              )
+              .join("")}
           </div>
-      
-            
-            <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
-                <div class="relative swiper">
-                <div class="swiper-wrapper">
-                    ${offers
-                      .map(
-                        (offer, index) => `
-                    <div class="swiper-slide flex justify-center p-4">
-                        ${this.createForfaitCardSmart(
-                          offer,
-                          startIndex + index,
-                          labels,
-                          isRTL,
-                          convertToLatinNumerals
-                        )}
-                    </div>
-                    `
-                      )
-                      .join("")}
-                </div>
-                <div class="absolute bottom-0  swiper-pagination"></div>
-                </div>
-            </div>`;
+          <div class="absolute bottom-0 swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
+  `;
   }
 
   initSwiper(containerId, forceRTL = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
-
-    // Find and destroy existing Swiper instance
     const existingSwiper = container.querySelector(".swiper");
     if (existingSwiper && existingSwiper.swiper) {
       existingSwiper.swiper.destroy(true, true);

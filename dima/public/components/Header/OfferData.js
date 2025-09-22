@@ -3,100 +3,107 @@ export const offerData = {
     {
       planName: "DIMA 4000",
       description:
-        "200Go + appels illimités vers tous + SMS illimités vers Ooredoo + 200 SMS vers tous.",
+        "200Go + appels illimités vers tous + SMS illimités vers Ooredoo + 200 SMS vers tous",
       price: "4000",
       duration: "30 jours",
     },
     {
       planName: "DIMA 2500",
       description:
-        "100Go + appels illimités vers tous + SMS illimités vers Ooredoo + 100 SMS vers les autres réseaux nationaux + Facebook + ANAZIK, ANAFLIX et Shahid.",
+        "100Go + appels illimités vers tous + SMS illimités vers Ooredoo + 100 SMS vers les autres réseaux nationaux + Facebook + ANAZIK, ANAFLIX et Shahid",
       price: "2500",
       duration: "30 jours",
     },
     {
       planName: "DIMA 1500",
       description:
-        "30Go + 150 min + appels illimités vers Ooredoo + 150 SMS valables vers tous les réseaux nationaux + Facebook et ANAFLIX.",
+        "30Go + 150 min + appels illimités vers Ooredoo + 150 SMS valables vers tous les réseaux nationaux + Facebook et ANAFLIX",
       price: "1500",
       duration: "30 jours",
     },
     {
       planName: "DIMA 1200",
       description:
-        "8Go + 100 min + appels illimités vers Ooredoo + 120 SMS valables vers tous les réseaux nationaux + Facebook et ANAZIK.",
+        "8Go + 100 min + appels illimités vers Ooredoo + 120 SMS valables vers tous les réseaux nationaux + Facebook et ANAZIK",
       price: "1200",
       duration: "30 jours",
     },
     {
       planName: "DIMA 750",
       description:
-        "10Go + 100 min + appels illimités vers Ooredoo + 50 SMS valables vers tous les réseaux nationaux et Facebook.",
+        "10Go + 100 min + appels illimités vers Ooredoo + 50 SMS valables vers tous les réseaux nationaux et Facebook",
       price: "750",
       duration: "14 jours",
     },
     {
       planName: "DIMA 500 HADRA",
       description:
-        "100 min et 100 SMS valables vers tous les réseaux nationaux + appels illimités vers Ooredoo.",
+        "100 min et 100 SMS valables vers tous les réseaux nationaux + appels illimités vers Ooredoo",
       price: "500",
       duration: "30 jours",
     },
     {
       planName: "DIMA 500",
       description:
-        "3Go + 100 min + appels illimités vers Ooredoo + 50 SMS valables vers tous les réseaux nationaux et Facebook.",
+        "3Go + 100 min + appels illimités vers Ooredoo + 50 SMS valables vers tous les réseaux nationaux et Facebook",
       price: "500",
       duration: "15 jours",
     },
   ],
   ar: [
     {
-      planName: "ديما 4000",
+      planName: "DIMA 4000",
       description:
-        "200Go + مكالمات غير محدودة نحو الجميع + رسائل قصيرة غير محدودة نحو Ooredoo + 200 رسالة قصيرة نحو كل الشبكات.",
+        "حجم 200Go إنترنت + مكالمات غير محدودة نحو الكل + رسائل قصيرة غير محدودة نحو Ooredoo و 200 رسالة قصيرة نحو الك",
       price: "4000",
       duration: "30 يومًا",
     },
     {
-      planName: "ديما 2500",
+      planName: "DIMA 2500",
       description:
-        "100Go + مكالمات غير محدودة نحو الجميع + رسائل قصيرة غير محدودة نحو Ooredoo + 100 رسالة قصيرة نحو الشبكات الوطنية الأخرى + Facebook + ANAZIK و ANAFLIX و Shahid.",
+        "حجم 100Go إنترنت + مكالمات غير محدودة نحو الكل + رسائل قصيرة غير محدودة نحو Ooredoo و 100 رسالة قصيرة نحو الشبكات الأخرى + فايسبوك و ANAFLIX و ANAZIK وشاهد",
       price: "2500",
       duration: "30 يومًا",
     },
     {
-      planName: "ديما 1500",
+      planName: "DIMA 2000",
       description:
-        "30Go + 150 دقيقة + مكالمات غير محدودة نحو Ooredoo + 150 رسالة قصيرة صالحة نحو كل الشبكات الوطنية + Facebook و ANAFLIX.",
+        "حجم 50Go إنترنت + 300 دقيقة + مكالمات غير محدودة نحو Ooredoo و 200 رسالة قصيرة صالحة نحو كل الشبكات الوطنية + فايسبوك و ANAZIK و ANAFLIX",
+      price: "2000",
+      duration: "30 يومًا",
+    },
+    {
+      planName: "DIMA 1500",
+      description:
+        "حجم 30Go إنترنت + 150 دقيقة + مكالمات غير محدودة نحو Ooredoo و 150 رسالة قصيرة صالحة نحو كل الشبكات الوطنية + فايسبوك و ANAFLIX",
       price: "1500",
       duration: "30 يومًا",
     },
     {
-      planName: "ديما 1200",
+      planName: "DIMA 1200",
       description:
-        "8Go + 100 دقيقة + مكالمات غير محدودة نحو Ooredoo + 120 رسالة قصيرة صالحة نحو كل الشبكات الوطنية + Facebook و ANAZIK.",
+        "حجم 10Go إنترنت + 100 دقيقة + مكالمات غير محدودة نحو Ooredoo و 120 رسالة قصيرة صالحة نحو كل الشبكات الوطنية + فايسبوك و ANAZIK",
       price: "1200",
       duration: "30 يومًا",
     },
     {
-      planName: "ديما 750",
+      planName: "DIMA 750",
       description:
-        "10Go + 100 دقيقة + مكالمات غير محدودة نحو Ooredoo + 50 رسالة قصيرة صالحة نحو كل الشبكات الوطنية و Facebook.",
+        "حجم 10Go إنترنت + 100 دقيقة + مكالمات غير محدودة نحو Ooredoo و 50 رسالة قصيرة صالحة نحو كل الشبكات",
       price: "750",
       duration: "14 يومًا",
     },
     {
-      planName: "ديما 500 هدرة",
+      planName: "Dima 500 Hadra",
       description:
-        "100 دقيقة و 100 رسالة قصيرة صالحة نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo.",
+        "مكالمات 100 دقيقة و 100 رسالة قصيرة صالحة نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo",
       price: "500",
       duration: "30 يومًا",
     },
     {
-      planName: "ديما 500",
+      planName: "DIMA 500",
       description:
-        "3Go + 100 دقيقة + مكالمات غير محدودة نحو Ooredoo + 50 رسالة قصيرة صالحة نحو كل الشبكات الوطنية و Facebook.",
+        "حجم 3Go إنترنت + 100 دقيقة + مكالمات غير محدودة نحو Ooredoo و 50 رسالة قصيرة صالحين نحو كل الشبكات الوطنية + فايسبوك",
       price: "500",
       duration: "15 يومًا",
     },
@@ -122,6 +129,8 @@ export const offerData = {
         `Vos prochains rechargements de ${price} DA et plus vous donneront les avantages de ${planName}, après expiration de votre forfait.`,
       cancelBtn: "ANNULER",
       confirmBtn: "CONFIRMER",
+      allValidFor: ", le tout valable ",
+      okBtn: "OK",
       modifyBtn: "MODIFIER",
       renewalInfoAuto: (name, price) =>
         `Vous êtes actuellement sur le mode "Renouvellement Automatique" de ${name}. Vos rechargements de ${price} DA et plus vous donneront les avantages de ${name}. Si vous souhaitez recevoir du crédit au prochain rechargement ou changer de forfait, cliquez sur la flèche.`,
@@ -141,15 +150,17 @@ export const offerData = {
       manualSuccessTitle: "هنيئًا!",
       manualSuccessDesc: 'أنت الآن في الوضع "يدوي"',
       autoModalTitle: "وضع التعبئة",
-      autoModalDesc: 'ستقوم بتغيير وضع التعبئة  "التلقائي":',
-      autoSuccessTitle: "مبروك!",
+      autoModalDesc: 'ستقوم بتغيير وضع التعبئة إلى "تلقائي":',
+      autoSuccessTitle: "هنيئًا!",
       autoSuccessDesc: (price, planName) =>
         `تعبئاتك القادمة بقيمة ${price} دج وأكثر ستمنحك مزايا ${planName}، وهذا بعد انتهاء صلاحية اشتراكك.`,
       cancelBtn: "إلغاء",
       confirmBtn: "تأكيد",
-      modifyBtn: "تعديل",
+      allValidFor: "، الكل صالح ",
+      okBtn: "تم",
+      modifyBtn: "التغيير",
       renewalInfoAuto: (name, price) =>
-        `أنت الآن في وضع "التجديد التلقائي" لـ ${name}. تعبئاتك بقيمة ${price} دج وأكثر تمنحك مزايا ${name} إذا كنت تريد الحصول على رصيد عند تعبئتك القادمة أو تغيير الاشتراك، اضغط على السهم..`,
+        `أنت الآن في وضع "التجديد التلقائي" لـ ${name}. تعبئاتك بقيمة ${price} دج وأكثر تمنحك مزايا ${name} إذا كنت تريد الحصول على رصيد عند تعبئتك القادمة أو تغيير الاشتراك، اضغط على السهم.`,
       renewalInfoManual:
         "التجديد التلقائي ملغى، ستحصل على رصيد عند تعبئاتك القادمة.",
     },

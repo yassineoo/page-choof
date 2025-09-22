@@ -1,10 +1,16 @@
-import { shahidPlans, shahidDescription, shahidModalData } from "./DigitalShahidServicesData.js";
+import {
+  shahidPlans,
+  shahidDescription,
+  shahidModalData,
+} from "./DigitalShahidServicesData.js";
 
 // Card style constants - Updated to match Dima sizing and styling
 const styles = {
   card: "w-full max-w-[30rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
-  cardHeader: "bg-ooredoo-red flex items-center justify-center px-6 py-6 text-center",
-  cardName: "font-medium text-[32px] leading-[100%] tracking-[0] capitalize text-white text-center align-middle",
+  cardHeader:
+    "bg-ooredoo-red flex items-center justify-center px-6 py-6 text-center",
+  cardName:
+    "font-medium text-[32px] leading-[100%] tracking-[0] capitalize text-white text-center align-middle",
   cardContent: "p-6 flex flex-col justify-between",
   dataTitle: "text-2xl font-semibold text-ooredoo-red mb-3",
   featuresList: "list-none p-0 m-0",
@@ -12,7 +18,8 @@ const styles = {
   featureText: "whitespace-nowrap",
   divider: "dima-divider",
   priceContainer: "text-center mb-2 py-4",
-  priceAmount: "font-semibold text-[2rem] capitalize dark:text-white font-rubik",
+  priceAmount:
+    "font-semibold text-[2rem] capitalize dark:text-white font-rubik",
   priceDa: "font-semibold text-lg capitalize dark:text-white",
   priceDuration: "font-semibold text-lg dark:text-white",
   buttonWrap: "flex justify-center mt-2",
@@ -112,7 +119,9 @@ if (!document.getElementById("dima-shahid-styles")) {
 // Card renderer with purchase button functionality
 function renderShahidCard(plan, isArabic, index) {
   return `
-    <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${styles.card}">
+    <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${
+    styles.card
+  }">
       <div class="${styles.cardHeader}">
         <h2 class="${styles.cardName}">${plan.name}</h2>
       </div>
@@ -147,7 +156,9 @@ function renderShahidCard(plan, isArabic, index) {
         </div>
         <div>
           <div class="${styles.divider}"></div>
-          <div class="${styles.priceContainer} flex items-end gap-2 justify-center">
+          <div class="${
+            styles.priceContainer
+          } flex items-end gap-2 justify-center">
             <span class="${styles.priceAmount}">${plan.price}</span>
             <div class="flex items-center gap-0 pb-1">
               <span class="${styles.priceDa}">${isArabic ? "دج" : "DA"}/</span>
@@ -155,7 +166,9 @@ function renderShahidCard(plan, isArabic, index) {
             </div>
           </div>
           <div class="${styles.buttonWrap}">
-            <button class="${styles.acheterButton} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} shahid-purchase-btn" data-offer-name="${
+            <button class="${styles.acheterButton} ${
+    isArabic ? "font-noto-kufi-arabic" : "font-rubik"
+  } shahid-purchase-btn" data-offer-name="${
     plan.name
   }" data-plan-index="${index}">
               ${isArabic ? "شراء" : "ACHETER"}
@@ -183,7 +196,10 @@ export default class DigitalShahidServices {
 
   setupEventListeners() {
     // Purchase button event delegation
-    this.container.addEventListener("click", this.handlePurchaseClick.bind(this));
+    this.container.addEventListener(
+      "click",
+      this.handlePurchaseClick.bind(this)
+    );
   }
 
   getLang() {
@@ -209,7 +225,10 @@ export default class DigitalShahidServices {
 
   unbindEvents() {
     if (this.boundHandleLanguageChange) {
-      window.removeEventListener("languageChanged", this.boundHandleLanguageChange);
+      window.removeEventListener(
+        "languageChanged",
+        this.boundHandleLanguageChange
+      );
     }
     if (this.boundStorageListener) {
       window.removeEventListener("storage", this.boundStorageListener);
@@ -223,7 +242,9 @@ export default class DigitalShahidServices {
   handleLanguageChange() {
     const newLang = this.getLang();
     if (newLang !== this.currentLang) {
-      console.log(`DigitalShahidServices: Language changed from ${this.currentLang} to ${newLang}`);
+      console.log(
+        `DigitalShahidServices: Language changed from ${this.currentLang} to ${newLang}`
+      );
       this.currentLang = newLang;
       this.render();
     }
@@ -252,7 +273,9 @@ export default class DigitalShahidServices {
 
     const offerName = button.getAttribute("data-offer-name");
     const currentLanguage = this.getLang();
-    const modalContent = shahidModalData[currentLanguage] && shahidModalData[currentLanguage][offerName];
+    const modalContent =
+      shahidModalData[currentLanguage] &&
+      shahidModalData[currentLanguage][offerName];
 
     if (modalContent) {
       this.showPurchaseFlow(offerName, modalContent, currentLanguage === "ar");
@@ -294,7 +317,9 @@ export default class DigitalShahidServices {
 
   showModal({ type, title, message, isRTL = false, onConfirm, onClose }) {
     try {
-      let modalContainer = this.container.querySelector("#shahid-modal-container");
+      let modalContainer = this.container.querySelector(
+        "#shahid-modal-container"
+      );
       if (!modalContainer) {
         modalContainer = document.createElement("div");
         modalContainer.id = "shahid-modal-container";
@@ -397,7 +422,10 @@ export default class DigitalShahidServices {
       modal.style.animation = "shahidModalFadeOut 0.2s ease-in forwards";
       setTimeout(() => {
         modalContainer.innerHTML = "";
-        if (this.previouslyFocusedElement && this.previouslyFocusedElement.focus) {
+        if (
+          this.previouslyFocusedElement &&
+          this.previouslyFocusedElement.focus
+        ) {
           this.previouslyFocusedElement.focus();
         }
         this.previouslyFocusedElement = null;
@@ -468,26 +496,31 @@ export default class DigitalShahidServices {
     const description = shahidDescription[lang];
 
     this.container.innerHTML = `
-      <div class="${this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-white dark:bg-[#141414] px-5 py-16">
-        <div class="mx-auto w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ""}">
+      <div class="${
+        this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+      } w-full bg-white dark:bg-[#141414] px-5 py-16">
+        <div class="mx-auto w-full max-w-screen-2xl ${
+          isArabic ? 'dir="rtl"' : ""
+        }">
           <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white mb-10">
             ${isArabic ? "اشتراكات شاهد" : "FORFAIT SHAHID"}
           </h2>
 
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-5 items-stretch">
+<div class="flex flex-wrap gap-x-8 gap-y-5 items-stretch lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-5">
             
             <!-- Card 1 -->
-            <div class="flex justify-center">
+  <div class="flex justify-center w-full lg:w-auto order-2 lg:order-1">
               ${renderShahidCard(plans[0], isArabic, 0)}
             </div>
 
             <!-- Card 2 -->
-            <div class="flex justify-center">
+  <div class="flex justify-center w-full lg:w-auto order-3 lg:order-2">
               ${renderShahidCard(plans[1], isArabic, 1)}
             </div>
 
             <!-- Logo/info -->
-            <div class="flex flex-col items-center justify-center text-center mt-4 lg:mt-0 px-4">
+  <div class="flex flex-col items-center justify-center text-center mt-4 lg:mt-0 px-4 w-full lg:w-auto order-1 lg:order-3">
+
               <img src="./assets/images/services/shahid.svg"  alt="Shahid"
                    class="w-full max-w-xs h-auto mb-6 dark:hidden flex"/>
               <img src="./assets/images/services/shahid-d.svg" alt="Shahid"

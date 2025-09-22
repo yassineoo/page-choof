@@ -21,10 +21,11 @@ export const boostData = {
   },
   ar: {
     title: "BOOST 500",
-    description: "5Go إنترنت صالحين إلى غاية نهاية دورة فوترتك",
+    description:
+      '5Go <span class="font-noto-kufi-arabic"> إنترنت صالحين إلى غاية نهاية دورة فوترتك </span>',
     confirmDescription:
       "بـ 500 دج فقط، يمكنك تفعيل Boost على باقة Dima 2000: مكالمات غير محدودة نحو كل الشبكات + 50Go و 50 رسالة نصية إضافية، حسب صلاحية باقتك الحالية.",
-    price: "500 دج",
+    price: "دج 500",
     buy: "شراء",
     confirmTitle: "BOOST 500",
     confirmBtn: "تأكيد",
