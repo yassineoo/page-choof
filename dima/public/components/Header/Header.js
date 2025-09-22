@@ -487,11 +487,11 @@ export default class Header {
         : "";
 
     const customContent = `
-      <div class="relative w-full max-w-5xl bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg flex flex-col overflow-hidden">
+      <div class="relative w-full max-w-5xl bg-white dark:bg-[#2C2C2C] rounded-lg flex flex-col overflow-hidden">
         ${closeBtnHTML}
         <div class="p-6 md:p-8 text-center">
-          <h2 class="text-2xl font-bold text-ooredoo-red mb-2">${texts.autoModalTitle}</h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-4 px-0 md:px-[30px]">
+          <h2 class="text-2xl font-bold text-[28px] text-ooredoo-red dark:text-white mb-8">${texts.autoModalTitle}</h2>
+          <p class="text-black dark:text-white mb-4 px-0 text-[22px] md:px-[30px]">
             ${texts.autoModalDesc}
           </p>
           <div class="mt-6">
@@ -500,8 +500,8 @@ export default class Header {
             </button>
           </div>
         </div>
-        <div class="border-b border-gray-200 dark:border-gray-700"></div>
-        <div class="bg-[#F8F8F8] dark:bg-gray-900 py-6">
+        <div class="border-b border-gray-200 dark:border-white"></div>
+        <div class="bg-[#F8F8F8] dark:bg-[#2c2c2c] py-6">
           <div id="modal-slider-container"></div>
         </div>
       </div>`;
@@ -529,8 +529,7 @@ export default class Header {
       if (this.modalSliderInstance) {
         try {
           this.modalSliderInstance.destroy();
-        } catch (e) {
-        }
+        } catch (e) {}
         this.modalSliderInstance = null;
       }
       this.modal.close();
