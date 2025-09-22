@@ -2,27 +2,15 @@ export default {
   fr: {
     forfaits: [
       {
-        name: "Gold 1000",
-        data: "15Go internet ",
-        price: "1500",
+        name: "Gold 4000",
+        data: "200Go internet ",
+        price: "4000",
         duration: "30 jours",
-        features: ["Appels illimité vers Ooredoo", "2000 DA de crédit"],
-        buy: "Acheter",
-      },
-      {
-        name: "Gold 1500",
-        data: "40Go internet ",
-        price: "1500",
-        duration: "30 jours",
-        features:["Appels illimité vers Ooredoo", "3000 DA de crédit"],
-        buy: "Acheter",
-      },
-      {
-        name: "Gold 2000",
-        data: "70Go internet ",
-        price: "2000",
-        duration: "30 jours",
-        features: ["Appels illimité vers Ooredoo", "6000 DA de crédit"],
+        features: [
+          "Appels illimités vers tous les réseaux", 
+          "SMS illimités vers Ooredoo",
+          "200 SMS vers tous les réseaux"
+        ],
         buy: "Acheter",
       },
       {
@@ -38,15 +26,27 @@ export default {
         buy: "Acheter",
       },
       {
-        name: "Gold 4000",
-        data: "200Go internet ",
-        price: "4000",
+        name: "Gold 2000",
+        data: "70Go internet ",
+        price: "2000",
         duration: "30 jours",
-        features: [
-          "Appels illimités vers tous les réseaux", 
-          "SMS illimités vers Ooredoo",
-          "200 SMS vers tous les réseaux"
-        ],
+        features: ["Appels illimité vers Ooredoo", "6000 DA de crédit"],
+        buy: "Acheter",
+      },
+      {
+        name: "Gold 1500",
+        data: "40Go internet ",
+        price: "1500",
+        duration: "30 jours",
+        features:["Appels illimité vers Ooredoo", "3000 DA de crédit"],
+        buy: "Acheter",
+      },
+       {
+        name: "Gold 1000",
+        data: "15Go internet ",
+        price: "1500",
+        duration: "30 jours",
+        features: ["Appels illimité vers Ooredoo", "2000 DA de crédit"],
         buy: "Acheter",
       },
     ],
@@ -140,27 +140,15 @@ export default {
   ar: {
     forfaits: [
       {
-        name: "Gold 1000",
-        data: "<span class='font-rubik'>15Go</span> إنترنت ",
-        price: "1500",
+        name: "Gold 4000",
+        data: "<span class='font-rubik'>200Go</span> إنترنت ",
+        price: "4000",
         duration: "30 يوم",
-        features: ["مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", "<span class='font-rubik'>2000</span> دج رصيد"],
-        buy: "شراء",
-      },
-      {
-        name: "Gold 1500",
-        data: "<span class='font-rubik'>40Go</span> إنترنت ",
-        price: "1500",
-        duration: "30 يوم",
-        features: ["مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", "<span class='font-rubik'>3000</span> دج رصيد"],
-        buy: "شراء",
-      },
-      {
-        name: "Gold 2000",
-        data: "<span class='font-rubik'>70Go</span> إنترنت ",
-        price: "2000",
-        duration: "30 يوم",
-        features: ["مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", "<span class='font-rubik'>6000</span> دج رصيد"],
+        features: [
+          "مكالمات غير محدودة نحو كل الشبكات", 
+          "رسائل قصيرة غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
+          "<span class='font-rubik'>200</span> رسالة قصيرة نحو الشبكات الأخرى"
+        ],
         buy: "شراء",
       },
       {
@@ -175,17 +163,28 @@ export default {
         ],
         buy: "شراء",
       },
-
       {
-        name: "Gold 4000",
-        data: "<span class='font-rubik'>200Go</span> إنترنت ",
-        price: "4000",
+        name: "Gold 2000",
+        data: "<span class='font-rubik'>70Go</span> إنترنت ",
+        price: "2000",
         duration: "30 يوم",
-        features: [
-          "مكالمات غير محدودة نحو كل الشبكات", 
-          "رسائل قصيرة غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "<span class='font-rubik'>200</span> رسالة قصيرة نحو الشبكات الأخرى"
-        ],
+        features: ["مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", "<span class='font-rubik'>6000</span> دج رصيد"],
+        buy: "شراء",
+      },
+      {
+        name: "Gold 1500",
+        data: "<span class='font-rubik'>40Go</span> إنترنت ",
+        price: "1500",
+        duration: "30 يوم",
+        features: ["مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", "<span class='font-rubik'>3000</span> دج رصيد"],
+        buy: "شراء",
+      },
+      {
+        name: "Gold 1000",
+        data: "<span class='font-rubik'>15Go</span> إنترنت ",
+        price: "1500",
+        duration: "30 يوم",
+        features: ["مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", "<span class='font-rubik'>2000</span> دج رصيد"],
         buy: "شراء",
       },
     ],

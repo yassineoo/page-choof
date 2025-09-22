@@ -63,8 +63,10 @@ export class Slider {
 
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
+    console.log("Hello" , index)
+
     return `
-      <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 400px;">
+      <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
         <div class="h-full pb-6" ${isRTL ? `dir="rtl"` : ``}>
           <div class="h-14 -mx-[0.84px] bg-ooredoo-red flex items-center justify-center p-5">
             <h2 class="text-white font-rubik text-xl md:text-2xl font-medium text-center capitalize dark:text-white leading-tight">
@@ -75,7 +77,7 @@ export class Slider {
           <div class="flex-1 px-5 pb-4 border-b-[1px] border-b-[#BBBEBE] border-dashed">
             <div class="">
               <h3 class="py-4 text-[26px] font-semibold text-ooredoo-red dark:text-white leading-10">${offer.data}</h3>
-              <div>
+              <div class="h-[150px]">
                 ${offer.features && offer.features.length > 0 ? 
                   `<ul class="space-y-2">
                   ${offer.features.map((feature) => `
@@ -350,7 +352,9 @@ export class Slider {
 
     return `
           <div class="hidden sm:flex w-full items-center justify-center">
-            <div class="grid items-stretch grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-[1000px]">
+            <div 
+              class="forfait-grid-5 grid items-stretch grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-5 max-w-[1000px] grid-center-last-2"
+            > 
               ${offers.map((offer, index) => this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
             </div>
           </div>

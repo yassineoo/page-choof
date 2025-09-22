@@ -52,6 +52,14 @@ class ForfaitComponent {
   padding-bottom: 40px; /* space for dots */
 }
 
+@media (min-width: 1024px) {
+    /* scope with a class name so it won't affect other grids */
+    .grid-center-last-2 > *:nth-child(3n+1):nth-last-child(2) {
+      /* move the first item of the last row to column 2 */
+      grid-column-start: 2;
+    }
+  }
+
 /* Move pagination to the bottom */
 .forfait-mobile-container .swiper-pagination {
   position: absolute;
@@ -207,11 +215,11 @@ class ForfaitComponent {
       justify-self: center;
     }
     .forfait-grid-5 > *:nth-child(4) {
-      grid-column: 1 / 3;
+      grid-column: 1 / 6;
       justify-self: end;
     }
     .forfait-grid-5 > *:nth-child(5) {
-      grid-column: 2 / 6;
+      grid-column: 1 / 3;
       justify-self: start;
     }
 

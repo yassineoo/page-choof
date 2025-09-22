@@ -208,7 +208,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
   </svg>
 
   <!-- Tooltip -->
-  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute top-full bg-white text-black text-xs rounded px-2 py-1 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
+  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute top-full bg-white text-black text-xs px-[14px] leading-loose rounded-b-[15px] rounded-tl-[15px] rounded-tr-[4px] py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
     ${language === 'ar' ? 
       userData.mode === 'mactivia' ? "أنت حاليا في الوضع \"M'Activia\"، الذي يمكّنك من الحصول على اشتراك Gold مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : "أنت حاليا في الوضع \"رصيد\"، الذي يمكّنك من الحصول على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : 
       userData.mode === 'mactivia' ? "Vous êtes actuellement sur le mode \"M'Activia\", qui vous permet de recevoir un forfait Gold Activé à chaque rechargement de 1000 DA et plus." : 
@@ -286,7 +286,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
   </svg>
 
   <!-- Tooltip -->
-  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute bottom-[-35px] left-1/2 -translate-x-1/2 bg-white text-black text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute top-full bg-white text-black text-xs px-[14px] leading-loose rounded-b-[15px] rounded-tl-[15px] rounded-tr-[4px] py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
     ${language === 'ar' ? "معلومات" : "Info"}
   </span>
 </span>
