@@ -429,10 +429,10 @@ class BoostComponent {
                     ${
                       isRTL
                         ? `
-                          <span class="${fontClass} font-semibold text-[36px] leading-[43px]" dir="ltr" style="unicode-bidi:isolate; white-space:nowrap;">500</span>
+                          <span class="font-rubik font-semibold text-[36px] leading-[43px]" dir="ltr" style="unicode-bidi:isolate; white-space:nowrap;">500</span>
                           <span class="${fontClass} font-semibold text-[22px] leading-[28px]" dir="rtl">دج</span>
      `
-                        : `<span class="${fontClass} font-semibold text-[36px] leading-[43px]" dir="ltr" style="unicode-bidi:isolate; white-space:nowrap;">500</span>
+                        : `<span class="font-rubik font-semibold text-[36px] leading-[43px]" dir="ltr" style="unicode-bidi:isolate; white-space:nowrap;">500</span>
                            <span class="${fontClass} font-semibold text-[22px] leading-[28px]" dir="ltr">DA</span>`
                     }
                   </div>
