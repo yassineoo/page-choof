@@ -63,8 +63,6 @@ export class Slider {
 
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
-    console.log("Hello" , index)
-
     return `
       <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
         <div class="h-full pb-6" ${isRTL ? `dir="rtl"` : ``}>
@@ -173,7 +171,7 @@ export class Slider {
               </h2>
             </div>
             <div class="h-[54px] mt-6 px-4 text-xl">
-              <h3 class="text-ooredoo-red font-semibold text-[28px]">
+              <h3 class="text-ooredoo-red dark:text-white font-semibold text-[28px]">
                  <span class="font-rubik">${offer.data}</span>
                  ${isRTL ?
                   `<span class="font-noto-kufi-arabic">انترنت</span>`
@@ -267,7 +265,7 @@ export class Slider {
               </h2>
             </div>
             <div class="h-[54px] mt-6 px-4 text-xl">
-              <h3 class="text-ooredoo-red font-semibold text-[28px]">
+              <h3 class="text-ooredoo-red dark:text-white font-semibold text-[28px]">
                  ${offer.data}
               </h3>
             </div>
