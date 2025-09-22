@@ -58,7 +58,7 @@ export const generateHeaderHTML = (
     font-size: 0.875rem;
     line-height: 1.25rem;
     text-align: justify;
-    color: #d1d5db;
+    color: #ffffffff;
   `;
 
   const getOfferText = (offer) => {
@@ -111,9 +111,7 @@ export const generateHeaderHTML = (
       .join("");
   };
 
-  const offerHTML = formatMixedText(
-    getOfferText(userData.offer || "Offre Dima")
-  );
+  const offerHTML = formatMixedText(getOfferText("Offre Dima Ooredoo"));
 
   return `
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Noto+Kufi+Arabic:wght@400;500&display=swap" rel="stylesheet">
@@ -142,17 +140,54 @@ export const generateHeaderHTML = (
 <header class="bg-white dark:bg-[#171717] border-b border-gray-200 dark:border-gray-700 z-30 relative w-full">
   <div class="w-[95vw] mx-auto px-4">
     <div class="flex items-center justify-between h-16 md:h-20">
-      <div class="flex items-center space-x-3">
-        <div class="w-[140px] h-[36px] md:w-[180px] md:h-[56px] flex items-center justify-center relative">
-          <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden" />
-          <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline" />
-        </div>
-        <span class="text-3xl font-light hidden md:block text-black dark:text-white">|</span>
-        <div class="w-[100px] h-[29px] md:w-[120px] md:h-[40px] flex items-center justify-center relative">
-          <img src="./assets/images/header/Choof.svg" alt="Choof" class="absolute inset-0 w-full h-full object-contain dark:hidden" />
-          <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="absolute inset-0 w-full h-full object-contain hidden dark:inline" />
-        </div>
-      </div>
+<div class="flex items-center justify-between h-16 md:h-20">
+  <!-- on force LTR pour que logos restent à gauche même en RTL -->
+  <div class="flex items-center gap-3" dir="ltr">
+    <!-- Ooredoo -->
+    <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
+      <!-- light -->
+      <img
+        src="./assets/images/header/Ooredoo.svg"
+        alt="Ooredoo"
+        class="w-full h-full object-contain dark:hidden block"
+        width="200" height="40"
+        loading="lazy"
+      />
+      <!-- dark -->
+      <img
+        src="./assets/images/header/Ooredoo-white.svg"
+        alt="Ooredoo"
+        class="w-full h-full object-contain hidden dark:block"
+        width="200" height="40"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- séparateur (affiché seulement md+) -->
+    <span class="hidden md:inline text-3xl font-light text-black dark:text-white leading-none">|</span>
+
+    <!-- Choof -->
+    <div class="flex items-center justify-center w-[58.5px] h-[13px] md:w-[115px] md:h-[26px]">
+      <!-- light -->
+      <img
+        src="./assets/images/header/Choof.svg"
+        alt="Choof"
+        class="w-full h-full object-contain dark:hidden block"
+        width="115" height="26"
+        loading="lazy"
+      />
+      <!-- dark -->
+      <img
+        src="./assets/images/header/Choof-white.svg"
+        alt="Choof"
+        class="w-full h-full object-contain hidden dark:block"
+        width="115" height="26"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</div>
+
       
       <div class="hidden md:flex items-center space-x-4">
         <div id="theme-switcher" class="relative w-[144px] h-[48px] rounded-full bg-gray-200 dark:bg-ooredoo-red overflow-hidden transition-all duration-500">
@@ -256,25 +291,38 @@ export const generateHeaderHTML = (
           
           <div class="flex items-center gap-2">
             <img src="./assets/images/header/Puce.svg" class="w-6 h-6" />
-            <span style="${commonTextStyle}">${offerHTML}</span>
+            <span style="${commonTextStyle}">${offerHTML} </span>
           </div>
           
           <div class="flex items-center gap-2">
             <span style="${commonTextStyle}">${texts.renewalLabel}</span>
             <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
-              <button 
-                id="renewal-auto"
-                class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300"
-                style="font-family:'Rubik',sans-serif;font-weight:500;font-size:0.95rem;${
-                  isAuto
-                    ? "background:#E30613;color:#fff;"
-                    : "background:#fff;color:#2A2A2A;"
-                }">
-                <img src="./assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${
-                  isAuto ? "" : "hidden"
-                }" />
-                ${texts.autoLabel}
-              </button>
+            <button 
+  id="renewal-auto"
+  class="flex-1 flex flex-row items-center justify-start gap-[5px] rounded-full h-[32px] transition-all duration-300"
+  style="direction:ltr;
+         font-weight:500;
+         font-size:0.95rem;
+         padding:4px 10px;
+         border-radius:100px;
+         ${
+           isAuto
+             ? "background:#ED1C24;color:#fff;"
+             : "background:#fff;color:#2A2A2A;"
+         }">
+  <img 
+    src="./assets/images/header/chevron-down.svg" 
+    class="w-5 h-5 ${isAuto ? "hidden" : ""}"
+  />
+
+    <img 
+    src="./assets/images/header/chevron-down-white.svg" 
+    class="w-5 h-5 ${isAuto ? "" : "hidden"}"
+  />
+  ${texts.autoLabel}
+</button>
+
+
               <button 
                 id="renewal-manual"
                 class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300"
@@ -283,9 +331,6 @@ export const generateHeaderHTML = (
                     ? "background:#E30613;color:#fff;"
                     : "background:#fff;color:#2A2A2A;"
                 }">
-                <img src="./assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${
-                  !isAuto ? "" : "hidden"
-                }" />
                 ${texts.manualLabel}
               </button>
             </div>

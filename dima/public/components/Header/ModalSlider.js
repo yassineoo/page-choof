@@ -13,7 +13,7 @@ export class ModalSlider {
     const buttonText =
       this.texts.modifyBtn || (this.lang === "ar" ? "تعديل" : "MODIFIER");
     const currencyText = this.lang === "ar" ? "دج" : "DA";
-    const durationText = offer.duration;
+    const durationText = (offer.duration || "").toLowerCase();
     const dirAttribute = this.lang === "ar" ? 'dir="rtl"' : "";
 
     return `
@@ -29,10 +29,9 @@ export class ModalSlider {
               ${offer.description}
             </div>
             <div class="flex w-[257px] flex-col justify-end items-center gap-[15px]">
-              <div class="h-[29px] flex-shrink-0 text-black dark:text-gray-200 text-center font-rubik font-bold leading-normal capitalize">
+              <div class="h-[29px] flex-shrink-0 text-black dark:text-gray-200 text-center font-rubik font-bold leading-normal">
                 <span class="text-[26px]">${offer.price}</span>
-                <span class="text-[18px]"> ${currencyText}/</span>
-                <span class="text-[13px]">${durationText}</span>
+                <span class="text-[18px]"> ${currencyText}/<span class="text-[13px]">${durationText}</span></span>
               </div>
               <button data-plan-name="${offer.planName}" class="modifier-btn justify-center items-center rounded-[22px] bg-ooredoo-red hover:bg-red-700 transition-colors" style="padding: 7.34px 26.62px; font-size: 15.4px;">
                 <span class="text-white font-rubik font-bold leading-normal uppercase">
@@ -73,24 +72,18 @@ export class ModalSlider {
       return;
     }
 
-    // Définit un espacement au début et à la fin du slider
     const sideOffset = 16;
 
     this.swiper = new Swiper(this.container.querySelector(".swiper"), {
-      // Respecte la largeur CSS de chaque carte
       slidesPerView: "auto",
 
-      // Espace entre les cartes
       spaceBetween: 16,
 
-      // Ne centre pas les cartes, commence à gauche
       centeredSlides: false,
 
-      // Ajoute un "padding" interne au slider pour éviter que les cartes ne soient coupées
       slidesOffsetBefore: sideOffset,
       slidesOffsetAfter: sideOffset,
 
-      // Affiche les points de navigation
       pagination: {
         el: ".swiper-pagination",
         clickable: true,

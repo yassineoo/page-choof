@@ -89,23 +89,23 @@ export class Slider {
                     .map(
                       (feature) => `
                   <div class="flex items-center gap-2.5 w-full">
-                    <div class="flex w-[15px] h-[15px] p-[3px] items-center rounded-full" style="background:#E30613;">
+                    <div>
                       <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
                         <rect y="0.422852" width="14.91" height="14.91" rx="7.455" fill="#E31D23"/>
                         <g clip-path="url(#clip0_113_17964)">
-                          <g clip-path="url(#clip1_113_17964)">
-                            <path d="M4.22656 7.87927L6.37732 10.03L10.6788 5.72852" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </g>
+                        <g clip-path="url(#clip1_113_17964)">
+                        <path d="M4.22656 7.87927L6.37732 10.03L10.6788 5.72852" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
                         </g>
                         <defs>
-                          <clipPath id="clip0_113_17964">
-                            <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91211 3.33594)"/>
-                          </clipPath>
-                          <clipPath id="clip1_113_17964">
-                            <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91016 3.33691)"/>
-                          </clipPath>
+                        <clipPath id="clip0_113_17964">
+                        <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91211 3.33594)"/>
+                        </clipPath>
+                        <clipPath id="clip1_113_17964">
+                        <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91016 3.33691)"/>
+                        </clipPath>
                         </defs>
-                      </svg>
+                        </svg>
                     </div>
                     <div class="flex-1 text-black dark:text-white font-rubik text-base font-normal leading-[22px]">
                       ${feature}
@@ -121,9 +121,9 @@ export class Slider {
         <div class="flex flex-col items-center gap-5 w-full">
           <div class="w-[290px] border-b-[1px] border-b-[#BBBEBE] dark:border-b-gray-600 border-dashed text-center py-3"></div>
           <div class="flex flex-col justify-end items-center gap-2.5">
-            <div class="text-black dark:text-white text-center font-rubik font-bold text-base lowercase">
+            <div class="text-black dark:text-white text-center font-rubik font-bold text-base">
               <span class="text-[28px]">${priceNumber}</span>
-              <span class="text-base"> ${currencyLabel}/${durationText}</span>
+              <span class="text-[16px]"> ${currencyLabel}/${durationText}</span>
             </div>
             <button class="forfait-buy-btn bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
               style="
@@ -220,11 +220,8 @@ export class Slider {
               </div>
             </div>
             <div class="flex items-baseline justify-center mt-20">
-              <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
-              <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
-              <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${
-      index === 10 && "text-sm font-medium"
-    }">/${durationText}</span>
+              <span class="font-rubik font-semibold mx-2 text-[28px] leading-none text-black dark:text-white">${priceNumber}</span>
+                <span class="text-[16px] text-black dark:text-white font-semibold "> ${currencyLabel}/${durationText}</span>
             </div>
           </div>
 
@@ -325,8 +322,7 @@ export class Slider {
               </div>
               <div class="flex items-baseline justify-center mt-20">
               <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
-              <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
-              <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span>
+                 <span class="text-[16px] text-black dark:text-white font-semibold "> ${currencyLabel}/${durationText}</span>
             </div>
           </div>
 
@@ -370,14 +366,22 @@ export class Slider {
     ).join("");
   }
 
-createResponsiveLayout(offers, labels, gridType, isRTL, convertToLatinNumerals) {
-  const sliderId = "forfaits-slider";
-  const dotsId = "forfaits-dots";
+  createResponsiveLayout(
+    offers,
+    labels,
+    gridType,
+    isRTL,
+    convertToLatinNumerals
+  ) {
+    const sliderId = "forfaits-slider";
+    const dotsId = "forfaits-dots";
 
-  return `
+    return `
     <div class="hidden sm:flex w-full items-center justify-center">
       <div class="flex justify-center items-center content-center gap-4 sm:gap-6 lg:gap-[18px] flex-wrap max-w-[1215px]">
-        ${offers.map((offer, i) => this.createForfaitCard(offer, i, labels)).join("")}
+        ${offers
+          .map((offer, i) => this.createForfaitCard(offer, i, labels))
+          .join("")}
       </div>
     </div>
 
@@ -385,11 +389,15 @@ createResponsiveLayout(offers, labels, gridType, isRTL, convertToLatinNumerals) 
       <div class="forfait-slider-track">
         <div class="relative swiper">
           <div class="swiper-wrapper">
-            ${offers.map((offer, i) => `
+            ${offers
+              .map(
+                (offer, i) => `
               <div class="swiper-slide flex justify-center p-4">
                 ${this.createForfaitCard(offer, i, labels)}
               </div>
-            `).join("")}
+            `
+              )
+              .join("")}
           </div>
           <div class="absolute bottom-0 swiper-pagination"></div>
         </div>
@@ -398,16 +406,32 @@ createResponsiveLayout(offers, labels, gridType, isRTL, convertToLatinNumerals) 
 
     <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
   `;
-}
+  }
 
-createResponsiveLayoutInternet(offers, labels, gridType, isRTL, convertToLatinNumerals) {
-  const sliderId = "internet-slider";
-  const dotsId = "internet-dots";
+  createResponsiveLayoutInternet(
+    offers,
+    labels,
+    gridType,
+    isRTL,
+    convertToLatinNumerals
+  ) {
+    const sliderId = "internet-slider";
+    const dotsId = "internet-dots";
 
-  return `
+    return `
     <div class="hidden sm:flex w-full items-center justify-center">
       <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        ${offers.map((offer, index) => this.createForfaitCardInternet(offer, index, labels, isRTL, convertToLatinNumerals)).join("")}
+        ${offers
+          .map((offer, index) =>
+            this.createForfaitCardInternet(
+              offer,
+              index,
+              labels,
+              isRTL,
+              convertToLatinNumerals
+            )
+          )
+          .join("")}
       </div>
     </div>
 
@@ -415,11 +439,21 @@ createResponsiveLayoutInternet(offers, labels, gridType, isRTL, convertToLatinNu
       <div class="forfait-slider-track">
         <div class="relative swiper">
           <div class="swiper-wrapper">
-            ${offers.map((offer, index) => `
+            ${offers
+              .map(
+                (offer, index) => `
               <div class="swiper-slide flex justify-center p-4">
-                ${this.createForfaitCardInternet(offer, index, labels, isRTL, convertToLatinNumerals)}
+                ${this.createForfaitCardInternet(
+                  offer,
+                  index,
+                  labels,
+                  isRTL,
+                  convertToLatinNumerals
+                )}
               </div>
-            `).join("")}
+            `
+              )
+              .join("")}
           </div>
           <div class="absolute bottom-0 swiper-pagination"></div>
         </div>
@@ -428,16 +462,32 @@ createResponsiveLayoutInternet(offers, labels, gridType, isRTL, convertToLatinNu
 
     <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
   `;
-}
+  }
 
-createResponsiveLayoutSmart(offers, labels, gridType, isRTL, convertToLatinNumerals) {
-  const sliderId = "smart-slider";
-  const dotsId = "smart-dots";
+  createResponsiveLayoutSmart(
+    offers,
+    labels,
+    gridType,
+    isRTL,
+    convertToLatinNumerals
+  ) {
+    const sliderId = "smart-slider";
+    const dotsId = "smart-dots";
 
-  return `
+    return `
     <div class="hidden sm:flex w-full items-center justify-center">
       <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        ${offers.map((offer, index) => this.createForfaitCardSmart(offer, index, labels, isRTL, convertToLatinNumerals)).join("")}
+        ${offers
+          .map((offer, index) =>
+            this.createForfaitCardSmart(
+              offer,
+              index,
+              labels,
+              isRTL,
+              convertToLatinNumerals
+            )
+          )
+          .join("")}
       </div>
     </div>
 
@@ -445,11 +495,21 @@ createResponsiveLayoutSmart(offers, labels, gridType, isRTL, convertToLatinNumer
       <div class="forfait-slider-track">
         <div class="relative swiper">
           <div class="swiper-wrapper">
-            ${offers.map((offer, index) => `
+            ${offers
+              .map(
+                (offer, index) => `
               <div class="swiper-slide flex justify-center p-4">
-                ${this.createForfaitCardSmart(offer, index, labels, isRTL, convertToLatinNumerals)}
+                ${this.createForfaitCardSmart(
+                  offer,
+                  index,
+                  labels,
+                  isRTL,
+                  convertToLatinNumerals
+                )}
               </div>
-            `).join("")}
+            `
+              )
+              .join("")}
           </div>
           <div class="absolute bottom-0 swiper-pagination"></div>
         </div>
@@ -458,8 +518,7 @@ createResponsiveLayoutSmart(offers, labels, gridType, isRTL, convertToLatinNumer
 
     <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
   `;
-}
-
+  }
 
   initSwiper(containerId, forceRTL = null) {
     const container = document.getElementById(containerId);
