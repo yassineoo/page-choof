@@ -77,7 +77,7 @@ export class Slider {
           </div>
 
           <div class="flex px-5 items-center w-full">
-            <div class="text-ooredoo-red font-rubik text-[26px] font-bold leading-[45px] tracking-[-0.52px]">
+            <div class="text-ooredoo-red dark:text-white font-rubik text-[26px] font-bold leading-[45px] tracking-[-0.52px]">
               ${offer.data}
             </div>
           </div>
@@ -187,7 +187,7 @@ export class Slider {
               </h2>
             </div>
             <div class="h-[54px] mt-6 px-4 text-xl">
-              <h3 class="text-ooredoo-red font-semibold text-[28px]">
+              <h3 class="text-ooredoo-red dark:text-white font-semibold text-[28px]">
                  <span class="font-rubik">${offer.data}</span>
                  ${
                    isRTL
@@ -286,7 +286,7 @@ export class Slider {
               </h2>
             </div>
             <div class="h-[54px] mt-6 px-4 text-xl">
-              <h3 class="text-ooredoo-red font-semibold text-[28px]">
+              <h3 class="text-ooredoo-red dark:text-white font-semibold text-[28px]">
                  ${offer.data}
               </h3>
             </div>
