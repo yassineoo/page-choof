@@ -163,11 +163,11 @@ export const consommationData = {
           {
             subIcon: "internet",
             subtitle: "إنترنت مهدى",
-            value: "60",
+            value: "125",
             unit: "Go",
             date: "26/05/25",
             percentage: 50,
-            extra: "/120Go",
+            extra: "/250Go",
           },
           {
             subIcon: "internet",
@@ -181,11 +181,11 @@ export const consommationData = {
           {
             subIcon: "internet",
             subtitle: "إنترنت يومي",
-            value: "250",
+            value: "350",
             unit: "Mo",
             date: "26/05/25",
             percentage: 50,
-            extra: "/500Mo",
+            extra: "/700Mo",
           },
           {
             subIcon: "internet",
@@ -204,13 +204,13 @@ export const consommationData = {
         sections: [
           {
             subIcon: "phone",
-            subtitle: "مكالمات نحو الجميع",
+            subtitle: "مكالمات نحو Ooredoo",
             infini: true,
             date: "26/05/25",
           },
           {
             subIcon: "phone",
-            subtitle: "مكالمات نحو الشبكات الأخرى من 9سا الى 17سا",
+            subtitle: "رسائل قصيرة نحو Ooredoo",
             infini: true,
             date: "26/05/25",
           },
@@ -218,10 +218,10 @@ export const consommationData = {
             subIcon: "sms",
             subtitle: "رسائل قصيرة نحو الشبكات الأخرى",
             value: "80",
-            unit: "رسالة",
+            unit: "SMS",
             date: "26/05/25",
             percentage: 50,
-            extra: "/160 رسالة",
+            extra: "/160 SMS",
           },
           {
             subIcon: "phone",
