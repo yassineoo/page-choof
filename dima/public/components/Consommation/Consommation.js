@@ -385,7 +385,7 @@ export default class Consommation {
     return `
       <div class="w-full flex flex-col ${bgClass} ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
         <div class="bg-ooredoo-red w-full px-6 pt-2 pb-14 -my-7"> 
-          <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center py-4" style="font-weight: 500; font-size: 24px;">
+          <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center pt-[28px] md:pt-4 pb-4" style="font-weight: 500; font-size: 24px;">
             ${data.title}
           </h1>
         </div>
