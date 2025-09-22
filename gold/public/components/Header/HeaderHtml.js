@@ -17,15 +17,8 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
     return offer;
   };
 
-  const getCompanyText = (companyName) => {
-    if (language === "ar") {
-      if (companyName === "Nom de l'entreprise" || companyName === "Nom De L'entreprise") {
-        return "اسم الشركة";
-      }
-      return companyName;
-    }
-    return companyName;
-  };
+  const mactiviaText = "M'activia";
+  const creditText = language === "ar" ? "الرصيد" : "Credit";
 
   // Helper to detect Arabic chars
   const containsArabic = (text) => {
@@ -186,6 +179,35 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                   (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offer ") + offerHTML
                 }</span>
               </div>
+              <div class="flex items-center gap-2">
+                <span class="text-white">${language === 'ar' ? "<span class='font-noto-kufi-arabic'>الوضع :</span>" : "<span class='font-rubik'>Mode :</span>"}</span>
+                <div class="${language === 'ar' && "flex-row-reverse"} relative flex items-center bg-white rounded-full h-[32px] w-[160px] p-0.5">
+                  <button 
+                    id="mactivia-btn"
+                    class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
+                    ${mactiviaText}
+                  </button>
+                  <button 
+                    id="credit-btn"
+                    class="${language === 'ar' ? 'font-noto-kufi-arabic' : 'font-rubik'} flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
+                    ${creditText}
+                  </button>
+                </div>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                    <g clip-path="url(#clip0_598_43525)">
+                    <path d="M3.75977 12C3.75977 13.1819 3.99256 14.3522 4.44485 15.4442C4.89714 16.5361 5.56008 17.5282 6.3958 18.364C7.23153 19.1997 8.22368 19.8626 9.31561 20.3149C10.4075 20.7672 11.5779 21 12.7598 21C13.9417 21 15.112 20.7672 16.2039 20.3149C17.2958 19.8626 18.288 19.1997 19.1237 18.364C19.9595 17.5282 20.6224 16.5361 21.0747 15.4442C21.527 14.3522 21.7598 13.1819 21.7598 12C21.7598 9.61305 20.8116 7.32387 19.1237 5.63604C17.4359 3.94821 15.1467 3 12.7598 3C10.3728 3 8.08363 3.94821 6.3958 5.63604C4.70798 7.32387 3.75977 9.61305 3.75977 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12.7598 8V12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12.7598 16H12.7698" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_598_43525">
+                    <rect width="24" height="24" fill="white" transform="translate(0.759766)"/>
+                    </clipPath>
+                    </defs>
+                  </svg>
+                </span>
+              </div>
             </div>
             <div class="flex items-center justify-end gap-3 lg:gap-4 flex-shrink-0">
               <div class="flex items-center gap-2">
@@ -211,10 +233,13 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             <div class="flex items-center gap-2">
               <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 flex-shrink-0" />
               <span class="font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white text-sm md:text-lg ${fontClass}">${formatCredit(
-    userData.credit,
-    language
-  )}</span>
+                userData.credit,
+                language
+                )}
+              </span>
             </div>
+
+            
           </div>
           <div class="flex items-center gap-2 mb-4">
             <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
@@ -222,6 +247,18 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                   (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offer ") + offerHTML
                 }</span>
           </div>
+          <div class="relative flex items-center bg-white rounded-full h-[32px] w-[160px] p-0.5">
+    <button 
+      id="mactivia-btn"
+      class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
+      ${mactiviaText}
+    </button>
+    <button 
+      id="credit-btn"
+      class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
+      ${creditText}
+    </button>
+  </div>
           <div class="flex items-center justify-end gap-3">
             <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red  rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
               <span class="${
