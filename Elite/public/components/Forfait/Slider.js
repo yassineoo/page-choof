@@ -5,7 +5,6 @@ export class Slider {
     this.currentLang = this.getLanguage();
     this.boundHandlers = {
       languageChange: this.handleLanguageChange.bind(this),
-      //resize: this.handleResize.bind(this),
     };
     this.setupEventListeners();
   }
@@ -20,8 +19,14 @@ export class Slider {
   }
 
   setupEventListeners() {
-    window.removeEventListener("languageChanged", this.boundHandlers.languageChange);
-    window.addEventListener("languageChanged", this.boundHandlers.languageChange);
+    window.removeEventListener(
+      "languageChanged",
+      this.boundHandlers.languageChange
+    );
+    window.addEventListener(
+      "languageChanged",
+      this.boundHandlers.languageChange
+    );
 
     window.removeEventListener("resize", this.boundHandlers.resize);
     window.addEventListener("resize", this.boundHandlers.resize);
@@ -54,41 +59,42 @@ export class Slider {
     const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
     const textAlign = isRTL ? "text-right" : "text-left";
 
-    console.log("first", index)
-
     const titleFontClass = this.getFontClass(offer.name);
     const dataFontClass = this.getFontClass(offer.data);
     const buttonFontClass = this.getFontClass(buyLabel);
 
-    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
-    const durationText = this.convertToLatinNumerals(offer.duration);
+    const priceNumber = this.convertToLatinNumerals(
+      (offer.price || "").replace(/[^0-9٠-٩]/g, "")
+    );
+    const durationText = this.convertToLatinNumerals(offer.duration || "");
 
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
       <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
-        <div class="p-6 forfait-card-container h-full" ${isRTL ? `dir="rtl"` : ``}>
+        <div class="p-6 forfait-card-container h-full" ${
+          isRTL ? `dir="rtl"` : ``
+        }>
           <div class="pb-4">
             <h2 class="${titleFontClass} font-medium text-2xl text-center capitalize text-black dark:text-white mb-4 leading-tight">
-              ${index < 5 ? 
-                 `<span class='font-rubik'>${
-                  isRTL ? `<span class="font-noto-kufi-arabic">اشتراك <span class='font-rubik'>${offer.price}</span></span>` : offer.name
-                }</span>` 
-                 : 
-                 offer.name}
+              ${offer.name}
             </h2>
             <div class="w-full h-px forfait-divider mb-4"></div>
           </div>
 
           <div class="forfait-card-content flex-1">
             <div class="mb-5">
-              <h3 class="${dataFontClass} text-[28px] font-semibold text-ooredoo-red dark:text-white mb-2 ${textAlign} leading-10">${offer.data}</h3>
+              <h3 class="${dataFontClass} text-[28px] font-semibold text-ooredoo-red dark:text-white mb-2 ${textAlign} leading-10">${
+      offer.data
+    }</h3>
             </div>
 
             <div class="flex-1">
               ${
                 offer.features && offer.features.length > 0
-                  ? `<div class="${isRTL ? "text-right" : "text-left"}" dir="${isRTL ? "rtl" : "ltr"}">
+                  ? `<div class="${isRTL ? "text-right" : "text-left"}" dir="${
+                      isRTL ? "rtl" : "ltr"
+                    }">
                     <ul class="space-y-2">
                       ${offer.features
                         .map((feature) => {
@@ -157,41 +163,110 @@ export class Slider {
     ).join("");
   }
 
-  createResponsiveLayout(offers, labels, gridType, isRTL, convertToLatinNumerals) {
-    const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
-    const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
-    const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
-    const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
+  createResponsiveLayout(
+    offers,
+    labels,
+    gridType,
+    isRTL,
+    convertToLatinNumerals
+  ) {
+    const langData = ForfaitData[this.currentLang] || {};
+    const firstOfferName = offers && offers.length ? offers[0].name || "" : "";
+
+    let sliderKey = "forfaits";
+    if (gridType === "forfait-grid-3") {
+      sliderKey = "smart";
+    } else {
+      const matchInForfaits = (langData.forfaits || []).some(
+        (f) => f.name === firstOfferName
+      );
+      const matchInCalls = (langData.callForfaits || []).some(
+        (f) => f.name === firstOfferName
+      );
+      if (matchInForfaits) sliderKey = "forfaits";
+      else if (matchInCalls) sliderKey = "calls";
+      else sliderKey = "forfaits";
+    }
+
+    const gridClass =
+      gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
+    const sliderId = `${sliderKey}-slider`;
+    const dotsId = `${sliderKey}-dots`;
+    const gridId = `${sliderId}-grid`;
+
+    let startIndex = 0;
+    if (sliderKey === "smart") {
+      startIndex = (langData.forfaits || []).length;
+    } else if (sliderKey === "calls") {
+      startIndex =
+        (langData.forfaits || []).length +
+        (langData.smartForfaits || []).length;
+    }
+
+    const desktopCols = sliderKey === "smart" ? 3 : 2;
+
+    const gridStyle = `
+    <style>
+      /* par défaut (mobile) : cacher la grille pour éviter doublons */
+      #${gridId} {
+        display: none !important;
+        gap: 30px !important;
+        justify-content: center !important;
+        align-items: start !important;
+      }
+
+      /* Tablet / Desktop : afficher la grille avec le nombre de colonnes requis */
+      @media (min-width: 640px) {
+        #${gridId} {
+          display: grid !important;
+          grid-template-columns: repeat(${desktopCols}, 300px) !important;
+        }
+      }
+
+      /* ensure cards keep expected width inside the grid */
+      #${gridId} .forfait-card-shadow,
+      #${gridId} .forfait-card-container {
+        max-width: 300px !important;
+        width: 100% !important;
+      }
+    </style>
+  `;
 
     return `
-            <div class="forfait-grid ${gridClass}">
-              ${offers.map((offer, index) => this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
+    ${gridStyle}
+    <div id="${gridId}" class="forfait-grid ${gridClass}">
+      ${offers
+        .map((offer, index) =>
+          this.createForfaitCard(offer, startIndex + index, labels)
+        )
+        .join("")}
+    </div>
+
+    <div class="forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
+      <div class="relative swiper">
+        <div class="swiper-wrapper">
+          ${offers
+            .map(
+              (offer, index) => `
+            <div class="swiper-slide flex justify-center p-4">
+              ${this.createForfaitCard(offer, startIndex + index, labels)}
             </div>
-      
-            
-            <div class="forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
-                <div class="relative swiper">
-                <div class="swiper-wrapper">
-                    ${offers
-                      .map(
-                        (offer, index) => `
-                    <div class="swiper-slide flex justify-center p-4">
-                        ${this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)}
-                    </div>
-                    `
-                      )
-                      .join("")}
-                </div>
-                <div class="absolute bottom-0  swiper-pagination"></div>
-                </div>
-            </div>`;
+          `
+            )
+            .join("")}
+        </div>
+        <div class="absolute bottom-0 swiper-pagination"></div>
+      </div>
+    </div>
+
+    <div id="${dotsId}" class="forfait-dots-container" aria-hidden="true"></div>
+  `;
   }
 
   initSwiper(containerId, forceRTL = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    // Find and destroy existing Swiper instance
     const existingSwiper = container.querySelector(".swiper");
     if (existingSwiper && existingSwiper.swiper) {
       existingSwiper.swiper.destroy(true, true);
@@ -199,14 +274,17 @@ export class Slider {
 
     const isRTL = forceRTL !== null ? forceRTL : this.getLanguage() === "ar";
 
-    // CRITICAL: Set document direction for Swiper to work properly
     document.documentElement.dir = isRTL ? "rtl" : "ltr";
     document.body.dir = isRTL ? "rtl" : "ltr";
 
-    // Also set on the container
     container.dir = isRTL ? "rtl" : "ltr";
 
-    console.log("initSwiper - isRTL:", isRTL, "document.dir:", document.documentElement.dir);
+    console.log(
+      "initSwiper - isRTL:",
+      isRTL,
+      "document.dir:",
+      document.documentElement.dir
+    );
 
     setTimeout(() => {
       const swiper = new Swiper(container.querySelector(".swiper"), {
@@ -223,13 +301,13 @@ export class Slider {
           },
         },
         on: {
-        init: () => {
-          this.equalizeSlideHeights(container);
+          init: () => {
+            this.equalizeSlideHeights(container);
+          },
+          resize: () => {
+            this.equalizeSlideHeights(container);
+          },
         },
-        resize: () => {
-          this.equalizeSlideHeights(container);
-        },
-      },
       });
 
       setTimeout(() => {
@@ -241,24 +319,24 @@ export class Slider {
   }
 
   equalizeSlideHeights(container) {
-  const slides = container.querySelectorAll(".swiper-slide");
-  let maxHeight = 0;
+    const slides = container.querySelectorAll(".swiper-slide");
+    let maxHeight = 0;
 
-  // Reset heights first
-  slides.forEach(slide => {
-    slide.style.height = "auto";
-  });
+    // Reset heights first
+    slides.forEach((slide) => {
+      slide.style.height = "auto";
+    });
 
-  // Find tallest slide
-  slides.forEach(slide => {
-    maxHeight = Math.max(maxHeight, slide.offsetHeight);
-  });
+    // Find tallest slide
+    slides.forEach((slide) => {
+      maxHeight = Math.max(maxHeight, slide.offsetHeight);
+    });
 
-  // Apply tallest height to all
-  slides.forEach(slide => {
-    slide.style.height = `${maxHeight}px`;
-  });
-}
+    // Apply tallest height to all
+    slides.forEach((slide) => {
+      slide.style.height = `${maxHeight}px`;
+    });
+  }
 
   containsArabic(text) {
     if (!text) return false;
