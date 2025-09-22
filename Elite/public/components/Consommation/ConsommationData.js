@@ -187,7 +187,7 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 50,
-            extra: "/60 Go",
+            extra: "/60Go",
           },
           {
             subIcon: "internet",
@@ -196,7 +196,7 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 100,
-            extra: "/15 Go",
+            extra: "/15Go",
           },
           {
             subIcon: "internet",
@@ -205,7 +205,7 @@ export const consommationData = {
             unit: "Mo",
             date: "26/05/25",
             percentage: 50,
-            extra: "/500 Mo",
+            extra: "/500Mo",
           },
           {
             subIcon: "internet",
@@ -214,7 +214,7 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 50,
-            extra: "/8 Go",
+            extra: "/8Go",
           },
         ],
       },
@@ -271,7 +271,7 @@ export const consommationData = {
             unit: "Go",
             date: "26/05/25",
             percentage: 80,
-            extra: "/5 Go",
+            extra: "/5Go",
           },
           {
             subIcon: ["facebook", "messenger"],
