@@ -10,10 +10,9 @@ class Migration {
       resize: this.handleResize.bind(this),
     };
     this.providers = [
-      { id: "dima", displayName: "Dima Ooredoo" },
-      { id: "nyooz", displayName: "N'YOOZ" },
+      { id: "ooredoo", label: "DIMA OOREDOO", displayName: "Ooredoo" },
+      { id: "nyooz", label: "N'YOOZ", displayName: "N'YOOZ" },
     ];
-
     this.initialize();
   }
   initialize() {
@@ -29,7 +28,6 @@ class Migration {
       document.head.appendChild(styleElement);
     }
   }
-
   getStylesheet() {
     return `
  :root{
@@ -40,20 +38,6 @@ class Migration {
       --card-radius: 22px;
       --card-min-height: 300px;
     }
-
-    .migration-terms-link {
-        color: #0076B2;
-        text-decoration: underline;
-        text-underline-offset: 2px;
-        cursor: pointer;
-      }
-      .migration-terms-link:focus {
-        outline: 2px solid rgba(0,118,178,0.15);
-        outline-offset: 2px;
-      }
-      .migration-terms-link:hover {
-        opacity: 0.95;
-      }
     
      .dark .migration-section {
       background: #2c2c2c;
@@ -123,18 +107,18 @@ class Migration {
       display: flex;
       justify-content: center;
     }
-.migration-card-container {
-  display: flex;
-  width: 100%;
-  max-width: var(--container-max);
-  flex-direction: column;
-  height: auto;
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-}
+    .migration-card-container {
+      display: flex;
+      width: 100%;
+      max-width: var(--container-max);
+      flex-direction: column;
+      height: auto;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+    }
     .migration-card-content {
       flex: 0 0 auto;
       display: flex;
@@ -347,95 +331,6 @@ class Migration {
       color: #e30613;
       border: 2px solid #e30613;
     }
-    .migration-modal-button.secondary:hover {
-      background: #e30613;
-      color: white;
-    }
-
-.migration-terms-checkbox {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  user-select: none;
-  line-height: 1.4;
-  font-size: 16px;
-}
-
-.migration-terms-checkbox input[type="checkbox"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.migration-terms-checkbox .checkbox-faux {
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
-  border: 1px solid #cfcfcf;
-  background: #fff;
-  box-sizing: border-box;
-  flex: 0 0 auto;
-  display: inline-block;
-  transition: background .12s ease, border-color .12s ease, box-shadow .12s ease;
-}
-
-.migration-terms-checkbox input[type="checkbox"]:checked + .checkbox-faux {
-  background: #E30613;
-  border-color: #E30613;
-  box-shadow: none;
-}
-
-.migration-terms-checkbox input[type="checkbox"]:checked + .checkbox-faux::after {
-  content: "";
-  display: block;
-  width: 12px;
-  height: 10px;
-  margin: 3px auto;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'><path fill='%23ffffff' d='M4.5 8.5L1 5l1-1 2.5 2.5L10 1.5l1 1z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 12px 10px;
-}
-
-.migration-terms-checkbox input[type="checkbox"]:focus + .checkbox-faux {
-  box-shadow: 0 0 0 3px rgba(227,6,19,0.14);
-  outline: none;
-}
-
-.migration-terms-link {
-  color: #0076B2;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  cursor: pointer;
-}
-
-.migration-confirm-panel[aria-hidden="true"] {
-  visibility: hidden !important;
-  pointer-events: none !important;
-  background: transparent !important;
-  border-color: transparent !important;
-  opacity: 0 !important;
-  max-height: 0 !important;
-  padding: 0 !important;
-  margin-top: 0 !important;
-}
-.dark .migration-confirm-panel.visible {
-  background: #2c2c2c;
-  border-color: rgba(255,255,255,0.06);
-  color: #d1d5db;
-}
-.migration-confirm-panel.visible[aria-hidden="false"] {
-  visibility: visible !important;
-  pointer-events: auto !important;
-}
     
     @media (max-width: 1000px) {
     .migration-card-shadow {
@@ -532,7 +427,6 @@ class Migration {
     }
     `;
   }
-
   setupEventListeners() {
     window.removeEventListener(
       "languageChanged",
@@ -594,7 +488,7 @@ class Migration {
           const isArabic = this.containsArabic(part);
           const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
           const direction = isArabic ? "rtl" : "ltr";
-          return `<span class="${fontClass} ${baseClasses}" dir="${direction}">${part}</span>`;
+          return `<span class="${fontClass} ${baseClasses} ml-2">${part}</span>`;
         })
         .join("");
     }
@@ -633,96 +527,63 @@ class Migration {
     }, 50);
   }
   renderMainView(data, language, isRTL) {
-    const providerButtonsHTML = this.providers
-      .map((p) => {
-        const id = p.id;
-        const labelFromData =
-          data[id] || data[id + "Label"] || id.toUpperCase();
-        const displayName =
-          data[id] || id.charAt(0).toUpperCase() + id.slice(1);
-        return `<button class="migration-buy-btn migration-button-zone py-[10px]" data-provider="${id}" aria-label="${displayName}">
-                <span class="text-[16px]">${labelFromData}</span>
-              </button>`;
-      })
+    const buttonsHTML = this.providers
+      .map(
+        (p) =>
+          `<button class="migration-buy-btn migration-button-zone py-[10px]" data-provider="${p.id}" aria-label="${p.displayName}">
+            <span class="text-[16px]">${p.label}</span>
+          </button>`
+      )
       .join("\n");
-    const description = data.description || "";
     this.container.innerHTML = `
-  <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
+    <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-    <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] migration-section">
-      <div>
-        <div style="width:100%">
-<div class="migration-card-shadow migration-hover-lift">
-  <div class="migration-card-container">
-    <div class="migration-card-content">
-      <h2 class="migration-title">${this.createMixedTitleHTML(
-        data.title || ""
-      )}</h2>
-      <p class="migration-description">${description}</p>
-    </div>
-                 <div class="flex items-center gap-4 justify-center buttons-row">
-      ${providerButtonsHTML}
-    </div>
+      <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] migration-section">
+        <div>
+          <div style={width: 100%}>
+            <div class="migration-card-shadow migration-hover-lift">
+              <div class="migration-card-container">
+                <div class="migration-card-content">
+                  <h2 class="migration-title">${this.createMixedTitleHTML(
+                    data.title
+                  )}</h2>
+                  <p class="migration-description" dir="ltr">Voulez-vous changer vers une autre offre ?</p>
+                </div>
+                <div class="flex items-center gap-4 justify-center buttons-row">
+                  ${buttonsHTML}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <div id="migration-confirm-panel" class="migration-confirm-panel" aria-hidden="true"></div>
-    <div id="migration-modal-container"></div>
-  </div>
-  `;
+      </section>
+      <div id="migration-modal-container"></div>
+    </div>
+    `;
     this.bindPurchaseButtons(language);
-  }
-  highlightTerms(text, language) {
-    if (!text) return "";
-    const arPhrase = "شروط وأحكام العقد";
-    const frPhrase = "termes et conditions du contrat";
-    if (language === "ar" && text.includes(arPhrase)) {
-      return text.replace(
-        arPhrase,
-        `<a href="#" class="migration-terms-link" role="link" tabindex="0">${arPhrase}</a>`
-      );
-    }
-    if (language === "fr" && text.includes(frPhrase)) {
-      return text.replace(
-        frPhrase,
-        `<a href="#" class="migration-terms-link" role="link" tabindex="0">${frPhrase}</a>`
-      );
-    }
-    return text;
   }
 
   renderProviderView(providerId, data, language, isRTL) {
     const cap = providerId.charAt(0).toUpperCase() + providerId.slice(1);
     const changeKey = `change${cap}`;
+    // Le message spécifique à l'offre (ex: "Voulez-vous changer vers l'offre Dima+ ?")
     const changeSpecific = data[changeKey] || data.change || "";
-    const providerFromDataLabel = data[providerId] || providerId;
-
-    const displayName = providerFromDataLabel;
     const cancelBtn = data.cancelBtn || "Annuler";
     const confirmBtn = data.confirmBtn || "Confirmer";
 
     let termsHTML = "";
     if (providerId === "dima") {
       const termsText = data.termsAndConditions || "";
-      const wrapped = this.highlightTerms(termsText, language);
       termsHTML = `
-      <div class="mt-4 mb-8 px-4 text-center">
-        <label class="migration-terms-checkbox" style="max-width:100%; text-align:left;">
-          <input type="checkbox" id="dima-terms-checkbox-view" />
-          <span class="checkbox-faux" aria-hidden="true"></span>
-          <span style="margin-left:8px;">${wrapped}</span>
-        </label>
-      </div>
-    `;
+        <div class="mt-4 mb-8 px-4 text-center">
+          <label style="display:inline-flex; gap:8px; align-items:center; max-width:100%; line-height:1.4; cursor:pointer; font-size:16px; text-align:left;">
+            <input type="checkbox" id="dima-terms-checkbox-view" style="transform:scale(1.05);">
+            <span>${termsText}</span>
+          </label>
+        </div>
+      `;
     }
-
-    const isDark = document.documentElement.classList.contains("dark");
-    const roundedInlineStyle = `background: ${
-      isDark ? "#000" : "#F8F8F8"
-    }; color: ${isDark ? "#fff" : "#000"};`;
 
     this.container.innerHTML = `
     <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
@@ -730,21 +591,21 @@ class Migration {
     }>
       <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
         <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
-          <div class="text-center bg-[#fff] flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
-            <h2 class="migration-title">${this.createMixedTitleHTML(
+<div class="text-center bg-[#fff] flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
+            <h2 class="text-[42px] font-semibold">${this.createMixedTitleHTML(
               data.title || ""
             )}</h2>
-            <p class="migration-description">${data.description || ""}</p>
+            <p class="text-[21px]">${data.description || ""}</p>
           </div>
-          <div class="rounded-b-[22.5px] min-h-[200px] pt-14 pb-6" style="${roundedInlineStyle}">
+          <div class="rounded-b-[22.5px] bg-[#F8F8F8] min-h-[200px] pt-14 pb-6">
             <p class="text-center mb-8 px-4">
               <span class="text-[21px]">${changeSpecific}</span>
             </p>
-
+            
             ${termsHTML}
 
             <div class="flex items-center gap-4 justify-center">
-              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
+              <button id="back-to-main" class="relative overflow-hidden z-10 touch-manipulation border-[#e30613] bg-white text-[#e30613] border-[2px] px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
                 <span class="text-[16px]">${cancelBtn}</span>
               </button>
               <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
@@ -756,7 +617,7 @@ class Migration {
       </section>
       <div id="migration-modal-container"></div>
     </div>
-  `;
+    `;
 
     if (providerId === "dima") {
       const checkbox = this.container.querySelector(
@@ -765,9 +626,11 @@ class Migration {
       const confirmButton = this.container.querySelector(
         `#start-${providerId}-migration`
       );
+
       confirmButton.disabled = true;
       confirmButton.style.opacity = "0.5";
       confirmButton.style.cursor = "not-allowed";
+
       checkbox.addEventListener("change", () => {
         if (checkbox.checked) {
           confirmButton.disabled = false;
@@ -812,7 +675,6 @@ class Migration {
     if (modalContainer && modalContainer.innerHTML.trim()) {
       modalContainer.innerHTML = "";
     }
-    this.toggleConfirmPanel(false);
   }
   handleResize() {
     clearTimeout(this.resizeTimeout);
@@ -856,13 +718,16 @@ class Migration {
         this.render();
         return;
       }
+
       const startBtn = e.target.closest("[id^='start-'][id$='-migration']");
       if (startBtn) {
+        // Si le bouton est désactivé (cas de Dima avec checkbox non cochée), ne rien faire
         if (startBtn.disabled) {
           e.preventDefault();
           e.stopPropagation();
           return;
         }
+
         e.preventDefault();
         e.stopPropagation();
         const id = startBtn.id
@@ -873,25 +738,39 @@ class Migration {
         const baseModalData = migrationData[lang] || {};
         let modalData = {};
         let message = "";
+
+        // On cherche le nom d'affichage correspondant à l'ID
         const provider = this.providers.find((p) => p.id === providerId);
-        const displayName = provider
-          ? provider.displayName || providerId
-          : providerId;
+        const displayName = provider ? provider.displayName : providerId;
+
         if (providerId === "dima") {
           modalData = baseModalData.migrationDimaModal || {};
+          // Le message est maintenant juste la description, sans la checkbox
           message = modalData.confirmDescription || "";
+        } else if (providerId === "ooredoo") {
+          modalData = baseModalData.migrationOoredooModal || {};
+          message =
+            modalData.confirmDescription ||
+            baseModalData.changeOfferGeneric.replace(
+              "{offerName}",
+              displayName
+            );
         } else if (providerId === "nyooz") {
           modalData = baseModalData.migrationNyoozModal || {};
-          message = modalData.confirmDescription || "";
+          message =
+            modalData.confirmDescription ||
+            baseModalData.changeOfferGeneric.replace(
+              "{offerName}",
+              displayName
+            );
         } else {
           modalData = baseModalData.migrationDimaModal || {};
-          message = baseModalData.changeOfferGeneric
-            ? baseModalData.changeOfferGeneric.replace(
-                "{offerName}",
-                displayName
-              )
-            : "";
+          message = baseModalData.changeOfferGeneric.replace(
+            "{offerName}",
+            displayName
+          );
         }
+
         this.handlePurchaseClick(lang, {
           ...modalData,
           confirmDescription: message,
@@ -1057,6 +936,7 @@ class Migration {
         handler: closeClickHandler,
       });
     }
+
     const dimaCheckbox = modal.querySelector("#dima-terms-checkbox");
     let confirmButton = modal.querySelector('[data-action="confirm"]');
     if (dimaCheckbox && confirmButton) {
@@ -1132,54 +1012,6 @@ class Migration {
     }
   }
   addAccessibility() {}
-  toggleConfirmPanel(show = true) {
-    const panel = this.container.querySelector("#migration-confirm-panel");
-    if (!panel) return;
-    if (panel._migrationTransitionHandler) {
-      panel.removeEventListener(
-        "transitionend",
-        panel._migrationTransitionHandler
-      );
-      panel._migrationTransitionHandler = null;
-    }
-    if (show) {
-      panel.setAttribute("aria-hidden", "false");
-      panel.classList.add("visible");
-      panel.style.visibility = "visible";
-      panel.style.pointerEvents = "";
-      panel.style.background = "";
-      panel.style.borderColor = "";
-    } else {
-      panel.classList.remove("visible");
-      panel.setAttribute("aria-hidden", "true");
-      panel.style.pointerEvents = "none";
-      panel.style.background = "transparent";
-      panel.style.borderColor = "transparent";
-      const onTransitionEnd = (ev) => {
-        if (ev.target !== panel) return;
-        panel.style.visibility = "hidden";
-        panel.style.background = "";
-        panel.style.borderColor = "";
-        panel.removeEventListener("transitionend", onTransitionEnd);
-        panel._migrationTransitionHandler = null;
-      };
-      panel._migrationTransitionHandler = onTransitionEnd;
-      panel.addEventListener("transitionend", onTransitionEnd);
-      setTimeout(() => {
-        if (panel._migrationTransitionHandler) {
-          panel.style.visibility = "hidden";
-          panel.style.background = "";
-          panel.style.borderColor = "";
-          panel.removeEventListener("transitionend", onTransitionEnd);
-          panel._migrationTransitionHandler = null;
-        }
-      }, 500);
-    }
-  }
-  isConfirmPanelVisible() {
-    const panel = this.container.querySelector("#migration-confirm-panel");
-    return panel ? panel.classList.contains("visible") : false;
-  }
   destroy() {
     if (this.languagePolling) {
       clearInterval(this.languagePolling);
