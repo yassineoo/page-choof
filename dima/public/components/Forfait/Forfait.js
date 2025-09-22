@@ -874,12 +874,6 @@ class ForfaitComponent {
       labels
     );
 
-    requestAnimationFrame(() => {
-      this.slider.initSwiper("forfaits-slider");
-      this.slider.initSwiper("internet-slider");
-      this.slider.initSwiper("smart-slider");
-    });
-
     setTimeout(() => {
       this.initializeSliders();
       this.addSliderAccessibility();
@@ -947,13 +941,18 @@ class ForfaitComponent {
 
     this.cleanupSliderEventListenersFor(slider);
 
-    if (element.querySelector(".swiper")) {
+    if (this.isMobile()) {
       try {
         this.slider.initSwiper(sliderId);
       } catch (e) {}
 
+      if (dotsContainer) {
+        dotsContainer.classList.add("hidden");
+        slider.dotsContainer = null;
+      }
+
       const slideChangeHandler = (e) => {
-        const idx = e?.detail?.activeIndex ?? 0;
+        const idx = Number(e?.detail?.activeIndex ?? 0);
         slider.currentIndex = Math.max(
           0,
           Math.min(idx, slider.totalSlides - 1)
@@ -971,8 +970,13 @@ class ForfaitComponent {
         element,
       });
 
-      this.setupDotNavigation(sliderType);
       return;
+    }
+
+    if (dotsContainer) {
+      dotsContainer.innerHTML = "";
+      dotsContainer.classList.add("hidden");
+      slider.dotsContainer = dotsContainer;
     }
 
     this.initializeSwipeHandlers(sliderType);
@@ -1263,14 +1267,33 @@ class ForfaitComponent {
 
   updateDots(sliderType, activeIndex) {
     const slider = this.sliders.get(sliderType);
-    const dots = slider.dotsContainer?.querySelectorAll(".forfait-dot");
-    if (!dots) return;
 
-    dots.forEach((dot, index) => {
-      const slideIndex = parseInt(dot.getAttribute("data-slide")) || index;
-      dot.classList.toggle("active", slideIndex === activeIndex);
-    });
+    // update custom / desktop dots (if any)
+    const customDots = slider.dotsContainer?.querySelectorAll(".forfait-dot");
+    if (customDots && customDots.length) {
+      customDots.forEach((dot, index) => {
+        let slideIndex = Number(dot.getAttribute("data-slide"));
+        if (isNaN(slideIndex)) slideIndex = index;
+        dot.classList.toggle("active", slideIndex === activeIndex);
+      });
+    }
+
+    const swiperPagination =
+      slider.element?.querySelector(".swiper-pagination");
+    if (swiperPagination) {
+      const bullets = swiperPagination.querySelectorAll(
+        ".forfait-dot, .swiper-pagination-bullet"
+      );
+      bullets.forEach((bullet, index) => {
+        let slideIndex = Number(bullet.getAttribute("data-slide"));
+        if (isNaN(slideIndex)) slideIndex = index;
+        const isActive = slideIndex === activeIndex;
+        bullet.classList.toggle("active", isActive);
+        bullet.classList.toggle("swiper-pagination-bullet-active", isActive);
+      });
+    }
   }
+
   handleLanguageChange() {
     const newLanguage = this.getLanguage();
     if (newLanguage !== this.currentLang) {

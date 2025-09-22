@@ -1,3 +1,4 @@
+// Slider.js
 export class Slider {
   constructor(parameters) {
     this.currentLang = this.getLanguage();
@@ -398,6 +399,7 @@ export class Slider {
     </div>
 
     <div id="forfaits-dots" class="forfait-dots hidden md:block" aria-hidden="true"></div>
+
   `;
   }
 
@@ -490,61 +492,88 @@ export class Slider {
   initSwiper(containerId, forceRTL = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
+
     const existingSwiper = container.querySelector(".swiper");
     if (existingSwiper && existingSwiper.swiper) {
-      existingSwiper.swiper.destroy(true, true);
+      try {
+        existingSwiper.swiper.destroy(true, true);
+      } catch (e) {}
     }
+
     const isRTL = forceRTL !== null ? forceRTL : this.getLanguage() === "ar";
+
     document.documentElement.dir = isRTL ? "rtl" : "ltr";
     document.body.dir = isRTL ? "rtl" : "ltr";
     container.dir = isRTL ? "rtl" : "ltr";
+
+    const self = this;
+
     setTimeout(() => {
       const swiperEl = container.querySelector(".swiper");
       if (!swiperEl) return;
+
       const swiper = new Swiper(swiperEl, {
         slidesPerView: 1.3,
         spaceBetween: 8,
         centeredSlides: true,
         loop: false,
         rtl: isRTL,
-        simulateTouch: true,
-        touchRatio: 1,
-        touchStartPreventDefault: false,
-        touchMoveStopPropagation: true,
-        nested: true,
         pagination: {
           el: container.querySelector(".swiper-pagination"),
           clickable: true,
           renderBullet: (index, className) => {
-            return `<span class="${className} custom-dot"></span>`;
+            return `<button class="${className} forfait-dot" data-slide="${index}" aria-label="Slide ${
+              index + 1
+            }"></button>`;
           },
         },
         on: {
-          init: () => {
-            this.equalizeSlideHeights(container);
-            const detail = {
-              sliderId: containerId,
-              activeIndex: swiper.activeIndex || 0,
-            };
-            container.dispatchEvent(
-              new CustomEvent("forfaitSlideChange", { detail })
-            );
+          init: function (s) {
+            try {
+              self.equalizeSlideHeights(container);
+            } catch (e) {}
+            try {
+              const idx =
+                typeof s.realIndex === "number"
+                  ? s.realIndex
+                  : typeof s.activeIndex === "number"
+                  ? s.activeIndex
+                  : 0;
+              container.dispatchEvent(
+                new CustomEvent("forfaitSlideChange", {
+                  detail: { activeIndex: idx },
+                })
+              );
+            } catch (e) {}
           },
-          resize: () => {
-            this.equalizeSlideHeights(container);
+          slideChange: function (s) {
+            try {
+              const idx =
+                typeof s.realIndex === "number"
+                  ? s.realIndex
+                  : typeof s.activeIndex === "number"
+                  ? s.activeIndex
+                  : 0;
+              container.dispatchEvent(
+                new CustomEvent("forfaitSlideChange", {
+                  detail: { activeIndex: idx },
+                })
+              );
+            } catch (e) {}
           },
-          slideChange: () => {
-            const active = swiper.activeIndex;
-            const detail = { sliderId: containerId, activeIndex: active };
-            container.dispatchEvent(
-              new CustomEvent("forfaitSlideChange", { detail })
-            );
+          resize: function () {
+            try {
+              self.equalizeSlideHeights(container);
+            } catch (e) {}
           },
         },
       });
+
       setTimeout(() => {
-        if (swiper && swiper.update) {
-          swiper.update();
+        if (swiper && typeof swiper.update === "function") {
+          try {
+            swiper.update();
+          } catch (e) {}
         }
       }, 50);
     }, 100);
