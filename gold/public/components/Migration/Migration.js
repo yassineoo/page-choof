@@ -582,13 +582,17 @@ class Migration {
     const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
     return arabicPattern.test(text);
   }
+
   createMixedTitleHTML(title, baseClasses = "") {
     if (!title) return "";
-    if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
+    const latinPattern = /[A-Za-z0-9'’\-\.\,\/]/;
+    if (this.containsArabic(title) && !latinPattern.test(title)) {
       return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
     }
-    if (this.containsArabic(title) && title.match(/[a-zA-Z]/)) {
-      const parts = title.split(/([a-zA-Z]+)/).filter((part) => part.trim());
+    if (this.containsArabic(title) && latinPattern.test(title)) {
+      const parts = title
+        .split(/([A-Za-z0-9'’\-\.\,\/]+)/)
+        .filter((part) => part.trim());
       return parts
         .map((part) => {
           const isArabic = this.containsArabic(part);
@@ -600,6 +604,7 @@ class Migration {
     }
     return `<span class="font-rubik ${baseClasses}">${title}</span>`;
   }
+
   render() {
     try {
       const language = this.getLanguage();
@@ -903,6 +908,15 @@ class Migration {
     this.container.addEventListener("click", clickHandler);
   }
 
+  wrapMixedTextForRTL(text) {
+    if (!text) return text;
+    if (!this.containsArabic(text)) return text;
+    return text.replace(
+      /([A-Za-z0-9'’\-\.\,\/]+)/g,
+      '<span dir="ltr">$1</span>'
+    );
+  }
+
   handlePurchaseClick(language, data) {
     const currentLanguage = this.getLanguage();
     const isRTL = currentLanguage === "ar";
@@ -918,6 +932,7 @@ class Migration {
       },
     });
   }
+
   showInsufficientModal(data, isRTL) {
     this.showModal({
       type: "info",
