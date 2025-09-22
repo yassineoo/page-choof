@@ -60,7 +60,7 @@ class BoostComponent {
     }
     .dark .boost-card-shadow {
       background: #2c2c2c;
-      color: #d1d5db;
+      color: #ffffffff;
     }
     .boost-card-shadow:hover {
       transform: translateY(-5px);

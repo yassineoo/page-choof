@@ -56,7 +56,7 @@ class Migration {
     }
     .dark .migration-card-shadow {
       background: #2c2c2c;
-      color: #d1d5db;
+      color: #ffffffff;
       box-shadow: none;
     }
 

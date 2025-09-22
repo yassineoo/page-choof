@@ -191,8 +191,9 @@ class ConversionsComponent {
    .dark .plan-header {
       border-color: #666;
     }
-         .dark .plan-description {
-      color: #e0e0e0;
+    
+    .dark .plan-description {
+      color: #ffffffff;
     }
 
        .dark .plan-price {
@@ -511,7 +512,7 @@ class ConversionsComponent {
     this.container.innerHTML = `
       <div class="w-full flex items-center justify-center py-16">
         <div class="text-center">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Une erreur s'est produite lors du chargement des conversions</p>
+          <p class="text-gray-600 dark:text-white mb-4">Une erreur s'est produite lors du chargement des conversions</p>
           <button onclick="location.reload()"
                   class="bg-ooredoo-red text-white px-4 py-2 rounded-full">
             Recharger
@@ -898,7 +899,7 @@ class ConversionsComponent {
     const messageHTML = message
       ? `
       <div class="text-center mb-10 ${messageContainerClass}">
-        <p class="${fontClass} text-gray-800 dark:text-gray-200 leading-relaxed text-base md:text-lg px-2">
+        <p class="${fontClass} text-gray-800 dark:text-white leading-relaxed text-base md:text-lg px-2">
             ${message}
         </p>
       </div>`
