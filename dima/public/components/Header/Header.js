@@ -455,7 +455,7 @@ export default class Header {
           </div>
         </div>
         <div class="border-b border-gray-200 dark:border-gray-700"></div>
-        <div class="bg-[#F8F8F8] dark:bg-gray-900 p-6 md:p-8">
+        <div class="bg-[#F8F8F8] dark:bg-gray-900 py-6">
           <div id="modal-slider-container"></div>
         </div>
       </div>`;

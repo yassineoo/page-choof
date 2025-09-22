@@ -210,14 +210,13 @@ export const generateHeaderHTML = (
         </a>
         
         <div class="relative h-[40px] lg:h-[48px]" id="language-desktop">
-            <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white dark:bg-gray-800 border border-[#E4E4E7] dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 text-black dark:text-white">
+            <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] dark:border-[#E4E4E7] hover:bg-gray-100 transition-all duration-300 text-[#2A2A2A]">
               <span id="current-language" class="${
                 language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
               } text-sm lg:text-base font-medium">${
     texts.currentLanguage
   }</span>
-              <img src="./assets/images/header/chevron-down.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2 dark:hidden" />
-              <img src="./assets/images/header/chevron-down-white.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2 hidden dark:inline" />
+              <img src="./assets/images/header/chevron-down-black-h.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2" />
             </button>
             <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300">
               <a href="#" class="language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-black dark:text-white transition-all duration-300 ${
