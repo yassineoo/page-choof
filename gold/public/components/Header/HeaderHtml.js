@@ -18,7 +18,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
   };
 
   const mactiviaText = "M'activia";
-  const creditText = language === "ar" ? "الرصيد" : "Credit";
+  const creditText = language === "ar" ? "<span class='font-noto-kufi-arabic'>الرصيد</span>" : "Credit";
 
   // Helper to detect Arabic chars
   const containsArabic = (text) => {
@@ -162,7 +162,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
       </div>
     </div>
 
-    <div class="bg-ooredoo-red text-white w-full transition-all duration-300 overflow-hidden">
+    <div class="bg-ooredoo-red text-white w-full transition-all duration-300">
       <div class="w-full max-w-[90vw] mx-auto">
         <div class="hidden md:block py-4 lg:py-6">
           <div class="flex items-center justify-between gap-4 lg:gap-6 w-full">
@@ -193,20 +193,30 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                     ${creditText}
                   </button>
                 </div>
-                <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-                    <g clip-path="url(#clip0_598_43525)">
-                    <path d="M3.75977 12C3.75977 13.1819 3.99256 14.3522 4.44485 15.4442C4.89714 16.5361 5.56008 17.5282 6.3958 18.364C7.23153 19.1997 8.22368 19.8626 9.31561 20.3149C10.4075 20.7672 11.5779 21 12.7598 21C13.9417 21 15.112 20.7672 16.2039 20.3149C17.2958 19.8626 18.288 19.1997 19.1237 18.364C19.9595 17.5282 20.6224 16.5361 21.0747 15.4442C21.527 14.3522 21.7598 13.1819 21.7598 12C21.7598 9.61305 20.8116 7.32387 19.1237 5.63604C17.4359 3.94821 15.1467 3 12.7598 3C10.3728 3 8.08363 3.94821 6.3958 5.63604C4.70798 7.32387 3.75977 9.61305 3.75977 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12.7598 8V12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12.7598 16H12.7698" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_598_43525">
-                    <rect width="24" height="24" fill="white" transform="translate(0.759766)"/>
-                    </clipPath>
-                    </defs>
-                  </svg>
-                </span>
+                <span class="relative group">
+  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none" class="cursor-pointer">
+    <g clip-path="url(#clip0_598_43525)">
+      <path d="M3.75977 12C3.75977 13.1819 3.99256 14.3522 4.44485 15.4442C4.89714 16.5361 5.56008 17.5282 6.3958 18.364C7.23153 19.1997 8.22368 19.8626 9.31561 20.3149C10.4075 20.7672 11.5779 21 12.7598 21C13.9417 21 15.112 20.7672 16.2039 20.3149C17.2958 19.8626 18.288 19.1997 19.1237 18.364C19.9595 17.5282 20.6224 16.5361 21.0747 15.4442C21.527 14.3522 21.7598 13.1819 21.7598 12C21.7598 9.61305 20.8116 7.32387 19.1237 5.63604C17.4359 3.94821 15.1467 3 12.7598 3C10.3728 3 8.08363 3.94821 6.3958 5.63604C4.70798 7.32387 3.75977 9.61305 3.75977 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.7598 8V12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.7598 16H12.7698" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <defs>
+      <clipPath id="clip0_598_43525">
+        <rect width="24" height="24" fill="white" transform="translate(0.759766)"/>
+      </clipPath>
+    </defs>
+  </svg>
+
+  <!-- Tooltip -->
+  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute top-full bg-white text-black text-xs rounded px-2 py-1 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
+    ${language === 'ar' ? 
+      userData.mode === 'mactivia' ? "أنت حاليا في الوضع \"M'Activia\"، الذي يمكّنك من الحصول على اشتراك Gold مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : "أنت حاليا في الوضع \"رصيد\"، الذي يمكّنك من الحصول على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : 
+      userData.mode === 'mactivia' ? "Vous êtes actuellement sur le mode \"M'Activia\", qui vous permet de recevoir un forfait Gold Activé à chaque rechargement de 1000 DA et plus." : 
+      "Vous êtes actuellement sur le mode \"Crédit\", qui vous permet de recevoir du crédit non activé à chaque rechargement de 1000 DA et plus."
+    }
+  </span>
+</span>
+
               </div>
             </div>
             <div class="flex items-center justify-end gap-3 lg:gap-4 flex-shrink-0">
@@ -247,18 +257,41 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                   (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offer ") + offerHTML
                 }</span>
           </div>
-          <div class="relative flex items-center bg-white rounded-full h-[32px] w-[160px] p-0.5">
-    <button 
-      id="mactivia-btn"
-      class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
-      ${mactiviaText}
-    </button>
-    <button 
-      id="credit-btn"
-      class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
-      ${creditText}
-    </button>
-  </div>
+          <div class="flex items-center gap-2 mb-4">
+                <span class="text-white">${language === 'ar' ? "<span class='font-noto-kufi-arabic'>الوضع :</span>" : "<span class='font-rubik'>Mode :</span>"}</span>
+                <div class="${language === 'ar' && "flex-row-reverse"} relative flex items-center bg-white rounded-full h-[32px] w-[160px] p-0.5">
+                  <button 
+                    id="mactivia-btn"
+                    class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
+                    ${mactiviaText}
+                  </button>
+                  <button 
+                    id="credit-btn"
+                    class="${language === 'ar' ? 'font-noto-kufi-arabic' : 'font-rubik'} flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
+                    ${creditText}
+                  </button>
+                </div>
+                <span class="relative group">
+  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none" class="cursor-pointer">
+    <g clip-path="url(#clip0_598_43525)">
+      <path d="M3.75977 12C3.75977 13.1819 3.99256 14.3522 4.44485 15.4442C4.89714 16.5361 5.56008 17.5282 6.3958 18.364C7.23153 19.1997 8.22368 19.8626 9.31561 20.3149C10.4075 20.7672 11.5779 21 12.7598 21C13.9417 21 15.112 20.7672 16.2039 20.3149C17.2958 19.8626 18.288 19.1997 19.1237 18.364C19.9595 17.5282 20.6224 16.5361 21.0747 15.4442C21.527 14.3522 21.7598 13.1819 21.7598 12C21.7598 9.61305 20.8116 7.32387 19.1237 5.63604C17.4359 3.94821 15.1467 3 12.7598 3C10.3728 3 8.08363 3.94821 6.3958 5.63604C4.70798 7.32387 3.75977 9.61305 3.75977 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.7598 8V12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.7598 16H12.7698" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <defs>
+      <clipPath id="clip0_598_43525">
+        <rect width="24" height="24" fill="white" transform="translate(0.759766)"/>
+      </clipPath>
+    </defs>
+  </svg>
+
+  <!-- Tooltip -->
+  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute bottom-[-35px] left-1/2 -translate-x-1/2 bg-white text-black text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+    ${language === 'ar' ? "معلومات" : "Info"}
+  </span>
+</span>
+
+              </div>
           <div class="flex items-center justify-end gap-3">
             <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red  rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
               <span class="${
