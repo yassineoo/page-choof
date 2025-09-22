@@ -3,8 +3,10 @@ export class Slider {
     this.currentLang = this.getLanguage();
     this.boundHandlers = {
       languageChange: this.handleLanguageChange.bind(this),
-      //resize: this.handleResize.bind(this),
+      resize: this.handleResize ? this.handleResize.bind(this) : () => {},
     };
+    this.languagePolling = null;
+    this.languageChangeTimeout = null;
     this.setupEventListeners();
   }
 
@@ -12,9 +14,19 @@ export class Slider {
     const newLanguage = this.getLanguage();
     if (newLanguage !== this.currentLang) {
       this.currentLang = newLanguage;
-      this.closeAnyOpenModals();
-      this.render();
+      const evt = new CustomEvent("sliderLanguageChanged", {
+        detail: { language: this.currentLang },
+      });
+      window.dispatchEvent(evt);
     }
+  }
+
+  handleResize() {
+    clearTimeout(this._resizeTimeout);
+    this._resizeTimeout = setTimeout(() => {
+      const evt = new CustomEvent("sliderResized", {});
+      window.dispatchEvent(evt);
+    }, 120);
   }
 
   setupEventListeners() {
@@ -26,12 +38,9 @@ export class Slider {
       "languageChanged",
       this.boundHandlers.languageChange
     );
-
     window.removeEventListener("resize", this.boundHandlers.resize);
     window.addEventListener("resize", this.boundHandlers.resize);
-
     this.setupLanguagePolling();
-    //this.setupAccessibility();
   }
 
   setupLanguagePolling() {
@@ -57,15 +66,12 @@ export class Slider {
     const buyLabel =
       (labels && labels.buy) || offer.buy || (isRTL ? "شراء" : "Acheter");
     const currencyLabel = isRTL ? "دج" : "DA";
-
     const cardHeightClass =
       offer.height === "short" ? "h-[365px]" : "h-[460px]";
-
     const priceNumber = this.convertToLatinNumerals(
       String(offer.price ?? "").replace(/[^0-9٠-٩]/g, "")
     );
     const durationText = this.convertToLatinNumerals(offer.duration || "");
-
     return `
     <div class="w-[290px] ${cardHeightClass} flex justify-center items-start rounded-xl border-[0.84px] border-[#C5C5C5] bg-white dark:bg-[#2C2C2C] shadow-sm dark:shadow-none">
       <div class="flex flex-col justify-between items-center flex-1 h-full pb-6">
@@ -157,19 +163,14 @@ export class Slider {
     const isRTL = this.currentLang === "ar";
     const currencyLabel = isRTL ? "دج" : "DA";
     const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
-    const textAlign = isRTL ? "text-right" : "text-left";
-
     const titleFontClass = this.getFontClass(offer.price);
     const dataFontClass = this.getFontClass(offer.data);
     const buttonFontClass = this.getFontClass(buyLabel);
-
     const priceNumber = this.convertToLatinNumerals(
       offer.price.replace(/[^0-9٠-٩]/g, "")
     );
     const durationText = this.convertToLatinNumerals(offer.duration);
-
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-
     return `
       <div class="${
         index - 12 === 2 &&
@@ -259,14 +260,7 @@ export class Slider {
     const isRTL = this.currentLang === "ar";
     const currencyLabel = isRTL ? "دج" : "DA";
     const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
-    const textAlign = isRTL ? "text-right" : "text-left";
-
-    const titleFontClass = this.getFontClass(offer.price);
-    const dataFontClass = this.getFontClass(offer.data);
-    const buttonFontClass = this.getFontClass(buyLabel);
-
     const durationText = this.convertToLatinNumerals(offer.duration);
-
     const priceNumber = this.convertToLatinNumerals(
       offer.price.replace(/[^0-9٠-٩]/g, "")
     );
@@ -328,7 +322,7 @@ export class Slider {
 
           <div class="forfait-card-footer">
             <div class="forfait-button-zone flex justify-center w-full">
-              <button class="forfait-buy-btn ${buttonFontClass} bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
+              <button class="forfait-buy-btn ${priceFontClass} bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
                 style="
                   font-weight: 500;
                   font-size: 16px;
@@ -360,9 +354,9 @@ export class Slider {
     return Array.from(
       { length: totalDots },
       (_, index) =>
-        `<button class="forfait-dot ${index === activeIndex ? "active" : ""}" 
-                data-slide="${index}" 
-                aria-label="Slide ${index + 1}"></button>`
+        `<button class="forfait-dot ${
+          index === activeIndex ? "active" : ""
+        }" data-slide="${index}" aria-label="Slide ${index + 1}"></button>`
     ).join("");
   }
 
@@ -374,8 +368,6 @@ export class Slider {
     convertToLatinNumerals
   ) {
     const sliderId = "forfaits-slider";
-    const dotsId = "forfaits-dots";
-
     return `
     <div class="hidden sm:flex w-full items-center justify-center">
       <div class="flex justify-center items-center content-center gap-4 sm:gap-6 lg:gap-[18px] flex-wrap max-w-[1215px]">
@@ -391,11 +383,12 @@ export class Slider {
           <div class="swiper-wrapper">
             ${offers
               .map(
-                (offer, i) => `
-              <div class="swiper-slide flex justify-center p-4">
-                ${this.createForfaitCard(offer, i, labels)}
-              </div>
-            `
+                (offer, i) =>
+                  `<div class="swiper-slide flex justify-center p-4">${this.createForfaitCard(
+                    offer,
+                    i,
+                    labels
+                  )}</div>`
               )
               .join("")}
           </div>
@@ -404,7 +397,7 @@ export class Slider {
       </div>
     </div>
 
-    <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
+    <div id="forfaits-dots" class="forfait-dots hidden md:block" aria-hidden="true"></div>
   `;
   }
 
@@ -416,20 +409,12 @@ export class Slider {
     convertToLatinNumerals
   ) {
     const sliderId = "internet-slider";
-    const dotsId = "internet-dots";
-
     return `
     <div class="hidden sm:flex w-full items-center justify-center">
       <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         ${offers
           .map((offer, index) =>
-            this.createForfaitCardInternet(
-              offer,
-              index,
-              labels,
-              isRTL,
-              convertToLatinNumerals
-            )
+            this.createForfaitCardInternet(offer, index, labels)
           )
           .join("")}
       </div>
@@ -441,17 +426,12 @@ export class Slider {
           <div class="swiper-wrapper">
             ${offers
               .map(
-                (offer, index) => `
-              <div class="swiper-slide flex justify-center p-4">
-                ${this.createForfaitCardInternet(
-                  offer,
-                  index,
-                  labels,
-                  isRTL,
-                  convertToLatinNumerals
-                )}
-              </div>
-            `
+                (offer, index) =>
+                  `<div class="swiper-slide flex justify-center p-4">${this.createForfaitCardInternet(
+                    offer,
+                    index,
+                    labels
+                  )}</div>`
               )
               .join("")}
           </div>
@@ -460,7 +440,7 @@ export class Slider {
       </div>
     </div>
 
-    <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
+    <div id="internet-dots" class="forfait-dots hidden md:block" aria-hidden="true"></div>
   `;
   }
 
@@ -472,20 +452,12 @@ export class Slider {
     convertToLatinNumerals
   ) {
     const sliderId = "smart-slider";
-    const dotsId = "smart-dots";
-
     return `
     <div class="hidden sm:flex w-full items-center justify-center">
       <div class="gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         ${offers
           .map((offer, index) =>
-            this.createForfaitCardSmart(
-              offer,
-              index,
-              labels,
-              isRTL,
-              convertToLatinNumerals
-            )
+            this.createForfaitCardSmart(offer, index, labels)
           )
           .join("")}
       </div>
@@ -497,17 +469,12 @@ export class Slider {
           <div class="swiper-wrapper">
             ${offers
               .map(
-                (offer, index) => `
-              <div class="swiper-slide flex justify-center p-4">
-                ${this.createForfaitCardSmart(
-                  offer,
-                  index,
-                  labels,
-                  isRTL,
-                  convertToLatinNumerals
-                )}
-              </div>
-            `
+                (offer, index) =>
+                  `<div class="swiper-slide flex justify-center p-4">${this.createForfaitCardSmart(
+                    offer,
+                    index,
+                    labels
+                  )}</div>`
               )
               .join("")}
           </div>
@@ -516,7 +483,7 @@ export class Slider {
       </div>
     </div>
 
-    <div id="${dotsId}" class="forfait-dots hidden md:block" aria-hidden="true"></div>
+    <div id="smart-dots" class="forfait-dots hidden md:block" aria-hidden="true"></div>
   `;
   }
 
@@ -527,23 +494,24 @@ export class Slider {
     if (existingSwiper && existingSwiper.swiper) {
       existingSwiper.swiper.destroy(true, true);
     }
-
     const isRTL = forceRTL !== null ? forceRTL : this.getLanguage() === "ar";
-
-    // CRITICAL: Set document direction for Swiper to work properly
     document.documentElement.dir = isRTL ? "rtl" : "ltr";
     document.body.dir = isRTL ? "rtl" : "ltr";
-
-    // Also set on the container
     container.dir = isRTL ? "rtl" : "ltr";
-
     setTimeout(() => {
-      const swiper = new Swiper(container.querySelector(".swiper"), {
+      const swiperEl = container.querySelector(".swiper");
+      if (!swiperEl) return;
+      const swiper = new Swiper(swiperEl, {
         slidesPerView: 1.3,
         spaceBetween: 8,
         centeredSlides: true,
         loop: false,
         rtl: isRTL,
+        simulateTouch: true,
+        touchRatio: 1,
+        touchStartPreventDefault: false,
+        touchMoveStopPropagation: true,
+        nested: true,
         pagination: {
           el: container.querySelector(".swiper-pagination"),
           clickable: true,
@@ -554,13 +522,26 @@ export class Slider {
         on: {
           init: () => {
             this.equalizeSlideHeights(container);
+            const detail = {
+              sliderId: containerId,
+              activeIndex: swiper.activeIndex || 0,
+            };
+            container.dispatchEvent(
+              new CustomEvent("forfaitSlideChange", { detail })
+            );
           },
           resize: () => {
             this.equalizeSlideHeights(container);
           },
+          slideChange: () => {
+            const active = swiper.activeIndex;
+            const detail = { sliderId: containerId, activeIndex: active };
+            container.dispatchEvent(
+              new CustomEvent("forfaitSlideChange", { detail })
+            );
+          },
         },
       });
-
       setTimeout(() => {
         if (swiper && swiper.update) {
           swiper.update();
@@ -572,18 +553,12 @@ export class Slider {
   equalizeSlideHeights(container) {
     const slides = container.querySelectorAll(".swiper-slide");
     let maxHeight = 0;
-
-    // Reset heights first
     slides.forEach((slide) => {
       slide.style.height = "auto";
     });
-
-    // Find tallest slide
     slides.forEach((slide) => {
       maxHeight = Math.max(maxHeight, slide.offsetHeight);
     });
-
-    // Apply tallest height to all
     slides.forEach((slide) => {
       slide.style.height = `${maxHeight}px`;
     });
@@ -595,11 +570,6 @@ export class Slider {
     return arabicPattern.test(text);
   }
 
-  getLanguage() {
-    const storedLanguage = localStorage.getItem("language");
-    return ["fr", "ar"].includes(storedLanguage) ? storedLanguage : "fr";
-  }
-
   getFontClass(text) {
     return this.containsArabic(text) ? "font-noto-kufi-arabic" : "font-rubik";
   }
@@ -608,7 +578,6 @@ export class Slider {
     if (!text) return text;
     const arabicNumerals = "٠١٢٣٤٥٦٧٨٩";
     const latinNumerals = "0123456789";
-
     return text.replace(/[٠-٩]/g, (match) => {
       return latinNumerals[arabicNumerals.indexOf(match)];
     });
