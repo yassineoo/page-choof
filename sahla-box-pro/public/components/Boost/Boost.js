@@ -1,4 +1,3 @@
-// BoostComponent.js
 import boostData from "./BoostData.js";
 
 class BoostComponent {
@@ -180,9 +179,6 @@ class BoostComponent {
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    .dark .boost-section {
-      background: #2c2c2c;
     }
 
     @keyframes modalFadeOut {
@@ -415,7 +411,7 @@ class BoostComponent {
 
     this.container.innerHTML = `
     <div class="w-full">
-      <section class="w-full bg-[#141B4D] dark:bg-[#2c2c2c] boost-section">
+      <section class="w-full bg-[#141B4D] dark:bg-[#141414] boost-section">
         <div class="max-w-[1600px] mx-auto md:px-6">
           <div class="boost-grid">
             <div class="boost-card-shadow boost-hover-lift">
@@ -433,10 +429,10 @@ class BoostComponent {
                     ${
                       isRTL
                         ? `
-                          <span class="${fontClass} font-semibold text-[36px] leading-[43px]" dir="ltr" style="unicode-bidi:isolate; white-space:nowrap;">500</span>
+                          <span class="font-rubik font-semibold text-[36px] leading-[43px]" dir="ltr" style="unicode-bidi:isolate; white-space:nowrap;">500</span>
                           <span class="${fontClass} font-semibold text-[22px] leading-[28px]" dir="rtl">دج</span>
      `
-                        : `<span class="${fontClass} font-semibold text-[36px] leading-[43px]" dir="ltr" style="unicode-bidi:isolate; white-space:nowrap;">500</span>
+                        : `<span class="font-rubik font-semibold text-[36px] leading-[43px]" dir="ltr" style="unicode-bidi:isolate; white-space:nowrap;">500</span>
                            <span class="${fontClass} font-semibold text-[22px] leading-[28px]" dir="ltr">DA</span>`
                     }
                   </div>
@@ -562,11 +558,7 @@ class BoostComponent {
       isRTL,
       onConfirm: () => {
         const isInsufficient = Math.random() > 0.7;
-        // if (isInsufficient) {
-        // this.showInsufficientModal(data, isRTL);
-        //  } else {
         this.showSuccessModal(data, isRTL);
-        // }
       },
     });
   }

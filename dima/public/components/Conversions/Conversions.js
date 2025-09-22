@@ -95,26 +95,7 @@ class ConversionsComponent {
       background-color: #c50510;
       transform: scale(1.05);
     }
-    .conversions-cancel-btn {
-      background-color: transparent;
-      color: var(--red);
-      border: 2px solid var(--red);
-      padding: 7.48px 27.11px;
-      border-radius: 9999px;
-      font-size: clamp(0.875rem, 2.5vw, 1.125rem);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      text-transform: uppercase;
-      min-width: 180px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .conversions-cancel-btn:hover {
-      background-color: var(--red);
-      color: white;
-    }
+    
     .plans-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -139,7 +120,6 @@ class ConversionsComponent {
       font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
       font-weight: 700;
       font-size: 22px;
-      color: var(--red);
       text-transform: uppercase;
     }
     .plan-body {
@@ -405,7 +385,7 @@ class ConversionsComponent {
     let buttonsHTML = "";
     if (this.isAccordionOpen) {
       buttonsHTML = `
-            <button class="conversions-cancel-btn" data-action="close-accordion">
+            <button class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white" data-action="close-accordion">
                 <span class="font-rubik font-semibold leading-normal uppercase whitespace-nowrap text-base md:text-lg">
                     ${data.cancelBtn}
                 </span>
@@ -467,15 +447,14 @@ class ConversionsComponent {
             (plan, idx) => `
           <div key="${plan.name}" class="plan-card">
             <div class="plan-header">
-              <h3 class="plan-name">${plan.name}</h3>
+              <h3 class="plan-name text-ooredoo-red dark:text-white">${plan.name}</h3>
             </div>
             <div class="plan-body">
               <p class="plan-description">${plan.description}</p>
               <div class="plan-pricing">
                 <div class="plan-price">
                   <span class="price-amount">${plan.price}</span>
-                  <span class="price-currency">${plan.priceUnit}</span>
-                  <span class="price-duration">${plan.duration}</span>
+                  <span class="price-currency">${plan.priceUnit}<span class="price-duration">${plan.duration}</span></span>
                 </div>
                 <button class="btn-convert" data-action="convert-to-${idx}">
                   ${data.convertBtn}

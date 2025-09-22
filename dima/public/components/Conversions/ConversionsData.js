@@ -28,7 +28,7 @@ const conversionsData = {
           "Appels illimités vers tous les réseaux nationaux + 100Go internet + 250 SMS vers tous les réseaux + ANAZIK, ANAFLIX, SHAHID et Facebook gratuits",
         price: 2500,
         duration: "30 jours",
-        priceUnit: "Da/",
+        priceUnit: "DA/",
       },
       {
         name: "DIMA 2000",
@@ -36,7 +36,7 @@ const conversionsData = {
           "50Go internet + 300 min et 200 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAZIK, ANAFLIX et Facebook gratuits",
         price: 2000,
         duration: "30 jours",
-        priceUnit: "Da/",
+        priceUnit: "DA/",
       },
       {
         name: "DIMA 1500",
@@ -44,7 +44,7 @@ const conversionsData = {
           "30Go internet + 150 min et 150 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAFLIX et Facebook gratuits",
         price: 1500,
         duration: "30 jours",
-        priceUnit: "Da/",
+        priceUnit: "DA/",
       },
       {
         name: "DIMA 1200",
@@ -52,7 +52,7 @@ const conversionsData = {
           "8Go internet + 100 min et 120 SMS vers tous les réseaux + appels illimités vers Ooredoo + ANAZIK et Facebook gratuits",
         price: 1200,
         duration: "30 jours",
-        priceUnit: "Da/",
+        priceUnit: "DA/",
       },
       {
         name: "DIMA 500",
@@ -60,7 +60,7 @@ const conversionsData = {
           "3Go internet + 100 min et 50 SMS vers tous les réseaux + appels illimités vers Ooredoo",
         price: 500,
         duration: "15 jours",
-        priceUnit: "Da/",
+        priceUnit: "DA/",
       },
       {
         name: "DIMA 500 HADRA",
@@ -68,7 +68,7 @@ const conversionsData = {
           "100 min et 100 SMS vers tous les réseaux nationaux + appels illimités vers Ooredoo",
         price: 500,
         duration: "30 jours",
-        priceUnit: "Da/",
+        priceUnit: "DA/",
       },
     ],
   },

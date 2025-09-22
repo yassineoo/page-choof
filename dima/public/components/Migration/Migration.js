@@ -9,9 +9,7 @@ class Migration {
       languageChange: this.handleLanguageChange.bind(this),
       resize: this.handleResize.bind(this),
     };
-
     this.providers = [{ id: "dima" }, { id: "ooredoo" }, { id: "nyooz" }];
-
     this.initialize();
   }
   initialize() {
@@ -19,7 +17,6 @@ class Migration {
     this.render();
     this.setupEventListeners();
   }
-
   loadStyles() {
     if (!document.getElementById("migration-styles")) {
       const styleElement = document.createElement("style");
@@ -28,7 +25,6 @@ class Migration {
       document.head.appendChild(styleElement);
     }
   }
-
   getStylesheet() {
     return `
  :root{
@@ -122,18 +118,18 @@ class Migration {
       display: flex;
       justify-content: center;
     }
-    .migration-card-container {
-      display: flex;
-      width: 100%;
-      max-width: var(--container-max);
-      flex-direction: column;
-      height: auto;
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      justify-content: space-between;
-      align-items: center;
-      box-sizing: border-box;
-    }
+.migration-card-container {
+  display: flex;
+  width: 100%;
+  max-width: var(--container-max);
+  flex-direction: column;
+  height: auto;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
     .migration-card-content {
       flex: 0 0 auto;
       display: flex;
@@ -611,7 +607,6 @@ class Migration {
       this.addAccessibility();
     }, 50);
   }
-
   renderMainView(data, language, isRTL) {
     const providerButtonsHTML = this.providers
       .map((p) => {
@@ -625,9 +620,7 @@ class Migration {
               </button>`;
       })
       .join("\n");
-
     const description = data.description || "";
-
     this.container.innerHTML = `
   <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
@@ -635,34 +628,32 @@ class Migration {
     <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] migration-section">
       <div>
         <div style="width:100%">
-          <div class="migration-card-shadow migration-hover-lift">
-            <div class="migration-card-container">
-              <div class="migration-card-content">
-                <h2 class="migration-title">${this.createMixedTitleHTML(
-                  data.title || ""
-                )}</h2>
-                <p class="migration-description">${description}</p>
-              </div>
-              <div class="flex items-center gap-4 justify-center buttons-row">
-                ${providerButtonsHTML}
-              </div>
+<div class="migration-card-shadow migration-hover-lift">
+  <div class="migration-card-container">
+    <div class="migration-card-content">
+      <h2 class="migration-title">${this.createMixedTitleHTML(
+        data.title || ""
+      )}</h2>
+      <p class="migration-description">${description}</p>
+    </div>
+                 <div class="flex items-center gap-4 justify-center buttons-row">
+      ${providerButtonsHTML}
+    </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    <div id="migration-confirm-panel" class="migration-confirm-panel" aria-hidden="true"></div>
     <div id="migration-modal-container"></div>
   </div>
   `;
-
     this.bindPurchaseButtons(language);
   }
-
   highlightTerms(text, language) {
     if (!text) return "";
     const arPhrase = "شروط وأحكام العقد";
     const frPhrase = "termes et conditions du contrat";
-
     if (language === "ar" && text.includes(arPhrase)) {
       return text.replace(
         arPhrase,
@@ -675,7 +666,6 @@ class Migration {
         `<a href="#" class="migration-terms-link" role="link" tabindex="0">${frPhrase}</a>`
       );
     }
-
     return text;
   }
 
@@ -691,44 +681,45 @@ class Migration {
 
     let termsHTML = "";
     if (providerId === "dima") {
-      if (providerId === "dima") {
-        const termsText = data.termsAndConditions || "";
-
-        const wrapped = this.highlightTerms(termsText, language);
-
-        termsHTML = `
-    <div class="mt-4 mb-8 px-4 text-center">
-<label class="migration-terms-checkbox" style="max-width:100%; text-align:left;">
-  <input type="checkbox" id="dima-terms-checkbox-view" />
-  <span class="checkbox-faux" aria-hidden="true"></span>
-  <span style="margin-left:8px;">${wrapped}</span>
-</label>
-    </div>
-  `;
-      }
+      const termsText = data.termsAndConditions || "";
+      const wrapped = this.highlightTerms(termsText, language);
+      termsHTML = `
+      <div class="mt-4 mb-8 px-4 text-center">
+        <label class="migration-terms-checkbox" style="max-width:100%; text-align:left;">
+          <input type="checkbox" id="dima-terms-checkbox-view" />
+          <span class="checkbox-faux" aria-hidden="true"></span>
+          <span style="margin-left:8px;">${wrapped}</span>
+        </label>
+      </div>
+    `;
     }
+
+    const isDark = document.documentElement.classList.contains("dark");
+    const roundedInlineStyle = `background: ${
+      isDark ? "#000" : "#F8F8F8"
+    }; color: ${isDark ? "#fff" : "#000"};`;
 
     this.container.innerHTML = `
     <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
-    }>
+    }">
       <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
         <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
-<div class="text-center bg-[#fff] flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
-            <h2 class="text-[42px] font-semibold">${this.createMixedTitleHTML(
+          <div class="text-center bg-[#fff] flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
+            <h2 class="migration-title">${this.createMixedTitleHTML(
               data.title || ""
             )}</h2>
-            <p class="text-[21px]">${data.description || ""}</p>
+            <p class="migration-description">${data.description || ""}</p>
           </div>
-          <div class="rounded-b-[22.5px] bg-[#F8F8F8] min-h-[200px] pt-14 pb-6">
+          <div class="rounded-b-[22.5px] min-h-[200px] pt-14 pb-6" style="${roundedInlineStyle}">
             <p class="text-center mb-8 px-4">
               <span class="text-[21px]">${changeSpecific}</span>
             </p>
-            
+
             ${termsHTML}
 
             <div class="flex items-center gap-4 justify-center">
-              <button id="back-to-main" class="relative overflow-hidden z-10 touch-manipulation border-[#e30613] bg-white text-[#e30613] border-[2px] px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
+              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
                 <span class="text-[16px]">${cancelBtn}</span>
               </button>
               <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
@@ -740,7 +731,7 @@ class Migration {
       </section>
       <div id="migration-modal-container"></div>
     </div>
-    `;
+  `;
 
     if (providerId === "dima") {
       const checkbox = this.container.querySelector(
@@ -749,11 +740,9 @@ class Migration {
       const confirmButton = this.container.querySelector(
         `#start-${providerId}-migration`
       );
-
       confirmButton.disabled = true;
       confirmButton.style.opacity = "0.5";
       confirmButton.style.cursor = "not-allowed";
-
       checkbox.addEventListener("change", () => {
         if (checkbox.checked) {
           confirmButton.disabled = false;
@@ -798,6 +787,7 @@ class Migration {
     if (modalContainer && modalContainer.innerHTML.trim()) {
       modalContainer.innerHTML = "";
     }
+    this.toggleConfirmPanel(false);
   }
   handleResize() {
     clearTimeout(this.resizeTimeout);
@@ -828,7 +818,6 @@ class Migration {
     this.container.addEventListener("click", handler);
     this.container.addEventListener("touchend", handler, { passive: false });
   }
-
   bindViewButtons(language) {
     if (this.viewClickHandler) {
       this.container.removeEventListener("click", this.viewClickHandler);
@@ -841,7 +830,6 @@ class Migration {
         this.render();
         return;
       }
-
       const startBtn = e.target.closest("[id^='start-'][id$='-migration']");
       if (startBtn) {
         if (startBtn.disabled) {
@@ -849,7 +837,6 @@ class Migration {
           e.stopPropagation();
           return;
         }
-
         e.preventDefault();
         e.stopPropagation();
         const id = startBtn.id
@@ -860,10 +847,8 @@ class Migration {
         const baseModalData = migrationData[lang] || {};
         let modalData = {};
         let message = "";
-
         const provider = this.providers.find((p) => p.id === providerId);
         const displayName = provider ? provider.displayName : providerId;
-
         if (providerId === "dima") {
           modalData = baseModalData.migrationDimaModal || {};
           message = modalData.confirmDescription || "";
@@ -890,7 +875,6 @@ class Migration {
             displayName
           );
         }
-
         this.handlePurchaseClick(lang, {
           ...modalData,
           confirmDescription: message,
@@ -901,7 +885,6 @@ class Migration {
     this.viewClickHandler = clickHandler;
     this.container.addEventListener("click", clickHandler);
   }
-
   handlePurchaseClick(language, data) {
     const currentLanguage = this.getLanguage();
     const isRTL = currentLanguage === "ar";
@@ -1056,7 +1039,6 @@ class Migration {
         handler: closeClickHandler,
       });
     }
-
     const dimaCheckbox = modal.querySelector("#dima-terms-checkbox");
     let confirmButton = modal.querySelector('[data-action="confirm"]');
     if (dimaCheckbox && confirmButton) {
@@ -1132,6 +1114,16 @@ class Migration {
     }
   }
   addAccessibility() {}
+  toggleConfirmPanel(show = true) {
+    const panel = this.container.querySelector("#migration-confirm-panel");
+    if (!panel) return;
+    panel.classList.toggle("visible", !!show);
+    panel.setAttribute("aria-hidden", show ? "false" : "true");
+  }
+  isConfirmPanelVisible() {
+    const panel = this.container.querySelector("#migration-confirm-panel");
+    return panel ? panel.classList.contains("visible") : false;
+  }
   destroy() {
     if (this.languagePolling) {
       clearInterval(this.languagePolling);

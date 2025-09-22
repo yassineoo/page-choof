@@ -17,6 +17,27 @@ class Modal {
         }
       });
     }
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        this.overlay &&
+        !this.overlay.classList.contains("hidden")
+      ) {
+        this.close();
+      }
+    });
+  }
+
+  getCloseButtonHTML() {
+    return `
+      <button id="modal-close-btn" type="button" aria-label="Close modal"
+        class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M13.25 1.50391L1.25 13.5039M1.25 1.50391L13.25 13.5039"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    `;
   }
 
   open(contentHTML) {
@@ -28,6 +49,11 @@ class Modal {
 
     this.overlay.classList.add("modal-animating-in");
     this.container.classList.add("modal-animating-in");
+
+    const closeBtn = this.container.querySelector("#modal-close-btn");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => this.close());
+    }
   }
 
   close() {
@@ -45,8 +71,8 @@ class Modal {
     this.container.classList.add("modal-animating-out");
 
     setTimeout(() => {
-      this.overlay.classList.add("hidden");
-      this.container.innerHTML = "";
+      if (this.overlay) this.overlay.classList.add("hidden");
+      if (this.container) this.container.innerHTML = "";
     }, 300);
   }
 
@@ -59,38 +85,46 @@ class Modal {
   }) {
     const contentHTML = `
       <div class="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-xl p-6 md:p-8 text-center relative">
-        <button id="modal-close-btn" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-ooredoo-red text-white flex items-center justify-center text-2xl font-bold">&times;</button>
+        ${this.getCloseButtonHTML()}
         <h2 class="text-2xl font-bold text-ooredoo-red mb-4">${title}</h2>
         <p class="text-gray-600 dark:text-gray-300 mb-6">${text}</p>
         <div class="flex justify-center gap-4">
-          <button id="modal-cancel-btn" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${cancelText}</button>
-          <button id="modal-confirm-btn" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${confirmText}</button>
+          <button id="modal-cancel-btn" type="button" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors px-6 py-2">${cancelText}</button>
+          <button id="modal-confirm-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors px-6 py-2">${confirmText}</button>
         </div>
       </div>
     `;
     this.open(contentHTML);
-    document.getElementById("modal-confirm-btn").onclick = () => {
-      if (onConfirm) onConfirm();
-      this.close();
-    };
-    document.getElementById("modal-cancel-btn").onclick = () => this.close();
-    document.getElementById("modal-close-btn").onclick = () => this.close();
+
+    const confirmBtn = this.container.querySelector("#modal-confirm-btn");
+    const cancelBtn = this.container.querySelector("#modal-cancel-btn");
+
+    if (confirmBtn) {
+      confirmBtn.addEventListener("click", () => {
+        if (onConfirm) onConfirm();
+        this.close();
+      });
+    }
+    if (cancelBtn) {
+      cancelBtn.addEventListener("click", () => this.close());
+    }
   }
 
   showAlert({ title, text, buttonText = "OK" }) {
     const contentHTML = `
       <div class="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-xl p-6 md:p-8 text-center relative">
-        <button id="modal-close-btn" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-ooredoo-red text-white flex items-center justify-center text-2xl font-bold">&times;</button>
+        ${this.getCloseButtonHTML()}
         <h2 class="text-2xl font-bold text-ooredoo-red mb-4">${title}</h2>
         <p class="text-gray-600 dark:text-gray-300 mb-6">${text}</p>
         <div class="flex justify-center">
-          <button id="modal-ok-btn" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${buttonText}</button>
+          <button id="modal-ok-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors px-6 py-2">${buttonText}</button>
         </div>
       </div>
     `;
     this.open(contentHTML);
-    document.getElementById("modal-ok-btn").onclick = () => this.close();
-    document.getElementById("modal-close-btn").onclick = () => this.close();
+
+    const okBtn = this.container.querySelector("#modal-ok-btn");
+    if (okBtn) okBtn.addEventListener("click", () => this.close());
   }
 
   showCustom(contentHTML) {
@@ -164,7 +198,7 @@ export default class Header {
     this.updateDesktopThemeSwitcher();
     this.updateMobileThemeIcons();
     this.updateMobileMenuIcons();
-    this.updateRenewalUI(); // Ajout important
+    this.updateRenewalUI();
   }
 
   initThemeSwitcher() {
@@ -405,11 +439,14 @@ export default class Header {
       }, 350);
     };
 
+    const closeBtnHTML =
+      this.modal && typeof this.modal.getCloseButtonHTML === "function"
+        ? this.modal.getCloseButtonHTML()
+        : "";
+
     const customContent = `
       <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-gray-800 dark:border dark:border-gray-600 rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
-        <button id="modal-close-btn" class="absolute top-[15px] right-[15px] w-[34px] h-[34px] bg-ooredoo-red rounded-full flex items-center justify-center hover:bg-red-700 transition-colors z-10">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        ${closeBtnHTML}
         <div class="w-full text-center pt-8 md:pt-0">
           <h1 class="text-ooredoo-red font-rubik text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
             ${texts.manualModalTitle}
@@ -419,10 +456,10 @@ export default class Header {
           </p>
         </div>
         <div class="flex justify-center items-center gap-[13px] flex-col sm:flex-row w-full max-w-md px-4 pb-4 md:pb-0">
-          <button id="modal-cancel-btn" class="flex w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-rubik font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+          <button id="modal-cancel-btn" type="button" class="flex w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-rubik font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
             ${texts.cancelBtn}
           </button>
-          <button id="modal-confirm-btn" class="flex w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white font-rubik font-semibold uppercase hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+          <button id="modal-confirm-btn" type="button" class="flex w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white font-rubik font-semibold uppercase hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
             ${texts.confirmBtn}
           </button>
         </div>
@@ -430,11 +467,13 @@ export default class Header {
     `;
 
     this.modal.showCustom(customContent);
-    document.getElementById("modal-confirm-btn").onclick = onConfirm;
-    document.getElementById("modal-cancel-btn").onclick = () =>
-      this.modal.close();
-    document.getElementById("modal-close-btn").onclick = () =>
-      this.modal.close();
+
+    const confirmBtn = this.modal.container.querySelector("#modal-confirm-btn");
+    const cancelBtn = this.modal.container.querySelector("#modal-cancel-btn");
+
+    if (confirmBtn) confirmBtn.addEventListener("click", onConfirm);
+    if (cancelBtn)
+      cancelBtn.addEventListener("click", () => this.modal.close());
   }
 
   handleAutoRenewalClick() {
@@ -442,29 +481,36 @@ export default class Header {
 
     const texts = offerData.text[this.currentLanguage];
 
+    const closeBtnHTML =
+      this.modal && typeof this.modal.getCloseButtonHTML === "function"
+        ? this.modal.getCloseButtonHTML()
+        : "";
+
     const customContent = `
-      <div class="relative w-full max-w-5xl bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg flex flex-col overflow-hidden">
-        <button id="modal-close-btn" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-ooredoo-red text-white flex items-center justify-center text-2xl font-bold z-20">&times;</button>
+      <div class="relative w-full max-w-5xl bg-white dark:bg-[#2C2C2C] rounded-lg flex flex-col overflow-hidden">
+        ${closeBtnHTML}
         <div class="p-6 md:p-8 text-center">
-          <h2 class="text-2xl font-bold text-ooredoo-red mb-2">${texts.autoModalTitle}</h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-4 px-0 md:px-[30px]">
+          <h2 class="text-2xl font-bold text-[28px] text-ooredoo-red dark:text-white mb-8">${texts.autoModalTitle}</h2>
+          <p class="text-black dark:text-white mb-4 px-0 text-[22px] md:px-[30px]">
             ${texts.autoModalDesc}
           </p>
           <div class="mt-6">
-            <button id="modal-cancel-btn" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">${texts.cancelBtn}</button>
+            <button id="modal-cancel-btn" type="button" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+              ${texts.cancelBtn}
+            </button>
           </div>
         </div>
-        <div class="border-b border-gray-200 dark:border-gray-700"></div>
-        <div class="bg-[#F8F8F8] dark:bg-gray-900 py-6">
+        <div class="border-b border-gray-200 dark:border-white"></div>
+        <div class="bg-[#F8F8F8] dark:bg-[#2c2c2c] py-6">
           <div id="modal-slider-container"></div>
         </div>
       </div>`;
 
     this.modal.showCustom(customContent);
 
-    this.modal.showCustom(customContent);
-
-    const sliderContainer = document.getElementById("modal-slider-container");
+    const sliderContainer = this.modal.container.querySelector(
+      "#modal-slider-container"
+    );
     const currentOffers = offerData[this.currentLanguage] || offerData.fr;
 
     if (sliderContainer) {
@@ -480,12 +526,20 @@ export default class Header {
     }
 
     const cleanupAndClose = () => {
-      if (this.modalSliderInstance) this.modalSliderInstance.destroy();
+      if (this.modalSliderInstance) {
+        try {
+          this.modalSliderInstance.destroy();
+        } catch (e) {}
+        this.modalSliderInstance = null;
+      }
       this.modal.close();
     };
 
-    document.getElementById("modal-close-btn").onclick = cleanupAndClose;
-    document.getElementById("modal-cancel-btn").onclick = cleanupAndClose;
+    const closeBtn = this.modal.container.querySelector("#modal-close-btn");
+    if (closeBtn) closeBtn.addEventListener("click", cleanupAndClose);
+
+    const cancelBtn = this.modal.container.querySelector("#modal-cancel-btn");
+    if (cancelBtn) cancelBtn.addEventListener("click", cleanupAndClose);
   }
 
   showOfferConfirmation(offer, modalTexts) {
