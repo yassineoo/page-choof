@@ -389,7 +389,7 @@ export default class Consommation {
             ${data.title}
           </h1>
         </div>
-        <div class="w-full px-4 -mt-7">
+        <div class="w-full px-4 -mt-7 bg-[#F8F8F8]">
           <div class="cards-container flex flex-col gap-6 max-w-full mx-auto">
             ${this.renderMobileCard(data.cards[0], 0, lang, theme, true, this.isCardExpanded(0))}
             ${

@@ -82,8 +82,8 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           <div class="w-[120px] h-[30px] md:w-[140px] md:h-[36px] lg:w-[180px] lg:h-[56px] flex items-center justify-center relative ${
             language === "ar" ? "" : ""
           }">
-            <img src="./assets/images/header/Ooredoo-Business.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
-            <img src="./assets/images/header/Ooredoo-Business-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
+            <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
+            <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
           </div>
 <span class="inline-block w-[0.5px] h-4 md:h-8 bg-black dark:bg-white transition-colors duration-300"></span>
           <div class="w-[56px] h-[24px] md:w-[100px] md:h-[29px] lg:w-[120px] lg:h-[40px] flex items-center justify-center relative">
@@ -287,7 +287,11 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
 
   <!-- Tooltip -->
   <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute top-full bg-white text-black text-xs px-[14px] leading-loose rounded-b-[15px] rounded-tl-[15px] rounded-tr-[4px] py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
-    ${language === 'ar' ? "معلومات" : "Info"}
+    ${language === 'ar' ? 
+      userData.mode === 'mactivia' ? "أنت حاليا في الوضع \"M'Activia\"، الذي يمكّنك من الحصول على اشتراك Gold مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : "أنت حاليا في الوضع \"رصيد\"، الذي يمكّنك من الحصول على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : 
+      userData.mode === 'mactivia' ? "Vous êtes actuellement sur le mode \"M'Activia\", qui vous permet de recevoir un forfait Gold Activé à chaque rechargement de 1000 DA et plus." : 
+      "Vous êtes actuellement sur le mode \"Crédit\", qui vous permet de recevoir du crédit non activé à chaque rechargement de 1000 DA et plus."
+    }
   </span>
 </span>
 
