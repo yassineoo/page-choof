@@ -412,6 +412,25 @@ class Migration {
   cursor: pointer;
 }
 
+.migration-confirm-panel[aria-hidden="true"] {
+  visibility: hidden !important;
+  pointer-events: none !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  opacity: 0 !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+}
+.dark .migration-confirm-panel.visible {
+  background: #2c2c2c;
+  border-color: rgba(255,255,255,0.06);
+  color: #d1d5db;
+}
+.migration-confirm-panel.visible[aria-hidden="false"] {
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
     
     @media (max-width: 1000px) {
     .migration-card-shadow {
@@ -702,7 +721,7 @@ class Migration {
     this.container.innerHTML = `
     <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
-    }">
+    }>
       <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
         <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
           <div class="text-center bg-[#fff] flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
@@ -1117,8 +1136,46 @@ class Migration {
   toggleConfirmPanel(show = true) {
     const panel = this.container.querySelector("#migration-confirm-panel");
     if (!panel) return;
-    panel.classList.toggle("visible", !!show);
-    panel.setAttribute("aria-hidden", show ? "false" : "true");
+    if (panel._migrationTransitionHandler) {
+      panel.removeEventListener(
+        "transitionend",
+        panel._migrationTransitionHandler
+      );
+      panel._migrationTransitionHandler = null;
+    }
+    if (show) {
+      panel.setAttribute("aria-hidden", "false");
+      panel.classList.add("visible");
+      panel.style.visibility = "visible";
+      panel.style.pointerEvents = "";
+      panel.style.background = "";
+      panel.style.borderColor = "";
+    } else {
+      panel.classList.remove("visible");
+      panel.setAttribute("aria-hidden", "true");
+      panel.style.pointerEvents = "none";
+      panel.style.background = "transparent";
+      panel.style.borderColor = "transparent";
+      const onTransitionEnd = (ev) => {
+        if (ev.target !== panel) return;
+        panel.style.visibility = "hidden";
+        panel.style.background = "";
+        panel.style.borderColor = "";
+        panel.removeEventListener("transitionend", onTransitionEnd);
+        panel._migrationTransitionHandler = null;
+      };
+      panel._migrationTransitionHandler = onTransitionEnd;
+      panel.addEventListener("transitionend", onTransitionEnd);
+      setTimeout(() => {
+        if (panel._migrationTransitionHandler) {
+          panel.style.visibility = "hidden";
+          panel.style.background = "";
+          panel.style.borderColor = "";
+          panel.removeEventListener("transitionend", onTransitionEnd);
+          panel._migrationTransitionHandler = null;
+        }
+      }, 500);
+    }
   }
   isConfirmPanelVisible() {
     const panel = this.container.querySelector("#migration-confirm-panel");
