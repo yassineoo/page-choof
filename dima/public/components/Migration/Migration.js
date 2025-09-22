@@ -25,6 +25,7 @@ class Migration {
       document.head.appendChild(styleElement);
     }
   }
+
   getStylesheet() {
     return `
  :root{
@@ -527,6 +528,7 @@ class Migration {
     }
     `;
   }
+
   setupEventListeners() {
     window.removeEventListener(
       "languageChanged",
@@ -576,24 +578,44 @@ class Migration {
     const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
     return arabicPattern.test(text);
   }
+
+  escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
   createMixedTitleHTML(title, baseClasses = "") {
     if (!title) return "";
-    if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
-      return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
+    const latinTokenRegex = /[A-Za-z0-9'’\-\.\,\/]+/;
+    const latinWholeRegex = /^[A-Za-z0-9'’\-\.\,\/]+$/;
+    if (this.containsArabic(title) && !latinTokenRegex.test(title)) {
+      return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${this.escapeHtml(
+        title
+      )}</span>`;
     }
-    if (this.containsArabic(title) && title.match(/[a-zA-Z]/)) {
-      const parts = title.split(/([a-zA-Z]+)/).filter((part) => part.trim());
-      return parts
-        .map((part) => {
-          const isArabic = this.containsArabic(part);
-          const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
-          const direction = isArabic ? "rtl" : "ltr";
-          return `<span class="${fontClass} ${baseClasses}" dir="${direction}">${part}</span>`;
-        })
-        .join("");
-    }
-    return `<span class="font-rubik ${baseClasses}">${title}</span>`;
+    const parts = title.split(/([A-Za-z0-9'’\-\.\,\/]+)/);
+    return parts
+      .map((part) => {
+        if (part === "") return "";
+        if (latinWholeRegex.test(part)) {
+          return `<span class="font-rubik ${baseClasses}" dir="ltr">${this.escapeHtml(
+            part
+          )}</span>`;
+        }
+        if (this.containsArabic(part)) {
+          return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${this.escapeHtml(
+            part
+          )}</span>`;
+        }
+        return this.escapeHtml(part);
+      })
+      .join("");
   }
+
   render() {
     try {
       const language = this.getLanguage();

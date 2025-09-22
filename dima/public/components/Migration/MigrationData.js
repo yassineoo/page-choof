@@ -20,7 +20,7 @@ export const migrationData = {
     insufficientMessage:
       "Votre solde est insuffisant pour effectuer cette opération.",
     migrationDimaModal: {
-      confirmTitle: "Migration vers DIMA",
+      confirmTitle: "Migration vers DIMA +",
       confirmDescription:
         "Vous allez changer vers l'offre Dima + gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
