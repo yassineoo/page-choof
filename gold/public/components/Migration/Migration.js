@@ -583,26 +583,43 @@ class Migration {
     return arabicPattern.test(text);
   }
 
+  escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
   createMixedTitleHTML(title, baseClasses = "") {
     if (!title) return "";
-    const latinPattern = /[A-Za-z0-9'’\-\.\,\/]/;
-    if (this.containsArabic(title) && !latinPattern.test(title)) {
-      return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
+    const latinRegex = /[A-Za-z0-9'’\-\.\,\/]/;
+    if (this.containsArabic(title) && !latinRegex.test(title)) {
+      return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${this.escapeHtml(
+        title
+      )}</span>`;
     }
-    if (this.containsArabic(title) && latinPattern.test(title)) {
-      const parts = title
-        .split(/([A-Za-z0-9'’\-\.\,\/]+)/)
-        .filter((part) => part.trim());
+    if (this.containsArabic(title) && latinRegex.test(title)) {
+      const parts = title.split(/([A-Za-z0-9'’\-\.\,\/]+)/);
       return parts
         .map((part) => {
-          const isArabic = this.containsArabic(part);
-          const fontClass = isArabic ? "font-noto-kufi-arabic" : "font-rubik";
-          const direction = isArabic ? "rtl" : "ltr";
-          return `<span class="${fontClass} ${baseClasses}" dir="${direction}">${part}</span>`;
+          if (part === "") return "";
+          if (/^[A-Za-z0-9'’\-\.\,\/]+$/.test(part)) {
+            return `<span class="font-rubik ${baseClasses}" dir="ltr">${this.escapeHtml(
+              part
+            )}</span>`;
+          } else {
+            return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${this.escapeHtml(
+              part
+            )}</span>`;
+          }
         })
         .join("");
     }
-    return `<span class="font-rubik ${baseClasses}">${title}</span>`;
+    return `<span class="font-rubik ${baseClasses}">${this.escapeHtml(
+      title
+    )}</span>`;
   }
 
   render() {

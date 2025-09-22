@@ -46,7 +46,7 @@ export const migrationData = {
 
   ar: {
     title: "التغيير",
-    description: "هل تريد التغيير إلى العرض المحدد؟",
+    description: "هل تريد التغيير إلى عرض آخر؟",
     price: "500 دج",
     dima: "Dima Ooredoo",
     nyooz: "N'YOOZ",
