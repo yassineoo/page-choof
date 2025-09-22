@@ -79,17 +79,9 @@ export class Slider {
           isRTL ? `dir="rtl"` : ``
         }>
           <div class="pb-4">
-            <h2 class="${titleFontClass} font-medium text-2xl text-center capitalize text-black dark:text-white mb-4 leading-tight">
-              ${
-                index < 5
-                  ? `<span class='font-rubik'>${
-                      isRTL
-                        ? `<span class="font-noto-kufi-arabic">اشتراك <span class='font-rubik'>${offer.price}</span></span>`
-                        : offer.name
-                    }</span>`
-                  : offer.name
-              }
-            </h2>
+   <h2 class="${titleFontClass} font-medium text-2xl text-center capitalize text-black dark:text-white mb-4 leading-tight">
+    ${offer.name}
+  </h2>
             <div class="w-full h-px forfait-divider mb-4"></div>
           </div>
 
@@ -186,6 +178,10 @@ export class Slider {
     const sliderId = `${sliderKey}-slider`;
     const dotsId = `${sliderKey}-dots`;
 
+    // unique id for the grid container so we can scope inline CSS
+    const gridId = `${sliderId}-grid`;
+
+    // Determine startIndex so data indices remain consistent across sections
     let startIndex = 0;
     if (sliderKey === "smart") {
       startIndex = (ForfaitData[this.currentLang].forfaits || []).length;
@@ -194,8 +190,40 @@ export class Slider {
       startIndex = (f.forfaits || []).length + (f.smartForfaits || []).length;
     }
 
+    // Scoped grid rules. For SMART we force 3 fixed-width columns (300px)
+    // and a 30px gap, centered in the container. Mobile remains 1 column.
+    const smartGridStyle =
+      sliderKey === "smart"
+        ? `
+      <style>
+        /* Scoped rules only for SMART section (#${gridId}) */
+        #${gridId} {
+          display: grid;
+          gap: 30px; /* desired 30px gap */
+          grid-template-columns: repeat(1, minmax(0, 1fr)); /* mobile single column */
+          justify-content: center; /* center fixed columns on wide screens */
+        }
+        @media (min-width: 640px) {
+          /* Use fixed column width equal (or slightly larger) than card max-width.
+             Cards have max-width:300px in markup, so matching that gives ~30px gaps. */
+          #${gridId} {
+            grid-template-columns: repeat(3, 300px);
+          }
+        }
+
+        /* optional: ensure cards won't stretch if any global rule tries to expand them */
+        #${gridId} .forfait-card-shadow,
+        #${gridId} .forfait-card-container {
+          max-width: 300px;
+          width: 100%;
+        }
+      </style>
+    `
+        : "";
+
     return `
-    <div class="forfait-grid ${gridClass}">
+    ${smartGridStyle}
+    <div id="${gridId}" class="forfait-grid ${gridClass}">
       ${offers
         .map((offer, index) =>
           this.createForfaitCard(offer, startIndex + index, labels)
@@ -223,6 +251,7 @@ export class Slider {
     <div id="${dotsId}" class="forfait-dots-container" aria-hidden="true"></div>
   `;
   }
+
 
   initSwiper(containerId, forceRTL = null) {
     const container = document.getElementById(containerId);
