@@ -84,9 +84,9 @@ class Modal {
     onConfirm,
   }) {
     const contentHTML = `
-      <div class="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-xl p-6 md:p-8 text-center relative">
+      <div class="bg-white dark:bg-[#2c2c2c] rounded-lg shadow-xl p-6 md:p-8 text-center relative">
         ${this.getCloseButtonHTML()}
-        <h2 class="text-2xl font-bold text-ooredoo-red mb-4">${title}</h2>
+        <h2 class="text-2xl font-bold text-ooredoo-red dark:text-white mb-4">${title}</h2>
         <p class="text-gray-600 dark:text-gray-300 mb-6">${text}</p>
         <div class="flex justify-center gap-4">
           <button id="modal-cancel-btn" type="button" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors px-6 py-2">${cancelText}</button>
@@ -112,9 +112,9 @@ class Modal {
 
   showAlert({ title, text, buttonText = "OK" }) {
     const contentHTML = `
-      <div class="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-xl p-6 md:p-8 text-center relative">
+      <div class="bg-white dark:bg-[#2c2c2c] rounded-lg shadow-xl p-6 md:p-8 text-center relative">
         ${this.getCloseButtonHTML()}
-        <h2 class="text-2xl font-bold text-ooredoo-red mb-4">${title}</h2>
+        <h2 class="text-2xl font-bold text-ooredoo-red dark:text-white mb-4">${title}</h2>
         <p class="text-gray-600 dark:text-gray-300 mb-6">${text}</p>
         <div class="flex justify-center">
           <button id="modal-ok-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors px-6 py-2">${buttonText}</button>
@@ -142,7 +142,7 @@ export default class Header {
     const storedOffer = localStorage.getItem("selectedOffer");
     this.userData = {
       phone: "0509876543",
-      offer: storedOffer || "Offre Dima",
+      offer: "Offre Dima",
       credit: "4000 DA",
       autoRenewal: storedRenewal !== null ? JSON.parse(storedRenewal) : true,
     };
