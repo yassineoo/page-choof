@@ -774,11 +774,9 @@ class ForfaitComponent {
     this.cleanupAllEventListeners();
 
     this.container.innerHTML = `
-  <div class="w-full ${
-    this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-  }"
-       dir="${this.currentLang === "ar" ? "rtl" : "ltr"}"
-       lang="${this.currentLang}">
+    <div class="w-full ${
+      this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+    }">
       <section class="w-full bg-white dark:bg-[#2c2c2c] pt-16">
         <div class="max-w-[1600px] mx-auto md:px-6">
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
