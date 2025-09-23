@@ -180,7 +180,7 @@ export default {
         name: "DIMA 4000",
         data: "<span class='font-rubik'>200Go</span> إنترنت",
         price: "4000",
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         features: [
           "مكالمات غير محدودة نحو كل الشبكات",
           "رسائل قصيرة غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
@@ -192,7 +192,7 @@ export default {
         name: "DIMA 2500",
         data: "<span class='font-rubik'>100Go</span> إنترنت",
         price: "2500",
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         features: [
           "مكالمات غير محدودة نحو كل الشبكات",
           "رسائل قصيرة غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
@@ -205,7 +205,7 @@ export default {
         name: "DIMA 2000",
         data: "<span class='font-rubik'>50Go</span> إنترنت",
         price: "2000",
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>200</span> رسالة قصيرة و <span class='font-rubik'>300</span> دقيقة مكالمات",
@@ -217,7 +217,7 @@ export default {
         name: "DIMA 1500",
         data: "<span class='font-rubik'>30Go</span> إنترنت",
         price: "1500",
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>150</span> رسالة قصيرة و <span class='font-rubik'>150</span> دقيقة مكالمات",
@@ -229,7 +229,7 @@ export default {
         name: "DIMA 1200",
         data: "<span class='font-rubik'>8Go</span> إنترنت",
         price: "1200",
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>120</span> رسالة قصيرة و <span class='font-rubik'>100</span> دقيقة مكالمات",
@@ -241,7 +241,7 @@ export default {
         name: "DIMA 750",
         data: "<span class='font-rubik'>10Go</span> إنترنت",
         price: "750",
-        duration: "14 يوم",
+        duration: "<span class='font-rubik'>14</span> يوم",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>50</span> رسالة قصيرة و <span class='font-rubik'>150</span> دقيقة مكالمات",
@@ -253,7 +253,7 @@ export default {
         name: "DIMA 500",
         data: "<span class='font-rubik'>3Go</span> إنترنت",
         price: "500",
-        duration: "15 يوم",
+        duration: "<span class='font-rubik'>15</span> يوم",  
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>50</span> رسالة قصيرة و <span class='font-rubik'>150</span> دقيقة مكالمات",

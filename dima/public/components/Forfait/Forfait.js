@@ -1275,7 +1275,6 @@ class ForfaitComponent {
   updateDots(sliderType, activeIndex) {
     const slider = this.sliders.get(sliderType);
 
-    // update custom / desktop dots (if any)
     const customDots = slider.dotsContainer?.querySelectorAll(".forfait-dot");
     if (customDots && customDots.length) {
       customDots.forEach((dot, index) => {

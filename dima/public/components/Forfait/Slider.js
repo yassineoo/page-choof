@@ -1,19 +1,14 @@
-// Slider.js
 export class Slider {
   constructor(parameters = {}) {
-    // paramètres optionnels futurs
     this.params = parameters;
 
-    // état langue
     this.currentLang = this.getLanguage();
 
-    // handlers liés proprement
     this.boundHandlers = {
       languageChange: this.handleLanguageChange.bind(this),
       resize: this.handleResize.bind(this),
     };
 
-    // timers / pollings
     this.languagePolling = null;
     this.languageChangeTimeout = null;
     this._resizeTimeout = null;
@@ -21,18 +16,13 @@ export class Slider {
     this.setupEventListeners();
   }
 
-  /* ---------------------------
-   * Events publics / destructeur
-   * --------------------------- */
   destroy() {
-    // retirer écouteurs
     window.removeEventListener(
       "languageChanged",
       this.boundHandlers.languageChange
     );
     window.removeEventListener("resize", this.boundHandlers.resize);
 
-    // cleanup timers
     if (this.languagePolling) {
       clearInterval(this.languagePolling);
       this.languagePolling = null;
@@ -47,9 +37,6 @@ export class Slider {
     }
   }
 
-  /* ---------------------------
-   * Langue
-   * --------------------------- */
   handleLanguageChange() {
     const newLanguage = this.getLanguage();
     if (newLanguage !== this.currentLang) {
@@ -62,7 +49,6 @@ export class Slider {
   }
 
   setupEventListeners() {
-    // ensure removed before add (idempotent)
     window.removeEventListener(
       "languageChanged",
       this.boundHandlers.languageChange
@@ -81,7 +67,6 @@ export class Slider {
   setupLanguagePolling() {
     if (this.languagePolling) clearInterval(this.languagePolling);
 
-    // poll la langue stockée et debounce la réaction
     this.languagePolling = setInterval(() => {
       const currentLang = this.getLanguage();
       if (currentLang !== this.currentLang) {
@@ -99,9 +84,6 @@ export class Slider {
     return ["fr", "ar"].includes(storedLanguage) ? storedLanguage : "fr";
   }
 
-  /* ---------------------------
-   * Resize (debounced)
-   * --------------------------- */
   handleResize() {
     if (this._resizeTimeout) clearTimeout(this._resizeTimeout);
     this._resizeTimeout = setTimeout(() => {
@@ -110,9 +92,6 @@ export class Slider {
     }, 120);
   }
 
-  /* ---------------------------
-   * Helpers font / chiffres
-   * --------------------------- */
   containsArabic(text) {
     if (!text) return false;
     const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
@@ -134,10 +113,6 @@ export class Slider {
     );
   }
 
-  /* ---------------------------
-   * Templates (cards)
-   * --------------------------- */
-  // sécurité : features peut être string ou array
   _normalizeFeatures(features) {
     if (!features) return [];
     if (Array.isArray(features)) return features;
@@ -216,7 +191,9 @@ export class Slider {
               priceNumber
             )} font-bold text-base">
               <span class="text-[28px]">${priceNumber}</span>
-              <span class="text-[16px]"> ${currencyLabel}/${durationText}</span>
+              <span class="${
+                isRTL ? "font-noto-kufi-arabic" : "font-rubik"
+              } text-[16px]"> ${currencyLabel}/${durationText}</span>
             </div>
             <button class="forfait-buy-btn ${buyFont} bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
               style="
@@ -269,7 +246,9 @@ export class Slider {
                 offer.price
               )} font-medium text-2xl text-center capitalize dark:text-white leading-tight">
                 ${
-                  isRTL ? "اشتراك" : "Forfait"
+                  isRTL
+                    ? "<span class='font-noto-kufi-arabic'>اشتراك</span>"
+                    : "Forfait"
                 } <span class="${this.getFontClass(offer.price)}">${
       offer.price || ""
     }</span>
@@ -428,9 +407,6 @@ export class Slider {
     `;
   }
 
-  /* ---------------------------
-   * Responsive layouts (desktop + mobile swiper)
-   * --------------------------- */
   createResponsiveLayout(offers = [], labels = {}, gridType) {
     const sliderId = "forfaits-slider";
     return `
@@ -540,26 +516,21 @@ export class Slider {
   `;
   }
 
-  /* ---------------------------
-   * Swiper init helper
-   * --------------------------- */
   initSwiper(containerId, forceRTL = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    // destroy existing if présent
     const existingSwiper = container.querySelector(".swiper");
     if (existingSwiper && existingSwiper.swiper) {
       try {
         existingSwiper.swiper.destroy(true, true);
       } catch (e) {
-        // silent
+        // 
       }
     }
 
     const isRTL = forceRTL !== null ? forceRTL : this.getLanguage() === "ar";
 
-    // set doc dir pour Swiper et layout
     document.documentElement.dir = isRTL ? "rtl" : "ltr";
     document.body.dir = isRTL ? "rtl" : "ltr";
     container.dir = isRTL ? "rtl" : "ltr";
@@ -629,7 +600,7 @@ export class Slider {
           },
         });
       } catch (e) {
-        // si l'instanciation échoue, on évite de casser tout
+        // 
         return;
       }
 
@@ -658,9 +629,6 @@ export class Slider {
     });
   }
 
-  /* ---------------------------
-   * Dots generator
-   * --------------------------- */
   generateDots(totalDots = 0, activeIndex = 0) {
     return Array.from(
       { length: totalDots },
