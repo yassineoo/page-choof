@@ -268,7 +268,9 @@ class BoostComponent {
 
           <div class="flex flex-col items-center gap-4 md:gap-5">
             <div class="boost-price dark:text-white">
-              <span class="small">${isRTL ? "DA" : ""}</span>
+              <span class="small font-noto-kufi-arabic">${
+                isRTL ? "د.ج" : ""
+              }</span>
               <span class="big">500</span>
               <span class="small">${isRTL ? "" : "DA"}</span>
             </div>
