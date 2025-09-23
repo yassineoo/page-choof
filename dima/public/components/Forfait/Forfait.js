@@ -7,6 +7,7 @@ class ForfaitComponent {
     this.container = container;
     this.slider = new Slider();
     this.currentLang = this.getLanguage();
+    this.applyDocumentDirection();
     this.lastIsMobile = this.isMobile();
 
     this.sliders = new Map([
@@ -636,6 +637,12 @@ class ForfaitComponent {
     return this.currentLang === "ar";
   }
 
+  applyDocumentDirection() {
+    const dir = this.currentLang === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir = dir;
+    document.documentElement.lang = this.currentLang === "ar" ? "ar" : "fr";
+  }
+
   containsArabic(text) {
     if (!text) return false;
     const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
@@ -767,9 +774,11 @@ class ForfaitComponent {
     this.cleanupAllEventListeners();
 
     this.container.innerHTML = `
-    <div class="w-full ${
-      this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-    }">
+  <div class="w-full ${
+    this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+  }"
+       dir="${this.currentLang === "ar" ? "rtl" : "ltr"}"
+       lang="${this.currentLang}">
       <section class="w-full bg-white dark:bg-[#2c2c2c] pt-16">
         <div class="max-w-[1600px] mx-auto md:px-6">
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
@@ -1298,6 +1307,7 @@ class ForfaitComponent {
     const newLanguage = this.getLanguage();
     if (newLanguage !== this.currentLang) {
       this.currentLang = newLanguage;
+      this.applyDocumentDirection();
       this.closeAnyOpenModals();
       this.render();
     }
