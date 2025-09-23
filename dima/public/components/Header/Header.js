@@ -8,7 +8,6 @@ class Modal {
     this.container = document.getElementById("global-modal-container");
     this.setupListeners();
   }
-
   setupListeners() {
     if (this.overlay) {
       this.overlay.addEventListener("click", (e) => {
@@ -27,7 +26,6 @@ class Modal {
       }
     });
   }
-
   getCloseButtonHTML() {
     return `
       <button id="modal-close-btn" type="button" aria-label="Close modal"
@@ -39,23 +37,18 @@ class Modal {
       </button>
     `;
   }
-
   open(contentHTML) {
     if (!this.overlay || !this.container) return;
     this.container.innerHTML = contentHTML;
-
     this.overlay.classList.remove("hidden", "modal-animating-out");
     this.container.classList.remove("modal-animating-out");
-
     this.overlay.classList.add("modal-animating-in");
     this.container.classList.add("modal-animating-in");
-
     const closeBtn = this.container.querySelector("#modal-close-btn");
     if (closeBtn) {
       closeBtn.addEventListener("click", () => this.close());
     }
   }
-
   close() {
     if (
       !this.overlay ||
@@ -63,19 +56,15 @@ class Modal {
       this.overlay.classList.contains("hidden")
     )
       return;
-
     this.overlay.classList.remove("modal-animating-in");
     this.container.classList.remove("modal-animating-in");
-
     this.overlay.classList.add("modal-animating-out");
     this.container.classList.add("modal-animating-out");
-
     setTimeout(() => {
       if (this.overlay) this.overlay.classList.add("hidden");
       if (this.container) this.container.innerHTML = "";
     }, 300);
   }
-
   showConfirmation({
     title,
     text,
@@ -95,10 +84,8 @@ class Modal {
       </div>
     `;
     this.open(contentHTML);
-
     const confirmBtn = this.container.querySelector("#modal-confirm-btn");
     const cancelBtn = this.container.querySelector("#modal-cancel-btn");
-
     if (confirmBtn) {
       confirmBtn.addEventListener("click", () => {
         if (onConfirm) onConfirm();
@@ -109,7 +96,6 @@ class Modal {
       cancelBtn.addEventListener("click", () => this.close());
     }
   }
-
   showAlert({ title, text, buttonText = "OK" }) {
     const contentHTML = `
       <div class="bg-white dark:bg-[#2c2c2c] rounded-lg shadow-xl p-6 md:p-8 text-center relative">
@@ -122,11 +108,9 @@ class Modal {
       </div>
     `;
     this.open(contentHTML);
-
     const okBtn = this.container.querySelector("#modal-ok-btn");
     if (okBtn) okBtn.addEventListener("click", () => this.close());
   }
-
   showCustom(contentHTML) {
     this.open(contentHTML);
   }
@@ -146,12 +130,18 @@ export default class Header {
       credit: "4000 DA",
       autoRenewal: storedRenewal !== null ? JSON.parse(storedRenewal) : true,
     };
-
     this.isTransitioning = false;
     this.boundOnClick = null;
   }
-
+  getFontClass() {
+    return this.currentLanguage === "ar"
+      ? "font-noto-kufi-arabic"
+      : "font-rubik";
+  }
   async init() {
+    document.documentElement.lang = this.currentLanguage;
+    document.documentElement.dir =
+      this.currentLanguage === "ar" ? "rtl" : "ltr";
     this.render();
     requestAnimationFrame(() => {
       this.setupEventListeners();
@@ -159,7 +149,6 @@ export default class Header {
       this.preventHorizontalScroll();
     });
   }
-
   setupEventListeners() {
     this.modal = new Modal();
     this.initSlidingThemeSwitcher();
@@ -171,12 +160,10 @@ export default class Header {
     this.initRenewalSwitcher();
     this.initResponsiveHandling();
   }
-
   preventHorizontalScroll() {
     document.body.style.overflowX = "hidden";
     document.documentElement.style.overflowX = "hidden";
   }
-
   initResponsiveHandling() {
     const handleResize = () => {
       if (window.innerWidth >= 820 && this.mobileMenuOpen) {
@@ -192,33 +179,26 @@ export default class Header {
       }, 100);
     });
   }
-
   initSlidingThemeSwitcher() {
     const themeSwitcher = document.getElementById("theme-switcher");
     if (!themeSwitcher) return;
-
     const addVisualEffects = () => {
       themeSwitcher.classList.add("ripple");
       setTimeout(() => themeSwitcher.classList.remove("ripple"), 600);
     };
-
     themeSwitcher.addEventListener("click", (e) => {
       e.preventDefault();
       addVisualEffects();
       this.setTheme(this.theme === "dark" ? "light" : "dark");
     });
-
     themeSwitcher.addEventListener("mouseenter", () => {
       themeSwitcher.style.transform = "translateY(-1px) scale(1.02)";
     });
-
     themeSwitcher.addEventListener("mouseleave", () => {
       themeSwitcher.style.transform = "translateY(0) scale(1)";
     });
-
     this.updateDesktopThemeSwitcher();
   }
-
   render() {
     document.querySelectorAll("header").forEach((h) => h.remove());
     document.body.insertAdjacentHTML(
@@ -226,7 +206,6 @@ export default class Header {
       generateHeaderHTML(this.currentLanguage, this.userData, this.theme)
     );
   }
-
   detectInitialTheme() {
     const storedTheme = localStorage.getItem("theme");
     return (
@@ -236,11 +215,9 @@ export default class Header {
         : "light")
     );
   }
-
   applyInitialTheme() {
     document.documentElement.classList.toggle("dark", this.theme === "dark");
   }
-
   setTheme(theme) {
     if (theme === this.theme) return;
     this.theme = theme;
@@ -248,14 +225,12 @@ export default class Header {
     localStorage.setItem("theme", theme);
     this.updateThemeUI();
   }
-
   updateThemeUI() {
     this.updateDesktopThemeSwitcher();
     this.updateMobileThemeIcons();
     this.updateMobileMenuIcons();
     this.updateRenewalUI();
   }
-
   initThemeSwitcher() {
     const moonBtn = document.getElementById("moon-btn");
     const sunBtn = document.getElementById("sun-btn");
@@ -265,7 +240,6 @@ export default class Header {
       this.updateDesktopThemeSwitcher();
     }
   }
-
   updateDesktopThemeSwitcher() {
     const isDark = this.theme === "dark";
     const themeContainer = document.getElementById("theme-switcher");
@@ -283,7 +257,6 @@ export default class Header {
       }
     }
   }
-
   initMobileThemeSwitcher() {
     const mobileThemeBtn = document.getElementById("theme-mobile-switcher");
     if (mobileThemeBtn) {
@@ -293,7 +266,6 @@ export default class Header {
       this.updateMobileThemeIcons();
     }
   }
-
   updateMobileThemeIcons() {
     const isDark = this.theme === "dark";
     document
@@ -309,7 +281,6 @@ export default class Header {
       .getElementById("mobile-moon-icon-dark")
       ?.classList.toggle("hidden", isDark);
   }
-
   initLanguageSwitcher() {
     const desktopDropdown = document.getElementById("language-desktop");
     if (desktopDropdown) {
@@ -334,7 +305,6 @@ export default class Header {
       });
     });
   }
-
   setLanguage(lang) {
     if (this.currentLanguage === lang) return;
     this.currentLanguage = lang;
@@ -344,7 +314,6 @@ export default class Header {
     this.render();
     setTimeout(() => this.setupEventListeners(), 0);
   }
-
   initMobileMenu() {
     const menuBtn = document.getElementById("mobile-menu-btn");
     const mobileMenu = document.getElementById("mobile-menu");
@@ -354,12 +323,10 @@ export default class Header {
       menuBtn.setAttribute("aria-expanded", "false");
       mobileMenu.setAttribute("aria-hidden", "true");
       mobileMenu.style.transition = "transform 0.28s ease, opacity 0.28s ease";
-
       menuBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         this.toggleMobileMenu();
       });
-
       document.addEventListener("click", (e) => {
         if (
           this.mobileMenuOpen &&
@@ -369,15 +336,12 @@ export default class Header {
           this.closeMobileMenu();
         }
       });
-
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && this.mobileMenuOpen) this.closeMobileMenu();
       });
-
       this.updateMobileMenuIcons();
     }
   }
-
   addViewportMeta() {
     const existingMeta = document.querySelector('meta[name="viewport"]');
     if (!existingMeta) {
@@ -388,7 +352,6 @@ export default class Header {
       document.head.appendChild(meta);
     }
   }
-
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
     const mobileMenu = document.getElementById("mobile-menu");
@@ -417,7 +380,6 @@ export default class Header {
     }
     this.updateMobileMenuIcons();
   }
-
   closeMobileMenu() {
     if (!this.mobileMenuOpen) return;
     this.mobileMenuOpen = false;
@@ -437,7 +399,6 @@ export default class Header {
     document.body.style.overflow = "";
     this.updateMobileMenuIcons();
   }
-
   updateMobileMenuIcons() {
     const isDark = this.theme === "dark";
     [
@@ -456,13 +417,11 @@ export default class Header {
       }
     });
   }
-
   initRenewalInfoCard() {
     const infoBtn = document.getElementById("auto-renewal-info");
     const infoCard = document.getElementById("auto-renewal-card");
     const infoBtnMobile = document.getElementById("auto-renewal-info-mobile");
     const infoCardMobile = document.getElementById("auto-renewal-card-mobile");
-
     if (infoBtn && infoCard) {
       infoBtn.addEventListener("mouseenter", () =>
         infoCard.classList.remove("hidden")
@@ -475,7 +434,6 @@ export default class Header {
         infoCard.classList.toggle("hidden");
       });
     }
-
     if (infoBtnMobile && infoCardMobile) {
       let mobileAnchor = infoBtnMobile.closest("div");
       if (!mobileAnchor) mobileAnchor = document.body;
@@ -485,7 +443,6 @@ export default class Header {
       if (infoCardMobile.parentNode !== mobileAnchor) {
         mobileAnchor.appendChild(infoCardMobile);
       }
-
       Object.assign(infoCardMobile.style, {
         position: "absolute",
         left: "0",
@@ -498,7 +455,6 @@ export default class Header {
         padding: infoCardMobile.style.padding || "12px",
         zIndex: "60",
       });
-
       infoBtnMobile.addEventListener("click", (e) => {
         e.stopPropagation();
         infoCardMobile.classList.toggle("hidden");
@@ -511,7 +467,6 @@ export default class Header {
         },
         { passive: true }
       );
-
       document.addEventListener("click", (e) => {
         if (
           !infoBtnMobile.contains(e.target) &&
@@ -520,7 +475,6 @@ export default class Header {
           infoCardMobile.classList.add("hidden");
         }
       });
-
       window.addEventListener("resize", () => {
         if (window.innerWidth > 767) {
           infoCardMobile.classList.add("hidden");
@@ -532,13 +486,11 @@ export default class Header {
       });
     }
   }
-
   initRenewalSwitcher() {
     const autoBtn = document.getElementById("renewal-auto");
     const manualBtn = document.getElementById("renewal-manual");
     const autoBtnMobile = document.getElementById("renewal-auto-mobile");
     const manualBtnMobile = document.getElementById("renewal-manual-mobile");
-
     if (autoBtn && manualBtn) {
       autoBtn.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -549,7 +501,6 @@ export default class Header {
         this.handleManualRenewalClick();
       });
     }
-
     if (autoBtnMobile && manualBtnMobile) {
       autoBtnMobile.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -560,25 +511,20 @@ export default class Header {
         this.handleManualRenewalClick();
       });
     }
-
     this.updateRenewalUI();
   }
-
   updateRenewalUI() {
     const isAuto = this.userData.autoRenewal;
     const autoBtn = document.getElementById("renewal-auto");
     const manualBtn = document.getElementById("renewal-manual");
     const autoBtnMobile = document.getElementById("renewal-auto-mobile");
     const manualBtnMobile = document.getElementById("renewal-manual-mobile");
-
     const activeStyle = { background: "#E30613", color: "#ffffffff" };
     const inactiveStyle = { background: "transparent", color: "#575757" };
-
     if (autoBtn)
       Object.assign(autoBtn.style, isAuto ? activeStyle : inactiveStyle);
     if (manualBtn)
       Object.assign(manualBtn.style, !isAuto ? activeStyle : inactiveStyle);
-
     if (autoBtnMobile)
       Object.assign(autoBtnMobile.style, isAuto ? activeStyle : inactiveStyle);
     if (manualBtnMobile)
@@ -586,14 +532,12 @@ export default class Header {
         manualBtnMobile.style,
         !isAuto ? activeStyle : inactiveStyle
       );
-
     const autoIcon = autoBtn?.querySelector("img");
     const manualIcon = manualBtn?.querySelector("img");
     if (autoIcon && manualIcon) {
       autoIcon.classList.toggle("hidden", !isAuto);
       manualIcon.classList.toggle("hidden", isAuto);
     }
-
     const autoIconMobile = autoBtnMobile?.querySelector("img");
     const manualIconMobile = manualBtnMobile?.querySelector("img");
     if (autoIconMobile && manualIconMobile) {
@@ -601,12 +545,9 @@ export default class Header {
       manualIconMobile.classList.toggle("hidden", isAuto);
     }
   }
-
   handleManualRenewalClick() {
     if (!this.userData.autoRenewal) return;
-
     const texts = offerData.text[this.currentLanguage];
-
     const onConfirm = () => {
       this.modal.close();
       setTimeout(() => {
@@ -620,64 +561,57 @@ export default class Header {
         });
       }, 350);
     };
-
     const closeBtnHTML =
       this.modal && typeof this.modal.getCloseButtonHTML === "function"
         ? this.modal.getCloseButtonHTML()
         : "";
-
+    const fontClass = this.getFontClass();
     const customContent = `
       <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-gray-800 dark:border dark:border-gray-600 rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
         ${closeBtnHTML}
         <div class="w-full text-center pt-8 md:pt-0">
-          <h1 class="text-ooredoo-red font-rubik text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
+          <h1 class="text-ooredoo-red ${fontClass} text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
             ${texts.manualModalTitle}
           </h1>
-          <p class="text-black dark:text-gray-300 font-rubik text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">
+          <p class="${fontClass} text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">
             ${texts.manualModalDesc}
           </p>
         </div>
         <div class="flex justify-center items-center gap-[13px] flex-col sm:flex-row w-full max-w-md px-4 pb-4 md:pb-0">
-          <button id="modal-cancel-btn" type="button" class="flex w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-rubik font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+          <button id="modal-cancel-btn" type="button" class="flex w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red ${fontClass} font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
             ${texts.cancelBtn}
           </button>
-          <button id="modal-confirm-btn" type="button" class="flex w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white font-rubik font-semibold uppercase hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+          <button id="modal-confirm-btn" type="button" class="flex w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white ${fontClass} font-semibold uppercase hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
             ${texts.confirmBtn}
           </button>
         </div>
       </div>
     `;
-
     this.modal.showCustom(customContent);
-
     const confirmBtn = this.modal.container.querySelector("#modal-confirm-btn");
     const cancelBtn = this.modal.container.querySelector("#modal-cancel-btn");
-
     if (confirmBtn) confirmBtn.addEventListener("click", onConfirm);
     if (cancelBtn)
       cancelBtn.addEventListener("click", () => this.modal.close());
   }
-
   handleAutoRenewalClick() {
     if (this.userData.autoRenewal) return;
-
     const texts = offerData.text[this.currentLanguage];
-
     const closeBtnHTML =
       this.modal && typeof this.modal.getCloseButtonHTML === "function"
         ? this.modal.getCloseButtonHTML()
         : "";
-
+    const fontClass = this.getFontClass();
     const customContent = `
       <div class="relative w-full max-w-5xl bg-white dark:bg-[#2C2C2C] rounded-lg flex flex-col overflow-hidden">
         ${closeBtnHTML}
         <div class="p-6 md:p-8 text-center">
-          <h2 class="text-2xl font-bold text-[28px] text-ooredoo-red dark:text-white mb-8">${texts.autoModalTitle}</h2>
-          <p class="text-black dark:text-white mb-4 px-0 text-[22px] md:px-[30px]">
+          <h2 class="${fontClass} text-2xl font-bold text-[28px] text-ooredoo-red dark:text-white mb-8">${texts.autoModalTitle}</h2>
+          <p class="${fontClass} text-black dark:text-white mb-4 px-0 text-[22px] md:px-[30px]">
             ${texts.autoModalDesc}
           </p>
           <div class="mt-6">
-            <button id="modal-cancel-btn" type="button" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+            <button id="modal-cancel-btn" type="button" class="${fontClass} rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
               ${texts.cancelBtn}
             </button>
           </div>
@@ -687,14 +621,11 @@ export default class Header {
           <div id="modal-slider-container"></div>
         </div>
       </div>`;
-
     this.modal.showCustom(customContent);
-
     const sliderContainer = this.modal.container.querySelector(
       "#modal-slider-container"
     );
     const currentOffers = offerData[this.currentLanguage] || offerData.fr;
-
     if (sliderContainer) {
       this.modalSliderInstance = new ModalSlider({
         container: sliderContainer,
@@ -706,7 +637,6 @@ export default class Header {
         },
       });
     }
-
     const cleanupAndClose = () => {
       if (this.modalSliderInstance) {
         try {
@@ -716,14 +646,11 @@ export default class Header {
       }
       this.modal.close();
     };
-
     const closeBtn = this.modal.container.querySelector("#modal-close-btn");
     if (closeBtn) closeBtn.addEventListener("click", cleanupAndClose);
-
     const cancelBtn = this.modal.container.querySelector("#modal-cancel-btn");
     if (cancelBtn) cancelBtn.addEventListener("click", cleanupAndClose);
   }
-
   showOfferConfirmation(offer, modalTexts) {
     this.modal.showConfirmation({
       title: offer.planName,

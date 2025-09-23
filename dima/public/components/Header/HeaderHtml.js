@@ -7,7 +7,25 @@ export const generateHeaderHTML = (
 ) => {
   const texts = offerData.text[language] || offerData.text.fr;
   const isAuto = userData.autoRenewal;
+  const fontClass = language === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
+  const containsArabic = (text = "") =>
+    /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(text);
+  const escapeHtml = (str = "") =>
+    String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
 
+  const formatMixedText = (text = "") => {
+    const safe = escapeHtml(text);
+    if (containsArabic(text)) {
+      return `<span class="${fontClass} arabic-text" dir="auto">${safe}</span>`;
+    }
+    return `<span class="${fontClass}" dir="auto">${safe}</span>`;
+  };
+  
   const getOfferDetails = (offer) => {
     if (!offer || typeof offer !== "string")
       return { name: "Dima", price: "XXXX" };
@@ -17,31 +35,24 @@ export const generateHeaderHTML = (
     const name = parts.slice(1).join(" ");
     return { name, price };
   };
-
   const offerDetails = getOfferDetails(userData.offer);
-
   const infoCardDesc = isAuto
     ? texts.renewalInfoAuto(offerDetails.name, offerDetails.price)
     : texts.renewalInfoManual;
-
   const infoCardDescStyle = `
-    font-family: 'Rubik', sans-serif;
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 1.25rem;
     text-align: justify;
     color: #575757;
   `;
-
   const infoCardDescStyleDark = `
-    font-family: 'Rubik', sans-serif;
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 1.25rem;
     text-align: justify;
-    color: #ffffffff;
+    color: #ffffff;
   `;
-
   const getOfferText = (offer) => {
     if (language === "ar") {
       if (offer === "Offre VOX") return "عرض VOX";
@@ -53,57 +64,17 @@ export const generateHeaderHTML = (
     }
     return offer;
   };
-
-  const containsArabic = (text) => {
-    if (!text) return false;
-    const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
-    return arabicPattern.test(text);
-  };
-
-  const parseMixedText = (text) => {
-    if (!text) return [];
-    const parts = [];
-    let currentPart = "";
-    if (text.length === 0) return parts;
-    let isArabic = containsArabic(text[0]);
-    for (let char of text) {
-      const charIsArabic = containsArabic(char);
-      if (charIsArabic === isArabic) {
-        currentPart += char;
-      } else {
-        parts.push({ text: currentPart, isArabic });
-        currentPart = char;
-        isArabic = charIsArabic;
-      }
-    }
-    if (currentPart) parts.push({ text: currentPart, isArabic });
-    return parts;
-  };
-
-  const formatMixedText = (text) => {
-    const segments = parseMixedText(text);
-    return segments
-      .map(
-        (seg) =>
-          `<span class="${
-            seg.isArabic ? "font-noto-kufi-arabic" : "font-rubik"
-          }">${seg.text}</span>`
-      )
-      .join("");
-  };
-
   const offerHTML = formatMixedText(
     getOfferText(userData.offer || "Offre Dima Ooredoo")
   );
 
   return `
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Noto+Kufi+Arabic:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   .font-noto-kufi-arabic { font-family: 'Noto Kufi Arabic', sans-serif; }
   .font-rubik { font-family: 'Rubik', sans-serif; }
   .bg-ooredoo-red { background-color: #E30613; }
   .text-ooredoo-red { color: #E30613; }
-
   .hdr-common-text{
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
@@ -121,12 +92,10 @@ export const generateHeaderHTML = (
     line-height: 170%;
     letter-spacing: 2%;
   }
-
   @media (max-width: 767px){
     .hdr-common-text{ font-size: 14px; }
     .hdr-price{ font-size: 20px; }
   }
-
   @keyframes modalFadeIn {
     from { opacity: 0; transform: scale(0.95) translateY(-8px); }
     to { opacity: 1; transform: scale(1) translateY(0); }
@@ -141,28 +110,29 @@ export const generateHeaderHTML = (
   .modal-animating-out {
     animation: modalFadeOut 0.3s ease-in forwards;
   }
-
   @media (max-width: 767px) {
-  #auto-renewal-info-mobile { position: relative; z-index: 70; }
-  #auto-renewal-card-mobile {
-    position: absolute !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    top: calc(100% + 8px) !important;
-    transform: none !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-    padding: 12px !important;
-    border-radius: 12px !important;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
-    z-index: 60 !important;
+    #auto-renewal-info-mobile { position: relative; z-index: 70; }
+    #auto-renewal-card-mobile {
+      position: absolute !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      top: calc(100% + 8px) !important;
+      transform: none !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
+      padding: 12px !important;
+      border-radius: 12px !important;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
+      z-index: 60 !important;
+    }
+    #auto-renewal-card-mobile.hidden { display: none !important; }
+    #auto-renewal-card-mobile:not(.hidden) { display: block !important; }
   }
-  #auto-renewal-card-mobile.hidden { display: none !important; }
-  #auto-renewal-card-mobile:not(.hidden) { display: block !important; }
-}
-
+  html[lang="ar"], [dir="rtl"] { font-family: 'Noto Kufi Arabic', sans-serif; }
+  .arabic-text { direction: rtl; unicode-bidi: isolate-override; -webkit-font-smoothing: antialiased; }
+  [dir="rtl"] .language-dropdown-menu { left: 0; right: auto; }
 </style>
 
 <header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${
@@ -195,18 +165,18 @@ export const generateHeaderHTML = (
         </div>
 
         <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank" class="flex items-center h-[40px] lg:h-[48px] px-4 lg:px-6 text-black dark:text-white rounded-lg transition-all duration-300">
-          <span id="help-text" class="${
-            language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-          } text-sm lg:text-base mx-2">${texts.helpText}</span>
+          <span id="help-text" class="${fontClass} text-sm lg:text-base mx-2">${
+    texts.helpText
+  }</span>
           <img src="./assets/images/header/help.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 dark:hidden transition-opacity duration-300" />
           <img src="./assets/images/header/help-white.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 hidden dark:inline transition-opacity duration-300" />
         </a>
 
         <div class="relative h-[40px] lg:h-[48px]" id="language-desktop">
           <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] dark:border-[#E4E4E7] hover:bg-gray-100 transition-all duration-300 text-[#2A2A2A]">
-            <span id="current-language" class="${
-              language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-            } text-sm lg:text-base font-medium">${texts.currentLanguage}</span>
+            <span id="current-language" class="${fontClass} text-sm lg:text-base font-medium">${
+    texts.currentLanguage
+  }</span>
             <img src="./assets/images/header/chevron-down-black-h.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2" />
           </button>
           <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300">
@@ -214,8 +184,8 @@ export const generateHeaderHTML = (
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
             }">Français</a>
             <a href="#" class="font-noto-kufi-arabic language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-black dark:text-white transition-all duration-300 ${
-              language === "ar" ? "font-semibold text-ooredoo-red" : ""
-            }">العربية</a>
+    language === "ar" ? "font-semibold text-ooredoo-red" : ""
+  }">العربية</a>
           </div>
         </div>
       </div>
@@ -236,16 +206,14 @@ export const generateHeaderHTML = (
             <img src="./assets/images/header/sun-white.svg" class="w-5 h-5 hidden dark:inline" id="mobile-sun-icon-dark" />
             <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
             <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
-            <span class="ml-2">${texts.changeModeLabel}</span>
+            <span class="ml-2 ${fontClass}">${texts.changeModeLabel}</span>
           </button>
         </div>
 
         <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
           <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" />
           <img src="./assets/images/header/help-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" />
-          <span id="help-text-mobile" class="${
-            language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-          } text-[10px] text-black dark:text-white">
+          <span id="help-text-mobile" class="${fontClass} text-[10px] text-black dark:text-white">
             <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${
               texts.helpText
             }</a>
@@ -258,7 +226,7 @@ export const generateHeaderHTML = (
           <div class="flex gap-2">
             <button type="button" class="language-option px-3 py-1 rounded-lg text-black dark:text-white ${
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
-            }" data-lang="fr">Français</button>
+            } ${fontClass}" data-lang="fr">Français</button>
             <button type="button" class="language-option px-3 py-1 rounded-lg text-black dark:text-white ${
               language === "ar" ? "font-semibold text-ooredoo-red" : ""
             } font-noto-kufi-arabic" data-lang="ar">العربية</button>
@@ -269,15 +237,15 @@ export const generateHeaderHTML = (
   </div>
 
   <div class="bg-ooredoo-red py-4 text-white w-full">
-<div class="px-4 w-full max-w-[95vw] md:max-w-[90vw] mx-auto">
+    <div class="px-4 w-full max-w-[95vw] md:max-w-[90vw] mx-auto">
       <div class="md:block hidden">
         <div class="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
           <div class="flex-1 flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full md:w-auto min-w-0">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text">${
-                userData.phone || "0509876543"
-              }</span>
+              <span class="hdr-common-text ${fontClass}">${
+    userData.phone || "0509876543"
+  }</span>
             </div>
 
             <div class="flex items-center gap-2 min-w-0">
@@ -286,12 +254,14 @@ export const generateHeaderHTML = (
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="hdr-common-text">${texts.renewalLabel}</span>
+              <span class="hdr-common-text ${fontClass}">${
+    texts.renewalLabel
+  }</span>
               <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
                 <button 
                   id="renewal-auto"
-                  class="flex-1 flex flex-row items-center justify-start gap-[5px] rounded-full h-[32px] transition-all duration-300"
-                  style="direction:ltr; font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
+                  class="flex-1 flex flex-row items-center justify-start gap-[5px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
+                  style="font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
                     isAuto
                       ? "background:#ED1C24;color:#fff;"
                       : "background:#fff;color:#2A2A2A;"
@@ -307,8 +277,8 @@ export const generateHeaderHTML = (
 
                 <button 
                   id="renewal-manual"
-                  class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300"
-                  style="font-family:'Rubik',sans-serif;font-weight:500;font-size:0.95rem; ${
+                  class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300 ${fontClass}"
+                  style="font-weight:500;font-size:0.95rem; ${
                     !isAuto
                       ? "background:#E30613;color:#fff;"
                       : "background:#fff;color:#2A2A2A;"
@@ -320,9 +290,9 @@ export const generateHeaderHTML = (
               <button id="auto-renewal-info" class="w-6 h-6 flex items-center justify-center rounded-full text-ooredoo-red relative">
                 <img src="./assets/images/header/Info.svg" class="w-6 h-6" alt="Info" />
                 <div id="auto-renewal-card" class="absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 dark:border-[#fff] hidden z-50">
-                  <div style="${
-                    theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
-                  }">
+                  <div class="${fontClass}" style="${
+    theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
+  }">
                     ${infoCardDesc}
                   </div>
                 </div>
@@ -332,7 +302,9 @@ export const generateHeaderHTML = (
 
           <div class="flex items-center gap-2 flex-shrink-0">
             <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
-            <span class="hdr-price">${userData.credit || "1200 DA"}</span>
+            <span class="hdr-price ${fontClass}">${
+    userData.credit || "1200 DA"
+  }</span>
           </div>
         </div>
       </div>
@@ -342,13 +314,15 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text truncate">${
-                userData.phone || "0509876543"
-              }</span>
+              <span class="hdr-common-text ${fontClass} truncate">${
+    userData.phone || "0509876543"
+  }</span>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
               <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
-              <span class="hdr-price">${userData.credit || "1200 DA"}</span>
+              <span class="hdr-price ${fontClass}">${
+    userData.credit || "1200 DA"
+  }</span>
             </div>
           </div>
 
@@ -360,9 +334,7 @@ export const generateHeaderHTML = (
 
             <div>
               <button id="charge-btn" type="button" class="flex items-center px-[8px] py-[6px] rounded-full bg-white text-ooredoo-red border border-white dark:border-transparent shadow-sm">
-                <span class="${
-                  language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-                } font-semibold text-[10px]">${
+                <span class="${fontClass} font-semibold text-[10px]">${
     texts.chargeText || "CHARGER"
   }</span>
                 <span class="ml-[4px] flex items-center gap-[3px]">
@@ -375,12 +347,14 @@ export const generateHeaderHTML = (
 
           <div class="flex items-center justify-center">
             <div class="flex items-center  gap-1 md:gap-3">
-              <span class="hdr-common-text">${texts.renewalLabel}</span>
+              <span class="hdr-common-text ${fontClass}">${
+    texts.renewalLabel
+  }</span>
               <div class="relative flex items-center bg-white rounded-full h-[36px] w-[160px] md:w-[175px] p-0.5">
                 <button 
                   id="renewal-auto-mobile"
-                  class="flex-1 flex flex-row items-center justify-start gap-[3px] rounded-full h-[32px] transition-all duration-300"
-                  style="direction:ltr; font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
+                  class="flex-1 flex flex-row items-center justify-start gap-[3px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
+                  style="font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
                     isAuto
                       ? "background:#ED1C24;color:#fff;"
                       : "background:#fff;color:#2A2A2A;"
@@ -396,8 +370,8 @@ export const generateHeaderHTML = (
 
                 <button 
                   id="renewal-manual-mobile"
-                  class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300"
-                  style="font-family:'Rubik',sans-serif;font-weight:500;font-size:0.95rem; ${
+                  class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300 ${fontClass}"
+                  style="font-weight:500;font-size:0.95rem; ${
                     !isAuto
                       ? "background:#E30613;color:#fff;"
                       : "background:#fff;color:#2A2A2A;"
@@ -409,9 +383,9 @@ export const generateHeaderHTML = (
               <button id="auto-renewal-info-mobile" class="w-6 h-6 flex items-center justify-center rounded-full bg-transparent text-white relative ml-2">
                 <img src="./assets/images/header/Info.svg" class="w-6 h-6" alt="Info" />
                 <div id="auto-renewal-card-mobile" class="absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
-                  <div style="${
-                    theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
-                  }">
+                  <div class="${fontClass}" style="${
+    theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
+  }">
                     ${infoCardDesc}
                   </div>
                 </div>
@@ -423,6 +397,7 @@ export const generateHeaderHTML = (
 
     </div>
   </div>
+
   <div id="global-modal-overlay" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" style="backdrop-filter: blur(8px);">
     <div id="global-modal-container" class="w-full max-w-[703px]"></div>
   </div>
