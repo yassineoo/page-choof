@@ -337,7 +337,6 @@ class ConversionsComponent {
 
   createMixedTitleHTML(title, baseClasses = "") {
     if (!title) return "";
-    const isRTL = this.isRTL();
     if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
       return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
     }
@@ -376,18 +375,24 @@ class ConversionsComponent {
   }
 
   renderWithData(data, language) {
-    const isRTL = this.isRTL();
+    const isRTL = language === "ar" || this.isRTL();
+    // keep currentLang in sync
+    this.currentLang = language;
+
     this.cleanupAllEventListeners();
 
     const accordionContentHTML = this.isAccordionOpen
-      ? this.getAccordionContentHTML(data)
+      ? this.getAccordionContentHTML(data, isRTL)
       : "";
+
+    const dirAttr = isRTL ? `dir="rtl"` : `dir="ltr"`;
+    const textFont = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     let buttonsHTML = "";
     if (this.isAccordionOpen) {
       buttonsHTML = `
-            <button class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white" data-action="close-accordion">
-                <span class="font-rubik font-semibold leading-normal uppercase whitespace-nowrap text-base md:text-lg">
+            <button class="relative overflow-hidden z-10 ${textFont} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white" data-action="close-accordion">
+                <span class="${textFont} font-semibold leading-normal uppercase whitespace-nowrap text-base md:text-lg">
                     ${data.cancelBtn}
                 </span>
             </button>
@@ -395,12 +400,12 @@ class ConversionsComponent {
     } else {
       buttonsHTML = `
             <button class="conversions-buy-btn" data-action="convert-to-credit">
-                <span class="text-white font-rubik font-semibold leading-normal uppercase whitespace-nowrap text-base md:text-lg">
+                <span class="${textFont} font-semibold leading-normal uppercase whitespace-nowrap text-base md:text-lg">
                     ${data.convertToCredit}
                 </span>
             </button>
             <button class="conversions-buy-btn" data-action="other-conversions">
-                <span class="text-white font-rubik font-semibold leading-normal uppercase whitespace-nowrap text-base md:text-lg">
+                <span class="${textFont} font-semibold leading-normal uppercase whitespace-nowrap text-base md:text-lg">
                     ${data.otherConversions}
                 </span>
             </button>
@@ -408,17 +413,17 @@ class ConversionsComponent {
     }
 
     this.container.innerHTML = `
-    <div class="w-full">
+    <div class="w-full" ${dirAttr}>
       <section class="conversions-section">
         <div class="conversions-card-shadow">
           <div class="flex flex-col justify-center items-center gap-6 self-stretch">
             <div class="self-stretch">
-              <h2 class="text-black dark:text-white text-center font-rubik text-3xl md:text-[42px] font-medium leading-tight uppercase">
+              <h2 class="text-black dark:text-white text-center ${textFont} text-3xl md:text-[42px] font-medium leading-tight uppercase">
                 ${this.createMixedTitleHTML(data.title)}
               </h2>
             </div>
             <div class="w-full max-w-2xl">
-              <p class="text-black dark:text-white text-center font-rubik text-lg md:text-[22px] font-normal leading-normal">
+              <p class="text-black dark:text-white text-center ${textFont} text-lg md:text-[22px] font-normal leading-normal">
                 ${data.description}
               </p>
             </div>
@@ -437,10 +442,13 @@ class ConversionsComponent {
     </div>
     `;
     this.bindEventListeners(language);
+    // ensure purchase handlers are bound for both click and touch
+    this.bindPurchaseButtons(language);
   }
 
-  getAccordionContentHTML(data) {
+  getAccordionContentHTML(data, isRTL) {
     const plans = data.plans || [];
+    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
     return `
       <div class="plans-grid">
         ${plans
@@ -448,12 +456,12 @@ class ConversionsComponent {
             (plan, idx) => `
           <div key="${plan.name}" class="plan-card">
             <div class="plan-header">
-              <h3 class="plan-name text-ooredoo-red dark:text-white">${plan.name}</h3>
+              <h3 class="plan-name ${fontClass} text-ooredoo-red dark:text-white">${plan.name}</h3>
             </div>
             <div class="plan-body">
-              <p class="plan-description">${plan.description}</p>
+              <p class="plan-description ${fontClass}">${plan.description}</p>
               <div class="plan-pricing">
-                <div class="plan-price">
+                <div class="plan-price ${fontClass}">
                   <span class="price-amount">${plan.price}</span>
                   <span class="price-currency">${plan.priceUnit}<span class="price-duration">${plan.duration}</span></span>
                 </div>
@@ -652,17 +660,19 @@ class ConversionsComponent {
       console.error("Conversions modal container not found");
       return;
     }
+    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
+    const dirAttr = isRTL ? `dir="rtl"` : `dir="ltr"`;
     modalContainer.innerHTML = `
       <div class="conversions-backdrop">
-        <div class="conversions-modal" role="dialog" aria-modal="true">
+        <div class="conversions-modal" role="dialog" aria-modal="true" ${dirAttr}>
           <header class="conversions-header">
-            <h1 class="conversions-title">${this.createMixedTitleHTML(
-              data.title
-            )}</h1>
-            <p class="conversions-question">
+            <h1 class="conversions-title ${fontClass}">${this.createMixedTitleHTML(
+      data.title
+    )}</h1>
+            <p class="conversions-question ${fontClass}">
               ${data.description}
             </p>
-            <button class="btn-cancel" id="close-conversions-modal">
+            <button class="btn-cancel ${fontClass}" id="close-conversions-modal">
               ${data.cancelBtn}
             </button>
           </header>
@@ -673,12 +683,12 @@ class ConversionsComponent {
                   (plan, idx) => `
                 <div key="${plan.name}" class="plan-card">
                   <div class="plan-header">
-                    <h3 class="plan-name">${plan.name}</h3>
+                    <h3 class="plan-name ${fontClass}">${plan.name}</h3>
                   </div>
                   <div class="plan-body">
-                    <p class="plan-description">${plan.description}</p>
+                    <p class="plan-description ${fontClass}">${plan.description}</p>
                     <div class="plan-pricing">
-                      <div class="plan-price">
+                      <div class="plan-price ${fontClass}">
                         <span class="price-amount">${plan.price}</span>
                         <span class="price-currency">${plan.priceUnit}</span>
                         <span class="price-duration">${plan.duration}</span>
