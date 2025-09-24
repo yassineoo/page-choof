@@ -319,9 +319,10 @@ class Migration {
     }
     .migration-modal-buttons {
       display: flex;
-      justify-content: center;
       gap: 1rem;
-      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
     }
     .migration-modal-button {
       padding: 0.75rem 1.5rem;
@@ -331,6 +332,7 @@ class Migration {
       transition: all 0.3s ease;
       text-transform: uppercase;
       font-size: 0.875rem;
+      box-sizing: border-box;
     }
     .migration-modal-button.primary {
       background: #e30613;
@@ -347,7 +349,7 @@ class Migration {
       background: #c50510;
     }
     .migration-modal-button.secondary {
-  background: white;
+      background: white;
       color: #e30613;
       border: 2px solid #e30613;
     }
@@ -355,8 +357,8 @@ class Migration {
       background: #e30613;
       color: white;
     }
-      .dark     .migration-modal-button.secondary {
-  background: transparent;
+    .dark .migration-modal-button.secondary {
+      background: transparent;
       color: #ffffffff;
       border: 2px solid #ffffffff;
     }
@@ -476,7 +478,6 @@ class Migration {
         font-size: 18px;
       }
       .migration-modal-buttons {
-        flex-direction: row !important;
         gap: 12px !important;
         justify-content: center;
         align-items: center;
@@ -538,6 +539,94 @@ class Migration {
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
+    }
+
+    .migration-modal-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+
+    .migration-modal-buttons .migration-modal-button {
+      flex: 1 1 220px;
+      max-width: 260px;
+      min-width: 140px;
+      height: 48px;
+      box-sizing: border-box;
+    }
+
+    .migration-modal-buttons .migration-modal-button.w-40,
+    .migration-modal-buttons .migration-modal-button.h-12 {
+      width: auto !important;
+      height: 48px !important;
+    }
+
+    @media (max-width: 640px) {
+      .migration-modal-buttons {
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .migration-modal-buttons .migration-modal-button {
+        flex: 1 1 48%;
+        max-width: none;
+        min-width: 120px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .migration-modal-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .migration-modal-buttons .migration-modal-button {
+        width: 100%;
+        flex: 1 1 100%;
+        min-width: 0;
+      }
+    }
+
+    /* Provider view action buttons (back + start) */
+    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button,
+    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > a {
+      box-sizing: border-box;
+      flex: 1 1 220px;
+      max-width: 260px;
+      min-width: 140px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1rem;
+    }
+
+    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button[id^="start-"],
+    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button#back-to-main {
+      width: auto !important;
+      height: 48px !important;
+    }
+
+    @media (max-width: 640px) {
+      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button,
+      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > a {
+        flex: 1 1 48%;
+        max-width: none;
+        min-width: 120px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button,
+      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > a {
+        width: 100%;
+        flex: 1 1 100%;
+        min-width: 0;
+      }
     }
     `;
   }
@@ -1042,8 +1131,9 @@ class Migration {
       close: data.ok || "OK",
     };
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `migration-modal-button primary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-transparent dark:text-white dark:border-white`;
+    const primaryBtn = `migration-modal-button primary ${fontClass} font-semibold text-base uppercase rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-transparent dark:text-white dark:border-white`;
+
     const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
     const buttonConfigs = {
       confirm: `
