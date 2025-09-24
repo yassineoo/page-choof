@@ -25,7 +25,7 @@ export const generateHeaderHTML = (
     }
     return `<span class="${fontClass}" dir="auto">${safe}</span>`;
   };
-  
+
   const getOfferDetails = (offer) => {
     if (!offer || typeof offer !== "string")
       return { name: "Dima", price: "XXXX" };
@@ -53,19 +53,21 @@ export const generateHeaderHTML = (
     text-align: justify;
     color: #ffffff;
   `;
-  const getOfferText = (offer) => {
-    if (language === "ar") {
-      if (offer === "Offre VOX") return "عرض VOX";
-      if (offer === "Offre Dima") return "عرض Dima";
-      if (offer && offer.startsWith && offer.startsWith("Offre ")) {
-        return offer.replace("Offre ", "عرض ");
-      }
-      return offer;
-    }
-    return offer;
-  };
+const LRM = '\u200E';
+const wrapLatin = (s) => s.replace(/([A-Za-z0-9\-\_]+)/g, `${LRM}$1${LRM}`);
+
+const getOfferText = (offer) => {
+  if (language === "ar") {
+    if (!offer) return offer;
+    // remplacer "Offre " par "عرض " puis protéger les séquences latines
+    const replaced = offer.replace(/^Offre\s+/, 'عرض ');
+    return wrapLatin(replaced);
+  }
+  return offer;
+};
+
   const offerHTML = formatMixedText(
-    getOfferText(userData.offer || "Offre Dima Ooredoo")
+    getOfferText(userData.offer || "Offre Dima")
   );
 
   return `
@@ -131,7 +133,7 @@ export const generateHeaderHTML = (
     #auto-renewal-card-mobile:not(.hidden) { display: block !important; }
   }
   html[lang="ar"], [dir="rtl"] { font-family: 'Noto Kufi Arabic', sans-serif; }
-  .arabic-text { direction: rtl; unicode-bidi: isolate-override; -webkit-font-smoothing: antialiased; }
+  .arabic-text { direction: rtl; unicode-bidi: isolate; -webkit-font-smoothing: antialiased; }
   [dir="rtl"] .language-dropdown-menu { left: 0; right: auto; }
 </style>
 
@@ -184,8 +186,8 @@ export const generateHeaderHTML = (
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
             }">Français</a>
             <a href="#" class="font-noto-kufi-arabic language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-black dark:text-white transition-all duration-300 ${
-    language === "ar" ? "font-semibold text-ooredoo-red" : ""
-  }">العربية</a>
+              language === "ar" ? "font-semibold text-ooredoo-red" : ""
+            }">العربية</a>
           </div>
         </div>
       </div>
