@@ -1,4 +1,3 @@
-// BoostComponent.js
 import boostData from "./BoostData.js";
 
 class BoostComponent {
@@ -199,14 +198,12 @@ class BoostComponent {
 
   containsArabic(text) {
     if (!text) return false;
-    const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
+    const arabicPattern = /[؀-ۿݐ-ݿࢠ-ࣿ]/;
     return arabicPattern.test(text);
   }
 
   createMixedTitleHTML(title, baseClasses = "") {
     if (!title) return "";
-    const isRTL = this.isRTL();
-
     if (this.containsArabic(title) && !title.match(/[a-zA-Z]/)) {
       return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${title}</span>`;
     }
@@ -249,45 +246,60 @@ class BoostComponent {
   }
 
   renderWithData(data, language) {
-    const isRTL = this.isRTL();
+    const isRTL = language === "ar" || this.isRTL();
+    this.currentLang = language;
+
     this.cleanupAllEventListeners();
 
+    const rawPrice = 500;
+    const formattedPrice = String(rawPrice);
+
+    const dirAttr = isRTL ? `dir="rtl"` : `dir="ltr"`;
+    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
+
+    const priceFontClass = "font-rubik";
+    const currencyArabicClass = "font-noto-kufi-arabic";
+
     this.container.innerHTML = `
-    <div class="w-full">
-      <section class="boost-section">
-        <div class="boost-card-shadow">
-          
-          <div class="flex flex-col items-center gap-4 md:gap-6 text-center">
-            <h2 class="boost-title">
-              ${this.createMixedTitleHTML(data.title)}
-            </h2>
-            <p class="boost-description dark:text-white">
-              ${data.description}
-            </p>
-          </div>
-
-          <div class="flex flex-col items-center gap-4 md:gap-5">
-            <div class="boost-price dark:text-white">
-              <span class="big">500</span>
-              <span class="small font-noto-kufi-arabic">${
-                              isRTL ? "د.ج" : ""
-                            }</span>
-              <span class="small">${isRTL ? "" : "DA"}</span>
-            </div>
-
-            <button class="boost-buy-btn" data-index="0">
-              <span class="text-white font-rubik font-semibold leading-normal uppercase">
-                ${data.buy}
-              </span>
-            </button>
-          </div>
-
+  <div class="w-full" ${dirAttr}>
+    <section class="boost-section">
+      <div class="boost-card-shadow">
+        
+        <div class="flex flex-col items-center gap-4 md:gap-6 text-center">
+          <h2 class="boost-title ${fontClass}">
+            ${this.createMixedTitleHTML(data.title)}
+          </h2>
+          <p class="boost-description dark:text-white ${fontClass}">
+            ${data.description}
+          </p>
         </div>
-      </section>
 
-      <div id="boost-modal-container"></div>
-    </div>
-  `;
+        <div class="flex flex-col items-center gap-4 md:gap-5">
+          <div class="boost-price dark:text-white ${priceFontClass}">
+            <span class="big">${formattedPrice}</span>
+            <!-- Arabic currency rendered in Kufi -->
+            <span class="small ${currencyArabicClass}">${
+      isRTL ? data.currencyArabic || "د.ج" : ""
+    }</span>
+            <!-- Latin currency (Rubik) for non-RTL -->
+            <span class="small ${priceFontClass}">${
+      isRTL ? "" : data.currency || "DA"
+    }</span>
+          </div>
+
+          <button class="boost-buy-btn" data-index="0">
+            <span class="text-white ${fontClass} font-semibold leading-normal uppercase">
+              ${data.buy}
+            </span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <div id="boost-modal-container"></div>
+  </div>
+`;
 
     this.bindPurchaseButtons(language);
 
