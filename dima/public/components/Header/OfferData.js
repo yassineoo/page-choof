@@ -56,56 +56,56 @@ export const offerData = {
       description:
         "حجم 200Go إنترنت + مكالمات غير محدودة نحو الكل + رسائل قصيرة غير محدودة نحو Ooredoo و 200 رسالة قصيرة نحو الك",
       price: "4000",
-      duration: "30 يومًا",
+      duration: "30 يوم",
     },
     {
       planName: "DIMA 2500",
       description:
         "حجم 100Go إنترنت + مكالمات غير محدودة نحو الكل + رسائل قصيرة غير محدودة نحو Ooredoo و 100 رسالة قصيرة نحو الشبكات الأخرى + فايسبوك و ANAFLIX و ANAZIK وشاهد",
       price: "2500",
-      duration: "30 يومًا",
+      duration: "30 يوم",
     },
     {
       planName: "DIMA 2000",
       description:
         "حجم 50Go إنترنت + 300 دقيقة + مكالمات غير محدودة نحو Ooredoo و 200 رسالة قصيرة صالحة نحو كل الشبكات الوطنية + فايسبوك و ANAZIK و ANAFLIX",
       price: "2000",
-      duration: "30 يومًا",
+      duration: "30 يوم",
     },
     {
       planName: "DIMA 1500",
       description:
         "حجم 30Go إنترنت + 150 دقيقة + مكالمات غير محدودة نحو Ooredoo و 150 رسالة قصيرة صالحة نحو كل الشبكات الوطنية + فايسبوك و ANAFLIX",
       price: "1500",
-      duration: "30 يومًا",
+      duration: "30 يوم",
     },
     {
       planName: "DIMA 1200",
       description:
         "حجم 10Go إنترنت + 100 دقيقة + مكالمات غير محدودة نحو Ooredoo و 120 رسالة قصيرة صالحة نحو كل الشبكات الوطنية + فايسبوك و ANAZIK",
       price: "1200",
-      duration: "30 يومًا",
+      duration: "30 يوم",
     },
     {
       planName: "DIMA 750",
       description:
         "حجم 10Go إنترنت + 100 دقيقة + مكالمات غير محدودة نحو Ooredoo و 50 رسالة قصيرة صالحة نحو كل الشبكات",
       price: "750",
-      duration: "14 يومًا",
+      duration: "14 يوم",
     },
     {
       planName: "Dima 500 Hadra",
       description:
         "مكالمات 100 دقيقة و 100 رسالة قصيرة صالحة نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo",
       price: "500",
-      duration: "30 يومًا",
+      duration: "30 يوم",
     },
     {
       planName: "DIMA 500",
       description:
         "حجم 3Go إنترنت + 100 دقيقة + مكالمات غير محدودة نحو Ooredoo و 50 رسالة قصيرة صالحين نحو كل الشبكات الوطنية + فايسبوك",
       price: "500",
-      duration: "15 يومًا",
+      duration: "15 يوم",
     },
   ],
   text: {
@@ -140,7 +140,7 @@ export const offerData = {
     ar: {
       helpText: "مساعدة",
       currentLanguage: "العربية",
-      renewalLabel: "التجديد",
+      renewalLabel: "التجديد :",
       autoLabel: "التلقائي",
       manualLabel: "اليدوي",
       changeModeLabel: "تغيير الوضع",

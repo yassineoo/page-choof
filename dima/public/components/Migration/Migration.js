@@ -551,7 +551,7 @@ class Migration {
 
     .migration-modal-buttons .migration-modal-button {
       flex: 1 1 220px;
-      max-width: 260px;
+      max-width: 180px;
       min-width: 140px;
       height: 48px;
       box-sizing: border-box;
@@ -592,7 +592,7 @@ class Migration {
     .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > a {
       box-sizing: border-box;
       flex: 1 1 220px;
-      max-width: 260px;
+      max-width: 180px;
       min-width: 140px;
       height: 48px;
       display: inline-flex;
@@ -868,10 +868,10 @@ class Migration {
             ${termsHTML}
 
             <div class="flex items-center gap-4 justify-center">
-              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-transparent dark:text-white dark:border-white">
+              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-transparent dark:text-white dark:border-white">
                 <span class="text-[16px]">${cancelBtn}</span>
               </button>
-              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
+              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer w-[180px] transition-all duration-300 ease-linear font-bold uppercase">
                 <span class="text-[16px]">${confirmBtn}</span>
               </button>
             </div>
