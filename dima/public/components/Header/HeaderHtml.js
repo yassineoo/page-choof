@@ -53,22 +53,20 @@ export const generateHeaderHTML = (
     text-align: justify;
     color: #ffffff;
   `;
-const LRM = '\u200E';
-const wrapLatin = (s) => s.replace(/([A-Za-z0-9\-\_]+)/g, `${LRM}$1${LRM}`);
+  const LRM = "\u200E";
+  const wrapLatin = (s) => s.replace(/([A-Za-z0-9\-\_]+)/g, `${LRM}$1${LRM}`);
 
-const getOfferText = (offer) => {
-  if (language === "ar") {
-    if (!offer) return offer;
-    // remplacer "Offre " par "عرض " puis protéger les séquences latines
-    const replaced = offer.replace(/^Offre\s+/, 'عرض ');
-    return wrapLatin(replaced);
-  }
-  return offer;
-};
+  const getOfferText = (offer) => {
+    if (language === "ar") {
+      if (!offer) return offer;
+      // remplacer "Offre " par "عرض " puis protéger les séquences latines
+      const replaced = offer.replace(/^Offre\s+/, "عرض ");
+      return wrapLatin(replaced);
+    }
+    return offer;
+  };
 
-  const offerHTML = formatMixedText(
-    getOfferText(userData.offer || "Offre Dima")
-  );
+  const offerHTML = formatMixedText(getOfferText("Offre Dima"));
 
   return `
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
@@ -135,6 +133,9 @@ const getOfferText = (offer) => {
   html[lang="ar"], [dir="rtl"] { font-family: 'Noto Kufi Arabic', sans-serif; }
   .arabic-text { direction: rtl; unicode-bidi: isolate; -webkit-font-smoothing: antialiased; }
   [dir="rtl"] .language-dropdown-menu { left: 0; right: auto; }
+  [dir="rtl"] .logo-group {
+  flex-direction: row-reverse;
+}
 </style>
 
 <header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${
@@ -142,17 +143,30 @@ const getOfferText = (offer) => {
   }">
   <div class="w-full max-w-[90vw] mx-auto px-4">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
-      <div class="flex items-center gap-3" dir="ltr">
-        <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
-          <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo" class="w-full h-full object-contain dark:hidden block" width="200" height="40" loading="lazy" />
-          <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo" class="w-full h-full object-contain hidden dark:block" width="200" height="40" loading="lazy" />
-        </div>
-        <span class="hidden md:inline text-3xl font-light text-black dark:text-white leading-none">|</span>
-        <div class="flex items-center justify-center w-[58.5px] h-[13px] md:w-[115px] md:h-[26px]">
-          <img src="./assets/images/header/Choof.svg" alt="Choof" class="w-full h-full object-contain dark:hidden block" width="115" height="26" loading="lazy" />
-          <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="w-full h-full object-contain hidden dark:block" width="115" height="26" loading="lazy" />
-        </div>
-      </div>
+     
+    <div class="flex items-center gap-1 md:gap-3 logo-group" dir="ltr">
+  <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
+    <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo"
+         class="block w-full h-full max-h-full object-contain dark:hidden"
+         width="200" height="40" loading="lazy" />
+    <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo"
+         class="block w-full h-full max-h-full object-contain hidden dark:block"
+         width="200" height="40" loading="lazy" />
+  </div>
+
+  <span class="flex items-center justify-center h-[20px] md:h-[40px] text-[18px] md:text-3xl font-light text-black dark:text-white leading-none separator" aria-hidden="true">|</span>
+
+  <div class="flex items-center justify-center  pt-1 md:pt-1 w-[58.5px] h-[20px] md:w-[115px] md:h-[40px]">
+    <img src="./assets/images/header/Choof.svg" alt="Choof"
+         class="block w-full h-full max-h-full object-contain dark:hidden"
+         style="transform: translateY(1px);"
+         width="115" height="26" loading="lazy" />
+    <img src="./assets/images/header/Choof-white.svg" alt="Choof"
+         class="block w-full h-full max-h-full object-contain hidden dark:block"
+         style="transform: translateY(1px);"
+         width="115" height="26" loading="lazy" />
+  </div>
+</div>
 
       <div class="hidden md:flex items-center space-x-4">
         <div id="theme-switcher" class="relative w-[144px] h-[48px] rounded-full bg-gray-200 dark:bg-ooredoo-red overflow-hidden transition-all duration-500">
