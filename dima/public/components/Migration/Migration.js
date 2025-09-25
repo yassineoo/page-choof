@@ -319,9 +319,10 @@ class Migration {
     }
     .migration-modal-buttons {
       display: flex;
-      justify-content: center;
       gap: 1rem;
-      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
     }
     .migration-modal-button {
       padding: 0.75rem 1.5rem;
@@ -331,6 +332,7 @@ class Migration {
       transition: all 0.3s ease;
       text-transform: uppercase;
       font-size: 0.875rem;
+      box-sizing: border-box;
     }
     .migration-modal-button.primary {
       background: #e30613;
@@ -347,7 +349,7 @@ class Migration {
       background: #c50510;
     }
     .migration-modal-button.secondary {
-  background: white;
+      background: white;
       color: #e30613;
       border: 2px solid #e30613;
     }
@@ -355,8 +357,8 @@ class Migration {
       background: #e30613;
       color: white;
     }
-      .dark     .migration-modal-button.secondary {
-  background: transparent;
+    .dark .migration-modal-button.secondary {
+      background: transparent;
       color: #ffffffff;
       border: 2px solid #ffffffff;
     }
@@ -476,7 +478,6 @@ class Migration {
         font-size: 18px;
       }
       .migration-modal-buttons {
-        flex-direction: row !important;
         gap: 12px !important;
         justify-content: center;
         align-items: center;
@@ -538,6 +539,94 @@ class Migration {
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
+    }
+
+    .migration-modal-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+
+    .migration-modal-buttons .migration-modal-button {
+      flex: 1 1 220px;
+      max-width: 260px;
+      min-width: 140px;
+      height: 48px;
+      box-sizing: border-box;
+    }
+
+    .migration-modal-buttons .migration-modal-button.w-40,
+    .migration-modal-buttons .migration-modal-button.h-12 {
+      width: auto !important;
+      height: 48px !important;
+    }
+
+    @media (max-width: 640px) {
+      .migration-modal-buttons {
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .migration-modal-buttons .migration-modal-button {
+        flex: 1 1 48%;
+        max-width: none;
+        min-width: 120px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .migration-modal-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .migration-modal-buttons .migration-modal-button {
+        width: 100%;
+        flex: 1 1 100%;
+        min-width: 0;
+      }
+    }
+
+    /* Provider view action buttons (back + start) */
+    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button,
+    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > a {
+      box-sizing: border-box;
+      flex: 1 1 220px;
+      max-width: 260px;
+      min-width: 140px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1rem;
+    }
+
+    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button[id^="start-"],
+    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button#back-to-main {
+      width: auto !important;
+      height: 48px !important;
+    }
+
+    @media (max-width: 640px) {
+      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button,
+      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > a {
+        flex: 1 1 48%;
+        max-width: none;
+        min-width: 120px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button,
+      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > a {
+        width: 100%;
+        flex: 1 1 100%;
+        min-width: 0;
+      }
     }
     `;
   }
@@ -704,22 +793,28 @@ class Migration {
   `;
     this.bindPurchaseButtons(language);
   }
+
   highlightTerms(text, language) {
     if (!text) return "";
     const arPhrase = "شروط وأحكام العقد";
     const frPhrase = "termes et conditions du contrat";
+
     if (language === "ar" && text.includes(arPhrase)) {
+      const href = "./assets/documents/TERMES_ET_CONDITIONS_AR.pdf";
       return text.replace(
         arPhrase,
-        `<a href="#" class="migration-terms-link" role="link" tabindex="0">${arPhrase}</a>`
+        `<a href="${href}" class="migration-terms-link" role="link" tabindex="0" target="_blank" rel="noopener noreferrer" download="TERMES_ET_CONDITIONS_AR.pdf" aria-label="Télécharger les termes et conditions en arabe">${arPhrase}</a>`
       );
     }
+
     if (language === "fr" && text.includes(frPhrase)) {
+      const href = "./assets/documents/TERMES_ET_CONDITIONS.pdf";
       return text.replace(
         frPhrase,
-        `<a href="#" class="migration-terms-link" role="link" tabindex="0">${frPhrase}</a>`
+        `<a href="${href}" class="migration-terms-link" role="link" tabindex="0" target="_blank" rel="noopener noreferrer" download="TERMES_ET_CONDITIONS.pdf" aria-label="Télécharger les termes et conditions en français">${frPhrase}</a>`
       );
     }
+
     return text;
   }
 
@@ -773,7 +868,7 @@ class Migration {
             ${termsHTML}
 
             <div class="flex items-center gap-4 justify-center">
-              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
+              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-transparent dark:text-white dark:border-white">
                 <span class="text-[16px]">${cancelBtn}</span>
               </button>
               <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
@@ -1042,8 +1137,9 @@ class Migration {
       close: data.ok || "OK",
     };
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `migration-modal-button primary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-transparent dark:text-white dark:border-white`;
+    const primaryBtn = `migration-modal-button primary ${fontClass} font-semibold text-base uppercase rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-transparent dark:text-white dark:border-white`;
+
     const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
     const buttonConfigs = {
       confirm: `
