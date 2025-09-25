@@ -91,6 +91,9 @@ export const generateHeaderHTML = (
     line-height: 170%;
     letter-spacing: 2%;
   }
+    #auto-renewal-card-mobile {
+  z-index: 9999 !important;
+}
   @media (max-width: 767px){
     .hdr-common-text{ font-size: 14px; }
     .hdr-price{ font-size: 20px; }
@@ -172,11 +175,11 @@ export const generateHeaderHTML = (
         </a>
 
         <div class="relative h-[40px] lg:h-[48px]" id="language-desktop">
-          <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] dark:border-[#E4E4E7] hover:bg-gray-100 transition-all duration-300 text-[#2A2A2A]">
+          <button class="flex items-center justify-between h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] dark:border-[#E4E4E7] hover:bg-gray-100 transition-all duration-300 text-[#2A2A2A]">
             <span id="current-language" class="${fontClass} text-sm lg:text-base font-medium">${
     texts.currentLanguage
   }</span>
-            <img src="./assets/images/header/chevron-down-black-h.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2" />
+            <img src="./assets/images/header/chevron-down.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2" />
           </button>
           <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300">
             <a href="#" class="language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-black dark:text-white transition-all duration-300 ${
@@ -193,14 +196,13 @@ export const generateHeaderHTML = (
         <img src="./assets/images/header/Menu.svg" class="w-6 h-6 dark:hidden block" id="mobile-menu-icon" />
         <img src="./assets/images/header/Menu-white.svg" class="w-6 h-6 hidden dark:inline" id="mobile-menu-icon-dark" />
         <img src="./assets/images/header/close.svg" class="w-6 h-6 hidden" id="mobile-menu-close-icon" />
-        <img src="./assets/images/header/close-white.svg" class="w-6 h-6 hidden" id="mobile-menu-close-icon-dark" />
       </button>
     </div>
 
-    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-gray-800 md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
+    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-black md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
       <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
-          <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white" type="button" aria-pressed="false">
+          <button id="theme-mobile-switcher" class="flex items-center gap-2 w-full text-black dark:text-white" type="button" aria-pressed="false">
             <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden" id="mobile-sun-icon" />
             <img src="./assets/images/header/sun-white.svg" class="w-5 h-5 hidden dark:inline" id="mobile-sun-icon-dark" />
             <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
@@ -209,19 +211,19 @@ export const generateHeaderHTML = (
           </button>
         </div>
 
-        <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
+        <div class="flex items-center gap-3 py-2 rounded-lg transition-all duration-300">
           <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" />
           <img src="./assets/images/header/help-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" />
-          <span id="help-text-mobile" class="${fontClass} text-[10px] text-black dark:text-white">
+          <span id="help-text-mobile" class="${fontClass} text- texbase t-black dark:text-white">
             <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${
               texts.helpText
             }</a>
           </span>
         </div>
 
-        <div class="flex items-center gap-3 py-2">
+        <div class="flex items-center gap-3 relative z-50">
           <img src="./assets/images/header/language.svg" class="w-5 h-5 dark:hidden" />
-          <img src="./assets/images/header/language-white.svg" class="w-5 h-5 hidden dark:inline" />
+          <img src="./assets/images/header/language.svg" class="w-5 h-5 hidden dark:inline dark:text-white" />
           <div class="flex gap-2">
             <button type="button" class="language-option px-3 py-1 rounded-lg text-black dark:text-white ${
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
@@ -287,7 +289,7 @@ export const generateHeaderHTML = (
               </div>
 
               <button id="auto-renewal-info" class="w-6 h-6 flex items-center justify-center rounded-full text-ooredoo-red relative">
-                <img src="./assets/images/header/Info.svg" class="w-6 h-6" alt="Info" />
+                <img src="./assets/images/header/Info.svg" class="relative w-6 h-6 z-10" alt="Info" />
                 <div id="auto-renewal-card" class="absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 dark:border-[#fff] hidden z-50">
                   <div class="${fontClass}" style="${
     theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
@@ -302,8 +304,8 @@ export const generateHeaderHTML = (
           <div class="flex items-center gap-2 flex-shrink-0">
             <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
             <span class="hdr-price ${fontClass}">${
-    userData.credit || "1200 DA"
-  }</span>
+              userData.credit || "1200 DA"} ${language === 'ar' ? '<span class="font-noto-kufi-arabic">دج</span>' : '<span class="font-rubik">DA</span>'}
+            </span>
           </div>
         </div>
       </div>
@@ -380,7 +382,7 @@ export const generateHeaderHTML = (
               </div>
 
               <button id="auto-renewal-info-mobile" class="w-6 h-6 flex items-center justify-center rounded-full bg-transparent text-white relative ml-2">
-                <img src="./assets/images/header/Info.svg" class="w-6 h-6" alt="Info" />
+                <img src="./assets/images/header/Info.svg" class="w-6 h-6 z-0" alt="Info" />
                 <div id="auto-renewal-card-mobile" class="absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
                   <div class="${fontClass}" style="${
     theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle

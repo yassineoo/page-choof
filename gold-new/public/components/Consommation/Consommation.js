@@ -384,7 +384,7 @@ export default class Consommation {
 
     return `
       <div class="w-full flex flex-col ${bgClass} ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
-        <div class="bg-ooredoo-red w-full mt-[-2px] px-6 pt-2 pb-14 -my-7"> 
+        <div class="bg-ooredoo-red w-full mt-[-2px] px-6 pt-2 pb-14 -my-7 h-92"> 
           <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center py-4" style="font-weight: 500; font-size: 24px;">
             ${data.title}
           </h1>
@@ -605,8 +605,8 @@ export default class Consommation {
   `;
     } else 
       if (isFacebookMessenger) {
-      const facebookIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}facebook-dark.svg` : `${this.config.IMAGE_BASE}facebook.svg`;
-      const messengerIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}messenger-dark.svg` : `${this.config.IMAGE_BASE}messenger.svg`;
+      const facebookIconPath = `${this.config.IMAGE_BASE}facebook.svg`;
+      const messengerIconPath =`${this.config.IMAGE_BASE}messenger.svg`;
 
       const facebookIcon = `<img src="${facebookIconPath}" style="width:20px;height:20px;" alt="Facebook" />`;
       const messengerIcon = `<img src="${messengerIconPath}" style="width:20px;height:20px;" alt="Messenger" />`;

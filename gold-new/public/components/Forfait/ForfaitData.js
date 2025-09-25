@@ -2,13 +2,13 @@ export default {
   fr: {
     forfaits: [
       {
-        name: "Gold Jdida 1000",
-        data: "8Go internet ",
-        price: "1000",
+        name: "Gold Jdida 2000",
+        data: "60Go internet ",
+        price: "2000",
         duration: "30 jours",
         features: [
           "Appels illimité vers Ooredoo", 
-          "2000 DA de crédit",
+          "5000 DA de crédit",
         ],
         buy: "Acheter",
       },
@@ -24,13 +24,13 @@ export default {
         buy: "Acheter",
       },
       {
-        name: "Gold Jdida 2000",
-        data: "60Go internet ",
-        price: "2000",
+        name: "Gold Jdida 1000",
+        data: "8Go internet ",
+        price: "1000",
         duration: "30 jours",
         features: [
           "Appels illimité vers Ooredoo", 
-          "5000 DA de crédit",
+          "2000 DA de crédit",
         ],
         buy: "Acheter",
       },
@@ -125,13 +125,13 @@ export default {
   ar: {
     forfaits: [
       {
-        name: "Gold Jdida 1000",
-        data: "<span class='font-rubik'>6Go</span> إنترنت ",
-        price: "1000",
+        name: "Gold Jdida 2000",
+        data: "<span class='font-rubik'>60Go</span> إنترنت ",
+        price: "2000",
         duration: "30 يوم",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", 
-          "<span class='font-rubik'>2000</span> دج رصيد"],
+          "<span class='font-rubik'>5000</span> دج رصيد"],
         buy: "شراء",
       },
       {
@@ -145,13 +145,13 @@ export default {
         buy: "شراء",
       },
       {
-        name: "Gold Jdida 2000",
-        data: "<span class='font-rubik'>60Go</span> إنترنت ",
-        price: "2000",
+        name: "Gold Jdida 1000",
+        data: "<span class='font-rubik'>6Go</span> إنترنت ",
+        price: "1000",
         duration: "30 يوم",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", 
-          "<span class='font-rubik'>5000</span> دج رصيد"],
+          "<span class='font-rubik'>2000</span> دج رصيد"],
         buy: "شراء",
       },
     ],

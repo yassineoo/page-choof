@@ -50,16 +50,16 @@ class Migration {
       .migration-terms-link:hover {
         opacity: 0.95;
       }
-    
-     .dark .migration-section {
-      background: #2c2c2c;
-    }
     .dark .migration-card-shadow {
       background: #2c2c2c;
       color: #ffffffff;
       box-shadow: none;
     }
 
+    .footer-btn {
+      min-width: 150px;
+      }
+ 
     .migration-card-shadow {
       box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);
       border: 1px solid var(--border);
@@ -669,8 +669,8 @@ class Migration {
           data[id] || data[id + "Label"] || id.toUpperCase();
         const displayName =
           data[id] || id.charAt(0).toUpperCase() + id.slice(1);
-        return `<button class="migration-buy-btn migration-button-zone py-[10px]" data-provider="${id}" aria-label="${displayName}">
-                <span class="text-[16px]">${labelFromData}</span>
+        return `<button class="migration-buy-btn migration-button-zone py-[10px] w-[180px]" data-provider="${id}" aria-label="${displayName}">
+                <span class="text-[16px] font-rubik">${labelFromData}</span>
               </button>`;
       })
       .join("\n");
@@ -679,7 +679,7 @@ class Migration {
   <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-    <section class="w-full bg-white dark:bg-[#2c2c2c] migration-section">
+    <section class="w-full bg-white dark:bg-black migration-section">
       <div>
         <div style="width:100%">
 <div class="migration-card-shadow migration-hover-lift">
@@ -690,7 +690,7 @@ class Migration {
       )}</h2>
       <p class="migration-description">${description}</p>
     </div>
-                 <div class="flex items-center gap-4 justify-center flex-row-reverse flex-nowrap">
+                 <div class="flex items-center gap-4 justify-center flex-col-reverse sm:flex-row-reverse flex-nowrap">
       ${providerButtonsHTML}
     </div>
             </div>
@@ -750,7 +750,7 @@ class Migration {
 
     const isDark = document.documentElement.classList.contains("dark");
     const roundedInlineStyle = `background: ${
-      isDark ? "#000" : "#F8F8F8"
+      isDark ? "#424242" : "#F8F8F8"
     }; color: ${isDark ? "#fff" : "#000"};`;
 
     this.container.innerHTML = `
@@ -759,7 +759,7 @@ class Migration {
     }>
       <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
         <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
-          <div class="text-center bg-[#fff] flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
+          <div class="text-center bg-[#fff] dark:bg-transparent flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
             <h2 class="migration-title">${this.createMixedTitleHTML(
               data.title || ""
             )}</h2>
@@ -773,10 +773,10 @@ class Migration {
             ${termsHTML}
 
             <div class="flex items-center gap-4 justify-center">
-              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
+              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white footer-btn">
                 <span class="text-[16px]">${cancelBtn}</span>
               </button>
-              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
+              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase footer-btn">
                 <span class="text-[16px]">${confirmBtn}</span>
               </button>
             </div>
@@ -906,7 +906,7 @@ class Migration {
         if (providerId === "dima") {
           modalData = baseModalData.migrationDimaModal || {};
           message = modalData.confirmDescription || "";
-        } else if (providerId === "ooredoo") {
+        } else if (providerId === "la gold") {
           modalData = baseModalData.migrationOoredooModal || {};
           message =
             modalData.confirmDescription ||

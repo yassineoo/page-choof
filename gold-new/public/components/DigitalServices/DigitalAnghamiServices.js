@@ -14,7 +14,7 @@ const styles = {
   priceContainer: "text-center mb-2",
   priceAmount: "font-rubik font-semibold text-[2rem] capitalize dark:text-white",
   priceDa: `font-semibold text-lg capitalize dark:text-white`,
-  priceDuration: "font-semibold text-lg capitalize dark:text-white",
+  priceDuration: "font-semibold text-lg dark:text-white",
   buttonWrap: "flex justify-center mt-2",
   acheterButton: "acheter-button",
 };

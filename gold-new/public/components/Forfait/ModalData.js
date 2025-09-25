@@ -1,17 +1,17 @@
 export default {
   fr: {
     "Gold Jdida 1000": {
-      confirm: `Gold Jdida 1000 = 8Go + Appels illimités vers Ooredoo + 2000da de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
+      confirm: `Gold Jdida 1000 = 8Go + Appels illimités vers Ooredoo + 2000DA de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
       success: `Félicitations ! Vous venez de recevoir le forfait Gold Jdida 1000 qui vous offre 8Go + Appels illimités vers Ooredoo + 2000da de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait GOLD Jdida 1000. Veuillez recharger votre compte.`,
     },
     "Gold Jdida 1500": {
-      confirm: `Gold Jdida 1500 = 20Go + Appels illimités vers Ooredoo + 3000da de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
+      confirm: `Gold Jdida 1500 = 20Go + Appels illimités vers Ooredoo + 3000DA de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
       success: `Félicitations ! Vous venez de recevoir le forfait Gold Jdida 1500 qui vous offre 20Go + Appels illimités vers Ooredoo + 3000da de Bonus valables en appels et SMS  vers tous les réseaux pendant 30 jours.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait GOLD Jdida 1500. Veuillez recharger votre compte.`,
     },
     "Gold Jdida 2000": {
-      confirm: `Gold Jdida 2000 = 60Go + Appels illimités vers Ooredoo + 5000da de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
+      confirm: `Gold Jdida 2000 = 60Go + Appels illimités vers Ooredoo + 5000DA de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
       success: `Félicitations ! Vous venez de recevoir le forfait Gold Jdida 2000 qui vous offre 30Go + Appels illimités vers Ooredoo + 5000da de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait GOLD Jdida 2000. Veuillez recharger votre compte.`,
     },

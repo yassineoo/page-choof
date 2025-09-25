@@ -476,18 +476,7 @@ export default class DigitalShahidServices {
 
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-5 items-stretch">
             
-            <!-- Card 1 -->
-            <div class="flex justify-center">
-              ${renderShahidCard(plans[0], isArabic, 0)}
-            </div>
-
-            <!-- Card 2 -->
-            <div class="flex justify-center">
-              ${renderShahidCard(plans[1], isArabic, 1)}
-            </div>
-
-            <!-- Logo/info -->
-            <div class="flex flex-col items-center justify-center text-center mt-4 lg:mt-0 px-4">
+          <div class="flex flex-col items-center justify-center text-center mt-4 lg:mt-0 px-4">
               <img src="./assets/images/services/shahid.svg"  alt="Shahid"
                    class="w-full max-w-xs h-auto mb-6 dark:hidden flex"/>
               <img src="./assets/images/services/shahid-d.svg" alt="Shahid"
@@ -502,6 +491,15 @@ export default class DigitalShahidServices {
                     : `<p>Obtenez dès maintenant <span class="font-semibold">un forfait Shahid</span>,30 jourss d'<span class="font-semibold">accès premium Shahid + internet</span></p>`
                 }
               </div>
+            </div>
+            <!-- Card 1 -->
+            <div class="flex justify-center">
+              ${renderShahidCard(plans[0], isArabic, 0)}
+            </div>
+
+            <!-- Card 2 -->
+            <div class="flex justify-center">
+              ${renderShahidCard(plans[1], isArabic, 1)}
             </div>
 
           </div>

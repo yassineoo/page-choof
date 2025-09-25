@@ -58,20 +58,20 @@ export const migrationData = {
     changeDima: "هل تريد التغيير إلى عرض « DIMA OOREDOO » ؟",
     changeNyooz: "هل تريد التغيير إلى عرض « N’YOOZ » ؟",
     ok: "تم",
-    changeOfferGeneric: 'هل تريد التغيير إلى عرض "{offerName}"؟',
-    termsAndConditions: "أشهد أنني قرأت و وافقت على شروط وأحكام العقد",
+    changeOfferGeneric: 'هل تريد التغيير إلى عرض "<span class="font-rubik" dir="ltr">{offerName}</span>"؟',
+    termsAndConditions: "أشهد أنني قرأت و وافقت على شروط وأحكام العقد", 
     insufficientTitle: "رصيد غير كاف",
     insufficientMessage: "رصيدك غير كافٍ لإتمام هذه العملية.",
     migrationDimaModal: {
-      confirmTitle: "التغيير إلى Dima OOREDOO",
+      confirmTitle: "التغيير إلى Dima Ooredoo",
       confirmDescription:
-        "ستقوم بالتغيير إلى عرض Dima OOREDOO مجانًا وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
+        "ستقوم بالتغيير إلى عرض Ooredoo Dima مجانًا وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",
       successMessage:
-        "أنت الآن مستفيد من عرض Dima OOREDOO, للمزيد من المعلومات، شكّل #500*.",
+        "أنت الآن مستفيد من عرض Ooredoo Dima, للمزيد من المعلومات، شكّل #500*.",
     },
     migrationOoredooModal: {
-      confirmTitle: "التغيير إلى La Gold",
+      confirmTitle: "التغيير إلى Gold La",
       confirmDescription:
         "ستقوم بالتغيير إلى عرض La Gold مجانًا وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",

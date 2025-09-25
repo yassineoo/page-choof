@@ -103,7 +103,7 @@ class Modal {
         <h2 class="text-2xl font-bold text-ooredoo-red dark:text-white mb-4">${title}</h2>
         <p class="text-gray-600 dark:text-gray-300 mb-6">${text}</p>
         <div class="flex justify-center">
-          <button id="modal-ok-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors px-6 py-2">${buttonText}</button>
+          <button id="modal-ok-btn" type="button" class="min-w-[150px] rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors px-6 py-2">${buttonText}</button>
         </div>
       </div>
     `;
@@ -127,7 +127,7 @@ export default class Header {
     this.userData = {
       phone: "0509876543",
       offer: "Offre La Gold Jdida",
-      credit: "4000 DA",
+      credit: "4000",
       autoRenewal: storedRenewal !== null ? JSON.parse(storedRenewal) : true,
     };
     this.isTransitioning = false;
@@ -567,10 +567,10 @@ export default class Header {
         : "";
     const fontClass = this.getFontClass();
     const customContent = `
-      <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-gray-800 dark:border dark:border-gray-600 rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
+      <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] dark:border dark:border-gray-600 rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
         ${closeBtnHTML}
         <div class="w-full text-center pt-8 md:pt-0">
-          <h1 class="text-ooredoo-red ${fontClass} text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
+          <h1 class="text-ooredoo-red dark:text-white ${fontClass} text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
             ${texts.manualModalTitle}
           </h1>
           <p class="${fontClass} text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">

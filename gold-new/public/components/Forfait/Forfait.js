@@ -873,7 +873,7 @@ class ForfaitComponent {
       <section class="w-full bg-white dark:bg-[#2c2c2c] pt-16">
         <div class="max-w-[1600px] mx-auto md:px-6">
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
-            ${this.currentLang === "ar" ? "اشتراكات <span class='font-rubik' dir='ltr'>LA GOLD</span>" : "FORFAITS LA GOLD JDIDA"}
+            ${this.currentLang === "ar" ? "اشتراكات <span class='font-rubik' dir='ltr'>LA GOLD JDIDA</span>" : "FORFAITS LA GOLD JDIDA"}
           </h2>
           ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
         </div>

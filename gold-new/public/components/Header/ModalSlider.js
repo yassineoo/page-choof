@@ -79,7 +79,7 @@ export class ModalSlider {
       <div class="flex w-full flex-shrink-0 flex-col items-center gap-[10px] rounded-[20px] border border-[#C5C5C5] bg-white dark:bg-[#2c2c2c] dark:border-white pb-[25px] h-full overflow-hidden" ${dirAttribute}>
         <div class="flex flex-col items-center gap-[22px] self-stretch h-full">
           <div class="flex self-stretch items-center justify-center gap-[10px] py-[13px] px-[20px] border-b border-dashed border-[#CDCDCD] dark:border-white rounded-t-[22.5px] bg-white dark:bg-[#2c2c2c] w-full">
-            <div class="text-ooredoo-red dark:text-white text-[22px] font-bold leading-normal uppercase" aria-hidden="true">
+            <div dir="ltr" class="text-ooredoo-red dark:text-white text-[22px] font-bold leading-normal uppercase" aria-hidden="true">
               ${this._formatMixedRuns(planName)}
             </div>
           </div>

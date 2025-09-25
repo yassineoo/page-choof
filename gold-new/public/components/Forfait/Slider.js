@@ -111,7 +111,7 @@ export class Slider {
             <div class="flex justify-center items-baseline w-full mt-5">
               <div class="flex items-baseline justify-center" style="width:70%;">
                 <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
-                <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
+                <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
                 <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span>
               </div>
             </div>
@@ -205,8 +205,8 @@ export class Slider {
             </div>
             <div class="flex items-baseline justify-center mt-20">
               <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
-              <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
-              <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${index === 10 && "text-sm font-medium"}">/${durationText}</span>
+              <span class="${priceFontClass} font-semibold text-lg leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
+              <span class="${priceFontClass} font-semibold text-lg leading-none text-black dark:text-white whitespace-nowrap ${index === 8 && "text-sm font-medium"}">/${durationText}</span>
             </div>
           </div>
 

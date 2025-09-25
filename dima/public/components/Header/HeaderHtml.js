@@ -336,9 +336,7 @@ const getOfferText = (offer) => {
 
             <div>
               <button id="charge-btn" type="button" class="flex items-center px-[8px] py-[6px] rounded-full bg-white text-ooredoo-red border border-white dark:border-transparent shadow-sm">
-                <span class="${fontClass} font-semibold text-[10px]">${
-    texts.chargeText || "CHARGER"
-  }</span>
+                <span class="${fontClass} font-semibold text-[10px]">${language === 'ar' ? "تعبئة رصيدي" : "CHARGER"}</span>
                 <span class="ml-[4px] flex items-center gap-[3px]">
                   <img src="./assets/images/header/cb.png" alt="" class="w-[16.5px] h-[16.5px]" />
                   <img src="./assets/images/header/barid.png" alt="" class="w-[16.5px] h-[16.5px]" />
