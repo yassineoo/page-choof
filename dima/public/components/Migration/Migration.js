@@ -821,7 +821,7 @@ class Migration {
           </div>
           <div class="rounded-b-[22.5px] min-h-[200px] pt-14 pb-6" style="${roundedInlineStyle}">
             <p class="text-center mb-8 px-4">
-              <span class="text-[21px]">${changeSpecific}</span>
+              <span class="text-[18px] md:text-[21px]">${changeSpecific}</span>
             </p>
 
             ${termsHTML}

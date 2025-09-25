@@ -95,6 +95,19 @@ class ConversionsComponent {
       background-color: #c50510;
       transform: scale(1.05);
     }
+
+    .cancel-accordion {
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      min-width: 180px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
     
     .plans-grid {
       display: grid;
@@ -373,7 +386,6 @@ class ConversionsComponent {
 
   renderWithData(data, language) {
     const isRTL = language === "ar" || this.isRTL();
-    // keep currentLang in sync
     this.currentLang = language;
 
     this.cleanupAllEventListeners();
@@ -387,11 +399,10 @@ class ConversionsComponent {
 
     let buttonsHTML = "";
     if (this.isAccordionOpen) {
+      const cancelBtnClasses = `conversions-modal-button cancel-accordion secondary ${textFont} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white px-2`;
       buttonsHTML = `
-            <button class="relative overflow-hidden z-10 ${textFont} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white" data-action="close-accordion">
-                <span class="${textFont} font-semibold leading-normal uppercase whitespace-nowrap text-base md:text-lg">
-                    ${data.cancelBtn}
-                </span>
+            <button class="${cancelBtnClasses}" data-action="close-accordion">
+                ${data.cancelBtn}
             </button>
         `;
     } else {
@@ -439,7 +450,6 @@ class ConversionsComponent {
     </div>
     `;
     this.bindEventListeners(language);
-    // ensure purchase handlers are bound for both click and touch
     this.bindPurchaseButtons(language);
   }
 
@@ -572,7 +582,8 @@ class ConversionsComponent {
         }, 50);
       } else if (action === "other-conversions") {
         setTimeout(() => {
-          this.handleOtherConversionsClick(language);
+          this.isAccordionOpen = !this.isAccordionOpen;
+          this.render();
         }, 50);
       }
     };
@@ -589,7 +600,8 @@ class ConversionsComponent {
         }, 50);
       } else if (action === "other-conversions") {
         setTimeout(() => {
-          this.handleOtherConversionsClick(language);
+          this.isAccordionOpen = !this.isAccordionOpen;
+          this.render();
         }, 50);
       }
     };
@@ -662,17 +674,9 @@ class ConversionsComponent {
     modalContainer.innerHTML = `
       <div class="conversions-backdrop">
         <div class="conversions-modal" role="dialog" aria-modal="true" ${dirAttr}>
-          <header class="conversions-header">
-            <h1 class="conversions-title ${fontClass}">${this.createMixedTitleHTML(
-      data.title
-    )}</h1>
-            <p class="conversions-question ${fontClass}">
-              ${data.description}
-            </p>
             <button class="btn-cancel ${fontClass}" id="close-conversions-modal">
               ${data.cancelBtn}
             </button>
-          </header>
           <div class="conversions-content">
             <div class="plans-grid">
               ${plans

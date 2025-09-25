@@ -81,7 +81,7 @@ const conversionsData = {
     confirmDescription: "هل تريد تحويل اشتراكك Dima 2500 إلى رصيد ؟",
     cancelBtn: "إلغاء",
     confirmBtn: "تأكيد",
-    ok: "موافق",
+    ok: "تم",
     successTitle: "هنيئًا!",
     creditSuccessMessage: "لديك الآن رصيد 2500 دج.",
     successDescription:
