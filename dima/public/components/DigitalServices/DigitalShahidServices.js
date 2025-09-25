@@ -502,9 +502,6 @@ export default class DigitalShahidServices {
         <div class="mx-auto w-full max-w-screen-2xl ${
           isArabic ? 'dir="rtl"' : ""
         }">
-          <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white mb-10">
-            ${isArabic ? "اشتراكات شاهد" : "FORFAIT SHAHID"}
-          </h2>
 
 <div class="flex flex-wrap gap-x-8 gap-y-5 items-stretch lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-5">
             
@@ -521,8 +518,8 @@ export default class DigitalShahidServices {
             <!-- Logo/info -->
   <div class="flex flex-col items-center justify-center text-center mt-4 lg:mt-0 px-4 w-full lg:w-auto order-1 lg:order-3">
 
-              <img src="./assets/images/services/shahid.svg"  alt="Shahid"
-                   class="w-full max-w-xs h-auto mb-6 dark:hidden flex"/>
+              <img src="./assets/images/services/shahid.png"  alt="Shahid"
+                   class="w-full max-[300px] h-auto mb-6 dark:hidden flex"/>
               <img src="./assets/images/services/shahid-d.svg" alt="Shahid"
                    class="w-full max-w-xs h-auto mb-6 dark:flex hidden"/>
               <h3 class="font-semibold text-xl leading-relaxed tracking-wide mb-4 text-black dark:text-white">

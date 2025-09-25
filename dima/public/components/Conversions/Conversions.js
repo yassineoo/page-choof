@@ -62,7 +62,7 @@ class ConversionsComponent {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 2.5rem 1rem;
+      padding: 30px;
       gap: 2rem;
       transition: all 0.3s ease;
     }
@@ -80,7 +80,7 @@ class ConversionsComponent {
       border: none;
       padding: 0.75rem 2rem;
       border-radius: 9999px;
-      font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+      font-size: 18px;
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: 600;
@@ -173,7 +173,6 @@ class ConversionsComponent {
       border: none;
       border-radius: 22px;
       color: white;
-      font-family: Rubik, -apple-system, Roboto, Helvetica, sans-serif;
       font-weight: 700;
       font-size: 14px;
       text-transform: uppercase;
@@ -252,7 +251,10 @@ class ConversionsComponent {
         max-width: 420px;
       }
     }
-    @media (max-width: 480px) {
+    @media (max-width: 620px) {
+     .conversions-credit-message {
+        margin-top: 30px;
+      }
       .conversions-section {
         padding: 2rem 1rem;
       }
@@ -272,11 +274,6 @@ class ConversionsComponent {
       margin-top: 50px;
     }
 
-        @media (max-width: 768px) {
-      .conversions-credit-message {
-        margin-top: 30px;
-      }
-    }
   `;
   }
 
@@ -400,12 +397,12 @@ class ConversionsComponent {
     } else {
       buttonsHTML = `
             <button class="conversions-buy-btn" data-action="convert-to-credit">
-                <span class="${textFont} font-semibold leading-normal uppercase whitespace-nowrap text-base md:text-lg">
+                <span class="${textFont} font-semibold leading-normal uppercase whitespace-nowrap text-[18px]">
                     ${data.convertToCredit}
                 </span>
             </button>
             <button class="conversions-buy-btn" data-action="other-conversions">
-                <span class="${textFont} font-semibold leading-normal uppercase whitespace-nowrap text-base md:text-lg">
+                <span class="${textFont} font-semibold leading-normal uppercase whitespace-nowrap text-[18px]">
                     ${data.otherConversions}
                 </span>
             </button>
@@ -418,12 +415,12 @@ class ConversionsComponent {
         <div class="conversions-card-shadow">
           <div class="flex flex-col justify-center items-center gap-6 self-stretch">
             <div class="self-stretch">
-              <h2 class="text-black dark:text-white text-center ${textFont} text-3xl md:text-[42px] font-medium leading-tight uppercase">
+              <h2 class="text-black dark:text-white text-center ${textFont} text-[25px] md:text-[42px] font-medium leading-tight uppercase">
                 ${this.createMixedTitleHTML(data.title)}
               </h2>
             </div>
             <div class="w-full max-w-2xl">
-              <p class="text-black dark:text-white text-center ${textFont} text-lg md:text-[22px] font-normal leading-normal">
+              <p class="text-black dark:text-white text-center ${textFont} text-[18px] md:text-[22px] font-normal leading-normal">
                 ${data.description}
               </p>
             </div>
@@ -918,7 +915,7 @@ class ConversionsComponent {
     return `
       <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 conversions-modal-fade" style="background-color: rgba(105, 105, 105, 0.8);" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
-          <button class="absolute top-4 right-4 p-2 z-10 rounded-full transition-all duration-200 conversions-modal-close" aria-label="${
+          <button class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20 conversions-modal-close" aria-label="${
             isRTL ? "إغلاق" : "Fermer"
           }">
             <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
@@ -943,9 +940,9 @@ class ConversionsComponent {
       close: data.ok,
     };
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `conversions-modal-button primary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `conversions-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
-    const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
+    const primaryBtn = `conversions-modal-button primary ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `conversions-modal-button secondary ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const buttonGap = "gap-4 lg:gap-4";
     const buttonConfigs = {
       confirm: `
         <div class="flex ${buttonGap}">

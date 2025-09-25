@@ -77,7 +77,6 @@ export const generateHeaderHTML = (
   .text-ooredoo-red { color: #E30613; }
   
   .hdr-common-text{
-    font-family: 'Rubik', sans-serif;
     font-weight: 500;
     font-style: normal;
     font-size: 18px;
@@ -85,6 +84,7 @@ export const generateHeaderHTML = (
     letter-spacing: 0.02em;
     text-transform: capitalize;
   }
+
   .hdr-price{
     font-family: Rubik, sans-serif;
     font-weight: 500;
@@ -112,7 +112,7 @@ export const generateHeaderHTML = (
     animation: modalFadeOut 0.3s ease-in forwards;
   }
   @media (max-width: 767px) {
-    #auto-renewal-info-mobile { position: relative; z-index: 70; }
+    #auto-renewal-info-mobile { position: relative; z-index: 10; }
     #auto-renewal-card-mobile {
       position: absolute !important;
       left: 0 !important;
@@ -170,7 +170,7 @@ export const generateHeaderHTML = (
 </div>
 
       <div class="hidden md:flex items-center space-x-4">
-        <div id="theme-switcher" class="relative w-[144px] h-[48px] rounded-full bg-gray-200 dark:bg-ooredoo-red overflow-hidden transition-all duration-500">
+        <div id="theme-switcher" class="relative w-[144px] h-[48px] rounded-full bg-gray-200 dark:bg-ooredoo-red overflow-hidden transition-all duration-500 z-50">
           <button id="moon-btn" class="absolute left-0 top-0 w-[72px] h-[48px] rounded-full bg-[#171717] dark:bg-white flex items-center justify-center transition-all duration-500 z-10">
             <img src="./assets/images/header/moon-white.svg" alt="Moon" class="w-7 h-7 dark:hidden" />
             <img src="./assets/images/header/moon.svg" alt="Moon" class="w-7 h-7 hidden dark:block" />
@@ -208,29 +208,37 @@ export const generateHeaderHTML = (
       </div>
 
       <button id="mobile-menu-btn" class="md:hidden p-2" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
-        <img src="./assets/images/header/Menu.svg" class="w-6 h-6 dark:hidden block" id="mobile-menu-icon" />
-        <img src="./assets/images/header/Menu-white.svg" class="w-6 h-6 hidden dark:inline" id="mobile-menu-icon-dark" />
-        <img src="./assets/images/header/close.svg" class="w-6 h-6 hidden" id="mobile-menu-close-icon" />
-        <img src="./assets/images/header/close-white.svg" class="w-6 h-6 hidden" id="mobile-menu-close-icon-dark" />
+        <img src="./assets/images/header/Menu.svg" class="w-6 h-6 dark:hidden block transition-all duration-300" id="mobile-menu-icon" />
+        <img src="./assets/images/header/Menu-white.svg" class="w-6 h-6 hidden dark:inline transition-all duration-300" id="mobile-menu-icon-dark" />
+        <img src="./assets/images/header/close.svg" class="w-6 h-6 hidden transition-all duration-300 dark:hidden" id="mobile-menu-close-icon" />
+
+
       </button>
     </div>
 
-    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-gray-800 md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
+    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute text-lg top-[64px] left-0 w-full shadow-lg bg-white dark:bg-gray-800 md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
+
+
+
+
+
+
+
+
+
       <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
-          <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white" type="button" aria-pressed="false">
-            <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden" id="mobile-sun-icon" />
-            <img src="./assets/images/header/sun-white.svg" class="w-5 h-5 hidden dark:inline" id="mobile-sun-icon-dark" />
+          <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white gap-1" type="button" aria-pressed="false">
             <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
             <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
             <span class="ml-2 ${fontClass}">${texts.changeModeLabel}</span>
           </button>
         </div>
 
-        <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
+        <div class="flex items-center gap-3 py-2 rounded-lg transition-all duration-300">
           <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" />
           <img src="./assets/images/header/help-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" />
-          <span id="help-text-mobile" class="${fontClass} text-[10px] text-black dark:text-white">
+          <span id="help-text-mobile" class="${fontClass} text-black dark:text-white">
             <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${
               texts.helpText
             }</a>
@@ -240,16 +248,20 @@ export const generateHeaderHTML = (
         <div class="flex items-center gap-3 py-2">
           <img src="./assets/images/header/language.svg" class="w-5 h-5 dark:hidden" />
           <img src="./assets/images/header/language-white.svg" class="w-5 h-5 hidden dark:inline" />
-          <div class="flex gap-2">
-            <button type="button" class="language-option px-3 py-1 rounded-lg text-black dark:text-white ${
+          <div class="flex gap-6">
+            <button type="button" class="language-option rounded-lg text-black dark:text-white ${
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
             } ${fontClass}" data-lang="fr">Français</button>
-            <button type="button" class="language-option px-3 py-1 rounded-lg text-black dark:text-white ${
+            <button type="button" class="language-option rounded-lg text-black dark:text-white ${
               language === "ar" ? "font-semibold text-ooredoo-red" : ""
             } font-noto-kufi-arabic" data-lang="ar">العربية</button>
           </div>
         </div>
       </div>
+
+
+
+      
     </div>
   </div>
 
@@ -368,7 +380,7 @@ export const generateHeaderHTML = (
               <span class="hdr-common-text ${fontClass}">${
     texts.renewalLabel
   }</span>
-              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[160px] md:w-[175px] p-0.5">
+              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[175px] md:w-[175px] p-0.5">
                 <button 
                   id="renewal-auto-mobile"
                   class="flex-1 flex flex-row items-center justify-start gap-[3px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"

@@ -150,7 +150,7 @@ class Migration {
     }
     .migration-title {
       font-weight: 500;
-      font-size: clamp(2rem, 4.5vw, 2.625rem);
+      font-size: 42px;
       margin-bottom: 24px;
       text-transform: uppercase;
       text-align: center;
@@ -160,7 +160,7 @@ class Migration {
     }
     .migration-description {
       font-weight: 400;
-      font-size: clamp(1rem, 2.2vw, 1.375rem);
+      font-size: 22px;
       line-height: 1.5;
       margin-bottom: 1.5rem;
       display: -webkit-box;
@@ -199,8 +199,8 @@ class Migration {
       color: white;
       border: none;
       padding: 0.75rem 1.5rem;
-      border-radius: 9999px;
-      font-size: clamp(0.875rem, 2.2vw, 1rem);
+      border-radius: 99px;
+      font-size: 18px;
       cursor: pointer;
       transition: all 0.25s ease;
       font-weight: bold;
@@ -460,14 +460,16 @@ class Migration {
     @media (max-width: 640px) {
       .migration-card-shadow {
         min-height: 300px;
-        padding: 1.25rem;
+        padding: 30px;
         margin: 0 auto;
       }
+        
       .migration-title {
-        font-size: clamp(1.6rem, 6vw, 2rem);
+        font-size: 25px;
         margin-bottom: 20px;
       }
       .migration-description {
+        margin-bottom: 25px;
         font-size: 18px;
         -webkit-line-clamp: 3;
       }
@@ -499,12 +501,11 @@ class Migration {
         right: 10px;
       }
       .migration-confirm-panel.visible { max-height: 520px; padding: 12px; }
-      .migration-buy-btn { min-width: 140px; padding: 0.6rem 1rem; }
+      .migration-buy-btn { min-width: 200px; padding: 0.6rem 1rem; }
     }
     @media (max-width: 480px) {
       .migration-card-shadow {
         min-height: 280px;
-        padding: 1rem;
       }
     }
     @media (max-width: 1279px) {
@@ -519,7 +520,7 @@ class Migration {
     }
     @media (max-width: 767px) {
       .migration-card-container {
-        min-height: 320px;
+        min-height: auto;
       }
     }
     @media (min-width: 768px) and (max-width: 1279px) and ([dir="rtl"]) {
@@ -581,48 +582,6 @@ class Migration {
         gap: 0.5rem;
       }
       .migration-modal-buttons .migration-modal-button {
-        width: 100%;
-        flex: 1 1 100%;
-        min-width: 0;
-      }
-    }
-
-    /* Provider view action buttons (back + start) */
-    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button,
-    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > a {
-      box-sizing: border-box;
-      flex: 1 1 220px;
-      max-width: 180px;
-      min-width: 140px;
-      height: 48px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 1rem;
-    }
-
-    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button[id^="start-"],
-    .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button#back-to-main {
-      width: auto !important;
-      height: 48px !important;
-    }
-
-    @media (max-width: 640px) {
-      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button,
-      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > a {
-        flex: 1 1 48%;
-        max-width: none;
-        min-width: 120px;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > button,
-      .rounded-b-\\[22\\.5px\\] .flex.items-center.gap-4.justify-center > a {
         width: 100%;
         flex: 1 1 100%;
         min-width: 0;
@@ -759,7 +718,7 @@ class Migration {
         const displayName =
           data[id] || id.charAt(0).toUpperCase() + id.slice(1);
         return `<button class="migration-buy-btn migration-button-zone py-[10px]" data-provider="${id}" aria-label="${displayName}">
-                <span class="text-[16px]">${labelFromData}</span>
+                <span>${labelFromData}</span>
               </button>`;
       })
       .join("\n");
@@ -868,11 +827,11 @@ class Migration {
             ${termsHTML}
 
             <div class="flex items-center gap-4 justify-center">
-              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-transparent dark:text-white dark:border-white">
-                <span class="text-[16px]">${cancelBtn}</span>
+              <button id="back-to-main" class="relative  font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
+                <span>${cancelBtn}</span>
               </button>
-              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer w-[180px] transition-all duration-300 ease-linear font-bold uppercase">
-                <span class="text-[16px]">${confirmBtn}</span>
+              <button id="start-${providerId}-migration" class="relative font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg">
+                <span>${confirmBtn}</span>
               </button>
             </div>
           </div>
@@ -1108,7 +1067,7 @@ class Migration {
           aria-modal="true"
           aria-labelledby="modal-title">
           <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
-              <button class="absolute top-4 right-4 p-2 z-10 rounded-full transition-all duration-200 migration-modal-close"
+              <button class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20  migration-modal-close"
                       aria-label="${isRTL ? "إغلاق" : "Fermer"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
@@ -1140,7 +1099,7 @@ class Migration {
     const primaryBtn = `migration-modal-button primary ${fontClass} font-semibold text-base uppercase rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
     const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-transparent dark:text-white dark:border-white`;
 
-    const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
+    const buttonGap = "gap-4 lg:gap-4";
     const buttonConfigs = {
       confirm: `
         <div class="flex ${buttonGap}">

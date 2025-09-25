@@ -68,7 +68,7 @@ class BoostComponent {
 
     .boost-title {
       font-weight: 500;
-      font-size: clamp(1.75rem, 5vw, 2.625rem); /* Fluid font size */
+      font-size: 42px; 
       text-transform: uppercase;
       line-height: 1.1;
       text-align: center;
@@ -77,7 +77,7 @@ class BoostComponent {
 
     .boost-description {
       font-weight: 400;
-      font-size: clamp(1rem, 2.5vw, 1.375rem); /* Fluid font size */
+      font-size: 22px;
       line-height: 1.5;
       max-width: 668px;
       text-align: center;
@@ -90,14 +90,6 @@ class BoostComponent {
       justify-content: center;
       gap: 0.5rem;
     }
-    .boost-price .big {
-      font-size: clamp(1.75rem, 5vw, 2.25rem); /* Fluid font size */
-      font-weight: 700;
-    }
-    .boost-price .small {
-      font-size: clamp(1.125rem, 3vw, 1.375rem); /* Fluid font size */
-      font-weight: 700;
-    }
 
     .boost-buy-btn {
       background-color: #e30613;
@@ -105,7 +97,7 @@ class BoostComponent {
       border: none;
       padding: 0.75rem 2rem; /* Responsive padding */
       border-radius: 9999px;
-      font-size: clamp(0.875rem, 2.5vw, 1.125rem); /* Fluid font size */
+      font-size: 18px;
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: 600;
@@ -119,6 +111,16 @@ class BoostComponent {
       background-color: #c50510;
       transform: scale(1.05);
     }
+
+     @media (max-width: 640px) {
+     .boost-title {
+      font-size: 25px; 
+  }
+          .boost-description {
+      font-size: 18px;
+  }
+    .boost-buy-btn { min-width: 200px; padding: 0.6rem 1rem; }
+  }
 
     .boost-modal-fade {
       animation: modalFadeIn 0.3s ease-out forwards;
@@ -138,7 +140,7 @@ class BoostComponent {
         padding: 2rem 1rem;
       }
       .boost-card-shadow {
-        padding: 2rem 1.5rem;
+        padding: 30px;
         gap: 1.5rem;
       }
     }
@@ -274,12 +276,12 @@ class BoostComponent {
           </p>
         </div>
 
-        <div class="flex flex-col items-center gap-4 md:gap-5">
+        <div class="flex flex-col items-center gap-1 md:gap-2">
           <div class="boost-price dark:text-white ${priceFontClass}">
-            <span class="big">${formattedPrice}<span class="small ${currencyArabicClass}">${
-      isRTL ? data.currencyArabic || " د.ج" : ""
+            <span class="text-[36px] font-semibold">${formattedPrice}<span class="text-[22px] font-semibold ${currencyArabicClass}">${
+      isRTL ? data.currencyArabic || " دج" : ""
     }</span>
-            <span class="small ${priceFontClass}">${
+            <span class="text-[22px] font-semibold ${priceFontClass}">${
       isRTL ? "" : data.currency || "DA"
     }</span></span>
             
@@ -477,7 +479,7 @@ class BoostComponent {
           aria-modal="true"
           aria-labelledby="modal-title">
           <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
-              <button class="absolute top-4 right-4 p-2 z-10 rounded-full transition-all duration-200 boost-modal-close"
+              <button class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20 boost-modal-close"
                       aria-label="${isRTL ? "إغلاق" : "Fermer"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
@@ -506,9 +508,9 @@ class BoostComponent {
     };
 
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `boost-modal-button primary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `boost-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
-    const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
+    const primaryBtn = `boost-modal-button primary ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `boost-modal-button secondary ${fontClass}  font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const buttonGap = "gap-4 lg:gap-4";
 
     const buttonConfigs = {
       confirm: `
