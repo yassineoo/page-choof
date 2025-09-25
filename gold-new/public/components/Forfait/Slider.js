@@ -298,7 +298,7 @@ export class Slider {
               </div>
               <div class="flex items-baseline justify-center mt-20">
               <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
-              <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
+              <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
               <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span>
             </div>
           </div>

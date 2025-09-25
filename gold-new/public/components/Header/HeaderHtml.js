@@ -322,8 +322,8 @@ export const generateHeaderHTML = (
             <div class="flex items-center gap-2 flex-shrink-0">
               <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
               <span class="hdr-price ${fontClass}">${
-    userData.credit || "1200 DA"
-  }</span>
+              userData.credit || "1200 DA"} ${language === 'ar' ? '<span class="font-noto-kufi-arabic">دج</span>' : '<span class="font-rubik">DA</span>'}
+            </span>
             </div>
           </div>
 
@@ -336,8 +336,8 @@ export const generateHeaderHTML = (
             <div>
               <button id="charge-btn" type="button" class="flex items-center px-[8px] py-[6px] rounded-full bg-white text-ooredoo-red border border-white dark:border-transparent shadow-sm">
                 <span class="${fontClass} font-semibold text-[10px]">${
-    texts.chargeText || "CHARGER"
-  }</span>
+                 language === 'ar' ? '<span class="font-noto-kufi-arabic">تعبئة رصيدي</span>' : texts.chargeButton
+                }</span>
                 <span class="ml-[4px] flex items-center gap-[3px]">
                   <img src="./assets/images/consommation/poste.svg" alt="" class="w-[16.5px] h-[16.5px]" />
                   <img src="./assets/images/consommation/baridi.svg" alt="" class="w-[16.5px] h-[16.5px]" />
@@ -347,7 +347,7 @@ export const generateHeaderHTML = (
           </div>
 
           <div class="${fontClass} flex items-center justify-center">
-            <div class="flex items-center  gap-1 md:gap-3">
+            <div class="flex items-center  gap-1 md:gap-3 z-0">
               <span class="hdr-common-text ${fontClass}">${
     texts.renewalLabel
   }</span>
