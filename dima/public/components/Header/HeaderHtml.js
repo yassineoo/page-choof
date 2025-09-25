@@ -21,9 +21,9 @@ export const generateHeaderHTML = (
   const formatMixedText = (text = "") => {
     const safe = escapeHtml(text);
     if (containsArabic(text)) {
-      return `<span class="${fontClass} arabic-text" dir="auto">${safe}</span>`;
+      return `<span class="${fontClass} font-semibold arabic-text" dir="auto">${safe}</span>`;
     }
-    return `<span class="${fontClass}" dir="auto">${safe}</span>`;
+    return `<span class="${fontClass}" font-semibold dir="auto">${safe}</span>`;
   };
 
   const getOfferDetails = (offer) => {
@@ -75,6 +75,7 @@ export const generateHeaderHTML = (
   .font-rubik { font-family: 'Rubik', sans-serif; }
   .bg-ooredoo-red { background-color: #E30613; }
   .text-ooredoo-red { color: #E30613; }
+  
   .hdr-common-text{
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
@@ -270,7 +271,7 @@ export const generateHeaderHTML = (
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="hdr-common-text ${fontClass}">${
+              <span class="font-semibold not-italic text-[18px] capitalize" ${fontClass}">${
     texts.renewalLabel
   }</span>
               <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
@@ -319,7 +320,10 @@ export const generateHeaderHTML = (
           <div class="flex items-center gap-2 flex-shrink-0">
             <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
             <span class="hdr-price ${fontClass}">${
-    userData.credit || "1200 DA"
+    fontClass === "font-noto-kufi-arabic"
+      ? `<span class="font-rubik">${userData.credit}</span>` +
+        `<span class="font-noto-kufi-arabic text-base"> دج</span>`
+      : userData.credit + " DA"
   }</span>
           </div>
         </div>

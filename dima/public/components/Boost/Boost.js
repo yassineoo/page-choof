@@ -276,15 +276,13 @@ class BoostComponent {
 
         <div class="flex flex-col items-center gap-4 md:gap-5">
           <div class="boost-price dark:text-white ${priceFontClass}">
-            <span class="big">${formattedPrice}</span>
-            <!-- Arabic currency rendered in Kufi -->
-            <span class="small ${currencyArabicClass}">${
-      isRTL ? data.currencyArabic || "د.ج" : ""
+            <span class="big">${formattedPrice}<span class="small ${currencyArabicClass}">${
+      isRTL ? data.currencyArabic || " د.ج" : ""
     }</span>
-            <!-- Latin currency (Rubik) for non-RTL -->
             <span class="small ${priceFontClass}">${
       isRTL ? "" : data.currency || "DA"
-    }</span>
+    }</span></span>
+            
           </div>
 
           <button class="boost-buy-btn" data-index="0">

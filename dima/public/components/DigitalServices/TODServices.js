@@ -340,7 +340,7 @@ export default class TODServices {
       ? `لقد قمت بتفعيل اشتراكك  ${selection.package.type} + ${selection.duration.giga}Go بنجاح. قم بتحميل TOD الآن على هذا <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">الرابط</a>.`
       : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur ce lien <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">Cliquez ici</a>.`;
     const noCreditMsg = isArabic
-      ? `عزيزي الزبون، رصيدك غير كافٍٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى..`
+      ? `عزيزي الزبون، رصيدك غير كافٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى..`
       : `Cher client, votre crédit est insuffisant pour acheter le forfait ${selection.package.type}. Veuillez recharger votre compte et réessayer.`;
 
     this.showModal(
@@ -350,10 +350,10 @@ export default class TODServices {
       () => {
         this.showModal(
           "congrats",
-          isArabic ? "تهانينا!" : "Félicitations!",
+          isArabic ? "هنيئًا!" : "Félicitations!",
           congratsMsg,
           () => {
-            this.showModal("credit", isArabic ? "رصيد غير كافٍٍ" : "Crédit insuffisant", noCreditMsg, () => {}, isArabic);
+            this.showModal("credit", isArabic ? "رصيد غير كافٍ" : "Crédit insuffisant", noCreditMsg, () => {}, isArabic);
           },
           isArabic
         );
@@ -390,9 +390,9 @@ export default class TODServices {
         <button class="${primaryBtn}" id="modal-confirm">${isArabic ? "تأكيد" : "Confirmer"}</button>
       `;
     } else if (type === "congrats") {
-      buttonsHTML = `<button class="${primaryBtn}" id="modal-confirm">${isArabic ? "حسنًا" : "OK"}</button>`;
+      buttonsHTML = `<button class="${primaryBtn}" id="modal-confirm">${isArabic ? "تم" : "OK"}</button>`;
     } else if (type === "credit") {
-      buttonsHTML = `<button class="${primaryBtn}" id="modal-close">${isArabic ? "حسنًا" : "OK"}</button>`;
+      buttonsHTML = `<button class="${primaryBtn}" id="modal-close">${isArabic ? "تم" : "OK"}</button>`;
     }
 
     hook.innerHTML = `

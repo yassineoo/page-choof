@@ -127,7 +127,7 @@ export default class Header {
     this.userData = {
       phone: "0509876543",
       offer: "Offre Dima",
-      credit: "4000 DA",
+      credit: "4000",
       autoRenewal: storedRenewal !== null ? JSON.parse(storedRenewal) : true,
     };
     this.isTransitioning = false;

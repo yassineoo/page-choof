@@ -55,7 +55,7 @@ export const migrationData = {
     cancelBtn: "إلغاء",
     successTitle: "مبروك !",
     change: "هل تريد التغيير إلى عرض « Ooredoo » ؟",
-    changeDima: "هل تريد التغيير إلى عرض « DIMA +» ؟",
+    changeDima: "هل تريد التغيير إلى عرض «+ DIMA» ؟",
     changeNyooz: "هل تريد التغيير إلى عرض « N’YOOZ » ؟",
     ok: "تم",
     changeOfferGeneric: 'هل تريد التغيير إلى عرض "{offerName}"؟',
