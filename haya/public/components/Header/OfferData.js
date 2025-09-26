@@ -3,57 +3,61 @@ export const offerData = {
     fr: {
       helpText: "Aide",
       currentLanguage: "Français",
-      renewalLabel: "Renouvellement :",
-      autoLabel: "Auto",
-      manualLabel: "Manuel",
       changeModeLabel: "Changer de mode",
-      manualModalTitle: "MODE DE RECHARGEMENT",
-      manualModalDesc:
-        'Vous allez activer votre mode de rechargement en "Manuel", vous receverez du crédit non activé à chaque rechargement.',
-      manualSuccessTitle: "FÉLICITATIONS !",
-      manualSuccessDesc: 'Vous êtes sur le mode "Manuel".',
-      autoModalTitle: "MODE DE RECHARGEMENT",
-      autoModalDesc:
-        'Vous allez modifier votre mode de rechargement en "Automatique" :',
-      autoSuccessTitle: "FÉLICITATIONS !",
-      autoSuccessDesc: (price, planName) =>
-        `Vos prochains rechargements de ${price} DA et plus vous donneront les avantages de ${planName}, après expiration de votre forfait.`,
+      modeLabel: "Mode :",
+      currentMode: "Minutes ou crédit gratuit",
+      modeOptionHadra: "MAXY Hadra",
+      modeOptionInternet: "MAXY Internet",
+      modeInfoTooltip:
+        'Maintenant vos recharges de 1000 et 2000 dinars DA vous donnent les avantages "Minutes ou crédits gratuits". Si vous souhaitez changer vos avantages, cliquez sur la flèche.',
+      modeChangeTitle: "MODE DE RECHARGEMENT",
+      modeChangeDescriptionHadra:
+        "À partir de maintenant, vos recharges de 1000 DA et plus donneront MAXY Hadra avec appels illimités vers Ooredoo et Internet gratuit. Rechargez et profitez-en !",
+      modeChangeDescriptionInternet:
+        "À partir de maintenant, vos recharges de 1000 DA et plus donneront MAXY Internet avec internet prioritaire et bonus de données. Rechargez et profitez-en !",
+      modeChangeSuccessTitle: "FÉLICITATIONS !",
+      modeChangeSuccessDescriptionHadra: 'Vous êtes sur le mode "MAXY Hadra".',
+      modeChangeSuccessDescriptionInternet:
+        'Vous êtes sur le mode "MAXY Internet".',
       cancelBtn: "ANNULER",
       confirmBtn: "CONFIRMER",
-      allValidFor: ", le tout valable ",
       okBtn: "OK",
-      modifyBtn: "MODIFIER",
-      renewalInfoAuto: (name, price) =>
-        `Vous êtes actuellement sur le mode "Renouvellement Automatique" de ${name}. Vos rechargements de ${price} DA et plus vous donneront les avantages de ${name}. Si vous souhaitez recevoir du crédit au prochain rechargement ou changer de forfait, cliquez sur la flèche.`,
+      renewalLabel: "Mode",
+      autoLabel: "Automatique",
+      manualLabel: "Manuel",
+      renewalInfoAuto: (offerName = "", price = "") =>
+        `À partir de maintenant, vos recharges de 1000 et 2000 dinars DA vous donnent les avantages "Minutes ou crédits gratuits". Si vous souhaitez changer vos avantages, cliquez sur la flèche.`,
       renewalInfoManual:
-        "Votre renouvellement automatique est désactivé, vous receverez du crédit au prochain rechargements.",
+        'Maintenant vos recharges de 1000 et 2000 dinars DA vous donnent les avantages "Minutes ou crédits gratuits". Si vous souhaitez changer vos avantages, cliquez sur la flèche.',
     },
     ar: {
       helpText: "مساعدة",
       currentLanguage: "العربية",
-      renewalLabel: "التجديد :",
-      autoLabel: "التلقائي",
-      manualLabel: "اليدوي",
       changeModeLabel: "تغيير الوضع",
-      manualModalTitle: "وضع التعبئة",
-      manualModalDesc:
-        'ستقوم بتغيير وضع التعبئة إلى "يدوي"، وستحصل على رصيد غير مفعّل عند كل تعبئة.',
-      manualSuccessTitle: "هنيئًا!",
-      manualSuccessDesc: 'أنت الآن في الوضع "يدوي"',
-      autoModalTitle: "وضع التعبئة",
-      autoModalDesc: 'ستقوم بتغيير وضع التعبئة إلى "تلقائي":',
-      autoSuccessTitle: "هنيئًا!",
-      autoSuccessDesc: (price, planName) =>
-        `تعبئاتك القادمة بقيمة ${price} دج وأكثر ستمنحك مزايا ${planName}، وهذا بعد انتهاء صلاحية اشتراكك.`,
+      modeLabel: "الوضع :",
+      currentMode: "دقائق أو رصيد مجاني",
+      modeOptionHadra: "MAXY هدرة",
+      modeOptionInternet: "MAXY إنترنت",
+      modeInfoTooltip:
+        'الآن، تعبئاتك بقيمة 1000 و2000 دينار دج تمنحك مزايا "دقائق أو رصيد مجاني". إذا كنت ترغب في تغيير مزاياك، اضغط على السهم.',
+      modeChangeTitle: "وضع التعبئة",
+      modeChangeDescriptionHadra:
+        "ابتداءً من الآن، تعبئاتك بقيمة 1000 دج وأكثر تمنحك MAXY هدرة مع مكالمات غير محدودة نحو Ooredoo وإنترنت مجاني. عبّئ واستفد الآن!",
+      modeChangeDescriptionInternet:
+        "ابتداءً من الآن، تعبئاتك بقيمة 1000 دج وأكثر تمنحك MAXY إنترنت مع أداء إنترنت محسن وبيانات إضافية. عبّئ واستفد الآن!",
+      modeChangeSuccessTitle: "هنيئًا!",
+      modeChangeSuccessDescriptionHadra: 'أنت الآن في وضع "MAXY هدرة".',
+      modeChangeSuccessDescriptionInternet: 'أنت الآن في وضع "MAXY إنترنت".',
       cancelBtn: "إلغاء",
       confirmBtn: "تأكيد",
-      allValidFor: "، الكل صالح ",
       okBtn: "تم",
-      modifyBtn: "التغيير",
-      renewalInfoAuto: (name, price) =>
-        `أنت الآن في وضع "التجديد التلقائي" لـ ${name}. تعبئاتك بقيمة ${price} دج وأكثر تمنحك مزايا ${name} إذا كنت تريد الحصول على رصيد عند تعبئتك القادمة أو تغيير الاشتراك، اضغط على السهم.`,
+      renewalLabel: "الوضع",
+      autoLabel: "تلقائي",
+      manualLabel: "يدوي",
+      renewalInfoAuto: (offerName = "", price = "") =>
+        'الآن، تعبئاتك بقيمة 1000 و2000 دينار دج تمنحك مزايا "دقائق أو رصيد مجاني". إذا كنت ترغب في تغيير مزاياك، اضغط على السهم.',
       renewalInfoManual:
-        "التجديد التلقائي ملغى، ستحصل على رصيد عند تعبئاتك القادمة.",
+        'الآن، تعبئاتك بقيمة 1000 و2000 دينار دج تمنحك مزايا "دقائق أو رصيد مجاني". إذا كنت ترغب في تغيير مزاياك، اضغط على السهم.',
     },
   },
 };

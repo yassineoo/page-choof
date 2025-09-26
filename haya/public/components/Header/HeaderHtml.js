@@ -1,12 +1,22 @@
-import { offerData } from "./OfferData.js";
-
 export const generateHeaderHTML = (
   language = "fr",
   userData = {},
   theme = "light"
 ) => {
-  const texts = offerData.text[language] || offerData.text.fr;
-  const isAuto = userData.autoRenewal;
+  const texts =
+    typeof offerData !== "undefined" &&
+    offerData.text &&
+    offerData.text[language]
+      ? offerData.text[language]
+      : typeof offerData !== "undefined"
+      ? offerData.text.fr
+      : {
+          helpText: "Aide",
+          currentLanguage: "Français",
+          changeModeLabel: "Changer de mode",
+          modeLabel: "Mode :",
+          currentMode: "Minutes ou crédit gratuit",
+        };
   const fontClass = language === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
   const containsArabic = (text = "") =>
     /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(text);
@@ -17,56 +27,18 @@ export const generateHeaderHTML = (
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
-
   const formatMixedText = (text = "") => {
     const safe = escapeHtml(text);
     if (containsArabic(text)) {
       return `<span class="${fontClass} font-semibold arabic-text" dir="auto">${safe}</span>`;
     }
-    return `<span class="${fontClass}" font-semibold dir="auto">${safe}</span>`;
+    return `<span class="${fontClass} font-semibold" dir="auto">${safe}</span>`;
   };
-
-  const getOfferDetails = (offer) => {
-    if (!offer || typeof offer !== "string")
-      return { name: "Dima", price: "XXXX" };
-    const parts = offer.split(" ");
-    if (parts.length < 2) return { name: offer, price: "XXXX" };
-    const price = parts[parts.length - 1];
-    const name = parts.slice(1).join(" ");
-    return { name, price };
-  };
-  const offerDetails = getOfferDetails(userData.offer);
-  const infoCardDesc = isAuto
-    ? texts.renewalInfoAuto(offerDetails.name, offerDetails.price)
-    : texts.renewalInfoManual;
-  const infoCardDescStyle = `
-    font-weight: 400;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    text-align: justify;
-    color: #575757;
-  `;
-  const infoCardDescStyleDark = `
-    font-weight: 400;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    text-align: justify;
-    color: #ffffff;
-  `;
-  const LRM = "\u200E";
-  const wrapLatin = (s) => s.replace(/([A-Za-z0-9\-\_]+)/g, `${LRM}$1${LRM}`);
-
-  const getOfferText = (offer) => {
-    if (language === "ar") {
-      if (!offer) return offer;
-      // remplacer "Offre " par "عرض " puis protéger les séquences latines
-      const replaced = offer.replace(/^Offre\s+/, "عرض ");
-      return wrapLatin(replaced);
-    }
-    return offer;
-  };
-
-  const offerHTML = formatMixedText(getOfferText("Offre Dima"));
+  const infoCardDesc = escapeHtml(
+    texts.modeInfoTooltip || texts.renewalInfoManual || ""
+  );
+  const offerHTML = formatMixedText(userData.offer || "Offre Haya !");
+  const dirAttr = language === "ar" ? "rtl" : "ltr";
 
   return `
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
@@ -75,7 +47,7 @@ export const generateHeaderHTML = (
   .font-rubik { font-family: 'Rubik', sans-serif; }
   .bg-ooredoo-red { background-color: #E30613; }
   .text-ooredoo-red { color: #E30613; }
-  
+
   .hdr-common-text{
     font-weight: 500;
     font-style: normal;
@@ -88,96 +60,69 @@ export const generateHeaderHTML = (
   .hdr-price{
     font-family: Rubik, sans-serif;
     font-weight: 500;
-    font-style: Medium;
     font-size: 24px;
     line-height: 170%;
-    letter-spacing: 2%;
   }
+
   @media (max-width: 767px){
     .hdr-common-text{ font-size: 14px; }
     .hdr-price{ font-size: 20px; }
   }
-  @keyframes modalFadeIn {
-    from { opacity: 0; transform: scale(0.95) translateY(-8px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-  }
-  @keyframes modalFadeOut {
-    from { opacity: 1; transform: scale(1) translateY(0); }
-    to { opacity: 0; transform: scale(0.95) translateY(-10px); }
-  }
-  .modal-animating-in {
-    animation: modalFadeIn 0.3s ease-out forwards;
-  }
-  .modal-animating-out {
-    animation: modalFadeOut 0.3s ease-in forwards;
-  }
+
+  @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.95) translateY(-8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  @keyframes modalFadeOut { from { opacity: 1; transform: scale(1) translateY(0); } to { opacity: 0; transform: scale(0.95) translateY(-10px); } }
+  .modal-animating-in { animation: modalFadeIn 0.3s ease-out forwards; }
+  .modal-animating-out { animation: modalFadeOut 0.3s ease-in forwards; }
+
+  /* mode popup / card */
+  .mode-options { border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+  .mode-card, .mode-card-mobile { display: none; }
+
+  /* ensure the info card doesn't close immediately when moving mouse between button and card */
+  .mode-card.hidden, .mode-card-mobile.hidden { display: none !important; pointer-events: none; }
+  .mode-card:not(.hidden), .mode-card-mobile:not(.hidden) { display: block !important; pointer-events: auto; }
+
+  /* small layout helpers */
+  .mode-control { display:flex; align-items:center; gap:8px; }
+  .mode-control .divider { width:8px; }
+
+  /* mobile info card positioning */
   @media (max-width: 767px) {
-    #auto-renewal-info-mobile { position: relative; z-index: 10; }
-    #auto-renewal-card-mobile {
-      position: absolute !important;
-      left: 0 !important;
-      right: 0 !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      top: calc(100% + 8px) !important;
-      transform: none !important;
-      margin: 0 !important;
-      box-sizing: border-box !important;
-      padding: 12px !important;
-      border-radius: 12px !important;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
-      z-index: 60 !important;
-    }
-    #auto-renewal-card-mobile.hidden { display: none !important; }
-    #auto-renewal-card-mobile:not(.hidden) { display: block !important; }
+    #mode-card-mobile { position: absolute !important; left: 0 !important; right: 0 !important; width: 100% !important; max-width: 100% !important; top: calc(100% + 8px) !important; transform: none !important; margin: 0 !important; box-sizing: border-box !important; padding: 12px !important; border-radius: 12px !important; box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important; z-index: 60 !important; }
   }
+
   html[lang="ar"], [dir="rtl"] { font-family: 'Noto Kufi Arabic', sans-serif; }
   .arabic-text { direction: rtl; unicode-bidi: isolate; -webkit-font-smoothing: antialiased; }
   [dir="rtl"] .language-dropdown-menu { left: 0; right: auto; }
-  [dir="rtl"] .logo-group {
-  flex-direction: row-reverse;
-}
+  [dir="rtl"] .logo-group { flex-direction: row-reverse; }
 </style>
 
-<header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${
-    language === "ar" ? "rtl" : "ltr"
-  }">
+<header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${dirAttr}">
   <div class="w-full max-w-[90vw] mx-auto px-4">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
-     
-    <div class="flex items-center gap-1 md:gap-3 logo-group" dir="ltr">
-  <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
-    <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo"
-         class="block w-full h-full max-h-full object-contain dark:hidden"
-         width="200" height="40" loading="lazy" />
-    <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo"
-         class="block w-full h-full max-h-full object-contain hidden dark:block"
-         width="200" height="40" loading="lazy" />
-  </div>
+      <div class="flex items-center gap-1 md:gap-3 logo-group" dir="ltr">
+        <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
+          <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo" class="block w-full h-full object-contain dark:hidden" width="200" height="40" loading="lazy" />
+          <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo" class="hidden dark:block w-full h-full object-contain" width="200" height="40" loading="lazy" />
+        </div>
 
-  <span class="flex items-center justify-center h-[20px] md:h-[40px] text-[18px] md:text-3xl font-light text-black dark:text-white leading-none separator" aria-hidden="true">|</span>
+        <span class="flex items-center justify-center h-[20px] md:h-[40px] text-[18px] md:text-3xl font-light text-black dark:text-white leading-none" aria-hidden="true">|</span>
 
-  <div class="flex items-center justify-center  pt-1 md:pt-1 w-[58.5px] h-[20px] md:w-[115px] md:h-[40px]">
-    <img src="./assets/images/header/Choof.svg" alt="Choof"
-         class="block w-full h-full max-h-full object-contain dark:hidden"
-         style="transform: translateY(1px);"
-         width="115" height="26" loading="lazy" />
-    <img src="./assets/images/header/Choof-white.svg" alt="Choof"
-         class="block w-full h-full max-h-full object-contain hidden dark:block"
-         style="transform: translateY(1px);"
-         width="115" height="26" loading="lazy" />
-  </div>
-</div>
+        <div class="flex items-center justify-center pt-1 md:pt-1 w-[58.5px] h-[20px] md:w-[115px] md:h-[40px]">
+          <img src="./assets/images/header/Choof.svg" alt="Choof" class="block w-full h-full object-contain dark:hidden" width="115" height="26" loading="lazy" />
+          <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="hidden dark:block w-full h-full object-contain" width="115" height="26" loading="lazy" />
+        </div>
+      </div>
 
       <div class="hidden md:flex items-center space-x-4">
         <div id="theme-switcher" class="relative w-[144px] h-[48px] rounded-full bg-gray-200 dark:bg-ooredoo-red overflow-hidden transition-all duration-500 z-50">
           <button id="moon-btn" class="absolute left-0 top-0 w-[72px] h-[48px] rounded-full bg-[#171717] dark:bg-white flex items-center justify-center transition-all duration-500 z-10">
-            <img src="./assets/images/header/moon-white.svg" alt="Moon" class="w-7 h-7 dark:hidden" />
-            <img src="./assets/images/header/moon.svg" alt="Moon" class="w-7 h-7 hidden dark:block" />
+            <img src="./assets/images/header/moon-white.svg" class="w-7 h-7 dark:hidden" />
+            <img src="./assets/images/header/moon.svg" class="hidden dark:block w-7 h-7" />
           </button>
           <button id="sun-btn" class="absolute right-0 top-0 w-[72px] h-[48px] rounded-full bg-[#E4E4E7] dark:bg-ooredoo-red flex items-center justify-center transition-all duration-500">
-            <img src="./assets/images/header/sun.svg" alt="Sun" class="w-7 h-7 dark:hidden" />
-            <img src="./assets/images/header/sun-white.svg" alt="Sun" class="w-7 h-7 hidden dark:block" />
+            <img src="./assets/images/header/sun.svg" class="w-7 h-7 dark:hidden" />
+            <img src="./assets/images/header/sun-white.svg" class="hidden dark:block w-7 h-7" />
           </button>
         </div>
 
@@ -186,11 +131,11 @@ export const generateHeaderHTML = (
     texts.helpText
   }</span>
           <img src="./assets/images/header/help.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 dark:hidden transition-opacity duration-300" />
-          <img src="./assets/images/header/help-white.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 hidden dark:inline transition-opacity duration-300" />
+          <img src="./assets/images/header/help-white.svg" class="hidden dark:inline w-4 h-4 lg:w-5 lg:h-5 mr-2" />
         </a>
 
         <div class="relative h-[40px] lg:h-[48px]" id="language-desktop">
-          <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] dark:border-[#E4E4E7] hover:bg-gray-100 transition-all duration-300 text-[#2A2A2A]">
+          <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] hover:bg-gray-100 transition-all duration-300 text-[#2A2A2A]">
             <span id="current-language" class="${fontClass} text-sm lg:text-base font-medium">${
     texts.currentLanguage
   }</span>
@@ -208,28 +153,17 @@ export const generateHeaderHTML = (
       </div>
 
       <button id="mobile-menu-btn" class="md:hidden p-2" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
-        <img src="./assets/images/header/Menu.svg" class="w-6 h-6 dark:hidden block transition-all duration-300" id="mobile-menu-icon" />
-        <img src="./assets/images/header/Menu-white.svg" class="w-6 h-6 hidden dark:inline transition-all duration-300" id="mobile-menu-icon-dark" />
-        <img src="./assets/images/header/close.svg" class="w-6 h-6 hidden transition-all duration-300 dark:hidden" id="mobile-menu-close-icon" />
-
-
+        <img src="./assets/images/header/Menu.svg" class="w-6 h-6 dark:hidden block" id="mobile-menu-icon" />
+        <img src="./assets/images/header/Menu-white.svg" class="hidden dark:inline w-6 h-6" id="mobile-menu-icon-dark" />
+        <img src="./assets/images/header/close.svg" class="hidden w-6 h-6" id="mobile-menu-close-icon" />
       </button>
     </div>
 
     <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute text-lg top-[64px] left-0 w-full shadow-lg bg-white dark:bg-gray-800 md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
-
-
-
-
-
-
-
-
-
       <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
           <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white gap-1" type="button" aria-pressed="false">
-            <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
+            <img src="./assets/images/header/moon-white.svg" class="hidden w-5 h-5" id="mobile-moon-icon" />
             <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
             <span class="ml-2 ${fontClass}">${texts.changeModeLabel}</span>
           </button>
@@ -247,7 +181,7 @@ export const generateHeaderHTML = (
 
         <div class="flex items-center gap-3 py-2">
           <img src="./assets/images/header/language.svg" class="w-5 h-5 dark:hidden" />
-          <img src="./assets/images/header/language-white.svg" class="w-5 h-5 hidden dark:inline" />
+          <img src="./assets/images/header/language-white.svg" class="hidden dark:inline w-5 h-5" />
           <div class="flex gap-6">
             <button type="button" class="language-option rounded-lg text-black dark:text-white ${
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
@@ -258,10 +192,6 @@ export const generateHeaderHTML = (
           </div>
         </div>
       </div>
-
-
-
-      
     </div>
   </div>
 
@@ -283,59 +213,52 @@ export const generateHeaderHTML = (
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="font-semibold not-italic text-[18px] capitalize" ${fontClass}">${
-    texts.renewalLabel
+              <span class="font-semibold not-italic text-[18px] capitalize ${fontClass}">${
+    texts.modeLabel
   }</span>
-              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
-                <button 
-                  id="renewal-auto"
-                  class="flex-1 flex flex-row items-center justify-start gap-[5px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
-                  style="font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
-                    isAuto
-                      ? "background:#ED1C24;color:#fff;"
-                      : "background:#fff;color:#2A2A2A;"
-                  }">
-                  <img src="./assets/images/header/chevron-down.svg" class="w-5 h-5 ${
-                    isAuto ? "hidden" : ""
-                  }" />
-                  <img src="./assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${
-                    isAuto ? "" : "hidden"
-                  }" />
-                  ${texts.autoLabel}
-                </button>
 
-                <button 
-                  id="renewal-manual"
-                  class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300 ${fontClass}"
-                  style="font-weight:500;font-size:0.95rem; ${
-                    !isAuto
-                      ? "background:#E30613;color:#fff;"
-                      : "background:#fff;color:#2A2A2A;"
-                  }">
-                  ${texts.manualLabel}
-                </button>
-              </div>
+              <div class="mode-control">
+                <!-- mode button + options -->
+                <div style="position:relative;">
+                  <button id="mode-btn" class="${fontClass} flex items-center justify-between rounded-full h-[32px] transition-all duration-300" style="font-weight:500; font-size:0.95rem; padding:6px 12px; border-radius:100px; background:#fff;color:#2A2A2A;">
+                    <span id="mode-label">${texts.currentMode}</span>
+                    <img src="./assets/images/header/chevron-right.svg" class="w-4 h-4" alt="" />
+                  </button>
 
-              <button id="auto-renewal-info" class="w-6 h-6 flex items-center justify-center rounded-full text-ooredoo-red relative">
-                <img src="./assets/images/header/Info.svg" class="w-6 h-6" alt="Info" />
-                <div id="auto-renewal-card" class="absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 dark:border-[#fff] hidden z-50">
-                  <div class="${fontClass}" style="${
-    theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
-  }">
-                    ${infoCardDesc}
+                  <div id="mode-options" class="absolute left-0 z-50 hidden">
+                    <div class="bg-white dark:bg-[#2C2C2C] w-[240px] p-2 mode-options rounded-[12px] border border-gray-200 dark:border-white">
+                      <button id="opt-hadra" class="${fontClass} w-full text-left px-3 py-3 rounded-lg">${
+    texts.modeOptionHadra || "MAXY Hadra"
+  }</button>
+                      <button id="opt-internet" class="${fontClass} w-full text-left px-3 py-3 rounded-lg">${
+    texts.modeOptionInternet || "MAXY Internet"
+  }</button>
+                    </div>
                   </div>
                 </div>
-              </button>
+
+                <!-- info icon OUTSIDE the mode button -->
+                <div style="position:relative;">
+                  <button id="mode-info" class="w-8 h-8 flex items-center justify-center rounded-full text-ooredoo-red" aria-label="Info">
+                    <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden" alt="info" />
+                    <img src="./assets/images/header/help-white.svg" class="hidden dark:block w-5 h-5" alt="info" />
+                  </button>
+
+                  <div id="mode-card" class="mode-card absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-80 p-4 shadow-lg rounded-lg border border-gray-200 dark:border-[#fff] hidden z-50">
+                    <div class="${fontClass}" style="font-weight:400; font-size:0.875rem; line-height:1.25rem; text-align:justify; color:#575757;">
+                      ${infoCardDesc}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
           <div class="flex items-center gap-2 flex-shrink-0">
             <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
             <span class="hdr-price ${fontClass}">${
-    fontClass === "font-noto-kufi-arabic"
-      ? `<span class="font-rubik">${userData.credit}</span>` +
-        `<span class="font-noto-kufi-arabic text-base"> دج</span>`
-      : userData.credit + " DA"
+    userData.credit ? userData.credit + " DA" : "0 DA"
   }</span>
           </div>
         </div>
@@ -366,7 +289,9 @@ export const generateHeaderHTML = (
 
             <div>
               <button id="charge-btn" type="button" class="flex items-center px-[8px] py-[6px] rounded-full bg-white text-ooredoo-red border border-white dark:border-transparent shadow-sm">
-                <span class="${fontClass} font-semibold text-[10px]">${language === 'ar' ? "تعبئة رصيدي" : "CHARGER"}</span>
+                <span class="${fontClass} font-semibold text-[10px]">${
+    language === "ar" ? "تعبئة رصيدي" : "CHARGER"
+  }</span>
                 <span class="ml-[4px] flex items-center gap-[3px]">
                   <img src="./assets/images/header/cb.png" alt="" class="w-[16.5px] h-[16.5px]" />
                   <img src="./assets/images/header/barid.png" alt="" class="w-[16.5px] h-[16.5px]" />
@@ -376,52 +301,44 @@ export const generateHeaderHTML = (
           </div>
 
           <div class="flex items-center justify-center">
-            <div class="flex items-center  gap-1 md:gap-3">
+            <div class="flex items-center gap-1 md:gap-3">
               <span class="hdr-common-text ${fontClass}">${
-    texts.renewalLabel
+    texts.modeLabel
   }</span>
-              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[175px] md:w-[175px] p-0.5">
-                <button 
-                  id="renewal-auto-mobile"
-                  class="flex-1 flex flex-row items-center justify-start gap-[3px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
-                  style="font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
-                    isAuto
-                      ? "background:#ED1C24;color:#fff;"
-                      : "background:#fff;color:#2A2A2A;"
-                  }">
-                  <img src="./assets/images/header/chevron-down.svg" class="w-5 h-5 ${
-                    isAuto ? "hidden" : ""
-                  }" />
-                  <img src="./assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${
-                    isAuto ? "" : "hidden"
-                  }" />
-                  ${texts.autoLabel}
+
+              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[175px] p-0.5">
+                <button id="mode-btn-mobile" class="flex-1 flex items-center justify-between gap-2 rounded-full h-[32px] transition-all duration-300 ${fontClass}" style="font-weight:500; font-size:0.95rem; padding:4px 12px; border-radius:100px; background:#fff;color:#2A2A2A;">
+                  <span id="mode-label-mobile" class="truncate">${
+                    texts.currentMode
+                  }</span>
+                  <img src="./assets/images/header/chevron-right.svg" class="w-4 h-4" />
                 </button>
 
-                <button 
-                  id="renewal-manual-mobile"
-                  class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300 ${fontClass}"
-                  style="font-weight:500;font-size:0.95rem; ${
-                    !isAuto
-                      ? "background:#E30613;color:#fff;"
-                      : "background:#fff;color:#2A2A2A;"
-                  }">
-                  ${texts.manualLabel}
+                <button id="mode-info-mobile" class="w-8 h-8 flex items-center justify-center rounded-full bg-transparent text-white relative ml-2">
+                  <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden" alt="info" />
+                  <img src="./assets/images/header/help-white.svg" class="hidden dark:block w-5 h-5" alt="info" />
+                  <div id="mode-card-mobile" class="mode-card-mobile absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
+                    <div class="${fontClass}" style="font-weight:400; font-size:0.875rem; line-height:1.25rem; text-align:justify; color:#575757;">
+                      ${infoCardDesc}
+                    </div>
+                  </div>
                 </button>
-              </div>
 
-              <button id="auto-renewal-info-mobile" class="w-6 h-6 flex items-center justify-center rounded-full bg-transparent text-white relative ml-2">
-                <img src="./assets/images/header/Info.svg" class="w-6 h-6" alt="Info" />
-                <div id="auto-renewal-card-mobile" class="absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
-                  <div class="${fontClass}" style="${
-    theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
-  }">
-                    ${infoCardDesc}
+                <div id="mode-options-mobile" class="absolute left-0 z-50 hidden">
+                  <div class="bg-white dark:bg-[#2C2C2C] w-[200px] p-2 mode-options rounded-[12px] border border-gray-200 dark:border-white">
+                    <button id="opt-hadra-mobile" class="${fontClass} w-full text-left px-3 py-3 rounded-lg">${
+    texts.modeOptionHadra || "MAXY Hadra"
+  }</button>
+                    <button id="opt-internet-mobile" class="${fontClass} w-full text-left px-3 py-3 rounded-lg">${
+    texts.modeOptionInternet || "MAXY Internet"
+  }</button>
                   </div>
                 </div>
-              </button>
+
+              </div>
             </div>
           </div>
+
         </div>
       </div>
 

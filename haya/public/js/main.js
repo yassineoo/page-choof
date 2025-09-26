@@ -3,6 +3,7 @@ import Consommation from "../components/Consommation/Consommation.js";
 import Forfait from "../components/Forfait/Forfait.js";
 import DigitalServices from "../components/DigitalServices/DigitalServices.js";
 import Footer from "../components/Footer/footer.js";
+import MigrationComponent from "../components/Migration/Migration.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     initComponent("consommation-root", Consommation);
     initComponent("forfait-root", Forfait);
+    initComponent("migration-root", MigrationComponent);
     initComponent("digitalServices-root", DigitalServices);
     initComponent("footer-root", Footer);
   } catch (error) {
