@@ -18,7 +18,7 @@ function generateModalContent(offers, lang) {
       isArabic ? "الكل صالح لمدة" : "le tout valable"
     } ${offer.duration}.`;
 
-    const successPreamble = isArabic ? ` لقد حصلت على` : `Vous avez reçu`;
+    const successPreamble = isArabic ? ` لقد حصلت على` : `Vous disposez de`;
 
     const successDescription = `${offer.data} + ${featuresString}, ${
       isArabic ? "الكل صالح لمدة" : "le tout valable"

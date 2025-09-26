@@ -46,7 +46,7 @@ export default {
         data: "50Mo internet",
         price: "50",
         features: "Facebook illimité",
-        duration: "jusqu'à 00h",
+        duration: "jusqu'à minuit",
         buy: "Acheter",
       },
     ],
