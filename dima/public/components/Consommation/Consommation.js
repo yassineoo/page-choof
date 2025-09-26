@@ -605,8 +605,8 @@ export default class Consommation {
   `;
     } else 
       if (isFacebookMessenger) {
-      const facebookIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}facebook-dark.svg` : `${this.config.IMAGE_BASE}facebook.svg`;
-      const messengerIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}messenger-dark.svg` : `${this.config.IMAGE_BASE}messenger.svg`;
+      const facebookIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}facebook.svg` : `${this.config.IMAGE_BASE}facebook.svg`;
+      const messengerIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}messenger.svg` : `${this.config.IMAGE_BASE}messenger.svg`;
 
       const facebookIcon = `<img src="${facebookIconPath}" style="width:20px;height:20px;" alt="Facebook" />`;
       const messengerIcon = `<img src="${messengerIconPath}" style="width:20px;height:20px;" alt="Messenger" />`;
