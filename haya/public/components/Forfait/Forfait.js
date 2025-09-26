@@ -776,8 +776,8 @@ class ForfaitComponent {
     <div class="w-full ${
       this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
     }">
-      <section class="w-full bg-white dark:bg-[#2c2c2c] pt-16">
-        <div class="bg-ooredoo-red py-16 mt-16 px-[clamp(1rem,5vw,5rem)]">
+      <section class="w-full bg-white dark:bg-[#2c2c2c]">
+        <div class="bg-ooredoo-red py-16 px-[clamp(1rem,5vw,5rem)]">
           <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit">${
             this.currentLang === "ar"
               ? "إكتشفوا خدماتنا الرقمية"
