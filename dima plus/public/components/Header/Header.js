@@ -1,6 +1,5 @@
 import { generateHeaderHTML } from "./HeaderHtml";
 import { offerData } from "./OfferData.js";
-import { ModalSlider } from "./ModalSlider.js";
 
 class Modal {
   constructor() {
@@ -122,13 +121,13 @@ export default class Header {
     this.currentLanguage = localStorage.getItem("language") || "fr";
     this.mobileMenuOpen = false;
     this.theme = this.detectInitialTheme();
-    this.modalSliderInstance = null;
+
     const storedRenewal = localStorage.getItem("autoRenewal");
     const storedOffer = localStorage.getItem("selectedOffer");
     this.userData = {
       phone: "0509876543",
-      offer: "Offre Dima",
-      credit: "4000",
+      offer: "Offre Dima +",
+      credit: "2000",
       autoRenewal: storedRenewal !== null ? JSON.parse(storedRenewal) : true,
     };
     this.isTransitioning = false;
@@ -241,6 +240,7 @@ export default class Header {
       this.updateDesktopThemeSwitcher();
     }
   }
+
   updateDesktopThemeSwitcher() {
     const isDark = this.theme === "dark";
     const themeContainer = document.getElementById("theme-switcher");
@@ -258,6 +258,7 @@ export default class Header {
       }
     }
   }
+
   initMobileThemeSwitcher() {
     const mobileThemeBtn = document.getElementById("theme-mobile-switcher");
     if (mobileThemeBtn) {
@@ -267,6 +268,7 @@ export default class Header {
       this.updateMobileThemeIcons();
     }
   }
+
   updateMobileThemeIcons() {
     const isDark = this.theme === "dark";
     document
@@ -282,6 +284,7 @@ export default class Header {
       .getElementById("mobile-moon-icon-dark")
       ?.classList.toggle("hidden", isDark);
   }
+
   initLanguageSwitcher() {
     const desktopDropdown = document.getElementById("language-desktop");
     if (desktopDropdown) {
@@ -306,6 +309,7 @@ export default class Header {
       });
     });
   }
+
   setLanguage(lang) {
     if (this.currentLanguage === lang) return;
     this.currentLanguage = lang;
@@ -315,6 +319,7 @@ export default class Header {
     this.render();
     setTimeout(() => this.setupEventListeners(), 0);
   }
+
   initMobileMenu() {
     const menuBtn = document.getElementById("mobile-menu-btn");
     const mobileMenu = document.getElementById("mobile-menu");
@@ -343,6 +348,7 @@ export default class Header {
       this.updateMobileMenuIcons();
     }
   }
+
   addViewportMeta() {
     const existingMeta = document.querySelector('meta[name="viewport"]');
     if (!existingMeta) {
@@ -353,6 +359,7 @@ export default class Header {
       document.head.appendChild(meta);
     }
   }
+
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
     const mobileMenu = document.getElementById("mobile-menu");
@@ -381,6 +388,7 @@ export default class Header {
     }
     this.updateMobileMenuIcons();
   }
+
   closeMobileMenu() {
     if (!this.mobileMenuOpen) return;
     this.mobileMenuOpen = false;
@@ -400,6 +408,7 @@ export default class Header {
     document.body.style.overflow = "";
     this.updateMobileMenuIcons();
   }
+
   updateMobileMenuIcons() {
     const isDark = this.theme === "dark";
     [
@@ -418,264 +427,5 @@ export default class Header {
       }
     });
   }
-  initRenewalInfoCard() {
-    const infoBtn = document.getElementById("auto-renewal-info");
-    const infoCard = document.getElementById("auto-renewal-card");
-    const infoBtnMobile = document.getElementById("auto-renewal-info-mobile");
-    const infoCardMobile = document.getElementById("auto-renewal-card-mobile");
-    if (infoBtn && infoCard) {
-      infoBtn.addEventListener("mouseenter", () =>
-        infoCard.classList.remove("hidden")
-      );
-      infoBtn.addEventListener("mouseleave", () =>
-        infoCard.classList.add("hidden")
-      );
-      infoBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        infoCard.classList.toggle("hidden");
-      });
-    }
-    if (infoBtnMobile && infoCardMobile) {
-      let mobileAnchor = infoBtnMobile.closest("div");
-      if (!mobileAnchor) mobileAnchor = document.body;
-      if (getComputedStyle(mobileAnchor).position === "static") {
-        mobileAnchor.style.position = "relative";
-      }
-      if (infoCardMobile.parentNode !== mobileAnchor) {
-        mobileAnchor.appendChild(infoCardMobile);
-      }
-      Object.assign(infoCardMobile.style, {
-        position: "absolute",
-        left: "0",
-        right: "0",
-        width: "100%",
-        top: "calc(100% + 8px)",
-        transform: "none",
-        margin: "0",
-        boxSizing: "border-box",
-        padding: infoCardMobile.style.padding || "12px",
-        zIndex: "60",
-      });
-      infoBtnMobile.addEventListener("click", (e) => {
-        e.stopPropagation();
-        infoCardMobile.classList.toggle("hidden");
-      });
-      infoBtnMobile.addEventListener(
-        "touchstart",
-        (e) => {
-          e.stopPropagation();
-          infoCardMobile.classList.toggle("hidden");
-        },
-        { passive: true }
-      );
-      document.addEventListener("click", (e) => {
-        if (
-          !infoBtnMobile.contains(e.target) &&
-          !infoCardMobile.contains(e.target)
-        ) {
-          infoCardMobile.classList.add("hidden");
-        }
-      });
-      window.addEventListener("resize", () => {
-        if (window.innerWidth > 767) {
-          infoCardMobile.classList.add("hidden");
-        } else {
-          if (getComputedStyle(mobileAnchor).position === "static") {
-            mobileAnchor.style.position = "relative";
-          }
-        }
-      });
-    }
-  }
-  initRenewalSwitcher() {
-    const autoBtn = document.getElementById("renewal-auto");
-    const manualBtn = document.getElementById("renewal-manual");
-    const autoBtnMobile = document.getElementById("renewal-auto-mobile");
-    const manualBtnMobile = document.getElementById("renewal-manual-mobile");
-    if (autoBtn && manualBtn) {
-      autoBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        this.handleAutoRenewalClick();
-      });
-      manualBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        this.handleManualRenewalClick();
-      });
-    }
-    if (autoBtnMobile && manualBtnMobile) {
-      autoBtnMobile.addEventListener("click", (e) => {
-        e.stopPropagation();
-        this.handleAutoRenewalClick();
-      });
-      manualBtnMobile.addEventListener("click", (e) => {
-        e.stopPropagation();
-        this.handleManualRenewalClick();
-      });
-    }
-    this.updateRenewalUI();
-  }
-  updateRenewalUI() {
-    const isAuto = this.userData.autoRenewal;
-    const autoBtn = document.getElementById("renewal-auto");
-    const manualBtn = document.getElementById("renewal-manual");
-    const autoBtnMobile = document.getElementById("renewal-auto-mobile");
-    const manualBtnMobile = document.getElementById("renewal-manual-mobile");
-    const activeStyle = { background: "#E30613", color: "#ffffffff" };
-    const inactiveStyle = { background: "transparent", color: "#575757" };
-    if (autoBtn)
-      Object.assign(autoBtn.style, isAuto ? activeStyle : inactiveStyle);
-    if (manualBtn)
-      Object.assign(manualBtn.style, !isAuto ? activeStyle : inactiveStyle);
-    if (autoBtnMobile)
-      Object.assign(autoBtnMobile.style, isAuto ? activeStyle : inactiveStyle);
-    if (manualBtnMobile)
-      Object.assign(
-        manualBtnMobile.style,
-        !isAuto ? activeStyle : inactiveStyle
-      );
-    const autoIcon = autoBtn?.querySelector("img");
-    const manualIcon = manualBtn?.querySelector("img");
-    if (autoIcon && manualIcon) {
-      autoIcon.classList.toggle("hidden", !isAuto);
-      manualIcon.classList.toggle("hidden", isAuto);
-    }
-    const autoIconMobile = autoBtnMobile?.querySelector("img");
-    const manualIconMobile = manualBtnMobile?.querySelector("img");
-    if (autoIconMobile && manualIconMobile) {
-      autoIconMobile.classList.toggle("hidden", !isAuto);
-      manualIconMobile.classList.toggle("hidden", isAuto);
-    }
-  }
-  handleManualRenewalClick() {
-    if (!this.userData.autoRenewal) return;
-    const texts = offerData.text[this.currentLanguage];
-    const onConfirm = () => {
-      this.modal.close();
-      setTimeout(() => {
-        this.userData.autoRenewal = false;
-        localStorage.setItem("autoRenewal", "false");
-        this.updateRenewalUI();
-        this.modal.showAlert({
-          title: texts.manualSuccessTitle,
-          text: texts.manualSuccessDesc,
-          buttonText: texts.okBtn,
-        });
-      }, 350);
-    };
-    const closeBtnHTML =
-      this.modal && typeof this.modal.getCloseButtonHTML === "function"
-        ? this.modal.getCloseButtonHTML()
-        : "";
-    const fontClass = this.getFontClass();
-    const customContent = `
-      <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
-        ${closeBtnHTML}
-        <div class="w-full text-center pt-8 md:pt-0">
-          <h1 class="text-ooredoo-red dark:text-white ${fontClass} text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
-            ${texts.manualModalTitle}
-          </h1>
-          <p class="${fontClass} text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">
-            ${texts.manualModalDesc}
-          </p>
-        </div>
-        <div class="flex justify-center items-center gap-[13px] w-full max-w-md px-4 pb-4 md:pb-0">
-          <button id="modal-cancel-btn" type="button" class=" ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
-            ${texts.cancelBtn}
-          </button>
-          <button id="modal-confirm-btn" type="button" class="${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg">
-            ${texts.confirmBtn}
-          </button>
-        </div>
-      </div>
-    `;
-    this.modal.showCustom(customContent);
-    const confirmBtn = this.modal.container.querySelector("#modal-confirm-btn");
-    const cancelBtn = this.modal.container.querySelector("#modal-cancel-btn");
-    if (confirmBtn) confirmBtn.addEventListener("click", onConfirm);
-    if (cancelBtn)
-      cancelBtn.addEventListener("click", () => this.modal.close());
-  }
-  handleAutoRenewalClick() {
-    if (this.userData.autoRenewal) return;
-    const texts = offerData.text[this.currentLanguage];
-    const closeBtnHTML =
-      this.modal && typeof this.modal.getCloseButtonHTML === "function"
-        ? this.modal.getCloseButtonHTML()
-        : "";
-    const fontClass = this.getFontClass();
-    const customContent = `
-      <div class="relative w-full max-w-5xl bg-white dark:bg-[#2C2C2C] rounded-lg flex flex-col overflow-hidden">
-        ${closeBtnHTML}
-        <div class="p-6 md:p-8 text-center">
-          <h2 class="${fontClass} text-2xl font-bold text-[28px] text-ooredoo-red dark:text-white mb-8">${texts.autoModalTitle}</h2>
-          <p class="${fontClass} text-black dark:text-white mb-4 px-0 text-[22px] md:px-[30px]">
-            ${texts.autoModalDesc}
-          </p>
-          <div class="mt-6">
-            <button id="modal-cancel-btn" type="button" class="${fontClass} rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
-              ${texts.cancelBtn}
-            </button>
-          </div>
-        </div>
-        <div class="border-b border-gray-200 dark:border-white"></div>
-        <div class="bg-[#F8F8F8] dark:bg-[#2c2c2c] py-6">
-          <div id="modal-slider-container"></div>
-        </div>
-      </div>`;
-    this.modal.showCustom(customContent);
-    const sliderContainer = this.modal.container.querySelector(
-      "#modal-slider-container"
-    );
-    const currentOffers = offerData[this.currentLanguage] || offerData.fr;
-    if (sliderContainer) {
-      this.modalSliderInstance = new ModalSlider({
-        container: sliderContainer,
-        slides: currentOffers,
-        lang: this.currentLanguage,
-        texts: texts,
-        onSelect: (offer) => {
-          this.showOfferConfirmation(offer, texts);
-        },
-      });
-    }
-    const cleanupAndClose = () => {
-      if (this.modalSliderInstance) {
-        try {
-          this.modalSliderInstance.destroy();
-        } catch (e) {}
-        this.modalSliderInstance = null;
-      }
-      this.modal.close();
-    };
-    const closeBtn = this.modal.container.querySelector("#modal-close-btn");
-    if (closeBtn) closeBtn.addEventListener("click", cleanupAndClose);
-    const cancelBtn = this.modal.container.querySelector("#modal-cancel-btn");
-    if (cancelBtn) cancelBtn.addEventListener("click", cleanupAndClose);
-  }
-  showOfferConfirmation(offer, modalTexts) {
-    this.modal.showConfirmation({
-      title: offer.planName,
-      text: `${offer.description}${modalTexts.allValidFor}${offer.duration}.`,
-      confirmText: modalTexts.confirmBtn,
-      cancelText: modalTexts.cancelBtn,
-      onConfirm: () => {
-        this.modal.close();
-        setTimeout(() => {
-          this.userData.autoRenewal = true;
-          this.userData.offer = `Offre ${offer.planName}`;
-          localStorage.setItem("autoRenewal", "true");
-          localStorage.setItem("selectedOffer", this.userData.offer);
-          this.render();
-          setTimeout(() => {
-            this.setupEventListeners();
-            this.modal.showAlert({
-              title: modalTexts.autoSuccessTitle,
-              text: modalTexts.autoSuccessDesc(offer.price, offer.planName),
-              buttonText: modalTexts.okBtn,
-            });
-          }, 50);
-        }, 350);
-      },
-    });
-  }
+
 }

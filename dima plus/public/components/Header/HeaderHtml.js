@@ -6,7 +6,7 @@ export const generateHeaderHTML = (
   theme = "light"
 ) => {
   const texts = offerData.text[language] || offerData.text.fr;
-  const isAuto = userData.autoRenewal;
+
   const fontClass = language === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
   const containsArabic = (text = "") =>
     /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(text);
@@ -36,37 +36,20 @@ export const generateHeaderHTML = (
     return { name, price };
   };
   const offerDetails = getOfferDetails(userData.offer);
-  const infoCardDesc = isAuto
-    ? texts.renewalInfoAuto(offerDetails.name, offerDetails.price)
-    : texts.renewalInfoManual;
-  const infoCardDescStyle = `
-    font-weight: 400;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    text-align: justify;
-    color: #575757;
-  `;
-  const infoCardDescStyleDark = `
-    font-weight: 400;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    text-align: justify;
-    color: #ffffff;
-  `;
+
   const LRM = "\u200E";
   const wrapLatin = (s) => s.replace(/([A-Za-z0-9\-\_]+)/g, `${LRM}$1${LRM}`);
 
   const getOfferText = (offer) => {
     if (language === "ar") {
       if (!offer) return offer;
-      // remplacer "Offre " par "عرض " puis protéger les séquences latines
       const replaced = offer.replace(/^Offre\s+/, "عرض ");
       return wrapLatin(replaced);
     }
     return offer;
   };
 
-  const offerHTML = formatMixedText(getOfferText("Offre Dima"));
+  const offerHTML = formatMixedText(getOfferText("Offre Dima +"));
 
   return `
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
@@ -110,26 +93,6 @@ export const generateHeaderHTML = (
   }
   .modal-animating-out {
     animation: modalFadeOut 0.3s ease-in forwards;
-  }
-  @media (max-width: 767px) {
-    #auto-renewal-info-mobile { position: relative; z-index: 10; }
-    #auto-renewal-card-mobile {
-      position: absolute !important;
-      left: 0 !important;
-      right: 0 !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      top: calc(100% + 8px) !important;
-      transform: none !important;
-      margin: 0 !important;
-      box-sizing: border-box !important;
-      padding: 12px !important;
-      border-radius: 12px !important;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
-      z-index: 60 !important;
-    }
-    #auto-renewal-card-mobile.hidden { display: none !important; }
-    #auto-renewal-card-mobile:not(.hidden) { display: block !important; }
   }
   html[lang="ar"], [dir="rtl"] { font-family: 'Noto Kufi Arabic', sans-serif; }
   .arabic-text { direction: rtl; unicode-bidi: isolate; -webkit-font-smoothing: antialiased; }
@@ -276,59 +239,11 @@ export const generateHeaderHTML = (
     userData.phone || "0509876543"
   }</span>
             </div>
-
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
               <span class="hdr-common-text">${offerHTML}</span>
             </div>
-
-            <div class="flex items-center gap-2">
-              <span class="font-semibold not-italic text-[18px] capitalize" ${fontClass}">${
-    texts.renewalLabel
-  }</span>
-              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
-                <button 
-                  id="renewal-auto"
-                  class="flex-1 flex flex-row items-center justify-start gap-[5px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
-                  style="font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
-                    isAuto
-                      ? "background:#ED1C24;color:#fff;"
-                      : "background:#fff;color:#2A2A2A;"
-                  }">
-                  <img src="./assets/images/header/chevron-down.svg" class="w-5 h-5 ${
-                    isAuto ? "hidden" : ""
-                  }" />
-                  <img src="./assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${
-                    isAuto ? "" : "hidden"
-                  }" />
-                  ${texts.autoLabel}
-                </button>
-
-                <button 
-                  id="renewal-manual"
-                  class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300 ${fontClass}"
-                  style="font-weight:500;font-size:0.95rem; ${
-                    !isAuto
-                      ? "background:#E30613;color:#fff;"
-                      : "background:#fff;color:#2A2A2A;"
-                  }">
-                  ${texts.manualLabel}
-                </button>
-              </div>
-
-              <button id="auto-renewal-info" class="w-6 h-6 flex items-center justify-center rounded-full text-ooredoo-red relative">
-                <img src="./assets/images/header/Info.svg" class="w-6 h-6" alt="Info" />
-                <div id="auto-renewal-card" class="absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 dark:border-[#fff] hidden z-50">
-                  <div class="${fontClass}" style="${
-    theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
-  }">
-                    ${infoCardDesc}
-                  </div>
-                </div>
-              </button>
-            </div>
           </div>
-
           <div class="flex items-center gap-2 flex-shrink-0">
             <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
             <span class="hdr-price ${fontClass}">${
@@ -366,7 +281,9 @@ export const generateHeaderHTML = (
 
             <div>
               <button id="charge-btn" type="button" class="flex items-center px-[8px] py-[6px] rounded-full bg-white text-ooredoo-red border border-white dark:border-transparent shadow-sm">
-                <span class="${fontClass} font-semibold text-[10px]">${language === 'ar' ? "تعبئة رصيدي" : "CHARGER"}</span>
+                <span class="${fontClass} font-semibold text-[10px]">${
+    language === "ar" ? "تعبئة رصيدي" : "CHARGER"
+  }</span>
                 <span class="ml-[4px] flex items-center gap-[3px]">
                   <img src="./assets/images/header/cb.png" alt="" class="w-[16.5px] h-[16.5px]" />
                   <img src="./assets/images/header/barid.png" alt="" class="w-[16.5px] h-[16.5px]" />
@@ -374,57 +291,8 @@ export const generateHeaderHTML = (
               </button>
             </div>
           </div>
-
-          <div class="flex items-center justify-center">
-            <div class="flex items-center  gap-1 md:gap-3">
-              <span class="hdr-common-text ${fontClass}">${
-    texts.renewalLabel
-  }</span>
-              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[175px] md:w-[175px] p-0.5">
-                <button 
-                  id="renewal-auto-mobile"
-                  class="flex-1 flex flex-row items-center justify-start gap-[3px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
-                  style="font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
-                    isAuto
-                      ? "background:#ED1C24;color:#fff;"
-                      : "background:#fff;color:#2A2A2A;"
-                  }">
-                  <img src="./assets/images/header/chevron-down.svg" class="w-5 h-5 ${
-                    isAuto ? "hidden" : ""
-                  }" />
-                  <img src="./assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${
-                    isAuto ? "" : "hidden"
-                  }" />
-                  ${texts.autoLabel}
-                </button>
-
-                <button 
-                  id="renewal-manual-mobile"
-                  class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300 ${fontClass}"
-                  style="font-weight:500;font-size:0.95rem; ${
-                    !isAuto
-                      ? "background:#E30613;color:#fff;"
-                      : "background:#fff;color:#2A2A2A;"
-                  }">
-                  ${texts.manualLabel}
-                </button>
-              </div>
-
-              <button id="auto-renewal-info-mobile" class="w-6 h-6 flex items-center justify-center rounded-full bg-transparent text-white relative ml-2">
-                <img src="./assets/images/header/Info.svg" class="w-6 h-6" alt="Info" />
-                <div id="auto-renewal-card-mobile" class="absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
-                  <div class="${fontClass}" style="${
-    theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
-  }">
-                    ${infoCardDesc}
-                  </div>
-                </div>
-              </button>
-            </div>
-          </div>
         </div>
       </div>
-
     </div>
   </div>
 

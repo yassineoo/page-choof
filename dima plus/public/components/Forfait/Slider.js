@@ -259,11 +259,6 @@ export class Slider {
                 offer.data
               )} text-ooredoo-red dark:text-white font-semibold text-[28px]">
                  ${offer.data || ""}
-                 ${
-                   isRTL
-                     ? `<span class="font-noto-kufi-arabic">انترنت</span>`
-                     : `<span class="font-rubik">Internet</span>`
-                 }
               </h3>
               <div class="flex items-center gap-2 mt-8">
                 <span aria-hidden="true">
@@ -407,40 +402,6 @@ export class Slider {
     `;
   }
 
-  createResponsiveLayout(offers = [], labels = {}, gridType) {
-    const sliderId = "forfaits-slider";
-    return `
-    <div class="hidden sm:flex w-full items-center justify-center">
-      <div class="flex justify-center items-center content-center gap-4 sm:gap-6 lg:gap-[18px] flex-wrap max-w-[1215px]">
-        ${offers
-          .map((offer, i) => this.createForfaitCard(offer, i, labels))
-          .join("")}
-      </div>
-    </div>
-
-    <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
-      <div class="forfait-slider-track">
-        <div class="relative swiper">
-          <div class="swiper-wrapper">
-            ${offers
-              .map(
-                (offer, i) =>
-                  `<div class="swiper-slide flex justify-center p-4">${this.createForfaitCard(
-                    offer,
-                    i,
-                    labels
-                  )}</div>`
-              )
-              .join("")}
-          </div>
-          <div class="absolute bottom-0 swiper-pagination"></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="forfaits-dots" class="forfait-dots hidden md:block" aria-hidden="true"></div>
-  `;
-  }
 
   createResponsiveLayoutInternet(offers = [], labels = {}) {
     const sliderId = "internet-slider";

@@ -1,96 +1,9 @@
 export default {
   fr: {
-    forfaits: [
-      {
-        name: "Dima 4000",
-        data: "200Go internet",
-        price: "4000",
-        duration: "30 jours",
-        features: [
-          "Appels illimités vers tous les réseaux",
-          "SMS illimités vers Ooredoo",
-          "200 SMS vers les autres réseaux",
-        ],
-        buy: "Acheter",
-      },
-      {
-        name: "Dima 2500",
-        data: "100Go internet",
-        price: "2500",
-        duration: "30 jours",
-        features: [
-          "Appels illimités vers tous les réseaux",
-          "SMS illimités vers Ooredoo",
-          "100 SMS vers les autres réseaux",
-          "ANAZIK, ANAFLIX, SHAHID & Facebook Gratuits",
-        ],
-        buy: "Acheter",
-      },
-      {
-        name: "Dima 2000",
-        data: "50Go internet",
-        price: "2000",
-        duration: "30 jours",
-        features: [
-          "Appels illimités vers Ooredoo",
-          "200 SMS & 300 min appels",
-          "ANAFLIX, ANAZIK & Facebook Gratuits",
-        ],
-        buy: "Acheter",
-      },
-      {
-        name: "Dima 1500",
-        data: "30Go internet",
-        price: "1500",
-        duration: "30 jours",
-        features: [
-          "Appels illimités vers Ooredoo",
-          "150 SMS & 150 min appels",
-          "ANAFLIX & Facebook Gratuits",
-        ],
-        buy: "Acheter",
-      },
-      {
-        name: "Dima 1200",
-        data: "8Go internet",
-        price: "1200",
-        duration: "30 jours",
-        features: [
-          "Appels illimités vers Ooredoo",
-          "120 SMS & 100 min appels",
-          "ANAZIK & Facebook Gratuits",
-        ],
-        buy: "Acheter",
-      },
-      {
-        name: "Dima 750",
-        data: "10Go internet",
-        price: "750",
-        duration: "14 jours",
-        features: [
-          "Appels illimités vers Ooredoo",
-          "50 SMS & 100 min appels",
-          "Facebook Gratuit",
-        ],
-        buy: "Acheter",
-      },
-      {
-        name: "Dima 500",
-        data: "3Go internet",
-        price: "500",
-        duration: "15 jours",
-        features: [
-          "Appels illimités vers Ooredoo",
-          "50 SMS & 100 min appels",
-          "Facebook Gratuit",
-        ],
-        buy: "Acheter",
-      },
-    ],
     internetForfaits: [
       {
         name: "Forfait 1500",
-        data: "40Go",
+        data: "40Go internet",
         price: "1500",
         features: "Youtube illimité",
         duration: "30 jours",
@@ -98,7 +11,7 @@ export default {
       },
       {
         name: "Forfait 1000",
-        data: "15Go",
+        data: "15Go internet",
         price: "1000",
         features: "5Go Youtube",
         duration: "30 jours",
@@ -106,7 +19,7 @@ export default {
       },
       {
         name: "Forfait 500",
-        data: "6Go",
+        data: "6Go internet",
         price: "500",
         features: "Coupons Fayda",
         duration: "30 jours",
@@ -114,7 +27,7 @@ export default {
       },
       {
         name: "Forfait 300",
-        data: "3Go",
+        data: "6Go internet",
         price: "300",
         features: "Youtube illimité",
         duration: "72 heures",
@@ -122,7 +35,7 @@ export default {
       },
       {
         name: "Forfait 100",
-        data: "700Mo",
+        data: "1,4Go internet",
         price: "100",
         features: "Youtube illimité",
         duration: "24 heures",
@@ -130,7 +43,7 @@ export default {
       },
       {
         name: "Forfait 50",
-        data: "50Mo",
+        data: "50Mo internet",
         price: "50",
         features: "Facebook illimité",
         duration: "jusqu'à 00h",
@@ -175,97 +88,10 @@ export default {
   },
 
   ar: {
-    forfaits: [
-      {
-        name: "DIMA 4000",
-        data: "<span class='font-rubik'>200Go</span> إنترنت",
-        price: "4000",
-        duration: "<span class='font-rubik'>30</span> يوم",
-        features: [
-          "مكالمات غير محدودة نحو كل الشبكات",
-          "رسائل قصيرة غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "<span class='font-rubik'>200</span> رسالة قصيرة نحو الشبكات الأخرى",
-        ],
-        buy: "شراء",
-      },
-      {
-        name: "DIMA 2500",
-        data: "<span class='font-rubik'>100Go</span> إنترنت",
-        price: "2500",
-        duration: "<span class='font-rubik'>30</span> يوم",
-        features: [
-          "مكالمات غير محدودة نحو كل الشبكات",
-          "رسائل قصيرة غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "<span class='font-rubik'>100</span> رسالة قصيرة نحو الشبكات الأخرى",
-          "ANAZIK و ANAFLIX وشاهد وفايسبوك مجانًا",
-        ],
-        buy: "شراء",
-      },
-      {
-        name: "DIMA 2000",
-        data: "<span class='font-rubik'>50Go</span> إنترنت",
-        price: "2000",
-        duration: "<span class='font-rubik'>30</span> يوم",
-        features: [
-          "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "<span class='font-rubik'>200</span> رسالة قصيرة و <span class='font-rubik'>300</span> دقيقة مكالمات",
-          "ANAZIK و ANAFLIX وفايسبوك مجانيين",
-        ],
-        buy: "شراء",
-      },
-      {
-        name: "DIMA 1500",
-        data: "<span class='font-rubik'>30Go</span> إنترنت",
-        price: "1500",
-        duration: "<span class='font-rubik'>30</span> يوم",
-        features: [
-          "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "<span class='font-rubik'>150</span> رسالة قصيرة و <span class='font-rubik'>150</span> دقيقة مكالمات",
-          "ANAFLIX وفايسبوك مجانيين",
-        ],
-        buy: "شراء",
-      },
-      {
-        name: "DIMA 1200",
-        data: "<span class='font-rubik'>8Go</span> إنترنت",
-        price: "1200",
-        duration: "<span class='font-rubik'>30</span> يوم",
-        features: [
-          "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "<span class='font-rubik'>120</span> رسالة قصيرة و <span class='font-rubik'>100</span> دقيقة مكالمات",
-          "ANAFLIX وفايسبوك مجانيين",
-        ],
-        buy: "شراء",
-      },
-      {
-        name: "DIMA 750",
-        data: "<span class='font-rubik'>10Go</span> إنترنت",
-        price: "750",
-        duration: "<span class='font-rubik'>14</span> يوم",
-        features: [
-          "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "<span class='font-rubik'>50</span> رسالة قصيرة و <span class='font-rubik'>150</span> دقيقة مكالمات",
-          "فايسبوك مجاني",
-        ],
-        buy: "شراء",
-      },
-      {
-        name: "DIMA 500",
-        data: "<span class='font-rubik'>3Go</span> إنترنت",
-        price: "500",
-        duration: "<span class='font-rubik'>15</span> يوم",  
-        features: [
-          "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "<span class='font-rubik'>50</span> رسالة قصيرة و <span class='font-rubik'>150</span> دقيقة مكالمات",
-          "فايسبوك مجاني",
-        ],
-        buy: "شراء",
-      },
-    ],
     internetForfaits: [
       {
         name: "اشتراك 1500",
-        data: "<span class='font-rubik'>40Go</span>",
+        data: "<span class='font-rubik'>40Go</span> إنترنت",
         price: "1500",
         features: "يوتيوب غير محدود",
         duration: "<span class='font-rubik'>30</span> يوم",
@@ -273,7 +99,7 @@ export default {
       },
       {
         name: "اشتراك 1000",
-        data: "<span class='font-rubik'>15Go</span>",
+        data: "<span class='font-rubik'>15Go</span> إنترنت",
         price: "1000",
         features: "<span class='font-rubik'>5Go</span> يوتيوب",
         duration: "<span class='font-rubik'>30</span> يوم",
@@ -281,7 +107,7 @@ export default {
       },
       {
         name: "اشتراك 500",
-        data: "<span class='font-rubik'>6Go</span>",
+        data: "<span class='font-rubik'>6Go</span> إنترنت",
         price: "500",
         features: "قسائم فايدة",
         duration: "<span class='font-rubik'>30</span> يوم",
@@ -289,7 +115,7 @@ export default {
       },
       {
         name: "اشتراك 300",
-        data: "<span class='font-rubik'>3Go</span>",
+        data: "<span class='font-rubik'>6Go</span> إنترنت",
         price: "300",
         features: "يوتيوب غير محدود",
         duration: "<span class='font-rubik'>72</span> ساعة",
@@ -297,7 +123,7 @@ export default {
       },
       {
         name: "اشتراك 100",
-        data: "<span class='font-rubik'>700Mo</span>",
+        data: "<span class='font-rubik'>1,4Go</span> إنترنت",
         price: "100",
         features: "يوتيوب غير محدود",
         duration: "<span class='font-rubik'>24</span> ساعة",
@@ -305,7 +131,7 @@ export default {
       },
       {
         name: "اشتراك 50",
-        data: "<span class='font-rubik'>50Mo</span>",
+        data: "<span class='font-rubik'>50Mo</span> إنترنت",
         price: "50",
         features: "فايسبوك غير محدود",
         duration: "إلى غاية منتصف الليل",

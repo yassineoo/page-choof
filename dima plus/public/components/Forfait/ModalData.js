@@ -41,7 +41,6 @@ function generateModalContent(offers, lang) {
 }
 
 const allForfaitsFR = [
-  ...(ForfaitData.fr?.forfaits || []).map((f) => ({ ...f, type: "forfait" })),
   ...(ForfaitData.fr?.internetForfaits || []).map((f) => ({
     ...f,
     type: "internet",
@@ -53,7 +52,6 @@ const allForfaitsFR = [
 ];
 
 const allForfaitsAR = [
-  ...(ForfaitData.ar?.forfaits || []).map((f) => ({ ...f, type: "forfait" })),
   ...(ForfaitData.ar?.internetForfaits || []).map((f) => ({
     ...f,
     type: "internet",
