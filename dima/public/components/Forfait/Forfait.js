@@ -417,9 +417,9 @@ class ForfaitComponent {
       }
       .forfait-modal-button {
         width: auto !important;
-        min-width: 120px !important;
+        min-width: 150px !important;
         flex: 1;
-        max-width: 150px;
+        max-width: 180px;
       }
       .forfait-card-container {
         min-height: 380px;
@@ -1592,7 +1592,7 @@ class ForfaitComponent {
     };
 
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const primaryBtn = `${fontClass} whitespace-nowrap font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
     const secondaryBtn = `${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
     const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
 
@@ -1615,7 +1615,7 @@ class ForfaitComponent {
     `,
       "success-shahid": `
       <div class="flex ${buttonGap}">
-        <button class="${primaryBtn}" data-action="activate">${labels.activateShahid}</button>
+        <button class="${primaryBtn}" style="padding: 0 12px !important;" data-action="activate">${labels.activateShahid}</button>
         <button class="${secondaryBtn}" data-action="close">${labels.ok}</button>
       </div>
     `,
