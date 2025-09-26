@@ -196,7 +196,7 @@ class ConversionsComponent {
       background: #d1182f;
     }
 
-        .dark .plan-card {
+    .dark .plan-card {
       background: #2c2c2c;
       border-color: #666;
     }
@@ -212,12 +212,12 @@ class ConversionsComponent {
       color: #fff;
     }
 
-        .dark .conversions-accordion-panel.visible {
-        background: #2c2c2c;
+    .dark .conversions-accordion-panel.visible {
+        background: #424242;
         border-top-color: #555;
     }
 
-    .conversions-accordion-panel {
+  .conversions-accordion-panel {
   width: 100%;
   overflow: hidden;
   max-height: 0;
@@ -238,8 +238,8 @@ class ConversionsComponent {
   opacity: 1;
   margin-top: 2.5rem;
   border-top-color: var(--border);
-  margin-left: -1rem;
-  margin-right: -1rem;
+  margin-left: -30px;
+  margin-right: -30px;
   margin-bottom: -2.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -247,6 +247,7 @@ class ConversionsComponent {
   padding-bottom: 1.5rem;
   border-bottom-left-radius: 22px;
   border-bottom-right-radius: 22px;
+  height: calc (100% + 30px)
 }
 
 .accordion-toggle-icon {
@@ -277,8 +278,8 @@ class ConversionsComponent {
       }
 
       .conversions-accordion-panel.visible {
-  margin-left: -1.5rem;
-  margin-right: -1.5rem;
+  margin-left: -2.5rem;
+  margin-right: -2.5rem;
   margin-bottom: -2rem;
 }
     }

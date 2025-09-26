@@ -804,7 +804,7 @@ class Migration {
 
     const isDark = document.documentElement.classList.contains("dark");
     const roundedInlineStyle = `background: ${
-      isDark ? "#000" : "#F8F8F8"
+      isDark ? "#212121ff" : "#F8F8F8"
     }; color: ${isDark ? "#fff" : "#000"};`;
 
     this.container.innerHTML = `
