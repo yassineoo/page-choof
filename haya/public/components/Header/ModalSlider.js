@@ -95,8 +95,8 @@ export class ModalSlider {
               <button
                 type="button"
                 data-plan-name="${this._escapeHtml(planName)}"
-                class="modifier-btn justify-center items-center rounded-[22px] bg-ooredoo-red hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ooredoo-red"
-                style="padding: 7.34px 26.62px; font-size: 15.4px;"
+                class="modifier-btn flex justify-center items-center rounded-[999px] bg-ooredoo-red hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ooredoo-red w-[113px] h-[32px]"
+                style="font-size:15.4px; padding:0; box-sizing:border-box;"
                 aria-label="${this._escapeHtml(buttonText)} ${safePlan}">
                 <span class="text-white font-bold leading-normal uppercase">
                   ${this._escapeHtml(buttonText)}

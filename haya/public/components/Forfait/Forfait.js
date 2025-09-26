@@ -11,7 +11,6 @@ class ForfaitComponent {
     this.lastIsMobile = this.isMobile();
 
     this.sliders = new Map([
-      ["forfaits", this.createSliderState()],
       ["internet", this.createSliderState()],
       ["smart", this.createSliderState()],
     ]);
@@ -417,9 +416,9 @@ class ForfaitComponent {
       }
       .forfait-modal-button {
         width: auto !important;
-        min-width: 120px !important;
+        min-width: 150px !important;
         flex: 1;
-        max-width: 150px;
+        max-width: 180px;
       }
       .forfait-card-container {
         min-height: 380px;
@@ -700,7 +699,7 @@ class ForfaitComponent {
       const language = this.getLanguage();
       const data = ForfaitData[language];
 
-      if (!data || !data.forfaits || !data.smartForfaits) {
+      if (!data || !data.smartForfaits) {
         console.error("Missing data for language:", language);
         const fallbackData = ForfaitData.fr;
         if (!fallbackData) {
@@ -778,22 +777,6 @@ class ForfaitComponent {
       this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
     }">
       <section class="w-full bg-white dark:bg-[#2c2c2c] pt-16">
-        <div class="max-w-[1600px] mx-auto md:px-6">
-          <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
-            ${
-              this.currentLang === "ar"
-                ? "اشتراكات <span class='font-rubik' dir='ltr'>DIMA OOREDOO</span>"
-                : "FORFAITS DIMA OOREDOO"
-            }
-          </h2>
-          ${this.slider.createResponsiveLayout(
-            data.forfaits,
-            labels,
-            "forfait-grid-5",
-            this.isRTL(),
-            true
-          )}
-        </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-[clamp(1rem,5vw,5rem)]">
           <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit">${
             this.currentLang === "ar"
@@ -877,7 +860,7 @@ class ForfaitComponent {
 
     this.bindPurchaseButtons(
       language,
-      [...data.forfaits, ...data.internetForfaits, ...data.smartForfaits],
+      [...data.internetForfaits, ...data.smartForfaits],
       labels
     );
 
@@ -925,7 +908,6 @@ class ForfaitComponent {
       slider.totalSlides = 0;
     });
 
-    this.setupSlider("forfaits", data.forfaits.length);
     this.setupSlider("internet", data.internetForfaits.length);
     this.setupSlider("smart", data.smartForfaits.length);
   }
@@ -1368,10 +1350,8 @@ class ForfaitComponent {
       const data = ForfaitData[lang] || ForfaitData.fr;
 
       const groups = {
-        forfait: data.forfaits,
         internet: data.internetForfaits,
         smart: data.smartForfaits,
-        forfaits: data.forfaits,
         internetForfaits: data.internetForfaits,
         smartForfaits: data.smartForfaits,
       };
@@ -1381,9 +1361,7 @@ class ForfaitComponent {
       if (!offer) return;
 
       if (!offer.type) {
-        if (typeAttr === "forfait" || typeAttr === "forfaits") {
-          offer.type = "forfait";
-        } else if (typeAttr === "internet" || typeAttr === "internetForfaits") {
+        if (typeAttr === "internet" || typeAttr === "internetForfaits") {
           offer.type = "internet";
         } else if (typeAttr === "smart" || typeAttr === "smartForfaits") {
           offer.type = "smart";
@@ -1592,7 +1570,7 @@ class ForfaitComponent {
     };
 
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const primaryBtn = `${fontClass} whitespace-nowrap font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
     const secondaryBtn = `${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
     const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
 
@@ -1615,7 +1593,7 @@ class ForfaitComponent {
     `,
       "success-shahid": `
       <div class="flex ${buttonGap}">
-        <button class="${primaryBtn}" data-action="activate">${labels.activateShahid}</button>
+        <button class="${primaryBtn}" style="padding: 0 12px !important;" data-action="activate">${labels.activateShahid}</button>
         <button class="${secondaryBtn}" data-action="close">${labels.ok}</button>
       </div>
     `,
