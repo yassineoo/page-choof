@@ -127,7 +127,7 @@ export default class Header {
     this.userData = {
       phone: "0509876543",
       offer: "Offre Dima +",
-      credit: "2000",
+      credit: "2000 DA",
       autoRenewal: storedRenewal !== null ? JSON.parse(storedRenewal) : true,
     };
     this.isTransitioning = false;
@@ -156,8 +156,6 @@ export default class Header {
     this.initLanguageSwitcher();
     this.initMobileMenu();
     this.initMobileThemeSwitcher();
-    this.initRenewalInfoCard();
-    this.initRenewalSwitcher();
     this.initResponsiveHandling();
   }
   preventHorizontalScroll() {

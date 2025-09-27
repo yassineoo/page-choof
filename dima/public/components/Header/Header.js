@@ -514,6 +514,7 @@ export default class Header {
     }
     this.updateRenewalUI();
   }
+
   updateRenewalUI() {
     const isAuto = this.userData.autoRenewal;
     const autoBtn = document.getElementById("renewal-auto");
@@ -548,25 +549,33 @@ export default class Header {
   }
   handleManualRenewalClick() {
     if (!this.userData.autoRenewal) return;
+
     const texts = offerData.text[this.currentLanguage];
+
     const onConfirm = () => {
       this.modal.close();
       setTimeout(() => {
         this.userData.autoRenewal = false;
         localStorage.setItem("autoRenewal", "false");
-        this.updateRenewalUI();
-        this.modal.showAlert({
-          title: texts.manualSuccessTitle,
-          text: texts.manualSuccessDesc,
-          buttonText: texts.okBtn,
-        });
+        this.render();
+        setTimeout(() => {
+          this.setupEventListeners();
+          this.modal.showAlert({
+            title: texts.manualSuccessTitle,
+            text: texts.manualSuccessDesc,
+            buttonText: texts.okBtn,
+          });
+        }, 50);
       }, 350);
     };
+
     const closeBtnHTML =
       this.modal && typeof this.modal.getCloseButtonHTML === "function"
         ? this.modal.getCloseButtonHTML()
         : "";
+
     const fontClass = this.getFontClass();
+
     const customContent = `
       <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
         ${closeBtnHTML}
@@ -588,9 +597,11 @@ export default class Header {
         </div>
       </div>
     `;
+
     this.modal.showCustom(customContent);
     const confirmBtn = this.modal.container.querySelector("#modal-confirm-btn");
     const cancelBtn = this.modal.container.querySelector("#modal-cancel-btn");
+
     if (confirmBtn) confirmBtn.addEventListener("click", onConfirm);
     if (cancelBtn)
       cancelBtn.addEventListener("click", () => this.modal.close());

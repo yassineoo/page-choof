@@ -187,7 +187,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   priceRow.className = "flex items-baseline justify-center gap-[10px]";
   priceRow.innerHTML = `
     <span class="font-semibold font-rubik  text-[37.38px] dark:text-white">${curr.price}</span>
-    <span class="font-semibold text-[20px] dark:text-white">${lang === "ar" ? "دج/" : "DA /"}${curr.months}</span>
+    <span class="font-semibold text-[20px] dark:text-white">${lang === "ar" ? "دج/" : "DA/"}${curr.months}</span>
   `;
   downCard.appendChild(priceRow);
 

@@ -80,7 +80,7 @@ export const generateHeaderHTML = (
   }
   @media (max-width: 767px){
     .hdr-common-text{ font-size: 14px; }
-    .hdr-price{ font-size: 20px; }
+    .hdr-price{ font-size: 14px; }
   }
   @keyframes modalFadeIn {
     from { opacity: 0; transform: scale(0.95) translateY(-8px); }

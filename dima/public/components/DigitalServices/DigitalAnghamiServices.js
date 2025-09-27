@@ -1,6 +1,5 @@
 import { anghamiPlan, anghamiDescription, anghamiModalData } from "./DigitalAnghamiServicesData.js";
 
-// Updated styles to match Dima card sizing (28rem instead of 21rem)
 const styles = {
   card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
   cardHeader: "bg-ooredoo-red px-6 py-3 text-center font-rubik",
@@ -14,7 +13,7 @@ const styles = {
   priceContainer: "text-center mb-2",
   priceAmount: "font-rubik font-semibold text-[2rem] capitalize dark:text-white",
   priceDa: `font-semibold text-lg capitalize dark:text-white`,
-  priceDuration: "font-semibold text-lg capitalize dark:text-white",
+  priceDuration: "font-semibold text-lg dark:text-white",
   buttonWrap: "flex justify-center mt-2",
   acheterButton: "acheter-button",
 };

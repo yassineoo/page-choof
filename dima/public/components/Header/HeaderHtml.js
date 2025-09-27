@@ -23,7 +23,7 @@ export const generateHeaderHTML = (
     if (containsArabic(text)) {
       return `<span class="${fontClass} font-semibold arabic-text" dir="auto">${safe}</span>`;
     }
-    return `<span class="${fontClass}" font-semibold dir="auto">${safe}</span>`;
+    return `<span class="${fontClass} font-semibold" dir="auto">${safe}</span>`;
   };
 
   const getOfferDetails = (offer) => {
@@ -70,6 +70,8 @@ export const generateHeaderHTML = (
   return `
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+#__cons-bg { top: calc(var(--header-bottom, 64px) - 1px); }
+
   .font-noto-kufi-arabic { font-family: 'Noto Kufi Arabic', sans-serif; }
   .font-rubik { font-family: 'Rubik', sans-serif; }
   .bg-ooredoo-red { background-color: #E30613; }
@@ -94,7 +96,7 @@ export const generateHeaderHTML = (
   }
   @media (max-width: 767px){
     .hdr-common-text{ font-size: 14px; }
-    .hdr-price{ font-size: 20px; }
+    .hdr-price{ font-size: 14px; }
   }
   @keyframes modalFadeIn {
     from { opacity: 0; transform: scale(0.95) translateY(-8px); }
@@ -141,10 +143,10 @@ export const generateHeaderHTML = (
 <header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${
     language === "ar" ? "rtl" : "ltr"
   }">
-  <div class="w-full max-w-[90vw] mx-auto px-4">
+  <div class="w-full max-w-[90vw] mx-auto">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
      
-    <div class="flex items-center gap-1 md:gap-3 logo-group" dir="ltr">
+    <div class="flex items-center gap-3 md:gap-3 logo-group" dir="ltr">
   <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
     <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo"
          class="block w-full h-full max-h-full object-contain dark:hidden"
@@ -154,9 +156,9 @@ export const generateHeaderHTML = (
          width="200" height="40" loading="lazy" />
   </div>
 
-  <span class="flex items-center justify-center h-[20px] md:h-[40px] text-[18px] md:text-3xl font-light text-black dark:text-white leading-none separator" aria-hidden="true">|</span>
+  <span class="flex items-center justify-center h-[16px] md:h-[38px] text-[14px] mt-0.5 md:mt-2 md:text-[24px] font-light text-black dark:text-white leading-none separator" aria-hidden="true">|</span>
 
-  <div class="flex items-center justify-center  pt-1 md:pt-1 w-[58.5px] h-[20px] md:w-[115px] md:h-[40px]">
+  <div class="flex items-center justify-center  pt-0.5 md:pt-1 w-[58.5px] h-[20px] md:w-[115px] md:h-[40px]">
     <img src="./assets/images/header/Choof.svg" alt="Choof"
          class="block w-full h-full max-h-full object-contain dark:hidden"
          style="transform: translateY(1px);"
@@ -217,14 +219,6 @@ export const generateHeaderHTML = (
 
     <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute text-lg top-[64px] left-0 w-full shadow-lg bg-white dark:bg-gray-800 md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
 
-
-
-
-
-
-
-
-
       <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
           <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white gap-1" type="button" aria-pressed="false">
@@ -257,14 +251,10 @@ export const generateHeaderHTML = (
           </div>
         </div>
       </div>
-
-
-
-      
     </div>
   </div>
 
-  <div class="bg-ooredoo-red py-4 text-white w-full">
+  <div class="bg-ooredoo-red py-4 border-b-2 border-[#E30613] text-white w-full">
     <div class="px-4 w-full max-w-[95vw] md:max-w-[90vw] mx-auto">
       <div class="md:block hidden">
         <div class="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
@@ -282,7 +272,7 @@ export const generateHeaderHTML = (
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="font-semibold not-italic text-[18px] capitalize" ${fontClass}">${
+              <span class="font-semibold not-italic text-[18px] capitalize ${fontClass}">${
     texts.renewalLabel
   }</span>
               <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
@@ -343,29 +333,34 @@ export const generateHeaderHTML = (
       <div class="md:hidden">
         <div class="flex flex-col gap-6">
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 min-w-0">
-              <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
+            <div class="flex items-center gap-1 min-w-0">
+              <img src="./assets/images/header/Telephone.svg" class="w-[18px] h-[18px] flex-shrink-0" />
               <span class="hdr-common-text ${fontClass} truncate">${
     userData.phone || "0509876543"
   }</span>
             </div>
-            <div class="flex items-center gap-2 flex-shrink-0">
-              <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
-              <span class="hdr-price ${fontClass}">${
-    userData.credit || "1200 DA"
+            <div class="flex items-center gap-1 flex-shrink-0">
+              <img src="./assets/images/header/Dollar.svg" class="w-[18px] h-[18px]" />
+       <span class="hdr-price ${fontClass}">${
+    fontClass === "font-noto-kufi-arabic"
+      ? `<span class="font-rubik">${userData.credit}</span>` +
+        `<span class="font-noto-kufi-arabic"> دج</span>`
+      : userData.credit + " DA"
   }</span>
             </div>
           </div>
 
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 min-w-0">
-              <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
+            <div class="flex items-center gap-1 min-w-0">
+              <img src="./assets/images/header/Puce.svg" class="w-[18px] h-[18px] flex-shrink-0" />
               <span class="hdr-common-text truncate">${offerHTML}</span>
             </div>
 
             <div>
               <button id="charge-btn" type="button" class="flex items-center px-[8px] py-[6px] rounded-full bg-white text-ooredoo-red border border-white dark:border-transparent shadow-sm">
-                <span class="${fontClass} font-semibold text-[10px]">${language === 'ar' ? "تعبئة رصيدي" : "CHARGER"}</span>
+                <span class="${fontClass} font-semibold text-[10px]">${
+    language === "ar" ? "تعبئة رصيدي" : "CHARGER"
+  }</span>
                 <span class="ml-[4px] flex items-center gap-[3px]">
                   <img src="./assets/images/header/cb.png" alt="" class="w-[16.5px] h-[16.5px]" />
                   <img src="./assets/images/header/barid.png" alt="" class="w-[16.5px] h-[16.5px]" />
@@ -379,11 +374,11 @@ export const generateHeaderHTML = (
               <span class="hdr-common-text ${fontClass}">${
     texts.renewalLabel
   }</span>
-              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[175px] md:w-[175px] p-0.5">
+              <div class="relative flex items-center bg-white rounded-full h-[36px] ${language === "ar" ? "w-[176px]" : "w-[156px]"} md:w-[175px] p-0.5">
                 <button 
                   id="renewal-auto-mobile"
                   class="flex-1 flex flex-row items-center justify-start gap-[3px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
-                  style="font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
+                  style="font-weight:500; font-size:0.9rem; padding:2px 7px; border-radius:100px; ${
                     isAuto
                       ? "background:#ED1C24;color:#fff;"
                       : "background:#fff;color:#2A2A2A;"
@@ -400,7 +395,7 @@ export const generateHeaderHTML = (
                 <button 
                   id="renewal-manual-mobile"
                   class="flex-1 flex items-center justify-center gap-1 rounded-full h-[32px] transition-all duration-300 ${fontClass}"
-                  style="font-weight:500;font-size:0.95rem; ${
+                  style="font-weight:500;font-size:0.9rem;padding:2px 7px; ${
                     !isAuto
                       ? "background:#E30613;color:#fff;"
                       : "background:#fff;color:#2A2A2A;"
@@ -409,7 +404,7 @@ export const generateHeaderHTML = (
                 </button>
               </div>
 
-              <button id="auto-renewal-info-mobile" class="w-6 h-6 flex items-center justify-center rounded-full bg-transparent text-white relative ml-2">
+              <button id="auto-renewal-info-mobile" class="w-[18px] h-[18px] flex items-center justify-center rounded-full bg-transparent text-white relative">
                 <img src="./assets/images/header/Info.svg" class="w-6 h-6" alt="Info" />
                 <div id="auto-renewal-card-mobile" class="absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
                   <div class="${fontClass}" style="${

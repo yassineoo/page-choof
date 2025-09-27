@@ -126,7 +126,7 @@ export class Slider {
       (labels && labels.buy) || offer.buy || (isRTL ? "شراء" : "Acheter");
     const currencyLabel = isRTL ? "دج" : "DA";
     const cardHeightClass =
-      offer.height === "short" ? "h-[365px]" : "h-[460px]";
+      offer.height === "short" ? "h-[365px]" : "h-[472px]";
     const priceNumber = this.convertToLatinNumerals(
       String(offer.price ?? "").replace(/[^0-9٠-٩]/g, "")
     );

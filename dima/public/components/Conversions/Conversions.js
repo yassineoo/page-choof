@@ -177,7 +177,7 @@ class ConversionsComponent {
     }
     .price-duration {
       font-weight: 700;
-      font-size: 13px;
+      font-size: 18px;
     }
     .btn-convert {
       width: 113px;
@@ -240,7 +240,7 @@ class ConversionsComponent {
   border-top-color: var(--border);
   margin-left: -30px;
   margin-right: -30px;
-  margin-bottom: -2.5rem;
+  margin-bottom: -30px;
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 2.5rem;
@@ -278,9 +278,9 @@ class ConversionsComponent {
       }
 
       .conversions-accordion-panel.visible {
-  margin-left: -2.5rem;
-  margin-right: -2.5rem;
-  margin-bottom: -2rem;
+  margin-left: -24px;
+  margin-right: -24px;
+  margin-bottom: -32px;
 }
     }
 
@@ -742,11 +742,22 @@ class ConversionsComponent {
     const currentLanguage = this.getLanguage();
     let confirmTitle =
       conversionsData[currentLanguage].confirmTitle || "Conversion";
+
+    function normalizeDimaWord(name = "") {
+      if (typeof name !== "string") return name;
+      return name.replace(
+        /\b(dimma|dima)\b/gi,
+        (match) => match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
+      );
+    }
+
+    const planNameSafe = normalizeDimaWord(selectedPlan.name || "");
+
     let confirmMessage;
     if (currentLanguage === "ar") {
-      confirmMessage = `هل تريد تحويل اشتراكك Dima 2500 إلى ${selectedPlan.name}؟`;
+      confirmMessage = `هل تريد تحويل اشتراكك Dima 2500 إلى ${planNameSafe}؟`;
     } else {
-      confirmMessage = `Vous allez convertir votre forfait Dima 2500 en ${selectedPlan.name} ?`;
+      confirmMessage = `Vous allez convertir votre forfait Dima 2500 en ${planNameSafe} ?`;
     }
 
     this.showModal({
@@ -856,12 +867,31 @@ class ConversionsComponent {
     const currentLanguage = this.getLanguage();
     const data = conversionsData[currentLanguage];
 
+    function containsArabic(s = "") {
+      return /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(String(s));
+    }
+
+    function normalizePlanName(raw = "") {
+      if (!raw || typeof raw !== "string") return "";
+      return raw.replace(
+        /([A-Za-zÀ-ÖØ-öø-ÿ]+(?:['-][A-Za-zÀ-ÖØ-öø-ÿ]+)*)/g,
+        (word) => {
+          let w = word.replace(/\b(dimaa|dimma|dima)\b/gi, "dima");
+          return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+        }
+      );
+    }
+
     const template = data.successDescription || "";
 
+    const safePlanName = normalizePlanName(plan.name || "");
+    const safePlanDescription = plan.description || "";
+    const safeDuration = plan.duration || "";
+
     const message = template
-      .replace(/\{planName\}/g, plan.name || "")
-      .replace(/\{planDescription\}/g, plan.description || "")
-      .replace(/\{duration\}/g, plan.duration || "");
+      .replace(/\{planName\}/g, safePlanName)
+      .replace(/\{planDescription\}/g, safePlanDescription)
+      .replace(/\{duration\}/g, safeDuration);
 
     this.showModal({
       type: "info",
