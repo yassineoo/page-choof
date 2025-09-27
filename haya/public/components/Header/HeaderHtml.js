@@ -1,22 +1,11 @@
+import { offerData } from "./OfferData.js";
+
 export const generateHeaderHTML = (
   language = "fr",
   userData = {},
   theme = "light"
 ) => {
-  const texts =
-    typeof offerData !== "undefined" &&
-    offerData.text &&
-    offerData.text[language]
-      ? offerData.text[language]
-      : typeof offerData !== "undefined"
-      ? offerData.text.fr
-      : {
-          helpText: "Aide",
-          currentLanguage: "Français",
-          changeModeLabel: "Changer de mode",
-          modeLabel: "Mode :",
-          currentMode: "Minutes ou crédit gratuit",
-        };
+  const texts = offerData.text[language] || offerData.text.fr;
   const fontClass = language === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
   const containsArabic = (text = "") =>
     /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(text);
@@ -37,7 +26,17 @@ export const generateHeaderHTML = (
   const infoCardDesc = escapeHtml(
     texts.modeInfoTooltip || texts.renewalInfoManual || ""
   );
-  const offerHTML = formatMixedText(userData.offer || "Offre Haya !");
+
+  const getOfferText = (offer) => {
+    if (language === "ar") {
+      if (!offer) return offer;
+      return offer.replace(/^Offre\s+Haya\s*!/, "عرض هيّا!");
+    }
+    return offer;
+  };
+
+  const offerHTML = formatMixedText(getOfferText("Offre Haya !"));
+
   const dirAttr = language === "ar" ? "rtl" : "ltr";
 
   return `
@@ -135,7 +134,7 @@ export const generateHeaderHTML = (
         </a>
 
         <div class="relative h-[40px] lg:h-[48px]" id="language-desktop">
-          <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] hover:bg-gray-100 transition-all duration-300 text-[#2A2A2A]">
+<button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] dark:border-[#E4E4E7] hover:bg-gray-100 transition-all duration-300 text-[#2A2A2A]">
             <span id="current-language" class="${fontClass} text-sm lg:text-base font-medium">${
     texts.currentLanguage
   }</span>
@@ -217,31 +216,39 @@ export const generateHeaderHTML = (
     texts.modeLabel
   }</span>
 
-              <div class="mode-control">
-                <!-- mode button + options -->
-                <div style="position:relative;">
-                  <button id="mode-btn" class="${fontClass} flex items-center justify-between rounded-full h-[32px] transition-all duration-300" style="font-weight:500; font-size:0.95rem; padding:6px 12px; border-radius:100px; background:#fff;color:#2A2A2A;">
-                    <span id="mode-label">${texts.currentMode}</span>
-                    <img src="./assets/images/header/chevron-right.svg" class="w-4 h-4" alt="" />
-                  </button>
+             <div class="mode-control">
+  <div class="relative">
+    <button id="mode-btn" class="${fontClass} flex items-center justify-between gap-[5px] rounded-full px-[10px] py-[4px] 
+ text-[18px] font-medium transition-all duration-300 bg-ooredoo-red text-white border-2 border-white">
+      <span id="mode-label">${texts.currentMode}</span>
+      <img src="./assets/images/header/chevron-down-white.svg" class="w-6 h-6" alt="" />
+    </button>
 
-                  <div id="mode-options" class="absolute left-0 z-50 hidden">
-                    <div class="bg-white dark:bg-[#2C2C2C] w-[240px] p-2 mode-options rounded-[12px] border border-gray-200 dark:border-white">
-                      <button id="opt-hadra" class="${fontClass} w-full text-left px-3 py-3 rounded-lg">${
-    texts.modeOptionHadra || "MAXY Hadra"
-  }</button>
-                      <button id="opt-internet" class="${fontClass} w-full text-left px-3 py-3 rounded-lg">${
-    texts.modeOptionInternet || "MAXY Internet"
-  }</button>
-                    </div>
-                  </div>
-                </div>
+<div id="mode-options" class="absolute left-0 right-0 z-50">
+  <div class="bg-white w-full dark:bg-[#2C2C2C] text-[14px] text-[#575757] font-semibold dark:text-white 
+              rounded-[16px] border border-gray-200 dark:border-white 
+              px-[14px] pt-[22px] pb-[20px]">
 
-                <!-- info icon OUTSIDE the mode button -->
+    <button id="opt-hadra" 
+            class="${fontClass} w-full text-left rounded-lg">
+      ${texts.modeOptionHadra || "MAXY Hadra"}
+    </button>
+
+    <div class="h-[1px] bg-[#EBEBEB] my-[10px]"></div>
+
+    <button id="opt-internet" 
+            class="${fontClass} w-full text-left rounded-lg">
+      ${texts.modeOptionInternet || "MAXY Internet"}
+    </button>
+
+  </div>
+</div>
+
+  </div>
+
                 <div style="position:relative;">
-                  <button id="mode-info" class="w-8 h-8 flex items-center justify-center rounded-full text-ooredoo-red" aria-label="Info">
-                    <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden" alt="info" />
-                    <img src="./assets/images/header/help-white.svg" class="hidden dark:block w-5 h-5" alt="info" />
+                  <button id="mode-info" class="w-[24px] h-[24px] flex items-center justify-center rounded-full text-ooredoo-red" aria-label="Info">
+                    <img src="./assets/images/header/Info.svg" class="w-full h-full" alt="info" />
                   </button>
 
                   <div id="mode-card" class="mode-card absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-80 p-4 shadow-lg rounded-lg border border-gray-200 dark:border-[#fff] hidden z-50">

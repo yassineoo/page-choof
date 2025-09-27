@@ -59,7 +59,6 @@ export const generateHeaderHTML = (
   const getOfferText = (offer) => {
     if (language === "ar") {
       if (!offer) return offer;
-      // remplacer "Offre " par "عرض " puis protéger les séquences latines
       const replaced = offer.replace(/^Offre\s+/, "عرض ");
       return wrapLatin(replaced);
     }

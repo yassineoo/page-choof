@@ -60,18 +60,28 @@ class Modal {
   showCustom(contentHTML) {
     this.open(contentHTML);
   }
+    getCloseButtonHTML() {
+    return `
+      <button id="modal-close-btn" type="button" aria-label="Close modal"
+        class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M13.25 1.50391L1.25 13.5039M1.25 1.50391L13.25 13.5039"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    `;
+  }
   showAlert({ title = "", text = "", buttonText = "OK" }) {
     const contentHTML = `
-  <div class="w-full flex items-center justify-center p-4">
-    <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-sm px-6 pt-8 pb-6 mx-auto">
-      <h3 class="text-center text-ooredoo-red dark:text-white font-bold mb-2">${title}</h3>
-      <p class="text-[14px] text-center text-gray-600 dark:text-gray-300 mb-4">${text}</p>
-      <div class="flex justify-center">
-        <button id="modal-ok-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold w-[140px] px-6 py-2 text-[15.4px]">${buttonText}</button>
+  <div class="relative bg-white dark:bg-[#2C2C2C]  rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12">
+        ${this.getCloseButtonHTML()}
+        <h2 class="text-2xl md:text-[34px] font-bold text-ooredoo-red dark:text-white mb-4 text-center">${title}</h2>
+        <p class="text-[16px] lg:text-[21px] text-center text-gray-600 dark:text-gray-300 mb-6">${text}</p>
+        <div class="flex justify-center">
+          <button id="modal-ok-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 w-[180px] transition-colors px-6 py-2 text-[15.4px]">${buttonText}</button>
+        </div>
       </div>
-    </div>
-  </div>
-`;
+    `;
     this.open(contentHTML);
     const okBtn = this.container.querySelector("#modal-ok-btn");
     if (okBtn) okBtn.addEventListener("click", () => this.close());
@@ -501,8 +511,6 @@ export default class Header {
     const modeBtnLabelMobile = document.getElementById("mode-label-mobile");
     const texts = offerData.text[this.currentLanguage] || offerData.text.fr;
     let label = texts.currentMode;
-    if (this.userData.mode === "hadra") label = texts.modeOptionHadra;
-    if (this.userData.mode === "internet") label = texts.modeOptionInternet;
     if (modeBtnLabel) modeBtnLabel.textContent = label;
     if (modeBtnLabelMobile) modeBtnLabelMobile.textContent = label;
   }
