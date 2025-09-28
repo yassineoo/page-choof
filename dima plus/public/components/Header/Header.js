@@ -143,7 +143,6 @@ export default class Header {
     this.render();
     requestAnimationFrame(() => {
       this.setupEventListeners();
-      this.applyInitialTheme();
       this.preventHorizontalScroll();
     });
   }

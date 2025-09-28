@@ -59,7 +59,7 @@ class Modal {
   showCustom(contentHTML) {
     this.open(contentHTML);
   }
-    getCloseButtonHTML() {
+  getCloseButtonHTML() {
     return `
       <button id="modal-close-btn" type="button" aria-label="Close modal"
         class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
@@ -106,10 +106,10 @@ export default class Header {
     document.documentElement.lang = this.currentLanguage;
     document.documentElement.dir =
       this.currentLanguage === "ar" ? "rtl" : "ltr";
+    this.applyInitialTheme();
     this.render();
     requestAnimationFrame(() => {
       this.setupEventListeners();
-      this.applyInitialTheme();
       this.preventHorizontalScroll();
     });
   }
@@ -449,10 +449,16 @@ export default class Header {
     if (modeBtn && modeOptions) {
       modeBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        modeOptions.classList.toggle("hidden");
-        if (modeOptionsMobile) modeOptionsMobile.classList.add("hidden");
+        const willShow = modeOptions.classList.toggle("hidden") === false;
+        modeOptions.setAttribute("aria-hidden", String(!willShow));
+        if (modeOptionsMobile) {
+          modeOptionsMobile.classList.add("hidden");
+          if (modeOptionsMobile.setAttribute)
+            modeOptionsMobile.setAttribute("aria-hidden", "true");
+        }
       });
     }
+
     if (modeBtnMobile && modeOptionsMobile) {
       modeBtnMobile.addEventListener("click", (e) => {
         e.stopPropagation();

@@ -235,7 +235,8 @@ export const generateHeaderHTML = (
       <img src="./assets/images/header/chevron-down-white.svg" class="w-6 h-6" alt="" />
     </button>
 
-<div id="mode-options" class="absolute left-0 right-0 z-50">
+<div id="mode-options" class="absolute left-0 right-0 z-50 hidden" aria-hidden="true">
+
   <div class="bg-white w-full dark:bg-[#2C2C2C] text-[14px] text-[#575757] font-semibold dark:text-white 
               rounded-[16px] border border-gray-200 dark:border-white 
               px-[14px] pt-[22px] pb-[20px]">
