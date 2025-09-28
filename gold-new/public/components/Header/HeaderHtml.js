@@ -355,11 +355,11 @@ export const generateHeaderHTML = (
               <span class="hdr-common-text ${fontClass}">${
     texts.renewalLabel
   }</span>
-              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[160px] md:w-[175px] p-0.5">
+              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] md:w-[175px] p-0.5">
                 <button 
                   id="renewal-auto-mobile"
                   class="flex-1 flex flex-row items-center justify-start gap-[3px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
-                  style="font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
+                  style="font-weight:500; font-size:0.95rem; padding: 4px 10px; border-radius:100px; ${
                     isAuto
                       ? "background:#ED1C24;color:#fff;"
                       : "background:#fff;color:#2A2A2A;"
