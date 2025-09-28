@@ -142,12 +142,12 @@ export const generateHeaderHTML = (
   }">
   <div class="w-full max-w-[90vw] mx-auto px-4">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
-      <div class="flex items-center gap-3" dir="ltr">
+      <div class="flex items-baseline gap-3" dir="ltr">
         <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
           <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo" class="w-full h-full object-contain dark:hidden block" width="200" height="40" loading="lazy" />
           <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo" class="w-full h-full object-contain hidden dark:block" width="200" height="40" loading="lazy" />
         </div>
-        <span class="hidden md:inline text-3xl font-light text-black dark:text-white leading-none">|</span>
+        <span class="inline md:text-3xl font-light text-black dark:text-white leading-none">|</span>
         <div class="flex items-center justify-center w-[58.5px] h-[13px] md:w-[115px] md:h-[26px]">
           <img src="./assets/images/header/Choof.svg" alt="Choof" class="w-full h-full object-contain dark:hidden block" width="115" height="26" loading="lazy" />
           <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="w-full h-full object-contain hidden dark:block" width="115" height="26" loading="lazy" />
