@@ -383,30 +383,52 @@ export default class Consommation {
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="w-full flex flex-col ${bgClass} ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
-        <div class="bg-ooredoo-red w-full px-6 pt-2 pb-14 -my-7"> 
-          <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center pt-[28px] md:pt-4 pb-4" style="font-weight: 500; font-size: 24px;">
-            ${data.title}
-          </h1>
+    <div class="relative w-full flex flex-col ${fontClass}" ${
+      lang === "ar" ? 'dir="rtl"' : ""
+    }>
+      <div class="bg-ooredoo-red w-full px-6 pt-2 pb-14 -my-10 relative z-10"> 
+        <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center pt-[28px] md:pt-4 pb-6" 
+            style="font-weight: 500; font-size: 24px;">
+          ${data.title}
+        </h1>
+      </div>
+
+      <div class="absolute top-[-10] left-0 w-full h-full bg-[#F8F8F8] dark:bg-[#171717] z-0"></div>
+
+      <div class="w-full px-4 -mt-7 relative z-10">
+        <div class="cards-container flex flex-col gap-6 max-w-full mx-auto">
+          ${this.renderMobileCard(
+            data.cards[0],
+            0,
+            lang,
+            theme,
+            true,
+            this.isCardExpanded(0)
+          )}
+          ${
+            this.state.showAllCards
+              ? data.cards
+                  .slice(1)
+                  .map((card, index) =>
+                    this.renderMobileCard(
+                      card,
+                      index + 1,
+                      lang,
+                      theme,
+                      false,
+                      this.isCardExpanded(index + 1)
+                    )
+                  )
+                  .join("")
+              : ""
+          }
         </div>
-        <div class="w-full px-4 -mt-7">
-          <div class="cards-container flex flex-col gap-6 max-w-full mx-auto">
-            ${this.renderMobileCard(data.cards[0], 0, lang, theme, true, this.isCardExpanded(0))}
-            ${
-              this.state.showAllCards
-                ? data.cards
-                    .slice(1)
-                    .map((card, index) => this.renderMobileCard(card, index + 1, lang, theme, false, this.isCardExpanded(index + 1)))
-                    .join("")
-                : ""
-            }
-          </div>
-          <div class="mb-[52px]"> <!-- Added margin-bottom to the button wrapper -->
-            ${this.renderMobileButton(lang, theme)}
-          </div>
+        <div class="mb-[52px]">
+          ${this.renderMobileButton(lang, theme)}
         </div>
       </div>
-    `;
+    </div>
+  `;
   }
 
   renderMobileButton(lang, theme) {
@@ -421,17 +443,26 @@ export default class Consommation {
 
     return `
       <div class="w-full flex justify-end mt-4 mb-2 px-2 ${fontClass}">
-        <button class="show-all-btn bg-ooredoo-red text-white font-medium text-sm uppercase rounded-full px-8 py-3 flex items-center justify-center gap-2 w-3/5 max-w-[200px]" style="font-weight: 500;">
+        <button class="show-all-btn bg-ooredoo-red text-white font-medium text-sm uppercase rounded-full px-[20px] md:px-8 py-3 flex items-center justify-center gap-2 md:max-w-[200px]" style="font-weight: 500;">
           <span>${buttonText}</span>
         </button>
       </div>
     `;
   }
 
-  renderMobileCard(card, cardIndex, lang, theme, isFirst = false, expanded = false) {
+  renderMobileCard(
+    card,
+    cardIndex,
+    lang,
+    theme,
+    isFirst = false,
+    expanded = false
+  ) {
     if (!card) return "";
 
-    const cacheKey = `mcard-${cardIndex}-${lang}-${theme}-${isFirst}-${expanded}-${this.isCardExpanded(cardIndex)}`;
+    const cacheKey = `mcard-${cardIndex}-${lang}-${theme}-${isFirst}-${expanded}-${this.isCardExpanded(
+      cardIndex
+    )}`;
     if (this.cache.renderedCards.has(cacheKey)) {
       return this.cache.renderedCards.get(cacheKey);
     }
@@ -439,24 +470,30 @@ export default class Consommation {
     const sections = card.sections || [];
     const borderRadius = "rounded-[22px]";
     const bgClass = theme === "dark" ? "bg-[#141414]" : "bg-white";
-    const borderClass = theme === "dark" ? "border border-[#3F3F3F]" : "border border-[#CDCDCD]";
+    const borderClass = theme === "dark" ? "border-[1px] border-[#CDCDCD]" : "";
     const textClass = theme === "dark" ? "text-white" : "text-[#2A2A2A]";
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
-    const shadowClass = theme === "dark" ? "" : "shadow-[-0.87px_6.94px_15.61px_0px_#4F4F4F1A]";
+    const shadowClass =
+      theme === "dark" ? "" : "shadow-[-0.87px_6.94px_15.61px_0px_#4F4F4F1A]";
 
     const renderedCard = `
       <div class="card ${bgClass} ${borderRadius} ${borderClass} w-full max-w-full relative transition-all duration-500 flex flex-col md:min-h-[400px] ${shadowClass} ${fontClass}" data-card-index="${cardIndex}">
         <div class="px-6 py-7 flex flex-col flex-1">
-          <div class="flex items-center gap-3 mb-4 pb-3" style="border-bottom: 0.87px solid #F4F4F4;">
+          <div class="flex items-center gap-3 mb-4 pb-3" style="border-bottom: 0.87px solid #ffffffff;">
             <div class="flex items-center justify-center">
-              <img src="${this.resolveIcon(card.icon, theme)}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
+              <img src="${this.resolveIcon(
+                card.icon,
+                theme
+              )}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
             </div>
             <h2 class="text-xl tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
               ${card.title}
             </h2>
           </div>
           <div class="card-content flex flex-col gap-9 flex-1">
-            ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
+            ${sections
+              .map((section) => this.renderSection(section, lang, theme))
+              .join("")}
           </div>
         </div>
       </div>

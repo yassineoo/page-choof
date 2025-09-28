@@ -17,7 +17,16 @@ export default class Consommation {
     this.config = {
       IMAGE_BASE: "./assets/images/consommation/",
       PUBLIC_IMAGE_BASE: "./assets/images/consommation/",
-      DARK_ICONS: ["dollar-phone", "infini", "internet", "rocket", "services", "sms", "telephone", "phone"],
+      DARK_ICONS: [
+        "dollar-phone",
+        "infini",
+        "internet",
+        "rocket",
+        "services",
+        "sms",
+        "telephone",
+        "phone",
+      ],
       MAX_SECTIONS_BEFORE_EXPAND: 4,
       EXPANDABLE_INDICES: new Set([0, 1, 2, 3]),
     };
@@ -45,7 +54,9 @@ export default class Consommation {
       if (chevronButton) {
         e.preventDefault();
         e.stopPropagation();
-        const idx = Number.parseInt(chevronButton.getAttribute("data-card-index"));
+        const idx = Number.parseInt(
+          chevronButton.getAttribute("data-card-index")
+        );
         if (!isNaN(idx) && this.config.EXPANDABLE_INDICES.has(idx)) {
           this.togglePairExpand();
         }
@@ -89,7 +100,10 @@ export default class Consommation {
 
   unbindEvents() {
     if (this.boundHandleLanguageChange) {
-      window.removeEventListener("languageChanged", this.boundHandleLanguageChange);
+      window.removeEventListener(
+        "languageChanged",
+        this.boundHandleLanguageChange
+      );
     }
     if (this.boundStorageListener) {
       window.removeEventListener("storage", this.boundStorageListener);
@@ -108,7 +122,11 @@ export default class Consommation {
     const newTheme = this.getTheme();
     const newIsMobile = this.isMobile();
 
-    if (newLang !== this.state.currentLang || newTheme !== this.state.currentTheme || newIsMobile !== this.state.lastIsMobile) {
+    if (
+      newLang !== this.state.currentLang ||
+      newTheme !== this.state.currentTheme ||
+      newIsMobile !== this.state.lastIsMobile
+    ) {
       console.log(
         `Consommation: Language/Theme/Layout changed from ${this.state.currentLang}/${this.state.currentTheme}/${this.state.lastIsMobile} to ${newLang}/${newTheme}/${newIsMobile}`
       );
@@ -175,7 +193,10 @@ export default class Consommation {
     if (n === "messenger") {
       iconPath = `${this.config.IMAGE_BASE}messenger.svg`;
     } else if (this.config.DARK_ICONS.includes(n)) {
-      iconPath = theme === "dark" ? `${this.config.IMAGE_BASE}dark/${n}-white.svg` : `${this.config.IMAGE_BASE}light/${n}.svg`;
+      iconPath =
+        theme === "dark"
+          ? `${this.config.IMAGE_BASE}dark/${n}-white.svg`
+          : `${this.config.IMAGE_BASE}light/${n}.svg`;
     } else {
       iconPath = `${this.config.IMAGE_BASE}${n}.svg`;
     }
@@ -185,7 +206,9 @@ export default class Consommation {
   }
 
   resolveSubIcon(name, theme) {
-    return Array.isArray(name) ? name.map((n) => this.resolveIcon(n, theme)) : this.resolveIcon(name, theme);
+    return Array.isArray(name)
+      ? name.map((n) => this.resolveIcon(n, theme))
+      : this.resolveIcon(name, theme);
   }
 
   resolveChevronIcon(theme) {
@@ -224,13 +247,17 @@ export default class Consommation {
 
     this.state.expandedCards.clear();
     if (this.state.allExpandedPair) {
-      this.config.EXPANDABLE_INDICES.forEach((i) => this.state.expandedCards.add(i));
+      this.config.EXPANDABLE_INDICES.forEach((i) =>
+        this.state.expandedCards.add(i)
+      );
     }
 
     this.clearCache();
 
     this.config.EXPANDABLE_INDICES.forEach((idx) => {
-      const cardEl = this.container.querySelector(`.card[data-card-index="${idx}"]`);
+      const cardEl = this.container.querySelector(
+        `.card[data-card-index="${idx}"]`
+      );
       if (!cardEl) return;
 
       const rotator = cardEl.querySelector(".card-chevron .chevron-rotator");
@@ -241,7 +268,10 @@ export default class Consommation {
 
       const btn = cardEl.querySelector(".card-chevron");
       if (btn) {
-        btn.setAttribute("aria-expanded", this.state.allExpandedPair ? "true" : "false");
+        btn.setAttribute(
+          "aria-expanded",
+          this.state.allExpandedPair ? "true" : "false"
+        );
       }
 
       this.renderCardContent(idx);
@@ -274,7 +304,16 @@ export default class Consommation {
       this.updateButtonText(button, currentLang, true);
       const remainingCards = data.cards
         .slice(1)
-        .map((card, index) => this.renderMobileCard(card, index + 1, currentLang, currentTheme, false, this.state.allExpandedPair))
+        .map((card, index) =>
+          this.renderMobileCard(
+            card,
+            index + 1,
+            currentLang,
+            currentTheme,
+            false,
+            this.state.allExpandedPair
+          )
+        )
         .join("");
 
       const tempDiv = document.createElement("div");
@@ -294,7 +333,9 @@ export default class Consommation {
       });
     } else {
       this.updateButtonText(button, currentLang, false);
-      const additionalCards = cardsContainer.querySelectorAll('[data-card-index]:not([data-card-index="0"])');
+      const additionalCards = cardsContainer.querySelectorAll(
+        '[data-card-index]:not([data-card-index="0"])'
+      );
 
       additionalCards.forEach((card, index) => {
         setTimeout(() => {
@@ -312,7 +353,13 @@ export default class Consommation {
 
   updateButtonText(button, lang, showingAll) {
     if (!button) return;
-    const buttonText = showingAll ? (lang === "ar" ? "إخفاء التفاصيل" : "MASQUER DÉTAILS") : lang === "ar" ? "عرض التفاصيل" : "VOIR DÉTAILS";
+    const buttonText = showingAll
+      ? lang === "ar"
+        ? "إخفاء التفاصيل"
+        : "MASQUER DÉTAILS"
+      : lang === "ar"
+      ? "عرض التفاصيل"
+      : "VOIR DÉTAILS";
     const span = button.querySelector("span");
     if (span) {
       span.style.opacity = "0";
@@ -324,18 +371,24 @@ export default class Consommation {
   }
 
   isCardExpanded(cardIndex) {
-    return this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.state.allExpandedPair : false;
+    return this.config.EXPANDABLE_INDICES.has(cardIndex)
+      ? this.state.allExpandedPair
+      : false;
   }
 
   getCardSections(card, isExpanded) {
     const sections = card.sections || [];
-    return !isExpanded && sections.length > this.config.MAX_SECTIONS_BEFORE_EXPAND
+    return !isExpanded &&
+      sections.length > this.config.MAX_SECTIONS_BEFORE_EXPAND
       ? sections.slice(0, this.config.MAX_SECTIONS_BEFORE_EXPAND)
       : sections;
   }
 
   hasExpandableContent(card) {
-    return card.sections && card.sections.length > this.config.MAX_SECTIONS_BEFORE_EXPAND;
+    return (
+      card.sections &&
+      card.sections.length > this.config.MAX_SECTIONS_BEFORE_EXPAND
+    );
   }
 
   getVisibleCards() {
@@ -357,7 +410,9 @@ export default class Consommation {
       return;
     }
 
-    const layoutCacheKey = `layout-${currentLang}-${currentTheme}-${this.isMobile()}-${this.state.showAllCards}-${this.state.allExpandedPair}`;
+    const layoutCacheKey = `layout-${currentLang}-${currentTheme}-${this.isMobile()}-${
+      this.state.showAllCards
+    }-${this.state.allExpandedPair}`;
     if (this.cache.layoutCache.has(layoutCacheKey)) {
       this.container.innerHTML = this.cache.layoutCache.get(layoutCacheKey);
       if (!this.isMobile()) {
@@ -383,30 +438,52 @@ export default class Consommation {
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="w-full flex flex-col ${bgClass} ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
-        <div class="bg-ooredoo-red w-full px-6 pt-2 pb-14 -my-7"> 
-          <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center pt-[28px] md:pt-4 pb-4" style="font-weight: 500; font-size: 24px;">
-            ${data.title}
-          </h1>
+    <div class="relative w-full flex flex-col ${fontClass}" ${
+      lang === "ar" ? 'dir="rtl"' : ""
+    }>
+      <div class="bg-ooredoo-red w-full px-6 pt-2 pb-14 -my-10 relative z-10"> 
+        <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center pt-[28px] md:pt-4 pb-6" 
+            style="font-weight: 500; font-size: 24px;">
+          ${data.title}
+        </h1>
+      </div>
+
+      <div class="absolute top-[-10] left-0 w-full h-full bg-[#F8F8F8] dark:bg-[#171717] z-0"></div>
+
+      <div class="w-full px-4 -mt-7 relative z-10">
+        <div class="cards-container flex flex-col gap-6 max-w-full mx-auto">
+          ${this.renderMobileCard(
+            data.cards[0],
+            0,
+            lang,
+            theme,
+            true,
+            this.isCardExpanded(0)
+          )}
+          ${
+            this.state.showAllCards
+              ? data.cards
+                  .slice(1)
+                  .map((card, index) =>
+                    this.renderMobileCard(
+                      card,
+                      index + 1,
+                      lang,
+                      theme,
+                      false,
+                      this.isCardExpanded(index + 1)
+                    )
+                  )
+                  .join("")
+              : ""
+          }
         </div>
-        <div class="w-full px-4 -mt-7">
-          <div class="cards-container flex flex-col gap-6 max-w-full mx-auto">
-            ${this.renderMobileCard(data.cards[0], 0, lang, theme, true, this.isCardExpanded(0))}
-            ${
-              this.state.showAllCards
-                ? data.cards
-                    .slice(1)
-                    .map((card, index) => this.renderMobileCard(card, index + 1, lang, theme, false, this.isCardExpanded(index + 1)))
-                    .join("")
-                : ""
-            }
-          </div>
-          <div class="mb-[52px]"> <!-- Added margin-bottom to the button wrapper -->
-            ${this.renderMobileButton(lang, theme)}
-          </div>
+        <div class="mb-[52px]">
+          ${this.renderMobileButton(lang, theme)}
         </div>
       </div>
-    `;
+    </div>
+  `;
   }
 
   renderMobileButton(lang, theme) {
@@ -421,17 +498,26 @@ export default class Consommation {
 
     return `
       <div class="w-full flex justify-end mt-4 mb-2 px-2 ${fontClass}">
-        <button class="show-all-btn bg-ooredoo-red text-white font-medium text-sm uppercase rounded-full px-8 py-3 flex items-center justify-center gap-2 w-3/5 max-w-[200px]" style="font-weight: 500;">
+        <button class="show-all-btn bg-ooredoo-red text-white font-medium text-sm uppercase rounded-full px-[20px] md:px-8 py-3 flex items-center justify-center gap-2 md:max-w-[200px]" style="font-weight: 500;">
           <span>${buttonText}</span>
         </button>
       </div>
     `;
   }
 
-  renderMobileCard(card, cardIndex, lang, theme, isFirst = false, expanded = false) {
+  renderMobileCard(
+    card,
+    cardIndex,
+    lang,
+    theme,
+    isFirst = false,
+    expanded = false
+  ) {
     if (!card) return "";
 
-    const cacheKey = `mcard-${cardIndex}-${lang}-${theme}-${isFirst}-${expanded}-${this.isCardExpanded(cardIndex)}`;
+    const cacheKey = `mcard-${cardIndex}-${lang}-${theme}-${isFirst}-${expanded}-${this.isCardExpanded(
+      cardIndex
+    )}`;
     if (this.cache.renderedCards.has(cacheKey)) {
       return this.cache.renderedCards.get(cacheKey);
     }
@@ -439,24 +525,30 @@ export default class Consommation {
     const sections = card.sections || [];
     const borderRadius = "rounded-[22px]";
     const bgClass = theme === "dark" ? "bg-[#141414]" : "bg-white";
-    const borderClass = theme === "dark" ? "border border-[#3F3F3F]" : "border border-[#CDCDCD]";
+    const borderClass = theme === "dark" ? "border-[1px] border-[#CDCDCD]" : "";
     const textClass = theme === "dark" ? "text-white" : "text-[#2A2A2A]";
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
-    const shadowClass = theme === "dark" ? "" : "shadow-[-0.87px_6.94px_15.61px_0px_#4F4F4F1A]";
+    const shadowClass =
+      theme === "dark" ? "" : "shadow-[-0.87px_6.94px_15.61px_0px_#4F4F4F1A]";
 
     const renderedCard = `
       <div class="card ${bgClass} ${borderRadius} ${borderClass} w-full max-w-full relative transition-all duration-500 flex flex-col md:min-h-[400px] ${shadowClass} ${fontClass}" data-card-index="${cardIndex}">
         <div class="px-6 py-7 flex flex-col flex-1">
-          <div class="flex items-center gap-3 mb-4 pb-3" style="border-bottom: 0.87px solid #F4F4F4;">
+          <div class="flex items-center gap-3 mb-4 pb-3" style="border-bottom: 0.87px solid #ffffffff;">
             <div class="flex items-center justify-center">
-              <img src="${this.resolveIcon(card.icon, theme)}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
+              <img src="${this.resolveIcon(
+                card.icon,
+                theme
+              )}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
             </div>
             <h2 class="text-xl tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
               ${card.title}
             </h2>
           </div>
           <div class="card-content flex flex-col gap-9 flex-1">
-            ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
+            ${sections
+              .map((section) => this.renderSection(section, lang, theme))
+              .join("")}
           </div>
         </div>
       </div>
@@ -474,7 +566,9 @@ export default class Consommation {
 
     return `
 
-      <div class="${bgClass} w-full py-16 px-8 md:px-12 flex flex-col items-stretch ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
+      <div class="${bgClass} w-full py-16 px-8 md:px-12 flex flex-col items-stretch ${fontClass}" ${
+      lang === "ar" ? 'dir="rtl"' : ""
+    }>
 
         <div class="w-full flex flex-row justify-between items-center mb-8">
           <div class="flex flex-col">
@@ -483,13 +577,19 @@ export default class Consommation {
             </h1>
           </div>
           <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${lang}' class="bg-ooredoo-red text-white font-medium text-sm rounded-full px-6 py-3 flex items-center gap-2 whitespace-nowrap" style="font-weight: 500;">
-            <span class="${lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"}"> ${data.charge}</span>
+            <span class="${
+              lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+            }"> ${data.charge}</span>
             <img src="${this.config.IMAGE_BASE}baridi.svg" class="w-4 h-4" />
             <img src="${this.config.IMAGE_BASE}poste.svg" class="w-4 h-4" />
           </a>
         </div>
         <div class="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 items-start">
-          ${visibleCards.map(({ card, originalIndex }) => this.renderDesktopCard(card, originalIndex, lang, theme)).join("")}
+          ${visibleCards
+            .map(({ card, originalIndex }) =>
+              this.renderDesktopCard(card, originalIndex, lang, theme)
+            )
+            .join("")}
         </div>
       </div>
     `;
@@ -498,7 +598,9 @@ export default class Consommation {
   renderDesktopCard(card, cardIndex, lang, theme) {
     if (!card) return "";
 
-    const cacheKey = `dcard-${cardIndex}-${lang}-${theme}-${this.isCardExpanded(cardIndex)}`;
+    const cacheKey = `dcard-${cardIndex}-${lang}-${theme}-${this.isCardExpanded(
+      cardIndex
+    )}`;
     if (this.cache.renderedCards.has(cacheKey)) {
       return this.cache.renderedCards.get(cacheKey);
     }
@@ -506,15 +608,20 @@ export default class Consommation {
     const isExpanded = this.isCardExpanded(cardIndex);
     const sections = this.getCardSections(card, isExpanded);
     const bgClass = theme === "dark" ? "bg-[#141414]" : "bg-white";
-    const borderClass = theme === "dark" ? "border border-[#3F3F3F]" : "border border-[#CDCDCD]";
-    const shadowClass = theme === "dark" ? "" : "shadow-[-2.6px_27.76px_27.76px_0px_#4F4F4F17]";
+    const borderClass =
+      theme === "dark" ? "border border-[#3F3F3F]" : "border border-[#CDCDCD]";
+    const shadowClass =
+      theme === "dark" ? "" : "shadow-[-2.6px_27.76px_27.76px_0px_#4F4F4F17]";
     const textClass = theme === "dark" ? "text-white" : "text-[#2A2A2A]";
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
     const renderedTitle = (() => {
       let titleHTML = card.title;
 
       if (titleHTML.includes("SMS")) {
-        titleHTML = titleHTML.replace(/(SMS)/g, '<span class="font-rubik">$1</span>');
+        titleHTML = titleHTML.replace(
+          /(SMS)/g,
+          '<span class="font-rubik">$1</span>'
+        );
       }
 
       return `
@@ -531,7 +638,10 @@ export default class Consommation {
           <!-- Title Section -->
           <div class="flex items-center gap-1 flex-shrink-0" style="padding-bottom: 24px; border-bottom: 0.87px solid #F4F4F4;">
             <div class="flex items-center justify-center">
-              <img src="${this.resolveIcon(card.icon, theme)}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
+              <img src="${this.resolveIcon(
+                card.icon,
+                theme
+              )}" style="width:27.76px;height:27.76px;" alt="${card.title}" />
             </div>
             <h2 class="text-xl leading-[170%] tracking-[2%] ${textClass}" style="font-weight: 500; font-size: 24px;">
               ${card.title}
@@ -540,12 +650,18 @@ export default class Consommation {
 
           <!-- Card Content -->
           <div class="card-content flex flex-col gap-6 sm:flex-1 pt-6">
-            ${sections.map((section) => this.renderSection(section, lang, theme)).join("")}
+            ${sections
+              .map((section) => this.renderSection(section, lang, theme))
+              .join("")}
           </div>
           </div>
 
           <!-- Expand Button (if any) -->
-            ${this.config.EXPANDABLE_INDICES.has(cardIndex) ? this.renderExpandButton(cardIndex, isExpanded, theme) : ""}
+            ${
+              this.config.EXPANDABLE_INDICES.has(cardIndex)
+                ? this.renderExpandButton(cardIndex, isExpanded, theme)
+                : ""
+            }
           </div>
       </div>
     `;
@@ -566,10 +682,14 @@ export default class Consommation {
 
     const isRTL = lang === "ar";
     const directionStyle = isRTL ? "direction: rtl;" : "direction: ltr;";
-    const gapSideMargin = isRTL ? "margin-left: 0.5rem;" : "margin-right: 0.5rem;";
+    const gapSideMargin = isRTL
+      ? "margin-left: 0.5rem;"
+      : "margin-right: 0.5rem;";
 
     const isOsn = section.subtitle?.includes("OSN");
-    const isFacebookMessenger = section.subtitle?.includes("Facebook & Messenger") || section.subtitle?.includes("فايسبوك & ماسنجر");;
+    const isFacebookMessenger =
+      section.subtitle?.includes("Facebook & Messenger") ||
+      section.subtitle?.includes("فايسبوك & ماسنجر");
 
     let iconsAndTextContent = "";
 
@@ -577,13 +697,20 @@ export default class Consommation {
     // Special case: OSN service
     if (isOsn) {
       // For OSN, use custom dark mode logic with -dark suffix
-      const osnIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}osn-dark.svg` : `${this.config.IMAGE_BASE}osn.svg`;
-      const anghamiIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}anghami-dark.svg` : `${this.config.IMAGE_BASE}anghami.svg`;
+      const osnIconPath =
+        theme === "dark"
+          ? `${this.config.IMAGE_BASE}osn-dark.svg`
+          : `${this.config.IMAGE_BASE}osn.svg`;
+      const anghamiIconPath =
+        theme === "dark"
+          ? `${this.config.IMAGE_BASE}anghami-dark.svg`
+          : `${this.config.IMAGE_BASE}anghami.svg`;
 
       const osnIcon = `<img src="${osnIconPath}" style="width:25px;height:25px;" alt="OSN" />`;
       const anghamiIcon = `<img src="./assets/images/anghami-icon.svg" style="width: auto;height:23px;" alt="Anghami" />`;
 
-      const fontClassForText = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
+      const fontClassForText =
+        lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
       const textColor = theme === "dark" ? "text-white" : textClass;
 
       iconsAndTextContent = `
@@ -603,15 +730,21 @@ export default class Consommation {
       </div>
     </div>
   `;
-    } else 
-      if (isFacebookMessenger) {
-      const facebookIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}facebook.svg` : `${this.config.IMAGE_BASE}facebook.svg`;
-      const messengerIconPath = theme === "dark" ? `${this.config.IMAGE_BASE}messenger.svg` : `${this.config.IMAGE_BASE}messenger.svg`;
+    } else if (isFacebookMessenger) {
+      const facebookIconPath =
+        theme === "dark"
+          ? `${this.config.IMAGE_BASE}facebook.svg`
+          : `${this.config.IMAGE_BASE}facebook.svg`;
+      const messengerIconPath =
+        theme === "dark"
+          ? `${this.config.IMAGE_BASE}messenger.svg`
+          : `${this.config.IMAGE_BASE}messenger.svg`;
 
       const facebookIcon = `<img src="${facebookIconPath}" style="width:20px;height:20px;" alt="Facebook" />`;
       const messengerIcon = `<img src="${messengerIconPath}" style="width:20px;height:20px;" alt="Messenger" />`;
 
-      const fontClassForText = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
+      const fontClassForText =
+        lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
       const textColor = theme === "dark" ? "text-white" : textClass;
 
       iconsAndTextContent = `
@@ -643,7 +776,10 @@ export default class Consommation {
           fontClassForSubtitle = ""; // Fonts handled manually
 
           // Wrap "Ooredoo" in Rubik, and the rest in Noto Kufi Arabic
-          const subtitleWithFonts = section.subtitle.replace(/Ooredoo/g, `<span class="font-rubik">Ooredoo</span>`);
+          const subtitleWithFonts = section.subtitle.replace(
+            /Ooredoo/g,
+            `<span class="font-rubik">Ooredoo</span>`
+          );
           section.subtitle = `<span class="font-noto-kufi-arabic">${subtitleWithFonts}</span>`;
         } else if (hasArabicChars) {
           fontClassForSubtitle = "font-noto-kufi-arabic";
@@ -685,16 +821,28 @@ export default class Consommation {
     if (!section.subIcon) return "";
     if (Array.isArray(section.subIcon)) {
       return section.subIcon
-        .map((icon) => `<img src="${this.resolveSubIcon(icon, theme)}" style="width:20px;height:20px;" alt="${icon}" />`)
+        .map(
+          (icon) =>
+            `<img src="${this.resolveSubIcon(
+              icon,
+              theme
+            )}" style="width:20px;height:20px;" alt="${icon}" />`
+        )
         .join("");
     }
 
-    return `<img src="${this.resolveSubIcon(section.subIcon, theme)}" style="width:20px;height:20px;" alt="${section.subIcon}" />`;
+    return `<img src="${this.resolveSubIcon(
+      section.subIcon,
+      theme
+    )}" style="width:20px;height:20px;" alt="${section.subIcon}" />`;
   }
 
   renderSectionValue(section, theme) {
     if (section.infini) {
-      return `<img src="${this.resolveSubIcon("infini", theme)}" style="width:40px;height:40px;" alt="Infini" />`;
+      return `<img src="${this.resolveSubIcon(
+        "infini",
+        theme
+      )}" style="width:40px;height:40px;" alt="Infini" />`;
     }
     if (!section.value) return "";
 
@@ -741,16 +889,26 @@ export default class Consommation {
 
   renderSectionSecondaryRow(section, lang, theme) {
     const hasDate = !!section.date;
-    const isCreditRecharge = section.subtitle?.toLowerCase().includes("crédit recharge");
-    const hasProgress = !section.infini && !isCreditRecharge && section.percentage !== undefined && section.percentage !== null;
+    const isCreditRecharge = section.subtitle
+      ?.toLowerCase()
+      .includes("crédit recharge");
+    const hasProgress =
+      !section.infini &&
+      !isCreditRecharge &&
+      section.percentage !== undefined &&
+      section.percentage !== null;
     if (!hasDate && !hasProgress) return "";
 
     let content = "";
     if (hasDate) {
       content += `
         <div class="flex justify-start">
-          <span class="${lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
-            ${lang === "ar" ? "إلى غاية" : "Expire le"} <span class="font-rubik">${section.date}</span>
+          <span class="${
+            lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+          } text-[#7F7F7F] text-[10px] font-medium" style="font-weight: 500;">
+            ${
+              lang === "ar" ? "إلى غاية" : "Expire le"
+            } <span class="font-rubik">${section.date}</span>
           </span>
         </div>
       `;
@@ -787,11 +945,15 @@ export default class Consommation {
           aria-expanded="${isExpanded ? "true" : "false"}"
           style="min-width: 50px; min-height: 50px; margin-bottom: 0;"
         >
-          <div class="chevron-rotator w-12 flex transform transition-transform duration-300 ease-in-out ${isExpanded ? "rotate-180" : "rotate-0"}">
+          <div class="chevron-rotator w-12 flex transform transition-transform duration-300 ease-in-out ${
+            isExpanded ? "rotate-180" : "rotate-0"
+          }">
             <img src="${chevronSrc}"
                  class="w-full "
                  alt="expand chevron"
-                 style="filter: ${theme === "dark" ? "brightness(0) invert(1)" : "none"};" />
+                 style="filter: ${
+                   theme === "dark" ? "brightness(0) invert(1)" : "none"
+                 };" />
           </div>
         </button>
       </div>
@@ -807,12 +969,18 @@ export default class Consommation {
 
     const isExpanded = this.isCardExpanded(cardIndex);
     const sections = this.getCardSections(card, isExpanded);
-    const cardElement = this.container.querySelector(`.card[data-card-index="${cardIndex}"]`);
+    const cardElement = this.container.querySelector(
+      `.card[data-card-index="${cardIndex}"]`
+    );
     const contentElement = cardElement?.querySelector(".card-content");
 
     if (contentElement) {
       contentElement.style.transition = "all 0.3s ease-in-out";
-      contentElement.innerHTML = sections.map((section) => this.renderSection(section, currentLang, currentTheme)).join("");
+      contentElement.innerHTML = sections
+        .map((section) =>
+          this.renderSection(section, currentLang, currentTheme)
+        )
+        .join("");
     }
   }
 

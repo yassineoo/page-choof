@@ -29,10 +29,7 @@ class Modal {
     return `
       <button id="modal-close-btn" type="button" aria-label="Close modal"
         class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
-        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M13.25 1.50391L1.25 13.5039M1.25 1.50391L13.25 13.5039"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <img src="/assets/images/Close.svg" alt="close"/>
       </button>
     `;
   }
@@ -127,7 +124,7 @@ export default class Header {
     this.userData = {
       phone: "0509876543",
       offer: "Offre Dima +",
-      credit: "2000 DA",
+      credit: "2000",
       autoRenewal: storedRenewal !== null ? JSON.parse(storedRenewal) : true,
     };
     this.isTransitioning = false;
@@ -142,6 +139,7 @@ export default class Header {
     document.documentElement.lang = this.currentLanguage;
     document.documentElement.dir =
       this.currentLanguage === "ar" ? "rtl" : "ltr";
+    this.applyInitialTheme();
     this.render();
     requestAnimationFrame(() => {
       this.setupEventListeners();
@@ -264,6 +262,7 @@ export default class Header {
         this.setTheme(this.theme === "dark" ? "light" : "dark");
       });
       this.updateMobileThemeIcons();
+      this.closeMobileMenu();
     }
   }
 
@@ -425,5 +424,4 @@ export default class Header {
       }
     });
   }
-
 }

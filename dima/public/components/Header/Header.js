@@ -29,11 +29,8 @@ class Modal {
   getCloseButtonHTML() {
     return `
       <button id="modal-close-btn" type="button" aria-label="Close modal"
-        class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
-        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M13.25 1.50391L1.25 13.5039M1.25 1.50391L13.25 13.5039"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
+        <img src="/assets/images/Close.svg" alt="close"/>
       </button>
     `;
   }
@@ -265,6 +262,7 @@ export default class Header {
         this.setTheme(this.theme === "dark" ? "light" : "dark");
       });
       this.updateMobileThemeIcons();
+      this.closeMobileMenu();
     }
   }
   updateMobileThemeIcons() {
@@ -588,10 +586,10 @@ export default class Header {
           </p>
         </div>
         <div class="flex justify-center items-center gap-[13px] w-full max-w-md px-4 pb-4 md:pb-0">
-          <button id="modal-cancel-btn" type="button" class=" ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
+          <button id="modal-cancel-btn" type="button" class=" ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[150px] md:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
             ${texts.cancelBtn}
           </button>
-          <button id="modal-confirm-btn" type="button" class="${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg">
+          <button id="modal-confirm-btn" type="button" class="${fontClass} font-semibold text-base uppercase forfait-modal-button w-[150px] md:w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg">
             ${texts.confirmBtn}
           </button>
         </div>
@@ -618,8 +616,8 @@ export default class Header {
       <div class="relative w-full max-w-5xl bg-white dark:bg-[#2C2C2C] rounded-lg flex flex-col overflow-hidden">
         ${closeBtnHTML}
         <div class="p-6 md:p-8 text-center">
-          <h2 class="${fontClass} text-2xl font-bold text-[28px] text-ooredoo-red dark:text-white mb-8">${texts.autoModalTitle}</h2>
-          <p class="${fontClass} text-black dark:text-white mb-4 px-0 text-[22px] md:px-[30px]">
+          <h2 class="${fontClass} text-2xl font-bold text-[20px] md:text-[28px] text-ooredoo-red dark:text-white mb-8">${texts.autoModalTitle}</h2>
+          <p class="${fontClass} text-black dark:text-white mb-4 px-0 text-[14px] md:text-[22px] md:px-[30px]">
             ${texts.autoModalDesc}
           </p>
           <div class="mt-6">

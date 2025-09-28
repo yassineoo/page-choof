@@ -498,7 +498,7 @@ export default class Consommation {
 
     return `
       <div class="w-full flex justify-end mt-4 mb-2 px-2 ${fontClass}">
-        <button class="show-all-btn bg-ooredoo-red text-white font-medium text-sm uppercase rounded-full px-[20px] md:px-8 py-3 flex items-center justify-center gap-2 w-3/5 max-w-[134px] md:max-w-[200px]" style="font-weight: 500;">
+        <button class="show-all-btn bg-ooredoo-red text-white font-medium text-sm uppercase rounded-full px-[20px] md:px-8 py-3 flex items-center justify-center gap-2 md:max-w-[200px]" style="font-weight: 500;">
           <span>${buttonText}</span>
         </button>
       </div>
@@ -525,8 +525,7 @@ export default class Consommation {
     const sections = card.sections || [];
     const borderRadius = "rounded-[22px]";
     const bgClass = theme === "dark" ? "bg-[#141414]" : "bg-white";
-    const borderClass =
-      theme === "dark" ? "border-[1px] border-[#CDCDCD]" : "";
+    const borderClass = theme === "dark" ? "border-[1px] border-[#CDCDCD]" : "";
     const textClass = theme === "dark" ? "text-white" : "text-[#2A2A2A]";
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
     const shadowClass =

@@ -23,7 +23,7 @@ export const generateHeaderHTML = (
     if (containsArabic(text)) {
       return `<span class="${fontClass} font-semibold arabic-text" dir="auto">${safe}</span>`;
     }
-    return `<span class="${fontClass}" font-semibold dir="auto">${safe}</span>`;
+    return `<span class="${fontClass} font-semibold" dir="auto">${safe}</span>`;
   };
 
   const getOfferDetails = (offer) => {
@@ -45,7 +45,7 @@ export const generateHeaderHTML = (
       if (!offer) return offer;
       let replaced = offer.replace(/^Offre\s+/, "");
       replaced = replaced.replace(/\+\s*$/, "");
-      replaced = "عرض " + "+ " +  replaced.trim();
+      replaced = "عرض " + "+ " + replaced.trim();
       return wrapLatin(replaced);
     }
     return offer;
@@ -107,10 +107,10 @@ export const generateHeaderHTML = (
 <header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${
     language === "ar" ? "rtl" : "ltr"
   }">
-  <div class="w-full max-w-[90vw] mx-auto px-4">
+  <div class="w-full max-w-[90vw] mx-auto">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
      
-    <div class="flex items-center gap-1 md:gap-3 logo-group" dir="ltr">
+    <div class="flex items-center gap-3 md:gap-3 logo-group" dir="ltr">
   <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
     <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo"
          class="block w-full h-full max-h-full object-contain dark:hidden"
@@ -120,9 +120,9 @@ export const generateHeaderHTML = (
          width="200" height="40" loading="lazy" />
   </div>
 
-  <span class="flex items-center justify-center h-[20px] md:h-[40px] text-[18px] md:text-3xl font-light text-black dark:text-white leading-none separator" aria-hidden="true">|</span>
+  <span class="flex items-center justify-center h-[14px] md:h-[38px] text-[12px] md:text-[18px] mt-0.5 md:mt-2 md:text-[24px] font-light text-black dark:text-white leading-none separator" aria-hidden="true">|</span>
 
-  <div class="flex items-center justify-center  pt-1 md:pt-1 w-[58.5px] h-[20px] md:w-[115px] md:h-[40px]">
+  <div class="flex items-center justify-center  pt-0.5 md:pt-1 w-[58.5px] h-[20px] md:w-[115px] md:h-[40px]">
     <img src="./assets/images/header/Choof.svg" alt="Choof"
          class="block w-full h-full max-h-full object-contain dark:hidden"
          style="transform: translateY(1px);"
@@ -176,25 +176,14 @@ export const generateHeaderHTML = (
         <img src="./assets/images/header/Menu.svg" class="w-6 h-6 dark:hidden block transition-all duration-300" id="mobile-menu-icon" />
         <img src="./assets/images/header/Menu-white.svg" class="w-6 h-6 hidden dark:inline transition-all duration-300" id="mobile-menu-icon-dark" />
         <img src="./assets/images/header/close.svg" class="w-6 h-6 hidden transition-all duration-300 dark:hidden" id="mobile-menu-close-icon" />
-
-
       </button>
     </div>
 
-    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute text-lg top-[64px] left-0 w-full shadow-lg bg-white dark:bg-gray-800 md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
-
-
-
-
-
-
-
-
-
+    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute text-lg top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
       <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
           <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white gap-1" type="button" aria-pressed="false">
-            <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
+            <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:block" id="mobile-moon-icon" />
             <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
             <span class="ml-2 ${fontClass}">${texts.changeModeLabel}</span>
           </button>
@@ -230,7 +219,7 @@ export const generateHeaderHTML = (
     </div>
   </div>
 
-  <div class="bg-ooredoo-red py-4 text-white w-full">
+  <div class="bg-ooredoo-red py-4 border-b-2 border-[#E30613] text-white w-full">
     <div class="px-4 w-full max-w-[95vw] md:max-w-[90vw] mx-auto">
       <div class="md:block hidden">
         <div class="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
@@ -259,25 +248,28 @@ export const generateHeaderHTML = (
       </div>
 
       <div class="md:hidden">
-        <div class="flex flex-col gap-6">
+               <div class="flex flex-col gap-6">
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 min-w-0">
-              <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
+            <div class="flex items-center gap-1 min-w-0">
+              <img src="./assets/images/header/Telephone.svg" class="w-[18px] h-[18px] flex-shrink-0" />
               <span class="hdr-common-text ${fontClass} truncate">${
     userData.phone || "0509876543"
   }</span>
             </div>
-            <div class="flex items-center gap-2 flex-shrink-0">
-              <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
-              <span class="hdr-price ${fontClass}">${
-    userData.credit || "1200 DA"
+            <div class="flex items-center gap-1 flex-shrink-0">
+              <img src="./assets/images/header/Dollar.svg" class="w-[18px] h-[18px]" />
+       <span class="hdr-price ${fontClass}">${
+    fontClass === "font-noto-kufi-arabic"
+      ? `<span class="font-rubik">${userData.credit}</span>` +
+        `<span class="font-noto-kufi-arabic"> دج</span>`
+      : userData.credit + " DA"
   }</span>
             </div>
           </div>
 
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 min-w-0">
-              <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
+            <div class="flex items-center gap-1 min-w-0">
+              <img src="./assets/images/header/Puce.svg" class="w-[18px] h-[18px] flex-shrink-0" />
               <span class="hdr-common-text truncate">${offerHTML}</span>
             </div>
 
