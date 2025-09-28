@@ -375,7 +375,7 @@ export const generateHeaderHTML = (
     texts.renewalLabel
   }</span>
               <div class="relative flex items-center bg-white rounded-full h-[36px] ${
-                language === "ar" ? "w-[176px]" : "w-[156px]"
+                language === "ar" ? "w-[185px]" : "w-[156px]"
               } md:w-[175px] p-0.5">
                 <button 
                   id="renewal-auto-mobile"

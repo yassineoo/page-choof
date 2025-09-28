@@ -368,13 +368,13 @@ export default class TODServices {
 
     const modalTitleClass = `
       font-semibold text-ooredoo-red dark:text-white
-      text-[34px] leading-[55.86px]
+      text-[28px] md:text-[34px] leading-[55.86px]
       uppercase text-center tracking-[-0.02em]
       mb-6
     `.replace(/\s+/g, " ");
 
     const closeButton = `
-      <button class="absolute top-6 right-6 p-2 z-10" aria-label="Fermer" tabindex="0">
+      <button class="absolute top-[15px] right-[15px] p-2 z-10" aria-label="Fermer" tabindex="0">
         <img src="./assets/images/Close.svg" alt="close" style="width:34px;height:34px;display:block"/>
       </button>
     `;

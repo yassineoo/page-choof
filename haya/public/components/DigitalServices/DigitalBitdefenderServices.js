@@ -626,7 +626,7 @@ export default class DigitalBitdefenderServices {
     const currency = isArabic ? "دج" : "DA";
 
     return `
-    <div class="w-full bg-gray-50 dark:bg-black py-[50px] lg:py-[70px] ${fontClass}" ${dirAttribute}>
+    <div class="w-full bg-white dark:bg-black py-[50px] lg:py-[70px] ${fontClass}" ${dirAttribute}>
       <div class="w-full mx-auto px-2 sm:px-4 flex flex-col items-center">
         
         <!-- Main Container Card -->
@@ -1216,8 +1216,8 @@ export default class DigitalBitdefenderServices {
                   }">
                     ${
                       isRTL
-                        ? `أوافق على <button type="button" class="terms-link text-blue-600 dark:text-white underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>`
-                        : `J'accepte les <button type="button" class="terms-link text-blue-600 dark:text-white underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">conditions générales</button>`
+                        ? `أوافق على <button type="button" class="terms-link text-blue-600 dark:text-blue-600 underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">شروط الإستعمال</button>`
+                        : `J'accepte les <button type="button" class="terms-link text-blue-600 dark:text-blue-600 underline focus:outline-none focus:ring-2 focus:ring-ooredoo-red focus:ring-offset-1 rounded transition-all duration-200" id="terms-link">conditions générales</button>`
                     }
                   </span>
                 </label>
