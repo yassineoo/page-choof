@@ -479,10 +479,12 @@ class BoostComponent {
           aria-modal="true"
           aria-labelledby="modal-title">
           <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
-              <button class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20 boost-modal-close"
+              <button class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20 boost-modal-close"
                       aria-label="${isRTL ? "إغلاق" : "Fermer"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
+
+              
               <div class="text-center mb-6">
                   <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${this.createMixedTitleHTML(title)}
@@ -508,8 +510,8 @@ class BoostComponent {
     };
 
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `boost-modal-button primary ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `boost-modal-button secondary ${fontClass}  font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const primaryBtn = `boost-modal-button primary ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[140px] md:w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `boost-modal-button secondary ${fontClass}  font-semibold text-base uppercase forfait-modal-button w-[140px] md:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
     const buttonGap = "gap-4 lg:gap-4";
 
     const buttonConfigs = {

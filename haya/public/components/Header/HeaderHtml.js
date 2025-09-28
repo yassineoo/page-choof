@@ -59,13 +59,14 @@ export const generateHeaderHTML = (
   .hdr-price{
     font-family: Rubik, sans-serif;
     font-weight: 500;
+    font-style: Medium;
     font-size: 24px;
     line-height: 170%;
+    letter-spacing: 2%;
   }
-
   @media (max-width: 767px){
     .hdr-common-text{ font-size: 14px; }
-    .hdr-price{ font-size: 20px; }
+    .hdr-price{ font-size: 14px; }
   }
 
   @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.95) translateY(-8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
@@ -97,22 +98,32 @@ export const generateHeaderHTML = (
 </style>
 
 <header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${dirAttr}">
-  <div class="w-full max-w-[90vw] mx-auto px-4">
+ <div class="w-full max-w-[90vw] mx-auto">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
-      <div class="flex items-center gap-1 md:gap-3 logo-group" dir="ltr">
-        <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
-          <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo" class="block w-full h-full object-contain dark:hidden" width="200" height="40" loading="lazy" />
-          <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo" class="hidden dark:block w-full h-full object-contain" width="200" height="40" loading="lazy" />
-        </div>
+     
+    <div class="flex items-center gap-3 md:gap-3 logo-group" dir="ltr">
+  <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
+    <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo"
+         class="block w-full h-full max-h-full object-contain dark:hidden"
+         width="200" height="40" loading="lazy" />
+    <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo"
+         class="block w-full h-full max-h-full object-contain hidden dark:block"
+         width="200" height="40" loading="lazy" />
+  </div>
 
-        <span class="flex items-center justify-center h-[20px] md:h-[40px] text-[18px] md:text-3xl font-light text-black dark:text-white leading-none" aria-hidden="true">|</span>
+  <span class="flex items-center justify-center h-[16px] md:h-[38px] text-[14px] md:text-[18px] mt-0.5 md:mt-2 md:text-[24px] font-light text-black dark:text-white leading-none separator" aria-hidden="true">|</span>
 
-        <div class="flex items-center justify-center pt-1 md:pt-1 w-[58.5px] h-[20px] md:w-[115px] md:h-[40px]">
-          <img src="./assets/images/header/Choof.svg" alt="Choof" class="block w-full h-full object-contain dark:hidden" width="115" height="26" loading="lazy" />
-          <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="hidden dark:block w-full h-full object-contain" width="115" height="26" loading="lazy" />
-        </div>
-      </div>
-
+  <div class="flex items-center justify-center  pt-0.5 md:pt-1 w-[58.5px] h-[20px] md:w-[115px] md:h-[40px]">
+    <img src="./assets/images/header/Choof.svg" alt="Choof"
+         class="block w-full h-full max-h-full object-contain dark:hidden"
+         style="transform: translateY(1px);"
+         width="115" height="26" loading="lazy" />
+    <img src="./assets/images/header/Choof-white.svg" alt="Choof"
+         class="block w-full h-full max-h-full object-contain hidden dark:block"
+         style="transform: translateY(1px);"
+         width="115" height="26" loading="lazy" />
+  </div>
+ </div>
       <div class="hidden md:flex items-center space-x-4">
         <div id="theme-switcher" class="relative w-[144px] h-[48px] rounded-full bg-gray-200 dark:bg-ooredoo-red overflow-hidden transition-all duration-500 z-50">
           <button id="moon-btn" class="absolute left-0 top-0 w-[72px] h-[48px] rounded-full bg-[#171717] dark:bg-white flex items-center justify-center transition-all duration-500 z-10">
@@ -158,11 +169,11 @@ export const generateHeaderHTML = (
       </button>
     </div>
 
-    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute text-lg top-[64px] left-0 w-full shadow-lg bg-white dark:bg-gray-800 md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
+    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute text-lg top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
       <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
           <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white gap-1" type="button" aria-pressed="false">
-            <img src="./assets/images/header/moon-white.svg" class="hidden w-5 h-5" id="mobile-moon-icon" />
+           <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:block" id="mobile-moon-icon" />
             <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
             <span class="ml-2 ${fontClass}">${texts.changeModeLabel}</span>
           </button>
@@ -194,7 +205,7 @@ export const generateHeaderHTML = (
     </div>
   </div>
 
-  <div class="bg-ooredoo-red py-4 text-white w-full">
+  <div class="bg-ooredoo-red py-4 border-b-2 border-[#E30613] text-white w-full">
     <div class="px-4 w-full max-w-[95vw] md:max-w-[90vw] mx-auto">
       <div class="md:block hidden">
         <div class="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
@@ -224,7 +235,8 @@ export const generateHeaderHTML = (
       <img src="./assets/images/header/chevron-down-white.svg" class="w-6 h-6" alt="" />
     </button>
 
-<div id="mode-options" class="absolute left-0 right-0 z-50">
+<div id="mode-options" class="absolute left-0 right-0 z-50 hidden" aria-hidden="true">
+
   <div class="bg-white w-full dark:bg-[#2C2C2C] text-[14px] text-[#575757] font-semibold dark:text-white 
               rounded-[16px] border border-gray-200 dark:border-white 
               px-[14px] pt-[22px] pb-[20px]">
@@ -272,25 +284,28 @@ export const generateHeaderHTML = (
       </div>
 
       <div class="md:hidden">
-        <div class="flex flex-col gap-6">
+               <div class="flex flex-col gap-6">
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 min-w-0">
-              <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
+            <div class="flex items-center gap-1 min-w-0">
+              <img src="./assets/images/header/Telephone.svg" class="w-[18px] h-[18px] flex-shrink-0" />
               <span class="hdr-common-text ${fontClass} truncate">${
     userData.phone || "0509876543"
   }</span>
             </div>
-            <div class="flex items-center gap-2 flex-shrink-0">
-              <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
-              <span class="hdr-price ${fontClass}">${
-    userData.credit || "1200 DA"
+            <div class="flex items-center gap-1 flex-shrink-0">
+              <img src="./assets/images/header/Dollar.svg" class="w-[18px] h-[18px]" />
+       <span class="hdr-price ${fontClass}">${
+    fontClass === "font-noto-kufi-arabic"
+      ? `<span class="font-rubik">${userData.credit}</span>` +
+        `<span class="font-noto-kufi-arabic"> دج</span>`
+      : userData.credit + " DA"
   }</span>
             </div>
           </div>
 
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 min-w-0">
-              <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
+            <div class="flex items-center gap-1 min-w-0">
+              <img src="./assets/images/header/Puce.svg" class="w-[18px] h-[18px] flex-shrink-0" />
               <span class="hdr-common-text truncate">${offerHTML}</span>
             </div>
 
@@ -306,42 +321,42 @@ export const generateHeaderHTML = (
               </button>
             </div>
           </div>
-
           <div class="flex items-center justify-center">
             <div class="flex items-center gap-1 md:gap-3">
               <span class="hdr-common-text ${fontClass}">${
     texts.modeLabel
   }</span>
 
-              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[175px] p-0.5">
-                <button id="mode-btn-mobile" class="flex-1 flex items-center justify-between gap-2 rounded-full h-[32px] transition-all duration-300 ${fontClass}" style="font-weight:500; font-size:0.95rem; padding:4px 12px; border-radius:100px; background:#fff;color:#2A2A2A;">
+              <div class="flex items-center rounded-full h-[36px] p-0.5">
+              <div class="relative">
+                <button id="mode-btn-mobile" class="flex-1 flex items-center justify-between gap-2 rounded-full h-[32px] font-medium transition-all duration-300 bg-ooredoo-red text-white border-2 border-white text-[14px] ${fontClass}" style="padding:2px 7px;">
                   <span id="mode-label-mobile" class="truncate">${
                     texts.currentMode
                   }</span>
-                  <img src="./assets/images/header/chevron-right.svg" class="w-4 h-4" />
+                  <img src="./assets/images/header/chevron-down-white.svg" class="w-4 h-4" />
                 </button>
-
-                <button id="mode-info-mobile" class="w-8 h-8 flex items-center justify-center rounded-full bg-transparent text-white relative ml-2">
-                  <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden" alt="info" />
-                  <img src="./assets/images/header/help-white.svg" class="hidden dark:block w-5 h-5" alt="info" />
-                  <div id="mode-card-mobile" class="mode-card-mobile absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
-                    <div class="${fontClass}" style="font-weight:400; font-size:0.875rem; line-height:1.25rem; text-align:justify; color:#575757;">
-                      ${infoCardDesc}
-                    </div>
-                  </div>
-                </button>
-
-                <div id="mode-options-mobile" class="absolute left-0 z-50 hidden">
-                  <div class="bg-white dark:bg-[#2C2C2C] w-[200px] p-2 mode-options rounded-[12px] border border-gray-200 dark:border-white">
-                    <button id="opt-hadra-mobile" class="${fontClass} w-full text-left px-3 py-3 rounded-lg">${
+                                <div id="mode-options-mobile" class="absolute top-[100%] right-0 left-0 z-50 hidden">
+                  <div class="bg-white dark:bg-[#2C2C2C] text-black dark:text-white w-full p-2 mode-options text-[14px] md:text-[20px] rounded-[12px] border border-gray-200 dark:border-white">
+                    <button id="opt-hadra-mobile" class="${fontClass} w-full text-left px-2 py-2 md:px-3 md:py-3 rounded-lg">${
     texts.modeOptionHadra || "MAXY Hadra"
   }</button>
-                    <button id="opt-internet-mobile" class="${fontClass} w-full text-left px-3 py-3 rounded-lg">${
+  <div class="h-[1px]  bg-[#EBEBEB] my-[6px]"></div>
+                    <button id="opt-internet-mobile" class="${fontClass} w-full text-left px-2 py-2 md:px-3 md:py-3 rounded-lg">${
     texts.modeOptionInternet || "MAXY Internet"
   }</button>
                   </div>
                 </div>
+              </div>
 
+                <button id="mode-info-mobile" class="w-8 h-8 flex items-center justify-center rounded-full bg-transparent text-white relative ml-0 md:ml-2">
+                  <img src="./assets/images/header/Info.svg" class="w-5 h-5 dark:hidden" alt="info" />
+                  <img src="./assets/images/header/Info.svg" class="hidden dark:block w-5 h-5" alt="info" />
+                  <div id="mode-card-mobile" class="mode-card-mobile absolute text-[#575757] dark:text-white bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
+                    <div class="${fontClass}" style="font-weight:400; font-size:0.875rem; line-height:1.25rem; text-align:justify;">
+                      ${infoCardDesc}
+                    </div>
+                  </div>
+                </button>
               </div>
             </div>
           </div>

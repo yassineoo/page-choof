@@ -812,7 +812,7 @@ class Migration {
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
       <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
-        <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
+        <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto max-w-[900px]">
           <div class="text-center bg-[#fff] flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
             <h2 class="migration-title">${this.createMixedTitleHTML(
               data.title || ""
@@ -827,10 +827,10 @@ class Migration {
             ${termsHTML}
 
             <div class="flex items-center gap-4 justify-center">
-              <button id="back-to-main" class="relative  font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
+              <button id="back-to-main" class="relative  font-semibold text-base uppercase migration-modal-button w-[140px] md:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
                 <span>${cancelBtn}</span>
               </button>
-              <button id="start-${providerId}-migration" class="relative font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg">
+              <button id="start-${providerId}-migration" class="relative font-semibold text-base uppercase migration-modal-button w-[140px] md:w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg">
                 <span>${confirmBtn}</span>
               </button>
             </div>
@@ -1067,7 +1067,7 @@ class Migration {
           aria-modal="true"
           aria-labelledby="modal-title">
           <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
-              <button class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20  migration-modal-close"
+              <button class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20  migration-modal-close"
                       aria-label="${isRTL ? "إغلاق" : "Fermer"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>

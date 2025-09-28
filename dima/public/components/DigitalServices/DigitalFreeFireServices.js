@@ -27,7 +27,24 @@ export default class DigitalFreeFireServices {
   }
 
   getTheme() {
-    return localStorage.getItem("theme") === "dark" ? "dark" : "light";
+    try {
+      const theme = localStorage.getItem("theme");
+      if (theme === "dark" || theme === "light") return theme;
+      if (typeof document !== "undefined") {
+        return document.documentElement.classList.contains("dark")
+          ? "dark"
+          : "light";
+      }
+      return "light";
+    } catch {
+      try {
+        return document.documentElement.classList.contains("dark")
+          ? "dark"
+          : "light";
+      } catch {
+        return "light";
+      }
+    }
   }
 
   getCardStyles() {
@@ -112,7 +129,9 @@ export default class DigitalFreeFireServices {
 
     // Free Fire Card with same structure as Migration cards
     const freeFireCard = `
-      <div id="freefire-section" class="${styles.cardWrapper} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"}">
+      <div id="freefire-section" class="${styles.cardWrapper} ${
+      isArabic ? "font-noto-kufi-arabic" : "font-rubik"
+    }">
         <div class="${styles.card}">
           <div class="${styles.logoContainer}">
             <img 
@@ -125,11 +144,19 @@ export default class DigitalFreeFireServices {
             />
           </div>
           <div class="${styles.cardDesc}">
-            ${isArabic ? freeFireData.ar.description : freeFireData.fr.description}
+            ${
+              isArabic
+                ? freeFireData.ar.description
+                : freeFireData.fr.description
+            }
           </div>
           <div class="${styles.buttonWrap}" >
-            <a class="${styles.acheterButton} freefire-btn" href='https://shop2game.com/' >
-              <span>${isArabic ? freeFireData.ar.button : freeFireData.fr.button}</span>
+            <a class="${
+              styles.acheterButton
+            } freefire-btn" href='https://shop2game.com/' >
+              <span>${
+                isArabic ? freeFireData.ar.button : freeFireData.fr.button
+              }</span>
         </a>
         </div>
       </div>

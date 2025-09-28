@@ -24,10 +24,9 @@ class Modal {
   }
   getCloseButtonHTML() {
     return `
-      <button id="modal-close-btn" type="button" aria-label="Close modal" class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
-        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M13.25 1.50391L1.25 13.5039M1.25 1.50391L13.25 13.5039" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <button id="modal-close-btn" type="button" aria-label="Close modal"
+        class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
+        <img src="/assets/images/Close.svg" alt="close"/>
       </button>
     `;
   }
@@ -60,20 +59,17 @@ class Modal {
   showCustom(contentHTML) {
     this.open(contentHTML);
   }
-    getCloseButtonHTML() {
+  getCloseButtonHTML() {
     return `
       <button id="modal-close-btn" type="button" aria-label="Close modal"
-        class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
-        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M13.25 1.50391L1.25 13.5039M1.25 1.50391L13.25 13.5039"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
+        <img src="/assets/images/Close.svg" alt="close"/>
       </button>
     `;
   }
   showAlert({ title = "", text = "", buttonText = "OK" }) {
     const contentHTML = `
-  <div class="relative bg-white dark:bg-[#2C2C2C]  rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12">
+  <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12">
         ${this.getCloseButtonHTML()}
         <h2 class="text-2xl md:text-[34px] font-bold text-ooredoo-red dark:text-white mb-4 text-center">${title}</h2>
         <p class="text-[16px] lg:text-[21px] text-center text-gray-600 dark:text-gray-300 mb-6">${text}</p>
@@ -110,10 +106,10 @@ export default class Header {
     document.documentElement.lang = this.currentLanguage;
     document.documentElement.dir =
       this.currentLanguage === "ar" ? "rtl" : "ltr";
+    this.applyInitialTheme();
     this.render();
     requestAnimationFrame(() => {
       this.setupEventListeners();
-      this.applyInitialTheme();
       this.preventHorizontalScroll();
     });
   }
@@ -453,10 +449,16 @@ export default class Header {
     if (modeBtn && modeOptions) {
       modeBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        modeOptions.classList.toggle("hidden");
-        if (modeOptionsMobile) modeOptionsMobile.classList.add("hidden");
+        const willShow = modeOptions.classList.toggle("hidden") === false;
+        modeOptions.setAttribute("aria-hidden", String(!willShow));
+        if (modeOptionsMobile) {
+          modeOptionsMobile.classList.add("hidden");
+          if (modeOptionsMobile.setAttribute)
+            modeOptionsMobile.setAttribute("aria-hidden", "true");
+        }
       });
     }
+
     if (modeBtnMobile && modeOptionsMobile) {
       modeBtnMobile.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -473,6 +475,7 @@ export default class Header {
         !document.getElementById("mode-btn")?.contains(t)
       )
         modeOptions.classList.add("hidden");
+      modeOptions.setAttribute("aria-hidden", "true");
       if (
         modeOptionsMobile &&
         !modeOptionsMobile.contains(t) &&
@@ -514,6 +517,7 @@ export default class Header {
     if (modeBtnLabel) modeBtnLabel.textContent = label;
     if (modeBtnLabelMobile) modeBtnLabelMobile.textContent = label;
   }
+
   openModeChangeModal(option) {
     const texts = offerData.text[this.currentLanguage] || offerData.text.fr;
     const closeBtnHTML =
@@ -526,15 +530,13 @@ export default class Header {
       ? texts.modeChangeDescriptionHadra || texts.modeInfoTooltip
       : texts.modeChangeDescriptionInternet || texts.modeInfoTooltip;
     const html = `
-      <div class="relative w-full max-w-[703px] bg-white dark:bg-[#2C2C2C] rounded-lg flex flex-col overflow-hidden p-6">
+          <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12">
         ${closeBtnHTML}
-        <div class="p-6 text-center">
-          <h2 class="${fontClass} text-2xl font-bold text-ooredoo-red dark:text-white mb-4">${texts.modeChangeTitle}</h2>
-          <p class="${fontClass} text-[16px] lg:text-[18px] text-gray-700 dark:text-white mb-6">${desc}</p>
-          <div class="flex gap-4 justify-center mt-6">
-            <button id="modal-change-cancel" class="${fontClass} px-6 py-3 rounded-full border border-gray-300 dark:border-white text-[#2A2A2A] bg-white">${texts.cancelBtn}</button>
-            <button id="modal-change-confirm" class="${fontClass} px-6 py-3 rounded-full bg-ooredoo-red text-white font-semibold">${texts.confirmBtn}</button>
-          </div>
+          <h2 class="${fontClass} text-2xl md:text-[34px] font-bold text-ooredoo-red dark:text-white mb-4 text-center">${texts.modeChangeTitle}</h2>
+          <p class="${fontClass} text-[16px] lg:text-[21px] text-center text-gray-600 dark:text-gray-300 mb-6">${desc}</p>
+          <div class="flex justify-center gap-4">
+            <button id="modal-change-cancel" class="${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">${texts.cancelBtn}</button>
+            <button id="modal-change-confirm" class="${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg">${texts.confirmBtn}</button>
         </div>
       </div>
     `;

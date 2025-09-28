@@ -143,7 +143,7 @@ export const generateHeaderHTML = (
 <header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${
     language === "ar" ? "rtl" : "ltr"
   }">
-  <div class="w-full max-w-[90vw] mx-auto">
+ <div class="w-full max-w-[90vw] mx-auto">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
      
     <div class="flex items-center gap-3 md:gap-3 logo-group" dir="ltr">
@@ -156,7 +156,7 @@ export const generateHeaderHTML = (
          width="200" height="40" loading="lazy" />
   </div>
 
-  <span class="flex items-center justify-center h-[16px] md:h-[38px] text-[14px] mt-0.5 md:mt-2 md:text-[24px] font-light text-black dark:text-white leading-none separator" aria-hidden="true">|</span>
+  <span class="flex items-center justify-center h-[16px] md:h-[38px] text-[12px] md:text-[18px] mt-0.5 md:mt-2 md:text-[24px] font-light text-black dark:text-white leading-none separator" aria-hidden="true">|</span>
 
   <div class="flex items-center justify-center  pt-0.5 md:pt-1 w-[58.5px] h-[20px] md:w-[115px] md:h-[40px]">
     <img src="./assets/images/header/Choof.svg" alt="Choof"
@@ -217,12 +217,12 @@ export const generateHeaderHTML = (
       </button>
     </div>
 
-    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute text-lg top-[64px] left-0 w-full shadow-lg bg-white dark:bg-gray-800 md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
+    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute text-lg top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
 
       <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
           <button id="theme-mobile-switcher" class="flex items-center w-full text-black dark:text-white gap-1" type="button" aria-pressed="false">
-            <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
+            <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:block" id="mobile-moon-icon" />
             <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
             <span class="ml-2 ${fontClass}">${texts.changeModeLabel}</span>
           </button>
