@@ -181,7 +181,7 @@ export const generateHeaderHTML = (
   }</span>
             <img src="./assets/images/header/chevron-down.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2" />
           </button>
-          <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300">
+          <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white dark:bg-black rounded-lg shadow-lg z-50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300">
             <a href="#" class="language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-black dark:text-white transition-all duration-300 ${
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
             }">Français</a>
@@ -203,10 +203,14 @@ export const generateHeaderHTML = (
       <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
           <button id="theme-mobile-switcher" class="flex items-center gap-2 w-full text-black dark:text-white" type="button" aria-pressed="false">
-            <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden" id="mobile-sun-icon" />
-            <img src="./assets/images/header/sun-white.svg" class="w-5 h-5 hidden dark:inline" id="mobile-sun-icon-dark" />
-            <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
-            <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
+            <span class="${theme === "dark" ? "inline" : "hidden"}">
+              <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden" id="mobile-sun-icon" />
+              <img src="./assets/images/header/sun-white.svg" class="w-5 h-5 hidden dark:inline" id="mobile-sun-icon-dark" />
+            </span>
+            <span class="${theme === "dark" ? "hidden" : "inline"}">
+              <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
+              <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
+            </span>
             <span class="ml-2 ${fontClass}">${texts.changeModeLabel}</span>
           </button>
         </div>
@@ -223,7 +227,7 @@ export const generateHeaderHTML = (
 
         <div class="flex items-center gap-3 relative z-50">
           <img src="./assets/images/header/language.svg" class="w-5 h-5 dark:hidden" />
-          <img src="./assets/images/header/language.svg" class="w-5 h-5 hidden dark:inline dark:text-white" />
+          <img src="./assets/images/header/language-white.svg" class="w-5 h-5 hidden dark:inline" />
           <div class="flex gap-2">
             <button type="button" class="language-option px-3 py-1 rounded-lg text-black dark:text-white ${
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
