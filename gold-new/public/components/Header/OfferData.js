@@ -49,7 +49,7 @@ export const offerData = {
     fr: {
       helpText: "Aide",
       currentLanguage: "Français",
-      renewalLabel: "Mode :",
+      renewalLabel: "Renouvellement :",
       autoLabel: "Auto",
       manualLabel: "Manuel",
       changeModeLabel: "Changer de mode",
