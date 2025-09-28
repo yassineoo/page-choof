@@ -263,8 +263,8 @@ export const generateHeaderHTML = (
                     <img src="./assets/images/header/Info.svg" class="w-full h-full" alt="info" />
                   </button>
 
-                  <div id="mode-card" class="mode-card absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-80 p-4 shadow-lg rounded-lg border border-gray-200 dark:border-[#fff] hidden z-50">
-                    <div class="${fontClass}" style="font-weight:400; font-size:0.875rem; line-height:1.25rem; text-align:justify; color:#575757;">
+                  <div id="mode-card" class="mode-card absolute text-[#575757] dark:text-white bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-80 p-4 shadow-lg rounded-lg border border-gray-200 dark:border-[#fff] hidden z-50">
+                    <div class="${fontClass}" style="font-weight:400; font-size:0.875rem; line-height:1.25rem; text-align:justify;">
                       ${infoCardDesc}
                     </div>
                   </div>
