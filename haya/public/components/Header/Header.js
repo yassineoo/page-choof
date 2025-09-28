@@ -26,7 +26,7 @@ class Modal {
     return `
       <button id="modal-close-btn" type="button" aria-label="Close modal"
         class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
-        <img src="/assets/images/Close.svg" alt="close"/>
+        <img src="./assets/images/Close.svg" alt="close"/>
       </button>
     `;
   }
@@ -63,7 +63,7 @@ class Modal {
     return `
       <button id="modal-close-btn" type="button" aria-label="Close modal"
         class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
-        <img src="/assets/images/Close.svg" alt="close"/>
+        <img src="./assets/images/Close.svg" alt="close"/>
       </button>
     `;
   }

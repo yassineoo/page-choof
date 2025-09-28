@@ -1536,7 +1536,7 @@ class ForfaitComponent {
           <div class="relative bg-white dark:bg-[#2C2C2C]  rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
               <button id="modal-close-btn" type="button" aria-label="Close modal"
         class="forfait-modal-close absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
-        <img src="/assets/images/Close.svg" alt="close"/>
+        <img src="./assets/images/Close.svg" alt="close"/>
       </button>
               <div class="text-center mb-6">
                   <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
