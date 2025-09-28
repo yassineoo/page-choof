@@ -197,11 +197,11 @@ export const generateHeaderHTML = (
   }</span>
             <img src="./assets/images/header/chevron-down-black-h.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2" />
           </button>
-          <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white rounded-lg shadow-lg z-50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300">
-            <a href="#" class="language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 text-black  transition-all duration-300 ${
+          <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white dark:bg-black rounded-lg shadow-lg z-50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300">
+            <a href="#" class="language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-black text-black dark:text-white  transition-all duration-300 ${
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
             }">Français</a>
-            <a href="#" class="font-noto-kufi-arabic language-option block px-4 lg:px-6 py-3 hover:bg-gray-100  text-black transition-all duration-300 ${
+            <a href="#" class="font-noto-kufi-arabic language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-black  text-black dark:text-white transition-all duration-300 ${
               language === "ar" ? "font-semibold text-ooredoo-red" : ""
             }">العربية</a>
           </div>
