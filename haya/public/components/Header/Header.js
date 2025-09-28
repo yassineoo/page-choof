@@ -475,6 +475,7 @@ export default class Header {
         !document.getElementById("mode-btn")?.contains(t)
       )
         modeOptions.classList.add("hidden");
+      modeOptions.setAttribute("aria-hidden", "true");
       if (
         modeOptionsMobile &&
         !modeOptionsMobile.contains(t) &&

@@ -169,9 +169,21 @@ export default class Consommation {
   getTheme() {
     try {
       const theme = localStorage.getItem("theme");
-      return theme === "dark" ? "dark" : "light";
-    } catch {
+      if (theme === "dark" || theme === "light") return theme;
+      if (typeof document !== "undefined") {
+        return document.documentElement.classList.contains("dark")
+          ? "dark"
+          : "light";
+      }
       return "light";
+    } catch {
+      try {
+        return document.documentElement.classList.contains("dark")
+          ? "dark"
+          : "light";
+      } catch {
+        return "light";
+      }
     }
   }
 
