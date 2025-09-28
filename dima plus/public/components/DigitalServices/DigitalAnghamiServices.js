@@ -4,7 +4,6 @@ import {
   anghamiModalData,
 } from "./DigitalAnghamiServicesData.js";
 
-// Updated styles to match Dima card sizing (28rem instead of 21rem)
 const styles = {
   card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
   cardHeader: "bg-ooredoo-red px-6 py-3 text-center font-rubik",
@@ -344,7 +343,7 @@ export default class DigitalAnghamiServices {
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="anghami-modal-title" class="font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                  <h2 id="anghami-modal-title" class="font-rubik font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${title}
                   </h2>
               </div>

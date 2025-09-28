@@ -48,14 +48,14 @@ export const migrationData = {
     title: "التغيير",
     description: "هل تريد التغيير إلى عرض آخر؟",
     price: "500 دج",
-    dima: "OOREDOO Dima",
+    dima: "Dima OOREDOO",
     nyooz: "N'YOOZ",
     confirmTitle: "تأكيد التغيير",
     confirmBtn: "تأكيد",
     cancelBtn: "إلغاء",
     successTitle: "مبروك !",
     change: "هل تريد التغيير إلى عرض « <span class='font-rubik'>La Gold</span> » ؟",
-    changeDima: "هل تريد التغيير إلى عرض « <span class='font-rubik'>OOREDOO Dima</span> » ؟",
+    changeDima: "هل تريد التغيير إلى عرض « <span class='font-rubik'>Dima OOREDOO</span> » ؟",
     changeNyooz: "هل تريد التغيير إلى عرض « <span class='font-rubik'>N’YOOZ</span> » ؟",
     ok: "تم",
     changeOfferGeneric: 'هل تريد التغيير إلى عرض "<span class="font-rubik" dir="ltr">{offerName}</span>"؟',
@@ -63,12 +63,12 @@ export const migrationData = {
     insufficientTitle: "رصيد غير كاف",
     insufficientMessage: "رصيدك غير كافٍ لإتمام هذه العملية.",
     migrationDimaModal: {
-      confirmTitle: "التغيير إلى Dima Ooredoo",
+      confirmTitle: "التغيير إلى Ooredoo Dima",
       confirmDescription:
-        "ستقوم بالتغيير إلى عرض <span class='font-rubik'>Ooredoo Dima</span> مجانًا وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
+        "ستقوم بالتغيير إلى عرض <span class='font-rubik'>Dima Ooredoo</span> مجانًا وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",
       successMessage:
-        "أنت الآن مستفيد من عرض <span class='font-rubik'>Ooredoo Dima</span>, للمزيد من المعلومات، شكّل #500*.",
+        "أنت الآن مستفيد من عرض <span class='font-rubik'>Dima Ooredoo</span>, للمزيد من المعلومات، شكّل #500*.",
     },
     migrationOoredooModal: {
       confirmTitle: "التغيير إلى Gold La",

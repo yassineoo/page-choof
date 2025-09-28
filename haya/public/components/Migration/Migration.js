@@ -63,7 +63,7 @@ class Migration {
     .migration-card-shadow {
       box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);
       border: 1px solid var(--border);
-      border-radius: var(--card-radius);
+      border-radius: 22.5px;
       box-sizing: border-box;
       width: var(--container-max);
       height: auto;
@@ -75,7 +75,6 @@ class Migration {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 2.5rem 1rem;
       gap: 1.25rem;
       transition: all 0.3s ease;
       min-height: var(--card-min-height);
@@ -457,16 +456,18 @@ class Migration {
     }
     @media (max-width: 640px) {
       .migration-card-shadow {
+       
         min-height: 300px;
-        padding: 1.25rem;
         margin: 0 auto;
       }
       .migration-title {
+       text-align: center;
         font-size: clamp(1.6rem, 6vw, 2rem);
-        margin-bottom: 20px;
+        margin: 20px 0;
       }
       .migration-description {
         font-size: 18px;
+        padding: 0 20px; 
         -webkit-line-clamp: 3;
       }
       .migration-price .big {
@@ -503,7 +504,6 @@ class Migration {
     @media (max-width: 480px) {
       .migration-card-shadow {
         min-height: 280px;
-        padding: 1rem;
       }
     }
     @media (max-width: 1279px) {
@@ -683,7 +683,7 @@ class Migration {
       <div>
         <div style="width:100%">
 <div class="migration-card-shadow migration-hover-lift">
-  <div class="migration-card-container">
+  <div class="migration-card-container px-4 pt-2">
     <div class="migration-card-content">
       <h2 class="migration-title">${this.createMixedTitleHTML(
         data.title || ""
@@ -714,7 +714,8 @@ class Migration {
       const href = "./assets/documents/TERMES_ET_CONDITIONS_AR.pdf";
       return text.replace(
         arPhrase,
-        `<a href="${href}" class="migration-terms-link" role="link" tabindex="0" target="_blank" rel="noopener noreferrer" download="TERMES_ET_CONDITIONS_AR.pdf" aria-label="Télécharger les termes et conditions en arabe">${arPhrase}</a>`
+         `<a href="${href}" dir="rtl" aria-label="تحميل الشروط والأحكام" class="migration-terms-link block text-right md:inline"
+ role="link" tabindex="0" target="_blank" rel="noopener noreferrer" download="TERMES_ET_CONDITIONS_AR.pdf" aria-label="Télécharger les termes et conditions en arabe">${arPhrase}</a>`
       );
     }
 
@@ -744,11 +745,11 @@ class Migration {
       const termsText = data.termsAndConditions || "";
       const wrapped = this.highlightTerms(termsText, language);
       termsHTML = `
-      <div class="mt-4 mb-8 px-4 text-center">
+      <div class="mt-4 mb-8 px-4 text-right md:text-center">
         <label class="migration-terms-checkbox" style="max-width:100%; text-align:left;">
           <input type="checkbox" id="dima-terms-checkbox-view" />
           <span class="checkbox-faux" aria-hidden="true"></span>
-          <span style="margin-left:8px;">${wrapped}</span>
+          <span>${wrapped}</span>
         </label>
       </div>
     `;
@@ -763,10 +764,10 @@ class Migration {
     <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-      <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
-        <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto max-w-[900px]">
-          <div class="text-center bg-[#fff] dark:bg-transparent flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
-            <h2 class="migration-title">${this.createMixedTitleHTML(
+      <section class="w-full bg-white dark:bg-[#000] migration-section relative">
+        <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto max-w-[900px]" style="box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);">
+          <div class="text-center bg-[#fff] dark:bg-[#2C2C2C] flex flex-col items-center justify-center px-8 rounded-t-[22.5px]">
+            <h2 class="migration-title pt-6 md:pt-16">${this.createMixedTitleHTML(
               data.title || ""
             )}</h2>
             <p class="migration-description">${data.description || ""}</p>
@@ -1018,7 +1019,7 @@ class Migration {
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title">
-          <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
+          <div class="relative bg-white dark:bg-black rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
               <button class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20  migration-modal-close"
                       aria-label="${isRTL ? "إغلاق" : "Fermer"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>

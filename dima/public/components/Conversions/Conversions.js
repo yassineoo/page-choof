@@ -269,9 +269,6 @@ class ConversionsComponent {
      .conversions-credit-message {
         margin-top: 30px;
       }
-      .conversions-section {
-        padding: 2rem 1rem;
-      }
       .conversions-card-shadow {
         padding: 2rem 1.5rem;
         gap: 1.5rem;

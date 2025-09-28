@@ -177,7 +177,7 @@ export default {
   ar: {
     forfaits: [
       {
-        name: "DIMA 4000",
+        name: "<span class='font-rubik'>DIMA 4000</span>",
         data: "<span class='font-rubik'>200Go</span> إنترنت",
         price: "4000",
         duration: "<span class='font-rubik'>30</span> يوم",
@@ -189,7 +189,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "DIMA 2500",
+        name: "<span class='font-rubik'>DIMA 2500</span>",
         data: "<span class='font-rubik'>100Go</span> إنترنت",
         price: "2500",
         duration: "<span class='font-rubik'>30</span> يوم",
@@ -202,7 +202,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "DIMA 2000",
+        name: "<span class='font-rubik'>DIMA 2000</span>",
         data: "<span class='font-rubik'>50Go</span> إنترنت",
         price: "2000",
         duration: "<span class='font-rubik'>30</span> يوم",
@@ -214,7 +214,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "DIMA 1500",
+        name: "<span class='font-rubik'>DIMA 1500</span>",
         data: "<span class='font-rubik'>30Go</span> إنترنت",
         price: "1500",
         duration: "<span class='font-rubik'>30</span> يوم",
@@ -226,7 +226,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "DIMA 1200",
+        name: "<span class='font-rubik'>DIMA 1200</span>",
         data: "<span class='font-rubik'>8Go</span> إنترنت",
         price: "1200",
         duration: "<span class='font-rubik'>30</span> يوم",
@@ -238,7 +238,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "DIMA 750",
+        name: "<span class='font-rubik'>DIMA 750</span>",
         data: "<span class='font-rubik'>10Go</span> إنترنت",
         price: "750",
         duration: "<span class='font-rubik'>14</span> يوم",
@@ -250,10 +250,10 @@ export default {
         buy: "شراء",
       },
       {
-        name: "DIMA 500",
+        name: "<span class='font-rubik'>DIMA 500</span>",
         data: "<span class='font-rubik'>3Go</span> إنترنت",
         price: "500",
-        duration: "<span class='font-rubik'>15</span> يوم",  
+        duration: "<span class='font-rubik'>15</span> يوم",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>50</span> رسالة قصيرة و <span class='font-rubik'>150</span> دقيقة مكالمات",
@@ -264,7 +264,7 @@ export default {
     ],
     internetForfaits: [
       {
-        name: "اشتراك 1500",
+        name: "اشتراك <span class='font-rubik'>1500</span>",
         data: "<span class='font-rubik'>40Go</span>",
         price: "1500",
         features: "يوتيوب غير محدود",
@@ -272,7 +272,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "اشتراك 1000",
+        name: "اشتراك <span class='font-rubik'>1000</span>",
         data: "<span class='font-rubik'>15Go</span>",
         price: "1000",
         features: "<span class='font-rubik'>5Go</span> يوتيوب",
@@ -280,7 +280,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "اشتراك 500",
+        name: "اشتراك <span class='font-rubik'>500</span>",
         data: "<span class='font-rubik'>6Go</span>",
         price: "500",
         features: "قسائم فايدة",
@@ -288,7 +288,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "اشتراك 300",
+        name: "اشتراك <span class='font-rubik'>300</span>",
         data: "<span class='font-rubik'>3Go</span>",
         price: "300",
         features: "يوتيوب غير محدود",
@@ -296,7 +296,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "اشتراك 100",
+        name: "اشتراك <span class='font-rubik'>100</span>",
         data: "<span class='font-rubik'>700Mo</span>",
         price: "100",
         features: "يوتيوب غير محدود",
@@ -304,7 +304,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "اشتراك 50",
+        name: "اشتراك <span class='font-rubik'>50</span>",
         data: "<span class='font-rubik'>50Mo</span>",
         price: "50",
         features: "فايسبوك غير محدود",
@@ -314,7 +314,7 @@ export default {
     ],
     smartForfaits: [
       {
-        name: "Smart 200",
+        name: "<span class='font-rubik'>Smart 200</span>",
         data: "إنترنت 24 ساعة",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
@@ -325,7 +325,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "Smart 100",
+        name: "<span class='font-rubik'>Smart 100</span>",
         data: "<span class='font-rubik'>500Mo</span> إنترنت",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
@@ -337,7 +337,7 @@ export default {
         buy: "شراء",
       },
       {
-        name: "Smart 50",
+        name: "<span class='font-rubik'>Smart 50</span>",
         data: "<span class='font-rubik'>200Mo</span> إنترنت",
         features: [
           "<span class='font-rubik'>30</span> دقيقة مكالمات نحو <span class='font-rubik'>Ooredoo</span>",

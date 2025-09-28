@@ -762,7 +762,8 @@ class Migration {
       const href = "./assets/documents/TERMES_ET_CONDITIONS_AR.pdf";
       return text.replace(
         arPhrase,
-        `<a href="${href}" class="migration-terms-link" role="link" tabindex="0" target="_blank" rel="noopener noreferrer" download="TERMES_ET_CONDITIONS_AR.pdf" aria-label="Télécharger les termes et conditions en arabe">${arPhrase}</a>`
+        `<a href="${href}" dir="rtl" aria-label="تحميل الشروط والأحكام" class="migration-terms-link block text-right md:inline"
+ role="link" tabindex="0" target="_blank" rel="noopener noreferrer" download="TERMES_ET_CONDITIONS_AR.pdf" aria-label="Télécharger les termes et conditions en arabe">${arPhrase}</a>`
       );
     }
 
@@ -792,11 +793,11 @@ class Migration {
       const termsText = data.termsAndConditions || "";
       const wrapped = this.highlightTerms(termsText, language);
       termsHTML = `
-      <div class="mt-4 mb-8 px-4 text-center">
+      <div class="mt-4 mb-8 px-4 text-right md:text-center">
         <label class="migration-terms-checkbox" style="max-width:100%; text-align:left;">
           <input type="checkbox" id="dima-terms-checkbox-view" />
           <span class="checkbox-faux" aria-hidden="true"></span>
-          <span style="margin-left:8px;">${wrapped}</span>
+          <span >${wrapped}</span>
         </label>
       </div>
     `;
@@ -811,13 +812,13 @@ class Migration {
     <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-      <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
+      <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] migration-section relative">
         <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto max-w-[900px]">
-          <div class="text-center bg-[#fff] flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
-            <h2 class="migration-title">${this.createMixedTitleHTML(
+          <div class="text-center bg-[#fff] flex flex-col items-center justify-center px-4 rounded-t-[22.5px]">
+            <h2 class="migration-title pt-[30px] md:pt-16">${this.createMixedTitleHTML(
               data.title || ""
             )}</h2>
-            <p class="migration-description">${data.description || ""}</p>
+            <p class="migration-description px-8">${data.description || ""}</p>
           </div>
           <div class="rounded-b-[22.5px] min-h-[200px] pt-14 pb-6" style="${roundedInlineStyle}">
             <p class="text-center mb-8 px-4">

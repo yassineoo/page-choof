@@ -136,9 +136,6 @@ class BoostComponent {
     }
     
     @media (max-width: 640px) {
-      .boost-section {
-        padding: 2rem 1rem;
-      }
       .boost-card-shadow {
         padding: 30px;
         gap: 1.5rem;
