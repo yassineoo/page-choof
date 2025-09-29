@@ -106,7 +106,7 @@ export class Slider {
           </div>
 
           <div class="text-center text-sm px-6">
-            <p>${isRTL ? "يتم تجديد الاشتراك تلقائيًا كل <span class='font-rubik'>4</span> أسابيع " : "Forfait renouvelable automatiquement chaque <span>4</span> semaines"}</p>
+            <p>${isRTL ? "يتم تجديد اشتراك <span class='font-rubik'>Ooredoo</span> تلقائيًا كل <span class='font-rubik'>4</span> أسابيع" : "Forfait renouvelable automatiquement chaque 4 semaines"}</p>
           </div>
 
           <div class="forfait-card-footer pt-4">

@@ -9,7 +9,7 @@ class Migration {
       languageChange: this.handleLanguageChange.bind(this),
       resize: this.handleResize.bind(this),
     };
-    this.providers = [{ id: "dima" }, { id: "la gold" }, { id: "nyooz" }];
+    this.providers = [{ id: "dima" }, { id: "nyooz" }];
     this.initialize();
   }
   initialize() {
@@ -908,14 +908,6 @@ class Migration {
         if (providerId === "dima") {
           modalData = baseModalData.migrationDimaModal || {};
           message = modalData.confirmDescription || "";
-        } else if (providerId === "la gold") {
-          modalData = baseModalData.migrationOoredooModal || {};
-          message =
-            modalData.confirmDescription ||
-            baseModalData.changeOfferGeneric.replace(
-              "{offerName}",
-              displayName
-            );
         } else if (providerId === "nyooz") {
           modalData = baseModalData.migrationNyoozModal || {};
           message =
