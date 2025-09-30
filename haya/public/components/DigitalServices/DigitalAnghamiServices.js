@@ -480,7 +480,7 @@ export default class DigitalAnghamiServices {
         isArabic ? "font-noto-kufi-arabic" : "font-rubik"
       } w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-16">
         <div>
-          <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
+          <h2 class="font-medium text-[25px] md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
             ${
               isArabic
                 ? "اشتراك <span class='font-rubik'>OSN+ & ANGHAMI</span>"
@@ -492,25 +492,25 @@ export default class DigitalAnghamiServices {
           isArabic ? 'dir="rtl"' : ""
         }>
           <div class="flex flex-col lg:flex-row w-full gap-8 items-center">
-            <!-- Logos & Description (left on desktop, top on mobile) -->
+
             <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">
-              <div class="flex items-center justify-center gap-3 mb-8">
+              <div dir="ltr" class="flex items-center justify-center gap-1 md:gap-3 mb-8">
               <img 
                   src="./assets/images/services/osn.svg" alt="OSN+"
-                  class="w-36 md:w-42 h-auto dark:hidden"
+                  class="w-[76.33px] md:w-42 h-auto dark:hidden"
                 />
                 <img 
                   src="./assets/images/services/osn-dark.svg" alt="OSN+"
-                  class="w-36 md:w-42 h-auto hidden dark:block"
+                  class="w-[76.33px] md:w-42 h-auto hidden dark:block"
                 />
-                <span class="text-4xl font-semibold text-black dark:text-white">&</span>
+                <span class="text-[24px] md:text-4xl font-semibold text-black dark:text-white">&</span>
                 <img 
                   src="./assets/images/services/anghami.svg" alt="Anghami"
-                  class="w-36 md:w-48 h-auto dark:hidden"
+                  class="w-[150.85px] md:w-48 h-auto dark:hidden"
                 />
                 <img 
                   src="./assets/images/services/anghami-dark.svg" alt="Anghami"
-                  class="w-36 md:w-48 h-auto hidden dark:block"
+                  class="w-[150.85px] md:w-48 h-auto hidden dark:block"
                 />
                 </div>
               <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl text-center text-gray-800 dark:text-gray-200">
