@@ -156,7 +156,7 @@ export class Slider {
       <div class="h-full sm:h-auto relative w-full max-w-[320px] flex flex-col mx-auto overflow-hidden">
         ${offer.hasTopLabel ?`
           <div class="mb-2 h-[50px] flex items-center gap-1 justify-center dark:text-white bg-[#F1C4004D] dark:bg-[#F1C400]/60 rounded-full font-semibold text-center py-2 px-1">
-            <span class="text-[12px] md:text-[15px]">
+            <span class="text-[15px]">
             ${offer.topLabel}
             </span>
         </div>` : 
