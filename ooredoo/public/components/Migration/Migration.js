@@ -508,17 +508,17 @@ class Migration {
     }
     @media (max-width: 1279px) {
       .migration-card-container {
-        min-height: 360px;
+        min-height: 260px;
       }
     }
     @media (max-width: 991px) {
       .migration-card-container {
-        min-height: 340px;
+        min-height: 200px;
       }
     }
     @media (max-width: 767px) {
       .migration-card-container {
-        min-height: 320px;
+        min-height: 250px;
       }
     }
     @media (min-width: 768px) and (max-width: 1279px) and ([dir="rtl"]) {

@@ -63,7 +63,7 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="relative w-full max-w-[350px] flex flex-col mx-auto overflow-hidden">
+      <div class="h-[600px] sm:h-auto relative w-full max-w-[350px] flex flex-col mx-auto overflow-hidden">
         <div class="mb-2 h-[45px] flex items-center gap-1 justify-center text-ooredoo-red dark:text-white bg-[#ED1C2421] dark:bg-[#ED1C2421]/60 rounded-full font-semibold text-center">
           <span dir="ltr" class="font-rubik">
           ${offer.topLabel}
@@ -77,7 +77,7 @@ export class Slider {
             </h2>
           </div>
 
-          <div class="flex-1 py-4 text-center border-b-[1px] border-b-[#BBBEBE] border-dashed">
+          <div class="flex-1 h-[260px] sm:h-auto py-4 text-center border-b-[1px] border-b-[#BBBEBE] border-dashed">
             <p>${this.currentLang === "ar" ? "قوموا بشراء" : "Payez"}</p>
             <p class="text-ooredoo-red text-xl font-bold">
               <span class="font-rubik">${offer.sub}</span>
@@ -153,7 +153,7 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="relative w-full max-w-[300px] flex flex-col mx-auto overflow-hidden">
+      <div class="h-[620px] sm:h-auto relative w-full max-w-[300px] flex flex-col mx-auto overflow-hidden">
         ${offer.hasTopLabel ?`
           <div class="mb-2 h-[50px] flex items-center gap-1 justify-center dark:text-white bg-[#F1C4004D] dark:bg-[#F1C400]/60 rounded-full font-semibold text-center py-2 px-1">
             <span class="text-[12px] md:text-[15px]">
@@ -167,7 +167,14 @@ export class Slider {
         <div class="h-full bg-white dark:bg-[#2C2C2C] pb-6 rounded-xl border-[1px] border-ooredoo-red dark:border-white"}>
           <div class="h-14 bg-ooredoo-red dark:border-ooredoo-red -m-[1px] flex items-center justify-center rounded-t-xl">
             <h2 class="text-white font-bold text-[20px] md:text-[25px]  text-center capitalize dark:text-white leading-tight">
-              <span dir="ltr" class="font-rubik">${offer.name}</span> 
+              <span class="font-rubik">
+                ${index === 1 ? 
+                  `<span class="font-rubik">
+                    <span class="font-rubik">4990 DA</span>
+                  </span>` 
+                  : 
+                  offer.name}
+              </span> 
             </h2>
           </div>
 
@@ -192,7 +199,7 @@ export class Slider {
             `).join('')}
           </div>
 
-          <div class="py-4 px-2 sm:px-4 flex items-center justify-between">
+          <div class="p-4 flex items-center justify-between">
             <div class="text-center">
             ${
               index === 0 ?               
@@ -461,7 +468,7 @@ export class Slider {
     ).join("");
   }
 
-  createResponsiveLayout(offers, labels, gridType, isRTL, convertToLatinNumerals) {
+  createResponsiveLayout(offers, ooredoo,labels, gridType, isRTL, convertToLatinNumerals) {
     const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
     const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
     const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
@@ -480,6 +487,15 @@ export class Slider {
             <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
                 <div class="relative swiper">
                 <div class="swiper-wrapper">
+                ${ooredoo
+                      .map(
+                        (offer, index) => `
+                    <div class="swiper-slide flex justify-center">
+                        ${this.createOoredooCard(offer, index, labels, isRTL, convertToLatinNumerals)}
+                    </div>
+                    `
+                      )
+                      .join("")}
                     ${offers
                       .map(
                         (offer, index) => `
@@ -508,25 +524,7 @@ export class Slider {
             > 
               ${offers.map((offer, index) => this.createOoredooCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
             </div>
-          </div>
-      
-            
-            <div class="block md:hidden forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
-                <div class="relative swiper">
-                <div class="swiper-wrapper">
-                    ${offers
-                      .map(
-                        (offer, index) => `
-                    <div class="swiper-slide flex justify-center p-4">
-                        ${this.createOoredooCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)}
-                    </div>
-                    `
-                      )
-                      .join("")}
-                </div>
-                <div class="absolute bottom-0  swiper-pagination"></div>
-                </div>
-            </div>`;
+          </div>`;
   }
 
   createResponsiveLayoutInternet(offers, labels, gridType, isRTL, convertToLatinNumerals) {

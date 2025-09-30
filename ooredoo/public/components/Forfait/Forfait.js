@@ -928,7 +928,7 @@ class ForfaitComponent {
           <div class="mb-8">
             ${this.slider.createResponsiveLayoutOoredoo(data.ooredoo, labels, "forfait-grid-3", this.isRTL)}
           </div>
-          ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
+          ${this.slider.createResponsiveLayout(data.forfaits, data.ooredoo,labels, "forfait-grid-5", this.isRTL)}
         </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-[clamp(1rem,5vw,5rem)]">
           <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit">${
