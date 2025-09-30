@@ -9,7 +9,7 @@ class Migration {
       languageChange: this.handleLanguageChange.bind(this),
       resize: this.handleResize.bind(this),
     };
-    this.providers = [{ id: "dima" }, { id: "la gold" }, { id: "nyooz" }];
+    this.providers = [{ id: "dima" }, { id: "nyooz" }];
     this.initialize();
   }
   initialize() {
@@ -508,17 +508,17 @@ class Migration {
     }
     @media (max-width: 1279px) {
       .migration-card-container {
-        min-height: 360px;
+        min-height: 260px;
       }
     }
     @media (max-width: 991px) {
       .migration-card-container {
-        min-height: 340px;
+        min-height: 200px;
       }
     }
     @media (max-width: 767px) {
       .migration-card-container {
-        min-height: 320px;
+        min-height: 250px;
       }
     }
     @media (min-width: 768px) and (max-width: 1279px) and ([dir="rtl"]) {
@@ -908,14 +908,6 @@ class Migration {
         if (providerId === "dima") {
           modalData = baseModalData.migrationDimaModal || {};
           message = modalData.confirmDescription || "";
-        } else if (providerId === "la gold") {
-          modalData = baseModalData.migrationOoredooModal || {};
-          message =
-            modalData.confirmDescription ||
-            baseModalData.changeOfferGeneric.replace(
-              "{offerName}",
-              displayName
-            );
         } else if (providerId === "nyooz") {
           modalData = baseModalData.migrationNyoozModal || {};
           message =

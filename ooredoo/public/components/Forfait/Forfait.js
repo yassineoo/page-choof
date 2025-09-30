@@ -223,6 +223,56 @@ class ForfaitComponent {
       justify-self: start;
     }
 
+    /* 7-card grid */
+
+    .forfait-grid {
+  display: grid;
+  gap: 1rem 10px;
+  padding: 0 1rem;
+  justify-content: center;
+}
+
+/* ---------- Default (mobile) ----------
+   Stack items one by one
+*/
+.forfait-grid {
+  grid-template-columns: 1fr;
+}
+
+/* ---------- Medium screens (≥868px) ----------
+   3 columns → 3 / 3 / 1 layout
+*/
+@media (min-width: 868px) {
+  .forfait-grid {
+    grid-template-columns: repeat(3, minmax(160px, 1fr));
+  }
+
+  .forfait-grid > *:nth-child(7) {
+    grid-column: 2; /* center the last item */
+  }
+}
+
+/* ---------- Large screens (≥1300px) ----------
+   8 subcolumns trick → 4 / 3 layout
+*/
+@media (min-width: 1324px) {
+  .forfait-grid {
+    grid-template-columns: repeat(8, minmax(160px, 1fr));
+  }
+
+  /* First row: 4 items */
+  .forfait-grid > *:nth-child(1) { grid-column: 1 / span 2; grid-row: 1; }
+  .forfait-grid > *:nth-child(2) { grid-column: 3 / span 2; grid-row: 1; }
+  .forfait-grid > *:nth-child(3) { grid-column: 5 / span 2; grid-row: 1; }
+  .forfait-grid > *:nth-child(4) { grid-column: 7 / span 2; grid-row: 1; }
+
+  /* Second row: 3 centered items */
+  .forfait-grid > *:nth-child(5) { grid-column: 2 / span 2; grid-row: 2; }
+  .forfait-grid > *:nth-child(6) { grid-column: 4 / span 2; grid-row: 2; }
+  .forfait-grid > *:nth-child(7) { grid-column: 6 / span 2; grid-row: 2; }
+}
+
+
     /* 3-card grid (Smart) */
     .forfait-grid-3 {
       grid-template-columns: repeat(3, minmax(280px, 320px));
@@ -878,7 +928,7 @@ class ForfaitComponent {
           <div class="mb-8">
             ${this.slider.createResponsiveLayoutOoredoo(data.ooredoo, labels, "forfait-grid-3", this.isRTL)}
           </div>
-          ${this.slider.createResponsiveLayout(data.forfaits, labels, "forfait-grid-5", this.isRTL)}
+          ${this.slider.createResponsiveLayout(data.forfaits, data.ooredoo,labels, "forfait-grid-5", this.isRTL)}
         </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-[clamp(1rem,5vw,5rem)]">
           <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit">${
@@ -1409,7 +1459,7 @@ class ForfaitComponent {
       success: isArabic
         ? `هنيئًا! لقد تم تفعيل الاشتراك ${offer.name} بنجاح: ${offer.data} صالحة 4 أسابيع.`
         : `Votre Forfait ${offer.name} est activé avec succès : ${offer.data} valables 4 semaines.`,
-      insufficient: isArabic ? `رصيدك غير كافٍٍ. يُرجى إعادة تعبئة حسابك.` : `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
+      insufficient: isArabic ? `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.` : `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
     };
   }
 

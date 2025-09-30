@@ -390,7 +390,7 @@ export default class Consommation {
           </h1>
         </div>
         <div class="relative w-full px-4 -mt-7 bg-[#F8F8F8] dark:bg-black">
-          <div class="absolute top-0 left-0 w-full h-[100px] bg-ooredoo-red -mt-1"></div>
+          <div class="absolute top-0 left-0 w-full h-[75px] bg-ooredoo-red -mt-1"></div>
           <div class="cards-container flex flex-col gap-6 max-w-full mx-auto">
             ${this.renderMobileCard(data.cards[0], 0, lang, theme, true, this.isCardExpanded(0))}
             ${

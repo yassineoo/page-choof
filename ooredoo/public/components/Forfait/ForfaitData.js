@@ -78,7 +78,7 @@ export default {
           "SMS illimités vers Ooredoo",
           "200 SMS vers les autres réseaux"
         ],
-        duration: "30 jours",
+        duration: "4 semaines",
         buy: "Acheter",
       },
       {
@@ -90,7 +90,7 @@ export default {
           "SMS illimités vers Ooredoo",
           "100 SMS vers les autres réseaux"
         ],
-        duration: "30 jours",
+        duration: "4 semaines",
         buy: "Acheter",
       },
       {
@@ -101,7 +101,7 @@ export default {
           "Appels gratuits vers Ooredoo",
           "6000 DA de crédit"
         ],
-        duration: "30 jours",
+        duration: "4 semaines",
         buy: "Acheter",
       },
       {
@@ -112,7 +112,7 @@ export default {
           "Appels gratuits vers Ooredoo",
           "3000 DA de crédit"
         ],
-        duration: "30 jours",
+        duration: "4 semaines",
         buy: "Acheter",
       },
       {
@@ -123,7 +123,7 @@ export default {
           "Appels gratuits vers Ooredoo",
           "2000 DA de crédit"
         ],
-        duration: "30 jours",
+        duration: "4 semaines",
         buy: "Acheter",
       },
       {
@@ -158,7 +158,7 @@ export default {
         features:[
           "Youtube illimité",
         ],
-        duration: "30 jours",
+        duration: "4 Semaines",
         buy: "Acheter",
       },
       {
@@ -168,7 +168,7 @@ export default {
         features:[
           "5Go Youtube ",
         ],
-        duration: "30 jours",
+        duration: "4 Semaines",
         buy: "Acheter",
       },
     ],
@@ -199,7 +199,7 @@ export default {
       {
         hasTopLabel: true,
         topLabel: "احتفظوا بشريحتكم SIM طوال السنة",
-        name: "4990 DA",
+        name: "4990 دج",
         sub: "7",
         free:"اشتراكين",
         data: "200Go",
@@ -216,7 +216,7 @@ export default {
     forfaits: [
       {
         topLabel: "25%",
-        name: "0054 دج",
+        name: "4500 دج",
         sub: "9",
         free:"3 اشتراكات",
         data: "50Go",
@@ -227,7 +227,7 @@ export default {
       },
       {
         topLabel: "22%",
-        name: "0054 دج",
+        name: "3500 دج",
         sub: "7",
         free:"اشتراكين",
         data: "50Go",
@@ -238,7 +238,7 @@ export default {
       },
       {
         topLabel: "17%",
-        name: "0054 دج",
+        name: "2500 دج",
         sub: "5",
         free:"اشتراك",
         data: "50Go",
@@ -258,7 +258,7 @@ export default {
           "رسائل قصيرة غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>100</span> رسالة قصيرة نحو الشبكات الأخرى"
         ],
-        duration: "<span class='font-rubik'>30</span> يوم",
+        duration: "<span class='font-rubik'>4</span> أسابيع",
         buy: "Acheter",
       },
       {
@@ -270,7 +270,7 @@ export default {
           "رسائل قصيرة غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>100</span> رسالة قصيرة نحو الشبكات الأخرى"
         ],
-        duration: "<span class='font-rubik'>30</span> يوم",
+        duration: "<span class='font-rubik'>4</span> أسابيع",
         buy: "Acheter",
       },
       {
@@ -281,7 +281,7 @@ export default {
           "مكالمات مجانية نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>6000</span> دج رصيد"
         ],
-        duration: "<span class='font-rubik'>30</span> يوم",
+        duration: "<span class='font-rubik'>4</span> أسابيع",
         buy: "Acheter",
       },
       {
@@ -292,7 +292,7 @@ export default {
           "مكالمات مجانية نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>3000</span> دج رصيد"
         ],
-        duration: "<span class='font-rubik'>30</span> يوم",
+        duration: "<span class='font-rubik'>4</span> أسابيع",
         buy: "Acheter",
       },
       {
@@ -303,12 +303,12 @@ export default {
           "مكالمات مجانية نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>2000</span> دج رصيد"
         ],
-        duration: "<span class='font-rubik'>30</span> يوم",
+        duration: "<span class='font-rubik'>4</span> أسابيع",
         buy: "Acheter",
       },
       {
         name: "اشتراك 200",
-        data: "إنترنت  <span class='font-rubik'>24</span> ساعة<span class='font-rubik'>/24</span>",
+        data: "إنترنت  <span class='font-rubik'>24</span> ساعة",
         price: "200",
         features: [
           "مكالمات مجانية نحو <span class='font-rubik'>Ooredoo</span>",
@@ -338,7 +338,7 @@ export default {
         features: [      
          "يوتيوب غير محدود"
         ],
-        duration: "<span class='font-rubik'>30</span> يوم",
+        duration: "<span class='font-rubik'>4</span> أسابيع",
         buy: "Acheter",
       },
       {
@@ -348,7 +348,7 @@ export default {
         features: [      
          "<span class='font-rubik'>5Go</span> يوتيوب "
         ],
-        duration: "<span class='font-rubik'>30</span> يوم",
+        duration: "<span class='font-rubik'>4</span> أسابيع",
         buy: "Acheter",
       },
     ],
