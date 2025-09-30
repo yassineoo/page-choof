@@ -1,10 +1,14 @@
-import { anghamiPlan, anghamiDescription, anghamiModalData } from "./DigitalAnghamiServicesData.js";
+import {
+  anghamiPlan,
+  anghamiDescription,
+  anghamiModalData,
+} from "./DigitalAnghamiServicesData.js";
 
-// Updated styles to match Dima card sizing (28rem instead of 21rem)
 const styles = {
   card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
   cardHeader: "bg-ooredoo-red px-6 py-3 text-center font-rubik",
-  cardName: "font-medium text-2xl md:text-3xl leading-tight tracking-tight text-white",
+  cardName:
+    "font-medium text-2xl md:text-3xl leading-tight tracking-tight text-white",
   cardContent: "p-6 flex flex-col flex-1 justify-between",
   dataTitle: "text-2xl font-semibold text-ooredoo-red mb-3",
   featuresList: "list-none p-0 m-0",
@@ -12,9 +16,10 @@ const styles = {
   featureText: "flex-1",
   divider: "dima-divider",
   priceContainer: "text-center mb-2",
-  priceAmount: "font-rubik font-semibold text-[2rem] capitalize dark:text-white",
+  priceAmount:
+    "font-rubik font-semibold text-[2rem] capitalize dark:text-white",
   priceDa: `font-semibold text-lg capitalize dark:text-white`,
-  priceDuration: "font-semibold text-lg capitalize dark:text-white",
+  priceDuration: "font-semibold text-lg dark:text-white",
   buttonWrap: "flex justify-center mt-2",
   acheterButton: "acheter-button",
 };
@@ -112,7 +117,9 @@ if (!document.getElementById("dima-anghami-styles")) {
 
 function renderAnghamiCard(plan, isArabic) {
   return `
-    <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${styles.card}">
+    <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${
+    styles.card
+  }">
       <div class="${styles.cardHeader}">
         <h2 class="${styles.cardName}">${plan.name}</h2>
       </div>
@@ -132,17 +139,21 @@ function renderAnghamiCard(plan, isArabic) {
         </div>
         <div>
           <div class="${styles.divider}"></div>
-          <div class="${styles.priceContainer} flex items-end justify-center gap-2">
+          <div class="${
+            styles.priceContainer
+          } flex items-end justify-center gap-2">
             <span class="${styles.priceAmount}">${plan.price}</span>
             <div class="flex items-center gap-0 pb-1">
-              <span class="${styles.priceDa} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"}">${isArabic ? "دج" : "DA"}/</span>
+              <span class="${styles.priceDa} ${
+    isArabic ? "font-noto-kufi-arabic" : "font-rubik"
+  }">${isArabic ? "دج" : "DA"}/</span>
               <span class="${styles.priceDuration}">${plan.duration}</span>
             </div>
           </div>
           <div class="${styles.buttonWrap}">
-            <button class="${styles.acheterButton} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} anghami-purchase-btn" data-offer-name="${
-    plan.name
-  }">
+            <button class="${styles.acheterButton} ${
+    isArabic ? "font-noto-kufi-arabic" : "font-rubik"
+  } anghami-purchase-btn" data-offer-name="${plan.name}">
               ${isArabic ? "شراء" : "ACHETER"}
             </button>
           </div>
@@ -168,7 +179,10 @@ export default class DigitalAnghamiServices {
 
   setupEventListeners() {
     // Purchase button event delegation
-    this.container.addEventListener("click", this.handlePurchaseClick.bind(this));
+    this.container.addEventListener(
+      "click",
+      this.handlePurchaseClick.bind(this)
+    );
   }
 
   getLang() {
@@ -194,7 +208,10 @@ export default class DigitalAnghamiServices {
 
   unbindEvents() {
     if (this.boundHandleLanguageChange) {
-      window.removeEventListener("languageChanged", this.boundHandleLanguageChange);
+      window.removeEventListener(
+        "languageChanged",
+        this.boundHandleLanguageChange
+      );
     }
     if (this.boundStorageListener) {
       window.removeEventListener("storage", this.boundStorageListener);
@@ -236,7 +253,9 @@ export default class DigitalAnghamiServices {
 
     const offerName = button.getAttribute("data-offer-name");
     const currentLanguage = this.getLang();
-    const modalContent = anghamiModalData[currentLanguage] && anghamiModalData[currentLanguage][offerName];
+    const modalContent =
+      anghamiModalData[currentLanguage] &&
+      anghamiModalData[currentLanguage][offerName];
 
     if (modalContent) {
       this.showPurchaseFlow(offerName, modalContent, currentLanguage === "ar");
@@ -278,7 +297,9 @@ export default class DigitalAnghamiServices {
 
   showModal({ type, title, message, isRTL = false, onConfirm, onClose }) {
     try {
-      let modalContainer = this.container.querySelector("#anghami-modal-container");
+      let modalContainer = this.container.querySelector(
+        "#anghami-modal-container"
+      );
       if (!modalContainer) {
         modalContainer = document.createElement("div");
         modalContainer.id = "anghami-modal-container";
@@ -322,7 +343,7 @@ export default class DigitalAnghamiServices {
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="anghami-modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                  <h2 id="anghami-modal-title" class="font-rubik font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${title}
                   </h2>
               </div>
@@ -381,7 +402,10 @@ export default class DigitalAnghamiServices {
       modal.style.animation = "anghamiModalFadeOut 0.2s ease-in forwards";
       setTimeout(() => {
         modalContainer.innerHTML = "";
-        if (this.previouslyFocusedElement && this.previouslyFocusedElement.focus) {
+        if (
+          this.previouslyFocusedElement &&
+          this.previouslyFocusedElement.focus
+        ) {
           this.previouslyFocusedElement.focus();
         }
         this.previouslyFocusedElement = null;
@@ -452,33 +476,41 @@ export default class DigitalAnghamiServices {
     const description = anghamiDescription[lang];
 
     this.container.innerHTML = `
-      <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-16">
+      <div class="${
+        isArabic ? "font-noto-kufi-arabic" : "font-rubik"
+      } w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-16">
         <div>
-          <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
-            ${isArabic ? "اشتراك <span class='font-rubik'>OSN+ & ANGHAMI</span>" : "forfait OSN+ & ANGHAMI"}
+          <h2 class="font-medium text-[25px] md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
+            ${
+              isArabic
+                ? "اشتراك <span class='font-rubik'>OSN+ & ANGHAMI</span>"
+                : "forfait OSN+ & ANGHAMI"
+            }
           </h2>
         </div>
-        <div class="mx-auto pt-12 w-full max-w-screen-xl" ${isArabic ? 'dir="rtl"' : ""}>
+        <div class="mx-auto pt-12 w-full max-w-screen-xl" ${
+          isArabic ? 'dir="rtl"' : ""
+        }>
           <div class="flex flex-col lg:flex-row w-full gap-8 items-center">
-            <!-- Logos & Description (left on desktop, top on mobile) -->
+
             <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">
-              <div class="flex items-center justify-center gap-3 mb-8">
+              <div dir="ltr" class="flex items-center justify-center gap-1 md:gap-3 mb-8">
               <img 
                   src="./assets/images/services/osn.svg" alt="OSN+"
-                  class="w-36 md:w-42 h-auto dark:hidden"
+                  class="w-[76.33px] md:w-42 h-auto dark:hidden"
                 />
                 <img 
                   src="./assets/images/services/osn-dark.svg" alt="OSN+"
-                  class="w-36 md:w-42 h-auto hidden dark:block"
+                  class="w-[76.33px] md:w-42 h-auto hidden dark:block"
                 />
-                <span class="text-4xl font-semibold text-black dark:text-white">&</span>
+                <span class="text-[24px] md:text-4xl font-semibold text-black dark:text-white">&</span>
                 <img 
                   src="./assets/images/services/anghami.svg" alt="Anghami"
-                  class="w-36 md:w-48 h-auto dark:hidden"
+                  class="w-[150.85px] md:w-48 h-auto dark:hidden"
                 />
                 <img 
                   src="./assets/images/services/anghami-dark.svg" alt="Anghami"
-                  class="w-36 md:w-48 h-auto hidden dark:block"
+                  class="w-[150.85px] md:w-48 h-auto hidden dark:block"
                 />
                 </div>
               <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl text-center text-gray-800 dark:text-gray-200">
