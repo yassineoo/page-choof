@@ -63,8 +63,8 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="h-[600px] sm:h-auto relative w-full max-w-[350px] flex flex-col mx-auto overflow-hidden">
-        <div class="mb-2 h-[45px] flex items-center gap-1 justify-center text-ooredoo-red dark:text-white bg-[#ED1C2421] dark:bg-[#ED1C2421]/60 rounded-full font-semibold text-center">
+      <div class="h-full sm:h-auto relative w-full max-w-[320px] flex flex-col mx-auto overflow-hidden">
+        <div class="mb-2 h-[45px] flex items-center justify-center text-ooredoo-red dark:text-white bg-[#ED1C2421] dark:bg-[#ED1C2421]/60 rounded-full py-2 px-1 font-semibold text-center">
           <span dir="ltr" class="font-rubik">
           ${offer.topLabel}
           <span class="${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}">${isRTL ? "وفّروا" : "D'ÉCONOMIE"}</span>
@@ -77,7 +77,7 @@ export class Slider {
             </h2>
           </div>
 
-          <div class="flex-1 h-[260px] sm:h-auto py-4 text-center border-b-[1px] border-b-[#BBBEBE] border-dashed">
+          <div class="flex-1 h-[270px] sm:h-auto py-4 text-center border-b-[1px] border-b-[#BBBEBE] border-dashed">
             <p>${this.currentLang === "ar" ? "قوموا بشراء" : "Payez"}</p>
             <p class="text-ooredoo-red text-xl font-bold">
               <span class="font-rubik">${offer.sub}</span>
@@ -153,7 +153,7 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="h-[620px] sm:h-auto relative w-full max-w-[300px] flex flex-col mx-auto overflow-hidden">
+      <div class="h-full sm:h-auto relative w-full max-w-[320px] flex flex-col mx-auto overflow-hidden">
         ${offer.hasTopLabel ?`
           <div class="mb-2 h-[50px] flex items-center gap-1 justify-center dark:text-white bg-[#F1C4004D] dark:bg-[#F1C400]/60 rounded-full font-semibold text-center py-2 px-1">
             <span class="text-[12px] md:text-[15px]">
@@ -169,8 +169,8 @@ export class Slider {
             <h2 class="text-white font-bold text-[20px] md:text-[25px]  text-center capitalize dark:text-white leading-tight">
               <span class="font-rubik">
                 ${index === 1 ? 
-                  `<span class="font-rubik">
-                    <span class="font-rubik">4990 DA</span>
+                  `<span class="${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}">
+                    <span class="font-rubik">4990</span> ${isRTL ? "دج" : "DA"}
                   </span>` 
                   : 
                   offer.name}
@@ -499,7 +499,7 @@ export class Slider {
                     ${offers
                       .map(
                         (offer, index) => `
-                    <div class="swiper-slide flex justify-center p-4">
+                    <div class="swiper-slide flex justify-center">
                         ${this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)}
                     </div>
                     `
