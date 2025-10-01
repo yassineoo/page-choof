@@ -143,8 +143,8 @@ export default {
         name: "<span class='font-rubik'>Smart 200</span>",
         data: "إنترنت 24 ساعة",
         features: [
-          "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "<span class='font-rubik'>600</span> دج رصيد",
+          "مكالمات غير محدودة نحو <span class='font-rubik' dir='rtl'>Ooredoo</span>",
+          "<span class='font-rubik' dir='rtl'>600</span> دج رصيد",
         ],
         price: "200",
         duration: "<span class='font-rubik'>24</span> ساعة",
@@ -154,9 +154,9 @@ export default {
         name: "<span class='font-rubik'>Smart 100</span>",
         data: "<span class='font-rubik'>500Mo</span> إنترنت",
         features: [
-          "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
+          "مكالمات غير محدودة نحو <span class='font-rubik' dir='rtl'>Ooredoo</span>",
           "فايسبوك & ماسنجر مجانيين",
-          "<span class='font-rubik'>100</span> دج رصيد",
+          "<span class='font-rubik' dir='rtl'>100</span> دج رصيد",
         ],
         price: "100",
         duration: "<span class='font-rubik'>24</span> ساعة",
@@ -166,7 +166,7 @@ export default {
         name: "<span class='font-rubik'>Smart 50</span>",
         data: "<span class='font-rubik'>200Mo</span> إنترنت",
         features: [
-          "<span class='font-rubik'>30</span> دقيقة مكالمات نحو <span class='font-rubik'>Ooredoo</span>",
+          "<span class='font-rubik'>30</span> دقيقة مكالمات نحو <span class='font-rubik' dir='rtl'>Ooredoo</span>",
         ],
         price: "50",
         duration: "<span class='font-rubik'>24</span> ساعة",

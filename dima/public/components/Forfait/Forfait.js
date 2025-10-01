@@ -41,6 +41,19 @@ class ForfaitComponent {
 
   getStylesheet() {
     return `
+     .rtl-isolated {
+  unicode-bidi: isolate;
+  display: inline-block; 
+}
+.capitalize-text {
+  text-transform: lowercase;     
+  display: inline-block;          
+}
+
+.capitalize-text::first-letter {
+  text-transform: uppercase;
+}
+
     .forfait-slider-container {
       overflow: hidden;
       position: relative;
@@ -531,6 +544,8 @@ class ForfaitComponent {
     justify-content: center;
     align-items: center;
   }
+ 
+  
 }
   `;
   }

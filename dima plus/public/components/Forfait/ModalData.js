@@ -1,5 +1,22 @@
 import ForfaitData from "./ForfaitData.js";
 
+function formatForfaitName(name, lang) {
+  const isArabic = lang === "ar";
+  const prefix = isArabic ? "اشتراك" : "le forfait";
+  const prefixDeterminent = isArabic ? "" : "le ";
+
+  const styledName = `<span class="capitalize-text">${name}</span>`;
+
+  const plainText = name.replace(/<[^>]*>/g, "").trim();
+  const plainPrefix = isArabic ? "اشتراك" : "forfait";
+
+  if (plainText.toLowerCase().startsWith(plainPrefix.toLowerCase())) {
+    return `${prefixDeterminent} ${styledName}`;
+  }
+
+  return `${prefix} ${styledName}`;
+}
+
 function generateModalContent(offers, lang) {
   const modalContent = {};
 
@@ -9,6 +26,8 @@ function generateModalContent(offers, lang) {
 
   for (const offer of offers) {
     const isArabic = lang === "ar";
+
+    const formattedName = formatForfaitName(offer.name, lang);
 
     const featuresString = Array.isArray(offer.features)
       ? offer.features.join(" + ")
@@ -32,8 +51,8 @@ function generateModalContent(offers, lang) {
       confirm: fullDescription,
       success: `${successPreamble} ${successDescription}`,
       insufficient: isArabic
-        ? `رصيدك غير كافٍ لشراء اشتراك ${offer.name}. يرجى تعبئة حسابك.`
-        : `Votre crédit est insuffisant pour acheter le forfait ${offer.name}. Veuillez recharger votre compte.`,
+        ? `رصيدك غير كافٍ لشراء ${formattedName}. يرجى تعبئة حسابك.`
+        : `Votre crédit est insuffisant pour acheter ${formattedName}. Veuillez recharger votre compte.`,
       hasShahid: hasShahid,
     };
   }
