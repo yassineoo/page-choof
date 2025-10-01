@@ -82,9 +82,9 @@ export const migrationData = {
       confirmTitle: "هنيئًا!",
       confirmDescription:
         "تم اختيار حد مشاركة الإنترنت بنجاح.",
-      successTitle: "هنيئًا!",
+      successTitle: "رصيد غير كافٍ",
       successMessage:
-        "مرحبًا بك في عرض YOOZ! سارع لتحميل التطبيق My Ooredoo مجانًا لشراء أو تشكيل الاشتراك الذي يناسبك واستمتع بمغامرة N’YOOZ <br/> http://ore.do/yo <br/> قم بشراء اشتراكاتك على #151*",
+        "لشراء الاشتراك، يُرجى تعبئة رصيدك.",
     },
   },
 };
