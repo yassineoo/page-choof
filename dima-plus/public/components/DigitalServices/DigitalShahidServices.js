@@ -503,8 +503,8 @@ export default class DigitalShahidServices {
           isArabic ? 'dir="rtl"' : ""
         }">
 
-              <h3 class="font-semibold text-[24px] md:text-[38px] text-center leading-relaxed tracking-wide mb-[22px] md:mb-[38px] text-black dark:text-white">
-                ${isArabic ? "إشتراك شاهد" : "FORFAITS SHAHID"}
+              <h3 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
+                ${isArabic ? "إشتراكات شاهد" : "FORFAITS SHAHID"}
               </h3>
 
 <div class="flex flex-wrap gap-x-8 gap-y-5 items-stretch lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-5">
@@ -527,7 +527,7 @@ export default class DigitalShahidServices {
               <img src="./assets/images/services/shahid-d.svg" alt="Shahid"
                    class="w-full max-w-xs h-auto mb-6 dark:flex hidden"/>
               <h3 class="hidden md:block font-semibold text-xl leading-relaxed tracking-wide mb-4 text-black dark:text-white">
-                ${isArabic ? "إشتراك شاهد" : "FORFAITS SHAHID"}
+                ${isArabic ? "إشتراكات شاهد" : "FORFAITS SHAHID"}
               </h3>
               <div class="text-base leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">
                 ${
