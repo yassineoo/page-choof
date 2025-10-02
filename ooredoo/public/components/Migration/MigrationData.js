@@ -48,7 +48,7 @@ export const migrationData = {
     title: "التغيير",
     description: "هل تريد التغيير إلى عرض آخر؟",
     price: "500 دج",
-    dima: "OOREDOO Dima",
+    dima: "Dima Ooredoo",
     nyooz: "n’yooz",
     confirmTitle: "تأكيد التغيير",
     confirmBtn: "تأكيد",

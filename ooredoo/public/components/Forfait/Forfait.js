@@ -179,15 +179,6 @@ class ForfaitComponent {
     }
 
     /* Grid System */
-    .forfait-grid {
-      display: grid;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      gap: 0.875rem !imortant;
-      justify-items: center;
-      align-items: stretch;
-    }
 
     .forfait-mobile-slider {
       display: none;
@@ -227,9 +218,7 @@ class ForfaitComponent {
 
     .forfait-grid {
   display: grid;
-  gap: 1rem 10px;
-  padding: 0 1rem;
-  justify-content: center;
+  gap: 10px 0px;
 }
 
 /* ---------- Default (mobile) ----------
@@ -931,8 +920,8 @@ class ForfaitComponent {
           ${this.slider.createResponsiveLayout(data.forfaits, data.ooredoo,labels, "forfait-grid-5", this.isRTL)}
         </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-[clamp(1rem,5vw,5rem)]">
-          <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit">${
-            this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "DECOUVREZ NOS SERVICES NUMERIQUES"
+          <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit uppercase">${
+            this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "Découvrez nos services numériques"
           }</h1>
           <div class="grid grid-cols-5 md:flex items-center gap-2 mt-10 md:mb-16 flex-wrap">
             <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
@@ -976,7 +965,7 @@ class ForfaitComponent {
 
       <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] py-16">
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
-            ${this.currentLang === "ar" ? "اشتراكات الانترنت" : "FORFAITS INTERNET"}
+            ${this.currentLang === "ar" ? "اشتراكات الإنترنت" : "FORFAITS INTERNET"}
           </h2>
           <div class="">
               ${this.slider.createResponsiveLayoutSmart(data.smartForfaits, labels, "forfait-grid-4", this.isRTL, this.convertToLatinNumerals)}

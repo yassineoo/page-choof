@@ -41,6 +41,7 @@ export default {
         data: "50Go",
         price: "4500",
         free:"3",
+        given:"12",
         oldPrice: "6000",
         duration: "4 Semaines",
         buy: "Acheter",
@@ -51,6 +52,7 @@ export default {
         sub: "7",
         data: "50Go",
         free:"2",
+        given:"9",
         price: "3500",
         oldPrice: "4500",
         duration: "4 Semaines",
@@ -61,6 +63,7 @@ export default {
         name: "2500 DA",
         sub: "5",
         free:"1",
+        given:"6",
         data: "50Go",
         price: "2500",
         oldPrice: "3000",
@@ -219,6 +222,7 @@ export default {
         name: "4500 دج",
         sub: "9",
         free:"3 اشتراكات",
+        given:"12",
         data: "50Go",
         price: "4500",
         oldPrice: "6000",
@@ -230,6 +234,7 @@ export default {
         name: "3500 دج",
         sub: "7",
         free:"اشتراكين",
+        given:"9",
         data: "50Go",
         price: "3500",
         oldPrice: "4500",
@@ -241,6 +246,7 @@ export default {
         name: "2500 دج",
         sub: "5",
         free:"اشتراك",
+        given:"6",
         data: "50Go",
         price: "2500",
         oldPrice: "3000",
@@ -256,7 +262,7 @@ export default {
         features: [
           "مكالمات غير محدودة نحو كل الشبكات الوطنية",
           "رسائل قصيرة غير محدودة نحو <span class='font-rubik'>Ooredoo</span>",
-          "<span class='font-rubik'>100</span> رسالة قصيرة نحو الشبكات الأخرى"
+          "<span class='font-rubik'>200</span> رسالة قصيرة نحو الشبكات الأخرى"
         ],
         duration: "<span class='font-rubik'>4</span> أسابيع",
         buy: "Acheter",
@@ -308,7 +314,7 @@ export default {
       },
       {
         name: "اشتراك 200",
-        data: "إنترنت  <span class='font-rubik'>24</span> ساعة",
+        data: "إنترنت <span class='font-rubik'>24</span> ساعة<span class='font-rubik'>/24</span>",
         price: "200",
         features: [
           "مكالمات مجانية نحو <span class='font-rubik'>Ooredoo</span>",
@@ -332,8 +338,8 @@ export default {
     ],
     smartForfaits: [
      {
-        name: "Internet 1500",
-        data: "200Go",
+        name: "إنترنت 1500",
+        data: "40Go",
         price: "1500",
         features: [      
          "يوتيوب غير محدود"
@@ -342,8 +348,8 @@ export default {
         buy: "Acheter",
       },
       {
-        name: "Internet 1000",
-        data: "40Go",
+        name: "إنترنت 1000",
+        data: "15Go",
         price: "1000",
         features: [      
          "<span class='font-rubik'>5Go</span> يوتيوب "

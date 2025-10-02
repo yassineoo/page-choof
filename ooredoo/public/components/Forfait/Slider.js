@@ -64,8 +64,8 @@ export class Slider {
 
     return `
       <div class="h-full sm:h-auto relative w-full max-w-[320px] flex flex-col mx-auto overflow-hidden">
-        <div class="mb-2 h-[45px] flex items-center justify-center text-ooredoo-red dark:text-white bg-[#ED1C2421] dark:bg-[#ED1C2421]/60 rounded-full py-2 px-1 font-semibold text-center">
-          <span dir="ltr" class="font-rubik">
+        <div class="mb-2 h-[30px] flex items-center justify-center text-ooredoo-red dark:text-white bg-[#ED1C2421] dark:bg-[#ED1C2421]/60 rounded-full px-1 text-center">
+          <span dir="ltr" class="font-rubik text-[15px] font-semibold">
           ${offer.topLabel}
           <span class="${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}">${isRTL ? "وفّروا" : "D'ÉCONOMIE"}</span>
           </span>
@@ -95,7 +95,7 @@ export class Slider {
           <div class="py-4 px-2 flex items-center justify-between">
             <div class="text-center">
               <p class="text-sm">${this.currentLang === "ar" ? "احصلوا على" : "Recevez"}</p>
-              <p class="font-semibold text-lg md:text-xl"><span class="font-rubik">12</span> ${this.currentLang === "ar" ? "اشتراك" : "forfaits"}</p>
+              <p class="font-semibold text-lg md:text-xl"><span class="font-rubik">${offer.given}</span> ${this.currentLang === "ar" ? "اشتراك" : "forfaits"}</p>
             </div>
             <div class="text-center">
               <p class="text-[#7F7F7F] font-semibold text-xl">
@@ -155,13 +155,13 @@ export class Slider {
     return `
       <div class="h-full sm:h-auto relative w-full max-w-[320px] flex flex-col mx-auto overflow-hidden">
         ${offer.hasTopLabel ?`
-          <div class="mb-2 h-[50px] flex items-center gap-1 justify-center dark:text-white bg-[#F1C4004D] dark:bg-[#F1C400]/60 rounded-full font-semibold text-center py-2 px-1">
+          <div class="mb-2 h-[30px] flex items-center gap-1 justify-center dark:text-white bg-[#F1C4004D] dark:bg-[#F1C400]/60 rounded-full font-semibold text-center px-1">
             <span class="text-[15px]">
             ${offer.topLabel}
             </span>
         </div>` : 
         `
-        <div class="mb-2 h-[50px] flex items-center gap-1 justify-center text-ooredoo-red dark:text-white bg-transparent rounded-full font-semibold text-center">
+        <div class="mb-2 h-[30px] flex items-center gap-1 justify-center text-ooredoo-red dark:text-white bg-transparent rounded-full font-semibold text-center">
           
         </div>`}
         <div class="h-full bg-white dark:bg-[#2C2C2C] pb-6 rounded-xl border-[1px] border-ooredoo-red dark:border-white"}>
@@ -180,7 +180,7 @@ export class Slider {
 
           <div class="flex-1 justify-center items-center text-center pt-8">
             <span class="text-[40px] sm:text-[55px] text-ooredoo-red dark:text-white font-semibold font-rubik">${offer.data}</span>
-            <span>${isRTL ? "إنترنت" : "Internet"}</span>
+            <span>${isRTL ? "إنترنت" : "internet"}</span>
           </div>
 
           <div class="space-y-4 py-8 px-5 border-b-[1px] border-b-[#BBBEBE] h-[180px] border-dashed">
@@ -213,7 +213,7 @@ export class Slider {
             }
             ${
               index === 0 ? 
-              `<p class="font-semibold text-lg md:text-xl"><span class="font-rubik">4</span> ${this.currentLang === "ar" ? "أسابيع" : "Semaines"}</p>` : ""
+              `<p class="font-semibold text-lg md:text-xl"><span class="font-rubik">4</span> ${this.currentLang === "ar" ? "أسابيع" : "semaines"}</p>` : ""
             }
             ${
               index === 1 ? 
@@ -294,7 +294,7 @@ export class Slider {
                 `<h3 class="text-ooredoo-red dark:text-white font-semibold text-[28px]">
                  <span class="font-rubik">${offer.data}</span>
                  ${isRTL ?
-                  `<span class="font-noto-kufi-arabic">انترنت</span>`
+                  `<span class="font-noto-kufi-arabic">إنترنت</span>`
                   :
                   `<span class="font-rubik">Internet</span>`
                  }
@@ -391,7 +391,7 @@ export class Slider {
               <h3 class="text-ooredoo-red dark:text-white font-semibold text-[28px]">
                  <span class="font-rubik">${offer.data}</span>
                  ${isRTL ?
-                  `<span class="font-noto-kufi-arabic">انترنت</span>`
+                  `<span class="font-noto-kufi-arabic">إنترنت</span>`
                   :
                   `<span class="font-rubik">Internet</span>`
                  }
@@ -535,7 +535,7 @@ export class Slider {
 
     return `
           <div class="hidden sm:flex w-full items-center justify-center">
-            <div class="forfait-grid gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-2">
+            <div class="forfait-grid">
               ${offers
                 .map((offer, index) => this.createForfaitCardInternet(offer, startIndex + index, labels, isRTL, convertToLatinNumerals))
                 .join("")}
