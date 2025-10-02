@@ -28,7 +28,7 @@ export default class Consommation {
         "phone",
       ],
       MAX_SECTIONS_BEFORE_EXPAND: 4,
-      EXPANDABLE_INDICES: new Set([3, 2]),
+      EXPANDABLE_INDICES: new Set([3]),
     };
 
     this.cache = {

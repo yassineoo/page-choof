@@ -69,7 +69,7 @@ export default {
         buy: "Acheter",
       },
       {
-        name: "Forfait 200",
+        name: "Forfait 100",
         data: "700Mo",
         price: "100",
         features:"Youtube illimité",
@@ -77,7 +77,7 @@ export default {
         buy: "Acheter",
       },
       {
-        name: "Forfait 100",
+        name: "Forfait 50",
         data: "50Mo",
         price: "50",
         features:"Facebook illimités",

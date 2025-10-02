@@ -343,7 +343,7 @@ export default class DigitalAnghamiServices {
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="anghami-modal-title" class="font-rubik font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                  <h2 id="anghami-modal-title" class="${title.includes("OSN+ & ANGHAMI 1000") ? "font-rubik" : fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${title}
                   </h2>
               </div>
