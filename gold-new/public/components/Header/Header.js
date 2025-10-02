@@ -577,11 +577,11 @@ export default class Header {
             ${texts.manualModalDesc}
           </p>
         </div>
-        <div class="flex justify-center items-center gap-[13px] flex-col sm:flex-row w-full max-w-md px-4 pb-4 md:pb-0">
-          <button id="modal-cancel-btn" type="button" class="flex w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red ${fontClass} font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+        <div class="flex justify-center items-center gap-[13px] flex-wrap w-full max-w-md px-4 pb-4 md:pb-0">
+          <button id="modal-cancel-btn" type="button" class="flex max-w-[150px] sm:max-w-[280px] w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red ${fontClass} font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
             ${texts.cancelBtn}
           </button>
-          <button id="modal-confirm-btn" type="button" class="flex w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white ${fontClass} font-semibold uppercase hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+          <button id="modal-confirm-btn" type="button" class="flex max-w-[150px] sm:max-w-[280px] w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white ${fontClass} font-semibold uppercase hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
             ${texts.confirmBtn}
           </button>
         </div>

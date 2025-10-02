@@ -384,12 +384,12 @@ export default class Consommation {
 
     return `
       <div class="w-full flex flex-col ${bgClass} ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
-        <div class="bg-ooredoo-red w-full mt-[-2px] px-6 pt-2 pb-14 -my-7"> 
+        <div class="bg-ooredoo-red w-full mt-[-2px] px-6 pt-2 pb-[79px] -my-7"> 
           <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center py-4" style="font-weight: 500; font-size: 24px;">
             ${data.title}
           </h1>
         </div>
-        <div class="relative w-full px-4 -mt-7 bg-[#F8F8F8]">
+        <div class="relative z-0 w-full px-4 -mt-7 bg-[#F8F8F8] dark:bg-black">
           <div class="cards-container flex flex-col gap-6 max-w-full mx-auto">
             ${this.renderMobileCard(data.cards[0], 0, lang, theme, true, this.isCardExpanded(0))}
             ${
@@ -401,9 +401,10 @@ export default class Consommation {
                 : ""
             }
           </div>
-          <div class="mb-[52px]"> <!-- Added margin-bottom to the button wrapper -->
+          <div class="mb-[52px]">
             ${this.renderMobileButton(lang, theme)}
           </div>
+          <span class="absolute -z-40 top-0 left-0 w-full h-[80px] -mt-1 bg-ooredoo-red"></span>
         </div>
       </div>
     `;

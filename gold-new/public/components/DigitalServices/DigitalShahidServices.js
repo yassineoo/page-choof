@@ -471,10 +471,10 @@ export default class DigitalShahidServices {
       <div class="${this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-white dark:bg-[#141414] px-5 py-16">
         <div class="mx-auto w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ""}">
           <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white mb-10">
-            ${isArabic ? "اشتراكات شاهد" : "FORFAIT SHAHID"}
+            ${isArabic ? "اشتراكات شاهد" : "FORFAITS SHAHID"}
           </h2>
 
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-5 items-stretch">
+          <div class="flex flex-col-reverse lg:grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-5 items-stretch">
             <!-- Card 1 -->
             <div class="flex justify-center">
               ${renderShahidCard(plans[0], isArabic, 0)}
@@ -489,7 +489,7 @@ export default class DigitalShahidServices {
                    class="w-full max-w-xs h-auto mb-6 dark:hidden flex"/>
               <img src="./assets/images/services/shahid-d.svg" alt="Shahid"
                    class="w-full max-w-xs h-auto mb-6 dark:flex hidden"/>
-              <h3 class="font-semibold text-xl leading-relaxed tracking-wide mb-4 text-black dark:text-white">
+              <h3 class="hidden lg:block font-semibold text-xl leading-relaxed tracking-wide mb-4 text-black dark:text-white">
                 ${isArabic ? "اشتراكات شاهد" : "FORFAITS SHAHID"}
               </h3>
               <div class="text-base leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">

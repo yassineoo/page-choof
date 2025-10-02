@@ -92,7 +92,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           </div>
         </div>
         <div class="hidden md:flex items-center flex-shrink-0">
-          <div id="theme-switcher" class="relative w-[102px] lg:w-[144px] h-[40px] lg:h-[48px] rounded-full bg-[#E4E4E7] overflow-hidden transition-all duration-500">
+          <div id="theme-switcher" class="relative w-[102px] lg:w-[144px] h-[40px] lg:h-[48px] rounded-full bg-[#E4E4E7] transition-all duration-500">
             <button id="moon-btn" class="absolute left-0 top-0 w-[60px] lg:w-[72px] h-[40px] lg:h-[48px] rounded-full bg-[#171717] dark:bg-[#2A2A2A] flex items-center justify-center transition-all duration-500 z-10 hover:scale-105">
               <img src="./assets/images/header/moon-white.svg" alt="Moon" class="w-5 h-5 lg:w-7 lg:h-7 transition-all duration-300" />
             </button>
@@ -112,7 +112,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
               } text-sm lg:text-base font-medium">${currentLanguage}</span>
               <img src="./assets/images/header/chevron-down.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2 transition-all duration-300" />
             </button>
-            <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white rounded-lg shadow-lg z-50 border border-gray-200 overflow-hidden transition-all duration-300">
+            <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white rounded-lg shadow-lg z-50 border border-gray-200 transition-all duration-300">
               <a href="#" class="language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 text-black transition-all duration-300 ${
                 language === "fr" ? "font-semibold text-ooredoo-red" : ""
               }">Français</a>
@@ -208,7 +208,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                   </svg>
 
                   <!-- Tooltip -->
-                  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute top-full bg-white text-black text-xs px-[14px] leading-loose rounded-b-[15px] ${language === 'ar' ? "rounded-tl-[15px] rounded-tr-[4px]" : "rounded-tr-[15px] rounded-tl-[4px]"} py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
+                  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute bg-white dark:bg-[#2C2C2C] text-black dark:text-white text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${language === 'ar' ? "rounded-tl-[15px] rounded-tr-[4px]" : "rounded-tr-[15px] rounded-tl-[4px]"} py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
                     ${language === 'ar' ? 
                       userData.mode === 'mactivia' ? "أنت حاليا في الوضع \"M'Activia\"، الذي يمكّنك من الحصول على اشتراك Gold مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : "أنت حاليا في الوضع \"رصيد\"، الذي يمكّنك من الحصول على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : 
                       userData.mode === 'mactivia' ? "Vous êtes actuellement sur le mode \"M'Activia\", qui vous permet de recevoir un forfait Gold Activé à chaque rechargement de 1000 DA et plus." : 
@@ -300,7 +300,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                   </svg>
 
                   <!-- Tooltip -->
-                  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute top-full ${language === 'ar' ? "left-0" : "right-0"} bg-white text-black text-xs px-[14px] leading-loose rounded-b-[15px] ${language === 'ar' ? "rounded-tl-[15px] rounded-tr-[4px]" : "rounded-tr-[15px] rounded-tl-[4px]"} py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
+                  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute top-full ${language === 'ar' ? "left-0" : "right-0"} bg-white dark:bg-[#2c2c2c] mt-2 z-50 text-black dark:text-white text-xs px-[14px] leading-loose rounded-b-[15px] ${language === 'ar' ? "rounded-tl-[15px] rounded-tr-[4px]" : "rounded-tr-[15px] rounded-tl-[4px]"} py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
                     ${language === 'ar' ? 
                       userData.mode === 'mactivia' ? "أنت حاليا في الوضع \"M'Activia\"، الذي يمكّنك من الحصول على اشتراك Gold مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : "أنت حاليا في الوضع \"رصيد\"، الذي يمكّنك من الحصول على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : 
                       userData.mode === 'mactivia' ? "Vous êtes actuellement sur le mode \"M'Activia\", qui vous permet de recevoir un forfait Gold Activé à chaque rechargement de 1000 DA et plus." : 

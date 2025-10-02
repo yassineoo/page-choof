@@ -702,15 +702,17 @@ class Migration {
     const arPhrase = "شروط وأحكام العقد";
     const frPhrase = "termes et conditions du contrat";
     if (language === "ar" && text.includes(arPhrase)) {
+      const href = "./assets/documents/TERMES_ET_CONDITIONS_AR.pdf";
       return text.replace(
         arPhrase,
-        `<a href="#" class="migration-terms-link" role="link" tabindex="0">${arPhrase}</a>`
+        `<a href="${href}" class="migration-terms-link" role="link" tabindex="0">${arPhrase}</a>`
       );
     }
     if (language === "fr" && text.includes(frPhrase)) {
+      const href = "./assets/documents/TERMES_ET_CONDITIONS.pdf";
       return text.replace(
         frPhrase,
-        `<a href="#" class="migration-terms-link" role="link" tabindex="0">${frPhrase}</a>`
+        `<a href="${href}" class="migration-terms-link" role="link" tabindex="0">${frPhrase}</a>`
       );
     }
     return text;
@@ -743,7 +745,7 @@ class Migration {
 
     const isDark = document.documentElement.classList.contains("dark");
     const roundedInlineStyle = `background: ${
-      isDark ? "#000" : "#F8F8F8"
+      isDark ? "#424242" : "#F8F8F8"
     }; color: ${isDark ? "#fff" : "#000"};`;
 
     this.container.innerHTML = `

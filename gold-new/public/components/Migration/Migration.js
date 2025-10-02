@@ -122,7 +122,7 @@ class Migration {
 .migration-card-container {
   display: flex;
   width: 100%;
-  max-width: var(--container-max);
+  max-width: 900px;
   flex-direction: column;
   height: auto;
   margin: 0 auto;
@@ -680,9 +680,9 @@ class Migration {
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
     <section class="w-full bg-white dark:bg-black migration-section">
-      <div>
-        <div style="width:100%">
-<div class="migration-card-shadow migration-hover-lift">
+      <div class="mx-auto w-[90%] max-w-[900px]">
+        <div>
+<div class="migration-card-shadow migration-hover-lift max-w-[900px]">
   <div class="migration-card-container">
     <div class="migration-card-content">
       <h2 class="migration-title">${this.createMixedTitleHTML(
