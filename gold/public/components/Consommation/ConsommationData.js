@@ -265,7 +265,7 @@ export const consommationData = {
           },
           {
             subIcon: "phone",
-            subtitle: "مكالمات نحو الجميع",
+            subtitle: "مكالمات نحو كل الشبكات",
             infini: true,
             date: "26/05/25",
             percentage: 100,
@@ -281,14 +281,14 @@ export const consommationData = {
           },
           {
             subIcon: "sms",
-            subtitle: "<span class='font-rubik'>SMS</span> نحو <span class='font-rubik'>Ooredoo</span>",
+            subtitle: "رسائل قصيرة نحو <span class='font-rubik'>Ooredoo</span>",
             infini: true,
             date: "26/05/25",
             percentage: 100,
           },
           {
             subIcon: "sms",
-            subtitle: "<span class='font-rubik'>SMS</span> نحو الآخرين",
+            subtitle: "رسائل قصيرة نحو الشبكات الأخرى",
             value: '<span class="font-rubik">50</span>',
             unit: "SMS",
             date: "26/05/25",

@@ -26,8 +26,8 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait Gold 4000. Veuillez recharger votre compte.`,
     },
     "Forfait 1500": {
-      confirm: ``,
-      success: ``,
+      confirm: `40Go internet + YouTube illimité, le tout valable 30 jours.`,
+      success: `Vous avez reçu 40Go internet + YouTube illimité, le tout valable 30 jours.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 1500. Veuillez recharger votre compte.`,
     },
     "Forfait 1000": {
@@ -124,8 +124,8 @@ export default {
       insufficient: `رصيدك غير كافٍٍ لشراء الاشتراك 100. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 50":{
-      confirm: `500Mo إنترنت + فايسبوك غير محدود`,
-      success: `لقد حصلت على 500Mo إنترنت + فايسبوك غير محدود، الكل صالح إلى غاية منتصف الليل`,
+      confirm: `50Mo إنترنت + فايسبوك غير محدود`,
+      success: `لقد حصلت على 50Mo إنترنت + فايسبوك غير محدود، الكل صالح إلى غاية منتصف الليل`,
       insufficient: `رصيدك غير كافٍٍ لشراء الاشتراك 50. يُرجى تعبئة رصيدك.`,
     },
     "Smart 200": {

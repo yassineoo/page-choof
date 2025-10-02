@@ -174,7 +174,7 @@ export class Slider {
               <h3 class="text-ooredoo-red dark:text-white font-semibold text-[28px]">
                  <span class="font-rubik">${offer.data}</span>
                  ${isRTL ?
-                  `<span class="font-noto-kufi-arabic">انترنت</span>`
+                  `<span class="font-noto-kufi-arabic">إنترنت</span>`
                   :
                   `<span class="font-rubik">Internet</span>`
                  }
