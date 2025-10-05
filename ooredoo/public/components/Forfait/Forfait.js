@@ -218,7 +218,7 @@ class ForfaitComponent {
 
     .forfait-grid {
   display: grid;
-  gap: 10px 0px;
+  gap: 15px 0px;
 }
 
 /* ---------- Default (mobile) ----------

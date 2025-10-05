@@ -126,7 +126,7 @@ export default class Header {
     const storedOffer = localStorage.getItem("selectedOffer");
     this.userData = {
       phone: "0509876543",
-      offer: "Offre Ooredoo",
+      offer: "Offre La Switch",
       credit: "2000",
       autoRenewal: storedRenewal !== null ? JSON.parse(storedRenewal) : true,
     };

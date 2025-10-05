@@ -19,7 +19,7 @@ export const migrationData = {
     insufficientMessage:
       "Votre solde est insuffisant pour effectuer cette opération.",
     migrationDimaModal: {
-      confirmTitle: "Migration vers DIMA",
+      confirmTitle: "Migration vers Dima Ooredoo",
       confirmDescription:
         "Vous allez changer vers l'offre Dima Ooredoo gratuitement, ceci peut entraîner la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
@@ -63,7 +63,7 @@ export const migrationData = {
     insufficientTitle: "رصيد غير كاف",
     insufficientMessage: "رصيدك غير كافٍ لإتمام هذه العملية.",
     migrationDimaModal: {
-      confirmTitle: "التغيير إلى Dima Ooredoo",
+      confirmTitle: "التغيير إلى <span class=\"font-rubik\">Dima Ooredoo</span>",
       confirmDescription:
         "ستقوم بالتغيير إلى عرض Dima Ooredoo مجانًا، وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",

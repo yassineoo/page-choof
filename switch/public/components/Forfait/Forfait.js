@@ -928,8 +928,8 @@ class ForfaitComponent {
           ${this.slider.createResponsiveLayout(data.forfaits, labels,  "forfait-grid-5", this.isRTL)}
         </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-[clamp(1rem,5vw,5rem)]">
-          <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit">${
-            this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "DECOUVREZ NOS SERVICES NUMERIQUES"
+          <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit uppercase">${
+            this.currentLang === "ar" ? "إكتشفوا خدماتنا الرقمية" : "Découvrez nos services numériques"
           }</h1>
           <div class="grid grid-cols-5 md:flex items-center gap-2 mt-10 md:mb-16 flex-wrap">
             <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
@@ -961,7 +961,7 @@ class ForfaitComponent {
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${
               this.currentLang === "ar"
-                ? "<span>اشتراكات الإنترنت</span>"
+                ? "<span>إشتراكات الإنترنت</span>"
                 : "<span class='font-rubik'>FORFAITS INTERNET</span>"
             }
           </h2>

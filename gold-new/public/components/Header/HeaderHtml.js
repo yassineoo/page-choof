@@ -387,7 +387,7 @@ export const generateHeaderHTML = (
 
               <button id="auto-renewal-info-mobile" class="w-6 h-6 flex items-center justify-center rounded-full bg-transparent text-white relative ml-2">
                 <img src="./assets/images/header/Info.svg" class="w-6 h-6 z-0" alt="Info" />
-                <div id="auto-renewal-card-mobile" class="absolute bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
+                <div id="auto-renewal-card-mobile" class="absolute bg-white dark:bg-[#2C2C2C] text-left ${language === 'ar' ? 'lg:right-0 -translate-x-0' : 'lg:left-0 -translate-x-0'} left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
                   <div class="${fontClass}" style="${
     theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
   }">

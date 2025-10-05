@@ -174,7 +174,7 @@ export class Slider {
               <h3 class="text-ooredoo-red dark:text-white font-semibold text-[28px]">
                  <span class="font-rubik">${offer.data}</span>
                  ${isRTL ?
-                  `<span class="font-noto-kufi-arabic">انترنت</span>`
+                  `<span class="font-noto-kufi-arabic">إنترنت</span>`
                   :
                   `<span class="font-rubik">Internet</span>`
                  }
@@ -412,7 +412,7 @@ export class Slider {
 
   createResponsiveLayoutSmart(offers, labels, gridType, isRTL, convertToLatinNumerals) {
     const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "hadra-slider";
-    const startIndex = 8;
+    const startIndex = 9;
 
     return `
           <div class="hidden sm:flex w-full items-center justify-center">

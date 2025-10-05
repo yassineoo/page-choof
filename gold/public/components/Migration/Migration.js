@@ -663,7 +663,7 @@ class Migration {
         const displayName =
           data[id] || id.charAt(0).toUpperCase() + id.slice(1);
         return `<button class="migration-buy-btn migration-button-zone py-[10px]" data-provider="${id}" aria-label="${displayName}">
-                <span class="text-[16px]">${labelFromData}</span>
+                <span class="text-[16px] font-rubik">${labelFromData}</span>
               </button>`;
       })
       .join("\n");
@@ -771,7 +771,7 @@ class Migration {
               <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
                 <span class="text-[16px]">${cancelBtn}</span>
               </button>
-              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
+              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 w-40 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
                 <span class="text-[16px]">${confirmBtn}</span>
               </button>
             </div>
@@ -1017,7 +1017,7 @@ class Migration {
               </button>
               <div class="text-center mb-6">
                   <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
-                      ${this.createMixedTitleHTML(title)}
+                      ${title}
                   </h2>
               </div>
               <div class="text-center mb-10 px-2">

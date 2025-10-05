@@ -7,7 +7,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
 
   const getOfferText = (offer) => {
     if (language === "ar") {
-      if (offer === "Offre VOX") return "عرض VOX";
+      if (offer === "Offre La Gold") return "عرض La Gold";
       if (offer === "Offre Dima") return "عرض Dima";
       if (offer.startsWith("Offre ")) {
         return offer.replace("Offre ", "عرض ");
@@ -208,7 +208,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                   </svg>
 
                   <!-- Tooltip -->
-                  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute bg-white dark:bg-[#2C2C2C] text-black dark:text-white text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${language === 'ar' ? "rounded-tl-[15px] rounded-tr-[4px]" : "rounded-tr-[15px] rounded-tl-[4px]"} py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
+                  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute bg-white dark:bg-[#2C2C2C] text-black dark:text-white text-left ${language === 'ar' ? "right-0" : "left-0"} top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${language === 'ar' ? "rounded-tl-[15px] rounded-tr-[4px]" : "rounded-tr-[15px] rounded-tl-[4px]"} py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
                     ${language === 'ar' ? 
                       userData.mode === 'mactivia' ? "أنت حاليا في الوضع \"M'Activia\"، الذي يمكّنك من الحصول على اشتراك Gold مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : "أنت حاليا في الوضع \"رصيد\"، الذي يمكّنك من الحصول على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : 
                       userData.mode === 'mactivia' ? "Vous êtes actuellement sur le mode \"M'Activia\", qui vous permet de recevoir un forfait Gold Activé à chaque rechargement de 1000 DA et plus." : 
@@ -256,7 +256,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
               <div class="flex items-center gap-2">
                 <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
                 <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
-                      (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offer ") + offerHTML
+                      (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offre ") + offerHTML
                     }</span>
               </div>
               <div class="flex items-center justify-end gap-3">
@@ -300,7 +300,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                   </svg>
 
                   <!-- Tooltip -->
-                  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute top-full ${language === 'ar' ? "left-0" : "right-0"} bg-white dark:bg-[#2c2c2c] mt-2 z-50 text-black dark:text-white text-xs px-[14px] leading-loose rounded-b-[15px] ${language === 'ar' ? "rounded-tl-[15px] rounded-tr-[4px]" : "rounded-tr-[15px] rounded-tl-[4px]"} py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
+                  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute top-full ${language === 'ar' ? "left-0" : "right-0"} bg-white dark:bg-[#2c2c2c] mt-2 z-50 text-black dark:text-white text-xs px-[14px] leading-loose rounded-b-[15px] ${language === 'ar' ? "rounded-tl-[15px] rounded-tr-[4px]" : "rounded-tr-[15px] rounded-tl-[4px]"} py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[310px]">
                     ${language === 'ar' ? 
                       userData.mode === 'mactivia' ? "أنت حاليا في الوضع \"M'Activia\"، الذي يمكّنك من الحصول على اشتراك Gold مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : "أنت حاليا في الوضع \"رصيد\"، الذي يمكّنك من الحصول على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : 
                       userData.mode === 'mactivia' ? "Vous êtes actuellement sur le mode \"M'Activia\", qui vous permet de recevoir un forfait Gold Activé à chaque rechargement de 1000 DA et plus." : 

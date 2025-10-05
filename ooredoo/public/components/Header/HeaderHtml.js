@@ -142,7 +142,7 @@ export const generateHeaderHTML = (
   }">
   <div class="w-full max-w-[90vw] mx-auto px-4">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
-      <div class="flex items-center gap-3" dir="ltr">
+      <div class="flex items-center gap-3" >
         <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
           <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo" class="w-full h-full object-contain dark:hidden block" width="200" height="40" loading="lazy" />
           <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo" class="w-full h-full object-contain hidden dark:block" width="200" height="40" loading="lazy" />
@@ -199,7 +199,7 @@ export const generateHeaderHTML = (
       </button>
     </div>
 
-    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-black md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
+    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
       <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
           <button id="theme-mobile-switcher" class="flex items-center gap-2 w-full text-black dark:text-white" type="button" aria-pressed="false">

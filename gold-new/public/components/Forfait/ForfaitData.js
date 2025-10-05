@@ -128,7 +128,7 @@ export default {
         name: "Gold Jdida 2000",
         data: "<span class='font-rubik'>60Go</span> إنترنت ",
         price: "2000",
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", 
           "<span class='font-rubik'>5000</span> دج رصيد"],
@@ -138,7 +138,7 @@ export default {
         name: "Gold Jdida 1500",
         data: "<span class='font-rubik'>20Go</span> إنترنت ",
         price: "1500",
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", 
           "<span class='font-rubik'>3000</span> دج رصيد"],
@@ -148,7 +148,7 @@ export default {
         name: "Gold Jdida 1000",
         data: "<span class='font-rubik'>6Go</span> إنترنت ",
         price: "1000",
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", 
           "<span class='font-rubik'>2000</span> دج رصيد"],

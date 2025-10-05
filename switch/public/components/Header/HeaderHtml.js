@@ -55,7 +55,7 @@ export const generateHeaderHTML = (
   `;
   const getOfferText = (offer) => {
     if (language === "ar") {
-      if (offer === "Offre Ooredoo") return "عرض Ooredoo";
+      if (offer === "Offre La Switch") return "عرض La Switch";
       if (offer === "Offre Dima") return "عرض Dima";
       if (offer && offer.startsWith && offer.startsWith("Offre ")) {
         return offer.replace("Offre ", "عرض ");
@@ -199,7 +199,7 @@ export const generateHeaderHTML = (
       </button>
     </div>
 
-    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-black md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
+    <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
       <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white">
         <div class="flex items-center gap-3 py-2">
           <button id="theme-mobile-switcher" class="flex items-center gap-2 w-full text-black dark:text-white" type="button" aria-pressed="false">
@@ -255,7 +255,7 @@ export const generateHeaderHTML = (
 
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>Ooredoo</span>" : userData.offer}</span>
+              <span class="hdr-common-text">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Switch</span>" : userData.offer}</span>
             </div>
 
             
@@ -290,7 +290,7 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>Ooredoo</span>" : userData.offer}</span>
+              <span class="hdr-common-text">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Switch</span>" : userData.offer}</span>
             </div>
 
             <div>

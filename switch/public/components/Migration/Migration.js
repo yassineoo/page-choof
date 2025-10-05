@@ -680,8 +680,8 @@ class Migration {
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
     <section class="w-full bg-white dark:bg-black migration-section">
-      <div>
-        <div style="width:100%">
+      <div class="mx-auto w-[90%] max-w-[900px]">
+        <div>
 <div class="migration-card-shadow migration-hover-lift">
   <div class="migration-card-container">
     <div class="migration-card-content">
@@ -748,7 +748,7 @@ class Migration {
     }>
       <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
         <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
-          <div class="text-center bg-[#fff] dark:bg-transparent flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
+          <div class="text-center bg-[#fff] dark:bg-transparent flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 pt-10 rounded-t-[22.5px]">
             <h2 class="migration-title">${this.createMixedTitleHTML(
               data.title || ""
             )}</h2>
