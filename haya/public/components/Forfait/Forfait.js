@@ -785,10 +785,10 @@ class ForfaitComponent {
     }">
       <section class="w-full bg-white dark:bg-[#2c2c2c]">
         <div class="bg-ooredoo-red py-16 px-[clamp(1rem,5vw,5rem)]">
-          <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit">${
+          <h1 class="text-white uppercase leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit">${
             this.currentLang === "ar"
               ? "إكتشفوا خدماتنا الرقمية"
-              : "DECOUVREZ NOS SERVICES NUMERIQUES"
+              : "Découvrez nos services numériques"
           }</h1>
           <div class="grid grid-cols-5 md:flex items-center gap-2 mt-10 md:mb-16 flex-wrap">
             <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
