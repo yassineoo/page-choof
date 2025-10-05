@@ -89,6 +89,14 @@ export const generateHeaderHTML = (
     }
   };
 
+  const tooltipFontClass =
+    language === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
+  const tooltipPosition = language === "ar" ? "right-0" : "left-0";
+  const tooltipRounded =
+    language === "ar"
+      ? "rounded-tl-[15px] rounded-tr-[4px]"
+      : "rounded-tr-[15px] rounded-tl-[4px]";
+
   return `
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Noto+Kufi+Arabic&display=swap" rel="stylesheet" />
   <style>
@@ -110,8 +118,8 @@ export const generateHeaderHTML = (
           </div>
 <span class="inline-block w-[0.5px] h-4 md:h-8 bg-black dark:bg-white transition-colors duration-300"></span>
           <div class="w-[56px] h-[24px] md:w-[100px] md:h-[29px] lg:w-[120px] lg:h-[40px] flex items-center justify-center relative">
-            <img src="./assets/images/header/Choof.svg" alt="Choof" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
-            <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
+            <img src="./assets/images/header/Choof.svg" alt="Choof" class="absolute top-0.5 inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
+            <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="absolute top-0.5 inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
           </div>
         </div>
         <div class="hidden md:flex items-center flex-shrink-0">
@@ -242,17 +250,9 @@ export const generateHeaderHTML = (
                     </defs>
                   </svg>
 
-                  <span id="mode-tooltip-desktop" class="${
-                    language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-                  } absolute bg-white dark:bg-[#2C2C2C] text-[14px] text-[#575757] dark:text-white text-left ${
-    language === "ar" ? "right-0" : "left-0"
-  } top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${
-    language === "ar"
-      ? "rounded-tl-[15px] rounded-tr-[4px]"
-      : "rounded-tr-[15px] rounded-tl-[4px]"
-  } py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
-        ${getTooltipText(userData.mode || "mactivia", language)}
-      </span>
+                  <span id="mode-tooltip-desktop" class="${tooltipFontClass} absolute bg-white dark:bg-[#2C2C2C] text-[14px] text-[#575757] dark:text-white text-left ${tooltipPosition} top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${tooltipRounded} py-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    ${getTooltipText(userData.mode || "mactivia", language)}
+                  </span>
                 </span>
 
               </div>
@@ -260,11 +260,11 @@ export const generateHeaderHTML = (
             <div class="flex items-center justify-end gap-3 lg:gap-4 flex-shrink-0">
               <div class="flex items-center gap-2">
                 <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
-             <span class="${
-               language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-             } font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
-  ${formatCredit(userData.credit, language)}
-</span>
+                <span class="${
+                  language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+                } font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
+                  ${formatCredit(userData.credit, language)}
+                </span>
               </div>
             </div>
           </div>
@@ -283,11 +283,8 @@ export const generateHeaderHTML = (
               <span class="font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white text-sm md:text-lg ${fontClass}">${formatCredit(
     userData.credit,
     language
-  )}
-              </span>
+  )}</span>
             </div>
-
-            
           </div>
           <div>
             <div class="flex items-center justify-between w-full">
@@ -300,66 +297,59 @@ export const generateHeaderHTML = (
                 }</span>
               </div>
               <div class="flex items-center justify-end gap-3">
-              <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red  rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
-                <span class="${
-                  language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-                } font-medium text-ooredoo-red text-xs uppercase tracking-[0.02em]   "> ${chargeText} </span>
-                <img src="./assets/images/consommation/baridi.svg" class="w-4 h-4 flex-shrink-0" />
-                <img src="./assets/images/consommation/poste.svg" class="w-4 h-4 flex-shrink-0" />
-              </a>
+                <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
+                  <span class="${
+                    language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+                  } font-medium text-ooredoo-red text-xs uppercase tracking-[0.02em]"> ${chargeText} </span>
+                  <img src="./assets/images/consommation/baridi.svg" class="w-4 h-4 flex-shrink-0" />
+                  <img src="./assets/images/consommation/poste.svg" class="w-4 h-4 flex-shrink-0" />
+                </a>
+              </div>
             </div>
           </div>
-          <div>
-
           <div class="flex items-center justify-center gap-2 mt-4">
-                <span class="text-white">${
-                  language === "ar"
-                    ? "<span class='font-noto-kufi-arabic'>رصيد :</span>"
-                    : "<span class='font-rubik'>Mode :</span>"
-                }</span>
-                <div class="${
-                  language === "ar" && "flex-row-reverse"
-                } relative flex items-center bg-white rounded-full h-[32px] w-[160px] p-0.5">
-                  <button 
-                    id="mactivia-btn-mobile"
-                    class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
-                    ${mactiviaText}
-                  </button>
-                  <button 
-                    id="credit-btn-mobile"
-                    class="${
-                      language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-                    } flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
-                    ${creditText}
-                  </button>
-                </div>
-                <span class="relative group">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none" class="cursor-pointer">
-                    <g clip-path="url(#clip0_598_43525)">
-                      <path d="M3.75977 12C3.75977 13.1819 3.99256 14.3522 4.44485 15.4442C4.89714 16.5361 5.56008 17.5282 6.3958 18.364C7.23153 19.1997 8.22368 19.8626 9.31561 20.3149C10.4075 20.7672 11.5779 21 12.7598 21C13.9417 21 15.112 20.7672 16.2039 20.3149C17.2958 19.8626 18.288 19.1997 19.1237 18.364C19.9595 17.5282 20.6224 16.5361 21.0747 15.4442C21.527 14.3522 21.7598 13.1819 21.7598 12C21.7598 9.61305 20.8116 7.32387 19.1237 5.63604C17.4359 3.94821 15.1467 3 12.7598 3C10.3728 3 8.08363 3.94821 6.3958 5.63604C4.70798 7.32387 3.75977 9.61305 3.75977 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M12.7598 8V12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M12.7598 16H12.7698" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_598_43525">
-                        <rect width="24" height="24" fill="white" transform="translate(0.759766)"/>
-                      </clipPath>
-                    </defs>
-                  </svg>
+            <span class="text-white">${
+              language === "ar"
+                ? "<span class='font-noto-kufi-arabic'>رصيد :</span>"
+                : "<span class='font-rubik'>Mode :</span>"
+            }</span>
+            <div class="${
+              language === "ar" && "flex-row-reverse"
+            } relative flex items-center bg-white rounded-full h-[32px] w-[160px] p-0.5">
+              <button 
+                id="mactivia-btn-mobile"
+                class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
+                ${mactiviaText}
+              </button>
+              <button 
+                id="credit-btn-mobile"
+                class="${
+                  language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+                } flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
+                ${creditText}
+              </button>
+            </div>
+            <span class="relative group">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none" class="cursor-pointer">
+                <g clip-path="url(#clip0_598_43525)">
+                  <path d="M3.75977 12C3.75977 13.1819 3.99256 14.3522 4.44485 15.4442C4.89714 16.5361 5.56008 17.5282 6.3958 18.364C7.23153 19.1997 8.22368 19.8626 9.31561 20.3149C10.4075 20.7672 11.5779 21 12.7598 21C13.9417 21 15.112 20.7672 16.2039 20.3149C17.2958 19.8626 18.288 19.1997 19.1237 18.364C19.9595 17.5282 20.6224 16.5361 21.0747 15.4442C21.527 14.3522 21.7598 13.1819 21.7598 12C21.7598 9.61305 20.8116 7.32387 19.1237 5.63604C17.4359 3.94821 15.1467 3 12.7598 3C10.3728 3 8.08363 3.94821 6.3958 5.63604C4.70798 7.32387 3.75977 9.61305 3.75977 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12.7598 8V12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12.7598 16H12.7698" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_598_43525">
+                    <rect width="24" height="24" fill="white" transform="translate(0.759766)"/>
+                  </clipPath>
+                </defs>
+              </svg>
 
-                  <span id="mode-tooltip-mobile" class="${
-                    language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-                  } absolute top-full ${
+              <span id="mode-tooltip-mobile" class="${tooltipFontClass} absolute top-full ${
     language === "ar" ? "left-0" : "right-0"
-  } bg-white dark:bg-[#2c2c2c] mt-2 z-50 text-black dark:text-white text-xs px-[14px] leading-loose rounded-b-[15px] ${
-    language === "ar"
-      ? "rounded-tl-[15px] rounded-tr-[4px]"
-      : "rounded-tr-[15px] rounded-tl-[4px]"
-  } py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[310px]">
-        ${getTooltipText(userData.mode || "mactivia", language)}
-      </span>
-                </span>
-              </div>
+  } bg-white dark:bg-[#2C2C2C] mt-2 z-50 text-black dark:text-white text-xs px-[14px] leading-loose ${tooltipRounded} py-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 w-[310px]">
+                ${getTooltipText(userData.mode || "mactivia", language)}
+              </span>
+            </span>
+          </div>
         </div>
       </div>
     </div>
