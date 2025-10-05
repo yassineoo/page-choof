@@ -1,4 +1,8 @@
-export const generateHeaderHTML = (language = "fr", userData = {}, theme = "light") => {
+export const generateHeaderHTML = (
+  language = "fr",
+  userData = {},
+  theme = "light"
+) => {
   const helpText = language === "ar" ? "مساعدة" : "Aide";
   const currentLanguage = language === "ar" ? "العربية" : "Français";
   const chargeText = language === "ar" ? "تعبئة رصيدي" : "CHARGER";
@@ -18,7 +22,10 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
   };
 
   const mactiviaText = "M'Activia";
-  const creditText = language === "ar" ? "<span class='font-noto-kufi-arabic'>الرصيد</span>" : "Credit";
+  const creditText =
+    language === "ar"
+      ? "<span class='font-noto-kufi-arabic'>الرصيد</span>"
+      : "Credit";
 
   // Helper to detect Arabic chars
   const containsArabic = (text) => {
@@ -51,13 +58,22 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
   // Render with font spans
   const formatMixedText = (text) => {
     const segments = parseMixedText(text);
-    return segments.map((seg) => `<span class="${seg.isArabic ? "font-noto-kufi-arabic" : "font-rubik"}">${seg.text}</span>`).join("");
+    return segments
+      .map(
+        (seg) =>
+          `<span class="${
+            seg.isArabic ? "font-noto-kufi-arabic" : "font-rubik"
+          }">${seg.text}</span>`
+      )
+      .join("");
   };
 
   // Format user data with mixed text support
   const phoneHTML = formatMixedText(userData.phone || "");
   const companyHTML = formatMixedText(userData.compayName || "");
-  const offerHTML = formatMixedText(getOfferText(userData.offer || "Offre Dima"));
+  const offerHTML = formatMixedText(
+    getOfferText(userData.offer || "Offre Dima")
+  );
   // Add this helper function at the top with other helpers
   const formatCredit = (credit, language) => {
     const creditValue = credit || "1200";
@@ -66,6 +82,29 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
     const cleanCredit = creditValue.replace(/\s*(DA|دج)\s*$/i, "");
     return `<span class="font-rubik">${cleanCredit}</span> ${currency}`;
   };
+
+  const getTooltipText = (mode, lang) => {
+    if (lang === "ar") {
+      return mode === "mactivia"
+        ? 'أنت حاليا في الوضع "M\'Activia"، الذي يمكّنك من الحصول على اشتراك Gold مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر.'
+        : 'أنت حاليا في الوضع "رصيد"، الذي يمكّنك من الحصول على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر.';
+    } else {
+      return mode === "mactivia"
+        ? 'Vous êtes actuellement sur le mode "M\'Activia", qui vous permet de recevoir un forfait Gold Activé à chaque rechargement de 1000 DA et plus.'
+        : 'Vous êtes actuellement sur le mode "Crédit", qui vous permet de recevoir du crédit non activé à chaque rechargement de 1000 DA et plus.';
+    }
+  };
+
+  const updateModeTooltips = (newMode, language) => {
+    const tooltipText = getTooltipText(newMode, language);
+
+    const desktopTooltip = document.getElementById("mode-tooltip-desktop");
+    const mobileTooltip = document.getElementById("mode-tooltip-mobile");
+
+    if (desktopTooltip) desktopTooltip.innerHTML = tooltipText;
+    if (mobileTooltip) mobileTooltip.innerHTML = tooltipText;
+  };
+
   return `
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Noto+Kufi+Arabic&display=swap" rel="stylesheet" />
   <style>
@@ -101,7 +140,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             </button>
           </div>
           <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank" class="flex items-center h-[40px] lg:h-[48px] px-4 lg:px-6 text-dark-text dark:text-white rounded-lg transition-all duration-300">
-            <span id="help-text" class="${language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-sm lg:text-base mx-2">${helpText}</span>
+            <span id="help-text" class="${
+              language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+            } text-sm lg:text-base mx-2">${helpText}</span>
             <img src="./assets/images/header/help.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/help-white.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 hidden dark:inline transition-opacity duration-300" />
           </a>
@@ -142,7 +183,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
             <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/help-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" />
-            <span id="help-text-mobile" class="${language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-sm text-black dark:text-white">
+            <span id="help-text-mobile" class="${
+              language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+            } text-sm text-black dark:text-white">
               <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${helpText}</a>
             </span>
           </div>
@@ -176,12 +219,20 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
               <div class="flex items-center gap-2 flex-shrink-0 min-w-0">
                 <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
                 <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
-                  (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offer ") + offerHTML
+                  (language === "ar"
+                    ? "<span class='font-noto-kufi-arabic'> عرض</span> "
+                    : "Offer ") + offerHTML
                 }</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="text-white">${language === 'ar' ? "<span class='font-noto-kufi-arabic'>رصيد :</span>" : "<span class='font-rubik'>Mode :</span>"}</span>
-                <div class="${language === 'ar' && "flex-row-reverse"} relative flex items-center bg-white rounded-full h-[32px] w-[160px] p-0.5">
+                <span class="text-white">${
+                  language === "ar"
+                    ? "<span class='font-noto-kufi-arabic'>رصيد :</span>"
+                    : "<span class='font-rubik'>Mode :</span>"
+                }</span>
+                <div class="${
+                  language === "ar" && "flex-row-reverse"
+                } relative flex items-center bg-white rounded-full h-[32px] w-[160px] p-0.5">
                   <button 
                     id="mactivia-btn"
                     class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
@@ -189,7 +240,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                   </button>
                   <button 
                     id="credit-btn"
-                    class="${language === 'ar' ? 'font-noto-kufi-arabic' : 'font-rubik'} flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
+                    class="${
+                      language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+                    } flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
                     ${creditText}
                   </button>
                 </div>
@@ -208,13 +261,17 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                   </svg>
 
                   <!-- Tooltip -->
-                  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute bg-white dark:bg-[#2C2C2C] text-black dark:text-white text-left ${language === 'ar' ? "right-0" : "left-0"} top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${language === 'ar' ? "rounded-tl-[15px] rounded-tr-[4px]" : "rounded-tr-[15px] rounded-tl-[4px]"} py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
-                    ${language === 'ar' ? 
-                      userData.mode === 'mactivia' ? "أنت حاليا في الوضع \"M'Activia\"، الذي يمكّنك من الحصول على اشتراك Gold مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : "أنت حاليا في الوضع \"رصيد\"، الذي يمكّنك من الحصول على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : 
-                      userData.mode === 'mactivia' ? "Vous êtes actuellement sur le mode \"M'Activia\", qui vous permet de recevoir un forfait Gold Activé à chaque rechargement de 1000 DA et plus." : 
-                      "Vous êtes actuellement sur le mode \"Crédit\", qui vous permet de recevoir du crédit non activé à chaque rechargement de 1000 DA et plus."
-                    }
-                  </span>
+                 <span id="mode-tooltip-desktop" class="${
+                   language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+                 } absolute bg-white dark:bg-[#2C2C2C] text-black dark:text-white text-left ${
+    language === "ar" ? "right-0" : "left-0"
+  } top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${
+    language === "ar"
+      ? "rounded-tl-[15px] rounded-tr-[4px]"
+      : "rounded-tr-[15px] rounded-tl-[4px]"
+  } py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[344px]">
+        ${getTooltipText(userData.mode || "mactivia", language)}
+      </span>
                 </span>
 
               </div>
@@ -223,8 +280,8 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
               <div class="flex items-center gap-2">
                 <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
              <span class="${
-    language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-  } font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
+               language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+             } font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white">
   ${formatCredit(userData.credit, language)}
 </span>
               </div>
@@ -243,9 +300,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             <div class="flex items-center gap-2">
               <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 flex-shrink-0" />
               <span class="font-medium text-[clamp(20px,4vw,24px)] leading-[1.7] tracking-[0.02em] text-white text-sm md:text-lg ${fontClass}">${formatCredit(
-                userData.credit,
-                language
-                )}
+    userData.credit,
+    language
+  )}
               </span>
             </div>
 
@@ -256,8 +313,10 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
               <div class="flex items-center gap-2">
                 <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
                 <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
-                      (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offre ") + offerHTML
-                    }</span>
+                  (language === "ar"
+                    ? "<span class='font-noto-kufi-arabic'> عرض</span> "
+                    : "Offre ") + offerHTML
+                }</span>
               </div>
               <div class="flex items-center justify-end gap-3">
               <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red  rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
@@ -272,8 +331,14 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           <div>
 
           <div class="flex items-center justify-center gap-2 mt-4">
-                <span class="text-white">${language === 'ar' ? "<span class='font-noto-kufi-arabic'>رصيد :</span>" : "<span class='font-rubik'>Mode :</span>"}</span>
-                <div class="${language === 'ar' && "flex-row-reverse"} relative flex items-center bg-white rounded-full h-[32px] w-[160px] p-0.5">
+                <span class="text-white">${
+                  language === "ar"
+                    ? "<span class='font-noto-kufi-arabic'>رصيد :</span>"
+                    : "<span class='font-rubik'>Mode :</span>"
+                }</span>
+                <div class="${
+                  language === "ar" && "flex-row-reverse"
+                } relative flex items-center bg-white rounded-full h-[32px] w-[160px] p-0.5">
                   <button 
                     id="mactivia-btn-mobile"
                     class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
@@ -281,7 +346,9 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                   </button>
                   <button 
                     id="credit-btn-mobile"
-                    class="${language === 'ar' ? 'font-noto-kufi-arabic' : 'font-rubik'} flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
+                    class="${
+                      language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+                    } flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
                     ${creditText}
                   </button>
                 </div>
@@ -300,13 +367,20 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
                   </svg>
 
                   <!-- Tooltip -->
-                  <span class="${language === 'ar' ? "font-noto-kufi-arabic" : "font-rubik"} absolute top-full ${language === 'ar' ? "left-0" : "right-0"} bg-white dark:bg-[#2c2c2c] mt-2 z-50 text-black dark:text-white text-xs px-[14px] leading-loose rounded-b-[15px] ${language === 'ar' ? "rounded-tl-[15px] rounded-tr-[4px]" : "rounded-tr-[15px] rounded-tl-[4px]"} py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[310px]">
-                    ${language === 'ar' ? 
-                      userData.mode === 'mactivia' ? "أنت حاليا في الوضع \"M'Activia\"، الذي يمكّنك من الحصول على اشتراك Gold مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : "أنت حاليا في الوضع \"رصيد\"، الذي يمكّنك من الحصول على رصيد غير مفعّل عند كل تعبئة بقيمة 1000 دج وأكثر." : 
-                      userData.mode === 'mactivia' ? "Vous êtes actuellement sur le mode \"M'Activia\", qui vous permet de recevoir un forfait Gold Activé à chaque rechargement de 1000 DA et plus." : 
-                      "Vous êtes actuellement sur le mode \"Crédit\", qui vous permet de recevoir du crédit non activé à chaque rechargement de 1000 DA et plus."
-                    }
-                  </span>
+                  <span id="mode-tooltip-mobile" class="${
+                    language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+                  } absolute top-full ${
+    language === "ar" ? "left-0" : "right-0"
+  } bg-white dark:bg-[#2c2c2c] mt-2 z-50 text-black dark:text-white text-xs px-[14px] leading-loose rounded-b-[15px] ${
+    language === "ar"
+      ? "rounded-tl-[15px] rounded-tr-[4px]"
+      : "rounded-tr-[15px] rounded-tl-[4px]"
+  } py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[310px]">
+        ${getTooltipText(
+          userData.mode || "mactivia",
+          language
+        )}  <!-- Uses helper -->
+      </span>
                 </span>
               </div>
         </div>
