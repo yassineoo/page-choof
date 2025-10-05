@@ -244,7 +244,7 @@ export const generateHeaderHTML = (
 
                   <span id="mode-tooltip-desktop" class="${
                     language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-                  } absolute bg-white dark:bg-[#2C2C2C] text-black dark:text-white text-left ${
+                  } absolute bg-white dark:bg-[#2C2C2C] text-[14px] text-[#575757] dark:text-white text-left ${
     language === "ar" ? "right-0" : "left-0"
   } top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${
     language === "ar"
