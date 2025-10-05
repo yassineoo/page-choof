@@ -343,7 +343,9 @@ export default class DigitalAnghamiServices {
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="anghami-modal-title" class="${title.includes("OSN+ &") ? "font-rubik" : fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                  <h2 id="anghami-modal-title" class="${
+                    title.includes("OSN+ &") ? "font-rubik" : fontClass
+                  } font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${title}
                   </h2>
               </div>
@@ -480,7 +482,7 @@ export default class DigitalAnghamiServices {
         isArabic ? "font-noto-kufi-arabic" : "font-rubik"
       } w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-16">
         <div>
-          <h2 class="font-medium text-[25px] md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
+          <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
             ${
               isArabic
                 ? "اشتراك <span class='font-rubik'>OSN+ & ANGHAMI</span>"
