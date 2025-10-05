@@ -27,14 +27,12 @@ export const generateHeaderHTML = (
       ? "<span class='font-noto-kufi-arabic'>الرصيد</span>"
       : "Credit";
 
-  // Helper to detect Arabic chars
   const containsArabic = (text) => {
     if (!text) return false;
     const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
     return arabicPattern.test(text);
   };
 
-  // Split mixed Arabic-French text into segments with font classes
   const parseMixedText = (text) => {
     if (!text) return [];
     const parts = [];
@@ -55,7 +53,6 @@ export const generateHeaderHTML = (
     return parts;
   };
 
-  // Render with font spans
   const formatMixedText = (text) => {
     const segments = parseMixedText(text);
     return segments
@@ -68,17 +65,14 @@ export const generateHeaderHTML = (
       .join("");
   };
 
-  // Format user data with mixed text support
   const phoneHTML = formatMixedText(userData.phone || "");
   const companyHTML = formatMixedText(userData.compayName || "");
   const offerHTML = formatMixedText(
     getOfferText(userData.offer || "Offre Dima")
   );
-  // Add this helper function at the top with other helpers
   const formatCredit = (credit, language) => {
     const creditValue = credit || "1200";
     const currency = language === "ar" ? "دج" : "DA";
-    // Remove existing DA or دج if present
     const cleanCredit = creditValue.replace(/\s*(DA|دج)\s*$/i, "");
     return `<span class="font-rubik">${cleanCredit}</span> ${currency}`;
   };
@@ -93,16 +87,6 @@ export const generateHeaderHTML = (
         ? 'Vous êtes actuellement sur le mode "M\'Activia", qui vous permet de recevoir un forfait Gold Activé à chaque rechargement de 1000 DA et plus.'
         : 'Vous êtes actuellement sur le mode "Crédit", qui vous permet de recevoir du crédit non activé à chaque rechargement de 1000 DA et plus.';
     }
-  };
-
-  const updateModeTooltips = (newMode, language) => {
-    const tooltipText = getTooltipText(newMode, language);
-
-    const desktopTooltip = document.getElementById("mode-tooltip-desktop");
-    const mobileTooltip = document.getElementById("mode-tooltip-mobile");
-
-    if (desktopTooltip) desktopTooltip.innerHTML = tooltipText;
-    if (mobileTooltip) mobileTooltip.innerHTML = tooltipText;
   };
 
   return `
@@ -167,7 +151,6 @@ export const generateHeaderHTML = (
           <img src="./assets/images/header/Menu.svg" class="w-6 h-6 dark:hidden block transition-all duration-300" id="mobile-menu-icon" />
           <img src="./assets/images/header/Menu-white.svg" class="w-6 h-6 hidden dark:inline transition-all duration-300" id="mobile-menu-icon-dark" />
           <img src="./assets/images/header/close.svg" class="w-6 h-6 hidden transition-all duration-300 dark:hidden" id="mobile-menu-close-icon" />
-          <!-- Use only Menu-white.svg for both open/close states in dark mode -->
         </button>
       </div>
 
@@ -176,7 +159,7 @@ export const generateHeaderHTML = (
           <div class="flex items-center gap-3 py-2 rounded-lg transition-all duration-300">
             <button id="theme-mobile-switcher" class="flex  gap-3 px-2   items-center w-full text-black dark:text-white">
               <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" id="mobile-moon-icon" />
-              <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" id="mobile-moon-icon" />
+              <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" id="mobile-sun-icon" />
               <span class="${fontClass}  text-sm">${themeText}</span>
             </button>
           </div>
@@ -191,7 +174,6 @@ export const generateHeaderHTML = (
           </div>
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
             <img src="./assets/images/header/language.svg" class="w-5 h-5 hidden dark:hidden transition-opacity duration-300" />
-            <!-- Removed language icon for dark mode -->
             <div class="flex gap-5">
               <button class="language-option py-1 rounded-lg text-sm transition-all duration-300 text-black dark:text-white ${
                 language === "fr" ? "font-semibold text-ooredoo-red" : ""
@@ -260,10 +242,9 @@ export const generateHeaderHTML = (
                     </defs>
                   </svg>
 
-                  <!-- Tooltip -->
-                 <span id="mode-tooltip-desktop" class="${
-                   language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-                 } absolute bg-white dark:bg-[#2C2C2C] text-black dark:text-white text-left ${
+                  <span id="mode-tooltip-desktop" class="${
+                    language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
+                  } absolute bg-white dark:bg-[#2C2C2C] text-black dark:text-white text-left ${
     language === "ar" ? "right-0" : "left-0"
   } top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${
     language === "ar"
@@ -366,7 +347,6 @@ export const generateHeaderHTML = (
                     </defs>
                   </svg>
 
-                  <!-- Tooltip -->
                   <span id="mode-tooltip-mobile" class="${
                     language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
                   } absolute top-full ${
@@ -376,10 +356,7 @@ export const generateHeaderHTML = (
       ? "rounded-tl-[15px] rounded-tr-[4px]"
       : "rounded-tr-[15px] rounded-tl-[4px]"
   } py-5 opacity-0 z-auto group-hover:opacity-100 transition-opacity duration-200 w-[310px]">
-        ${getTooltipText(
-          userData.mode || "mactivia",
-          language
-        )}  <!-- Uses helper -->
+        ${getTooltipText(userData.mode || "mactivia", language)}
       </span>
                 </span>
               </div>
