@@ -502,10 +502,9 @@ export default class DigitalShahidServices {
         <div class="mx-auto w-full max-w-screen-2xl ${
           isArabic ? 'dir="rtl"' : ""
         }">
-
-              <h3 class="font-semibold text-[24px] md:text-[38px] text-center leading-relaxed tracking-wide mb-[22px] md:mb-[38px] text-black dark:text-white">
-                ${isArabic ? "إشتراك شاهد" : "FORFAITS SHAHID"}
-              </h3>
+              <h2 class="mb-12 font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
+                ${isArabic ? "اشتراكات شاهد" : "FORFAITS SHAHID"}
+              </h2>
 
 <div class="flex flex-wrap gap-x-8 gap-y-5 items-stretch lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-5">
             
@@ -527,13 +526,13 @@ export default class DigitalShahidServices {
               <img src="./assets/images/services/shahid-d.svg" alt="Shahid"
                    class="w-full max-w-xs h-auto mb-6 dark:flex hidden"/>
               <h3 class="hidden md:block font-semibold text-xl leading-relaxed tracking-wide mb-4 text-black dark:text-white">
-                ${isArabic ? "إشتراك شاهد" : "FORFAITS SHAHID"}
+                ${isArabic ? "اشتراكات شاهد" : "FORFAITS SHAHID"}
               </h3>
               <div class="text-base leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">
                 ${
                   isArabic
                     ? `<p>احصلوا الآن على اشتراك <span class="font-semibold">شاهد</span> الذي يناسبكم، و استفيدوا من <span class="font-semibold">دخول حصري</span> لمدة 30 يوم + <span class="font-semibold">إنترنت</span>. <span></span></p>`
-                    : `<p>Obtenez dès maintenant <span class="font-semibold">un forfait Shahid</span>,30 jourss d'<span class="font-semibold">accès premium Shahid + internet</span></p>`
+                    : `<p>Obtenez dès maintenant <span class="font-semibold">un forfait Shahid</span>,30 jours d'<span class="font-semibold">accès premium Shahid + internet</span></p>`
                 }
               </div>
             </div>
