@@ -729,8 +729,8 @@ class ForfaitComponent {
 
     if (title === "SMART اشتراكات" && isRTL) {
       return `
-      <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
       <span class="font-rubik ${baseClasses}"> SMART</span>
+      <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
     `;
     }
 
@@ -826,7 +826,7 @@ class ForfaitComponent {
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${
               this.currentLang === "ar"
-                ? "<span>إشتراكات الإنترنت</span>"
+                ? "<span>اشتراكات الإنترنت</span>"
                 : "<span class='font-rubik'>forfaits internet</span>"
             }
           </h2>
