@@ -29,12 +29,13 @@ class Modal {
   getCloseButtonHTML() {
     return `
       <button id="modal-close-btn" type="button" aria-label="Close modal"
-        class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
+        class="absolute top-[15px] right-[15px] p-2 z-10 rounded-full transition-all duration-200 forfait-modal-close bg-ooredoo-red text-white">
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M13.25 1.50391L1.25 13.5039M1.25 1.50391L13.25 13.5039"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
+      
     `;
   }
   open(contentHTML) {
@@ -73,10 +74,11 @@ class Modal {
     onConfirm,
   }) {
     const contentHTML = `
-      <div class="bg-white dark:bg-[#2c2c2c] rounded-lg shadow-xl p-6 md:p-8 text-center relative">
-        ${this.getCloseButtonHTML()}
-        <h2 class="text-2xl font-bold text-ooredoo-red dark:text-white mb-4">${title}</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-6">${text}</p>
+      <div class="relative bg-white dark:bg-[#2C2C2C]  rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12 text-center">
+        
+      ${this.getCloseButtonHTML()}
+        <h2 class="font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight text-center mb-6">${title}</h2>
+        <p class="text-black dark:text-white mb-6">${text}</p>
         <div class="flex justify-center gap-4">
           <button id="modal-cancel-btn" type="button" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors px-6 py-2">${cancelText}</button>
           <button id="modal-confirm-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors px-6 py-2">${confirmText}</button>
@@ -98,10 +100,10 @@ class Modal {
   }
   showAlert({ title, text, buttonText = "OK" }) {
     const contentHTML = `
-      <div class="bg-white dark:bg-[#2c2c2c] rounded-lg shadow-xl p-6 md:p-8 text-center relative">
+      <div class="relative bg-white dark:bg-[#2C2C2C]  rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12 text-center">
         ${this.getCloseButtonHTML()}
-        <h2 class="text-2xl font-bold text-ooredoo-red dark:text-white mb-4">${title}</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-6">${text}</p>
+        <h2 class="font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight text-center mb-6">${title}</h2>
+        <p class="text-black dark:text-white mb-6">${text}</p>
         <div class="flex justify-center">
           <button id="modal-ok-btn" type="button" class="min-w-[150px] rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors px-6 py-2">${buttonText}</button>
         </div>

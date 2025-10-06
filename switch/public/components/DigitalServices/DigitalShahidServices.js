@@ -471,7 +471,7 @@ export default class DigitalShahidServices {
       <div class="${this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-white dark:bg-[#141414] px-5 py-16">
         <div class="mx-auto w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ""}">
           <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white mb-10">
-            ${isArabic ? "اشتراكات شاهد" : "FORFAIT SHAHID"}
+            ${isArabic ? "اشتراكات شاهد" : "FORFAITS SHAHID"}
           </h2>
 
           <div class="flex flex-col-reverse lg:grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-5 items-stretch">
@@ -489,12 +489,12 @@ export default class DigitalShahidServices {
                    class="w-full max-w-xs h-auto mb-6 dark:hidden flex"/>
               <img src="./assets/images/services/shahid-d.svg" alt="Shahid"
                    class="w-full max-w-xs h-auto mb-6 dark:flex hidden"/>
-              <p class="hidden lg:block">${isArabic ? "اشتراكات شاهد" : "FORFAITS SHAHID"}</p>
+              <p class="hidden lg:block mb-6 text-[22px] font-semibold">${isArabic ? "اشتراكات شاهد" : "FORFAITS SHAHID"}</p>
               <div class="text-base leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">
                 ${
                   isArabic
                     ? `<p>احصلوا الآن على اشتراك <span class="font-semibold">شاهد</span> الذي يناسبكم، و استفيدوا من <span class="font-semibold">دخول حصري</span> لمدة 30 يوم + <span class="font-semibold">إنترنت</span>. <span></span></p>`
-                    : `<p>Obtenez dès maintenant <span class="font-semibold">un forfait Shahid</span>,30 jourss d'<span class="font-semibold">accès premium Shahid + internet</span></p>`
+                    : `<p>Obtenez dès maintenant <span class="font-semibold">un forfait Shahid</span>,30 jours d'<span class="font-semibold">accès premium Shahid + internet</span></p>`
                 }
               </div>
             </div>

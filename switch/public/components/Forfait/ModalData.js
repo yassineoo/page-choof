@@ -2,7 +2,7 @@ export default {
   fr: {
     "La Switch 4000": {
       confirm: `Cher client, vous  êtes sur le point  de changer votre  palier ! Vos  prochaines  factures seront  d’un montant de  4000 DA.`,
-      success: `Félicitations ! Vous venez de recevoir le forfait La Switch 4000 qui vous offre 60Go + Appels illimités vers Ooredoo + 5000da de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
+      success: `Vous avez  choisi le  forfait La  Switch 4000  pour le mois  prochain.  Assurez-vous  de recharger  4000 DA  avant votre  prochaine  date de  facturation.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait La Switch 4000. Veuillez recharger votre compte.`,
     },
     "La Switch 2500": {
@@ -12,7 +12,7 @@ export default {
     },
     "La Switch 1500": {
       confirm: `Cher client, vous  êtes sur le point  de changer votre  palier ! Vos  prochaines  factures seront  d’un montant de  1500 DA.`,
-      success: `Félicitations ! Vous venez de recevoir le forfait La Switch 1500 qui vous offre 20Go + Appels illimités vers Ooredoo + 3000da de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
+      success:  `Vous avez  choisi le  forfait La  Switch 1500  pour le mois  prochain.  Assurez-vous  de recharger  1500 DA  avant votre  prochaine  date de  facturation.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait La Switch 1500. Veuillez recharger votre compte.`,
     },
     "Forfait 1500": {
@@ -31,13 +31,13 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 500. Veuillez recharger votre compte.`,
     },
     "Forfait 300": {
-      confirm: `3Go + YouTube illimité, valables 72 h pour 300 DA seulement `,
-      success: `Vous disposez de 3Go + YouTube illimité, valables 72 h`,
+      confirm: `6Go + YouTube illimité, valables 72 h pour 300 DA seulement `,
+      success: `Vous disposez de 6Go + YouTube illimité, valables 72 h`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 300. Veuillez recharger votre compte.`,
     },
     "Forfait 100": {
-      confirm: `700Mo + YouTube illimité valables 24 h pour 100 DA seulement`,
-      success: `Vous disposez de 700 Mo + YouTube illimité, valables 24 h`,
+      confirm: `1.4Go + YouTube illimité valables 24 h pour 100 DA seulement`,
+      success: `Vous disposez de 1.4Go + YouTube illimité, valables 24 h`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 100. Veuillez recharger votre compte.`,
     },
     "Forfait 50": {
@@ -56,7 +56,7 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 100. Veuillez recharger votre compte.`,
     },
     "Smart 50": {
-      confirm: `200Mo d'internet, valables 24H pour 50 DA seulement.`,
+      confirm: `200Mo d'internet + 30 minutes vers Ooredoo, valables 24H pour 50 DA seulement.`,
       success: `200 Mo d'internet attribués, valables 24H`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 50. Veuillez recharger votre compte.`,
     },
@@ -94,13 +94,13 @@ export default {
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 500. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 300":{
-      confirm: `3Go إنترنت + يوتيوب غير محدود، الكل صالح 72 ساعة بـ 300 دج فقط`,
-      success: `لقد حصلت على 3Go إنترنت + يوتيوب غير محدود، الكل صالح 72 ساعة`,
+      confirm: `6Go إنترنت + يوتيوب غير محدود، الكل صالح 72 ساعة بـ 300 دج فقط`,
+      success: `لقد حصلت على 6Go إنترنت + يوتيوب غير محدود، الكل صالح 72 ساعة`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 300. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 100":{
-      confirm: `700Mo إنترنت + يوتيوب غير محدود، الكل صالح 24 ساعة بـ 100 دج فقط`,
-      success: `لقد حصلت على 700Mo إنترنت + يوتيوب غير محدود، الكل صالح 24 ساعة`,
+      confirm: `1.4Go إنترنت + يوتيوب غير محدود، الكل صالح 24 ساعة بـ 100 دج فقط`,
+      success: `لقد حصلت على 1.4Go إنترنت + يوتيوب غير محدود، الكل صالح 24 ساعة`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 100. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 50":{
@@ -119,8 +119,8 @@ export default {
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك Smart 100. يُرجى تعبئة رصيدك.`,
     },
     "Smart 50": {
-      confirm: `200Mo إنترنت صالحين 24 ساعة بـ 50 دج`,
-      success: `لقد حصلت على 200Mo إنترنت صالحين 24 ساعة.`,
+      confirm: `200Mo إنترنت + 30 دقيقة نحو Ooredoo، صالحين 24 ساعة بـ 50 دج فقط`,
+      success: `لقد حصلت على 200Mo إنترنت + 30 دقيقة نحو Ooredoo، صالحين 24 ساعة.`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك Smart 50. يُرجى تعبئة رصيدك.`,
     },
   },

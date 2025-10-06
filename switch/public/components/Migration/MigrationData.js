@@ -41,7 +41,7 @@ export const migrationData = {
         "Limite de  partage  sélectionnée  avec succès !",
       successTitle: "CRÉDIT INSUFFISANT",
       successMessage:
-        "Bienvenue sur N'YOOZ ! Télécharge vite l'application My Ooredoo gratuitement pour acheter ou composer le forfait de ton choix et vis pleinement l'aventure N'YOOZ http://ore.do/yo . Retrouve tes forfaits sur *151#.",
+        "Pour acheter l'abonnement, veuillez recharger votre crédit.",
     },
   },
   ar: {

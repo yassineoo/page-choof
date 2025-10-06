@@ -499,7 +499,7 @@ export default class DigitalShahidServices {
                 ${
                   isArabic
                     ? `<p>احصلوا الآن على اشتراك <span class="font-semibold">شاهد</span> الذي يناسبكم، و استفيدوا من <span class="font-semibold">دخول حصري</span> لمدة 30 يوم + <span class="font-semibold">إنترنت</span>. <span></span></p>`
-                    : `<p>Obtenez dès maintenant <span class="font-semibold">un forfait Shahid</span>,30 jourss d'<span class="font-semibold">accès premium Shahid + internet</span></p>`
+                    : `<p>Obtenez dès maintenant <span class="font-semibold">un forfait Shahid</span>,30 jours d'<span class="font-semibold">accès premium Shahid + internet</span></p>`
                 }
               </div>
             </div>

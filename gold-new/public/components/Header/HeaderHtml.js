@@ -255,7 +255,7 @@ export const generateHeaderHTML = (
 
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>" : userData.offer}</span>
+              <span class="hdr-common-text">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>" : "Offre La Gold Jdida"}</span>
             </div>
 
             <div class="flex items-center gap-2">
@@ -334,7 +334,7 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>" : userData.offer}</span>
+              <span class="hdr-common-text">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>" : "Offre La Gold Jdida"}</span>
             </div>
 
             <div>

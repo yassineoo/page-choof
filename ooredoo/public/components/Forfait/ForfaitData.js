@@ -344,7 +344,7 @@ export default {
         features: [      
          "يوتيوب غير محدود"
         ],
-        duration: "<span class='font-rubik'>30</span> يوم",
+        duration: "<span class='font-rubik'>4</span> أسابيع",
         buy: "Acheter",
       },
       {
@@ -354,7 +354,7 @@ export default {
         features: [      
          "<span class='font-rubik'>5Go</span> يوتيوب "
         ],
-        duration: "<span class='font-rubik'>30</span> يوم",
+        duration: "<span class='font-rubik'>4</span> أسابيع",
         buy: "Acheter",
       },
     ],

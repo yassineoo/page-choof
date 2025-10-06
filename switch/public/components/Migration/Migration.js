@@ -754,23 +754,23 @@ class Migration {
             )}</h2>
             <p class="migration-description">${data.description || ""}</p>
           </div>
-          <div class="rounded-b-[22.5px] min-h-[200px] pt-6 pb-6" style="${roundedInlineStyle}">
+          <div class="rounded-b-[22.5px] min-h-[200px] px-4 py-10 text-center" style="${roundedInlineStyle}">
             ${providerId === 'dima'?
-              `<p class="text-center mb-10 text-4xl font-semibold">
+              `<p class="migration-title">
               ${isRTL ? "تفعيل ميزة المشاركة" : "Activer l'option partage"}
             </p>`
           :
-          `<p class="text-center mb-10 text-4xl font-semibold">
+          `<p class="migration-title">
               ${isRTL ? "اختيار حجم المشاركة" : "Choisir la limite de partage"}
             </p>`
         }
-            <p class="text-center mb-8 px-4">
-              <span class="text-[21px]">${changeSpecific}</span>
+            <p class="migration-description">
+              ${changeSpecific}
             </p>
 
             
             ${providerId === 'dima' ?
-            `<div class="flex items-center gap-4 justify-center">
+            `<div class="flex items-center gap-4 justify-center flex-wrap">
               <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white footer-btn">
                 <span class="text-[16px]">${cancelBtn}</span>
               </button>
@@ -782,8 +782,8 @@ class Migration {
             `<div>
               <div class="flex items-center gap-4 justify-center mb-6 flex-wrap">
                 ${arrayData.map(size => `
-                <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase footer-btn w-[180px]">
-                  <span class="text-[16px]">${size}</span>
+                <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-ooredoo-red text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase w-[120px] sm:w-[180px]">
+                  <span class="text-[16px] font-rubik">${size}</span>
                 </button>`).join('')}
               </div>
               <div class="flex items-center gap-4 justify-center">
