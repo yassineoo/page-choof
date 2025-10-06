@@ -21,9 +21,9 @@ export const generateHeaderHTML = (
   const formatMixedText = (text = "") => {
     const safe = escapeHtml(text);
     if (containsArabic(text)) {
-      return `<span class="${fontClass} font-semibold arabic-text" dir="auto">${safe}</span>`;
+      return `<span class="${fontClass} items-center font-medium arabic-text" dir="auto">${safe}</span>`;
     }
-    return `<span class="${fontClass} font-semibold" dir="auto">${safe}</span>`;
+    return `<span class="${fontClass} font-medium" dir="auto">${safe}</span>`;
   };
 
   const getOfferDetails = (offer) => {
@@ -45,13 +45,13 @@ export const generateHeaderHTML = (
       if (!offer) return offer;
       let replaced = offer.replace(/^Offre\s+/, "");
       replaced = replaced.replace(/\+\s*$/, "");
-      replaced = "عرض " + "+ " + replaced.trim();
+      replaced = "عرض " + replaced.trim();
       return wrapLatin(replaced);
     }
     return offer;
   };
 
-  const offerHTML = formatMixedText(getOfferText("Offre Dima +"));
+  const offerHTML = formatMixedText(getOfferText("Offre Dima Plus"));
 
   return `
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
@@ -62,17 +62,19 @@ export const generateHeaderHTML = (
   .text-ooredoo-red { color: #E30613; }
   
   .hdr-common-text{
-    font-weight: 500;
+    font-weight: 400;
     font-style: normal;
     font-size: 18px;
-    line-height: 170%;
+    display: flex;
+    align-items: center;
     letter-spacing: 0.02em;
     text-transform: capitalize;
+    line-height: 170%;
   }
 
   .hdr-price{
     font-family: Rubik, sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     font-style: Medium;
     font-size: 24px;
     line-height: 170%;

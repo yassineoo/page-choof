@@ -48,7 +48,7 @@ export const generateHeaderHTML = (
   .text-ooredoo-red { color: #E30613; }
 
   .hdr-common-text{
-    font-weight: 500;
+    font-weight: 400;
     font-style: normal;
     font-size: 18px;
     line-height: 170%;
@@ -58,7 +58,7 @@ export const generateHeaderHTML = (
 
   .hdr-price{
     font-family: Rubik, sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     font-style: Medium;
     font-size: 24px;
     line-height: 170%;

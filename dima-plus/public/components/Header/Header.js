@@ -123,7 +123,7 @@ export default class Header {
     const storedOffer = localStorage.getItem("selectedOffer");
     this.userData = {
       phone: "0509876543",
-      offer: "Offre Dima +",
+      offer: "Offre Dima Plus",
       credit: "2000",
       autoRenewal: storedRenewal !== null ? JSON.parse(storedRenewal) : true,
     };
