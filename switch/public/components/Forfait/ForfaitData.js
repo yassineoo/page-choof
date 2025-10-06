@@ -3,7 +3,7 @@ export default {
     forfaits: [
       {
         name: "La Switch 4000",
-        data: "60Go internet ",
+        data: "Internet illimité",
         price: "4000",
         duration: "30 jours",
         features: [
@@ -15,7 +15,7 @@ export default {
       },
       {
         name: "La Switch 2500",
-        data: "20Go internet ",
+        data: "120Go internet ",
         price: "2500",
         duration: "30 jours",
         features: [
@@ -27,7 +27,7 @@ export default {
       },
       {
         name: "La Switch 1500",
-        data: "8Go internet ",
+        data: "50Go internet ",
         price: "1500",
         duration: "30 jours",
         features: [
@@ -65,22 +65,22 @@ export default {
       },
       {
         name: "Forfait 300",
-        data: "3Go",
+        data: "6Go",
         price: "300",
         features:"Youtube illimité",
         duration: "72 heures",
         buy: "Acheter",
       },
       {
-        name: "Forfait 200",
-        data: "700Mo",
+        name: "Forfait 100",
+        data: "1.4Go",
         price: "100",
         features:"Youtube illimité",
         duration: "24 heures",
         buy: "Acheter",
       },
       {
-        name: "Forfait 100",
+        name: "Forfait 50",
         data: "50Mo",
         price: "50",
         features:"Facebook illimités",
@@ -129,7 +129,7 @@ export default {
     forfaits: [
       {
         name: "La Switch 4000",
-        data: "<span class='font-rubik'>60Go</span> إنترنت ",
+        data: "إنترنت غير محدود",
         price: "4000",
         duration: "30 يوم",
         features: [
@@ -141,7 +141,7 @@ export default {
       },
       {
         name: "La Switch 2500",
-        data: "<span class='font-rubik'>20Go</span> إنترنت ",
+        data: "<span class='font-rubik'>120Go</span> إنترنت ",
         price: "2500",
         duration: "30 يوم",
         features: [
@@ -153,7 +153,7 @@ export default {
       },
       {
         name: "La Switch 1500",
-        data: "<span class='font-rubik'>6Go</span> إنترنت ",
+        data: "<span class='font-rubik'>50Go</span> إنترنت ",
         price: "1500",
         duration: "30 يوم",
         features: [
@@ -191,7 +191,7 @@ export default {
       },
       {
         name: "اشتراك 300",
-        data: "3Go",
+        data: "6Go",
         price: "300",
         features:"يوتيوب غير محدود",
         duration: "<span class='font-rubik'>72</span> ساعة",
@@ -199,7 +199,7 @@ export default {
       },
       {
         name: "اشتراك 100",
-        data: "700Mo",
+        data: "1.4Go",
         price: "100",
         features:"يوتيوب غير محدود",
         duration: "<span class='font-rubik'>24</span> ساعة",
@@ -217,7 +217,7 @@ export default {
     smartForfaits: [
       {
         name: "Smart 200",
-        data: "إنترنت مجاني",
+        data: "إنترنت <span class='font-rubik'>24</span> ساعة",
         features: ["مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", "<span class='font-rubik'>600</span> دج رصيد"],
         price: "200 ",
         duration: "<span class='font-rubik'>24</span> ساعة",

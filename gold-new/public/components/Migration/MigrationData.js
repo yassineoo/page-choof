@@ -48,30 +48,30 @@ export const migrationData = {
     title: "التغيير",
     description: "هل تريد التغيير إلى عرض آخر؟",
     price: "500 دج",
-    dima: "OOREDOO Dima",
+    dima: "Dima Ooredoo",
     nyooz: "n’yooz",
     confirmTitle: "تأكيد التغيير",
     confirmBtn: "تأكيد",
     cancelBtn: "إلغاء",
     successTitle: "مبروك !",
-    change: "هل تريد التغيير إلى عرض « La Gold » ؟",
-    changeDima: "هل تريد التغيير إلى عرض « DIMA OOREDOO » ؟",
-    changeNyooz: "هل تريد التغيير إلى عرض « N’YOOZ » ؟",
+    change: "هل تريد التغيير إلى عرض « <span class=\"font-rubik\">La Gold</span> » ؟",
+    changeDima: "هل تريد التغيير إلى عرض « <span class=\"font-rubik\">Dima Ooredoo</span> » ؟",
+    changeNyooz: "هل تريد التغيير إلى عرض « <span class=\"font-rubik\">N’YOOZ</span> » ؟",
     ok: "تم",
     changeOfferGeneric: 'هل تريد التغيير إلى عرض "<span class="font-rubik" dir="ltr">{offerName}</span>"؟',
     termsAndConditions: "أشهد أنني قرأت و وافقت على شروط وأحكام العقد", 
     insufficientTitle: "رصيد غير كاف",
     insufficientMessage: "رصيدك غير كافٍ لإتمام هذه العملية.",
     migrationDimaModal: {
-      confirmTitle: "التغيير إلى Dima Ooredoo",
+      confirmTitle: "التغيير إلى <span class=\"font-rubik\">Dima Ooredoo</span>",
       confirmDescription:
-        "ستقوم بالتغيير إلى عرض Ooredoo Dima مجانًا وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
+        "ستقوم بالتغيير إلى عرض Dima Ooredoo مجانًا وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",
       successMessage:
-        "أنت الآن مستفيد من عرض Ooredoo Dima, للمزيد من المعلومات، شكّل #500*.",
+        "أنت الآن مستفيد من عرض Dima Ooredoo, للمزيد من المعلومات، شكّل #500*.",
     },
     migrationOoredooModal: {
-      confirmTitle: "التغيير إلى Gold La",
+      confirmTitle: "التغيير إلى <span class=\"font-rubik\">La Gold</span>",
       confirmDescription:
         "ستقوم بالتغيير إلى عرض La Gold مجانًا وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",
@@ -79,7 +79,7 @@ export const migrationData = {
         "أنت الآن مستفيد من عرض La Gold. للمزيد من المعلومات، شكّل #500*.",
     },
     migrationNyoozModal: {
-      confirmTitle: "التغيير إلى N'yooz",
+      confirmTitle: "التغيير إلى <span class=\"font-rubik\">N'yooz</span>",
       confirmDescription:
         "ستقوم بالتغيير إلى عرض N’YOOZ  وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",

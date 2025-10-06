@@ -10,7 +10,7 @@ export const migrationData = {
     cancelBtn: "ANNULER",
     successTitle: "FÉLICITATIONS !",
     change: "Voulez-vous changer vers l'offre « La Gold » ?",
-    changeDima: "Voulez-vous changer vers l'offre « Dima OOREDOO » ?",
+    changeDima: "Voulez-vous changer vers l'offre « Dima Ooredoo » ?",
     changeNyooz: "Voulez-vous changer vers l'offre « N’YOOZ » ?",
     ok: "OK",
     changeOfferGeneric: 'Voulez-vous changer vers l\'offre "{offerName}" ?',
@@ -22,10 +22,10 @@ export const migrationData = {
     migrationDimaModal: {
       confirmTitle: "Migration vers DIMA OOREDOO",
       confirmDescription:
-        "Vous allez changer vers l'offre Dima OOREDOO gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
+        "Vous allez changer vers l'offre Dima Ooredoo gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
       successMessage:
-        "Vous êtes désormais sur l'offre Dima OOREDOO. Pour plus d'infos, composez *500#.",
+        "Vous êtes désormais sur l'offre Dima Ooredoo. Pour plus d'infos, composez *500#.",
     },
     migrationOoredooModal: {
       confirmTitle: "Migration vers La Gold",
@@ -41,7 +41,7 @@ export const migrationData = {
         "Vous allez changer vers l'offre N'yooz gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
       successMessage:
-        "Bienvenue sur N'YOOZ ! Télécharge vite l'application My Ooredoo gratuitement pour acheter ou composer le forfait de ton choix et vis pleinement l'aventure N'YOOZ http://ore.do/yo . Retrouve tes forfaits sur *151#.",
+        "Bienvenue sur N'YOOZ ! Télécharge vite l'application My Ooredoo gratuitement pour acheter ou composer le forfait de ton choix et vis pleinement l'aventure N'YOOZ <br><a href='http://ore.do/yo' class='text-blue-600 underline' target='_blank'>lien</a> </br> Retrouve tes forfaits sur *151#.",
     },
   },
   ar: {
@@ -54,24 +54,24 @@ export const migrationData = {
     confirmBtn: "تأكيد",
     cancelBtn: "إلغاء",
     successTitle: "مبروك !",
-    change: "هل تريد التغيير إلى عرض « La Gold » ؟",
-    changeDima: "هل تريد التغيير إلى عرض « DIMA OOREDOO » ؟",
-    changeNyooz: "هل تريد التغيير إلى عرض « N’YOOZ » ؟",
+    change: "هل تريد التغيير إلى عرض « <span class='font-rubik' dir='ltr'>La Gold</span> » ؟",
+    changeDima: "هل تريد التغيير إلى عرض « <span class='font-rubik' dir='ltr'>Dima Ooredoo</span> » ؟",
+    changeNyooz: "هل تريد التغيير إلى عرض « <span class='font-rubik' dir='ltr'>N’YOOZ</span> » ؟",
     ok: "تم",
     changeOfferGeneric: 'هل تريد التغيير إلى عرض "<span class="font-rubik" dir="ltr">{offerName}</span>"؟',
     termsAndConditions: "أشهد أنني قرأت و وافقت على شروط وأحكام العقد", 
     insufficientTitle: "رصيد غير كاف",
     insufficientMessage: "رصيدك غير كافٍ لإتمام هذه العملية.",
     migrationDimaModal: {
-      confirmTitle: "التغيير إلى Dima Ooredoo",
+      confirmTitle: "التغيير إلى <span class='font-rubik' dir='ltr'>Dima Ooredoo</span>",
       confirmDescription:
-        "ستقوم بالتغيير إلى عرض Ooredoo Dima مجانًا وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
+        "ستقوم بالتغيير إلى عرض Dima Ooredoo مجانًا وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",
       successMessage:
-        "أنت الآن مستفيد من عرض Ooredoo Dima, للمزيد من المعلومات، شكّل #500*.",
+        "أنت الآن مستفيد من عرض Dima Ooredoo, للمزيد من المعلومات، شكّل #500*.",
     },
     migrationOoredooModal: {
-      confirmTitle: "التغيير إلى Gold La",
+      confirmTitle: "التغيير إلى <span class='font-rubik' dir='ltr'>La Gold</span>",
       confirmDescription:
         "ستقوم بالتغيير إلى عرض La Gold مجانًا وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",
@@ -79,12 +79,12 @@ export const migrationData = {
         "أنت الآن مستفيد من عرض La Gold. للمزيد من المعلومات، شكّل #500*.",
     },
     migrationNyoozModal: {
-      confirmTitle: "التغيير إلى N'yooz",
+      confirmTitle: "التغيير إلى <span class='font-rubik' dir='ltr'>N'yooz</span>",
       confirmDescription:
         "ستقوم بالتغيير إلى عرض N’YOOZ  وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",
       successMessage:
-        "مرحبًا بك في عرض YOOZ! سارع لتحميل التطبيق My Ooredoo مجانًا لشراء أو تشكيل الاشتراك الذي يناسبك واستمتع بمغامرة N’YOOZ <br/> http://ore.do/yo <br/> قم بشراء اشتراكاتك على #151*",
+        "مرحبًا بك في عرض YOOZ! سارع لتحميل التطبيق My Ooredoo مجانًا لشراء أو تشكيل الاشتراك الذي يناسبك واستمتع بمغامرة N’YOOZ <br/> <a href='http://ore.do/yo' class='text-blue-600 underline' target='_blank'>lien</a> <br/> قم بشراء اشتراكاتك على #151*",
     },
   },
 };

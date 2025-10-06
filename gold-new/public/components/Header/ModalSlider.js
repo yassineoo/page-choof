@@ -84,13 +84,13 @@ export class ModalSlider {
             </div>
           </div>
           <div class="flex flex-col items-center gap-[10px] self-stretch px-[10px] h-full justify-between">
-            <div class="self-stretch text-black dark:text-white text-center text-[12px] font-normal leading-[20px] min-h-[60px]" role="article">
+            <div class="self-stretch text-black dark:text-white text-center text-base font-normal leading-[20px] min-h-[60px]" role="article">
               ${this._formatMixedRuns(description)}
             </div>
             <div class="flex w-[257px] flex-col justify-end items-center gap-[15px]">
               <div class="h-[29px] flex-shrink-0 text-black dark:text-white text-center font-bold leading-normal">
                 <span class="text-[26px]"><span class="font-rubik">${safePrice}</span></span>
-                <span class="text-[18px]"> ${currencyText}/<span class="text-[13px]">${durationText}</span></span>
+                <span class="text-[18px]"> ${currencyText}/<span class="text-[18px]">${offer.duration}</span></span>
               </div>
               <button
                 type="button"

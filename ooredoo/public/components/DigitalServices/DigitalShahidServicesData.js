@@ -38,7 +38,7 @@ export const shahidPlans = {
 };
 
 export const shahidDescription = {
-  fr: "Obtenez dès maintenant un forfait Shahid,30 jourss d'accès premium Shahid + internet",
+  fr: "Obtenez dès maintenant un forfait Shahid,30 jours d'accès premium Shahid + internet",
   ar: "احصلوا الآن على اشتراك شاهد الذي يناسبكم، و استفيدوا من دخول حصري لمدة 30 يوم + إنترنت.",
 };
 

@@ -123,7 +123,7 @@ export default {
       },
       {
         name: "اشتراك <span class='font-rubik'>100</span>",
-        data: "<span class='font-rubik'>1,4Go</span> إنترنت",
+        data: "<span class='font-rubik'>1.4Go</span> إنترنت",
         price: "100",
         features: "يوتيوب غير محدود",
         duration: "<span class='font-rubik'>24</span> ساعة",
@@ -141,7 +141,7 @@ export default {
     smartForfaits: [
       {
         name: "<span class='font-rubik'>Smart 200</span>",
-        data: "إنترنت 24 ساعة",
+        data: "إنترنت <span class='font-rubik'>24</span> ساعة",
         features: [
           "مكالمات غير محدودة نحو <span class='font-rubik' dir='rtl'>Ooredoo</span>",
           "<span class='font-rubik' dir='rtl'>600</span> دج رصيد",

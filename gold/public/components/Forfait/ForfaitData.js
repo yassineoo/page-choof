@@ -241,7 +241,7 @@ export default {
     smartForfaits: [
       {
         name: "Smart 200",
-        data: "إنترنت مجاني",
+        data: "إنترنت <span class='font-rubik'>24</span> ساعة",
         features: ["مكالمات غير محدودة نحو <span class='font-rubik'>Ooredoo</span>", "<span class='font-rubik'>600</span> دج رصيد"],
         price: "200 ",
         duration: "<span class='font-rubik'>24</span> ساعة",

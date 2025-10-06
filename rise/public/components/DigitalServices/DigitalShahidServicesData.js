@@ -38,7 +38,7 @@ export const shahidPlans = {
 };
 
 export const shahidDescription = {
-  fr: "Obtenez dès maintenant un forfait Shahid,30 jourss d'accès premium Shahid + internet",
+  fr: "Obtenez dès maintenant un forfait Shahid,30 jours d'accès premium Shahid + internet",
   ar: "احصلوا الآن على اشتراك شاهد الذي يناسبكم، و استفيدوا من دخول حصري لمدة 30 يوم + إنترنت.",
 };
 
@@ -46,12 +46,12 @@ export const shahidDescription = {
 export const shahidModalData = {
   fr: {
     "SHAHID 500": {
-      confirm: "Pour 500 DA, profitez de 30 jourss d'accès à SHAHID + 2Go sur l'application.",
+      confirm: "Pour 500 DA, profitez de 30 jours d'accès à SHAHID + 2Go sur l'application.",
       success: "Achat effectué avec succès ! Vous recevrez un SMS avec un lien sous peu.",
       insufficient: "Votre crédit est insuffisant. Veuillez recharger votre compte et réessayer à nouveau.",
     },
     "SHAHID 1000": {
-      confirm: "Pour 1000 DA, profitez de 30 jourss d'accès à SHAHID + 6Go sur l'application.",
+      confirm: "Pour 1000 DA, profitez de 30 jours d'accès à SHAHID + 6Go sur l'application.",
       success: "Achat effectué avec succès ! Vous recevrez un SMS avec un lien sous peu.",
       insufficient: "Votre crédit est insuffisant. Veuillez recharger votre compte et réessayer à nouveau.",
     },

@@ -390,14 +390,14 @@ export default class TODServices {
         <button class="${primaryBtn}" id="modal-confirm">${isArabic ? "تأكيد" : "Confirmer"}</button>
       `;
     } else if (type === "congrats") {
-      buttonsHTML = `<button class="${primaryBtn}" id="modal-confirm">${isArabic ? "حسنًا" : "OK"}</button>`;
+      buttonsHTML = `<button class="${primaryBtn}" id="modal-confirm">${isArabic ? "تم" : "OK"}</button>`;
     } else if (type === "credit") {
-      buttonsHTML = `<button class="${primaryBtn}" id="modal-close">${isArabic ? "حسنًا" : "OK"}</button>`;
+      buttonsHTML = `<button class="${primaryBtn}" id="modal-close">${isArabic ? "نم" : "OK"}</button>`;
     }
 
     hook.innerHTML = `
       <div class="fixed inset-0 z-[9999] flex items-center justify-center px-4" style="background-color:#696969CC">
-        <div class="relative bg-white  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] pt-16 pb-10">
+        <div class="relative bg-white  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] px-4 py-14 sm:px-8 sm:py-16" style="max-height:90vh; overflow-y:auto;">
           ${closeButton}
           <div class="${modalTitleClass}">
             ${title}
