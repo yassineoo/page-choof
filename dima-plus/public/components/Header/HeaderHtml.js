@@ -18,43 +18,35 @@ export const generateHeaderHTML = (
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
 
-  const formatMixedText = (text = "") => {
-    const safe = escapeHtml(text);
-    if (containsArabic(text)) {
-      return `<span class="${fontClass} items-center font-medium arabic-text" dir="auto">${safe}</span>`;
-    }
-    return `<span class="${fontClass} font-medium" dir="auto">${safe}</span>`;
-  };
-
-  const getOfferDetails = (offer) => {
-    if (!offer || typeof offer !== "string")
-      return { name: "Dima", price: "XXXX" };
-    const parts = offer.split(" ");
-    if (parts.length < 2) return { name: offer, price: "XXXX" };
-    const price = parts[parts.length - 1];
-    const name = parts.slice(1).join(" ");
-    return { name, price };
-  };
-  const offerDetails = getOfferDetails(userData.offer);
-
   const LRM = "\u200E";
   const wrapLatin = (s) => s.replace(/([A-Za-z0-9\-\_]+)/g, `${LRM}$1${LRM}`);
 
-  const getOfferText = (offer) => {
-    if (language === "ar") {
-      if (!offer) return offer;
-      let replaced = offer.replace(/^Offre\s+/, "");
-      replaced = replaced.replace(/\+\s*$/, "");
-      replaced = "عرض " + replaced.trim();
-      return wrapLatin(replaced);
-    }
-    return offer;
-  };
+  let prefixText, offerName;
+  if (language === "fr") {
+    prefixText = "Offre";
+    offerName = userData.offer
+      ? userData.offer.replace(/^Offre\s+/, "").trim()
+      : "Dima Plus";
+  } else {
+    let englishOffer = userData.offer || "Offre Dima Plus";
+    let name = englishOffer
+      .replace(/^Offre\s+/, "")
+      .trim()
+      .replace(/\+\s*$/, "");
+    prefixText = "عرض";
+    offerName = wrapLatin(name);
+  }
 
-  const offerHTML = formatMixedText(getOfferText("Offre Dima Plus"));
+  const prefixHtml = `<span class="${fontClass} font-medium${
+    language === "ar" ? " arabic-text" : ""
+  }" dir="auto">${escapeHtml(prefixText)}</span>`;
+  const restHtml = `<span class="${fontClass} font-semibold${
+    containsArabic(offerName) ? " arabic-text" : ""
+  }" dir="auto">${escapeHtml(offerName)}</span>`;
+  const offerHTML = prefixHtml + "&nbsp;" + restHtml;
 
   return `
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   .font-noto-kufi-arabic { font-family: 'Noto Kufi Arabic', sans-serif; }
   .font-rubik { font-family: 'Rubik', sans-serif; }

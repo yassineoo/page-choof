@@ -35,12 +35,30 @@ export const generateHeaderHTML = (
     return offer;
   };
 
-  const offerHTML = formatMixedText(getOfferText("Offre Haya !"));
+  let offerHTML;
+  const baseOfferText = getOfferText("Offre Haya !");
+  if (language === "ar") {
+    const mediumPart = "عرض";
+    const semiBoldPart = " هيّا!";
+    offerHTML = `<span class="${fontClass} font-medium arabic-text" dir="auto">${escapeHtml(
+      mediumPart
+    )}</span><span class="${fontClass} font-semibold arabic-text" dir="auto">${escapeHtml(
+      semiBoldPart
+    )}</span>`;
+  } else {
+    const mediumPart = "Offre";
+    const semiBoldPart = " Haya !";
+    offerHTML = `<span class="${fontClass} font-medium" dir="auto">${escapeHtml(
+      mediumPart
+    )}</span><span class="${fontClass} font-semibold" dir="auto">${escapeHtml(
+      semiBoldPart
+    )}</span>`;
+  }
 
   const dirAttr = language === "ar" ? "rtl" : "ltr";
 
   return `
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   .font-noto-kufi-arabic { font-family: 'Noto Kufi Arabic', sans-serif; }
   .font-rubik { font-family: 'Rubik', sans-serif; }
@@ -223,7 +241,7 @@ export const generateHeaderHTML = (
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="font-semibold not-italic text-[18px] capitalize ${fontClass}">${
+              <span class="font-medium not-italic text-[18px] capitalize ${fontClass}">${
     texts.modeLabel
   }</span>
 

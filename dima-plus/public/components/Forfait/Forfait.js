@@ -729,8 +729,8 @@ class ForfaitComponent {
 
     if (title === "SMART اشتراكات" && isRTL) {
       return `
-      <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
       <span class="font-rubik ${baseClasses}"> SMART</span>
+      <span class="font-noto-kufi-arabic ${baseClasses}">اشتراكات</span>
     `;
     }
 
