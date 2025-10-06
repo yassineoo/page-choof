@@ -578,7 +578,7 @@ export default class Header {
       <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
         ${closeBtnHTML}
         <div class="w-full text-center pt-8 md:pt-0">
-          <h1 class="text-ooredoo-red dark:text-white ${fontClass} text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
+          <h1 class="text-ooredoo-red dark:text-white ${fontClass} text-[24px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
             ${texts.manualModalTitle}
           </h1>
           <p class="${fontClass} text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">

@@ -18,14 +18,6 @@ export const generateHeaderHTML = (
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
 
-  const formatMixedText = (text = "") => {
-    const safe = escapeHtml(text);
-    if (containsArabic(text)) {
-      return `<span class="${fontClass} font-semibold arabic-text" dir="auto">${safe}</span>`;
-    }
-    return `<span class="${fontClass} font-semibold" dir="auto">${safe}</span>`;
-  };
-
   const getOfferDetails = (offer) => {
     if (!offer || typeof offer !== "string")
       return { name: "Dima", price: "XXXX" };
@@ -56,19 +48,29 @@ export const generateHeaderHTML = (
   const LRM = "\u200E";
   const wrapLatin = (s) => s.replace(/([A-Za-z0-9\-\_]+)/g, `${LRM}$1${LRM}`);
 
-  const getOfferText = (offer) => {
-    if (language === "ar") {
-      if (!offer) return offer;
-      const replaced = offer.replace(/^Offre\s+/, "عرض ");
-      return wrapLatin(replaced);
-    }
-    return offer;
-  };
+  let prefixText, offerName;
+  if (language === "fr") {
+    prefixText = "Offre";
+    offerName = userData.offer
+      ? userData.offer.replace(/^Offre\s+/, "").trim()
+      : "Dima";
+  } else {
+    let englishOffer = userData.offer || "Offre Dima";
+    let name = englishOffer.replace(/^Offre\s+/, "").trim();
+    prefixText = "عرض";
+    offerName = wrapLatin(name);
+  }
 
-  const offerHTML = formatMixedText(getOfferText("Offre Dima"));
+  const prefixHtml = `<span class="${fontClass} font-medium${
+    language === "ar" ? " arabic-text" : ""
+  }" dir="auto">${escapeHtml(prefixText)}</span>`;
+  const restHtml = `<span class="${fontClass} font-semibold${
+    containsArabic(offerName) ? " arabic-text" : ""
+  }" dir="auto">${escapeHtml(offerName)}</span>`;
+  const offerHTML = prefixHtml + "&nbsp;" + restHtml;
 
   return `
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 #__cons-bg { top: calc(var(--header-bottom, 64px) - 1px); }
 
@@ -272,7 +274,7 @@ export const generateHeaderHTML = (
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="font-semibold not-italic text-[18px] capitalize ${fontClass}">${
+              <span class="font-medium not-italic text-[18px] capitalize ${fontClass}">${
     texts.renewalLabel
   }</span>
               <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
