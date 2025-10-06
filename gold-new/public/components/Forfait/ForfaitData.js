@@ -146,7 +146,7 @@ export default {
       },
       {
         name: "Gold Jdida 1000",
-        data: "<span class='font-rubik'>6Go</span> إنترنت ",
+        data: "<span class='font-rubik'>8Go</span> إنترنت ",
         price: "1000",
         duration: "<span class='font-rubik'>30</span> يوم",
         features: [
