@@ -142,7 +142,7 @@ export const generateHeaderHTML = (
   }">
   <div class="w-full max-w-[90vw] mx-auto px-4">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
-      <div class="flex items-center gap-3" dir="ltr">
+      <div class="flex items-center gap-3" dir="${language === "ar" ? "ltr" : "rtl"}">
         <div class="flex items-center justify-center w-[58.5px] h-[13px] md:w-[115px] md:h-[26px]">
           <img src="./assets/images/header/Choof.svg" alt="Choof" class="w-full h-full object-contain dark:hidden block" width="115" height="26" loading="lazy" />
           <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="w-full h-full object-contain hidden dark:block" width="115" height="26" loading="lazy" />
