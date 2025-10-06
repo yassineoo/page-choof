@@ -296,7 +296,7 @@ export class Slider {
                  ${isRTL ?
                   `<span class="font-noto-kufi-arabic">إنترنت</span>`
                   :
-                  `<span class="font-rubik">Internet</span>`
+                  `<span class="font-rubik">internet</span>`
                  }
                 </h3> `}
               <div class="space-y-4 mt-8 h-[200px] sm:h-[180px]">
@@ -393,7 +393,7 @@ export class Slider {
                  ${isRTL ?
                   `<span class="font-noto-kufi-arabic">إنترنت</span>`
                   :
-                  `<span class="font-rubik">Internet</span>`
+                  `<span class="font-rubik">internet</span>`
                  }
               </h3>
               <div class="space-y-4 mt-8 h-[60px]">
