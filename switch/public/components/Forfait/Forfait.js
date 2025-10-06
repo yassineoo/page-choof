@@ -961,7 +961,7 @@ class ForfaitComponent {
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${
               this.currentLang === "ar"
-                ? "<span>إشتراكات الإنترنت</span>"
+                ? "<span>اشتراكات الإنترنت</span>"
                 : "<span class='font-rubik'>FORFAITS INTERNET</span>"
             }
           </h2>

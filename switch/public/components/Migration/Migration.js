@@ -746,7 +746,7 @@ class Migration {
     <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-      <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
+      <section class="w-full bg-white dark:bg-black migration-section relative">
         <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
           <div class="text-center bg-[#fff] dark:bg-transparent flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 pt-10 rounded-t-[22.5px]">
             <h2 class="migration-title">${this.createMixedTitleHTML(

@@ -364,7 +364,6 @@ class Migration {
 .migration-terms-checkbox {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   cursor: pointer;
   user-select: none;
   line-height: 1.4;
@@ -741,10 +740,10 @@ class Migration {
       const wrapped = this.highlightTerms(termsText, language);
       termsHTML = `
       <div class="mt-4 mb-8 px-4 text-center">
-        <label class="migration-terms-checkbox" style="max-width:100%; text-align:left;">
+        <label class="migration-terms-checkbox gap-1 sm:gap-2" style="max-width:100%; text-align:left;">
           <input type="checkbox" id="dima-terms-checkbox-view" />
           <span class="checkbox-faux" aria-hidden="true"></span>
-          <span style="margin-left:8px;">${wrapped}</span>
+          <span>${wrapped}</span>
         </label>
       </div>
     `;
