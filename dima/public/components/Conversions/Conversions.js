@@ -266,6 +266,9 @@ class ConversionsComponent {
       }
     }
     @media (max-width: 620px) {
+    .conversions-buy-btn{
+      min-width: 248px;
+    }
      .conversions-credit-message {
         margin-top: 30px;
       }
@@ -972,8 +975,8 @@ class ConversionsComponent {
       close: data.ok,
     };
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `conversions-modal-button primary ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `conversions-modal-button secondary ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const primaryBtn = `conversions-modal-button primary ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[125px] md:w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `conversions-modal-button secondary ${fontClass} font-semibold text-base uppercase forfait-modal-button w-[125px] md:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
     const buttonGap = "gap-4 lg:gap-4";
     const buttonConfigs = {
       confirm: `

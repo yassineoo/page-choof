@@ -9,11 +9,7 @@ class Migration {
       languageChange: this.handleLanguageChange.bind(this),
       resize: this.handleResize.bind(this),
     };
-    this.providers = [
-      { id: "dima", displayName: "Dima Ooredoo" },
-      { id: "nyooz", displayName: "N'YOOZ" },
-    ];
-
+    this.providers = [{ id: "nyooz" }, { id: "dima" }];
     this.initialize();
   }
   initialize() {
@@ -54,20 +50,20 @@ class Migration {
       .migration-terms-link:hover {
         opacity: 0.95;
       }
-    
-     .dark .migration-section {
-      background: #2c2c2c;
-    }
     .dark .migration-card-shadow {
       background: #2c2c2c;
-      color: #d1d5db;
+      color: #ffffffff;
       box-shadow: none;
     }
 
+    .footer-btn {
+      min-width: 150px;
+      }
+ 
     .migration-card-shadow {
       box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);
       border: 1px solid var(--border);
-      border-radius: var(--card-radius);
+      border-radius: 22.5px;
       box-sizing: border-box;
       width: var(--container-max);
       height: auto;
@@ -79,7 +75,6 @@ class Migration {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 2.5rem 1rem;
       gap: 1.25rem;
       transition: all 0.3s ease;
       min-height: var(--card-min-height);
@@ -131,7 +126,7 @@ class Migration {
   height: auto;
   margin: 0 auto;
   padding: 0 var(--gutter);
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   box-sizing: border-box;
 }
@@ -176,6 +171,11 @@ class Migration {
       margin-right: auto;
       box-sizing: border-box;
     }
+
+     .dark .migration-title, .dark .migration-description {
+     color: white;
+     }
+
     .migration-price {
       font-weight: 600;
       display: flex;
@@ -204,7 +204,6 @@ class Migration {
       transition: all 0.25s ease;
       font-weight: bold;
       text-transform: uppercase;
-      min-width: 180px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -232,6 +231,9 @@ class Migration {
       transform: scale(1.05);
       color: white;
     }
+      .dark .migration-cancel-btn {
+  background-color: transparent;
+}
     .migration-confirm-panel {
       width: 100%;
       max-width: var(--container-max);
@@ -269,7 +271,7 @@ class Migration {
       
     .dark .text-center.bg-\\[\\#fff\\] h2,
     .dark .text-center.bg-\\[\\#fff\\] p {
-      color: #d1d5db;
+      color: #ffffffff;
     }
     .dark .text-center.bg-\\[\\#fff\\] {
       background-color: #3a3a3a;
@@ -343,13 +345,18 @@ class Migration {
       background: #c50510;
     }
     .migration-modal-button.secondary {
-      background: white;
+  background: white;
       color: #e30613;
       border: 2px solid #e30613;
     }
     .migration-modal-button.secondary:hover {
       background: #e30613;
       color: white;
+    }
+      .dark     .migration-modal-button.secondary {
+  background: transparent;
+      color: #ffffffff;
+      border: 2px solid #ffffffff;
     }
 
 .migration-terms-checkbox {
@@ -448,16 +455,18 @@ class Migration {
     }
     @media (max-width: 640px) {
       .migration-card-shadow {
+       
         min-height: 300px;
-        padding: 1.25rem;
         margin: 0 auto;
       }
       .migration-title {
+       text-align: center;
         font-size: clamp(1.6rem, 6vw, 2rem);
-        margin-bottom: 20px;
+        margin: 20px 0;
       }
       .migration-description {
-        font-size: 18px;
+        font-size: 16px;
+        padding: 0 20px; 
         -webkit-line-clamp: 3;
       }
       .migration-price .big {
@@ -476,7 +485,7 @@ class Migration {
         width: auto !important;
         min-width: 120px !important;
         flex: 1;
-        max-width: 150px;
+        max-width: 125px;
       }
       .migration-back-btn {
         top: 10px;
@@ -494,12 +503,6 @@ class Migration {
     @media (max-width: 480px) {
       .migration-card-shadow {
         min-height: 280px;
-        padding: 1rem;
-      }
-    }
-    @media (max-width: 1279px) {
-      .migration-card-container {
-        min-height: 360px;
       }
     }
     @media (max-width: 991px) {
@@ -509,7 +512,8 @@ class Migration {
     }
     @media (max-width: 767px) {
       .migration-card-container {
-        min-height: 320px;
+        min-height: 0;
+        padding: 0;
       }
     }
     @media (min-width: 768px) and (max-width: 1279px) and ([dir="rtl"]) {
@@ -594,32 +598,30 @@ class Migration {
 
   createMixedTitleHTML(title, baseClasses = "") {
     if (!title) return "";
-    const latinRegex = /[A-Za-z0-9'’\-\.\,\/]/;
-    if (this.containsArabic(title) && !latinRegex.test(title)) {
+    const latinTokenRegex = /[A-Za-z0-9'’\-\.\,\/]+/;
+    const latinWholeRegex = /^[A-Za-z0-9'’\-\.\,\/]+$/;
+    if (this.containsArabic(title) && !latinTokenRegex.test(title)) {
       return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${this.escapeHtml(
         title
       )}</span>`;
     }
-    if (this.containsArabic(title) && latinRegex.test(title)) {
-      const parts = title.split(/([A-Za-z0-9'’\-\.\,\/]+)/);
-      return parts
-        .map((part) => {
-          if (part === "") return "";
-          if (/^[A-Za-z0-9'’\-\.\,\/]+$/.test(part)) {
-            return `<span class="font-rubik ${baseClasses}" dir="ltr">${this.escapeHtml(
-              part
-            )}</span>`;
-          } else {
-            return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${this.escapeHtml(
-              part
-            )}</span>`;
-          }
-        })
-        .join("");
-    }
-    return `<span class="font-rubik ${baseClasses}">${this.escapeHtml(
-      title
-    )}</span>`;
+    const parts = title.split(/([A-Za-z0-9'’\-\.\,\/]+)/);
+    return parts
+      .map((part) => {
+        if (part === "") return "";
+        if (latinWholeRegex.test(part)) {
+          return `<span class="font-rubik ${baseClasses}" dir="ltr">${this.escapeHtml(
+            part
+          )}</span>`;
+        }
+        if (this.containsArabic(part)) {
+          return `<span class="font-noto-kufi-arabic ${baseClasses}" dir="rtl">${this.escapeHtml(
+            part
+          )}</span>`;
+        }
+        return this.escapeHtml(part);
+      })
+      .join("");
   }
 
   render() {
@@ -662,7 +664,7 @@ class Migration {
           data[id] || data[id + "Label"] || id.toUpperCase();
         const displayName =
           data[id] || id.charAt(0).toUpperCase() + id.slice(1);
-        return `<button class="migration-buy-btn migration-button-zone py-[10px]" data-provider="${id}" aria-label="${displayName}">
+        return `<button class="migration-buy-btn migration-button-zone py-[10px] w-[200px] md:w-[255px]" data-provider="${id}" aria-label="${displayName}">
                 <span class="text-[16px] font-rubik">${labelFromData}</span>
               </button>`;
       })
@@ -672,18 +674,18 @@ class Migration {
   <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-    <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] migration-section">
+    <section class="w-full bg-white dark:bg-black migration-section">
       <div>
         <div style="width:100%">
 <div class="migration-card-shadow migration-hover-lift">
-  <div class="migration-card-container">
+  <div class="migration-card-container px-0 pt-0 md:px-4 md:pt-2">
     <div class="migration-card-content">
       <h2 class="migration-title">${this.createMixedTitleHTML(
         data.title || ""
       )}</h2>
       <p class="migration-description">${description}</p>
     </div>
-                 <div class="flex items-center gap-4 justify-center buttons-row">
+                 <div class="flex items-center gap-4 justify-center flex-col-reverse sm:flex-row-reverse flex-nowrap mt-4">
       ${providerButtonsHTML}
     </div>
             </div>
@@ -697,24 +699,29 @@ class Migration {
   `;
     this.bindPurchaseButtons(language);
   }
+
   highlightTerms(text, language) {
     if (!text) return "";
     const arPhrase = "شروط وأحكام العقد";
     const frPhrase = "termes et conditions du contrat";
+
     if (language === "ar" && text.includes(arPhrase)) {
       const href = "./assets/documents/TERMES_ET_CONDITIONS_AR.pdf";
       return text.replace(
         arPhrase,
-        `<a href="${href}" class="migration-terms-link" role="link" tabindex="0">${arPhrase}</a>`
+        `<a href="${href}" dir="rtl" aria-label="تحميل الشروط والأحكام" class="migration-terms-link block text-right md:inline"
+ role="link" tabindex="0" target="_blank" rel="noopener noreferrer" download="TERMES_ET_CONDITIONS_AR.pdf" aria-label="Télécharger les termes et conditions en arabe">${arPhrase}</a>`
       );
     }
+
     if (language === "fr" && text.includes(frPhrase)) {
       const href = "./assets/documents/TERMES_ET_CONDITIONS.pdf";
       return text.replace(
         frPhrase,
-        `<a href="${href}" class="migration-terms-link" role="link" tabindex="0">${frPhrase}</a>`
+        `<a href="${href}" class="migration-terms-link" role="link" tabindex="0" target="_blank" rel="noopener noreferrer" download="TERMES_ET_CONDITIONS.pdf" aria-label="Télécharger les termes et conditions en français">${frPhrase}</a>`
       );
     }
+
     return text;
   }
 
@@ -722,8 +729,8 @@ class Migration {
     const cap = providerId.charAt(0).toUpperCase() + providerId.slice(1);
     const changeKey = `change${cap}`;
     const changeSpecific = data[changeKey] || data.change || "";
-    const providerFromDataLabel = data[providerId] || providerId;
-
+    const providerFromDataLabel =
+      data[providerId] || (providerId === "ooredoo" ? "Ooredoo" : providerId);
     const displayName = providerFromDataLabel;
     const cancelBtn = data.cancelBtn || "Annuler";
     const confirmBtn = data.confirmBtn || "Confirmer";
@@ -733,11 +740,11 @@ class Migration {
       const termsText = data.termsAndConditions || "";
       const wrapped = this.highlightTerms(termsText, language);
       termsHTML = `
-      <div class="mt-4 mb-8 px-4 text-center">
+      <div class="mt-4 mb-8 px-4 text-right md:text-center">
         <label class="migration-terms-checkbox" style="max-width:100%; text-align:left;">
           <input type="checkbox" id="dima-terms-checkbox-view" />
           <span class="checkbox-faux" aria-hidden="true"></span>
-          <span style="margin-left:8px;">${wrapped}</span>
+          <span>${wrapped}</span>
         </label>
       </div>
     `;
@@ -752,27 +759,27 @@ class Migration {
     <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-      <section class="w-full dark:bg-[#2c2c2c] migration-section relative">
-        <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto w-[90%] max-w-[900px]">
-          <div class="text-center bg-[#fff] flex flex-col items-center gap-6 justify-center min-h-[200px] px-4 rounded-t-[22.5px]">
-            <h2 class="migration-title">${this.createMixedTitleHTML(
+      <section class="w-full bg-white dark:bg-[#000] migration-section relative">
+        <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto max-w-[900px]" style="box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);">
+          <div class="text-center bg-[#fff] dark:bg-[#2C2C2C] flex flex-col items-center justify-center px-8 rounded-t-[22.5px]">
+            <h2 class="migration-title pt-6 md:pt-14">${this.createMixedTitleHTML(
               data.title || ""
             )}</h2>
             <p class="migration-description">${data.description || ""}</p>
           </div>
           <div class="rounded-b-[22.5px] min-h-[200px] pt-14 pb-6" style="${roundedInlineStyle}">
-            <p class="text-center mb-8 px-4">
-              <span class="text-[21px]">${changeSpecific}</span>
+            <p class="text-center mb-8 px-3">
+              <span class="text-[16px] md:text-[21px]">${changeSpecific}</span>
             </p>
 
             ${termsHTML}
 
             <div class="flex items-center gap-4 justify-center">
-              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
-                <span class="text-[16px]">${cancelBtn}</span>
+              <button id="back-to-main" class="relative font-semibold text-base uppercase migration-modal-button w-[125px] md:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
+                <span>${cancelBtn}</span>
               </button>
-              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 w-40 touch-manipulation bg-[#e30613] text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase">
-                <span class="text-[16px]">${confirmBtn}</span>
+              <button id="start-${providerId}-migration" class="relative font-semibold text-base uppercase migration-modal-button w-[125px] md:w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg"
+                <span>${confirmBtn}</span>
               </button>
             </div>
           </div>
@@ -812,7 +819,7 @@ class Migration {
     this.container.innerHTML = `
       <div class="w-full flex items-center justify-center py-16">
         <div class="text-center">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Une erreur s'est produite lors du chargement du boost</p>
+          <p class="text-gray-600 dark:text-white mb-4">Une erreur s'est produite lors du chargement du boost</p>
           <button onclick="location.reload()"
                   class="bg-ooredoo-red text-white px-4 py-2 rounded-full">
             Recharger
@@ -867,7 +874,6 @@ class Migration {
     this.container.addEventListener("click", handler);
     this.container.addEventListener("touchend", handler, { passive: false });
   }
-
   bindViewButtons(language) {
     if (this.viewClickHandler) {
       this.container.removeEventListener("click", this.viewClickHandler);
@@ -898,23 +904,24 @@ class Migration {
         let modalData = {};
         let message = "";
         const provider = this.providers.find((p) => p.id === providerId);
-        const displayName = provider
-          ? provider.displayName || providerId
-          : providerId;
+        const displayName = provider ? provider.displayName : providerId;
         if (providerId === "dima") {
           modalData = baseModalData.migrationDimaModal || {};
           message = modalData.confirmDescription || "";
         } else if (providerId === "nyooz") {
           modalData = baseModalData.migrationNyoozModal || {};
-          message = modalData.confirmDescription || "";
+          message =
+            modalData.confirmDescription ||
+            baseModalData.changeOfferGeneric.replace(
+              "{offerName}",
+              displayName
+            );
         } else {
           modalData = baseModalData.migrationDimaModal || {};
-          message = baseModalData.changeOfferGeneric
-            ? baseModalData.changeOfferGeneric.replace(
-                "{offerName}",
-                displayName
-              )
-            : "";
+          message = baseModalData.changeOfferGeneric.replace(
+            "{offerName}",
+            displayName
+          );
         }
         this.handlePurchaseClick(lang, {
           ...modalData,
@@ -926,16 +933,6 @@ class Migration {
     this.viewClickHandler = clickHandler;
     this.container.addEventListener("click", clickHandler);
   }
-
-  wrapMixedTextForRTL(text) {
-    if (!text) return text;
-    if (!this.containsArabic(text)) return text;
-    return text.replace(
-      /([A-Za-z0-9'’\-\.\,\/]+)/g,
-      '<span dir="ltr">$1</span>'
-    );
-  }
-
   handlePurchaseClick(language, data) {
     const currentLanguage = this.getLanguage();
     const isRTL = currentLanguage === "ar";
@@ -951,7 +948,6 @@ class Migration {
       },
     });
   }
-
   showInsufficientModal(data, isRTL) {
     this.showModal({
       type: "info",
@@ -1011,20 +1007,20 @@ class Migration {
           aria-modal="true"
           aria-labelledby="modal-title">
           <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
-              <button class="absolute top-4 right-4 p-2 z-10 rounded-full transition-all duration-200 migration-modal-close"
+              <button class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20  migration-modal-close"
                       aria-label="${isRTL ? "إغلاق" : "Fermer"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
-                      ${title}
+                  <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-xl md:text-3xl leading-tight uppercase tracking-tight">
+                      ${this.createMixedTitleHTML(title)}
                   </h2>
               </div>
-              <div class="text-center mb-10 px-2">
+              <div class="text-center mb-10 px-2 text-base">
                   ${
                     containsHTML
                       ? message
-                      : `<p class="${fontClass} text-gray-800 dark:text-gray-200 leading-relaxed text-base md:text-lg">${message}</p>`
+                      : `<p class="${fontClass} text-gray-800 dark:text-white leading-relaxed md:text-lg">${message}</p>`
                   }
               </div>
               <div class="flex justify-center migration-modal-buttons">${buttons}</div>
@@ -1041,7 +1037,7 @@ class Migration {
     };
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
     const primaryBtn = `migration-modal-button primary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const secondaryBtn = `migration-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-transparent dark:text-white dark:border-white`;
     const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
     const buttonConfigs = {
       confirm: `

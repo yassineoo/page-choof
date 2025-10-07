@@ -486,7 +486,7 @@ class Migration {
         width: auto !important;
         min-width: 120px !important;
         flex: 1;
-        max-width: 150px;
+        max-width: 125px;
       }
       .migration-back-btn {
         top: 10px;
@@ -714,7 +714,7 @@ class Migration {
       const href = "./assets/documents/TERMES_ET_CONDITIONS_AR.pdf";
       return text.replace(
         arPhrase,
-         `<a href="${href}" dir="rtl" aria-label="تحميل الشروط والأحكام" class="migration-terms-link block text-right md:inline"
+        `<a href="${href}" dir="rtl" aria-label="تحميل الشروط والأحكام" class="migration-terms-link block text-right md:inline"
  role="link" tabindex="0" target="_blank" rel="noopener noreferrer" download="TERMES_ET_CONDITIONS_AR.pdf" aria-label="Télécharger les termes et conditions en arabe">${arPhrase}</a>`
       );
     }
@@ -773,8 +773,8 @@ class Migration {
             <p class="migration-description">${data.description || ""}</p>
           </div>
           <div class="rounded-b-[22.5px] min-h-[200px] pt-14 pb-6" style="${roundedInlineStyle}">
-            <p class="text-center mb-8 px-4">
-              <span class="text-[21px]">${changeSpecific}</span>
+            <p class="text-center mb-8 px-3.5">
+              <span class="text-[16px]">${changeSpecific}</span>
             </p>
 
             ${termsHTML}
@@ -1019,21 +1019,21 @@ class Migration {
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title">
-          <div class="relative bg-white dark:bg-black rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
+          <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
               <button class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20  migration-modal-close"
                       aria-label="${isRTL ? "إغلاق" : "Fermer"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                  <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${this.createMixedTitleHTML(title)}
                   </h2>
               </div>
-              <div class="text-center mb-10 px-2">
+              <div class="text-center text-base mb-10 px-2">
                   ${
                     containsHTML
                       ? message
-                      : `<p class="${fontClass} text-gray-800 dark:text-white leading-relaxed text-base md:text-lg">${message}</p>`
+                      : `<p class="${fontClass} text-gray-800 dark:text-white leading-relaxed md:text-lg">${message}</p>`
                   }
               </div>
               <div class="flex justify-center migration-modal-buttons">${buttons}</div>
