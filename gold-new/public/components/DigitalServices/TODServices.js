@@ -337,8 +337,8 @@ export default class TODServices {
       ? `احصل على دخول إلى ${selection.duration.giga}Go + ${selection.package.type} إنترنت صالحين شهر بـ <span class="whitespace-nowrap">${selection.duration.price} دج.</span>`
       : `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go d'internet valables ${selection.duration.months} pour <span class="whitespace-nowrap">${selection.duration.price} DA.</span>`;
     const congratsMsg = isArabic
-      ? `لقد قمت بتفعيل اشتراكك  ${selection.package.type} + ${selection.duration.giga}Go بنجاح. قم بتحميل TOD الآن على هذا <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">الرابط</a>.`
-      : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur ce lien <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">Cliquez ici</a>.`;
+      ? `لقد قمت بتفعيل اشتراكك  ${selection.package.type} + ${selection.duration.giga}Go بنجاح. قم بتحميل TOD الآن على <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">هذا الرابط</a>.`
+      : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">ce lien</a>.`;
     const noCreditMsg = isArabic
       ? `عزيزي الزبون، رصيدك غير كافٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى.`
       : `Cher client, votre crédit est insuffisant pour acheter le forfait ${selection.package.type}. Veuillez recharger votre compte et réessayer.`;
