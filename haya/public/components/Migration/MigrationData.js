@@ -10,7 +10,7 @@ export const migrationData = {
     cancelBtn: "ANNULER",
     successTitle: "FÉLICITATIONS !",
     change: "Voulez-vous changer vers l'offre « La Gold » ?",
-    changeDima: "Voulez-vous changer vers l'offre « Dima OOREDOO » ?",
+    changeDima: "Voulez-vous changer vers l'offre « Dima Ooredoo » ?",
     changeNyooz: "Voulez-vous changer vers l'offre « N’YOOZ » ?",
     ok: "OK",
     changeOfferGeneric: 'Voulez-vous changer vers l\'offre "{offerName}" ?',
@@ -54,12 +54,16 @@ export const migrationData = {
     confirmBtn: "تأكيد",
     cancelBtn: "إلغاء",
     successTitle: "مبروك !",
-    change: "هل تريد التغيير إلى عرض « <span class='font-rubik'>La Gold</span> » ؟",
-    changeDima: "هل تريد التغيير إلى عرض « <span class='font-rubik'>Dima OOREDOO</span> » ؟",
-    changeNyooz: "هل تريد التغيير إلى عرض « <span class='font-rubik'>N’YOOZ</span> » ؟",
+    change:
+      "هل تريد التغيير إلى عرض « <span class='font-rubik'>La Gold</span> » ؟",
+    changeDima:
+      "هل تريد التغيير إلى عرض «<span class='font-rubik'>Dima Ooredoo</span>» ؟",
+    changeNyooz:
+      "هل تريد التغيير إلى عرض « <span class='font-rubik'>N’YOOZ</span> » ؟",
     ok: "تم",
-    changeOfferGeneric: 'هل تريد التغيير إلى عرض "<span class="font-rubik" dir="ltr">{offerName}</span>"؟',
-    termsAndConditions: "أشهد أنني قرأت و وافقت على شروط وأحكام العقد", 
+    changeOfferGeneric:
+      'هل تريد التغيير إلى عرض "<span class="font-rubik" dir="ltr">{offerName}</span>"؟',
+    termsAndConditions: "أشهد أنني قرأت و وافقت على شروط وأحكام العقد",
     insufficientTitle: "رصيد غير كاف",
     insufficientMessage: "رصيدك غير كافٍ لإتمام هذه العملية.",
     migrationDimaModal: {

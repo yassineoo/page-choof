@@ -825,7 +825,7 @@ class Migration {
           </div>
           <div class="rounded-b-[22.5px] min-h-[200px] pt-14 pb-6" style="${roundedInlineStyle}">
             <p class="text-center mb-8 px-4">
-              <span class="text-[18px] md:text-[21px]">${changeSpecific}</span>
+              <span class="text-[16px] md:text-[21px]">${changeSpecific}</span>
             </p>
 
             ${termsHTML}
@@ -1076,7 +1076,7 @@ class Migration {
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                  <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${this.createMixedTitleHTML(title)}
                   </h2>
               </div>
@@ -1084,7 +1084,7 @@ class Migration {
                   ${
                     containsHTML
                       ? message
-                      : `<p class="${fontClass} text-gray-800 dark:text-white leading-relaxed md:text-lg">${message}</p>`
+                      : `<p class="${fontClass} text-gray-800 text-base dark:text-white leading-relaxed md:text-lg">${message}</p>`
                   }
               </div>
               <div class="flex justify-center migration-modal-buttons">${buttons}</div>

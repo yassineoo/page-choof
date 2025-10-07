@@ -9,7 +9,7 @@ export const migrationData = {
     confirmBtn: "CONFIRMER",
     cancelBtn: "ANNULER",
     successTitle: "FÉLICITATIONS !",
-    changeDima: "Voulez-vous changer vers l'offre « Dima OOREDOO » ?",
+    changeDima: "Voulez-vous changer vers l'offre « Dima Ooredoo » ?",
     changeNyooz: "Voulez-vous changer vers l'offre « N’YOOZ » ?",
     ok: "OK",
     changeOfferGeneric: 'Voulez-vous changer vers l\'offre "{offerName}" ?',
@@ -46,7 +46,7 @@ export const migrationData = {
     cancelBtn: "إلغاء",
     successTitle: "مبروك !",
     changeDima:
-      "هل تريد التغيير إلى عرض « <span class='font-rubik'>Dima OOREDOO</span> » ؟",
+      "هل تريد التغيير إلى عرض «<span class='font-rubik'>Dima Ooredoo</span>» ؟",
     changeNyooz:
       "هل تريد التغيير إلى عرض « <span class='font-rubik'>N’YOOZ</span> » ؟",
     ok: "تم",
