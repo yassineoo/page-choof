@@ -486,9 +486,12 @@ class Migration {
       }
       .migration-modal-button {
         width: auto !important;
-        min-width: 120px !important;
+        min-width: 125px !important;
         flex: 1;
-        max-width: 150px;
+      }
+      #back-to-main, [id^="start-"][id$="-migration"] {
+        width: 125px !important;
+        flex: none !important;
       }
       .migration-back-btn {
         top: 10px;
@@ -572,7 +575,7 @@ class Migration {
       .migration-modal-buttons .migration-modal-button {
         flex: 1 1 48%;
         max-width: none;
-        min-width: 120px;
+        min-width: 125px;
       }
     }
 
@@ -828,10 +831,10 @@ class Migration {
             ${termsHTML}
 
             <div class="flex items-center gap-4 justify-center">
-              <button id="back-to-main" class="relative  font-semibold text-base uppercase migration-modal-button w-[140px] md:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
+              <button id="back-to-main" class="relative  font-semibold text-base uppercase migration-modal-button w-[125px] md:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
                 <span>${cancelBtn}</span>
               </button>
-              <button id="start-${providerId}-migration" class="relative font-semibold text-base uppercase migration-modal-button w-[140px] md:w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg">
+              <button id="start-${providerId}-migration" class="relative font-semibold text-base uppercase migration-modal-button w-[125px] md:w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg">
                 <span>${confirmBtn}</span>
               </button>
             </div>
