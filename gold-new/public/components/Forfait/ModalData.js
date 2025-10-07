@@ -2,7 +2,7 @@ export default {
   fr: {
     "Gold Jdida 1000": {
       confirm: `Gold Jdida 1000 = 8Go + Appels illimités vers Ooredoo + 2000DA de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
-      success: `Félicitations ! Vous venez de recevoir le forfait Gold Jdida 1000 qui vous offre 8Go + Appels illimités vers Ooredoo + 2000da de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
+      success: `Félicitations ! Vous venez de recevoir le forfait Gold Jdida 1000 qui vous offre 8Go + Appels illimités vers Ooredoo + 2000DA de Bonus valables en appels et SMS vers tous les réseaux pendant 30 jours.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait GOLD Jdida 1000. Veuillez recharger votre compte.`,
     },
     "Gold Jdida 1500": {
@@ -57,7 +57,7 @@ export default {
     },
     "Smart 50": {
       confirm: `200Mo d'internet + 30 minutes vers ooredoo, valables 24H pour 50 DA seulement.`,
-      success: `200 Mo d'internet + 30 minutes vers Ooredoo attribués, valables 24H`,
+      success: `200Mo d'internet + 30 minutes vers Ooredoo attribués, valables 24H`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 50. Veuillez recharger votre compte.`,
     },
   },
