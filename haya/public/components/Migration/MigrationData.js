@@ -8,7 +8,7 @@ export const migrationData = {
     confirmTitle: "MIGRATION",
     confirmBtn: "CONFIRMER",
     cancelBtn: "ANNULER",
-    successTitle: "FÉLICITATIONS ! ",
+    successTitle: "FÉLICITATIONS !",
     change: "Voulez-vous changer vers l'offre « La Gold » ?",
     changeDima: "Voulez-vous changer vers l'offre « Dima Ooredoo » ?",
     changeNyooz: "Voulez-vous changer vers l'offre « N’YOOZ » ?",
