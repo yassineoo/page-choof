@@ -67,7 +67,7 @@ export class Slider {
       <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
         <div class="h-full pb-6" ${isRTL ? `dir="rtl"` : ``}>
           <div class="h-14 -mx-[0.84px] bg-ooredoo-red flex items-center justify-center p-5">
-            <h2 class="text-white font-rubik text-xl md:text-2xl font-medium text-center capitalize dark:text-white leading-tight">
+            <h2 class="text-white font-rubik text-2xl md:text-4xl font-medium text-center capitalize dark:text-white leading-tight">
               ${offer.name}
             </h2>
           </div>
@@ -176,7 +176,7 @@ export class Slider {
                  ${isRTL ?
                   `<span class="font-noto-kufi-arabic">إنترنت</span>`
                   :
-                  `<span class="font-rubik">Internet</span>`
+                  `<span class="font-rubik">internet</span>`
                  }
               </h3>
               <div class="flex items-center gap-2 mt-8">

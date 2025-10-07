@@ -77,7 +77,7 @@ export const offerData = {
     ar: {
       helpText: "مساعدة",
       currentLanguage: "العربية",
-      renewalLabel: "الوضع :",
+      renewalLabel: "التجديد :",
       autoLabel: "التلقائي",
       manualLabel: "اليدوي",
       changeModeLabel: "تغيير الوضع",

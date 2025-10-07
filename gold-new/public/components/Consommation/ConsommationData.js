@@ -10,7 +10,7 @@ export const consommationData = {
           {
             subIcon: "dollar-phone",
             subtitle: "Crédit recharge",
-            value: "2000",
+            value: "4000",
             unit: "DA",
             date: "26/05/25",
           },
@@ -172,7 +172,7 @@ export const consommationData = {
           {
             subIcon: "dollar-phone",
             subtitle: "رصيد التعبئة",
-            value: '<span class="font-rubik">2000</span>',
+            value: '<span class="font-rubik">4000</span>',
             unit: "دج",
             date: "26/05/25",
           },
