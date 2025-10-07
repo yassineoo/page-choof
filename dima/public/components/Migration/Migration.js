@@ -1077,11 +1077,11 @@ class Migration {
                       ${this.createMixedTitleHTML(title)}
                   </h2>
               </div>
-              <div class="text-center mb-10 px-2">
+              <div class="text-center text-base mb-10 px-2">
                   ${
                     containsHTML
                       ? message
-                      : `<p class="${fontClass} text-gray-800 dark:text-white leading-relaxed text-base md:text-lg">${message}</p>`
+                      : `<p class="${fontClass} text-gray-800 dark:text-white leading-relaxed md:text-lg">${message}</p>`
                   }
               </div>
               <div class="flex justify-center migration-modal-buttons">${buttons}</div>
