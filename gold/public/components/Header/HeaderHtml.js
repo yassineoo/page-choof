@@ -222,11 +222,13 @@ export const generateHeaderHTML = (
                 }</span>
                 <div class="${
                   language === "ar" && "flex-row-reverse"
-                } relative flex items-center bg-white rounded-full h-[32px] w-[160px] p-0.5">
+                } relative flex items-center bg-white rounded-full h-[32px] w-[180px] p-0.5">
                   <button 
                     id="mactivia-btn"
                     class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
                     ${mactiviaText}
+                    <img src="./assets/images/header/chevron-down.svg" class="${userData.mode === "mactivia" ? "hidden" : "block"} w-4 h-4 ml-1" />
+                    <img src="./assets/images/header/chevron-down-white.svg" class="${userData.mode === "mactivia" ? "block" : "hidden"} w-4 h-4 ml-1" />
                   </button>
                   <button 
                     id="credit-btn"
@@ -320,7 +322,9 @@ export const generateHeaderHTML = (
                 id="mactivia-btn-mobile"
                 class="flex-1 flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
                 ${mactiviaText}
-              </button>
+                <img src="./assets/images/header/chevron-down.svg" class="${userData.mode === "mactivia" ? "hidden" : "block"} w-4 h-4 ml-1" />
+                <img src="./assets/images/header/chevron-down-white.svg" class="${userData.mode === "mactivia" ? "block" : "hidden"} w-4 h-4 ml-1" />
+                </button>
               <button 
                 id="credit-btn-mobile"
                 class="${

@@ -54,14 +54,12 @@ export const generateHeaderHTML = (
   .text-ooredoo-red { color: #E30613; }
   
   .hdr-common-text{
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
     font-size: 18px;
-    display: flex;
-    align-items: center;
+    line-height: 170%;
     letter-spacing: 0.02em;
     text-transform: capitalize;
-    line-height: 170%;
   }
 
   .hdr-price{
@@ -220,7 +218,7 @@ export const generateHeaderHTML = (
           <div class="flex-1 flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full md:w-auto min-w-0">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text ${fontClass}">${
+              <span class="hdr-common-text font-rubik">${
     userData.phone || "0509876543"
   }</span>
             </div>
@@ -231,7 +229,7 @@ export const generateHeaderHTML = (
           </div>
           <div class="flex items-center gap-2 flex-shrink-0">
             <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
-            <span class=" ${fontClass}">
+            <span class="hdr-price ${fontClass}">
                <span class="font-rubik">${userData.credit}</span>
                <span class="${fontClass}">${language === 'ar' ? 'دج' : 'DA'}</span>
             </span>
@@ -250,7 +248,7 @@ export const generateHeaderHTML = (
             </div>
             <div class="flex items-center gap-1 flex-shrink-0">
               <img src="./assets/images/header/Dollar.svg" class="w-[18px] h-[18px]" />
-              <span class="hdr-price">${
+              <span class="hdr-price font-semibold">${
                 userData.credit || "1200 DA"} ${language === 'ar' ? '<span class="font-noto-kufi-arabic">دج</span>' : '<span class="font-rubik">DA</span>'}
               </span>
             </div>
