@@ -226,17 +226,15 @@ export const generateHeaderHTML = (
             </div>
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text">${offerHTML}</span>
+              <span class="hdr-common-text">${language === 'ar' ? offerHTML : "<span class=\"font-rubik font-medium\">Offre Dima +</span>"}</span>
             </div>
           </div>
           <div class="flex items-center gap-2 flex-shrink-0">
             <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
-            <span class="hdr-price ${fontClass}">${
-    fontClass === "font-noto-kufi-arabic"
-      ? `<span class="font-rubik">${userData.credit}</span>` +
-        `<span class="font-noto-kufi-arabic text-base"> دج</span>`
-      : userData.credit + " DA"
-  }</span>
+            <span class=" ${fontClass}">
+               <span class="font-rubik">${userData.credit}</span>
+               <span class="${fontClass}">${language === 'ar' ? 'دج' : 'DA'}</span>
+            </span>
           </div>
         </div>
       </div>
@@ -264,7 +262,7 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-1 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-[18px] h-[18px] flex-shrink-0" />
-              <span class="hdr-common-text truncate">${offerHTML}</span>
+              <span class="hdr-common-text truncate">${language === 'ar' ? offerHTML : "Offre Dima +"}</span>
             </div>
 
             <div>
