@@ -607,7 +607,7 @@ export default class Header {
     const customContent = `
       <div class="relative w-full max-w-5xl bg-white dark:bg-[#2C2C2C] rounded-lg flex flex-col overflow-hidden">
         ${closeBtnHTML}
-        <div class="p-6 md:p-8 text-center">
+        <div class="p-6 pt-14 md:p-8 text-center">
           <h2 class="${fontClass} text-2xl font-bold text-[28px] text-ooredoo-red dark:text-white mb-8">${texts.autoModalTitle}</h2>
           <p class="${fontClass} text-black dark:text-white mb-4 px-0 text-[22px] md:px-[30px]">
             ${texts.autoModalDesc}

@@ -84,7 +84,7 @@ export const migrationData = {
         "ستقوم بالتغيير إلى عرض N’YOOZ  وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",
       successMessage:
-        "مرحبًا بك في عرض YOOZ! سارع لتحميل التطبيق My Ooredoo مجانًا لشراء أو تشكيل الاشتراك الذي يناسبك واستمتع بمغامرة N’YOOZ <br/> <a href='http://ore.do/yo' class='text-blue-600 underline' target='_blank'>lien</a> <br/> قم بشراء اشتراكاتك على #151*",
+        "مرحبًا بك في عرض YOOZ! سارع لتحميل التطبيق My Ooredoo مجانًا لشراء أو تشكيل الاشتراك الذي يناسبك واستمتع بمغامرة N’YOOZ <br/> <a href='http://ore.do/yo' class='text-blue-600 underline' target='_blank'>الرابط</a> <br/> قم بشراء اشتراكاتك على #151*",
     },
   },
 };
