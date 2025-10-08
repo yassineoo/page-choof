@@ -911,7 +911,7 @@ class ForfaitComponent {
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${
               this.currentLang === "ar"
-                ? "<span>إشتراكات الإنترنت</span>"
+                ? "<span>اشتراكات الإنترنت</span>"
                 : "<span class='font-rubik'>forfaits internet</span>"
             }
           </h2>
@@ -1405,7 +1405,7 @@ class ForfaitComponent {
       success: isArabic
         ? `هنيئًا! لقد تم تفعيل الاشتراك ${offer.name} بنجاح: ${offer.data} صالحة 4 أسابيع.`
         : `Votre Forfait ${offer.name} est activé avec succès : ${offer.data} valables 4 semaines.`,
-      insufficient: isArabic ? `رصيدك غير كافٍٍ. يُرجى إعادة تعبئة حسابك.` : `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
+      insufficient: isArabic ? `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.` : `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
     };
   }
 

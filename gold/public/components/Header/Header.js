@@ -482,7 +482,7 @@ export default class Header {
         "fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4";
 
       modal.innerHTML = `
-        <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] dark:border dark:border-gray-600 rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
+        <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
           <button id="modal-close-btn" class="absolute top-[15px] right-[15px] w-[34px] h-[34px] bg-ooredoo-red rounded-full flex items-center justify-center hover:bg-red-700 transition-colors z-10">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>

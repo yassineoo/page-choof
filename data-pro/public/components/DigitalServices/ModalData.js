@@ -53,9 +53,9 @@ const modalData = {
       buttons: [{ text: "العودة", type: "secondary", action: "close" }],
     },
     noCredit: {
-      title: "رصيد غير كافٍٍ",
+      title: "رصيد غير كافٍ",
       icon: "./assets/images/services/Bitdefender/Modals/no-credit.svg",
-      message: "رصيدك غير كافٍٍ لتقديم طلبك، يرجى إعادة تعبئة حسابك والمحاولة مرة أخرى",
+      message: "رصيدك غير كافٍ لتقديم طلبك، يرجى إعادة تعبئة حسابك والمحاولة مرة أخرى",
       buttons: [{ text: "العودة", type: "secondary", action: "close" }],
     },
     error: {

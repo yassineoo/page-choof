@@ -1417,7 +1417,7 @@ class ForfaitComponent {
         ? `هنيئًا! لقد تم تفعيل الاشتراك ${offer.name} بنجاح: ${offer.data} صالحة 4 أسابيع.`
         : `Votre Forfait ${offer.name} est activé avec succès : ${offer.data} valables 4 semaines.`,
       insufficient: isArabic
-        ? `رصيدك غير كافٍٍ. يُرجى إعادة تعبئة حسابك.`
+        ? `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.`
         : `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
     };
   }

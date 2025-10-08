@@ -1348,7 +1348,7 @@ class ForfaitComponent {
     return {
       confirm: isArabic ? `تأكيد شراء ${offer.data} مقابل ${priceNumber} دج` : `Confirmer l'achat de ${offer.data} pour ${priceNumber} DA`,
       success: isArabic ? `تم تفعيل باقة ${offer.name} بنجاح!` : `Forfait ${offer.name} activé avec succès!`,
-      insufficient: isArabic ? `رصيد غير كافٍٍ لشراء ${offer.name}` : `Crédit insuffisant pour acheter ${offer.name}`,
+      insufficient: isArabic ? `رصيد غير كافٍ لشراء ${offer.name}` : `Crédit insuffisant pour acheter ${offer.name}`,
     };
   }
 

@@ -1518,7 +1518,7 @@ class ForfaitComponent {
         ? `تم تفعيل باقة ${offer.name} بنجاح!`
         : `Forfait ${offer.name} activé avec succès!`,
       insufficient: isArabic
-        ? `رصيد غير كافٍٍ لشراء ${offer.name}`
+        ? `رصيد غير كافٍ لشراء ${offer.name}`
         : `Crédit insuffisant pour acheter ${offer.name}`,
     };
   }

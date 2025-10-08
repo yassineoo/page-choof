@@ -258,10 +258,10 @@ class BoostComponent {
         <div class="boost-card-shadow">
           
           <div class="flex flex-col items-center gap-4 md:gap-6 text-center">
-            <h2 class="boost-title">
+            <h2 class="boost-title dark:text-white">
               ${this.createMixedTitleHTML(data.title)}
             </h2>
-            <p class="boost-description dark:text-gray-200 ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" >
+            <p class="boost-description dark:text-white ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" >
               ${data.description}
             </p>
           </div>
