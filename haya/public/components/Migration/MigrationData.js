@@ -22,15 +22,15 @@ export const migrationData = {
     migrationDimaModal: {
       confirmTitle: "Migration vers DIMA OOREDOO",
       confirmDescription:
-        "Vous allez changer vers l'offre Dima OOREDOO gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
+        "Vous allez changer vers l'offre Dima Ooredoo gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
       successMessage:
-        "Vous êtes désormais sur l'offre Dima OOREDOO. Pour plus d'infos, composez *500#.",
+        "Vous êtes désormais sur l'offre Dima Ooredoo. Pour plus d'infos, composez *500#.",
     },
     migrationOoredooModal: {
       confirmTitle: "Migration vers La Gold",
       confirmDescription:
-        "Vous allez changer vers l'offre La Gold gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
+        "Vous allez changer vers l'offre La Gold, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
       successMessage:
         "Vous êtes désormais sur l'offre La Gold. Pour plus d'infos, composez *500#.",
@@ -38,7 +38,7 @@ export const migrationData = {
     migrationNyoozModal: {
       confirmTitle: "Migration vers N'YOOZ",
       confirmDescription:
-        "Vous allez changer vers l'offre N'YOOZ gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
+        "Vous allez changer vers l'offre N'YOOZ, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
       successMessage:
         "Bienvenue sur N'YOOZ ! Télécharge vite l'application My Ooredoo gratuitement pour acheter ou composer le forfait de ton choix et vis pleinement l'aventure N'YOOZ <br> <a href='http://ore.do/yo' class='underline text-blue-600'>lien</a> <br> . Retrouve tes forfaits sur *151#.",
@@ -54,16 +54,12 @@ export const migrationData = {
     confirmBtn: "تأكيد",
     cancelBtn: "إلغاء",
     successTitle: "مبروك !",
-    change:
-      "هل تريد التغيير إلى عرض « <span class='font-rubik'>La Gold</span> » ؟",
-    changeDima:
-      "هل تريد التغيير إلى عرض «<span class='font-rubik'>Dima Ooredoo</span>» ؟",
-    changeNyooz:
-      "هل تريد التغيير إلى عرض « <span class='font-rubik'>N’YOOZ</span> » ؟",
+    change: "هل تريد التغيير إلى عرض « <span class='font-rubik'>La Gold</span> » ؟",
+    changeDima: "هل تريد التغيير إلى عرض «<span class='font-rubik'>Dima Ooredoo</span>» ؟",
+    changeNyooz: "هل تريد التغيير إلى عرض « <span class='font-rubik'>N’YOOZ</span> » ؟",
     ok: "تم",
-    changeOfferGeneric:
-      'هل تريد التغيير إلى عرض "<span class="font-rubik" dir="ltr">{offerName}</span>"؟',
-    termsAndConditions: "أشهد أنني قرأت و وافقت على شروط وأحكام العقد",
+    changeOfferGeneric: 'هل تريد التغيير إلى عرض "<span class="font-rubik" dir="ltr">{offerName}</span>"؟',
+    termsAndConditions: "أشهد أنني قرأت و وافقت على شروط وأحكام العقد", 
     insufficientTitle: "رصيد غير كاف",
     insufficientMessage: "رصيدك غير كافٍ لإتمام هذه العملية.",
     migrationDimaModal: {
