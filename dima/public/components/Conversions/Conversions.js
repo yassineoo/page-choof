@@ -62,7 +62,7 @@ class ConversionsComponent {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 30px;
+      padding: 40px 16px;
       gap: 2rem;
       transition: all 0.3s ease;
     }
