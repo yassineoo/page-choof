@@ -450,7 +450,7 @@ class Migration {
         width: 100%;
         max-width: 100%;
         padding: 1.5rem;
-        min-height: 320px;
+        min-height: 260px;
       }
       .migration-confirm-panel.visible { max-height: 380px; }
     }
@@ -683,14 +683,14 @@ class Migration {
       <div>
         <div style="width:100%">
 <div class="migration-card-shadow migration-hover-lift">
-  <div class="migration-card-container px-4 pt-2">
-    <div class="migration-card-content">
+  <div class="migration-card-container px-4">
+    <div class="migration-card-content pt-6">
       <h2 class="migration-title">${this.createMixedTitleHTML(
         data.title || ""
       )}</h2>
       <p class="migration-description">${description}</p>
     </div>
-                 <div class="flex items-center gap-4 justify-center flex-col-reverse sm:flex-row-reverse flex-nowrap">
+    <div class="flex items-center gap-4 justify-center flex-col-reverse sm:flex-row-reverse flex-nowrap pb-6">
       ${providerButtonsHTML}
     </div>
             </div>
