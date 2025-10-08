@@ -29,10 +29,10 @@ export const migrationData = {
     migrationNyoozModal: {
       confirmTitle: "Migration vers N'YOOZ",
       confirmDescription:
-        "Vous allez changer vers l'offre N'YOOZ gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
+        "Vous allez changer vers l'offre N'YOOZ, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
       successMessage:
-        "Bienvenue sur N'YOOZ ! Télécharge vite l'application My Ooredoo gratuitement pour acheter ou composer le forfait de ton choix et vis pleinement l'aventure N'YOOZ <br> <a href='http://ore.do/yo' class='underline text-blue-600'>lien</a> <br> . Retrouve tes forfaits sur *151#.",
+        "Bienvenue sur N'YOOZ ! Télécharge vite l'application My Ooredoo gratuitement pour acheter ou composer le forfait de ton choix et vis pleinement l'aventure N'YOOZ <br> <a href='http://ore.do/yo' class='underline text-blue-600'>lien</a> <br> Retrouve tes forfaits sur *151#.",
     },
   },
   ar: {
