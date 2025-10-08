@@ -10,7 +10,7 @@ export const migrationData = {
     cancelBtn: "ANNULER",
     successTitle: "FÉLICITATIONS !",
     change: "Voulez-vous changer vers l'offre « La Gold » ?",
-    changeDima: "Voulez-vous changer vers l'offre « Dima OOREDOO » ?",
+    changeDima: "Voulez-vous changer vers l'offre « Dima Ooredoo » ?",
     changeNyooz: "Voulez-vous changer vers l'offre « N’YOOZ » ?",
     ok: "OK",
     changeOfferGeneric: 'Voulez-vous changer vers l\'offre "{offerName}" ?',
@@ -22,10 +22,10 @@ export const migrationData = {
     migrationDimaModal: {
       confirmTitle: "Migration vers DIMA OOREDOO",
       confirmDescription:
-        "Vous allez changer vers l'offre Dima OOREDOO gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
+        "Vous allez changer vers l'offre Dima Ooredoo gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
       successMessage:
-        "Vous êtes désormais sur l'offre Dima OOREDOO. Pour plus d'infos, composez *500#.",
+        "Vous êtes désormais sur l'offre Dima Ooredoo. Pour plus d'infos, composez *500#.",
     },
     migrationOoredooModal: {
       confirmTitle: "Migration vers La Gold",

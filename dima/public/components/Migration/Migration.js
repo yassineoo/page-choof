@@ -370,7 +370,7 @@ class Migration {
   cursor: pointer;
   user-select: none;
   line-height: 1.4;
-  font-size: 16px;
+  font-size: 22px;
 }
 
 .migration-terms-checkbox input[type="checkbox"] {
@@ -470,7 +470,7 @@ class Migration {
       }
       .migration-description {
         margin-bottom: 25px;
-        font-size: 18px;
+        font-size: 16px;
         -webkit-line-clamp: 3;
       }
       .migration-price .big {
@@ -503,6 +503,10 @@ class Migration {
         left: auto;
         right: 10px;
       }
+        .migration-terms-checkbox {
+  font-size: 16px;
+}
+
       .migration-confirm-panel.visible { max-height: 520px; padding: 12px; }
       .migration-buy-btn { min-width: 200px; padding: 0.6rem 1rem; }
     }
@@ -796,11 +800,11 @@ class Migration {
       const termsText = data.termsAndConditions || "";
       const wrapped = this.highlightTerms(termsText, language);
       termsHTML = `
-      <div class="mt-4 mb-8 px-4 text-right md:text-center">
-        <label class="migration-terms-checkbox" style="max-width:100%; text-align:left;">
-          <input type="checkbox" id="dima-terms-checkbox-view" />
+      <div class="mt-4 mb-8 px-4 text-center md:text-center">
+        <label class="migration-terms-checkbox" style="max-width:100%; text-align:center;">
+          <input type="checkbox" class="ml-4" id="dima-terms-checkbox-view" />
           <span class="checkbox-faux" aria-hidden="true"></span>
-          <span >${wrapped}</span>
+          <span class="px-6 text-center">${wrapped}</span>
         </label>
       </div>
     `;
@@ -824,7 +828,7 @@ class Migration {
             <p class="migration-description px-8">${data.description || ""}</p>
           </div>
           <div class="rounded-b-[22.5px] min-h-[200px] pt-14 pb-6" style="${roundedInlineStyle}">
-            <p class="text-center mb-8 px-4">
+            <p class="text-center mb-8 ${isRTL ? "px-2" : "px-12"}">
               <span class="text-[16px] md:text-[21px]">${changeSpecific}</span>
             </p>
 

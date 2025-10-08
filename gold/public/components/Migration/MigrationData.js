@@ -21,10 +21,10 @@ export const migrationData = {
     migrationDimaModal: {
       confirmTitle: "Migration vers DIMA OOREDOO",
       confirmDescription:
-        "Vous allez changer vers l'offre Dima OOREDOO gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
+        "Vous allez changer vers l'offre Dima Ooredoo gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
       successMessage:
-        "Vous êtes désormais sur l'offre Dima OOREDOO. Pour plus d'infos, composez *500#.",
+        "Vous êtes désormais sur l'offre Dima Ooredoo. Pour plus d'infos, composez *500#.",
     },
     migrationNyoozModal: {
       confirmTitle: "Migration vers N'YOOZ",
