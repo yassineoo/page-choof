@@ -24,7 +24,7 @@ export const generateHeaderHTML = (
   const mactiviaText = "M'Activia";
   const creditText =
     language === "ar"
-      ? "<span class='font-noto-kufi-arabic'>الرصيد</span>"
+      ? "<span class='font-noto-kufi-arabic'>رصيد</span>"
       : "Credit";
 
   const containsArabic = (text) => {
@@ -94,8 +94,8 @@ export const generateHeaderHTML = (
   const tooltipPosition = language === "ar" ? "right-0" : "left-0";
   const tooltipRounded =
     language === "ar"
-      ? "rounded-tl-[15px] rounded-tr-[4px]"
-      : "rounded-tr-[15px] rounded-tl-[4px]";
+      ? "rounded-tl-[15px] rounded-tr-[4px] md:rounded-lg"
+      : "rounded-tr-[15px] rounded-tl-[4px] md:rounded-lg";
 
   return `
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Noto+Kufi+Arabic&display=swap" rel="stylesheet" />
@@ -182,7 +182,9 @@ export const generateHeaderHTML = (
           </div>
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
             <img src="./assets/images/header/language.svg" class="w-5 h-5 hidden dark:hidden transition-opacity duration-300" />
-            <div class="flex gap-5">
+            <div class="flex items-center gap-3 relative z-50">
+              <img src="./assets/images/header/language.svg" class="w-5 h-5 dark:hidden" />
+              <img src="./assets/images/header/language-white.svg" class="w-5 h-5 hidden dark:inline" />
               <button class="language-option py-1 rounded-lg text-sm transition-all duration-300 text-black dark:text-white ${
                 language === "fr" ? "font-semibold text-ooredoo-red" : ""
               }">Français</button>
@@ -197,7 +199,7 @@ export const generateHeaderHTML = (
 
     <div class="bg-ooredoo-red text-white w-full transition-all duration-300">
       <div class="w-full max-w-[90vw] mx-auto">
-        <div class="hidden md:block py-4 lg:py-6">
+        <div class="hidden md:block py-4">
           <div class="flex items-center justify-between gap-4 lg:gap-6 w-full">
             <div class="flex-1 flex items-center gap-4 lg:gap-6 xl:gap-8 min-w-0">
               <div class="flex items-center gap-2 flex-shrink-0">
@@ -207,34 +209,32 @@ export const generateHeaderHTML = (
                 }</span>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 min-w-0">
-                <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
+                <img src="./assets/images/header/Puce.svg" class="w-5 h-5 flex-shrink-0" />
                 <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
                   (language === "ar"
                     ? "<span class='font-noto-kufi-arabic'> عرض</span> "
-                    : "Offer ") + offerHTML
+                    : "Offre ") + offerHTML
                 }</span>
               </div>
               <div class="flex items-center gap-2">
                 <span class="text-white">${
                   language === "ar"
-                    ? "<span class='font-noto-kufi-arabic'>رصيد :</span>"
+                    ? "<span class='font-noto-kufi-arabic'>الوضع :</span>"
                     : "<span class='font-rubik'>Mode :</span>"
                 }</span>
                 <div class="${
                   language === "ar" && "flex-row-reverse"
-                } relative flex items-center bg-white rounded-full h-[32px] w-[180px] p-0.5">
+                } relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
                   <button 
                     id="mactivia-btn"
-                    class="w-[60%] flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
+                    class="w-[50%] flex items-center justify-center rounded-full h-[32px] text-[0.95rem] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
                     ${mactiviaText}
-                    <img src="./assets/images/header/chevron-down.svg" class="${userData.mode === "mactivia" ? "hidden" : "block"} w-4 h-4 ml-1" />
-                    <img src="./assets/images/header/chevron-down-white.svg" class="${userData.mode === "mactivia" ? "block" : "hidden"} w-4 h-4 ml-1" />
                   </button>
                   <button 
                     id="credit-btn"
                     class="${
                       language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-                    } w-[40%] flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
+                    } w-[50%] flex items-center justify-center rounded-full h-[32px] text-[0.95rem] text-sm font-medium transition-all duration-300 bg-white text-black">
                     ${creditText}
                   </button>
                 </div>
@@ -252,7 +252,7 @@ export const generateHeaderHTML = (
                     </defs>
                   </svg>
 
-                  <span id="mode-tooltip-desktop" class="${tooltipFontClass} absolute bg-white dark:bg-[#2C2C2C] text-[14px] text-[#575757] dark:text-white text-left ${tooltipPosition} top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${tooltipRounded} py-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <span id="mode-tooltip-desktop" class="${tooltipFontClass} absolute bg-white dark:bg-[#2C2C2C] text-[14px] text-[#575757] dark:text-white text-left ${tooltipPosition} md:left-1/2 md:right-1/2 ${language === "ar" ? "md:translate-x-1/2" : "md:-translate-x-1/2"} top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${tooltipRounded} py-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     ${getTooltipText(userData.mode || "mactivia", language)}
                   </span>
                 </span>
@@ -291,7 +291,7 @@ export const generateHeaderHTML = (
           <div>
             <div class="flex items-center justify-between w-full">
               <div class="flex items-center gap-2">
-                <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
+                <img src="./assets/images/header/Puce.svg" class="w-5 h-5 flex-shrink-0" />
                 <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
                   (language === "ar"
                     ? "<span class='font-noto-kufi-arabic'> عرض</span> "
@@ -312,7 +312,7 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-center gap-2 mt-4">
             <span class="text-white">${
               language === "ar"
-                ? "<span class='font-noto-kufi-arabic'>رصيد :</span>"
+                ? "<span class='font-noto-kufi-arabic'>الوضع :</span>"
                 : "<span class='font-rubik'>Mode :</span>"
             }</span>
             <div class="${
@@ -320,16 +320,14 @@ export const generateHeaderHTML = (
             } relative flex items-center bg-white rounded-full h-[32px] w-[190px] p-0.5">
               <button 
                 id="mactivia-btn-mobile"
-                class="w-[60%] flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
+                class="w-[50%] flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-ooredoo-red text-white">
                 ${mactiviaText}
-                <img src="./assets/images/header/chevron-down.svg" class="${userData.mode === "mactivia" ? "hidden" : "block"} w-4 h-4 ml-1" />
-                <img src="./assets/images/header/chevron-down-white.svg" class="${userData.mode === "mactivia" ? "block" : "hidden"} w-4 h-4 ml-1" />
-                </button>
+              </button>
               <button 
                 id="credit-btn-mobile"
                 class="${
                   language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-                } w-[40%] flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
+                } w-[50%] flex items-center justify-center rounded-full h-[28px] text-sm font-medium transition-all duration-300 bg-white text-black">
                 ${creditText}
               </button>
             </div>

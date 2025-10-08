@@ -677,7 +677,7 @@ class Migration {
   <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-    <section class="w-full bg-white dark:bg-black migration-section">
+    <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] migration-section">
       <div>
         <div style="width:100%">
 <div class="migration-card-shadow migration-hover-lift">
@@ -762,7 +762,7 @@ class Migration {
     <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-      <section class="w-full bg-white dark:bg-[#000] migration-section relative">
+      <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] migration-section relative">
         <div class="border-[1px] border-[#C5C5C5] rounded-[22.5px] mx-auto max-w-[900px]" style="box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);">
           <div class="text-center bg-[#fff] dark:bg-[#2C2C2C] flex flex-col items-center justify-center px-8 rounded-t-[22.5px]">
             <h2 class="migration-title pt-6 md:pt-14">${this.createMixedTitleHTML(

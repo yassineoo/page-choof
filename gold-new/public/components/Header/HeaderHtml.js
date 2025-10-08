@@ -248,18 +248,18 @@ export const generateHeaderHTML = (
           <div class="flex-1 flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full md:w-auto min-w-0">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text font-rubik">${
+              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white whitespace-nowrap font-rubik">${
     userData.phone || "0509876543"
   }</span>
             </div>
 
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>" : "Offre La Gold Jdida"}</span>
+              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white whitespace-nowrap">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>" : "Offre La Gold Jdida"}</span>
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="hdr-common-text ${fontClass}">${
+              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white whitespace-nowrap ${fontClass}">${
     texts.renewalLabel
   }</span>
               <div class="relative flex ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'} items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
@@ -352,7 +352,7 @@ export const generateHeaderHTML = (
 
           <div class="${fontClass} flex items-center justify-center">
             <div class="flex items-center  gap-1 md:gap-3 z-0">
-              <span class="hdr-common-text ${fontClass}">${
+              <span class="text-[16px] ${fontClass}">${
     texts.renewalLabel
   }</span>
               <div class="relative flex ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'} items-center bg-white rounded-full h-[36px] w-[180px] md:w-[175px] p-0.5">

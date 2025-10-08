@@ -67,7 +67,7 @@ export class Slider {
       <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
         <div class="h-full pb-6" ${isRTL ? `dir="rtl"` : ``}>
           <div class="h-14 -mx-[0.84px] bg-ooredoo-red flex items-center justify-center p-5">
-            <h2 class="text-white font-rubik text-2xl md:text-4xl font-medium text-center capitalize dark:text-white leading-tight">
+            <h2 class="text-white font-rubik text-2xl md:text-[28px] font-medium text-center capitalize dark:text-white leading-tight">
               ${offer.name}
             </h2>
           </div>
@@ -111,7 +111,7 @@ export class Slider {
             <div class="flex justify-center items-baseline w-full mt-5">
               <div class="flex items-baseline justify-center" style="width:70%;">
                 <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
-                <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
+                <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
                 <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span>
               </div>
             </div>
