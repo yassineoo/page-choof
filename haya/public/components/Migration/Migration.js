@@ -361,13 +361,14 @@ class Migration {
     }
 
 .migration-terms-checkbox {
+text-align: cetner;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
   user-select: none;
   line-height: 1.4;
-  font-size: 16px;
+  font-size: 22px;
 }
 
 .migration-terms-checkbox input[type="checkbox"] {
@@ -450,7 +451,7 @@ class Migration {
         width: 100%;
         max-width: 100%;
         padding: 1.5rem;
-        min-height: 320px;
+        min-height: 260px;
       }
       .migration-confirm-panel.visible { max-height: 380px; }
     }
@@ -466,7 +467,7 @@ class Migration {
         margin: 20px 0;
       }
       .migration-description {
-        font-size: 18px;
+        font-size: 16px;
         padding: 0 20px; 
         -webkit-line-clamp: 3;
       }
@@ -498,6 +499,10 @@ class Migration {
         left: auto;
         right: 10px;
       }
+        .migration-terms-checkbox {
+  font-size: 16px;
+}
+
       .migration-confirm-panel.visible { max-height: 520px; padding: 12px; }
       .migration-buy-btn { min-width: 140px; padding: 0.6rem 1rem; }
     }
@@ -683,14 +688,14 @@ class Migration {
       <div>
         <div style="width:100%">
 <div class="migration-card-shadow migration-hover-lift">
-  <div class="migration-card-container px-4 pt-2">
-    <div class="migration-card-content">
+  <div class="migration-card-container px-4">
+    <div class="migration-card-content pt-6">
       <h2 class="migration-title">${this.createMixedTitleHTML(
         data.title || ""
       )}</h2>
       <p class="migration-description">${description}</p>
     </div>
-                 <div class="flex items-center gap-4 justify-center flex-col-reverse sm:flex-row-reverse flex-nowrap">
+    <div class="flex items-center gap-4 justify-center flex-col-reverse sm:flex-row-reverse flex-nowrap pb-6">
       ${providerButtonsHTML}
     </div>
             </div>
@@ -714,7 +719,7 @@ class Migration {
       const href = "./assets/documents/TERMES_ET_CONDITIONS_AR.pdf";
       return text.replace(
         arPhrase,
-        `<a href="${href}" dir="rtl" aria-label="تحميل الشروط والأحكام" class="migration-terms-link block text-right md:inline"
+        `<a href="${href}" dir="rtl" aria-label="تحميل الشروط والأحكام" class="migration-terms-link block text-center items-center md:inline"
  role="link" tabindex="0" target="_blank" rel="noopener noreferrer" download="TERMES_ET_CONDITIONS_AR.pdf" aria-label="Télécharger les termes et conditions en arabe">${arPhrase}</a>`
       );
     }
@@ -745,11 +750,11 @@ class Migration {
       const termsText = data.termsAndConditions || "";
       const wrapped = this.highlightTerms(termsText, language);
       termsHTML = `
-      <div class="mt-4 mb-8 px-4 text-right md:text-center">
-        <label class="migration-terms-checkbox" style="max-width:100%; text-align:left;">
-          <input type="checkbox" id="dima-terms-checkbox-view" />
+      <div class="mt-4 mb-8 px-4 text-center md:text-center">
+        <label class="migration-terms-checkbox" style="max-width:100%; text-align:center;">
+          <input type="checkbox" class="ml-4" id="dima-terms-checkbox-view" />
           <span class="checkbox-faux" aria-hidden="true"></span>
-          <span>${wrapped}</span>
+          <span class="px-6 text-center">${wrapped}</span>
         </label>
       </div>
     `;
@@ -773,8 +778,8 @@ class Migration {
             <p class="migration-description">${data.description || ""}</p>
           </div>
           <div class="rounded-b-[22.5px] min-h-[200px] pt-14 pb-6" style="${roundedInlineStyle}">
-            <p class="text-center mb-8 px-3.5">
-              <span class="text-[16px]">${changeSpecific}</span>
+            <p class="text-center mb-8 ${isRTL ? "px-2" : "px-12"}">
+              <span class="text-[16px] md:text-[22px]">${changeSpecific}</span>
             </p>
 
             ${termsHTML}
