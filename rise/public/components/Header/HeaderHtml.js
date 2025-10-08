@@ -89,8 +89,8 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           <div class="w-[120px] h-[30px] md:w-[140px] md:h-[36px] lg:w-[180px] lg:h-[56px] flex items-center justify-center relative ${
             language === "ar" ? "" : ""
           }">
-            <img src="./assets/images/header/Ooredoo-Business.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
-            <img src="./assets/images/header/Ooredoo-Business-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
+            <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
+            <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
           </div>
 <span class="inline-block w-[0.5px] h-4 md:h-8 bg-black dark:bg-white transition-colors duration-300"></span>
           <div class="w-[56px] h-[24px] md:w-[100px] md:h-[29px] lg:w-[120px] lg:h-[40px] flex items-center justify-center relative">
@@ -183,7 +183,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
               <div class="flex items-center gap-2 flex-shrink-0 min-w-0">
                 <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
                 <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
-                  (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offer ") + offerHTML
+                  (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offre ") + offerHTML
                 }</span>
               </div>
             </div>
