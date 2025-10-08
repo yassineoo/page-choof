@@ -361,6 +361,7 @@ class Migration {
     }
 
 .migration-terms-checkbox {
+text-align: cetner;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -753,7 +754,7 @@ class Migration {
         <label class="migration-terms-checkbox" style="max-width:100%; text-align:center;">
           <input type="checkbox" class="ml-4" id="dima-terms-checkbox-view" />
           <span class="checkbox-faux" aria-hidden="true"></span>
-          <span>${wrapped}</span>
+          <span class="px-6 text-center">${wrapped}</span>
         </label>
       </div>
     `;
@@ -777,7 +778,7 @@ class Migration {
             <p class="migration-description">${data.description || ""}</p>
           </div>
           <div class="rounded-b-[22.5px] min-h-[200px] pt-14 pb-6" style="${roundedInlineStyle}">
-            <p class="text-center mb-8 ${isRTL ? "px-2" : "px-14"}">
+            <p class="text-center mb-8 ${isRTL ? "px-2" : "px-12"}">
               <span class="text-[16px] md:text-[22px]">${changeSpecific}</span>
             </p>
 
