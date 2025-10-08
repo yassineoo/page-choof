@@ -51,7 +51,7 @@ export const generateHeaderHTML = (
     font-size: 0.875rem;
     line-height: 1.25rem;
     text-align: justify;
-    color: #ffffff;
+    color: #fff;
   `;
   const getOfferText = (offer) => {
     if (language === "ar") {
@@ -78,7 +78,7 @@ export const generateHeaderHTML = (
   .hdr-common-text{
     font-weight: 500;
     font-style: normal;
-    font-size: 18px;
+    font-size: 24px;
     line-height: 170%;
     letter-spacing: 0.02em;
     text-transform: capitalize;
@@ -95,7 +95,7 @@ export const generateHeaderHTML = (
   z-index: 9999 !important;
 }
   @media (max-width: 767px){
-    .hdr-common-text{ font-size: 14px; }
+    .hdr-common-text{ font-size: 20px; }
     .hdr-price{ font-size: 20px; }
   }
   @keyframes modalFadeIn {

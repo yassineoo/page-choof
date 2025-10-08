@@ -80,8 +80,8 @@ class Modal {
         <h2 class="font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight text-center mb-6">${title}</h2>
         <p class="text-black dark:text-white mb-6">${text}</p>
         <div class="flex justify-center gap-4">
-          <button id="modal-cancel-btn" type="button" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white min-w-[180px] dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors px-6 py-2">${cancelText}</button>
-          <button id="modal-confirm-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors px-6 py-2 min-w-[180px]">${confirmText}</button>
+          <button id="modal-cancel-btn" type="button" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white min-w-[140px] sm:min-w-[180px] dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors px-6 py-2">${cancelText}</button>
+          <button id="modal-confirm-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors px-6 py-2 min-w-[140px] sm:min-w-[180px]">${confirmText}</button>
         </div>
       </div>
     `;
@@ -579,11 +579,11 @@ export default class Header {
             ${texts.manualModalDesc}
           </p>
         </div>
-        <div class="flex justify-center items-center gap-[13px] flex-wrap w-full max-w-md px-4 pb-4 md:pb-0">
-          <button id="modal-cancel-btn" type="button" class="flex min-w-[180px] max-w-[150px] sm:max-w-[280px] w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red ${fontClass} font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+        <div class="flex justify-center gap-4 pb-4">
+          <button id="modal-cancel-btn" type="button" class="flex min-w-[140px] sm:min-w-[180px] max-w-[150px] sm:max-w-[280px] w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red ${fontClass} font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors py-2 px-6">
             ${texts.cancelBtn}
           </button>
-          <button id="modal-confirm-btn" type="button" class="flex min-w-[180px] max-w-[150px] sm:max-w-[280px] w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white ${fontClass} font-semibold uppercase hover:bg-red-700 transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+          <button id="modal-confirm-btn" type="button" class="flex min-w-[140px] sm:min-w-[180px] max-w-[150px] sm:max-w-[280px] w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white ${fontClass} font-semibold uppercase hover:bg-red-700 transition-colors px-6 py-2">
             ${texts.confirmBtn}
           </button>
         </div>
@@ -613,7 +613,7 @@ export default class Header {
             ${texts.autoModalDesc}
           </p>
           <div class="mt-6">
-            <button id="modal-cancel-btn" type="button" class="${fontClass} rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
+            <button id="modal-cancel-btn" type="button" class="${fontClass} rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors px-6 py-2">
               ${texts.cancelBtn}
             </button>
           </div>
