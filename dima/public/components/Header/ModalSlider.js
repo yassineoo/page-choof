@@ -135,7 +135,7 @@ export class ModalSlider {
           width: 8px;
           height: 8px;
           border-radius: 9999px;
-          background: rgba(0,0,0,0.18);
+          background: #DDD;
           opacity: 1;
           transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
         }
