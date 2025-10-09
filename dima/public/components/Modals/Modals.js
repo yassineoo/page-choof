@@ -53,7 +53,7 @@ export default class Modals {
     } else if (type === "congrats") {
       buttonsHTML = `<button class="${secondaryBtn}" id="modal-close">${isArabic ? "إغلاق" : "Fermer"}</button>`;
     } else if (type === "credit") {
-      buttonsHTML = `<button class="${primaryBtn}" id="modal-close">${isArabic ? "حسنًا" : "OK"}</button>`;
+      buttonsHTML = `<button class="${primaryBtn}" id="modal-close">${isArabic ? "تم" : "OK"}</button>`;
     }
     btnsEl.innerHTML = buttonsHTML;
 
