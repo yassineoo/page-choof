@@ -319,14 +319,14 @@ export const consommationData = {
           },
           {
             subIcon: "facebook",
-            subtitle: "فيسبوك",
+            subtitle: "فايسبوك",
             infini: true,
             date: "26/05/25",
             percentage: 100,
           },
           {
             subIcon: "facebook",
-            subtitle: "فيسبوك و ماسنجر",
+            subtitle: "فايسبوك و ماسنجر",
             infini: true,
             date: "26/05/25",
             percentage: 100,

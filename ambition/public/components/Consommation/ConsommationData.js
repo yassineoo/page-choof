@@ -456,13 +456,13 @@ export const consommationData = {
           },
           {
             subIcon: ["facebook", "messenger"],
-            subtitle: "فيسبوك & ماسنجر",
+            subtitle: "فايسبوك & ماسنجر",
             infini: true,
             date: "16/05/16",
           },
           {
             subIcon: ["facebook"],
-            subtitle: "فيسبوك",
+            subtitle: "فايسبوك",
             value: "1.7",
             unit: "Go",
             date: "16/05/16",

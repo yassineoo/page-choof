@@ -43,7 +43,7 @@ export default {
         free:"3",
         given:"12",
         oldPrice: "6000",
-        duration: "4 Semaines",
+        duration: "4 semaines",
         buy: "Acheter",
       },
       {
@@ -55,7 +55,7 @@ export default {
         given:"9",
         price: "3500",
         oldPrice: "4500",
-        duration: "4 Semaines",
+        duration: "4 semaines",
         buy: "Acheter",
       },
       {
@@ -67,7 +67,7 @@ export default {
         data: "50Go",
         price: "2500",
         oldPrice: "3000",
-        duration: "4 Semaines",
+        duration: "4 semaines",
         buy: "Acheter",
       },
     ],
@@ -161,7 +161,7 @@ export default {
         features:[
           "Youtube illimité",
         ],
-        duration: "4 Semaines",
+        duration: "4 semaines",
         buy: "Acheter",
       },
       {
@@ -171,7 +171,7 @@ export default {
         features:[
           "5Go Youtube ",
         ],
-        duration: "4 Semaines",
+        duration: "4 semaines",
         buy: "Acheter",
       },
     ],

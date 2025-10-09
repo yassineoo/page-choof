@@ -687,7 +687,7 @@ export default class Consommation {
     const isOsn = section.subtitle?.includes("OSN");
     const isFacebookMessenger =
       section.subtitle?.includes("Facebook & Messenger") ||
-      section.subtitle?.includes("فيسبوك و ماسنجر");
+      section.subtitle?.includes("فايسبوك و ماسنجر");
 
     let iconsAndTextContent = "";
 
@@ -744,7 +744,7 @@ export default class Consommation {
       <div class="flex items-center gap-0.5">
         ${facebookIcon}
         <span class="text-sm font-medium ${textColor} ${fontClassForText}" style="font-weight: 500;">
-          ${isRTL ? "فيسبوك" : "Facebook"}
+          ${isRTL ? "فايسبوك" : "Facebook"}
         </span>
       </div>
       <span class="text-lg">&</span>

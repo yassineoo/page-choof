@@ -271,7 +271,7 @@ export const consommationData = {
         sections: [
           {
             subIcon: "facebook",
-            subtitle: "فيسبوك",
+            subtitle: "فايسبوك",
             infini: true,
             date: "26/05/25",
             percentage: 100,
