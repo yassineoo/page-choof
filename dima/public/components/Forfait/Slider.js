@@ -261,8 +261,8 @@ export class Slider {
                  ${offer.data || ""}
                  ${
                    isRTL
-                     ? `<span class="font-noto-kufi-arabic">انترنت</span>`
-                     : `<span class="font-rubik">Internet</span>`
+                     ? `<span class="font-noto-kufi-arabic">إنترنت</span>`
+                     : `<span class="font-rubik">internet</span>`
                  }
               </h3>
               <div class="flex items-center gap-2 mt-8">
@@ -340,7 +340,7 @@ export class Slider {
             <div class="border-b-[1px] border-b-[#BBBEBE] border-dashed text-center py-3">
               <h2 class="${this.getFontClass(
                 offer.name
-              )} font-medium text-2xl text-center capitalize dark:text-white leading-tight">
+              )} font-medium text-2xl text-center dark:text-white leading-tight">
                 ${offer.name || ""}
               </h2>
             </div>
@@ -525,7 +525,7 @@ export class Slider {
       try {
         existingSwiper.swiper.destroy(true, true);
       } catch (e) {
-        // 
+        //
       }
     }
 
@@ -600,7 +600,7 @@ export class Slider {
           },
         });
       } catch (e) {
-        // 
+        //
         return;
       }
 
