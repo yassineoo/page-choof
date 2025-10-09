@@ -9,9 +9,12 @@ export const anghamiPlan = {
   },
   ar: {
     id: "osnAngami1000",
-    name: "OSN+ & ANGHAMI 1000",
-    data: "10Go إنترنت",
-    features: ["دخول حصري إلى التطبيقين <span class='font-rubik'>OSN+ & ANGHAMI</span>", "<span class='font-rubik'>10Go</span> إنترنت"],
+    name: "<span class='font-rubik'>OSN+ & ANGHAMI 1000</span>",
+    data: "<span class='font-rubik'>10Go</span> إنترنت",
+    features: [
+      "دخول حصري إلى التطبيقين <span class='font-rubik'>OSN+ & ANGHAMI</span>",
+      "<span class='font-rubik'>10Go</span> إنترنت",
+    ],
     price: "1000",
     duration: "30 يوم",
   },
@@ -22,22 +25,25 @@ export const anghamiDescription = {
   ar: "سارعوا للحصول على اشتراك  OSN+ & ANGHAMI واستمتعوا بمحتوياتكم المفضلة بالإضافة إلى حجم إنترنت بـ 1000 دج!",
 };
 
-// Modal data structure for Anghami service
 export const anghamiModalData = {
   fr: {
     "OSN+ & ANGHAMI 1000": {
       confirm:
         "Profitez du meilleur du divertissement en un seul forfait ! Un accès premium à OSN+ et à Anghami + 10Go d'internet dédié pendant 1 mois. Le forfait est auto-renouvelable. ",
-      success: "Vous avez activé votre forfait avec succès.Téléchargez Anghami et OSN+ pour profiter de votre abonnement.",
-      insufficient: "Votre crédit est insuffisant pour acheter ce forfait. Veuillez recharger votre compte.",
+      success:
+        "Vous avez activé votre forfait avec succès.Téléchargez Anghami et OSN+ pour profiter de votre abonnement.",
+      insufficient:
+        "Votre crédit est insuffisant pour acheter ce forfait. Veuillez recharger votre compte.",
     },
   },
   ar: {
     "OSN+ & ANGHAMI 1000": {
       confirm:
-        "استفد من محتويات ترفيهية رائعة في اشتراك واحد! دخول حصري إلى +OSN وAnghami و10Go إنترنت، صالح لمدة شهر. الاشتراك قبل للتجديد تلقائيًا.",
-      success: "لقد قمت بتفعيل اشتراكك بنجاح! حمّل +OSN وAnghami واستمتع به الأن!",
-      insufficient: "رصيدك غير كافٍ لشراء هذا الاشتراك. يُرجى إعادة تعبئة حسابك.",
+        "استفد من محتويات ترفيهية رائعة في اشتراك واحد! دخول حصري إلى <span class='font-rubik'>+OSN</span> و<span class='font-rubik'>Anghami</span> و<span class='font-rubik'>10Go</span> إنترنت، صالح لمدة شهر. الاشتراك قبل للتجديد تلقائيًا.",
+      success:
+        "لقد قمت بتفعيل اشتراكك بنجاح! حمّل <span class='font-rubik'>+OSN</span> و<span class='font-rubik'>Anghami</span> واستمتع به الأن!",
+      insufficient:
+        "رصيدك غير كافٍ لشراء هذا الاشتراك. يُرجى إعادة تعبئة حسابك.",
     },
   },
 };

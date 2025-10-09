@@ -116,6 +116,7 @@ if (!document.getElementById("dima-anghami-styles")) {
 }
 
 function renderAnghamiCard(plan, isArabic) {
+  const plainOfferName = "OSN+ & ANGHAMI 1000";
   return `
     <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${
     styles.card
@@ -153,7 +154,7 @@ function renderAnghamiCard(plan, isArabic) {
           <div class="${styles.buttonWrap}">
             <button class="${styles.acheterButton} ${
     isArabic ? "font-noto-kufi-arabic" : "font-rubik"
-  } anghami-purchase-btn" data-offer-name="${plan.name}">
+  } anghami-purchase-btn" data-offer-name="${plainOfferName}">
               ${isArabic ? "شراء" : "ACHETER"}
             </button>
           </div>
@@ -326,6 +327,10 @@ export default class DigitalAnghamiServices {
   }
 
   createModalHTML({ type, title, message, isRTL }) {
+    let displayTitle = title;
+    if (type === "confirm" && isRTL) {
+      displayTitle = `<span class='font-rubik'>${title}</span>`;
+    }
     const dirAttribute = isRTL ? `dir="rtl"` : "";
     const closeButtonPosition = "right-4";
     const buttons = this.getModalButtons(type, isRTL);
@@ -344,7 +349,7 @@ export default class DigitalAnghamiServices {
               </button>
               <div class="text-center mb-6">
                   <h2 id="anghami-modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
-                      ${title}
+                      ${displayTitle}
                   </h2>
               </div>
               <div class="text-center mb-10">
