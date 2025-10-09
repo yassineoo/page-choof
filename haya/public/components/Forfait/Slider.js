@@ -159,7 +159,7 @@ export class Slider {
                  ${
                    isRTL
                      ? `<span class="font-noto-kufi-arabic">انترنت</span>`
-                     : `<span class="font-rubik">Internet</span>`
+                     : `<span class="font-rubik">internet</span>`
                  }
               </h3>
               <div class="flex items-center gap-2 mt-8">
