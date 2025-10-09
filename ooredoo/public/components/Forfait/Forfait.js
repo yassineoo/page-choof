@@ -1531,7 +1531,13 @@ class ForfaitComponent {
               </button>
               <div class="text-center mb-6">
                   <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
-                      ${title}
+                      ${
+                        title === "إنترنت 1500" ? "اشتراك 1500" 
+                        : 
+                        title === "إنترنت 1000" ? "اشتراك 1000"
+                        : 
+                        title
+                      }
                   </h2>
               </div>
               <div class="text-center mb-10">

@@ -56,8 +56,8 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 200. Veuillez recharger votre compte.`,
     },
     "Forfait 100": {
-      confirm: `FORFAIT 100 = 500Mo +  Facebook et Messenger illimités + 100 DA + appels gratuits vers Ooredoo, valables 24h.`,
-      success: `Félicitations ! Vous venez de recevoir des appels gratuits vers Ooredoo + Facebook et Messenger illimités + 100 DA vers tous les réseaux + 500Mo, valables 24h.`,
+      confirm: `FORFAIT 100 = 500Mo +  Facebook illimités + 100 DA + appels gratuits vers Ooredoo, valables 24h.`,
+      success: `Félicitations ! Vous venez de recevoir des appels gratuits vers Ooredoo + Facebook illimités + 100 DA vers tous les réseaux + 500Mo, valables 24h.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 100. Veuillez recharger votre compte.`,
     },
     "Internet 1500": {
@@ -129,8 +129,8 @@ export default {
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 200. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 100":{
-      confirm: `اشتراك 100 يمنحك 500Mo + فايسبوك وماسنجر غير محدودين + 100 دج + مكالمات مجانية نحو Ooredoo، الكل صالح لمدة 24 ساعة.`,
-      success: `هنيئًا! لقد حصلت على 500Mo + فايسبوك وماسنجر غير محدودين + 100 دج + مكالمات مجانية نحو Ooredoo، الكل صالح لمدة 24 ساعة.`,
+      confirm: `اشتراك 100 يمنحك 500Mo + فايسبوك غير محدود + 100 دج + مكالمات مجانية نحو Ooredoo، الكل صالح لمدة 24 ساعة.`,
+      success: `هنيئًا! لقد حصلت على 500Mo + فايسبوك غير محدود + 100 دج + مكالمات مجانية نحو Ooredoo، الكل صالح لمدة 24 ساعة.`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 100. يُرجى تعبئة رصيدك.`,
     },
     "إنترنت 1500": {
