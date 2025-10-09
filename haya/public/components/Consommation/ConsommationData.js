@@ -321,7 +321,7 @@ export const consommationData = {
           },
           {
             subIcon: "internet",
-            subtitle: "Maxy Hadra إنترنت",
+            subtitle: "إنترنت Maxy Hadra",
             value: "512",
             unit: "Mo",
             date: "26/05/25",
@@ -330,7 +330,7 @@ export const consommationData = {
           },
           {
             subIcon: "internet",
-            subtitle: "Maxy Internet إنترنت",
+            subtitle: "إنترنت Maxy Internet",
             value: "5",
             unit: "Go",
             date: "26/05/25",
@@ -339,7 +339,7 @@ export const consommationData = {
           },
           {
             subIcon: "internet",
-            subtitle: "Super Maxy إنترنت",
+            subtitle: "إنترنت Super Maxy",
             value: "50",
             unit: "Go",
             date: "26/05/25",

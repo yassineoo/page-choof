@@ -158,7 +158,7 @@ export class Slider {
                  ${offer.data || ""}
                  ${
                    isRTL
-                     ? `<span class="font-noto-kufi-arabic">انترنت</span>`
+                     ? `<span class="font-noto-kufi-arabic">إنترنت</span>`
                      : `<span class="font-rubik">internet</span>`
                  }
               </h3>
@@ -387,7 +387,7 @@ export class Slider {
       try {
         existingSwiper.swiper.destroy(true, true);
       } catch (e) {
-        // 
+        //
       }
     }
 
@@ -462,7 +462,7 @@ export class Slider {
           },
         });
       } catch (e) {
-        // 
+        //
         return;
       }
 

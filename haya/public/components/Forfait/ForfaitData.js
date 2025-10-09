@@ -101,7 +101,7 @@ export default {
         name: "اشتراك <span class='font-rubik'>1000</span>",
         data: "<span class='font-rubik'>15Go</span>",
         price: "1000",
-        features: "<span class='font-rubik'>5Go</span> يوتيوب",
+        features: "<span class='font-rubik' dir='rtl'>5Go</span> يوتيوب",
         duration: "<span class='font-rubik'>30</span> يوم",
         buy: "شراء",
       },
