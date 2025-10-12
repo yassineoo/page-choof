@@ -226,7 +226,7 @@ export const consommationData = {
           },
           {
             subIcon: "dollar-phone",
-            subtitle: "رصيد انترنت",
+            subtitle: "رصيد إنترنت",
             value: '<span class="font-rubik">1000</span>',
             unit: "دج",
             date: "26/05/25",

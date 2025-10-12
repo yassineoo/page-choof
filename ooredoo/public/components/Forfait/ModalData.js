@@ -31,7 +31,7 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 4000. Veuillez recharger votre compte.`,
     },
     "Forfait 2500": {
-      confirm: `FORFAIT 2500 = 100Go + appels illimités vers tous les réseaux nationaux + Facebook + SMS illimités vers Ooredoo + 100 SMS vers les autres réseaux nationaux, le tout valable 4 semaines.`,
+      confirm: `FORFAIT 2500 = 100Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 100 SMS vers les autres réseaux nationaux, le tout valable 4 semaines.`,
       success: `Félicitations ! Vous venez de recevoir 100Go + appels gratuits vers tous les réseaux + SMS gratuits vers Ooredoo + 100 SMS vers les autres réseaux nationaux, le tout valable 4 semaines.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 2500. Veuillez recharger votre compte.`,
     },
@@ -104,8 +104,8 @@ export default {
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 4000 دج. يُرجى إعادة تعبئة حسابك.`,
     },
     "اشتراك 2500":{
-      confirm: ` اشتراك 2500 يمنحك 100Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + فايسبوك + رسائل قصيرة غير محدودة نحو Ooredoo و100 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح لمدة 4 أسابيع.`,
-      success: `هنيئًا! لقد حصلت على 100Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + فايسبوك + رسائل قصيرة غير محدودة نحو Ooredoo و100 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح لمدة  4 أسابيع.`,
+      confirm: ` اشتراك 2500 يمنحك 100Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + رسائل قصيرة غير محدودة نحو Ooredoo و100 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح لمدة 4 أسابيع.`,
+      success: `هنيئًا! لقد حصلت على 100Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + رسائل قصيرة غير محدودة نحو Ooredoo و100 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح لمدة  4 أسابيع.`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 2500. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 2000":{

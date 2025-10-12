@@ -14,7 +14,7 @@ const styles = {
   priceContainer: "text-center mb-2",
   priceAmount: "font-rubik font-semibold text-[2rem] capitalize dark:text-white",
   priceDa: `font-semibold text-lg capitalize dark:text-white`,
-  priceDuration: "font-semibold text-lg capitalize dark:text-white",
+  priceDuration: "font-semibold text-lg dark:text-white",
   buttonWrap: "flex justify-center mt-2",
   acheterButton: "acheter-button",
 };
@@ -322,7 +322,7 @@ export default class DigitalAnghamiServices {
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="anghami-modal-title" class="font-rubik font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                  <h2 id="anghami-modal-title" class="${title.includes("OSN+ & ANGHAMI 1000") ? "font-rubik" : "font-noto-kufi-arabic"} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${title}
                   </h2>
               </div>

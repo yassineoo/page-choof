@@ -255,7 +255,7 @@ export class Slider {
     const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
     return `
       <div class="${
-        index - 11 === 2 && "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"
+        index - 10 === 2 && "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"
       }relative bg-white pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
         <div class="h-full flex flex-col justify-between" ${isRTL ? `dir="rtl"` : ``}>
           <div class="">

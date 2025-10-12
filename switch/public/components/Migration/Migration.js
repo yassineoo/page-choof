@@ -770,11 +770,11 @@ class Migration {
 
             
             ${providerId === 'dima' ?
-            `<div class="flex items-center gap-4 justify-center flex-wrap">
-              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white footer-btn">
+            `<div class="flex items-center gap-4 justify-center">
+              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white footer-btn max-w-[150px] sm:max-w-[180px]">
                 <span class="text-[16px]">${cancelBtn}</span>
               </button>
-              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none h-12 rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase footer-btn">
+              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none h-12 rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase footer-btn max-w-[150px] sm:max-w-[180px]">
                 <span class="text-[16px]">${confirmBtn}</span>
               </button>
             </div>`

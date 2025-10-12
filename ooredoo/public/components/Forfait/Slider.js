@@ -85,10 +85,10 @@ export class Slider {
             </p>
             <p class="font-semibold text-lg md:text-xl font-rubik">Ooredoo 500</p>
             <p>${isRTL ? "و" : "&"}</p>
-            <p>${this.currentLang === "ar" ? "احصلوا على" : "Obtenez"}</p>
+            <p>${this.currentLang === "ar" ? "احصلوا على" : "obtenez"}</p>
             <p class="text-ooredoo-red font-bold text-xl">
               <span>${offer.free}</span>
-              ${this.currentLang === "ar" ? "مجانا" : "gratuits"} !
+              ${this.currentLang === "ar" ? "مجانا" : `${index === 4 ? "gratuit" : "gratuits"}` + " !"}
             </p>
           </div>
 

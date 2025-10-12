@@ -80,7 +80,8 @@ export const generateHeaderHTML = (
   .text-ooredoo-red { color: #E30613; }
   
   .hdr-common-text{
-    font-weight: 400;
+    font-weight: 500;
+    font-family: Rubik, sans-serif;
     font-style: normal;
     font-size: 18px;
     line-height: 170%;
@@ -323,9 +324,9 @@ export const generateHeaderHTML = (
             <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
             <span class="hdr-price ${fontClass}">${
     fontClass === "font-noto-kufi-arabic"
-      ? `<span class="font-rubik">${userData.credit}</span>` +
-        `<span class="font-noto-kufi-arabic text-base"> دج</span>`
-      : userData.credit + " DA"
+      ? `<span class="font-rubik font-semibold">${userData.credit}</span>` +
+        `<span class="font-noto-kufi-arabic"> دج</span>`
+      : `<span class="font-rubik font-semibold">${userData.credit} DA</span>`
   }</span>
           </div>
         </div>

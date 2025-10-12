@@ -25,7 +25,7 @@ export const migrationData = {
         "Vous allez changer vers l'offre Dima + gratuitement, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
       successMessage:
-        "Vous êtes désormais sur l'offre OOREDOO Dima. Pour plus d'infos, composez *500#.",
+        "Vous êtes désormais sur l'offre Dima +. Pour plus d'infos, composez *500#.",
     },
     migrationOoredooModal: {
       confirmTitle: "Migration vers Ooredoo",

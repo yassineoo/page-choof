@@ -195,7 +195,7 @@ export const consommationData = {
           },
           {
             subIcon: "phone",
-            subtitle: "مكالمات نحو الشبكات الأخرى",
+            subtitle: "مكالمات نحو  كل الشبكات",
             infini: true,
             date: "26/05/25",
             percentage: 100,

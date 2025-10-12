@@ -33,13 +33,13 @@ function generateModalContent(offers, lang) {
       ? offer.features.join(" + ")
       : offer.features;
 
-    const fullDescription = `${offer.data} + ${featuresString}, ${
+    const fullDescription = `<span dir="ltr">${offer.data}</span> + ${featuresString}, ${
       isArabic ? "الكل صالح لمدة" : "le tout valable"
     } ${offer.duration}.`;
 
     const successPreamble = isArabic ? ` لقد حصلت على` : `Vous avez reçu`;
 
-    const successDescription = `${offer.data} + ${featuresString}, ${
+    const successDescription = `<span dir="ltr">${offer.data}</span> + ${featuresString}, ${
       isArabic ? "الكل صالح لمدة" : "le tout valable"
     } ${offer.duration}.`;
 

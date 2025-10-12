@@ -93,9 +93,9 @@ export const generateHeaderHTML = (
     language === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
   const tooltipPosition = language === "ar" ? "right-0" : "left-0";
   const tooltipRounded =
-    language === "ar"
-      ? "rounded-tl-[15px] rounded-tr-[4px] md:rounded-lg"
-      : "rounded-tr-[15px] rounded-tl-[4px] md:rounded-lg";
+    language !== "ar"
+      ? "rounded-[12px] md:rounded-lg"
+      : "rounded-[12px] md:rounded-lg";
 
   return `
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Noto+Kufi+Arabic&display=swap" rel="stylesheet" />
@@ -347,7 +347,7 @@ export const generateHeaderHTML = (
 
               <span id="mode-tooltip-mobile" class="${tooltipFontClass} absolute top-full ${
     language === "ar" ? "left-0" : "right-0"
-  } bg-white dark:bg-[#2C2C2C] mt-2 z-50 text-black dark:text-white text-xs px-[14px] leading-loose ${tooltipRounded} py-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 w-[310px]">
+  } bg-white dark:bg-[#2C2C2C] dark:border-white dark:border-[1px] mt-2 z-50 text-black dark:text-white text-sm px-[14px] leading-snug ${tooltipRounded} py-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 w-[310px]">
                 ${getTooltipText(userData.mode || "mactivia", language)}
               </span>
             </span>

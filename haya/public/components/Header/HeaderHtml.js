@@ -75,8 +75,7 @@ export const generateHeaderHTML = (
   }
 
   .hdr-price{
-    font-family: Rubik, sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-style: Medium;
     font-size: 24px;
     line-height: 170%;
@@ -295,7 +294,7 @@ export const generateHeaderHTML = (
           <div class="flex items-center gap-2 flex-shrink-0">
             <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
             <span class="hdr-price ${fontClass}">${
-    userData.credit ? userData.credit + " DA" : "0 DA"
+    userData.credit ? `<span class="font-rubik">${userData.credit}</span>` + `${language === "ar" ? " دج" : " DA"}` : `${language === "ar" ? " دج" : " DA"}`
   }</span>
           </div>
         </div>
