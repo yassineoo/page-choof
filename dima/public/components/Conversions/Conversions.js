@@ -731,24 +731,15 @@ class ConversionsComponent {
           `${planNameClean}.`
         );
       }
-      const alreadyOnConfirm = () => {
-        this.showModal({
-          type: "info",
-          title: data.insufficientCreditTitle,
-          message: data.insufficientCreditMessage,
-          isRTL,
-          onConfirm: () => {
-            this.isAccordionOpen = false;
-            this.render();
-          },
-        });
-      };
       this.showModal({
         type: "info",
         title: data.alreadyOnPlanTitle,
         message: alreadyMessage,
         isRTL,
-        onConfirm: alreadyOnConfirm,
+        onConfirm: () => {
+          this.isAccordionOpen = false;
+          this.render();
+        },
       });
     } else {
       this.showModal({
