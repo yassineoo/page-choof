@@ -89,9 +89,10 @@ const conversionsData = {
     convertBtn: "تحويل",
 
     alreadyOnPlanTitle: "التحويل",
-    alreadyOnPlanMessage: "أنت مشترك بالفعل في Dima 2500.",
+    alreadyOnPlanMessage: "لقد سبق أن تم تفعيل اشتراكك Dima 2500.",
     insufficientCreditTitle: "التحويل",
-    insufficientCreditMessage: "رصيدك غير كافٍ لتحويل اشتراكك.",
+    insufficientCreditMessage:
+      "اشتراكك غير قابل للتحويل، يرجى إعادة تعبئة رصيدك.",
 
     plans: [
       {
@@ -99,15 +100,15 @@ const conversionsData = {
         description:
           "100Go إنترنت + مكالمات غير محدودة نحو كل الشبكات + 250 رسائل قصيرة نحو كل الشبكات + فايسبوك و ANAZIK  و ANAFLIX",
         price: 2500,
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         priceUnit: "دج/",
       },
       {
         name: "إشتراك <span class='font-rubik'>DIMA 2000</span>",
         description:
-          "50Go إنترنت + 300 دقيقة و 200 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo و فايسبوك و ANAZIK و ANAFLIX.",
+          "50Go إنترنت + 300 دقيقة و 200 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo و فايسبوك و ANAZIK و ANAFLIX ",
         price: 2000,
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         priceUnit: "دج/",
       },
       {
@@ -115,7 +116,7 @@ const conversionsData = {
         description:
           "30Go إنترنت + 150 دقيقة و 150 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo و فايسبوك + ANAZIK",
         price: 1500,
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         priceUnit: "دج/",
       },
       {
@@ -123,7 +124,7 @@ const conversionsData = {
         description:
           "8Go إنترنت + 100 دقيقة و 120 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo و فايسبوك + ANAZIK",
         price: 1200,
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         priceUnit: "دج/",
       },
       {
@@ -131,7 +132,7 @@ const conversionsData = {
         description:
           "3Go إنترنت + 100 دقيقة و 50 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo وفايسبوك ",
         price: 500,
-        duration: "15 يوم",
+        duration: "<span class='font-rubik'>15</span> يوم",
         priceUnit: "دج/",
       },
       {
@@ -139,7 +140,7 @@ const conversionsData = {
         description:
           "100 دقيقة و 100 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo  ",
         price: 500,
-        duration: "30 يوم",
+        duration: "<span class='font-rubik'>30</span> يوم",
         priceUnit: "دج/",
       },
     ],
