@@ -4,12 +4,22 @@ class ConversionsComponent {
   constructor(container) {
     this.container = container;
     this.currentLang = this.getLanguage();
+    this.currentPlanIndex = parseInt(
+      localStorage.getItem("currentPlanIndex") || "0"
+    );
     this.isAccordionOpen = false;
     this.boundHandlers = {
       languageChange: this.handleLanguageChange.bind(this),
       resize: this.handleResize.bind(this),
     };
     this.initialize();
+  }
+
+  getCleanPlanName(name, lang) {
+    if (lang === "ar") {
+      return name.replace(/^إشتراك\s+/, "");
+    }
+    return name;
   }
 
   initialize() {
@@ -238,9 +248,9 @@ class ConversionsComponent {
   opacity: 1;
   margin-top: 2.5rem;
   border-top-color: var(--border);
-  margin-left: -30px;
-  margin-right: -30px;
-  margin-bottom: -30px;
+  margin-left: -16px;
+  margin-right: -16px;
+  margin-bottom: -40px;
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 2.5rem;
@@ -269,9 +279,6 @@ class ConversionsComponent {
     .conversions-buy-btn{
       min-width: 248px;
     }
-     .conversions-credit-message {
-        margin-top: 30px;
-      }
       .conversions-card-shadow {
         padding: 2rem 1.5rem;
         gap: 1.5rem;
@@ -284,9 +291,6 @@ class ConversionsComponent {
 }
     }
 
-      .conversions-credit-message {
-      margin-top: 50px;
-    }
 
   `;
   }
@@ -391,6 +395,16 @@ class ConversionsComponent {
 
     this.cleanupAllEventListeners();
 
+    const plans = data.plans;
+    const currentPlanNameClean = this.getCleanPlanName(
+      plans[this.currentPlanIndex].name,
+      language
+    );
+    const dynamicDescription = data.description.replace(
+      /Dima 2500/gi,
+      currentPlanNameClean
+    );
+
     const accordionContentHTML = this.isAccordionOpen
       ? this.getAccordionContentHTML(data, isRTL)
       : "";
@@ -433,7 +447,7 @@ class ConversionsComponent {
             </div>
             <div class="w-full max-w-2xl">
               <p class="text-black dark:text-white text-center ${textFont} text-[18px] md:text-[22px] font-normal leading-normal">
-                ${data.description}
+                ${dynamicDescription}
               </p>
             </div>
             <div class="flex flex-col sm:flex-row w-full max-w-xl justify-center items-center gap-4 md:gap-6 px-4">
@@ -541,6 +555,9 @@ class ConversionsComponent {
   handleLanguageChange() {
     const newLanguage = this.getLanguage();
     if (newLanguage !== this.currentLang) {
+      this.currentPlanIndex = parseInt(
+        localStorage.getItem("currentPlanIndex") || "0"
+      );
       this.currentLang = newLanguage;
       this.closeAnyOpenModals();
       this.render();
@@ -617,41 +634,40 @@ class ConversionsComponent {
   handleConvertToCreditClick(language) {
     const currentLanguage = this.getLanguage();
     const data = conversionsData[currentLanguage];
+    const plans = data.plans;
+    const currentPlanNameClean = this.getCleanPlanName(
+      plans[this.currentPlanIndex].name,
+      currentLanguage
+    );
+    const dynamicConfirmDesc = data.confirmDescription.replace(
+      /Dima 2500/gi,
+      currentPlanNameClean
+    );
+    const currentPrice = plans[this.currentPlanIndex].price;
+    const dynamicCreditMsg =
+      currentLanguage === "fr"
+        ? data.creditSuccessMessage.replace(/2500 DA/, currentPrice + " DA")
+        : data.creditSuccessMessage.replace(/2500 دج\./, currentPrice + " دج.");
     this.showModal({
       type: "confirm",
       title: data.confirmTitle,
-      message: data.confirmDescription,
+      message: dynamicConfirmDesc,
       isRTL: currentLanguage === "ar",
       onConfirm: () => {
-        this.showCreditSuccessModal(data, currentLanguage === "ar");
+        this.showCreditSuccessModal(
+          data,
+          currentLanguage === "ar",
+          dynamicCreditMsg
+        );
       },
     });
   }
 
-  handleOtherConversionsClick(language) {
-    const currentLanguage = this.getLanguage();
-    const data = conversionsData[currentLanguage];
-    this.showConversionsModal(data, currentLanguage === "ar");
-  }
-
-  showConfirmConversionModal(data, isRTL) {
-    this.showModal({
-      type: "confirm",
-      title: data.confirmTitle,
-      message: data.confirmDescription,
-      isRTL,
-      onConfirm: () => {
-        this.showCreditSuccessModal(data, isRTL);
-      },
-    });
-  }
-
-  showCreditSuccessModal(data, isRTL) {
+  showCreditSuccessModal(data, isRTL, message) {
     const currentLanguage = this.getLanguage();
     const felicitationsText =
       data.successTitle ||
       (currentLanguage === "ar" ? "هنيئًا!" : "Félicitations !");
-    const message = data.creditSuccessMessage || "";
 
     this.showModal({
       type: "credit-success",
@@ -659,72 +675,6 @@ class ConversionsComponent {
       message: message,
       isRTL,
     });
-  }
-
-  showConversionsModal(data, isRTL) {
-    const plans = data.plans;
-    const modalContainer = this.container.querySelector(
-      "#conversions-modal-container"
-    );
-    if (!modalContainer) {
-      console.error("Conversions modal container not found");
-      return;
-    }
-    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const dirAttr = isRTL ? `dir="rtl"` : `dir="ltr"`;
-    modalContainer.innerHTML = `
-      <div class="conversions-backdrop">
-        <div class="conversions-modal" role="dialog" aria-modal="true" ${dirAttr}>
-            <button class="btn-cancel ${fontClass}" id="close-conversions-modal">
-              ${data.cancelBtn}
-            </button>
-          <div class="conversions-content">
-            <div class="plans-grid">
-              ${plans
-                .map(
-                  (plan, idx) => `
-                <div key="${plan.name}" class="plan-card">
-                  <div class="plan-header">
-                    <h3 class="plan-name ${fontClass}">${plan.name}</h3>
-                  </div>
-                  <div class="plan-body">
-                    <p class="plan-description ${fontClass}">${plan.description}</p>
-                    <div class="plan-pricing">
-                      <div class="plan-price ${fontClass}">
-                        <span class="price-amount">${plan.price}</span>
-                        <span class="price-currency">${plan.priceUnit}</span>
-                        <span class="price-duration">${plan.duration}</span>
-                      </div>
-
-                      <button class="btn-convert" data-action="convert-to-${idx}">
-  ${data.convertBtn}
-</button>
-                    </div>
-                  </div>
-                </div>
-              `
-                )
-                .join("")}
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-    const buttons = modalContainer.querySelectorAll(".btn-convert");
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const action = button.getAttribute("data-action");
-        this.handleConversionOptionClick(action, isRTL, plans);
-      });
-    });
-    const closeButton = modalContainer.querySelector(
-      "#close-conversions-modal"
-    );
-    if (closeButton) {
-      closeButton.addEventListener("click", () => {
-        modalContainer.innerHTML = "";
-      });
-    }
   }
 
   handleConversionOptionClick(action, isRTL, plans) {
@@ -740,8 +690,8 @@ class ConversionsComponent {
     }
 
     const currentLanguage = this.getLanguage();
-    let confirmTitle =
-      conversionsData[currentLanguage].confirmTitle || "Conversion";
+    const data = conversionsData[currentLanguage];
+    let confirmTitle = data.confirmTitle || "Conversion";
 
     function normalizeDimaWord(name = "") {
       if (typeof name !== "string") return name;
@@ -751,116 +701,75 @@ class ConversionsComponent {
       );
     }
 
+    const currentPlanName = plans[this.currentPlanIndex].name;
     const planNameSafe = normalizeDimaWord(selectedPlan.name || "");
+    const currentPlanNameSafe = normalizeDimaWord(currentPlanName);
+
+    const planNameClean = this.getCleanPlanName(planNameSafe, currentLanguage);
+    const currentPlanNameClean = this.getCleanPlanName(
+      currentPlanNameSafe,
+      currentLanguage
+    );
 
     let confirmMessage;
     if (currentLanguage === "ar") {
-      confirmMessage = `هل تريد تحويل اشتراكك Dima 2500 إلى ${planNameSafe}؟`;
+      confirmMessage = `هل تريد تحويل اشتراكك ${currentPlanNameClean} إلى ${planNameClean}؟`;
     } else {
-      confirmMessage = `Vous allez convertir votre forfait Dima 2500 en ${planNameSafe} ?`;
+      confirmMessage = `Vous allez convertir votre forfait ${currentPlanNameClean} en ${planNameClean} ?`;
     }
 
-    this.showModal({
-      type: "confirm",
-      title: confirmTitle,
-      message: confirmMessage,
-      isRTL,
-      onConfirm: () => {
-        this.startModalSequence(selectedPlan, isRTL);
-      },
-      onCancel: () => {
-        this.isAccordionOpen = true;
-        this.render();
-      },
-    });
-  }
-
-  startModalSequence(plan, isRTL) {
-    const data = conversionsData[this.getLanguage()];
-
-    const showInsufficientCreditModal = () => {
+    if (planIndex === this.currentPlanIndex) {
+      let alreadyMessage;
+      if (currentLanguage === "fr") {
+        alreadyMessage = data.alreadyOnPlanMessage.replace(
+          /la Dima 2500\.$/i,
+          `la ${planNameClean}.`
+        );
+      } else {
+        alreadyMessage = data.alreadyOnPlanMessage.replace(
+          /Dima 2500\.$/i,
+          `${planNameClean}.`
+        );
+      }
       this.showModal({
         type: "info",
-        title: data.insufficientCreditTitle,
-        message: data.insufficientCreditMessage,
-        isRTL: isRTL,
+        title: data.alreadyOnPlanTitle,
+        message: alreadyMessage,
+        isRTL,
         onConfirm: () => {
           this.isAccordionOpen = false;
           this.render();
         },
       });
-    };
-
-    const showAlreadyOnPlanModal = () => {
+    } else {
       this.showModal({
-        type: "info",
-        title: data.alreadyOnPlanTitle,
-        message: data.alreadyOnPlanMessage,
-        isRTL: isRTL,
-        onConfirm: showInsufficientCreditModal,
+        type: "confirm",
+        title: confirmTitle,
+        message: confirmMessage,
+        isRTL,
+        onConfirm: () => {
+          localStorage.setItem("currentPlanIndex", planIndex.toString());
+          this.currentPlanIndex = planIndex;
+          const successOnConfirm = () => {
+            this.showModal({
+              type: "info",
+              title: data.insufficientCreditTitle,
+              message: data.insufficientCreditMessage,
+              isRTL,
+              onConfirm: () => {
+                this.isAccordionOpen = false;
+                this.render();
+              },
+            });
+          };
+          this.showSuccessModal(selectedPlan, isRTL, successOnConfirm);
+        },
+        onCancel: () => {
+          this.isAccordionOpen = true;
+          this.render();
+        },
       });
-    };
-
-    this.showSuccessModal(plan, isRTL, showAlreadyOnPlanModal);
-  }
-
-  processConversion(plan, isRTL) {
-    const data = conversionsData[this.getLanguage()];
-
-    if (plan.name === "DIMA 2500") {
-      this.showInfoModal(
-        data.alreadyOnPlanTitle,
-        data.alreadyOnPlanMessage,
-        isRTL
-      );
-      return;
     }
-
-    const shouldFailForCredit = Math.random() > 0.5;
-    if (shouldFailForCredit) {
-      this.showInfoModal(
-        data.insufficientCreditTitle,
-        data.insufficientCreditMessage,
-        isRTL
-      );
-      return;
-    }
-
-    this.showSuccessModal(plan, isRTL);
-  }
-
-  showInfoModal(title, message, isRTL) {
-    const onConfirmClose = () => {
-      const data = conversionsData[this.getLanguage()];
-      const shouldShowInsufficientCredit = Math.random() > 0.5;
-
-      if (
-        message === data.alreadyOnPlanMessage &&
-        shouldShowInsufficientCredit
-      ) {
-        this.showModal({
-          type: "info",
-          title: data.insufficientCreditTitle,
-          message: data.insufficientCreditMessage,
-          isRTL: isRTL,
-          onConfirm: () => {
-            this.isAccordionOpen = false;
-            this.render();
-          },
-        });
-      } else {
-        this.isAccordionOpen = false;
-        this.render();
-      }
-    };
-
-    this.showModal({
-      type: "info",
-      title: title,
-      message: message,
-      isRTL: isRTL,
-      onConfirm: onConfirmClose,
-    });
   }
 
   showSuccessModal(plan, isRTL, onConfirmCallback) {

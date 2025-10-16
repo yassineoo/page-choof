@@ -51,12 +51,10 @@ export const generateHeaderHTML = (
   let prefixText, offerName;
   if (language === "fr") {
     prefixText = "Offre";
-    offerName = userData.offer
-      ? userData.offer.replace(/^Offre\s+/, "").trim()
-      : "Dima";
+    offerName = "Dima";
   } else {
-    let englishOffer = userData.offer || "Offre Dima";
-    let name = englishOffer.replace(/^Offre\s+/, "").trim();
+    let arOffer = "Offre Dima";
+    let name = arOffer.replace(/^Offre\s+/, "").trim();
     prefixText = "عرض";
     offerName = wrapLatin(name);
   }
