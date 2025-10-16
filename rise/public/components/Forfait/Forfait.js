@@ -903,7 +903,15 @@ class ForfaitComponent {
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${
               this.currentLang === "ar"
-                ? "<span>اشتراكات<span class='font-rubik' dir='ltr'>12 x Ooredoo Internet</span></span>"
+                ? `
+                <div>
+                  <span class='hidden sm:block'> اشتراكات<span class='font-rubik mr-1' dir='ltr'>Ooredoo 12X INTERNET</span></span>
+                  <div class='flex flex-col sm:hidden'> 
+                    <span class='font-noto-kufi-arabic' dir='rtl'>اشتراكات<span class="uppercase font-rubik">Ooredoo</span></span>
+                    <span class='font-rubik'>12X INTERNET</span>
+                  </div>
+                </div>
+                `
                 : "<span class='font-rubik'>forfaits ooredoo internet x 12</span>"
             }
           </h2>

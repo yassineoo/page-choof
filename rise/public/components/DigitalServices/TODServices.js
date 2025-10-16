@@ -174,7 +174,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
   txt.className = "text-center text-[14px] font-normal text-[#191919] dark:text-gray-200 px-5 mb-3";
   txt.innerHTML = lang === "ar" ? 
-  `<div class="${fontClass}">ادفعوا <span class="font-semibold"><span class="font-rubik">10</span> اشهر</span> واحصلوا على <span class="font-semibold">شهرين مجانا</span></div>` 
+  `<div class="${fontClass}">قوموا بشراء  <span class="font-semibold"><span class="font-rubik">10</span> اشهر</span> واحصلوا على <span class="font-semibold">شهرين مجانا!</span></div>` 
   : 
   `<div class="${fontClass}">Payez <span class="font-semibold">10 mois</span> et obtenez <span class="font-semibold">2 gratuits</span></div>`  
 ;
@@ -337,7 +337,7 @@ export default class TODServices {
       ? `احصل على دخول إلى ${selection.duration.giga}Go + ${selection.package.type} إنترنت صالحين شهر بـ <span class="whitespace-nowrap">${selection.duration.price} دج.</span>`
       : `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go d'internet valables ${selection.duration.months} pour <span class="whitespace-nowrap">${selection.duration.price} DA.</span>`;
     const congratsMsg = isArabic
-      ? `لقد قمت بتفعيل اشتراكك  ${selection.package.type} + ${selection.duration.giga}Go بنجاح. قم بتحميل TOD الآن على <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">هذا الرابط</a>.`
+      ? `لقد قمت بتفعيل اشتراكك  <span dir="ltr">${selection.duration.giga}Go + ${selection.package.type}</span> بنجاح. قم بتحميل TOD الآن على <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">هذا الرابط</a>.`
       : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">ce lien</a>.`;
     const noCreditMsg = isArabic
       ? `عزيزي الزبون، رصيدك غير كافٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى.`
@@ -350,7 +350,7 @@ export default class TODServices {
       () => {
         this.showModal(
           "congrats",
-          isArabic ? "تهانينا!" : "Félicitations!",
+          isArabic ? "هنيئًا!" : "Félicitations!",
           congratsMsg,
           () => {
             this.showModal("credit", isArabic ? "رصيد غير كافٍ" : "Crédit insuffisant", noCreditMsg, () => {}, isArabic);
@@ -368,7 +368,7 @@ export default class TODServices {
 
     const modalTitleClass = `
       font-semibold text-ooredoo-red dark:text-white
-      text-[34px] leading-[55.86px]
+      text-[26px] sm:text-[30px] leading-[55.86px]
       uppercase text-center tracking-[-0.02em]
       mb-6
     `.replace(/\s+/g, " ");
@@ -404,7 +404,7 @@ export default class TODServices {
           <div class="${modalTitleClass}">
             ${title}
           </div>
-          <div class=" dark:text-white text-[#262626] leading-snug text-center max-w-[70%] mx-auto mb-8">
+          <div class=" dark:text-white text-[#262626] leading-snug text-center max-w-[90%] mx-auto mb-8">
             ${message}
           </div>
           <div class="flex flex-nowrap justify-center gap-3">

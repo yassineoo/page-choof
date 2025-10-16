@@ -102,7 +102,7 @@ export const consommationData = {
           },
           {
             subIcon: "shahid",
-            subtitle: "Shahid",
+            subtitle: "SHAHID",
             value: "4",
             unit: "Go",
             date: "26/05/25",

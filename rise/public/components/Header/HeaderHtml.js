@@ -216,20 +216,22 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
   )}</span>
             </div>
           </div>
-          <div class="flex items-center gap-2 mb-4">
-            <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
-            <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
-                  (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offer ") + offerHTML
-                }</span>
-          </div>
-          <div class="flex items-center justify-end gap-3">
-            <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red  rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
+          <div class="flex items-center justify-between gap-2 flex-nowrap">
+            <div class="flex items-center gap-2">
+              <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
+              <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
+                    (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offer ") + offerHTML
+                  }</span>
+            </div>
+            <div class="flex items-center justify-end gap-3">
+            <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red rounded-full xs:px-6 px-4 py-2.5 flex items-center xs:gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
               <span class="${
                 language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-              } font-medium text-ooredoo-red text-xs uppercase tracking-[0.02em]   "> ${chargeText} </span>
+              } font-medium text-ooredoo-red text-xs uppercase tracking-[0.02rem]"> ${chargeText} </span>
               <img src="./assets/images/consommation/baridi.svg" class="w-4 h-4 flex-shrink-0" />
               <img src="./assets/images/consommation/poste.svg" class="w-4 h-4 flex-shrink-0" />
             </a>
+          </div>
           </div>
         </div>
       </div>

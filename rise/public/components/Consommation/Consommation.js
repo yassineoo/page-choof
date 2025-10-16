@@ -379,7 +379,7 @@ export default class Consommation {
   }
 
   renderMobileLayout(data, theme, lang) {
-    const bgClass = theme === "dark" ? "bg-[#141414]" : "bg-white";
+    const bgClass = theme === "dark" ? "bg-[#141414]" : "bg-[#F8F8F8]";
     const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
