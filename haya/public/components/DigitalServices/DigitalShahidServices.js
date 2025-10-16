@@ -525,9 +525,7 @@ export default class DigitalShahidServices {
                    class="w-full max-[300px] h-auto mb-6 dark:hidden flex"/>
               <img src="./assets/images/services/shahid-d.svg" alt="Shahid"
                    class="w-full max-w-xs h-auto mb-6 dark:flex hidden"/>
-              <h3 class="hidden md:block font-semibold text-xl leading-relaxed tracking-wide mb-4 text-black dark:text-white">
-                ${isArabic ? "اشتراكات شاهد" : "FORFAITS SHAHID"}
-              </h3>
+              
               <div class="text-base leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">
                 ${
                   isArabic

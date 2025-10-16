@@ -79,7 +79,6 @@ export const generateHeaderHTML = (
   
   .hdr-common-text{
     font-weight: 500;
-    font-family: Rubik, sans-serif;
     font-style: normal;
     font-size: 18px;
     line-height: 170%;

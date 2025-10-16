@@ -337,7 +337,7 @@ export default class TODServices {
       ? `احصل على دخول إلى ${selection.duration.giga}Go + ${selection.package.type} إنترنت صالحين شهر بـ <span class="whitespace-nowrap">${selection.duration.price} دج.</span>`
       : `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go d'internet valables ${selection.duration.months} pour <span class="whitespace-nowrap">${selection.duration.price} DA.</span>`;
     const congratsMsg = isArabic
-      ? `لقد قمت بتفعيل اشتراكك  ${selection.package.type} + ${selection.duration.giga}Go بنجاح. قم بتحميل TOD الآن على <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">هذا الرابط</a>.`
+      ? `لقد قمت بتفعيل اشتراكك  <span dir="ltr">${selection.duration.giga}Go + ${selection.package.type}</span> بنجاح. قم بتحميل TOD الآن على <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">هذا الرابط</a>.`
       : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">ce lien</a>.`;
     const noCreditMsg = isArabic
       ? `عزيزي الزبون، رصيدك غير كافٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى.`
@@ -368,7 +368,7 @@ export default class TODServices {
 
     const modalTitleClass = `
       font-semibold text-ooredoo-red dark:text-white
-      text-[28px] md:text-[34px] leading-[55.86px]
+      text-[26px] md:text-[34px] leading-[55.86px]
       uppercase text-center tracking-[-0.02em]
       mb-6
     `.replace(/\s+/g, " ");
@@ -402,7 +402,7 @@ export default class TODServices {
           <div class="${modalTitleClass}">
             ${title}
           </div>
-          <div class=" dark:text-white text-[#262626] leading-snug text-center max-w-[70%] mx-auto mb-8">
+          <div class=" dark:text-white text-[#262626] leading-snug text-center max-w-[90%] mx-auto mb-8">
             ${message}
           </div>
           <div class="flex flex-nowrap justify-center gap-3">
