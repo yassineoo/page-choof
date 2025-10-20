@@ -121,7 +121,7 @@ function renderAnghamiCard(plan, isArabic) {
     styles.card
   }">
       <div class="${styles.cardHeader}">
-        <h2 class="${styles.cardName}">${plan.name}</h2>
+        <h2 dir="ltr" class="${styles.cardName}">${plan.name}</h2>
       </div>
       <div class="${styles.cardContent}">
         <div>
@@ -343,8 +343,10 @@ export default class DigitalAnghamiServices {
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="anghami-modal-title" class="${
-                    title.includes("OSN+ &") ? "font-rubik" : fontClass
+                  <h2 id="anghami-modal-title"
+                   dir="${!isRTL ? "ltr" : title.includes("1000 OSN+ & ANGHAMI") ? "ltr" : "rtl"}"
+                   class="${
+                    !isRTL ? "font-rubik" : title.includes("1000 OSN+ & ANGHAMI") ? "font-rubik" : fontClass
                   } font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${title}
                   </h2>

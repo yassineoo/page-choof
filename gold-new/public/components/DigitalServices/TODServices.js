@@ -174,7 +174,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   const fontClass = lang === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
   txt.className = "text-center text-[14px] font-normal text-[#191919] dark:text-gray-200 px-5 mb-3";
   txt.innerHTML = lang === "ar" ? 
-  `<div class="${fontClass}">ادفعوا <span class="font-semibold"><span class="font-rubik">10</span> اشهر</span> واحصلوا على <span class="font-semibold">شهرين مجانا</span></div>` 
+  `<div class="${fontClass}">قوموا بشراء  <span class="font-semibold"><span class="font-rubik">10</span> اشهر</span> واحصلوا على <span class="font-semibold">شهرين مجانا!</span></div>` 
   : 
   `<div class="${fontClass}">Payez <span class="font-semibold">10 mois</span> et obtenez <span class="font-semibold">2 gratuits</span></div>`  
 ;

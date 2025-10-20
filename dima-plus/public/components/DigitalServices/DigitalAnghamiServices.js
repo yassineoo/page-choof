@@ -116,13 +116,13 @@ if (!document.getElementById("dima-anghami-styles")) {
 }
 
 function renderAnghamiCard(plan, isArabic) {
-  const plainOfferName = "OSN+ & ANGHAMI 1000";
+  const plainOfferName = "1000 OSN+ & ANGHAMI";
   return `
     <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${
     styles.card
   }">
       <div class="${styles.cardHeader}">
-        <h2 class="${styles.cardName}">${plan.name}</h2>
+        <h2 dir="ltr" class="${styles.cardName}">${plan.name}</h2>
       </div>
       <div class="${styles.cardContent}">
         <div>
@@ -348,7 +348,7 @@ export default class DigitalAnghamiServices {
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="anghami-modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                  <h2 id="anghami-modal-title" dir="${!isRTL ? "ltr" : title.includes("1000 OSN+ & ANGHAMI") ? "ltr" : "rtl"}" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${displayTitle}
                   </h2>
               </div>

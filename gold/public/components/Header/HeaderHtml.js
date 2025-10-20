@@ -299,7 +299,7 @@ export const generateHeaderHTML = (
                 }</span>
               </div>
               <div class="flex items-center justify-end gap-3">
-                <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red rounded-full px-6 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
+                <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red rounded-full px-3 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
                   <span class="${
                     language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
                   } font-medium text-ooredoo-red text-xs uppercase tracking-[0.02em]"> ${chargeText} </span>

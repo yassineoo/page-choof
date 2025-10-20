@@ -1,7 +1,7 @@
 export const anghamiPlan = {
   fr: {
     id: "osnAngami1000",
-    name: "OSN+ & ANGHAMI 1000",
+    name: "1000 OSN+ & ANGHAMI",
     data: "10 Go internet",
     features: ["Accès premium à OSN+ & ANGHAMI", "10Go internet"],
     price: "1000",
@@ -9,7 +9,7 @@ export const anghamiPlan = {
   },
   ar: {
     id: "osnAngami1000",
-    name: "<span class='font-rubik'>OSN+ & ANGHAMI 1000</span>",
+    name: "<span class='font-rubik'>1000 OSN+ & ANGHAMI</span>",
     data: "<span class='font-rubik'>10Go</span> إنترنت",
     features: [
       "دخول حصري إلى التطبيقين <span class='font-rubik'>OSN+ & ANGHAMI</span>",
@@ -27,7 +27,7 @@ export const anghamiDescription = {
 
 export const anghamiModalData = {
   fr: {
-    "OSN+ & ANGHAMI 1000": {
+    "1000 OSN+ & ANGHAMI": {
       confirm:
         "Profitez du meilleur du divertissement en un seul forfait ! Un accès premium à OSN+ et à Anghami + 10Go d'internet dédié pendant 1 mois. Le forfait est auto-renouvelable. ",
       success:
@@ -37,7 +37,7 @@ export const anghamiModalData = {
     },
   },
   ar: {
-    "OSN+ & ANGHAMI 1000": {
+    "1000 OSN+ & ANGHAMI": {
       confirm:
         "استفد من محتويات ترفيهية رائعة في اشتراك واحد! دخول حصري إلى <span class='font-rubik'>+OSN</span> و<span class='font-rubik'>Anghami</span> و<span class='font-rubik'>10Go</span> إنترنت، صالح لمدة شهر. الاشتراك قبل للتجديد تلقائيًا.",
       success:
