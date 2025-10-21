@@ -397,7 +397,7 @@ export default class TODServices {
 
     hook.innerHTML = `
       <div class="fixed inset-0 z-[9999] flex items-center justify-center px-4" style="background-color:#696969CC">
-        <div class="relative bg-white text-center  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] px-4 sm:px-9 py-10">
+        <div class="relative bg-white text-center  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] px-4 sm:px-9 pb-10 pt-14">
           ${closeButton}
           <div class="${modalTitleClass}">
             ${title}

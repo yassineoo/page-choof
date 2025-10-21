@@ -100,7 +100,7 @@ export default class DigitalFreeFireServices {
         bg-[#e50012] text-white font-medium 
         uppercase text-base
         min-w-[220px]
-        py-3 px-10
+        py-3 px-5 sm:px-10
         transition hover:bg-[#e50012]/90 active:translate-y-0
       `,
     };

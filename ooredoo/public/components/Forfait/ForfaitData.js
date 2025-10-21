@@ -330,7 +330,7 @@ export default {
         features: [
           "مكالمات مجانية نحو <span class='font-rubik'>Ooredoo</span>",
           "<span class='font-rubik'>100</span> دج رصيد",
-          "<span class='font-rubik'>Facebook</span> مجاني",
+          "فايسبوك مجاني",
         ],
         duration: "<span class='font-rubik'>24</span> ساعة",
         buy: "Acheter",

@@ -1236,15 +1236,15 @@ export default class DigitalBitdefenderServices {
   }
 
   getModalButtons(type, isRTL) {
-    const t = bitdefenderTranslations[this.currentLang];
-    const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
+  const t = bitdefenderTranslations[this.currentLang];
+  const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
-    window.handleConfirm = function () {
-      console.log("Hello world!! from global function");
-    };
+  // define the global handler
+  window.handleConfirm = function () {
+    console.log("Hello world!! from global function");
+  };
 
-    // Common styles for both buttons
-    const baseBtnClass = `
+  const baseBtnClass = `
     relative group overflow-hidden transition-all duration-300 
     text-sm sm:text-base lg:text-[17.65px] font-medium sm:font-semibold uppercase 
     h-[42px] sm:h-[44px] lg:h-[47.07px] min-w-[100px] sm:min-w-[160px]
@@ -1252,53 +1252,65 @@ export default class DigitalBitdefenderServices {
     rounded-[25px] lg:rounded-[28.24px] flex items-center justify-center
   `;
 
-    const secondaryBtn = `
+  const secondaryBtn = `
     ${baseBtnClass}
     border-2 text-[#ED1C24] bg-white dark:bg-[#2C2C2C] 
-    border-[#ED1C24] dark:border-white  dark:text-white 
-     hover:shadow-lg
+    border-[#ED1C24] dark:border-white dark:text-white 
+    hover:shadow-lg
   `;
 
-    const primaryBtn = `
+  const primaryBtn = `
     ${baseBtnClass}
     text-white border-2 bg-[#ED1C24] border-[#ED1C24] 
-    
-    hover:shadow-xl
+    hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed
   `;
 
-    const primaryBtnContent = `
+  const primaryBtnContent = `
     <span class="relative z-10">${t.confirmBtn}</span>
     <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
          style="background: linear-gradient(135deg, #ED1C24 0%, #c41e1e 100%);"></div>
   `;
 
-    const closeBtnContent = `
+  const closeBtnContent = `
     <span class="relative z-10">${t.closeBtn}</span>
     <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
          style="background: linear-gradient(135deg, #ED1C24 0%, #c41e1e 100%);"></div>
   `;
 
-    switch (type) {
-      case "confirm":
-        return `
-        <button onclick="handleConfirm()" class="${secondaryBtn} ${fontClass}" data-action="cancel">
+  switch (type) {
+    case "confirm":
+      // Create button markup with disabled state
+      setTimeout(() => {
+        const terms = document.getElementById("terms-checkbox");
+        const confirmBtn = document.querySelector('[data-action="confirm"]');
+        if (terms && confirmBtn) {
+          confirmBtn.disabled = !terms.checked;
+          terms.addEventListener("change", () => {
+            confirmBtn.disabled = !terms.checked;
+          });
+        }
+      }, 50);
+
+      return `
+        <button class="${secondaryBtn} ${fontClass}" data-action="cancel">
           <span class="relative z-10">${t.cancelBtn}</span>
         </button>
-        <button class="${primaryBtn} ${fontClass}" data-action="confirm">
+        <button onclick="handleConfirm()" class="${primaryBtn} ${fontClass}" data-action="confirm" disabled>
           ${primaryBtnContent}
         </button>
       `;
-      case "error":
-      case "credit":
-      case "success":
-      default:
-        return `
+
+    case "error":
+    case "credit":
+    case "success":
+    default:
+      return `
         <button class="${primaryBtn} ${fontClass}" data-action="close">
           ${closeBtnContent}
         </button>
       `;
-    }
   }
+}
 
   showPurchaseFlow() {
     const t = bitdefenderTranslations[this.currentLang];

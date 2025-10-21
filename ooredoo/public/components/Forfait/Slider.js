@@ -77,7 +77,7 @@ export class Slider {
             </h2>
           </div>
 
-          <div class="flex-1 h-[270px] sm:h-auto py-4 text-center border-b-[1px] border-b-[#BBBEBE] border-dashed">
+          <div class="flex-1 h-[220px] sm:h-auto py-4 text-center border-b-[1px] border-b-[#BBBEBE] border-dashed">
             <p>${this.currentLang === "ar" ? "قوموا بشراء" : "Payez"}</p>
             <p class="text-ooredoo-red text-xl font-bold">
               <span class="font-rubik">${offer.sub}</span>
@@ -92,7 +92,7 @@ export class Slider {
             </p>
           </div>
 
-          <div class="py-4 px-2 flex items-center justify-between">
+          <div class="pb-4 pt-[80px] sm:pt-4 px-2 flex items-center justify-between">
             <div class="text-center">
               <p class="text-sm">${this.currentLang === "ar" ? "احصلوا على" : "Recevez"}</p>
               <p class="font-semibold text-lg md:text-xl"><span class="font-rubik">${offer.given}</span> ${this.currentLang === "ar" ? "اشتراك" : "forfaits"}</p>
@@ -325,7 +325,7 @@ export class Slider {
               `).join('')}
               </div>
             </div>
-            <div class="flex items-baseline justify-center mt-8">
+            <div class="flex items-baseline justify-center ${isRTL ? "mt-8" : "mt-0"}">
               <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
               <span class="${priceFontClass} font-semibold text-lg leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
               <span class="${priceFontClass} font-semibold text-lg leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span>
@@ -396,7 +396,7 @@ export class Slider {
                   `<span class="font-rubik">internet</span>`
                  }
               </h3>
-              <div class="space-y-4 mt-8 h-[60px]">
+              <div class="space-y-4 mt-8 h-[55px]">
               ${offer.features.map(feature => `
                 <div class="flex items-center gap-2">
                   <span>
@@ -422,7 +422,7 @@ export class Slider {
               `).join('')}
               </div>
             </div>
-            <div class="flex items-baseline justify-center mt-8">
+            <div class="flex items-baseline justify-center">
               <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
               <span class="${priceFontClass} font-semibold text-lg leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
               <span class="${priceFontClass} font-semibold text-lg leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span>

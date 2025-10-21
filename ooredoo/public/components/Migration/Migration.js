@@ -775,8 +775,6 @@ class Migration {
               <span class="text-[16px] md:text-[22px]">${changeSpecific}</span>
             </p>
 
-            ${termsHTML}
-
             <div class="flex items-center gap-4 justify-center">
               <button id="back-to-main" class="relative font-semibold text-base uppercase migration-modal-button w-[125px] md:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
                 <span>${cancelBtn}</span>
@@ -792,28 +790,28 @@ class Migration {
     </div>
   `;
 
-    if (providerId === "dima") {
-      const checkbox = this.container.querySelector(
-        "#dima-terms-checkbox-view"
-      );
-      const confirmButton = this.container.querySelector(
-        `#start-${providerId}-migration`
-      );
-      confirmButton.disabled = true;
-      confirmButton.style.opacity = "0.5";
-      confirmButton.style.cursor = "not-allowed";
-      checkbox.addEventListener("change", () => {
-        if (checkbox.checked) {
-          confirmButton.disabled = false;
-          confirmButton.style.opacity = "1";
-          confirmButton.style.cursor = "pointer";
-        } else {
-          confirmButton.disabled = true;
-          confirmButton.style.opacity = "0.5";
-          confirmButton.style.cursor = "not-allowed";
-        }
-      });
-    }
+    // if (providerId === "dima") {
+    //   const checkbox = this.container.querySelector(
+    //     "#dima-terms-checkbox-view"
+    //   );
+    //   const confirmButton = this.container.querySelector(
+    //     `#start-${providerId}-migration`
+    //   );
+    //   confirmButton.disabled = true;
+    //   confirmButton.style.opacity = "0.5";
+    //   confirmButton.style.cursor = "not-allowed";
+    //   checkbox.addEventListener("change", () => {
+    //     if (checkbox.checked) {
+    //       confirmButton.disabled = false;
+    //       confirmButton.style.opacity = "1";
+    //       confirmButton.style.cursor = "pointer";
+    //     } else {
+    //       confirmButton.disabled = true;
+    //       confirmButton.style.opacity = "0.5";
+    //       confirmButton.style.cursor = "not-allowed";
+    //     }
+    //   });
+    // }
 
     this.bindViewButtons(language);
   }
