@@ -35,6 +35,12 @@ export const generateHeaderHTML = (
     const name = parts.slice(1).join(" ");
     return { name, price };
   };
+  const formatCredit = (credit, language) => {
+    const creditValue = credit || "1200";
+    const currency = language === "ar" ? "دج" : "DA";
+    const cleanCredit = creditValue.replace(/\s*(DA|دج)\s*$/i, "");
+    return `<span class="font-rubik">${cleanCredit}</span> ${currency}`;
+  };
   const offerDetails = getOfferDetails(userData.offer);
   const infoCardDesc = isAuto
     ? texts.renewalInfoAuto(offerDetails.name, offerDetails.price)
@@ -140,7 +146,7 @@ export const generateHeaderHTML = (
 <header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${
     language === "ar" ? "rtl" : "ltr"
   }">
-  <div class="w-full max-w-[90vw] mx-auto px-4">
+  <div class="w-full max-w-[90vw] mx-auto">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
       <div class="flex items-baseline gap-3">
         <div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
@@ -211,7 +217,7 @@ export const generateHeaderHTML = (
               <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
               <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
             </span>
-            <span class="ml-2 ${fontClass}">${texts.changeModeLabel}</span>
+            <span class="${fontClass}">${texts.changeModeLabel}</span>
           </button>
         </div>
 
@@ -241,8 +247,8 @@ export const generateHeaderHTML = (
     </div>
   </div>
 
-  <div class="bg-ooredoo-red py-4 text-white w-full">
-    <div class="px-4 w-full max-w-[95vw] md:max-w-[90vw] mx-auto">
+  <div class="bg-ooredoo-red text-white w-full py-4">
+    <div class="w-full max-w-[95vw] md:max-w-[90vw] mx-auto px-2">
       <div class="md:block hidden">
         <div class="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
           <div class="flex-1 flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full md:w-auto min-w-0">
@@ -319,14 +325,16 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text ${fontClass} truncate">${
+              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white md:text-lg text-sm ${fontClass} truncate">${
     userData.phone || "0509876543"
   }</span>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
-              <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
-              <span class="hdr-price ${fontClass}">${
-              userData.credit || "1200 DA"} ${language === 'ar' ? '<span class="font-noto-kufi-arabic">دج</span>' : '<span class="font-rubik">DA</span>'}
+              <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 flex-shrink-0"/>
+              <span class="font-medium text-[14px] leading-[1.7] tracking-[0.02em] text-white md:text-lg ${fontClass}">${formatCredit(
+                userData.credit || "1200 DA",
+                language
+              )}</span>
             </span>
             </div>
           </div>
@@ -334,7 +342,7 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>" : "Offre La Gold Jdida"}</span>
+              <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>" : "Offre La Gold Jdida"}</span>
             </div>
 
             <div>

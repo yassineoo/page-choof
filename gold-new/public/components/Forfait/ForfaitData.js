@@ -7,7 +7,7 @@ export default {
         price: "2000",
         duration: "30 jours",
         features: [
-          "Appels illimité vers Ooredoo", 
+          "Appels illimités vers Ooredoo", 
           "5000 DA de crédit",
         ],
         buy: "Acheter",
@@ -18,7 +18,7 @@ export default {
         price: "1500",
         duration: "30 jours",
         features: [
-          "Appels illimité vers Ooredoo", 
+          "Appels illimités vers Ooredoo", 
           "3000 DA de crédit",
         ],
         buy: "Acheter",
@@ -29,7 +29,7 @@ export default {
         price: "1000",
         duration: "30 jours",
         features: [
-          "Appels illimité vers Ooredoo", 
+          "Appels illimités vers Ooredoo", 
           "2000 DA de crédit",
         ],
         buy: "Acheter",
@@ -80,7 +80,7 @@ export default {
         name: "Forfait 50",
         data: "50Mo",
         price: "50",
-        features:"Facebook illimités",
+        features:"Facebook illimité",
         duration: "jusqu'à 00h",
         buy: "Acheter",
       },

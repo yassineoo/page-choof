@@ -235,7 +235,7 @@ export default class Dima {
 
     const closeButton = `
       <button class="absolute top-6 right-6 p-2 z-10" aria-label="Fermer" tabindex="0">
-        <img src="./assets/images/Close.svg" alt="close" style="width:34px;height:34px;display:block"/>
+        <img src="./assets/images/Close.svg" alt="close" style="width:25px;height:25px;display:block"/>
       </button>
     `;
 

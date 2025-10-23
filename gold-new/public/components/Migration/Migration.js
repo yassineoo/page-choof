@@ -746,19 +746,19 @@ text-align: cetner;
     const confirmBtn = data.confirmBtn || "Confirmer";
 
     let termsHTML = "";
-    if (providerId === "dima") {
-      const termsText = data.termsAndConditions || "";
-      const wrapped = this.highlightTerms(termsText, language);
-      termsHTML = `
-      <div class="mt-4 mb-8 px-4 text-center md:text-center">
-        <label class="migration-terms-checkbox" style="max-width:100%; text-align:center;">
-          <input type="checkbox" class="ml-4" id="dima-terms-checkbox-view" />
-          <span class="checkbox-faux" aria-hidden="true"></span>
-          <span class="px-6 text-center">${wrapped}</span>
-        </label>
-      </div>
-    `;
-    }
+    // if (providerId === "dima") {
+    //   const termsText = data.termsAndConditions || "";
+    //   const wrapped = this.highlightTerms(termsText, language);
+    //   termsHTML = `
+    //   <div class="mt-4 mb-8 px-4 text-center md:text-center">
+    //     <label class="migration-terms-checkbox" style="max-width:100%; text-align:center;">
+    //       <input type="checkbox" class="ml-4" id="dima-terms-checkbox-view" />
+    //       <span class="checkbox-faux" aria-hidden="true"></span>
+    //       <span class="px-6 text-center">${wrapped}</span>
+    //     </label>
+    //   </div>
+    // `;
+    // }
 
     const isDark = document.documentElement.classList.contains("dark");
     const roundedInlineStyle = `background: ${
@@ -781,9 +781,7 @@ text-align: cetner;
             <p class="text-center mb-8 ${isRTL ? "px-2" : "px-12"}">
               <span class="text-[16px] md:text-[22px]">${changeSpecific}</span>
             </p>
-
-            ${termsHTML}
-
+            
             <div class="flex items-center gap-4 justify-center">
               <button id="back-to-main" class="relative font-semibold text-base uppercase migration-modal-button w-[140px] md:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">
                 <span>${cancelBtn}</span>
@@ -799,28 +797,28 @@ text-align: cetner;
     </div>
   `;
 
-    if (providerId === "dima") {
-      const checkbox = this.container.querySelector(
-        "#dima-terms-checkbox-view"
-      );
-      const confirmButton = this.container.querySelector(
-        `#start-${providerId}-migration`
-      );
-      confirmButton.disabled = true;
-      confirmButton.style.opacity = "0.5";
-      confirmButton.style.cursor = "not-allowed";
-      checkbox.addEventListener("change", () => {
-        if (checkbox.checked) {
-          confirmButton.disabled = false;
-          confirmButton.style.opacity = "1";
-          confirmButton.style.cursor = "pointer";
-        } else {
-          confirmButton.disabled = true;
-          confirmButton.style.opacity = "0.5";
-          confirmButton.style.cursor = "not-allowed";
-        }
-      });
-    }
+    // if (providerId === "dima") {
+    //   const checkbox = this.container.querySelector(
+    //     "#dima-terms-checkbox-view"
+    //   );
+    //   const confirmButton = this.container.querySelector(
+    //     `#start-${providerId}-migration`
+    //   );
+    //   confirmButton.disabled = true;
+    //   confirmButton.style.opacity = "0.5";
+    //   confirmButton.style.cursor = "not-allowed";
+    //   checkbox.addEventListener("change", () => {
+    //     if (checkbox.checked) {
+    //       confirmButton.disabled = false;
+    //       confirmButton.style.opacity = "1";
+    //       confirmButton.style.cursor = "pointer";
+    //     } else {
+    //       confirmButton.disabled = true;
+    //       confirmButton.style.opacity = "0.5";
+    //       confirmButton.style.cursor = "not-allowed";
+    //     }
+    //   });
+    // }
 
     this.bindViewButtons(language);
   }

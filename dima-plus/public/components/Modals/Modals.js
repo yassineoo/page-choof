@@ -10,7 +10,7 @@ export default class Modals {
       <div id="modal-overlay" class="hidden fixed inset-0 z-[9999] flex items-center justify-center bg-[#696969CC]">
         <div class="relative bg-white rounded-[18px] shadow-xl w-full max-w-[640px] mx-auto px-8 pt-14 pb-10">
           <button class="absolute top-6 right-6 p-2 z-10" id="modal-close-btn" aria-label="Fermer" tabindex="0">
-            <img src="./assets/images/Close.svg" alt="close" style="width:34px;height:34px;display:block"/>
+            <img src="./assets/images/Close.svg" alt="close" style="width:25px;height:25px;display:block"/>
           </button>
           <div id="modal-title" class="font-rubik font-semibold text-ooredoo-red text-[34px] leading-[55.86px] uppercase text-center tracking-[-0.02em] mb-6">
             <!-- title -->

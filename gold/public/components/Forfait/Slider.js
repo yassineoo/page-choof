@@ -203,7 +203,7 @@ export class Slider {
                       </span>
               </div>
             </div>
-            <div class="flex items-baseline justify-center mt-16">
+            <div class="flex items-baseline justify-center mt-14">
               <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
               <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
               <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${index === 10 && "text-sm font-medium"}">/${durationText}</span>
@@ -296,7 +296,7 @@ export class Slider {
                   </div>`
                 )).join("")}
               </div>
-              <div class="flex items-baseline justify-center mt-16">
+              <div class="flex items-baseline justify-center mt-14">
               <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
               <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
               <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap">/${durationText}</span>

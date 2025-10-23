@@ -77,7 +77,6 @@ export const generateHeaderHTML = (
   .text-ooredoo-red { color: #E30613; }
   .hdr-common-text{
     font-weight: 500;
-    font-family: 'Rubik', sans-serif;
     font-style: normal;
     font-size: 18px;
     line-height: 170%;
@@ -141,7 +140,7 @@ export const generateHeaderHTML = (
 <header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${
     language === "ar" ? "rtl" : "ltr"
   }">
-  <div class="w-full max-w-[90vw] mx-auto px-4">
+  <div class="w-full max-w-[90vw] mx-auto">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
       <div class="flex items-center gap-3" dir="${language === "ar" ? "ltr" : "rtl"}">
         <div class="flex items-center justify-center w-[58.5px] h-[13px] md:w-[115px] md:h-[26px]">
@@ -249,7 +248,7 @@ export const generateHeaderHTML = (
           <div class="flex-1 flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full md:w-auto min-w-0">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text ${fontClass}">${
+              <span class="hdr-common-text font-rubik">${
     userData.phone || "0509876543"
   }</span>
             </div>
@@ -276,13 +275,13 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text ${fontClass} truncate">${
+              <span class="hdr-common-text font-rubik truncate">${
     userData.phone || "0509876543"
   }</span>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
-              <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
-              <span class="hdr-price ${fontClass}">${
+              <img src="./assets/images/header/Dollar.svg" class="w-5 h-5" />
+              <span class="font-medium text-[14px] ${fontClass}">${
               userData.credit || "1200 DA"} ${language === 'ar' ? '<span class="font-noto-kufi-arabic">دج</span>' : '<span class="font-rubik">DA</span>'}
             </span>
             </div>

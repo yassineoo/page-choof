@@ -384,8 +384,8 @@ export default class Consommation {
 
     return `
       <div class="w-full flex flex-col ${bgClass} ${fontClass}" ${lang === "ar" ? 'dir="rtl"' : ""}>
-        <div class="bg-ooredoo-red w-full mt-[-2px] px-6 pt-2 pb-14 -my-7 h-92"> 
-          <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center py-4" style="font-weight: 500; font-size: 24px;">
+        <div class="bg-ooredoo-red w-full mt-[-4px] px-6 pt-2 pb-14 -my-6 h-92"> 
+          <h1 class="text-white text-2xl leading-[170%] tracking-[2%] text-center pt-2 pb-4" style="font-weight: 500; font-size: 24px;">
             ${data.title}
           </h1>
         </div>
@@ -422,7 +422,7 @@ export default class Consommation {
 
     return `
       <div class="w-full flex justify-end mt-4 mb-2 px-2 ${fontClass}">
-        <button class="show-all-btn bg-ooredoo-red text-white font-medium text-sm uppercase rounded-full px-8 py-3 flex items-center justify-center gap-2 w-3/5 max-w-[200px]" style="font-weight: 500;">
+        <button class="show-all-btn bg-ooredoo-red text-white font-medium text-sm uppercase rounded-full px-[20px] md:px-8 py-3 flex items-center justify-center gap-2 md:max-w-[200px]" style="font-weight: 500;">
           <span>${buttonText}</span>
         </button>
       </div>

@@ -140,7 +140,7 @@ export const generateHeaderHTML = (
 <header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${
     language === "ar" ? "rtl" : "ltr"
   }">
-  <div class="w-full max-w-[90vw] mx-auto px-4">
+  <div class="w-full max-w-[90vw] mx-auto">
     <div class="flex items-center justify-between h-16 md:h-20 w-full">
       <div class="flex items-center gap-3" dir="${language === "ar" ? "ltr" : "rtl"}">
         <div class="flex items-center justify-center w-[58.5px] h-[13px] md:w-[115px] md:h-[26px]">
@@ -280,8 +280,8 @@ export const generateHeaderHTML = (
   }</span>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
-              <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
-              <span class="hdr-price ${fontClass}">${
+              <img src="./assets/images/header/Dollar.svg" class="w-5 h-5" />
+              <span class="font-medium text-[14px] ${fontClass}">${
               userData.credit || "1200 DA"} ${language === 'ar' ? '<span class="font-noto-kufi-arabic">دج</span>' : '<span class="font-rubik">DA</span>'}
             </span>
             </div>

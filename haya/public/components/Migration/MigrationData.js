@@ -41,7 +41,7 @@ export const migrationData = {
         "Vous allez changer vers l'offre N'YOOZ, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
       successMessage:
-        "Bienvenue sur N'YOOZ ! Télécharge vite l'application My Ooredoo gratuitement pour acheter ou composer le forfait de ton choix et vis pleinement l'aventure N'YOOZ <br> <a href='http://ore.do/yo' class='underline text-blue-600'>lien</a> <br> . Retrouve tes forfaits sur *151#.",
+        "Bienvenue sur N'YOOZ ! Télécharge vite l'application My Ooredoo gratuitement pour acheter ou composer le forfait de ton choix et vis pleinement l'aventure <br> N'YOOZ! <a href='http://ore.do/yo' class='underline text-blue-600'>http://ore.do/yo</a>. <br> Retrouve tes forfaits sur *151#.",
     },
   },
   ar: {
@@ -84,7 +84,7 @@ export const migrationData = {
         "ستقوم بالتغيير إلى عرض <span class='font-rubik'>N’YOOZ</span> وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",
       successMessage:
-        "مرحبًا بك في عرض <span class='font-rubik'>N’YOOZ</span> سارع لتحميل التطبيق My Ooredoo مجانًا لشراء أو تشكيل الاشتراك الذي يناسبك واستمتع بمغامرة <span class='font-rubik'>N’YOOZ</span> <br/> <a href='http://ore.do/yo' class='underline text-blue-600'>الرابط</a> <br/> قم بشراء اشتراكاتك على #151*",
+        "مرحبًا بك في عرض <span class='font-rubik'>N’YOOZ</span> سارع لتحميل التطبيق My Ooredoo مجانًا لشراء أو تشكيل الاشتراك الذي يناسبك واستمتع بمغامرة <br> <span class='font-rubik whitespace-nowrap'>N’YOOZ! <a href='http://ore.do/yo' class='underline text-blue-600'>http://ore.do/yo</a> </span>. <br/> قم بشراء اشتراكاتك على #151*",
     },
   },
 };

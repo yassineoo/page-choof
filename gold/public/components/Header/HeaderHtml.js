@@ -108,19 +108,18 @@ export const generateHeaderHTML = (
     language === "ar" ? "rtl" : "ltr"
   }">
     <div class="w-full max-w-[90vw] mx-auto">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <div class="flex items-center gap-[8px] lg:gap-[25px] flex-shrink-0">
-          <div class="w-[120px] h-[30px] md:w-[140px] md:h-[36px] lg:w-[180px] lg:h-[56px] flex items-center justify-center relative ${
-            language === "ar" ? "" : ""
-          }">
-            <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
-            <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo" class="absolute inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
-          </div>
-<span class="inline-block w-[0.5px] h-4 md:h-8 bg-black dark:bg-white transition-colors duration-300"></span>
-          <div class="w-[56px] h-[24px] md:w-[100px] md:h-[29px] lg:w-[120px] lg:h-[40px] flex items-center justify-center relative">
-            <img src="./assets/images/header/Choof.svg" alt="Choof" class="absolute top-0.5 inset-0 w-full h-full object-contain dark:hidden transition-opacity duration-300" />
-            <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="absolute top-0.5 inset-0 w-full h-full object-contain hidden dark:inline transition-opacity duration-300" />
-          </div>
+      <div class="flex items-center justify-between h-16 md:h-20 w-full">
+        <div class="flex items-baseline gap-3">
+          
+<div class="flex items-center justify-center w-[102px] h-[20px] md:w-[200px] md:h-[40px]">
+          <img src="./assets/images/header/Ooredoo.svg" alt="Ooredoo" class="w-full h-full object-contain dark:hidden block" width="200" height="40" loading="lazy" />
+          <img src="./assets/images/header/Ooredoo-white.svg" alt="Ooredoo" class="w-full h-full object-contain hidden dark:block" width="200" height="40" loading="lazy" />
+        </div>
+        <span class="inline md:text-3xl font-light text-black dark:text-white leading-none">|</span>
+        <div class="flex items-center justify-center w-[58.5px] h-[13px] md:w-[115px] md:h-[26px]">
+          <img src="./assets/images/header/Choof.svg" alt="Choof" class="w-full h-full object-contain dark:hidden block" width="115" height="26" loading="lazy" />
+          <img src="./assets/images/header/Choof-white.svg" alt="Choof" class="w-full h-full object-contain hidden dark:block" width="115" height="26" loading="lazy" />
+        </div>
         </div>
         <div class="hidden md:flex items-center flex-shrink-0">
           <div id="theme-switcher" class="relative w-[102px] lg:w-[144px] h-[40px] lg:h-[48px] rounded-full bg-[#E4E4E7] transition-all duration-500">
@@ -163,32 +162,32 @@ export const generateHeaderHTML = (
       </div>
 
       <div id="mobile-menu" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-50 transition-all duration-300 ease-in-out">
-        <div class="flex flex-col space-y-4 pt-4 px-4">
+        <div class="flex flex-col items-start px-4 space-y-4 pt-4">
           <div class="flex items-center gap-3 py-2 rounded-lg transition-all duration-300">
-            <button id="theme-mobile-switcher" class="flex  gap-3 px-2   items-center w-full text-black dark:text-white">
-              <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" id="mobile-moon-icon" />
-              <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" id="mobile-sun-icon" />
-              <span class="${fontClass}  text-sm">${themeText}</span>
+            <button id="theme-mobile-switcher" class="flex gap-3 items-center w-full text-black dark:text-white">
+              <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:block" id="mobile-moon-icon" />
+              <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
+              <span class="${fontClass}">${themeText}</span>
             </button>
           </div>
-          <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
+          <div class="flex items-center gap-3 py-2 rounded-lg transition-all duration-300">
             <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/help-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" />
             <span id="help-text-mobile" class="${
               language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-            } text-sm text-black dark:text-white">
+            } text-black dark:text-white">
               <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${helpText}</a>
             </span>
           </div>
-          <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
+          <div class="flex items-center gap-3 py-2 rounded-lg transition-all duration-300">
             <img src="./assets/images/header/language.svg" class="w-5 h-5 hidden dark:hidden transition-opacity duration-300" />
             <div class="flex items-center gap-3 relative z-50">
               <img src="./assets/images/header/language.svg" class="w-5 h-5 dark:hidden" />
               <img src="./assets/images/header/language-white.svg" class="w-5 h-5 hidden dark:inline" />
-              <button class="language-option py-1 rounded-lg text-sm transition-all duration-300 text-black dark:text-white ${
+              <button class="language-option py-1 rounded-lg transition-all duration-300 text-black dark:text-white ${
                 language === "fr" ? "font-semibold text-ooredoo-red" : ""
               }">Français</button>
-              <button class="font-noto-kufi-arabic language-option py-1 rounded-lg text-sm transition-all duration-300 text-black dark:text-white ${
+              <button class="font-noto-kufi-arabic language-option py-1 rounded-lg transition-all duration-300 text-black dark:text-white ${
                 language === "ar" ? "font-semibold text-ooredoo-red" : ""
               }">العربية</button>
             </div>
@@ -273,7 +272,8 @@ export const generateHeaderHTML = (
         </div>
 
         <div class="md:hidden py-4">
-          <div class="flex items-center justify-between mb-3">
+        <div class="flex flex-col gap-6">
+          <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <img src="./assets/images/header/Telephone.svg" class="w-5 h-5 flex-shrink-0" />
               <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white md:text-lg text-sm">${
@@ -299,17 +299,17 @@ export const generateHeaderHTML = (
                 }</span>
               </div>
               <div class="flex items-center justify-end gap-3">
-                <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red rounded-full px-3 py-2.5 flex items-center gap-2 hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
+                <a href='https://estorm.ooredoo.dz/e-payment/payment/public/?lang=${language}' class="bg-white text-ooredoo-red rounded-full px-[8px] py-[6px] flex items-center hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex-shrink-0">
                   <span class="${
                     language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
-                  } font-medium text-ooredoo-red text-xs uppercase tracking-[0.02em]"> ${chargeText} </span>
-                  <img src="./assets/images/consommation/baridi.svg" class="w-4 h-4 flex-shrink-0" />
+                  } font-semibold text-[10px]"> ${chargeText} </span>
                   <img src="./assets/images/consommation/poste.svg" class="w-4 h-4 flex-shrink-0" />
-                </a>
+                  <img src="./assets/images/consommation/baridi.svg" class="w-4 h-4 flex-shrink-0" />
+                  </a>
               </div>
             </div>
           </div>
-          <div class="flex items-center justify-center gap-2 mt-4">
+          <div class="flex items-center justify-center gap-2">
             <span class="text-white">${
               language === "ar"
                 ? "<span class='font-noto-kufi-arabic'>الوضع :</span>"
@@ -351,6 +351,7 @@ export const generateHeaderHTML = (
                 ${getTooltipText(userData.mode || "mactivia", language)}
               </span>
             </span>
+          </div>
           </div>
         </div>
       </div>

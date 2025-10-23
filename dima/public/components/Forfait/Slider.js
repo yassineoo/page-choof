@@ -281,7 +281,7 @@ export class Slider {
                 </span>
               </div>
             </div>
-            <div class="flex items-baseline justify-center mt-20">
+            <div class="flex items-baseline justify-center mt-16">
               <span class="${this.getFontClass(
                 priceNumber
               )} font-semibold mx-2 text-[28px] leading-none text-black dark:text-white">${priceNumber}</span>
@@ -369,7 +369,7 @@ export class Slider {
                   )
                   .join("")}
               </div>
-              <div class="flex items-baseline justify-center mt-20">
+              <div class="flex items-baseline justify-center mt-12">
                 <span class="${this.getFontClass(
                   priceNumber
                 )} font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
