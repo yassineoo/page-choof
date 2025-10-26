@@ -77,22 +77,22 @@ export class Slider {
             </h2>
           </div>
 
-          <div class="flex-1 h-[220px] sm:h-auto py-4 text-center border-b-[1px] border-b-[#BBBEBE] border-dashed">
+          <div class="flex-1 text-2xl flex flex-col items-center justify-center h-[270px] sm:h-auto gap-1 py-4 text-center border-b-[1px] border-b-[#BBBEBE] border-dashed">
             <p>${this.currentLang === "ar" ? "قوموا بشراء" : "Payez"}</p>
-            <p class="text-ooredoo-red text-xl font-bold">
+            <p class="text-ooredoo-red text-2xl font-bold">
               <span class="font-rubik">${offer.sub}</span>
               ${this.currentLang === "ar" ? "اشتراكات" : "forfaits"}
             </p>
-            <p class="font-semibold text-lg md:text-xl font-rubik">Ooredoo 500</p>
+            <p class="font-semibold font-rubik">Ooredoo 500</p>
             <p>${isRTL ? "و" : "&"}</p>
             <p>${this.currentLang === "ar" ? "احصلوا على" : "obtenez"}</p>
-            <p class="text-ooredoo-red font-bold text-xl">
+            <p class="text-ooredoo-red font-bold">
               <span>${offer.free}</span>
               ${this.currentLang === "ar" ? "مجانا" : `${index === 4 ? "gratuit" : "gratuits"}` + " !"}
             </p>
           </div>
 
-          <div class="pb-4 pt-[80px] sm:pt-4 px-2 flex items-center justify-between">
+          <div class="py-4 sm:pt-4 px-2 flex items-center justify-between">
             <div class="text-center">
               <p class="text-sm">${this.currentLang === "ar" ? "احصلوا على" : "Recevez"}</p>
               <p class="font-semibold text-lg md:text-xl"><span class="font-rubik">${offer.given}</span> ${this.currentLang === "ar" ? "اشتراك" : "forfaits"}</p>
