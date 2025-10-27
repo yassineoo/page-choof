@@ -37,13 +37,11 @@ export const anghamiModalData = {
     },
   },
   ar: {
-    "1000 OSN+ & ANGHAMI": {
+     "1000 OSN+ & ANGHAMI": {
       confirm:
-        "استفد من محتويات ترفيهية رائعة في اشتراك واحد! دخول حصري إلى <span class='font-rubik'>+OSN</span> و<span class='font-rubik'>Anghami</span> و<span class='font-rubik'>10Go</span> إنترنت، صالح لمدة شهر. الاشتراك قبل للتجديد تلقائيًا.",
-      success:
-        "لقد قمت بتفعيل اشتراكك بنجاح! حمّل <span class='font-rubik'>+OSN</span> و<span class='font-rubik'>Anghami</span> واستمتع به الأن!",
-      insufficient:
-        "رصيدك غير كافٍ لشراء هذا الاشتراك. يُرجى إعادة تعبئة حسابك.",
+        "استفد من محتويات ترفيهية رائعة في اشتراك واحد! دخول حصري إلى +OSN و Anghami و 10Go إنترنت، صالح لمدة شهر. الاشتراك قبل للتجديد تلقائيًا.",
+      success: "لقد قمت بتفعيل اشتراكك بنجاح! حمّل +OSN و Anghami واستمتع به الأن!",
+      insufficient: "رصيدك غير كافٍ لشراء هذا الاشتراك. يُرجى إعادة تعبئة حسابك.",
     },
   },
 };
