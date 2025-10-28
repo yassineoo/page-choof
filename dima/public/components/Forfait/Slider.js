@@ -139,8 +139,8 @@ export class Slider {
     return `
     <div role="article" aria-label="${
       offer.name || "forfait"
-    }" class="w-[290px] ${cardHeightClass} flex justify-center items-start rounded-xl border-[0.84px] border-[#C5C5C5] bg-white dark:bg-[#2C2C2C] shadow-sm dark:shadow-none">
-      <div class="flex flex-col justify-between items-center flex-1 h-full pb-6" ${
+    }" class="w-[270px] xs:w-[290px] ${cardHeightClass} flex justify-center items-start rounded-xl border-[0.84px] border-[#C5C5C5] bg-white dark:bg-[#2C2C2C] shadow-sm dark:shadow-none">
+      <div class="flex flex-col w-full justify-between items-center flex-1 h-full pb-6" ${
         isRTL ? 'dir="rtl"' : ""
       }>
         <div class="flex flex-col items-start gap-3.5 w-full px-[0.9px]">

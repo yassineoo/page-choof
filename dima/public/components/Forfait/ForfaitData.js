@@ -133,7 +133,7 @@ export default {
         data: "50Mo",
         price: "50",
         features: "Facebook illimité",
-        duration: "jusqu'à 00h",
+        duration: "jusqu'à minuit",
         buy: "Acheter",
       },
     ],
@@ -141,7 +141,7 @@ export default {
       {
         name: "Smart 200",
         data: "Internet gratuit",
-        features: ["Appels illimités vers Ooredoo", "600 DA de crédit"],
+        features: ["appels illimités vers Ooredoo", "600 DA de crédit"],
         price: "200",
         duration: "24 heures",
         buy: "Acheter",
@@ -150,7 +150,7 @@ export default {
         name: "Smart 100",
         data: "500Mo internet",
         features: [
-          "Appels illimités vers Ooredoo",
+          "appels illimités vers Ooredoo",
           "Facebook et Messenger illimités",
           "100 DA de crédit",
         ],

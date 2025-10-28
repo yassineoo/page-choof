@@ -222,7 +222,7 @@ export const generateHeaderHTML = (
                     : "<span class='font-rubik'>Mode :</span>"
                 }</span>
                 <div class="${
-                  language === "ar" && "flex-row-reverse"
+                  language === "ar" && "flex-row"
                 } relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
                   <button 
                     id="mactivia-btn"
@@ -316,7 +316,7 @@ export const generateHeaderHTML = (
                 : "<span class='font-rubik'>Mode :</span>"
             }</span>
             <div class="${
-              language === "ar" && "flex-row-reverse"
+              language === "ar" && "flex-row"
             } relative flex items-center bg-white rounded-full h-[32px] w-[190px] p-0.5">
               <button 
                 id="mactivia-btn-mobile"

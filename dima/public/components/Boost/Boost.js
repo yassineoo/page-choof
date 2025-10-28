@@ -482,12 +482,12 @@ class BoostComponent {
               </button>
 
               
-              <div class="text-center mb-6">
-                  <h2 id="modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+              <div class="text-center mb-6 border-2">
+                  <h2 id="modal-title" class="${fontClass} border-2 font-semibold text-ooredoo-red dark:text-white text-xl md:text-3xl leading-tight uppercase tracking-tight whitespace-nowrap">
                       ${this.createMixedTitleHTML(title)}
                   </h2>
               </div>
-              <div class="text-center mb-10">
+              <div class="text-center mb-10 bg-black">
                   <p class="${fontClass} text-gray-800 dark:text-white leading-relaxed text-base md:text-lg px-2">
                       ${message}
                   </p>

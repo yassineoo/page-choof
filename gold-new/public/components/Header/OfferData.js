@@ -17,7 +17,7 @@ export const offerData = {
     {
       planName: "Gold Jdida 1000",
       description:
-        "6Go + appels illimités vers Ooredoo + 2000 DA de crédit ",
+        "8Go + appels illimités vers Ooredoo + 2000 DA de crédit ",
       price: "1000",
       duration: "30 jours",
     },
@@ -40,7 +40,7 @@ export const offerData = {
     {
       planName: "Gold Jdida 1000",
       description:
-        "حجم 6Go إنترنت + مكالمات غير محدودة نحو ooredoo و2000 دج رصيد",
+        "حجم 8Go إنترنت + مكالمات غير محدودة نحو ooredoo و2000 دج رصيد",
       price: "1000",
       duration: "<span class=\"font-rubik\">30</span> يوم",
     },

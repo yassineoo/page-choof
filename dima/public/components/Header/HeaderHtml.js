@@ -428,3 +428,5 @@ export const generateHeaderHTML = (
 </header>
 `;
 };
+
+
