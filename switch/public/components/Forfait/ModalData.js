@@ -26,7 +26,7 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 1000. Veuillez recharger votre compte.`,
     },
     "Forfait 500": {
-      confirm: `6Go + Coupon Fayda`,
+      confirm: `6Go + Coupon Fayda, le tout valable 30 jours.`,
       success: `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en! `,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 500. Veuillez recharger votre compte.`,
     },
@@ -41,22 +41,22 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 100. Veuillez recharger votre compte.`,
     },
     "Forfait 50": {
-      confirm: `50Mo + Facebook illimité`,
+      confirm: `50Mo + Facebook illimité, le tout valable 30 jours.`,
       success: `Forfait 50Mo attribué + Facebook illimité, valables jusqu'à minuit.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 50. Veuillez recharger votre compte.`,
     },
     "Smart 200": {
-      confirm: `INTERNET gratuit + 600 DA de BONUS + Appels illimités vers Ooredoo, valables 24H pour 200 DA seulement`,
-      success: `INTERNET gratuit + 600 DA de BONUS attribués + Appels illimités vers Ooredoo, valables 24H`,
+      confirm: `Internet gratuit + appels illimités vers Ooredoo + 600 DA de crédit, le tout valable 24 heures. `,
+      success: `Vous avez reçu internet gratuit + appels illimités vers Ooredoo + 600 DA de crédit, le tout valable 24 heures.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 200. Veuillez recharger votre compte.`,
     },
     "Smart 100": {
-      confirm: `100 DA vers TOUS les réseaux + Facebook et Messenger illimités + 500Mo + Appels illimités vers Ooredoo, valables 24H pour 100 DA seulement`,
-      success: `100 DA vers TOUS les réseaux + Facebook et Messenger illimités + 500Mo + Appels illimités vers Ooredoo, valables 24H attribués.`,
+      confirm: `500Mo internet + appels illimités vers Ooredoo + Facebook et Messenger illimités + 100 DA de crédit, le tout valable 24 heures. `,
+      success: `Vous avez reçu 500Mo internet + appels illimités vers Ooredoo + Facebook et Messenger illimités + 100 DA de crédit, le tout valable 24 heures. `,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 100. Veuillez recharger votre compte.`,
     },
     "Smart 50": {
-      confirm: `200Mo d'internet + 30 minutes vers ooredoo, valables 24H pour 50 DA seulement.`,
+      confirm: `200Mo internet + 30 minutes vers Ooredoo, le tout valable 24 heures. `,
       success: `200 Mo d'internet + 30 minutes vers Ooredoo attribués, valables 24H`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 50. Veuillez recharger votre compte.`,
     },

@@ -15,6 +15,13 @@ export const offerData = {
       duration: "30 jours",
     },
     {
+      planName: "DIMA 2000",
+      description:
+        "100Go + appels illimités vers ooredoo + 200 SMS & 300 min appels  + ANAFLIX, ANAZIK & Facebook Gratuits",
+      price: "2000",
+      duration: "30 jours",
+    },
+    {
       planName: "DIMA 1500",
       description:
         "30Go + 150 min + appels illimités vers Ooredoo + 150 SMS valables vers tous les réseaux nationaux + Facebook et ANAFLIX",

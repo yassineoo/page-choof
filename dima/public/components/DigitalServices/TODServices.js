@@ -142,7 +142,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
     const tab = document.createElement("button");
     tab.type = "button";
     tab.className = [
-      "rounded-full px-[15px] py-[5px]  text-[15px] flex-1 transition-all duration-150 font-normal ring-0",
+      "rounded-full px-[15px] py-[5px] whitespace-nowrap text-[15px] flex-1 transition-all duration-150 font-normal ring-0",
       "shadow",
       i === currentDuration ? "bg-[#ED1C24] text-white tod-tab-shadow" : "bg-white dark:bg-[#2C2C2C] text-black dark:text-white",
     ].join(" ");
@@ -397,7 +397,7 @@ export default class TODServices {
 
     hook.innerHTML = `
       <div class="fixed inset-0 z-[9999] flex items-center justify-center px-4" style="background-color:#696969CC">
-        <div class="relative bg-white  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] mx-auto px-8 pt-14 pb-10">
+        <div class="relative bg-white  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] mx-auto px-4 pt-14 pb-10">
           ${closeButton}
           <div class="${modalTitleClass}">
             ${title}

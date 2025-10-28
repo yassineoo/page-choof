@@ -32,7 +32,7 @@ export const migrationData = {
         "Vous allez changer vers l'offre N'YOOZ, ceci peut entrainer la perte de votre forfait en cours.",
       successTitle: "MIGRATION",
       successMessage:
-        "Bienvenue sur N'YOOZ ! Télécharge vite l'application My Ooredoo gratuitement pour acheter ou composer le forfait de ton choix et vis pleinement l'aventure <a href='https://ore.do/yo' class='underline text-blue-600'>https://ore.do/yo</a> N'YOOZ ! <br/> Retrouve tes forfaits sur *151#.",
+        "Bienvenue sur N'YOOZ ! Télécharge vite l'application My Ooredoo gratuitement pour acheter ou composer le forfait de ton choix et vis pleinement l'aventure N'YOOZ ! <a href='https://ore.do/yo' class='underline text-blue-600'>https://ore.do/yo</a> <br/> Retrouve tes forfaits sur *151#.",
     },
   },
   ar: {

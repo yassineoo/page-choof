@@ -33,14 +33,20 @@ function generateModalContent(offers, lang) {
       ? offer.features.join(" + ")
       : offer.features;
 
-    const fullDescription = `<span dir="ltr">${offer.data}</span> + ${featuresString}, ${
+    const fullDescription = offer.name === "Forfait 500" ? 
+    `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en ! `
+    :
+    `<span dir="rtl">${offer.data}</span> + ${featuresString}, ${
       isArabic ? "الكل صالح لمدة" : "le tout valable"
     } ${offer.duration}.`;
 
     const successPreamble = isArabic ? ` لقد حصلت على` : `Vous avez reçu`;
 
-    const successDescription = `<span dir="ltr">${offer.data}</span> + ${featuresString}, ${
-      isArabic ? "الكل صالح لمدة" : "le tout valable"
+    const successDescription = offer.name === "اشتراك <span class='font-rubik'>500</span>" ? 
+    `لقد حصلت على6Go  إنترنت + تخفيضات عند شركائنا، الكل صالح 30 يوم. حمّل التطبيق فايدة واستفد من المزايا!  ` 
+    : 
+    `<span dir="rtl">${offer.data}</span> + ${featuresString}, ${
+      isArabic ? "الكل صالح" : "le tout valable"
     } ${offer.duration}.`;
 
     const hasShahid = /SHAHID|شاهد/i.test(featuresString || "");

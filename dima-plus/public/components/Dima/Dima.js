@@ -234,7 +234,7 @@ export default class Dima {
     `.replace(/\s+/g, " ");
 
     const closeButton = `
-      <button class="absolute top-6 right-6 p-2 z-10" aria-label="Fermer" tabindex="0">
+      <button class="absolute top-2 right-2 p-2 z-10" aria-label="Fermer" tabindex="0">
         <img src="./assets/images/Close.svg" alt="close" style="width:25px;height:25px;display:block"/>
       </button>
     `;
@@ -262,7 +262,7 @@ export default class Dima {
           <div class="${modalTitleClass}">
             ${title}
           </div>
-          <div class="font-rubik text-[#262626] leading-snug text-center max-w-[70%] mx-auto mb-8">
+          <div class="font-rubik text-[#262626] leading-snug text-center max-w-[90%] mx-auto mb-8">
             ${message}
           </div>
           <div class="flex flex-wrap justify-center gap-3">

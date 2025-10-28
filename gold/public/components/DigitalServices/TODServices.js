@@ -142,7 +142,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
     const tab = document.createElement("button");
     tab.type = "button";
     tab.className = [
-      "rounded-full px-[15px] py-[5px]  text-[15px] flex-1 transition-all duration-150 font-normal ring-0",
+      "rounded-full px-[15px] py-[5px] whitespace-nowrap text-[15px] flex-1 transition-all duration-150 font-normal ring-0",
       "shadow",
       i === currentDuration ? "bg-[#ED1C24] text-white tod-tab-shadow" : "bg-white dark:bg-[#2C2C2C] text-black dark:text-white",
     ].join(" ");
@@ -368,13 +368,13 @@ export default class TODServices {
 
     const modalTitleClass = `
       font-semibold text-ooredoo-red dark:text-white
-      text-[26px] sm:text-[30px] leading-[55.86px]
+      text-[22px] sm:text-[30px] 
       uppercase text-center tracking-[-0.02em]
       mb-6
     `.replace(/\s+/g, " ");
 
     const closeButton = `
-      <button class="absolute top-6 right-6 p-2 z-10" aria-label="Fermer" tabindex="0">
+      <button class="absolute top-2 right-2 p-2 z-10" aria-label="Fermer" tabindex="0">
         <img src="./assets/images/Close.svg" alt="close" style="width:25px;height:25px;display:block"/>
       </button>
     `;
@@ -397,12 +397,12 @@ export default class TODServices {
 
     hook.innerHTML = `
       <div class="fixed inset-0 z-[9999] flex items-center justify-center px-4" style="background-color:#696969CC">
-        <div class="relative bg-white  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] mx-auto px-8 pt-14 pb-10">
+        <div class="relative bg-white  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] mx-auto px-4 pt-14 pb-10">
           ${closeButton}
           <div class="${modalTitleClass}">
             ${title}
           </div>
-          <div class=" dark:text-white text-[#262626] leading-snug text-center max-w-[70%] mx-auto mb-8">
+          <div class=" dark:text-white text-[#262626] leading-snug text-center max-w-[100%] mx-auto mb-8">
             ${message}
           </div>
           <div class="flex flex-nowrap justify-center gap-3">

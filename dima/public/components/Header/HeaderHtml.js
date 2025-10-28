@@ -51,9 +51,9 @@ export const generateHeaderHTML = (
   let prefixText, offerName;
   if (language === "fr") {
     prefixText = "Offre";
-    offerName = "Dima";
+    offerName = "Dima Ooredoo";
   } else {
-    let arOffer = "Offre Dima";
+    let arOffer = "Offre Dima Ooredoo";
     let name = arOffer.replace(/^Offre\s+/, "").trim();
     prefixText = "عرض";
     offerName = wrapLatin(name);

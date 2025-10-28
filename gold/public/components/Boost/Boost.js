@@ -478,7 +478,7 @@ class BoostComponent {
                       ${message}
                   </p>
               </div>
-              <div class="flex justify-center boost-modal-buttons">${buttons}</div>
+              <div class="flex justify-center flex-nowrap">${buttons}</div>
           </div>
       </div>
     `;
@@ -493,9 +493,9 @@ class BoostComponent {
     };
 
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `boost-modal-button primary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `boost-modal-button secondary ${fontClass} font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
-    const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
+    const primaryBtn = `boost-modal-button primary ${fontClass} font-semibold text-base uppercase w-36 xs:w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `boost-modal-button secondary ${fontClass} font-semibold text-base uppercase w-36 xs:w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const buttonGap = "gap-2 sm:gap-4 flex-nowrap";
 
     const buttonConfigs = {
       confirm: `

@@ -83,7 +83,7 @@ const conversionsData = {
     confirmBtn: "تأكيد",
     ok: "تم",
     successTitle: "هنيئًا!",
-    creditSuccessMessage: "لديك الآن رصيد 2500 دج.",
+    creditSuccessMessage: "لديك الآن 2000 دج رصيد. ",
     successDescription:
       "لقد حصلت على {planName} الذي يمنحك {planDescription}، الكل صالح لمدة {duration}.",
     convertBtn: "تحويل",

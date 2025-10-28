@@ -251,7 +251,7 @@ export const generateHeaderHTML = (
                     </defs>
                   </svg>
 
-                  <span id="mode-tooltip-desktop" class="${tooltipFontClass} absolute bg-white dark:bg-[#2C2C2C] text-[14px] text-[#575757] dark:text-white text-left ${tooltipPosition} md:left-1/2 md:right-1/2 ${language === "ar" ? "md:translate-x-1/2" : "md:-translate-x-1/2"} top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${tooltipRounded} py-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <span id="mode-tooltip-desktop" class="${tooltipFontClass} ${language === "ar" ? "text-right" : "text-left"} absolute bg-white dark:bg-[#2C2C2C] text-[14px] text-[#575757] dark:text-white ${tooltipPosition} md:left-1/2 md:right-1/2 ${language === "ar" ? "md:translate-x-1/2" : "md:-translate-x-1/2"} top-full mt-3 w-72 md:w-[26.5rem] p-4 shadow-lg rounded-lg border border-gray-200 z-50 ${tooltipRounded} py-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     ${getTooltipText(userData.mode || "mactivia", language)}
                   </span>
                 </span>
