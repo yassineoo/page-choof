@@ -26,7 +26,7 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 1000. Veuillez recharger votre compte.`,
     },
     "Forfait 500": {
-      confirm: `6Go internet + Coupon Fayda, le tout valable 30 jours.`,
+      confirm: `6Go internet + Coupons Fayda, le tout valable 30 jours.`,
       success: `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en! `,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 500. Veuillez recharger votre compte.`,
     },
