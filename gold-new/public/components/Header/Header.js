@@ -80,8 +80,8 @@ class Modal {
         <h2 class="font-semibold font-rubik text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight text-center mb-6">${title}</h2>
         <p class="text-black dark:text-white mb-6">${text}</p>
         <div class="flex justify-center gap-4">
-          <button id="modal-cancel-btn" type="button" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white min-w-[140px] sm:min-w-[180px] dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors px-6 py-2">${cancelText}</button>
-          <button id="modal-confirm-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors px-6 py-2 min-w-[140px] sm:min-w-[180px]">${confirmText}</button>
+          <button id="modal-cancel-btn" type="button" class="rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white min-w-[140px] text-[16px] sm:min-w-[180px] dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors px-6 py-2">${cancelText}</button>
+          <button id="modal-confirm-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 transition-colors px-6 py-2 min-w-[140px] sm:min-w-[180px] text-[16px]">${confirmText}</button>
         </div>
       </div>
     `;
