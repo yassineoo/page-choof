@@ -33,14 +33,23 @@ function generateModalContent(offers, lang) {
       ? offer.features.join(" + ")
       : offer.features;
 
-    const fullDescription = `${offer.data} + ${featuresString}, ${
-      isArabic ? "الكل صالح لمدة" : "le tout valable"
+    const fullDescription = offer.name === "Forfait 500" ? 
+    `6Go internet + Coupons Fayda, le tout valable 30 jours. `
+    :
+    `<span dir="rtl">${offer.data} ${offer.name.includes('Smart') ? ' ' : isArabic ? 'إنترنت ' : 'internet '}</span> + ${featuresString}, ${
+      isArabic ? !offer.price === 50 ? "الكل صالح لمدة" : "الكل صالح" : "le tout valable"
     } ${offer.duration}.`;
 
-    const successPreamble = isArabic ? ` لقد حصلت على` : `Vous avez reçu`;
+    const successPreamble = isArabic ? ` لقد حصلت على` : ` Vous disposez de`;
 
-    const successDescription = `${offer.data} + ${featuresString}, ${
-      isArabic ? "الكل صالح لمدة" : "le tout valable"
+    const successDescription = offer.name === "اشتراك <span class='font-rubik'>500</span>" ? 
+    `لقد حصلت على 6Go  إنترنت + تخفيضات عند شركائنا، الكل صالح 30 يوم. حمّل التطبيق فايدة واستفد من المزايا!  ` 
+    : 
+    offer.name === "Forfait 500" ?
+    `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en! `
+    :
+    `<span dir="rtl">${offer.data} ${offer.name.includes('Smart') ? '' : isArabic ? 'إنترنت ' : 'internet '}</span> + ${featuresString}, ${
+      isArabic ? "الكل صالح" : "le tout valable"
     } ${offer.duration}.`;
 
     const hasShahid = /SHAHID|شاهد/i.test(featuresString || "");
@@ -49,7 +58,7 @@ function generateModalContent(offers, lang) {
 
     modalContent[uniqueKey] = {
       confirm: fullDescription,
-      success: `${successPreamble} ${successDescription}`,
+      success: `${offer.name === "Forfait 500" ? '' : offer.name === "اشتراك <span class='font-rubik'>500</span>" ? '' : successPreamble} ${successDescription}`,
       insufficient: isArabic
         ? `رصيدك غير كافٍ لشراء ${formattedName}. يرجى تعبئة حسابك.`
         : `Votre crédit est insuffisant pour acheter ${formattedName}. Veuillez recharger votre compte.`,
@@ -60,6 +69,7 @@ function generateModalContent(offers, lang) {
 }
 
 const allForfaitsFR = [
+  ...(ForfaitData.fr?.forfaits || []).map((f) => ({ ...f, type: "forfait" })),
   ...(ForfaitData.fr?.internetForfaits || []).map((f) => ({
     ...f,
     type: "internet",
@@ -71,6 +81,7 @@ const allForfaitsFR = [
 ];
 
 const allForfaitsAR = [
+  ...(ForfaitData.ar?.forfaits || []).map((f) => ({ ...f, type: "forfait" })),
   ...(ForfaitData.ar?.internetForfaits || []).map((f) => ({
     ...f,
     type: "internet",

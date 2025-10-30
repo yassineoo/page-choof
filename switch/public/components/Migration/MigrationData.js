@@ -11,7 +11,7 @@ export const migrationData = {
     successTitle: "FÉLICITATIONS !",
     change: "Voulez-vous changer vers l'offre « La Gold » ?",
     changeDima: "500 DA vous seront débités pour l'activation de l'option partage",
-    changeNyooz: "Vous pouvez partager jusqu'à 30 Go.",
+    changeNyooz: "Vous pouvez partager jusqu'à 30Go.",
     ok: "OK",
     changeOfferGeneric: "Activer l'option partage",
     termsAndConditions:
@@ -39,9 +39,9 @@ export const migrationData = {
       confirmTitle: "FÉLICITATIONS !",
       confirmDescription:
         "Limite de  partage  sélectionnée  avec succès !",
-      successTitle: "CRÉDIT INSUFFISANT",
+      successTitle: "LIMITE DE PARTAGE",
       successMessage:
-        "Pour acheter l'abonnement, veuillez recharger votre crédit.",
+        "Vous avez atteint la limite de partage !",
     },
   },
   ar: {
@@ -82,9 +82,9 @@ export const migrationData = {
       confirmTitle: "هنيئًا!",
       confirmDescription:
         "تم اختيار حد مشاركة الإنترنت بنجاح.",
-      successTitle: "رصيد غير كافٍ",
+      successTitle: "حد المشاركة",
       successMessage:
-        "لشراء الاشتراك، يُرجى تعبئة رصيدك.",
+        "لقد وصلت إلى الحد المسموح به من مشاركة الإنترنت!",
     },
   },
 };
