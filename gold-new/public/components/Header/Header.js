@@ -134,6 +134,8 @@ export default class Header {
     };
     this.isTransitioning = false;
     this.boundOnClick = null;
+    this.boundOutsideClick = null;
+    this.boundEscapeKey = null;
   }
   getFontClass() {
     return this.currentLanguage === "ar"
@@ -222,6 +224,9 @@ export default class Header {
   }
   setTheme(theme) {
     if (theme === this.theme) return;
+    const wasOpen = this.mobileMenuOpen;
+    const header = document.querySelector("header");
+    if (header) header.classList.add("rendering");
     this.theme = theme;
     document.documentElement.classList.toggle("dark", theme === "dark");
     localStorage.setItem("theme", theme);
@@ -229,6 +234,8 @@ export default class Header {
     setTimeout(() => {
       this.setupEventListeners();
       this.updateThemeUI();
+      if (header) header.classList.remove("rendering");
+      if (wasOpen) this.toggleMobileMenu();
     }, 0);
   }
   updateThemeUI() {
@@ -240,9 +247,19 @@ export default class Header {
   initThemeSwitcher() {
     const moonBtn = document.getElementById("moon-btn");
     const sunBtn = document.getElementById("sun-btn");
-    if (moonBtn && sunBtn) {
-      moonBtn.addEventListener("click", () => this.setTheme("dark"));
-      sunBtn.addEventListener("click", () => this.setTheme("light"));
+    if (moonBtn) moonBtn.replaceWith(moonBtn.cloneNode(true));
+    if (sunBtn) sunBtn.replaceWith(sunBtn.cloneNode(true));
+    const moonBtnNew = document.getElementById("moon-btn");
+    const sunBtnNew = document.getElementById("sun-btn");
+    if (moonBtnNew && sunBtnNew) {
+      moonBtnNew.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.setTheme("dark");
+      });
+      sunBtnNew.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.setTheme("light");
+      });
       this.updateDesktopThemeSwitcher();
     }
   }
@@ -266,26 +283,21 @@ export default class Header {
   initMobileThemeSwitcher() {
     const mobileThemeBtn = document.getElementById("theme-mobile-switcher");
     if (mobileThemeBtn) {
-      mobileThemeBtn.addEventListener("click", () => {
-        this.setTheme(this.theme === "dark" ? "light" : "dark");
-      });
-      this.updateMobileThemeIcons();
+      mobileThemeBtn.replaceWith(mobileThemeBtn.cloneNode(true));
+      const mobileThemeBtnNew = document.getElementById(
+        "theme-mobile-switcher"
+      );
+      if (mobileThemeBtnNew) {
+        mobileThemeBtnNew.addEventListener("click", () => {
+          this.setTheme(this.theme === "dark" ? "light" : "dark");
+        });
+        this.updateMobileThemeIcons();
+      }
     }
   }
   updateMobileThemeIcons() {
-    const isDark = this.theme === "dark";
-    document
-      .getElementById("mobile-sun-icon")
-      ?.classList.toggle("hidden", isDark);
-    document
-      .getElementById("mobile-sun-icon-dark")
-      ?.classList.toggle("hidden", !isDark);
-    document
-      .getElementById("mobile-moon-icon")
-      ?.classList.toggle("hidden", !isDark);
-    document
-      .getElementById("mobile-moon-icon-dark")
-      ?.classList.toggle("hidden", isDark);
+    const el = document.getElementById("mobile-moon-icon");
+    if (el) el.classList.toggle("hidden", this.theme === "dark");
   }
   initLanguageSwitcher() {
     const desktopDropdown = document.getElementById("language-desktop");
@@ -333,7 +345,10 @@ export default class Header {
         e.stopPropagation();
         this.toggleMobileMenu();
       });
-      document.addEventListener("click", (e) => {
+      if (this.boundOutsideClick) {
+        document.removeEventListener("click", this.boundOutsideClick);
+      }
+      this.boundOutsideClick = (e) => {
         if (
           this.mobileMenuOpen &&
           !mobileMenu.contains(e.target) &&
@@ -341,10 +356,15 @@ export default class Header {
         ) {
           this.closeMobileMenu();
         }
-      });
-      document.addEventListener("keydown", (e) => {
+      };
+      document.addEventListener("click", this.boundOutsideClick);
+      if (this.boundEscapeKey) {
+        document.removeEventListener("keydown", this.boundEscapeKey);
+      }
+      this.boundEscapeKey = (e) => {
         if (e.key === "Escape" && this.mobileMenuOpen) this.closeMobileMenu();
-      });
+      };
+      document.addEventListener("keydown", this.boundEscapeKey);
       this.updateMobileMenuIcons();
     }
   }
@@ -407,21 +427,19 @@ export default class Header {
   }
   updateMobileMenuIcons() {
     const isDark = this.theme === "dark";
-    [
-      { id: "mobile-menu-icon", visible: !this.mobileMenuOpen && !isDark },
-      { id: "mobile-menu-icon-dark", visible: !this.mobileMenuOpen && isDark },
-      { id: "mobile-menu-close-icon", visible: this.mobileMenuOpen && !isDark },
-      {
-        id: "mobile-menu-close-icon-dark",
-        visible: this.mobileMenuOpen && isDark,
-      },
-    ].forEach(({ id, visible }) => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.style.transition = "all 0.25s ease";
-        el.classList.toggle("hidden", !visible);
-      }
-    });
+    const isOpen = this.mobileMenuOpen;
+    const lightMenu = document.getElementById("mobile-menu-icon");
+    const darkMenu = document.getElementById("mobile-menu-icon-dark");
+    const lightClose = document.getElementById("mobile-menu-close-icon");
+    const darkClose = document.getElementById("mobile-menu-close-icon-dark");
+
+    if (lightMenu)
+      lightMenu.style.display = isOpen || isDark ? "none" : "block";
+    if (darkMenu) darkMenu.style.display = !isOpen && isDark ? "block" : "none";
+    if (lightClose)
+      lightClose.style.display = isOpen && !isDark ? "block" : "none";
+    if (darkClose)
+      darkClose.style.display = isOpen && isDark ? "block" : "none";
   }
   initRenewalInfoCard() {
     const infoBtn = document.getElementById("auto-renewal-info");

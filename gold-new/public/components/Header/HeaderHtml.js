@@ -6,9 +6,8 @@ export const generateHeaderHTML = (
   theme = "light"
 ) => {
   const texts = offerData.text[language] || offerData.text.fr;
-  //const isAuto = userData.autoRenewal;
   const storedRenewal = localStorage.getItem("autoRenewal");
-  const isAuto = storedRenewal !== null ? JSON.parse(storedRenewal) : true
+  const isAuto = storedRenewal !== null ? JSON.parse(storedRenewal) : true;
   const fontClass = language === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
   const containsArabic = (text = "") =>
     /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(text);
@@ -27,7 +26,7 @@ export const generateHeaderHTML = (
     }
     return `<span class="${fontClass}" dir="auto">${safe}</span>`;
   };
-  
+
   const getOfferDetails = (offer) => {
     if (!offer || typeof offer !== "string")
       return { name: "Dima", price: "XXXX" };
@@ -143,6 +142,8 @@ export const generateHeaderHTML = (
   html[lang="ar"], [dir="rtl"] { font-family: 'Noto Kufi Arabic', sans-serif; }
   .arabic-text { direction: rtl; unicode-bidi: isolate-override; -webkit-font-smoothing: antialiased; }
   [dir="rtl"] .language-dropdown-menu { left: 0; right: auto; }
+  header { transition: all 0.2s ease; opacity: 1; }
+  header.rendering { opacity: 0.7; }
 </style>
 
 <header class="bg-white dark:bg-[#171717] z-30 relative w-full" dir="${
@@ -194,8 +195,8 @@ export const generateHeaderHTML = (
               language === "fr" ? "font-semibold text-ooredoo-red" : ""
             }">Français</a>
             <a href="#" class="font-noto-kufi-arabic language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-black dark:text-white transition-all duration-300 ${
-    language === "ar" ? "font-semibold text-ooredoo-red" : ""
-  }">العربية</a>
+              language === "ar" ? "font-semibold text-ooredoo-red" : ""
+            }">العربية</a>
           </div>
         </div>
       </div>
@@ -203,22 +204,19 @@ export const generateHeaderHTML = (
       <button id="mobile-menu-btn" class="md:hidden p-2" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
         <img src="./assets/images/header/Menu.svg" class="w-6 h-6 dark:hidden block" id="mobile-menu-icon" />
         <img src="./assets/images/header/Menu-white.svg" class="w-6 h-6 hidden dark:inline" id="mobile-menu-icon-dark" />
-        <img src="./assets/images/header/close.svg" class="w-6 h-6 hidden" id="mobile-menu-close-icon" />
+        <img src="./assets/images/header/close.svg" class="w-6 h-6 hidden dark:hidden" id="mobile-menu-close-icon" />
+        <img src="./assets/images/header/close-white.svg" class="w-6 h-6 hidden dark:block" id="mobile-menu-close-icon-dark" />
       </button>
     </div>
 
     <div id="mobile-menu" role="navigation" aria-hidden="true" class="absolute top-[64px] left-0 w-full shadow-lg bg-white dark:bg-[#171717] md:hidden pb-6 border-b border-gray-200 dark:border-gray-700 hidden z-40" style="transform: translateY(-10px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease;">
       <div class="flex flex-col space-y-4 pt-4 px-4 text-black dark:text-white bg-white dark:bg-[#171717]">
-        <div class="flex items-center gap-3 py-2">
+        <div class="flex items-center gap-2 py-2">
           <button id="theme-mobile-switcher" class="flex items-center gap-2 w-full text-black dark:text-white" type="button" aria-pressed="false">
-            <span class="${theme === "dark" ? "inline" : "hidden"}">
-              <img src="./assets/images/header/sun.svg" class="w-5 h-5 dark:hidden" id="mobile-sun-icon" />
-              <img src="./assets/images/header/sun-white.svg" class="w-5 h-5 hidden dark:inline" id="mobile-sun-icon-dark" />
-            </span>
-            <span class="${theme === "dark" ? "hidden" : "inline"}">
-              <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden" id="mobile-moon-icon" />
-              <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" id="mobile-moon-icon-dark" />
-            </span>
+            <div class="w-5 h-5 flex-shrink-0">
+              <img src="./assets/images/header/moon.svg" class="w-5 h-5 dark:hidden" alt="Moon" />
+              <img src="./assets/images/header/moon-white.svg" class="w-5 h-5 hidden dark:block" alt="Moon" />
+            </div>
             <span class="${fontClass}">${texts.changeModeLabel}</span>
           </button>
         </div>
@@ -257,13 +255,17 @@ export const generateHeaderHTML = (
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
               <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white whitespace-nowrap font-rubik">${
-    userData.phone || "0509876543"
-  }</span>
+                userData.phone || "0509876543"
+              }</span>
             </div>
 
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white whitespace-nowrap">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>" : "Offre La Gold Jdida"}</span>
+              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white whitespace-nowrap">${
+                language === "ar"
+                  ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>"
+                  : "Offre La Gold Jdida"
+              }</span>
             </div>
 
             <div class="flex items-center gap-2">
@@ -273,7 +275,9 @@ export const generateHeaderHTML = (
               <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
                 <button 
                   id="renewal-auto"
-                  class="flex-1 flex ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'} items-center justify-start gap-[5px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
+                  class="flex-1 flex ${
+                    language === "ar" ? "flex-row-reverse" : "flex-row"
+                  } items-center justify-start gap-[5px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
                   style="font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
                     isAuto
                       ? "background:#ED1C24;color:#fff;"
@@ -316,7 +320,12 @@ export const generateHeaderHTML = (
           <div class="flex items-center gap-2 flex-shrink-0">
             <img src="./assets/images/header/Dollar.svg" class="w-6 h-6" />
             <span class="hdr-price ${fontClass}">${
-              userData.credit || "1200 DA"} ${language === 'ar' ? '<span class="font-noto-kufi-arabic">دج</span>' : '<span class="font-rubik">DA</span>'}
+    userData.credit || "1200 DA"
+  } ${
+    language === "ar"
+      ? '<span class="font-noto-kufi-arabic">دج</span>'
+      : '<span class="font-rubik">DA</span>'
+  }
             </span>
           </div>
         </div>
@@ -334,9 +343,9 @@ export const generateHeaderHTML = (
             <div class="flex items-center gap-2 flex-shrink-0">
               <img src="./assets/images/header/Dollar.svg" class="w-5 h-5 flex-shrink-0"/>
               <span class="font-medium text-[14px] leading-[1.7] tracking-[0.02em] text-white md:text-lg ${fontClass}">${formatCredit(
-                userData.credit || "1200 DA",
-                language
-              )}</span>
+    userData.credit || "1200 DA",
+    language
+  )}</span>
             </span>
             </div>
           </div>
@@ -344,14 +353,20 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${language === 'ar' ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>" : "Offre La Gold Jdida"}</span>
+              <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
+                language === "ar"
+                  ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>"
+                  : "Offre La Gold Jdida"
+              }</span>
             </div>
 
             <div>
               <button id="charge-btn" type="button" class="flex items-center px-[8px] py-[6px] rounded-full bg-white text-ooredoo-red border border-white dark:border-transparent shadow-sm">
                 <span class="${fontClass} font-semibold text-[10px]">${
-                 language === 'ar' ? '<span class="font-noto-kufi-arabic">تعبئة رصيدي</span>' : "CHARGER"
-                }</span>
+    language === "ar"
+      ? '<span class="font-noto-kufi-arabic">تعبئة رصيدي</span>'
+      : "CHARGER"
+  }</span>
                 <span class="ml-[4px] flex items-center gap-[3px]">
                   <img src="./assets/images/consommation/poste.svg" alt="" class="w-[16.5px] h-[16.5px]" />
                   <img src="./assets/images/consommation/baridi.svg" alt="" class="w-[16.5px] h-[16.5px]" />
@@ -365,7 +380,9 @@ export const generateHeaderHTML = (
               <span class="text-[12px] sm:text-[16px] whitespace-nowrap ${fontClass}">${
     texts.renewalLabel
   }</span>
-              <div class="relative flex ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'} items-center bg-white rounded-full h-[36px] w-[180px] md:w-[175px] p-0.5">
+              <div class="relative flex ${
+                language === "ar" ? "flex-row-reverse" : "flex-row"
+              } items-center bg-white rounded-full h-[36px] w-[180px] md:w-[175px] p-0.5">
                 <button 
                   id="renewal-auto-mobile"
                   class="flex-1 flex items-center justify-start gap-[3px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
@@ -397,7 +414,11 @@ export const generateHeaderHTML = (
 
               <button id="auto-renewal-info-mobile" class="w-6 h-6 flex items-center justify-center rounded-full bg-transparent text-white relative ml-2">
                 <img src="./assets/images/header/Info.svg" class="w-6 h-6 z-0" alt="Info" />
-                <div id="auto-renewal-card-mobile" class="absolute bg-white dark:bg-[#2C2C2C] text-left ${language === 'ar' ? 'lg:right-0 -translate-x-0' : 'lg:left-0 -translate-x-0'} left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
+                <div id="auto-renewal-card-mobile" class="absolute bg-white dark:bg-[#2C2C2C] text-left ${
+                  language === "ar"
+                    ? "lg:right-0 -translate-x-0"
+                    : "lg:left-0 -translate-x-0"
+                } left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 md:w-[22.5rem] p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
                   <div class="${fontClass}" style="${
     theme === "dark" ? infoCardDescStyleDark : infoCardDescStyle
   }">
