@@ -6,7 +6,9 @@ export const generateHeaderHTML = (
   theme = "light"
 ) => {
   const texts = offerData.text[language] || offerData.text.fr;
-  const isAuto = userData.autoRenewal;
+  //const isAuto = userData.autoRenewal;
+  const storedRenewal = localStorage.getItem("autoRenewal");
+  const isAuto = storedRenewal !== null ? JSON.parse(storedRenewal) : true
   const fontClass = language === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
   const containsArabic = (text = "") =>
     /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(text);
@@ -359,8 +361,8 @@ export const generateHeaderHTML = (
           </div>
 
           <div class="${fontClass} flex items-center justify-center">
-            <div class="flex items-center  gap-1 md:gap-3 z-0">
-              <span class="text-[16px] ${fontClass}">${
+            <div class="flex items-center flex-nowrap gap-1 md:gap-3 z-0">
+              <span class="text-[12px] sm:text-[16px] whitespace-nowrap ${fontClass}">${
     texts.renewalLabel
   }</span>
               <div class="relative flex ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'} items-center bg-white rounded-full h-[36px] w-[180px] md:w-[175px] p-0.5">
