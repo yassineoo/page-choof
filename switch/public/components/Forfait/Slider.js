@@ -51,7 +51,7 @@ export class Slider {
   createForfaitCard(offer, index, labels) {
     const isRTL = this.currentLang === "ar";
     const currencyLabel = isRTL ? "دج" : "DA";
-    const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
+    const buyLabel = (isRTL ? "تغيير" : "Switcher");
     const textAlign = isRTL ? "text-right" : "text-left";
 
     const titleFontClass = this.getFontClass(offer.name);

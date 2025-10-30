@@ -368,13 +368,13 @@ export default class TODServices {
 
     const modalTitleClass = `
       font-semibold text-ooredoo-red dark:text-white
-      text-[28px] md:text-[34px] leading-[55.86px]
+      text-[26px] md:text-[34px] leading-[55.86px]
       uppercase text-center tracking-[-0.02em]
       mb-6
     `.replace(/\s+/g, " ");
 
     const closeButton = `
-      <button class="absolute top-[15px] right-[15px] p-2 z-10" aria-label="Fermer" tabindex="0">
+      <button class="absolute top-2 right-2 p-2 z-10" aria-label="Fermer" tabindex="0">
         <img src="./assets/images/Close.svg" alt="close" style="width:25px;height:25px;display:block"/>
       </button>
     `;
@@ -397,12 +397,12 @@ export default class TODServices {
 
     hook.innerHTML = `
       <div class="fixed inset-0 z-[9999] flex items-center justify-center px-4" style="background-color:#696969CC">
-        <div class="relative bg-white  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] mx-auto px-4 pt-14 pb-10">
+        <div class="relative bg-white  dark:bg-[#2c2c2c]  rounded-[18px] shadow-xl w-full max-w-[640px] mx-auto px-4 pt-12 pb-10">
           ${closeButton}
           <div class="${modalTitleClass}">
             ${title}
           </div>
-          <div class=" dark:text-white text-[#262626] leading-snug text-center max-w-[70%] mx-auto mb-8">
+          <div class=" dark:text-white text-[#262626] leading-snug text-center max-w-[90%] mx-auto mb-8">
             ${message}
           </div>
           <div class="flex flex-nowrap justify-center gap-3">

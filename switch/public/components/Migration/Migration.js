@@ -55,10 +55,6 @@ class Migration {
       color: #ffffffff;
       box-shadow: none;
     }
-
-    .footer-btn {
-      min-width: 150px;
-      }
  
     .migration-card-shadow {
       box-shadow: 0px 7px 15px 0px rgba(79,79,79,0.10);
@@ -158,6 +154,16 @@ class Migration {
       line-height: 1.05;
       word-break: break-word;
     }
+      .migration-share {
+      font-weight: 500;
+      font-size: clamp(1rem, 4.5vw, 2.625rem);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      text-align: center;
+      width: 100%;
+      line-height: 1.05;
+      word-break: break-word;
+    }
     .migration-description {
       font-weight: 400;
       font-size: clamp(1rem, 2.2vw, 1.375rem);
@@ -198,7 +204,6 @@ class Migration {
       background-color: #e30613;
       color: white;
       border: none;
-      padding: 0.75rem 1.5rem;
       border-radius: 9999px;
       font-size: clamp(0.875rem, 2.2vw, 1rem);
       cursor: pointer;
@@ -669,8 +674,8 @@ class Migration {
           data[id] || data[id + "Label"] || id.toUpperCase();
         const displayName =
           data[id] || id.charAt(0).toUpperCase() + id.slice(1);
-        return `<button class="${isRTL ? "font-noto-kufi-arabic" : "font-rubik"} migration-buy-btn migration-button-zone py-[10px] w-[300px]" data-provider="${id}" aria-label="${displayName}">
-                <span class="text-[16px]">${labelFromData}</span>
+        return `<button class="${isRTL ? "font-noto-kufi-arabic" : "font-rubik"} migration-buy-btn migration-button-zone py-[10px] px-1 w-full max-w-[300px]" data-provider="${id}" aria-label="${displayName}">
+                <span class="text-[14px] sm:text-[16px]">${labelFromData}</span>
               </button>`;
       })
       .join("\n");
@@ -690,7 +695,7 @@ class Migration {
       )}</h2>
       <p class="migration-description">${description}</p>
     </div>
-                 <div class="flex items-center gap-4 justify-center flex-col-reverse sm:flex-row-reverse flex-nowrap">
+                 <div class="flex w-full items-center gap-4 justify-center flex-col-reverse sm:flex-row-reverse flex-nowrap">
       ${providerButtonsHTML}
     </div>
             </div>
@@ -756,11 +761,11 @@ class Migration {
           </div>
           <div class="rounded-b-[22.5px] min-h-[200px] px-4 py-10 text-center" style="${roundedInlineStyle}">
             ${providerId === 'dima'?
-              `<p class="migration-title">
+              `<p class="font-medium text-[clamp(1.3rem,4vw,2rem)] mb-6 uppercase text-center w-full leading-[1.05] break-words">
               ${isRTL ? "تفعيل ميزة المشاركة" : "Activer l'option partage"}
             </p>`
           :
-          `<p class="migration-title">
+          `<p class="font-medium text-[clamp(1.3rem,4vw,2rem)] mb-6 uppercase text-center w-full leading-[1.05] break-words">
               ${isRTL ? "اختيار حجم المشاركة" : "Choisir la limite de partage"}
             </p>`
         }
@@ -770,24 +775,24 @@ class Migration {
 
             
             ${providerId === 'dima' ?
-            `<div class="flex items-center gap-4 justify-center">
-              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white footer-btn max-w-[150px] sm:max-w-[180px]">
-                <span class="text-[16px]">${cancelBtn}</span>
+            `<div class="flex items-center gap-2 sm:gap-4 justify-center">
+              <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white footer-btn w-[140px] sm:max-w-[180px]">
+                <span class="text-[14px] sm:text-[16px]">${cancelBtn}</span>
               </button>
-              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none h-12 rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase footer-btn max-w-[150px] sm:max-w-[180px]">
-                <span class="text-[16px]">${confirmBtn}</span>
+              <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-[#e30613] text-white border-none h-12 rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase footer-btn w-[140px] sm:max-w-[180px]">
+                <span class="text-[14px] sm:text-[16px]">${confirmBtn}</span>
               </button>
             </div>`
             :
             `<div>
               <div class="flex items-center gap-4 justify-center mb-6 flex-wrap">
                 ${arrayData.map(size => `
-                <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-ooredoo-red text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase w-[120px] sm:w-[180px]">
+                <button id="start-${providerId}-migration" class="relative overflow-hidden z-10 touch-manipulation bg-ooredoo-red text-white border-none px-6 py-[10px] rounded-full text-base cursor-pointer transition-all duration-300 ease-linear font-bold uppercase w-[140px] sm:max-w-[180px]">
                   <span class="text-[16px] font-rubik">${size}</span>
                 </button>`).join('')}
               </div>
               <div class="flex items-center gap-4 justify-center">
-                <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white footer-btn">
+                <button id="back-to-main" class="relative overflow-hidden z-10 font-semibold text-base uppercase w-[120px] sm:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-transparent text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white footer-btn">
                   <span class="text-[16px]">${cancelBtn}</span>
                 </button>
               </div>

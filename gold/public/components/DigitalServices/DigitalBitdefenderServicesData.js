@@ -2,7 +2,7 @@ export const bitdefenderPlans = [
   {
     id: "totalSecurity",
     title: "Total Security",
-    titleAr: "حماية كاملة",
+    titleAr: "حماية شاملة",
     subtitle: "Protégez jusqu'à 10 appareils",
     subtitleAr: "حماية تصل إلى 10 أجهزة",
     icon: "./assets/images/services/bitdefender/appareils-desktop.svg",

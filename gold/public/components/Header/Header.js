@@ -488,7 +488,7 @@ export default class Header {
           </button>
 
           <div class="w-full text-center pt-8 md:pt-0">
-            <h1 class="text-ooredoo-red dark:text-white ${fontClass} text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
+            <h1 class="text-ooredoo-red dark:text-white ${fontClass} text-[28px] lg:text-[30px] font-semibold uppercase mb-4 px-8">
               ${title}
             </h1>
             <p class="text-black dark:text-gray-300 ${fontClass} text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">
