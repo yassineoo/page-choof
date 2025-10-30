@@ -225,7 +225,11 @@ export default class Header {
     this.theme = theme;
     document.documentElement.classList.toggle("dark", theme === "dark");
     localStorage.setItem("theme", theme);
-    this.updateThemeUI();
+    this.render();
+    setTimeout(() => {
+      this.setupEventListeners();
+      this.updateThemeUI();
+    }, 0);
   }
   updateThemeUI() {
     this.updateDesktopThemeSwitcher();
