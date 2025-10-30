@@ -128,7 +128,7 @@ export default class Header {
     const storedOffer = localStorage.getItem("selectedOffer");
     this.userData = {
       phone: "0509876543",
-      offer: "Offre La Gold Jdida",
+      offer: storedOffer || "Offre La Gold Jdida",
       credit: "4000",
       autoRenewal: storedRenewal !== null ? JSON.parse(storedRenewal) : true,
     };
@@ -555,12 +555,15 @@ export default class Header {
       setTimeout(() => {
         this.userData.autoRenewal = false;
         localStorage.setItem("autoRenewal", "false");
-        this.updateRenewalUI();
-        this.modal.showAlert({
-          title: texts.manualSuccessTitle,
-          text: texts.manualSuccessDesc,
-          buttonText: texts.okBtn,
-        });
+        this.render();
+        setTimeout(() => {
+          this.setupEventListeners();
+          this.modal.showAlert({
+            title: texts.manualSuccessTitle,
+            text: texts.manualSuccessDesc,
+            buttonText: texts.okBtn,
+          });
+        }, 50);
       }, 350);
     };
     const closeBtnHTML =
@@ -569,7 +572,7 @@ export default class Header {
         : "";
     const fontClass = this.getFontClass();
     const customContent = `
-      <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] dark:border dark:border-gray-600 rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
+      <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
         ${closeBtnHTML}
         <div class="w-full text-center pt-8 md:pt-0">
           <h1 class="text-ooredoo-red dark:text-white ${fontClass} text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
@@ -597,7 +600,6 @@ export default class Header {
       cancelBtn.addEventListener("click", () => this.modal.close());
   }
   handleAutoRenewalClick() {
-    if (this.userData.autoRenewal) return;
     const texts = offerData.text[this.currentLanguage];
     const closeBtnHTML =
       this.modal && typeof this.modal.getCloseButtonHTML === "function"
@@ -654,29 +656,32 @@ export default class Header {
     if (cancelBtn) cancelBtn.addEventListener("click", cleanupAndClose);
   }
   showOfferConfirmation(offer, modalTexts) {
-    this.modal.showConfirmation({
-      title: offer.planName,
-      text: `${offer.description}${modalTexts.allValidFor}${offer.duration}.`,
-      confirmText: modalTexts.confirmBtn,
-      cancelText: modalTexts.cancelBtn,
-      onConfirm: () => {
-        this.modal.close();
-        setTimeout(() => {
-          this.userData.autoRenewal = true;
-          this.userData.offer = `Offre ${offer.planName}`;
-          localStorage.setItem("autoRenewal", "true");
-          localStorage.setItem("selectedOffer", this.userData.offer);
-          this.render();
+    this.modal.close();
+    setTimeout(() => {
+      this.modal.showConfirmation({
+        title: offer.planName,
+        text: `${offer.description}${modalTexts.allValidFor}${offer.duration}.`,
+        confirmText: modalTexts.confirmBtn,
+        cancelText: modalTexts.cancelBtn,
+        onConfirm: () => {
+          this.modal.close();
           setTimeout(() => {
-            this.setupEventListeners();
-            this.modal.showAlert({
-              title: modalTexts.autoSuccessTitle,
-              text: modalTexts.autoSuccessDesc(offer.price, offer.planName),
-              buttonText: modalTexts.okBtn,
-            });
-          }, 50);
-        }, 350);
-      },
-    });
+            this.userData.autoRenewal = true;
+            this.userData.offer = `Offre ${offer.planName}`;
+            localStorage.setItem("autoRenewal", "true");
+            localStorage.setItem("selectedOffer", this.userData.offer);
+            this.render();
+            setTimeout(() => {
+              this.setupEventListeners();
+              this.modal.showAlert({
+                title: modalTexts.autoSuccessTitle,
+                text: modalTexts.autoSuccessDesc(offer.price, offer.planName),
+                buttonText: modalTexts.okBtn,
+              });
+            }, 50);
+          }, 350);
+        },
+      });
+    }, 300);
   }
 }
