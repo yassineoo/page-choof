@@ -675,7 +675,7 @@ class Migration {
         const displayName =
           data[id] || id.charAt(0).toUpperCase() + id.slice(1);
         return `<button class="${isRTL ? "font-noto-kufi-arabic" : "font-rubik"} migration-buy-btn migration-button-zone py-[10px] px-1 w-full max-w-[300px]" data-provider="${id}" aria-label="${displayName}">
-                <span class="text-[14px] sm:text-[16px]">${labelFromData}</span>
+                <span class="text-[14px] sm:text-[16px] w-full">${labelFromData}</span>
               </button>`;
       })
       .join("\n");

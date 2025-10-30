@@ -72,11 +72,11 @@ class Modal {
     const contentHTML = `
       <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12">
         ${this.getCloseButtonHTML()}
-        <h2 class="text-2xl md:text-[34px] font-bold text-ooredoo-red dark:text-white mb-4 text-center">${title}</h2>
+        <h2 class="text-2xl md:text-[30px] font-bold text-ooredoo-red dark:text-white mb-4 text-center font-rubik">${title}</h2>
         <p class="text-[16px] lg:text-[21px] text-center text-gray-600 dark:text-gray-300 mb-6">${text}</p>
         <div class="flex justify-center gap-4">
-          <button id="modal-cancel-btn" type="button" class="font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">${cancelText}</button>
-          <button id="modal-confirm-btn" type="button" class="font-semibold text-base uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg">${confirmText}</button>
+          <button id="modal-cancel-btn" type="button" class="font-semibold text-base  sm:text-[18px] uppercase forfait-modal-button w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white">${cancelText}</button>
+          <button id="modal-confirm-btn" type="button" class="font-semibold text-base  sm:text-[18px] uppercase forfait-modal-button w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg">${confirmText}</button>
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@ class Modal {
         <h2 class="text-2xl md:text-[34px] font-bold text-ooredoo-red dark:text-white mb-4 text-center">${title}</h2>
         <p class="text-[16px] lg:text-[21px] text-center text-gray-600 dark:text-gray-300 mb-6">${text}</p>
         <div class="flex justify-center">
-          <button id="modal-ok-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 w-[180px] transition-colors px-6 py-2 text-[15.4px]">${buttonText}</button>
+          <button id="modal-ok-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 w-[180px] transition-colors px-6 h-12 text-[15.4px]">${buttonText}</button>
         </div>
       </div>
     `;
