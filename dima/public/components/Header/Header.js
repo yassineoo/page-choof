@@ -124,7 +124,7 @@ export default class Header {
     const storedOffer = localStorage.getItem("selectedOffer");
     this.userData = {
       phone: "0509876543",
-      offer: "Offre Dima Ooredoo",
+      offer: storedOffer || "Offre Dima Ooredoo",
       credit: "4000",
       autoRenewal: storedRenewal !== null ? JSON.parse(storedRenewal) : true,
     };
@@ -605,7 +605,6 @@ export default class Header {
       cancelBtn.addEventListener("click", () => this.modal.close());
   }
   handleAutoRenewalClick() {
-    if (this.userData.autoRenewal) return;
     const texts = offerData.text[this.currentLanguage];
     const closeBtnHTML =
       this.modal && typeof this.modal.getCloseButtonHTML === "function"
@@ -662,29 +661,32 @@ export default class Header {
     if (cancelBtn) cancelBtn.addEventListener("click", cleanupAndClose);
   }
   showOfferConfirmation(offer, modalTexts) {
-    this.modal.showConfirmation({
-      title: offer.planName,
-      text: `${offer.description}${modalTexts.allValidFor}${offer.duration}.`,
-      confirmText: modalTexts.confirmBtn,
-      cancelText: modalTexts.cancelBtn,
-      onConfirm: () => {
-        this.modal.close();
-        setTimeout(() => {
-          this.userData.autoRenewal = true;
-          this.userData.offer = `Offre ${offer.planName}`;
-          localStorage.setItem("autoRenewal", "true");
-          localStorage.setItem("selectedOffer", this.userData.offer);
-          this.render();
+    this.modal.close();
+    setTimeout(() => {
+      this.modal.showConfirmation({
+        title: offer.planName,
+        text: `${offer.description}${modalTexts.allValidFor}${offer.duration}.`,
+        confirmText: modalTexts.confirmBtn,
+        cancelText: modalTexts.cancelBtn,
+        onConfirm: () => {
+          this.modal.close();
           setTimeout(() => {
-            this.setupEventListeners();
-            this.modal.showAlert({
-              title: modalTexts.autoSuccessTitle,
-              text: modalTexts.autoSuccessDesc(offer.price, offer.planName),
-              buttonText: modalTexts.okBtn,
-            });
-          }, 50);
-        }, 350);
-      },
-    });
+            this.userData.autoRenewal = true;
+            this.userData.offer = `Offre ${offer.planName}`;
+            localStorage.setItem("autoRenewal", "true");
+            localStorage.setItem("selectedOffer", this.userData.offer);
+            this.render();
+            setTimeout(() => {
+              this.setupEventListeners();
+              this.modal.showAlert({
+                title: modalTexts.autoSuccessTitle,
+                text: modalTexts.autoSuccessDesc(offer.price, offer.planName),
+                buttonText: modalTexts.okBtn,
+              });
+            }, 50);
+          }, 350);
+        },
+      });
+    }, 300);
   }
 }
