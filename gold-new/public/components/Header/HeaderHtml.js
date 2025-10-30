@@ -270,7 +270,7 @@ export const generateHeaderHTML = (
               <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white whitespace-nowrap ${fontClass}">${
     texts.renewalLabel
   }</span>
-              <div class="relative flex ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'} items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
+              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
                 <button 
                   id="renewal-auto"
                   class="flex-1 flex ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'} items-center justify-start gap-[5px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
@@ -368,7 +368,7 @@ export const generateHeaderHTML = (
               <div class="relative flex ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'} items-center bg-white rounded-full h-[36px] w-[180px] md:w-[175px] p-0.5">
                 <button 
                   id="renewal-auto-mobile"
-                  class="flex-1 flex ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'} items-center justify-start gap-[3px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
+                  class="flex-1 flex items-center justify-start gap-[3px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
                   style="font-weight:500; font-size:0.95rem; padding: 4px 10px; border-radius:100px; ${
                     isAuto
                       ? "background:#ED1C24;color:#fff;"
