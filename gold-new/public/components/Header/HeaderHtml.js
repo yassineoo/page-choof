@@ -279,7 +279,7 @@ export const generateHeaderHTML = (
                       ? "background:#ED1C24;color:#fff;"
                       : "background:#fff;color:#2A2A2A;"
                   }">
-                  <img src="./assets/images/header/chevron-down.svg" class="w-5 h-5 ${
+                  <img src="./assets/images/header/chevron-down-g.svg" class="w-5 h-5 ${
                     isAuto ? "hidden" : ""
                   }" />
                   <img src="./assets/images/header/chevron-down-white.svg" class="w-5 h-5 ${
