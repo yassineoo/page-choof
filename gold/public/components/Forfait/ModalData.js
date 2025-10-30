@@ -47,7 +47,7 @@ export default {
     },
     "Forfait 100": {
       confirm: `700Mo internet + YouTube illimité , le tout valable 24 heures.`,
-      success: `Vous disposez de 700 Mo internet + YouTube illimité, le tout valable 24 heures.`,
+      success: `Vous disposez de 700Mo internet + YouTube illimité, le tout valable 24 heures.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 100. Veuillez recharger votre compte.`,
     },
     "Forfait 50": {
