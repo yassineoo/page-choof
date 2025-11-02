@@ -130,7 +130,7 @@ export const offerData = {
       manualSuccessDesc: 'Vous êtes sur le mode "Manuel".',
       autoModalTitle: "MODE DE RECHARGEMENT",
       autoModalDesc:
-        'Vous allez modifier votre mode de rechargement en "Automatique" :',
+        'Vous allez modifier votre mode de rechargement "Automatique" :',
       autoSuccessTitle: "FÉLICITATIONS !",
       autoSuccessDesc: (price, planName) =>
         `Vos prochains rechargements de ${price} DA et plus vous donneront les avantages de ${planName}, après expiration de votre forfait.`,
@@ -157,7 +157,7 @@ export const offerData = {
       manualSuccessTitle: "هنيئًا!",
       manualSuccessDesc: 'أنت الآن في الوضع "يدوي"',
       autoModalTitle: "وضع التعبئة",
-      autoModalDesc: 'ستقوم بتغيير وضع التعبئة إلى "تلقائي":',
+      autoModalDesc: 'ستقوم بتغيير وضع التعبئة "التلقائي":',
       autoSuccessTitle: "هنيئًا!",
       autoSuccessDesc: (price, planName) =>
         `تعبئاتك القادمة بقيمة ${price} دج وأكثر ستمنحك مزايا ${planName}، وهذا بعد انتهاء صلاحية اشتراكك.`,

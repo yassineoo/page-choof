@@ -140,10 +140,10 @@ export class Slider {
     <div role="article" aria-label="${
       offer.name || "forfait"
     }" class="w-[270px] xs:w-[290px] ${cardHeightClass} flex justify-center items-start rounded-xl border-[0.84px] border-[#C5C5C5] bg-white dark:bg-[#2C2C2C] shadow-sm dark:shadow-none">
-      <div class="flex flex-col w-full justify-between items-center flex-1 h-full pb-6" ${
+      <div class="flex flex-col w-full justify-between items-center flex-1 ${isRTL ? "h-[480px]" : "h-[450px]"} pb-6" ${
         isRTL ? 'dir="rtl"' : ""
       }>
-        <div class="flex flex-col items-start gap-3.5 w-full px-[0.9px]">
+        <div class="flex flex-col items-start gap-3 w-full px-[0.9px]">
           <div class="flex h-14 px-2.5 justify-center items-center w-full rounded-t-[11px] bg-ooredoo-red">
             <h3 class="${titleFont} text-white text-center text-2xl font-bold capitalize">
               ${offer.name || ""}
@@ -156,7 +156,7 @@ export class Slider {
             </div>
           </div>
 
-          <div class="flex px-5 flex-col items-start gap-1.5 w-full">
+          <div class="flex px-5 flex-col items-start gap-1.5 w-full mt-2">
             ${
               features.length
                 ? features
@@ -171,7 +171,7 @@ export class Slider {
                         </g>
                       </svg>
                     </div>
-                    <div class="flex-1 text-black dark:text-white ${this.getFontClass(
+                    <div class="text-black dark:text-white ${this.getFontClass(
                       feature
                     )} text-base font-normal leading-[22px]">
                       ${feature}
@@ -185,7 +185,7 @@ export class Slider {
         </div>
 
         <div class="flex flex-col items-center gap-5 w-full">
-          <div class="w-[290px] border-b-[1px] border-b-[#BBBEBE] dark:border-b-gray-600 border-dashed text-center py-3"></div>
+          <div class="w-full border-b-[1px] border-b-[#BBBEBE] dark:border-b-gray-600 border-dashed text-center"></div>
           <div class="flex flex-col justify-end items-center gap-2.5">
             <div class="text-black dark:text-white text-center ${this.getFontClass(
               priceNumber
@@ -362,7 +362,7 @@ export class Slider {
                           <g clip-path="url(#clip0)"><path d="M4.22656 7.87927L6.37732 10.03L10.6788 5.72852" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
                           </svg>
                         </span>
-                        <span class="${this.getFontClass(f)} text-[16px]">
+                        <span class="${this.getFontClass(f)} text-[16px] capitalize">
                           ${f}
                         </span>
                       </div>`

@@ -94,6 +94,9 @@ class Modal {
       cancelBtn.addEventListener("click", () => this.close());
     }
   }
+
+  
+
   showAlert({ title, text, buttonText = "OK" }) {
     const contentHTML = `
       <div class="relative bg-white dark:bg-[#2C2C2C]  rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12">
@@ -136,6 +139,7 @@ export default class Header {
       ? "font-noto-kufi-arabic"
       : "font-rubik";
   }
+
   async init() {
     document.documentElement.lang = this.currentLanguage;
     document.documentElement.dir =
@@ -617,7 +621,7 @@ export default class Header {
         <div class="p-6 md:p-8 text-center">
           <h2 class="${fontClass} text-2xl font-bold text-[20px] md:text-[28px] text-ooredoo-red dark:text-white mb-8">${texts.autoModalTitle}</h2>
           <p class="${fontClass} text-black dark:text-white mb-4 px-0 text-[14px] md:text-[22px] md:px-[30px]">
-            ${texts.autoModalDesc}
+            ${ this.userData.autoRenewal ? texts.autoModalDesc : this.currentLanguage === 'fr' ? 'Vous allez modifier votre mode de rechargement en "Automatique" :' : 'ستقوم بتغيير وضع التعبئة إلى "تلقائي":'}
           </p>
           <div class="mt-6">
             <button id="modal-cancel-btn" type="button" class="${fontClass} rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
