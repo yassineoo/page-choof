@@ -143,8 +143,8 @@ export class Slider {
       <div class="flex flex-col w-full justify-between items-center flex-1 ${isRTL ? "h-[480px]" : "h-[450px]"} pb-6" ${
         isRTL ? 'dir="rtl"' : ""
       }>
-        <div class="flex flex-col items-start gap-3 w-full px-[0.9px]">
-          <div class="flex h-14 px-2.5 justify-center items-center w-full rounded-t-[11px] bg-ooredoo-red">
+        <div class="flex flex-col items-start gap-3 w-full">
+          <div class="w-[270px] xs:w-[290px] flex h-14 px-2.5 justify-center items-center rounded-t-[11px] bg-ooredoo-red m-[-0.84px] mr-[-3px]">
             <h3 class="${titleFont} text-white text-center text-2xl font-bold capitalize">
               ${offer.name || ""}
             </h3>

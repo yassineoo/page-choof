@@ -370,7 +370,7 @@ export const generateHeaderHTML = (
 
           <div class="flex items-center justify-center">
             <div class="flex items-center  gap-1 md:gap-3">
-              <span class="hdr-common-text ${fontClass}">${
+              <span class="hdr-common-text whitespace-nowrap ${fontClass}">${
     texts.renewalLabel
   }</span>
               <div class="relative flex items-center bg-white rounded-full h-[36px] ${
