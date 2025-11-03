@@ -139,12 +139,12 @@ export class Slider {
     return `
     <div role="article" aria-label="${
       offer.name || "forfait"
-    }" class="w-[270px] xs:w-[290px] ${cardHeightClass} flex justify-center items-start rounded-xl border-[0.84px] border-[#C5C5C5] bg-white dark:bg-[#2C2C2C] shadow-sm dark:shadow-none">
+    }" class="w-full max-w-[320px] ${cardHeightClass} flex justify-center items-start rounded-xl border-[0.84px] border-[#C5C5C5] bg-white dark:bg-[#2C2C2C] shadow-sm dark:shadow-none">
       <div class="flex flex-col w-full justify-between items-center flex-1 ${isRTL ? "h-[480px]" : "h-[450px]"} pb-6" ${
         isRTL ? 'dir="rtl"' : ""
       }>
         <div class="flex flex-col items-start gap-3 w-full">
-          <div class="w-[270px] xs:w-[290px] flex h-14 px-2.5 justify-center items-center rounded-t-[11px] bg-ooredoo-red m-[-0.84px] mr-[-3px]">
+          <div class="w-full flex h-14 px-2.5 justify-center items-center rounded-t-[11px] bg-ooredoo-red">
             <h3 class="${titleFont} text-white text-center text-2xl font-bold capitalize">
               ${offer.name || ""}
             </h3>
@@ -236,7 +236,7 @@ export class Slider {
     const features = this._normalizeFeatures(offer.features);
 
     return `
-      <div class="relative bg-white pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
+      <div class="relative bg-white pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 320px;">
         <div class="h-full flex flex-col justify-between" ${
           isRTL ? `dir="rtl"` : ``
         }>
@@ -332,7 +332,7 @@ export class Slider {
     const features = this._normalizeFeatures(offer.features);
 
     return `
-      <div class="relative bg-white pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 340px;">
+      <div class="relative bg-white pb-6 dark:bg-[#2C2C2C] rounded-xl flex flex-col mx-auto forfait-card-shadow overflow-hidden" style="max-width: 320px;">
         <div class="h-full flex flex-col justify-between" ${
           isRTL ? `dir="rtl"` : ``
         }>
@@ -544,7 +544,7 @@ export class Slider {
       let swiper;
       try {
         swiper = new Swiper(swiperEl, {
-          slidesPerView: 1.3,
+          slidesPerView: 1,
           spaceBetween: 8,
           centeredSlides: true,
           loop: false,
@@ -558,6 +558,11 @@ export class Slider {
               }"></button>`;
             },
           },
+          breakpoints: {
+            370: {
+              slidesPerView: 1.3,
+            },
+            },
           on: {
             init: function (s) {
               try {

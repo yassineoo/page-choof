@@ -724,7 +724,7 @@ class Migration {
           data[id] || data[id + "Label"] || id.toUpperCase();
         const displayName =
           data[id] || id.charAt(0).toUpperCase() + id.slice(1);
-        return `<button class="migration-buy-btn migration-button-zone py-[10px]" data-provider="${id}" aria-label="${displayName}">
+        return `<button class="migration-buy-btn migration-button-zone font-rubik py-[10px]" data-provider="${id}" aria-label="${displayName}">
                 <span>${labelFromData}</span>
               </button>`;
       })

@@ -264,11 +264,11 @@ export default class Footer {
         <div class="flex justify-center gap-4">
           <button id="modal-confirm-btn"
             class="bg-ooredoo-red text-white px-6 h-12 w-[120px] sm:w-[150px] rounded-full font-medium transition">
-            ${language === "ar" ? "تأكيد" : "Confirm"}
+            ${language === "ar" ? "تفعيل" : "ACTIVER"}
           </button>
           <button id="modal-cancel-btn"
             class="bg-white border border-ooredoo-red text-ooredoo-red px-6 h-12 w-[120px] sm:w-[150px] rounded-full font-medium transition">
-            ${language === "ar" ? "إلغاء" : "Cancel"}
+            ${language === "ar" ? "إلغاء" : "ANNULER"}
           </button>
         </div>
       </div>
@@ -301,7 +301,7 @@ export default class Footer {
     const message =
       language === "ar"
         ? "لقد تم تفعيل خدمة شاهد ! بعد قليل، ستصلك رسالة قصيرة تحتوي على رابط"
-        : "Service Shahid activé ! Vous recevrez un SMS avec unlien sous peu.";
+        : "Service Shahid activé ! Vous recevrez un SMS avec un lien sous peu.";
 
     const modal = document.createElement("div");
     modal.className =
@@ -331,7 +331,7 @@ export default class Footer {
         <div class="flex justify-center">
           <button id="modal-ok-btn"
             class="bg-ooredoo-red text-white px-6 h-12 w-[120px] sm:w-[150px] rounded-full font-medium transition">
-            ${language === "ar" ? "حسناً" : "OK"}
+            ${language === "ar" ? "تم" : "OK"}
           </button>
         </div>
       </div>
