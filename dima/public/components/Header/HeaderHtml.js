@@ -427,6 +427,6 @@ export const generateHeaderHTML = (
   </div>
 </header>
 `;
-};
+}
 
 
