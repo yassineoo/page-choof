@@ -120,7 +120,18 @@ export class ModalSlider {
       return;
     }
 
-    const slidesHTML = this.slides
+    const storedRenewal = localStorage.getItem("autoRenewal") !== null ? JSON.parse(localStorage.getItem("autoRenewal")) : true;
+    console.log("first" , storedRenewal)
+    const slidesHTML = storedRenewal ? 
+      this.slides
+      .filter(offer => offer.planName !== "Gold Jdida 1000")
+      .map((offer) => `
+      <div class="swiper-slide" style="width: 287px; height: auto; padding-bottom: 10px;">
+        ${this.createCardHTML(offer)}
+      </div>
+    `).join("")
+    :
+    this.slides
       .map(
         (offer) => `
       <div class="swiper-slide" style="width: 287px; height: auto; padding-bottom: 10px;">

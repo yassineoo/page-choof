@@ -539,7 +539,7 @@ export default class Header {
       <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
         ${closeBtnHTML}
         <div class="w-full text-center pt-8 md:pt-0">
-          <h1 class="text-ooredoo-red dark:text-white ${fontClass} text-[28px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
+          <h1 class="text-ooredoo-red dark:text-white ${fontClass} text-[22px] lg:text-[28px] font-semibold uppercase mb-4 px-8">
             ${texts.manualModalTitle}
           </h1>
           <p class="${fontClass} text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">
@@ -547,10 +547,10 @@ export default class Header {
           </p>
         </div>
         <div class="flex justify-center gap-4 pb-4">
-          <button id="modal-cancel-btn" type="button" class="flex min-w-[140px] sm:min-w-[180px] max-w-[150px] sm:max-w-[280px] w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red ${fontClass} font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors py-2 px-6">
+          <button id="modal-cancel-btn" type="button" class="text-[16px] sm:text-[20px] flex min-w-[130px] sm:min-w-[180px] max-w-[150px] sm:max-w-[280px] w-full sm:w-auto justify-center items-center rounded-[22px] border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red ${fontClass} font-semibold uppercase hover:bg-ooredoo-red/5 transition-colors py-2 px-6">
             ${texts.cancelBtn}
           </button>
-          <button id="modal-confirm-btn" type="button" class="flex min-w-[140px] sm:min-w-[180px] max-w-[150px] sm:max-w-[280px] w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white ${fontClass} font-semibold uppercase hover:bg-red-700 transition-colors px-6 py-2">
+          <button id="modal-confirm-btn" type="button" class="text-[16px] sm:text-[20px] flex min-w-[130px] sm:min-w-[180px] max-w-[150px] sm:max-w-[280px] w-full sm:w-auto justify-center items-center rounded-[25px] bg-ooredoo-red text-white ${fontClass} font-semibold uppercase hover:bg-red-700 transition-colors px-6 py-2">
             ${texts.confirmBtn}
           </button>
         </div>
