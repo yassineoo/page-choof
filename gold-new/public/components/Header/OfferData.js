@@ -79,7 +79,7 @@ export const offerData = {
       manualLabel: "اليدوي",
       changeModeLabel: "تغيير الوضع",
       manualModalTitle: "وضع التعبئة",
-      manualModalDesc: 'ستقوم بتغيير وضع التعبئة إلى "يدوي"، وستحصل على رصيد غير مفعّل عند كل تعبئة.',
+      manualModalDesc: 'ستقوم بتغيير وضع التعبئة نحو "يدوي"، وستحصل على رصيد غير مفعّل عند كل تعبئة.',
       manualSuccessTitle: "هنيئًا!",
       manualSuccessDesc: 'أنت الآن في الوضع "يدوي"',
       autoModalTitle: "وضع التعبئة",
