@@ -275,9 +275,7 @@ export const generateHeaderHTML = (
               <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">
                 <button 
                   id="renewal-auto"
-                  class="flex-1 flex ${
-                    language === "ar" ? "flex-row-reverse" : "flex-row"
-                  } items-center justify-start gap-[5px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
+                  class="flex-1 flex items-center justify-start gap-[5px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"
                   style="font-weight:500; font-size:0.95rem; padding:4px 10px; border-radius:100px; ${
                     isAuto
                       ? "background:#ED1C24;color:#fff;"
@@ -336,7 +334,7 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white md:text-lg text-sm ${fontClass} truncate">${
+              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white md:text-lg text-sm font-rubik truncate">${
     userData.phone || "0509876543"
   }</span>
             </div>
@@ -353,10 +351,10 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Puce.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
+              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
                 language === "ar"
                   ? "عرض <span dir='ltr' class='font-rubik'>La Gold Jdida</span>"
-                  : "Offre La Gold Jdida"
+                  : "<span class='font-rubik'>Offre La Gold Jdida</span>"
               }</span>
             </div>
 
@@ -380,9 +378,7 @@ export const generateHeaderHTML = (
               <span class="text-[12px] sm:text-[16px] whitespace-nowrap ${fontClass}">${
     texts.renewalLabel
   }</span>
-              <div class="relative flex ${
-                language === "ar" ? "flex-row-reverse" : "flex-row"
-              } items-center bg-white rounded-full h-[36px] w-[180px] md:w-[175px] p-0.5">
+              <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] md:w-[175px] p-0.5">
                 <button 
                   id="renewal-auto-mobile"
                   class="flex-1 flex items-center justify-start gap-[3px] rounded-full h-[32px] transition-all duration-300 ${fontClass}"

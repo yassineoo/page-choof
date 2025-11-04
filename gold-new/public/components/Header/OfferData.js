@@ -87,7 +87,7 @@ export const offerData = {
       manualSuccessTitle: "هنيئًا!",
       manualSuccessDesc: 'أنت الآن في الوضع "يدوي"',
       autoModalTitle: "وضع التعبئة",
-      autoModalDesc: 'ستقوم بتغيير وضع التعبئة إلى "تلقائي":',
+      autoModalDesc: 'ستقوم بتغيير وضع التعبئة "التلقائي":',
       autoSuccessTitle: "هنيئًا!",
       autoSuccessDesc: (price, planName) =>
         `تعبئاتك القادمة بقيمة ${price} دج وأكثر تمنحك مزايا ${planName}، وذلك بعد انتهاء صلاحية اشتراكك.`,

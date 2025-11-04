@@ -619,7 +619,7 @@ export default class Header {
       <div class="relative w-full max-w-5xl bg-white dark:bg-[#2C2C2C] rounded-lg flex flex-col overflow-hidden">
         ${closeBtnHTML}
         <div class="p-6 md:p-8 text-center">
-          <h2 class="${fontClass} text-2xl font-bold text-[20px] md:text-[28px] text-ooredoo-red dark:text-white mb-8 ${this.currentLanguage === 'fr' ? 'mt-4' : 'mt-2  '}">${texts.autoModalTitle}</h2>
+          <h2 class="${fontClass} font-bold text-[20px] md:text-[28px] text-ooredoo-red dark:text-white mb-8 ${this.currentLanguage === 'fr' ? 'mt-4' : 'mt-2  '}">${texts.autoModalTitle}</h2>
           <p class="${fontClass} text-black dark:text-white mb-4 px-0 text-[14px] md:text-[22px] md:px-[30px]">
             ${ this.userData.autoRenewal ? texts.autoModalDesc : this.currentLanguage === 'fr' ? 'Vous allez modifier votre mode de rechargement en "Automatique" :' : 'ستقوم بتغيير وضع التعبئة إلى "تلقائي":'}
           </p>

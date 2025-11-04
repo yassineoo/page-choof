@@ -29,11 +29,8 @@ class Modal {
   getCloseButtonHTML() {
     return `
       <button id="modal-close-btn" type="button" aria-label="Close modal"
-        class="absolute top-[15px] right-[15px] p-2 z-10 rounded-full transition-all duration-200 forfait-modal-close bg-ooredoo-red text-white">
-        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M13.25 1.50391L1.25 13.5039M1.25 1.50391L13.25 13.5039"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        class="absolute top-[15px] right-[15px] w-[20px] h-[20px] md:w-[34px] md:h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20">
+        <img src="./assets/images/Close.svg" alt="close"/>
       </button>
       
     `;
@@ -632,18 +629,18 @@ export default class Header {
       <div class="relative w-full max-w-5xl bg-white dark:bg-[#2C2C2C] rounded-lg flex flex-col overflow-hidden">
         ${closeBtnHTML}
         <div class="p-6 pt-14 md:p-8 text-center">
-          <h2 class="${fontClass} text-2xl font-bold text-[28px] text-ooredoo-red dark:text-white mb-8">${texts.autoModalTitle}</h2>
-          <p class="${fontClass} text-black dark:text-white mb-4 px-0 text-[22px] md:px-[30px]">
-            ${ this.userData.autoRenewal ? texts.autoModalDesc : this.currentLanguage === 'fr' ? 'Vous allez modifier votre mode de rechargement en "Automatique" :' : 'ستقوم بتغيير وضع التعبئة إلى "تلقائي":'}
+          <h2 class="${fontClass} font-bold text-[20px] md:text-[28px] text-ooredoo-red dark:text-white mb-8 ${this.currentLanguage === 'fr' ? 'mt-4' : 'mt-2  '}">${texts.autoModalTitle}</h2>
+          <p class="${fontClass} text-black dark:text-white mb-4 px-0 text-[14px] md:text-[22px] md:px-[30px]">
+            ${this.userData.autoRenewal ? texts.autoModalDesc : this.currentLanguage === 'fr' ? 'Vous allez modifier votre mode de rechargement en "Automatique" :' : 'ستقوم بتغيير وضع التعبئة إلى "تلقائي":'}
           </p>
           <div class="mt-6">
-            <button id="modal-cancel-btn" type="button" class="${fontClass} rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors px-6 py-2">
+            <button id="modal-cancel-btn" type="button" class="${fontClass} rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
               ${texts.cancelBtn}
             </button>
           </div>
         </div>
         <div class="border-b border-gray-200 dark:border-white"></div>
-        <div class="bg-[#F8F8F8] dark:bg-[#2c2c2c] py-6">
+        <div class="bg-[#F8F8F8] dark:bg-[#2c2c2c] py-6 px-6">
           <div id="modal-slider-container"></div>
         </div>
       </div>`;

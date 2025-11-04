@@ -166,11 +166,14 @@ export class ModalSlider {
 
     try {
       this.swiper = new Swiper(swiperEl, {
-        slidesPerView: "auto",
+        slidesPerView: 1,
+        breakpoints: {
+          670: {
+            slidesPerView: 2,
+          },
+        },
         spaceBetween: 16,
         centeredSlides: false,
-        slidesOffsetBefore: sideOffset,
-        slidesOffsetAfter: sideOffset,
         pagination: {
           el: paginationEl,
           clickable: true,

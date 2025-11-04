@@ -461,7 +461,7 @@ export class Slider {
 
     setTimeout(() => {
       const swiper = new Swiper(container.querySelector(".swiper"), {
-        slidesPerView: 1.3,
+        slidesPerView: 1.1,
         spaceBetween: 8,
         centeredSlides: true,
         loop: false,
@@ -472,6 +472,11 @@ export class Slider {
           renderBullet: (index, className) => {
             return `<span class="${className} custom-dot"></span>`;
           },
+        },
+        breakpoints: {
+        370: {
+          slidesPerView: 1.3,
+        }
         },
         on: {
         init: () => {

@@ -16,13 +16,13 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait GOLD Jdida 2000. Veuillez recharger votre compte.`,
     },
     "Forfait 1500": {
-      confirm: `40Go internet + YouTube illimité, le tout valable 30 jours.`,
+      confirm: `40Go internet + Youtube illimité, le tout valable 30 jours.`,
       success: ` Vous disposez de 40Go internet + Youtube illimité, le tout valable 30 jours.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 1500. Veuillez recharger votre compte.`,
     },
     "Forfait 1000": {
-      confirm: `15Go internet + 5Go YouTube, le tout valable 30 jours.`,
-      success: `Vous disposez de 15Go internet + 5Go YouTube, le tout valable 30 jours.`,
+      confirm: `15Go internet + 5Go Youtube, le tout valable 30 jours.`,
+      success: `Vous disposez de 15Go internet + 5Go Youtube, le tout valable 30 jours.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 1000. Veuillez recharger votre compte.`,
     },
     "Forfait 500": {
@@ -31,13 +31,13 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 500. Veuillez recharger votre compte.`,
     },
     "Forfait 300": {
-      confirm: `3Go internet + YouTube illimité, le tout valable 72 heures.`,
-      success: `Vous disposez de 3Go internet + YouTube illimité, le tout valable 72 heures.`,
+      confirm: `3Go internet + Youtube illimité, le tout valable 72 heures.`,
+      success: `Vous disposez de 3Go internet + Youtube illimité, le tout valable 72 heures.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 300. Veuillez recharger votre compte.`,
     },
     "Forfait 100": {
-      confirm: `700Mo internet + YouTube illimité , le tout valable 24 heures.`,
-      success: `Vous disposez de 700Mo internet + YouTube illimité, le tout valable 24 heures.`,
+      confirm: `700Mo internet + Youtube illimité , le tout valable 24 heures.`,
+      success: `Vous disposez de 700Mo internet + Youtube illimité, le tout valable 24 heures.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 100. Veuillez recharger votre compte.`,
     },
     "Forfait 50": {
@@ -79,28 +79,28 @@ export default {
       insufficient:`رصيدك غير كافٍ لشراء اشتراك Gold Jdida 2000. يرجى تعبئة حسابك`,
     },
     "اشتراك 1500":{
-      confirm: `40Go إنترنت + يوتيوب غير محدود، الكل صالح لمدة 30 يوم`,
-      success: `لقد حصلت على 40Go إنترنت  + يوتيوب غير محدود، الكل صالح لمدة 30 يوم.`,
+      confirm: `40Go إنترنت + يوتيوب غير محدود، الكل صالح  30 يوم`,
+      success: `لقد حصلت على 40Go إنترنت  + يوتيوب غير محدود، الكل صالح  30 يوم.`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 1500. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 1000":{
-      confirm: `15Go إنترنت + 5Go يوتيوب، الكل صالح لمدة 30 يوم`,
-      success: `لقد حصلت على 15Go إنترنت + 5Go يوتيوب، الكل صالح لمدة 30 يوم`,
+      confirm: `15Go إنترنت + 5Go يوتيوب، الكل صالح  30 يوم`,
+      success: `لقد حصلت على 15Go إنترنت + 5Go يوتيوب، الكل صالح  30 يوم`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 1000. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 500":{
-      confirm: `6Go إنترنت + قسائم فايدة، الكل صالح لمدة 30 يوم`,
-      success: `لقد حصلت على 6Go إنترنت + تخفيضات عند شركائنا، الكل صالح لمدة 30 يوم. حمّل التطبيق فايدة واستفد من المزايا! `,
+      confirm: `6Go إنترنت + قسائم فايدة، الكل صالح  30 يوم`,
+      success: `لقد حصلت على 6Go إنترنت + تخفيضات عند شركائنا، الكل صالح  30 يوم. حمّل التطبيق فايدة واستفد من المزايا! `,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 500. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 300":{
-      confirm: `3Go إنترنت + يوتيوب غير محدود، الكل صالح لمدة 72 ساعة  `,
-      success: `لقد حصلت على 3Go إنترنت + يوتيوب غير محدود، الكل صالح لمدة 72 ساعة`,
+      confirm: `3Go إنترنت + يوتيوب غير محدود، الكل صالح  72 ساعة  `,
+      success: `لقد حصلت على 3Go إنترنت + يوتيوب غير محدود، الكل صالح  72 ساعة`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 300. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 100":{
-      confirm: `700Mo إنترنت + يوتيوب غير محدود، الكل صالح لمدة 24 ساعة `,
-      success: `لقد حصلت على 700Mo إنترنت + يوتيوب غير محدود، الكل صالح لمدة 24 ساعة`,
+      confirm: `700Mo إنترنت + يوتيوب غير محدود، الكل صالح  24 ساعة `,
+      success: `لقد حصلت على 700Mo إنترنت + يوتيوب غير محدود، الكل صالح  24 ساعة`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 100. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 50":{
@@ -109,18 +109,18 @@ export default {
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 50. يُرجى تعبئة رصيدك.`,
     },
     "Smart 200": {
-      confirm: `إنترنت 24 ساعة + مكالمات غير محدودة نحو Ooredoo و 600 دج رصيد، الكل صالح لمدة 24 ساعة.`,
-      success: `لقد حصلت على إنترنت 24 ساعة + مكالمات غير محدودة نحو Ooredoo و<br> 600 دج رصيد، الكل صالح لمدة 24 ساعة.`,
+      confirm: `إنترنت 24 ساعة + مكالمات غير محدودة نحو Ooredoo و 600 دج رصيد، الكل صالح  24 ساعة.`,
+      success: `لقد حصلت على إنترنت 24 ساعة + مكالمات غير محدودة نحو Ooredoo و<br> 600 دج رصيد، الكل صالح  24 ساعة.`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك Smart 200. يُرجى تعبئة رصيدك.`,
     },
     "Smart 100": {
-      confirm: `500Mo إنترنت + مكالمات غير محدودة نحو  Ooredoo + فايسبوك & ماسنجر مجانيين + 100 دج رصيد، الكل صالح لمدة 24 ساعة.`,
-      success: `لقد حصلت على 500Mo إنترنت + مكالمات غير محدودة نحو  Ooredoo + فايسبوك & ماسنجر مجانيين + 100 دج رصيد، الكل صالح لمدة 24 ساعة.`,
+      confirm: `500Mo إنترنت + مكالمات غير محدودة نحو  Ooredoo + فايسبوك & ماسنجر مجانيين + 100 دج رصيد، الكل صالح  24 ساعة.`,
+      success: `لقد حصلت على 500Mo إنترنت + مكالمات غير محدودة نحو  Ooredoo + فايسبوك & ماسنجر مجانيين + 100 دج رصيد، الكل صالح  24 ساعة.`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك Smart 100. يُرجى تعبئة رصيدك.`,
     },
     "Smart 50": {
-      confirm: `200Mo إنترنت + 30 دقيقة مكالمات نحو Ooredoo، الكل صالح لمدة 24 ساعة.`,
-      success: `لقد حصلت على 200Mo إنترنت + 30 دقيقة مكالمات نحو Ooredoo، الكل صالح لمدة 24 ساعة.`,
+      confirm: `200Mo إنترنت + 30 دقيقة مكالمات نحو Ooredoo، الكل صالح  24 ساعة.`,
+      success: `لقد حصلت على 200Mo إنترنت + 30 دقيقة مكالمات نحو Ooredoo، الكل صالح  24 ساعة.`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك Smart 50. يُرجى تعبئة رصيدك.`,
     },
   },

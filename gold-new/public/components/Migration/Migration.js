@@ -778,7 +778,7 @@ text-align: cetner;
             <p class="migration-description">${data.description || ""}</p>
           </div>
           <div class="rounded-b-[22.5px] min-h-[200px] pt-14 pb-6" style="${roundedInlineStyle}">
-            <p class="text-center mb-8 ${isRTL ? "px-2" : "px-12"}">
+            <p class="text-center mb-8 ${isRTL ? "px-6" : "px-12"}">
               <span class="text-[16px] md:text-[22px]">${changeSpecific}</span>
             </p>
             

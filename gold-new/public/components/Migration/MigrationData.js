@@ -55,7 +55,7 @@ export const migrationData = {
     cancelBtn: "إلغاء",
     successTitle: "مبروك !",
     change: "هل تريد التغيير إلى عرض « <span class='font-rubik'>La Gold</span> » ؟",
-    changeDima: "هل تريد التغيير إلى عرض «<span class='font-rubik'>Dima Ooredoo</span>» ؟",
+    changeDima: "هل تريد التغيير إلى عرض <span class='font-rubik whitespace-nowrap'> «Dima Ooredoo» ؟</span>",
     changeNyooz: "هل تريد التغيير إلى عرض « <span class='font-rubik'>N’YOOZ</span> » ؟",
     ok: "تم",
     changeOfferGeneric: 'هل تريد التغيير إلى عرض "<span class="font-rubik" dir="ltr">{offerName}</span>"؟',
