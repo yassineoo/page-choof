@@ -17,11 +17,7 @@ class Modal {
       });
     }
     document.addEventListener("keydown", (e) => {
-      if (
-        e.key === "Escape" &&
-        this.overlay &&
-        !this.overlay.classList.contains("hidden")
-      ) {
+      if (e.key === "Escape" && this.overlay && !this.overlay.classList.contains("hidden")) {
         this.close();
       }
     });
@@ -48,12 +44,7 @@ class Modal {
     }
   }
   close() {
-    if (
-      !this.overlay ||
-      !this.container ||
-      this.overlay.classList.contains("hidden")
-    )
-      return;
+    if (!this.overlay || !this.container || this.overlay.classList.contains("hidden")) return;
     this.overlay.classList.remove("modal-animating-in");
     this.container.classList.remove("modal-animating-in");
     this.overlay.classList.add("modal-animating-out");
@@ -63,13 +54,7 @@ class Modal {
       if (this.container) this.container.innerHTML = "";
     }, 300);
   }
-  showConfirmation({
-    title,
-    text,
-    confirmText = "CONFIRMER",
-    cancelText = "ANNULER",
-    onConfirm,
-  }) {
+  showConfirmation({ title, text, confirmText = "CONFIRMER", cancelText = "ANNULER", onConfirm }) {
     const contentHTML = `
       <div class="relative bg-white dark:bg-[#2C2C2C]  rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12 text-center">
         
@@ -135,14 +120,11 @@ export default class Header {
     this.boundEscapeKey = null;
   }
   getFontClass() {
-    return this.currentLanguage === "ar"
-      ? "font-noto-kufi-arabic"
-      : "font-rubik";
+    return this.currentLanguage === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
   }
   async init() {
     document.documentElement.lang = this.currentLanguage;
-    document.documentElement.dir =
-      this.currentLanguage === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir = this.currentLanguage === "ar" ? "rtl" : "ltr";
     this.render();
     requestAnimationFrame(() => {
       this.setupEventListeners();
@@ -202,19 +184,11 @@ export default class Header {
   }
   render() {
     document.querySelectorAll("header").forEach((h) => h.remove());
-    document.body.insertAdjacentHTML(
-      "afterbegin",
-      generateHeaderHTML(this.currentLanguage, this.userData, this.theme)
-    );
+    document.body.insertAdjacentHTML("afterbegin", generateHeaderHTML(this.currentLanguage, this.userData, this.theme));
   }
   detectInitialTheme() {
     const storedTheme = localStorage.getItem("theme");
-    return (
-      storedTheme ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light")
-    );
+    return storedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   }
   applyInitialTheme() {
     document.documentElement.classList.toggle("dark", this.theme === "dark");
@@ -281,9 +255,7 @@ export default class Header {
     const mobileThemeBtn = document.getElementById("theme-mobile-switcher");
     if (mobileThemeBtn) {
       mobileThemeBtn.replaceWith(mobileThemeBtn.cloneNode(true));
-      const mobileThemeBtnNew = document.getElementById(
-        "theme-mobile-switcher"
-      );
+      const mobileThemeBtnNew = document.getElementById("theme-mobile-switcher");
       if (mobileThemeBtnNew) {
         mobileThemeBtnNew.addEventListener("click", () => {
           this.setTheme(this.theme === "dark" ? "light" : "dark");
@@ -312,9 +284,7 @@ export default class Header {
     document.querySelectorAll(".language-option").forEach((option) => {
       option.addEventListener("click", (e) => {
         e.preventDefault();
-        const lang =
-          option.dataset?.lang ||
-          (option.textContent?.trim() === "Français" ? "fr" : "ar");
+        const lang = option.dataset?.lang || (option.textContent?.trim() === "Français" ? "fr" : "ar");
         this.setLanguage(lang);
         this.closeMobileMenu();
       });
@@ -346,11 +316,7 @@ export default class Header {
         document.removeEventListener("click", this.boundOutsideClick);
       }
       this.boundOutsideClick = (e) => {
-        if (
-          this.mobileMenuOpen &&
-          !mobileMenu.contains(e.target) &&
-          !menuBtn.contains(e.target)
-        ) {
+        if (this.mobileMenuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
           this.closeMobileMenu();
         }
       };
@@ -370,8 +336,7 @@ export default class Header {
     if (!existingMeta) {
       const meta = document.createElement("meta");
       meta.name = "viewport";
-      meta.content =
-        "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no";
+      meta.content = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no";
       document.head.appendChild(meta);
     }
   }
@@ -430,13 +395,10 @@ export default class Header {
     const lightClose = document.getElementById("mobile-menu-close-icon");
     const darkClose = document.getElementById("mobile-menu-close-icon-dark");
 
-    if (lightMenu)
-      lightMenu.style.display = isOpen || isDark ? "none" : "block";
+    if (lightMenu) lightMenu.style.display = isOpen || isDark ? "none" : "block";
     if (darkMenu) darkMenu.style.display = !isOpen && isDark ? "block" : "none";
-    if (lightClose)
-      lightClose.style.display = isOpen && !isDark ? "block" : "none";
-    if (darkClose)
-      darkClose.style.display = isOpen && isDark ? "block" : "none";
+    if (lightClose) lightClose.style.display = isOpen && !isDark ? "block" : "none";
+    if (darkClose) darkClose.style.display = isOpen && isDark ? "block" : "none";
   }
   initRenewalInfoCard() {
     const infoBtn = document.getElementById("auto-renewal-info");
@@ -444,12 +406,8 @@ export default class Header {
     const infoBtnMobile = document.getElementById("auto-renewal-info-mobile");
     const infoCardMobile = document.getElementById("auto-renewal-card-mobile");
     if (infoBtn && infoCard) {
-      infoBtn.addEventListener("mouseenter", () =>
-        infoCard.classList.remove("hidden")
-      );
-      infoBtn.addEventListener("mouseleave", () =>
-        infoCard.classList.add("hidden")
-      );
+      infoBtn.addEventListener("mouseenter", () => infoCard.classList.remove("hidden"));
+      infoBtn.addEventListener("mouseleave", () => infoCard.classList.add("hidden"));
       infoBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         infoCard.classList.toggle("hidden");
@@ -489,10 +447,7 @@ export default class Header {
         { passive: true }
       );
       document.addEventListener("click", (e) => {
-        if (
-          !infoBtnMobile.contains(e.target) &&
-          !infoCardMobile.contains(e.target)
-        ) {
+        if (!infoBtnMobile.contains(e.target) && !infoCardMobile.contains(e.target)) {
           infoCardMobile.classList.add("hidden");
         }
       });
@@ -542,17 +497,10 @@ export default class Header {
     const manualBtnMobile = document.getElementById("renewal-manual-mobile");
     const activeStyle = { background: "#E30613", color: "#ffffffff" };
     const inactiveStyle = { background: "transparent", color: "#575757" };
-    if (autoBtn)
-      Object.assign(autoBtn.style, isAuto ? activeStyle : inactiveStyle);
-    if (manualBtn)
-      Object.assign(manualBtn.style, !isAuto ? activeStyle : inactiveStyle);
-    if (autoBtnMobile)
-      Object.assign(autoBtnMobile.style, isAuto ? activeStyle : inactiveStyle);
-    if (manualBtnMobile)
-      Object.assign(
-        manualBtnMobile.style,
-        !isAuto ? activeStyle : inactiveStyle
-      );
+    if (autoBtn) Object.assign(autoBtn.style, isAuto ? activeStyle : inactiveStyle);
+    if (manualBtn) Object.assign(manualBtn.style, !isAuto ? activeStyle : inactiveStyle);
+    if (autoBtnMobile) Object.assign(autoBtnMobile.style, isAuto ? activeStyle : inactiveStyle);
+    if (manualBtnMobile) Object.assign(manualBtnMobile.style, !isAuto ? activeStyle : inactiveStyle);
     const autoIcon = autoBtn?.querySelector("img");
     const manualIcon = manualBtn?.querySelector("img");
     if (autoIcon && manualIcon) {
@@ -585,10 +533,7 @@ export default class Header {
         }, 50);
       }, 350);
     };
-    const closeBtnHTML =
-      this.modal && typeof this.modal.getCloseButtonHTML === "function"
-        ? this.modal.getCloseButtonHTML()
-        : "";
+    const closeBtnHTML = this.modal && typeof this.modal.getCloseButtonHTML === "function" ? this.modal.getCloseButtonHTML() : "";
     const fontClass = this.getFontClass();
     const customContent = `
       <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
@@ -615,23 +560,27 @@ export default class Header {
     const confirmBtn = this.modal.container.querySelector("#modal-confirm-btn");
     const cancelBtn = this.modal.container.querySelector("#modal-cancel-btn");
     if (confirmBtn) confirmBtn.addEventListener("click", onConfirm);
-    if (cancelBtn)
-      cancelBtn.addEventListener("click", () => this.modal.close());
+    if (cancelBtn) cancelBtn.addEventListener("click", () => this.modal.close());
   }
   handleAutoRenewalClick() {
     const texts = offerData.text[this.currentLanguage];
-    const closeBtnHTML =
-      this.modal && typeof this.modal.getCloseButtonHTML === "function"
-        ? this.modal.getCloseButtonHTML()
-        : "";
+    const closeBtnHTML = this.modal && typeof this.modal.getCloseButtonHTML === "function" ? this.modal.getCloseButtonHTML() : "";
     const fontClass = this.getFontClass();
     const customContent = `
       <div class="relative w-full max-w-5xl bg-white dark:bg-[#2C2C2C] rounded-lg flex flex-col overflow-hidden">
         ${closeBtnHTML}
         <div class="p-6 pt-14 md:p-8 text-center">
-          <h2 class="${fontClass} font-bold text-[20px] md:text-[28px] text-ooredoo-red dark:text-white mb-8 ${this.currentLanguage === 'fr' ? 'mt-4' : 'mt-2  '}">${texts.autoModalTitle}</h2>
+          <h2 class="${fontClass} font-bold text-[20px] md:text-[28px] text-ooredoo-red dark:text-white mb-8 ${
+      this.currentLanguage === "fr" ? "mt-4" : "mt-2  "
+    }">${texts.autoModalTitle}</h2>
           <p class="${fontClass} text-black dark:text-white mb-4 px-0 text-[14px] md:text-[22px] md:px-[30px]">
-            ${this.userData.autoRenewal ? texts.autoModalDesc : this.currentLanguage === 'fr' ? 'Vous allez modifier votre mode de rechargement en "Automatique" :' : 'ستقوم بتغيير وضع التعبئة إلى "تلقائي":'}
+            ${
+              this.userData.autoRenewal
+                ? texts.autoModalDesc
+                : this.currentLanguage === "fr"
+                ? 'Vous allez modifier votre mode de rechargement en "Automatique" :'
+                : 'ستقوم بتغيير وضع التعبئة إلى "تلقائي":'
+            }
           </p>
           <div class="mt-6">
             <button id="modal-cancel-btn" type="button" class="${fontClass} rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors" style="padding: 8.21px 29.78px; font-size: 15.4px;">
@@ -645,9 +594,7 @@ export default class Header {
         </div>
       </div>`;
     this.modal.showCustom(customContent);
-    const sliderContainer = this.modal.container.querySelector(
-      "#modal-slider-container"
-    );
+    const sliderContainer = this.modal.container.querySelector("#modal-slider-container");
     const currentOffers = offerData[this.currentLanguage] || offerData.fr;
     if (sliderContainer) {
       this.modalSliderInstance = new ModalSlider({
@@ -679,7 +626,7 @@ export default class Header {
     setTimeout(() => {
       this.modal.showConfirmation({
         title: offer.planName,
-        text: `${offer.description}${modalTexts.allValidFor}${offer.duration}.`,
+        text: `${offer.descriptionPopup}${modalTexts.allValidFor}${offer.duration}.`,
         confirmText: modalTexts.confirmBtn,
         cancelText: modalTexts.cancelBtn,
         onConfirm: () => {
