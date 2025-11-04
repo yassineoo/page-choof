@@ -1601,8 +1601,8 @@ class ForfaitComponent {
     };
 
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `${fontClass} whitespace-nowrap font-semibold text-sm xs:text-base uppercase forfait-modal-button px-2 w-[155px] md:w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `${fontClass} font-semibold text-sm xs:text-base uppercase forfait-modal-button px-2 w-[155px] md:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const primaryBtn = `${fontClass} whitespace-nowrap font-semibold text-sm xs:text-base uppercase forfait-modal-button px-2 w-[145px] md:w-[180px] h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `${fontClass} font-semibold text-sm xs:text-base uppercase forfait-modal-button px-2 w-[145px] md:w-[180px] h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
     const buttonGap = "gap-[8px] xs:gap-2 sm:gap-4 flex-nowrap";
 
     const buttonConfigs = {

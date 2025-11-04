@@ -634,7 +634,7 @@ export default class Header {
         <div class="p-6 pt-14 md:p-8 text-center">
           <h2 class="${fontClass} text-2xl font-bold text-[28px] text-ooredoo-red dark:text-white mb-8">${texts.autoModalTitle}</h2>
           <p class="${fontClass} text-black dark:text-white mb-4 px-0 text-[22px] md:px-[30px]">
-            ${texts.autoModalDesc}
+            ${ this.userData.autoRenewal ? texts.autoModalDesc : this.currentLanguage === 'fr' ? 'Vous allez modifier votre mode de rechargement en "Automatique" :' : 'ستقوم بتغيير وضع التعبئة إلى "تلقائي":'}
           </p>
           <div class="mt-6">
             <button id="modal-cancel-btn" type="button" class="${fontClass} rounded-full border-2 border-ooredoo-red text-ooredoo-red dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-ooredoo-red font-semibold hover:bg-ooredoo-red hover:text-white transition-colors px-6 py-2">

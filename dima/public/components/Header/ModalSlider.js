@@ -90,7 +90,7 @@ export class ModalSlider {
             <div class="flex w-[257px] flex-col justify-end items-center gap-[15px]">
               <div class="h-[29px] flex-shrink-0 text-black dark:text-white text-center font-bold leading-normal">
                 <span class="text-[26px]"><span class="font-rubik">${safePrice}</span></span>
-                <span class="text-[18px]"> ${currencyText}/<span class="text-[13px]">${durationText}</span></span>
+                <span class="text-[18px]"> ${currencyText}/<span class="text-[18px]">${durationText}</span></span>
               </div>
               <button
                 type="button"

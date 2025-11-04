@@ -261,14 +261,14 @@ export default class Footer {
           </p>
         </div>
 
-        <div class="flex justify-center gap-4">
-          <button id="modal-confirm-btn"
-            class="bg-ooredoo-red text-white px-6 h-12 w-[120px] sm:w-[150px] rounded-full font-medium transition">
-            ${language === "ar" ? "تفعيل" : "ACTIVER"}
-          </button>
+        <div class="flex justify-center gap-4 text-base">
           <button id="modal-cancel-btn"
-            class="bg-white border border-ooredoo-red text-ooredoo-red px-6 h-12 w-[120px] sm:w-[150px] rounded-full font-medium transition">
+            class="flex items-center justify-center bg-white border border-ooredoo-red text-ooredoo-red px-6 h-12 w-[145px] sm:w-[150px] rounded-full font-medium transition">
             ${language === "ar" ? "إلغاء" : "ANNULER"}
+          </button>
+          <button id="modal-confirm-btn"
+            class="flex items-center justify-center bg-ooredoo-red text-white px-6 h-12 w-[145px] sm:w-[150px] rounded-full font-medium transition">
+            ${language === "ar" ? "تفعيل" : "ACTIVER"}
           </button>
         </div>
       </div>
@@ -328,7 +328,7 @@ export default class Footer {
           </p>
         </div>
 
-        <div class="flex justify-center">
+        <div class="flex justify-center text-base">
           <button id="modal-ok-btn"
             class="bg-ooredoo-red text-white px-6 h-12 w-[120px] sm:w-[150px] rounded-full font-medium transition">
             ${language === "ar" ? "تم" : "OK"}

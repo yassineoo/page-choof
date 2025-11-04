@@ -139,7 +139,7 @@ export class Slider {
     return `
     <div role="article" aria-label="${
       offer.name || "forfait"
-    }" class="w-full max-w-[320px] ${cardHeightClass} flex justify-center items-start rounded-xl border-[0.84px] border-[#C5C5C5] bg-white dark:bg-[#2C2C2C] shadow-sm dark:shadow-none">
+    }" class="w-full sm:max-w-[290px] ${cardHeightClass} flex justify-center items-start rounded-xl border-[0.84px] border-[#C5C5C5] bg-white dark:bg-[#2C2C2C] shadow-sm dark:shadow-none">
       <div class="flex flex-col w-full justify-between items-center flex-1 ${isRTL ? "h-[480px]" : "h-[450px]"} pb-6" ${
         isRTL ? 'dir="rtl"' : ""
       }>
