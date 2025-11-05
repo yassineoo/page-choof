@@ -102,7 +102,7 @@ function renderLogoBlock({ logo, subLogo, id }) {
 function renderTopCard(pkg, lang) {
   const topCard = document.createElement("div");
   topCard.className =
-    "flex items-center justify-between w-full h-auto bg-white dark:bg-[#2C2C2C] dima-card-border mb-2 rounded-[15px] px-[24px] py-[24px]";
+    "flex items-center justify-between w-full h-auto bg-white dark:bg-[#2C2C2C] dima-card-border mb-2 rounded-[15px] px-[16px] sm:px-[24px] py-[24px]";
 
   const logoBlock = renderLogoBlock(pkg);
 
