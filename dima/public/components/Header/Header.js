@@ -101,7 +101,7 @@ class Modal {
     const contentHTML = `
       <div class="relative bg-white dark:bg-[#2C2C2C]  rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12">
         ${this.getCloseButtonHTML()}
-        <h2 class="text-2xl md:text-[34px] font-bold text-ooredoo-red dark:text-white mb-4 text-center">${title}</h2>
+        <h2 class="text-[22px] md:text-[28px] font-bold text-ooredoo-red dark:text-white mb-4 text-center">${title}</h2>
         <p class="text-[16px] lg:text-[21px] text-center text-gray-600 dark:text-gray-300 mb-6">${text}</p>
         <div class="flex justify-center">
           <button id="modal-ok-btn" type="button" class="rounded-full bg-ooredoo-red text-white font-semibold hover:bg-red-700 w-[180px] transition-colors px-6 h-12 text-[15.4px]">${buttonText}</button>
@@ -582,7 +582,7 @@ export default class Header {
       <div class="relative w-full max-w-[703px] h-auto md:h-[321px] bg-white dark:bg-[#2C2C2C] rounded-[18px] flex flex-col justify-center items-center overflow-hidden p-4">
         ${closeBtnHTML}
         <div class="w-full text-center pt-8 md:pt-0">
-          <h1 class="text-ooredoo-red dark:text-white ${fontClass} text-[24px] lg:text-[34px] font-semibold uppercase mb-4 px-8">
+          <h1 class="text-ooredoo-red dark:text-white ${fontClass} text-[22px] lg:text-[28px] font-semibold uppercase mb-4 px-8">
             ${texts.manualModalTitle}
           </h1>
           <p class="${fontClass} text-[16px] lg:text-[21px] font-normal leading-normal max-w-xl mx-auto mb-8 px-4">

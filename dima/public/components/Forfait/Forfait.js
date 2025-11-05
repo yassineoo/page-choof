@@ -1477,7 +1477,7 @@ class ForfaitComponent {
 
   showShahidModal(isRTL, onClose) {
     const shahidContent = {
-      title: isRTL ? "شاهد" : "Service Shahid activé !",
+      title: isRTL ? "شاهد !" : "Service Shahid activé !",
       message: isRTL
         ? "لقد تم تفعيل خدمة شاهد! بعد قليل، ستصلك رسالة قصيرة تحتوي على رابط."
         : "Vous recevrez un SMS avec un lien sous peu.",

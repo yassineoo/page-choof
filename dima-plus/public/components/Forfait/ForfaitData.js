@@ -27,7 +27,7 @@ export default {
       },
       {
         name: "Forfait 300",
-        data: "6Go internet",
+        data: "3Go internet",
         price: "300",
         features: "Youtube illimité",
         duration: "72 heures",
@@ -115,7 +115,7 @@ export default {
       },
       {
         name: "اشتراك <span class='font-rubik'>300</span>",
-        data: "<span class='font-rubik'>6Go</span> إنترنت",
+        data: "<span class='font-rubik'>3Go</span> إنترنت",
         price: "300",
         features: "يوتيوب غير محدود",
         duration: "<span class='font-rubik'>72</span> ساعة",

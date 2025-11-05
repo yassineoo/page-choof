@@ -7,7 +7,7 @@ export default {
         price: "4000",
         duration: "30 jours",
         features: [
-          "Appels illimités vers tous les réseaux",
+          "appels illimités vers tous les réseaux",
           "SMS illimités vers Ooredoo",
           "200 SMS vers les autres réseaux",
         ],
@@ -19,7 +19,7 @@ export default {
         price: "2500",
         duration: "30 jours",
         features: [
-          "Appels illimités vers tous les réseaux",
+          "appels illimités vers tous les réseaux",
           "SMS illimités vers Ooredoo",
           "100 SMS vers les autres réseaux",
           "ANAZIK, ANAFLIX, SHAHID & Facebook Gratuits",
@@ -32,7 +32,7 @@ export default {
         price: "2000",
         duration: "30 jours",
         features: [
-          "Appels illimités vers Ooredoo",
+          "appels illimités vers Ooredoo",
           "200 SMS & 300 min appels",
           "ANAFLIX, ANAZIK & Facebook Gratuits",
         ],
@@ -44,7 +44,7 @@ export default {
         price: "1500",
         duration: "30 jours",
         features: [
-          "Appels illimités vers Ooredoo",
+          "appels illimités vers Ooredoo",
           "150 SMS & 150 min appels",
           "ANAFLIX & Facebook Gratuits",
         ],
@@ -56,7 +56,7 @@ export default {
         price: "1200",
         duration: "30 jours",
         features: [
-          "Appels illimités vers Ooredoo",
+          "appels illimités vers Ooredoo",
           "120 SMS & 100 min appels",
           "ANAZIK & Facebook Gratuits",
         ],
@@ -68,7 +68,7 @@ export default {
         price: "750",
         duration: "14 jours",
         features: [
-          "Appels illimités vers Ooredoo",
+          "appels illimités vers Ooredoo",
           "50 SMS & 100 min appels",
           "Facebook Gratuit",
         ],
@@ -80,7 +80,7 @@ export default {
         price: "500",
         duration: "15 jours",
         features: [
-          "Appels illimités vers Ooredoo",
+          "appels illimités vers Ooredoo",
           "50 SMS & 100 min appels",
           "Facebook Gratuit",
         ],

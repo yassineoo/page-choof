@@ -173,7 +173,7 @@ export class Slider {
                     </div>
                     <div class="text-black dark:text-white ${this.getFontClass(
                       feature
-                    )} text-base font-normal leading-[22px]">
+                    )} text-base font-normal leading-[22px] capitalize">
                       ${feature}
                     </div>
                   </div>`
@@ -285,7 +285,7 @@ export class Slider {
               <span class="${this.getFontClass(
                 priceNumber
               )} font-semibold mx-2 text-[28px] leading-none text-black dark:text-white">${priceNumber}</span>
-              <span class="text-[16px] text-black dark:text-white font-semibold"> ${currencyLabel}/${durationText}</span>
+              <span class="text-[16px] text-black dark:text-white font-semibold"> ${currencyLabel}/<span class="${durationText.includes("jusqu'à") || durationText.includes("إلى غاية") ? "text-[14px]" : ""}">${durationText}</span></span>
             </div>
           </div>
 
@@ -362,8 +362,8 @@ export class Slider {
                           <g clip-path="url(#clip0)"><path d="M4.22656 7.87927L6.37732 10.03L10.6788 5.72852" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
                           </svg>
                         </span>
-                        <span class="${this.getFontClass(f)} text-[16px] capitalize">
-                          ${f}
+                        <span class="${this.getFontClass(f)} text-[16px]">
+                          ${f.replace("appels", "Appels")}
                         </span>
                       </div>`
                   )

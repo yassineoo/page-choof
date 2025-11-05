@@ -280,7 +280,7 @@ export class Slider {
               <span class="${this.getFontClass(
                 priceNumber
               )} font-semibold mx-2 text-[28px] leading-none text-black dark:text-white">${priceNumber}</span>
-              <span class="text-[16px] text-black dark:text-white font-semibold"> ${currencyLabel}/${durationText}</span>
+              <span class="text-[16px] text-black dark:text-white font-semibold"> ${currencyLabel}/<span class="${durationText.includes('إلى غاية') || durationText.includes("jusqu'à") ? 'text-[14px]' : ''}">${durationText}</span></span>
             </div>
           </div>
 
@@ -505,7 +505,7 @@ export class Slider {
       let swiper;
       try {
         swiper = new Swiper(swiperEl, {
-          slidesPerView: 1.3,
+          slidesPerView: 1,
           spaceBetween: 8,
           centeredSlides: true,
           loop: false,
@@ -518,6 +518,11 @@ export class Slider {
                 index + 1
               }"></button>`;
             },
+          },
+          breakpoints: {
+            370: {
+              slidesPerView: 1.3,
+            }
           },
           on: {
             init: function (s) {

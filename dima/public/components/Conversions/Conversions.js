@@ -484,7 +484,7 @@ class ConversionsComponent {
               <p class="plan-description ${fontClass}">${plan.description}</p>
               <div class="plan-pricing">
                 <div class="plan-price ${fontClass}">
-                  <span class="price-amount">${plan.price}</span>
+                  <span class="price-amount font-rubik">${plan.price}</span>
                   <span class="price-currency">${plan.priceUnit}<span class="price-duration">${plan.duration}</span></span>
                 </div>
                 <button class="btn-convert" data-action="convert-to-${idx}">

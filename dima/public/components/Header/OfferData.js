@@ -160,7 +160,7 @@ export const offerData = {
       autoModalDesc: 'ستقوم بتغيير وضع التعبئة "التلقائي":',
       autoSuccessTitle: "هنيئًا!",
       autoSuccessDesc: (price, planName) =>
-        `تعبئاتك القادمة بقيمة ${price} دج وأكثر ستمنحك مزايا ${planName}، وهذا بعد انتهاء صلاحية اشتراكك.`,
+        `تعبئاتك القادمة بقيمة <span class="font-rubik">${price}</span> دج وأكثر ستمنحك مزايا <span class="font-rubik">${planName}</span>، وهذا بعد انتهاء صلاحية اشتراكك.`,
       cancelBtn: "إلغاء",
       confirmBtn: "تأكيد",
       allValidFor: "، الكل صالح ",

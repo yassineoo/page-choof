@@ -121,7 +121,6 @@ export class ModalSlider {
     }
 
     const storedRenewal = localStorage.getItem("autoRenewal") !== null ? JSON.parse(localStorage.getItem("autoRenewal")) : true;
-    console.log("first" , storedRenewal)
     const slidesHTML = storedRenewal ? 
       this.slides
       .filter(offer => offer.planName !== "Gold Jdida 1000")
