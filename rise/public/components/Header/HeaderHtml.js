@@ -221,7 +221,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           </div>
           <div class="flex items-center justify-between gap-2 flex-nowrap">
             <div class="flex items-center gap-2">
-              <img src="./assets/images/header/Company.svg" class="w-5 h-5 flex-shrink-0" />
+              <img src="./assets/images/header/Puce.svg" class="w-5 h-5 flex-shrink-0" />
               <span class="font-medium font-rubik text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
                     (language === "ar" ? "<span class='font-noto-kufi-arabic'> عرض</span> " : "Offer ") + offerHTML
                   }</span>

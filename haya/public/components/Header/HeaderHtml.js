@@ -229,7 +229,7 @@ export const generateHeaderHTML = (
           <div class="flex-1 flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full md:w-auto min-w-0">
             <div class="flex items-center gap-2 min-w-0">
               <img src="./assets/images/header/Telephone.svg" class="w-6 h-6 flex-shrink-0" />
-              <span class="hdr-common-text ${fontClass}">${
+              <span class="hdr-common-text font-rubik">${
     userData.phone || "0509876543"
   }</span>
             </div>
@@ -305,7 +305,7 @@ export const generateHeaderHTML = (
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-1 min-w-0">
               <img src="./assets/images/header/Telephone.svg" class="w-[18px] h-[18px] flex-shrink-0" />
-              <span class="hdr-common-text ${fontClass} truncate">${
+              <span class="hdr-common-text font-rubik truncate">${
     userData.phone || "0509876543"
   }</span>
             </div>

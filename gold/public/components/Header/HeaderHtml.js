@@ -216,7 +216,7 @@ export const generateHeaderHTML = (
                 }</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="text-white">${
+                <span class="text-white text-[18px] font-medium">${
                   language === "ar"
                     ? "<span class='font-noto-kufi-arabic'>الوضع :</span>"
                     : "<span class='font-rubik'>Mode :</span>"

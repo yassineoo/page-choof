@@ -169,10 +169,6 @@ class Migration {
       font-size: clamp(1rem, 2.2vw, 1.375rem);
       line-height: 1.5;
       margin-bottom: 1.5rem;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
       max-width: 668px;
       margin-left: auto;
       margin-right: auto;
@@ -472,7 +468,6 @@ class Migration {
       }
       .migration-description {
         font-size: 18px;
-        -webkit-line-clamp: 3;
       }
       .migration-price .big {
         font-size: 28px;

@@ -30,14 +30,13 @@ class BoostComponent {
   getStylesheet() {
     return `
     .boost-section {
-      padding: 70px 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
       background: white;
     }
     .dark .boost-section {
-      background: #141414
+      background: #000;
     }
 
     .boost-card-shadow {
@@ -253,7 +252,7 @@ class BoostComponent {
     this.cleanupAllEventListeners();
 
     this.container.innerHTML = `
-    <div class="w-full">
+    <div class="w-full py-10 bg-white dark:bg-black">
       <section class="boost-section">
         <div class="boost-card-shadow">
           

@@ -269,7 +269,7 @@ export const generateHeaderHTML = (
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white whitespace-nowrap ${fontClass}">${
+              <span class="font-medium text-[clamp(12px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white whitespace-nowrap ${fontClass}">${
     texts.renewalLabel
   }</span>
               <div class="relative flex items-center bg-white rounded-full h-[36px] w-[180px] p-0.5">

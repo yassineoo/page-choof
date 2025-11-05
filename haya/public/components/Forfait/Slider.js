@@ -406,7 +406,7 @@ export class Slider {
       let swiper;
       try {
         swiper = new Swiper(swiperEl, {
-          slidesPerView: 1.3,
+          slidesPerView: 1,
           spaceBetween: 8,
           centeredSlides: true,
           loop: false,
@@ -418,6 +418,11 @@ export class Slider {
               return `<button class="${className} forfait-dot" data-slide="${index}" aria-label="Slide ${
                 index + 1
               }"></button>`;
+            },
+          },
+          breakpoints: {
+            370: {
+              slidesPerView: 1.3,
             },
           },
           on: {
