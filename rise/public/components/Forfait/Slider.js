@@ -135,7 +135,7 @@ export class Slider {
           <span class="font-rubik">${offer.topLabel}</span> ${isRTL ? "للسنة " : "PAR AN"}
         </div>
         <div class="h-full bg-white dark:bg-[#2C2C2C] pb-6 rounded-xl border-[1px] border-ooredoo-red dark:border-white"}>
-          <div class="h-14 bg-ooredoo-red dark:border-ooredoo-red -m-[1px] border-2 flex items-center justify-center rounded-t-xl">
+          <div class="h-14 bg-ooredoo-red dark:border-ooredoo-red -m-[1px] flex items-center justify-center rounded-t-xl">
             <h2 class="text-white font-bold text-[20px] md:text-[25px]  text-center capitalize dark:text-white leading-tight">
               <span class="font-rubik">${offer.price}</span> ${currencyLabel}
             </h2>
@@ -156,7 +156,7 @@ export class Slider {
             <p class="text-ooredoo-red font-bold text-xl">${this.currentLang === "ar" ? "اشتراكين مجانا!" : "2 gratuits !"}</p>
           </div>
 
-          <div class="py-4 px-2 flex items-center justify-between">
+          <div class="py-4 px-4 flex items-center justify-between">
             <div class="text-center">
               <p class="text-sm">${this.currentLang === "ar" ? "احصلوا على" : "Recevez"}</p>
               <p class="font-semibold text-lg md:text-xl"><span class="font-rubik">12</span> ${this.currentLang === "ar" ? "اشتراك" : "forfaits"}</p>
@@ -393,7 +393,7 @@ export class Slider {
 
     setTimeout(() => {
       const swiper = new Swiper(container.querySelector(".swiper"), {
-        slidesPerView: 1.3,
+        slidesPerView: 1,
         spaceBetween: 8,
         centeredSlides: true,
         loop: false,
@@ -404,6 +404,11 @@ export class Slider {
           renderBullet: (index, className) => {
             return `<span class="${className} custom-dot"></span>`;
           },
+        },
+        breakpoints: {
+          370: {
+            slidesPerView: 1.3,
+          }
         },
         on: {
         init: () => {

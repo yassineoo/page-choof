@@ -263,7 +263,7 @@ export default class Footer {
 
         <div class="flex justify-center gap-4 text-base">
           <button id="modal-cancel-btn"
-            class="flex items-center justify-center bg-white border border-ooredoo-red text-ooredoo-red px-6 h-12 w-[145px] sm:w-[150px] rounded-full font-medium transition">
+            class="flex items-center justify-center bg-white dark:bg-transparent border border-ooredoo-red dark:border-white text-ooredoo-red dark:text-white px-6 h-12 w-[145px] sm:w-[150px] rounded-full font-medium transition">
             ${language === "ar" ? "إلغاء" : "ANNULER"}
           </button>
           <button id="modal-confirm-btn"

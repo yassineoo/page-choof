@@ -173,8 +173,8 @@ export class Slider {
                     </div>
                     <div class="text-black dark:text-white ${this.getFontClass(
                       feature
-                    )} text-base font-normal leading-[22px] capitalize">
-                      ${feature}
+                    )} text-base font-normal leading-[22px]">
+                      ${feature.replace("appels illimités vers", "Appels illimités vers")}
                     </div>
                   </div>`
                     )

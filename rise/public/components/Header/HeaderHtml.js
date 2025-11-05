@@ -149,7 +149,7 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
           <div class="flex items-center gap-3 py-2 rounded-lg px-2 transition-all duration-300">
             <img src="./assets/images/header/help.svg" class="w-5 h-5 dark:hidden transition-opacity duration-300" />
             <img src="./assets/images/header/help-white.svg" class="w-5 h-5 hidden dark:inline transition-opacity duration-300" />
-            <span id="help-text-mobile" class="${language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-sm text-black dark:text-white">
+            <span id="help-text-mobile" class="${language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} text-[20px] text-black dark:text-white">
               <a href="https://www.ooredoo.dz/fr/particuliers/contactez-nous" target="_blank">${helpText}</a>
             </span>
           </div>
