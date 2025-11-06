@@ -65,7 +65,7 @@ export default {
       },
       {
         name: "Forfait 300",
-        data: "6Go",
+        data: "3Go",
         price: "300",
         features:"Youtube illimité",
         duration: "72 heures",

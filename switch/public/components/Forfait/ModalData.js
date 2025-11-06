@@ -31,8 +31,8 @@ export default {
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 500. Veuillez recharger votre compte.`,
     },
     "Forfait 300": {
-      confirm: `6Go internet + YouTube illimité, le tout valable 72 heures.`,
-      success: `Vous disposez de 6Go internet + YouTube illimité, le tout valable 72 heures.`,
+      confirm: `3Go internet + YouTube illimité, le tout valable 72 heures.`,
+      success: `Vous disposez de 3Go internet + YouTube illimité, le tout valable 72 heures.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 300. Veuillez recharger votre compte.`,
     },
     "Forfait 100": {
@@ -94,8 +94,8 @@ export default {
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 500. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 300":{
-      confirm: `6Go إنترنت + يوتيوب غير محدود، الكل صالح  72 ساعة  `,
-      success: `لقد حصلت على 6Go إنترنت + يوتيوب غير محدود، الكل صالح  72 ساعة`,
+      confirm: `3Go إنترنت + يوتيوب غير محدود، الكل صالح  72 ساعة  `,
+      success: `لقد حصلت على 3Go إنترنت + يوتيوب غير محدود، الكل صالح  72 ساعة`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 300. يُرجى تعبئة رصيدك.`,
     },
     "اشتراك 100":{
