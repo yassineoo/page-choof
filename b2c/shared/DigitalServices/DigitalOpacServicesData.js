@@ -18,7 +18,7 @@ export const opacPlan = {
 };
 
 export const opacDescription = {
-  fr: "Obtenez dès maintenant un forfait OSN+ & ANGHAMI pour plonger dans une expérience de streaming exceptionnelle et profiter d’un volume internet pour 1000 DA !",
+  fr: "Profitez d’un accès exclusif à vos services digitaux préférés - jeux, VOD, MOD et quiz - avec 10Go d’internet pour seulement 800 DA par mois !\nDivertissez-vous, jouez et surfez sans limites avec Ooredoo !",
   ar: "سارعوا للحصول على اشتراك  OSN+ & ANGHAMI واستمتعوا بمحتوياتكم المفضلة بالإضافة إلى حجم إنترنت بـ 1000 دج!",
 };
 

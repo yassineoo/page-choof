@@ -522,8 +522,8 @@ export default class DigitalOpacServices {
               <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl text-center text-gray-800 dark:text-gray-200">
                 ${
                   isArabic
-                    ? `<p>سارعوا للحصول على اشتراك  <span class="font-semibold font-rubik">OSN+ & ANGHAMI</span> واستمتعوا <span class="font-semibold">بمحتوياتكم المفضلة</span> بالإضافة إلى حجم إنترنت بـ <span class="font-rubik">1000</span> دج!</p>`
-                    : `<p>Obtenez dès maintenant un forfait <span class="font-semibold">OSN+</span> & <span class="font-semibold">ANGHAMI</span> pour plonger dans <span class="font-semibold">une expérience de streaming exceptionnelle</span> et profiter d'un volume internet pour 1000 DA !</p>`
+                    ? `<p>استفيدوا من دخول حصري إلى <a class='text-blue-500 underline font-semibold' href='https://liferay-dev.ooredoo.dz/ar/particuliers/services/o-pack'>خدماتكم الرقمية</a> المفضلة – <span class='font-semibold'>ألعاب، فيديوهات حسب الطلب، موسيقى حسب الطلب ومسابقات</span>، بالإضافة إلى 10Go إنترنت بـ<span class='font-semibold'> 800 دج للشهر فقط!</span> <span class='font-semibold'>استمتعوا بالترفيه واللّعب والتصفح بلا حدود مع Ooredoo!</span></p>`
+                    : `<p>Profitez d’un accès exclusif à vos <a class='text-blue-500 underline font-semibold' href='https://liferay-dev.ooredoo.dz/fr/particuliers/services/o-pack'>services digitaux</a> préférés\n <span class='font-semibold'>- jeux, VOD, MOD et quiz -</span> avec <span class'font-semibold'>10Go d’internet</span> pour seulement <span class='font-semibold'>800 DA par mois !</span> <br/>\n <span class='font-semibold'>Divertissez-vous, jouez et surfez sans limites avec Ooredoo !</span></p>`
                 }
               </div>
             </div>
