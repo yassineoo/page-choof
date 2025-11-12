@@ -1,28 +1,33 @@
-import { shahidPlans, shahidDescription, shahidModalData } from "./DigitalShahidServicesData.js";
+import {
+  opacPlan,
+  opacDescription,
+  opacModalData,
+} from "./DigitalOpacServicesData.js";
 
-// Card style constants - Updated to match Dima sizing and styling
 const styles = {
-  card: "w-full max-w-[30rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
-  cardHeader: "bg-ooredoo-red flex items-center justify-center px-6 py-6 text-center",
-  cardName: "font-medium text-[32px] leading-[100%] tracking-[0] capitalize text-white text-center align-middle",
-  cardContent: "p-6 flex flex-col justify-between",
+  card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
+  cardHeader: "bg-ooredoo-red px-6 py-3 text-center font-rubik",
+  cardName:
+    "font-medium text-2xl md:text-3xl leading-tight tracking-tight text-white",
+  cardContent: "p-6 flex flex-col flex-1 justify-between",
   dataTitle: "text-2xl font-semibold text-ooredoo-red mb-3",
   featuresList: "list-none p-0 m-0",
   featureIconBase: "w-5 h-5 flex-shrink-0 mr-3",
-  featureText: "whitespace-nowrap",
+  featureText: "flex-1",
   divider: "dima-divider",
-  priceContainer: "text-center mb-2 py-4",
-  priceAmount: "font-semibold text-[2rem] capitalize dark:text-white font-rubik",
-  priceDa: "font-semibold text-lg capitalize dark:text-white",
+  priceContainer: "text-center mb-2",
+  priceAmount:
+    "font-rubik font-semibold text-[2rem] capitalize dark:text-white",
+  priceDa: `font-semibold text-lg capitalize dark:text-white`,
   priceDuration: "font-semibold text-lg dark:text-white",
   buttonWrap: "flex justify-center mt-2",
   acheterButton: "acheter-button",
 };
 
-// Inject CSS once with updated styling to match Dima
-if (!document.getElementById("dima-shahid-styles")) {
+// Updated CSS injection to match Dima styling
+if (!document.getElementById("dima-anghami-styles")) {
   const styleEl = document.createElement("style");
-  styleEl.id = "dima-shahid-styles";
+  styleEl.id = "dima-anghami-styles";
   styleEl.textContent = `
     .dima-card-border {
       box-shadow: -0.92px 7.34px 16.52px 0px #4F4F4F1A, -2.75px 29.37px 29.37px 0px #4F4F4F17;
@@ -42,6 +47,7 @@ if (!document.getElementById("dima-shahid-styles")) {
       background-color: var(--ooredoo-red, #e50012);
       border: none;
       color: white;
+      font-family: Rubik, sans-serif;
       font-weight: 600;
       font-size: 1.1rem;
       text-transform: uppercase;
@@ -72,24 +78,24 @@ if (!document.getElementById("dima-shahid-styles")) {
       background-repeat: repeat-x;
     }
 
-    /* Modal Styles for Shahid */
-    .shahid-modal-fade {
-      animation: shahidModalFadeIn 0.3s ease-out forwards;
+    /* Modal Styles for Anghami */
+    .anghami-modal-fade {
+      animation: anghamiModalFadeIn 0.3s ease-out forwards;
       backdrop-filter: blur(8px);
       background-color: rgba(105, 105, 105, 0.8);
     }
 
-    @keyframes shahidModalFadeIn {
+    @keyframes anghamiModalFadeIn {
       from { opacity: 0; transform: scale(0.95) translateY(-10px); }
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    @keyframes shahidModalFadeOut {
+    @keyframes anghamiModalFadeOut {
       from { opacity: 1; transform: scale(1) translateY(0); }
       to { opacity: 0; transform: scale(0.95) translateY(-10px); }
     }
 
-    .shahid-modal-button {
+    .anghami-modal-button {
       position: relative;
       overflow: hidden;
       z-index: 10;
@@ -97,67 +103,57 @@ if (!document.getElementById("dima-shahid-styles")) {
       transition: all 0.3s ease;
     }
 
-    .shahid-modal-button:hover {
+    .anghami-modal-button:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
-    .shahid-modal-button:active {
+    .anghami-modal-button:active {
       transform: translateY(0px);
     }
   `;
   document.head.appendChild(styleEl);
 }
 
-// Card renderer with purchase button functionality
-function renderShahidCard(plan, isArabic, index) {
+function renderAnghamiCard(plan, isArabic) {
   return `
-    <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${styles.card}">
+    <div class="${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} ${
+    styles.card
+  }">
       <div class="${styles.cardHeader}">
-        <h2 class="${styles.cardName}">${plan.name}</h2>
+        <h2 dir="ltr" class="${styles.cardName}">${plan.name}</h2>
       </div>
       <div class="${styles.cardContent}">
         <div>
-          <ul class="">
-              ${plan.features
-                .map(
-                  (f, i) => `
+          <ul class="${styles.featuresList}">
+            ${plan.features
+              .map(
+                (f) => `
               <li class="text-base leading-relaxed flex items-center gap-2 mb-3 text-gray-800 dark:text-gray-200">
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
-                  <rect y="0.422852" width="14.91" height="14.91" rx="7.455" fill="#E31D23"/>
-                  <g clip-path="url(#clip0_113_17964)">
-                  <g clip-path="url(#clip1_113_17964)">
-                  <path d="M4.22656 7.87927L6.37732 10.03L10.6788 5.72852" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </g>
-                  </g>
-                  <defs>
-                  <clipPath id="clip0_113_17964">
-                  <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91211 3.33594)"/>
-                  </clipPath>
-                  <clipPath id="clip1_113_17964">
-                  <rect width="9.08421" height="9.08421" fill="white" transform="translate(2.91016 3.33691)"/>
-                  </clipPath>
-                  </defs>
-                </svg>
+                <img src="./assets/images/dima/checkbox.svg" class="${styles.featureIconBase}" alt="✓" />
                 <span class="${styles.featureText}">${f}</span>
               </li>`
-                )
-                .join("")}
+              )
+              .join("")}
           </ul>
         </div>
         <div>
           <div class="${styles.divider}"></div>
-          <div class="${styles.priceContainer} flex items-end gap-2 justify-center">
+          <div class="${
+            styles.priceContainer
+          } flex items-end justify-center gap-2">
             <span class="${styles.priceAmount}">${plan.price}</span>
             <div class="flex items-center gap-0 pb-1">
-              <span class="${styles.priceDa}">${isArabic ? "دج" : "DA"}/</span>
+              <span class="${styles.priceDa} ${
+    isArabic ? "font-noto-kufi-arabic" : "font-rubik"
+  }">${isArabic ? "دج" : "DA"}/</span>
               <span class="${styles.priceDuration}">${plan.duration}</span>
             </div>
           </div>
           <div class="${styles.buttonWrap}">
-            <button class="${styles.acheterButton} ${isArabic ? "font-noto-kufi-arabic" : "font-rubik"} shahid-purchase-btn" data-offer-name="${
-    plan.name
-  }" data-plan-index="${index}">
+            <button class="${styles.acheterButton} ${
+    isArabic ? "font-noto-kufi-arabic" : "font-rubik"
+  } anghami-purchase-btn" data-offer-name="${plan.name}">
               ${isArabic ? "شراء" : "ACHETER"}
             </button>
           </div>
@@ -167,7 +163,7 @@ function renderShahidCard(plan, isArabic, index) {
   `;
 }
 
-export default class DigitalShahidServices {
+export default class DigitalOpacServices {
   constructor(container) {
     this.container = container;
     this.currentLang = this.getLang();
@@ -183,7 +179,10 @@ export default class DigitalShahidServices {
 
   setupEventListeners() {
     // Purchase button event delegation
-    this.container.addEventListener("click", this.handlePurchaseClick.bind(this));
+    this.container.addEventListener(
+      "click",
+      this.handlePurchaseClick.bind(this)
+    );
   }
 
   getLang() {
@@ -209,7 +208,10 @@ export default class DigitalShahidServices {
 
   unbindEvents() {
     if (this.boundHandleLanguageChange) {
-      window.removeEventListener("languageChanged", this.boundHandleLanguageChange);
+      window.removeEventListener(
+        "languageChanged",
+        this.boundHandleLanguageChange
+      );
     }
     if (this.boundStorageListener) {
       window.removeEventListener("storage", this.boundStorageListener);
@@ -223,7 +225,6 @@ export default class DigitalShahidServices {
   handleLanguageChange() {
     const newLang = this.getLang();
     if (newLang !== this.currentLang) {
-      console.log(`DigitalShahidServices: Language changed from ${this.currentLang} to ${newLang}`);
       this.currentLang = newLang;
       this.render();
     }
@@ -244,7 +245,7 @@ export default class DigitalShahidServices {
   }
 
   handlePurchaseClick(e) {
-    const button = e.target.closest(".shahid-purchase-btn");
+    const button = e.target.closest(".anghami-purchase-btn");
     if (!button) return;
 
     e.preventDefault();
@@ -252,7 +253,11 @@ export default class DigitalShahidServices {
 
     const offerName = button.getAttribute("data-offer-name");
     const currentLanguage = this.getLang();
-    const modalContent = shahidModalData[currentLanguage] && shahidModalData[currentLanguage][offerName];
+    const modalContent =
+      opacModalData[currentLanguage] &&
+      opacModalData[currentLanguage][offerName];
+
+      console.log("first render" , offerName)
 
     if (modalContent) {
       this.showPurchaseFlow(offerName, modalContent, currentLanguage === "ar");
@@ -294,10 +299,12 @@ export default class DigitalShahidServices {
 
   showModal({ type, title, message, isRTL = false, onConfirm, onClose }) {
     try {
-      let modalContainer = this.container.querySelector("#shahid-modal-container");
+      let modalContainer = this.container.querySelector(
+        "#opac-modal-container"
+      );
       if (!modalContainer) {
         modalContainer = document.createElement("div");
-        modalContainer.id = "shahid-modal-container";
+        modalContainer.id = "opac-modal-container";
         this.container.appendChild(modalContainer);
       }
 
@@ -306,7 +313,7 @@ export default class DigitalShahidServices {
       this.setupModalEvents({ type, onConfirm, onClose, modalContainer });
       this.manageFocusForModal(modalContainer);
     } catch (error) {
-      console.error("Error showing Shahid modal:", error);
+      console.error("Error showing Anghami modal:", error);
     }
   }
 
@@ -327,18 +334,22 @@ export default class DigitalShahidServices {
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
 
     return `
-      <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 shahid-modal-fade"
+      <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 anghami-modal-fade"
           style="background-color: rgba(105, 105, 105, 0.8);"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="shahid-modal-title">
+          aria-labelledby="anghami-modal-title">
           <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
-              <button class="absolute top-4 ${closeButtonPosition} p-2 z-10 rounded-full transition-all duration-200 shahid-modal-close"
+              <button class="absolute top-4 ${closeButtonPosition} p-2 z-10 rounded-full transition-all duration-200 anghami-modal-close"
                       aria-label="${isRTL ? "إغلاق" : "Fermer"}">
                   <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>
               </button>
               <div class="text-center mb-6">
-                  <h2 id="shahid-modal-title" class="${fontClass} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                  <h2 id="anghami-modal-title"
+                   dir="${!isRTL ? "ltr" : title.includes("1000 OSN+ & ANGHAMI") ? "ltr" : "rtl"}"
+                   class="${
+                    !isRTL ? "font-rubik" : title.includes("1000 OSN+ & ANGHAMI") ? "font-rubik" : fontClass
+                  } font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${title}
                   </h2>
               </div>
@@ -347,7 +358,7 @@ export default class DigitalShahidServices {
                       ${message}
                   </p>
               </div>
-              <div class="flex justify-center flex-nowrap shahid-modal-buttons">${buttons}</div>
+              <div class="flex justify-center flex-nowrap anghami-modal-buttons">${buttons}</div>
           </div>
       </div>
     `;
@@ -362,8 +373,8 @@ export default class DigitalShahidServices {
     };
 
     const fontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
-    const primaryBtn = `${fontClass} font-semibold text-base uppercase shahid-modal-button w-28 sm:w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
-    const secondaryBtn = `${fontClass} font-semibold text-base uppercase shahid-modal-button w-28 sm:w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
+    const primaryBtn = `${fontClass} font-semibold text-base uppercase anghami-modal-button w-28 sm:w-40 h-12 rounded-full border-none cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-ooredoo-red text-white shadow-lg`;
+    const secondaryBtn = `${fontClass} font-semibold text-base uppercase anghami-modal-button w-28 sm:w-40 h-12 rounded-full cursor-pointer inline-flex items-center justify-center transition-all duration-300 bg-white text-ooredoo-red border-2 border-ooredoo-red shadow-md dark:bg-[#2C2C2C] dark:text-white dark:border-white`;
     const buttonGap = "gap-4 flex-wrap sm:flex-nowrap";
 
     const buttonConfigs = {
@@ -389,15 +400,18 @@ export default class DigitalShahidServices {
   }
 
   setupModalEvents({ type, onConfirm, onClose, modalContainer }) {
-    const modal = modalContainer.querySelector(".shahid-modal-fade");
-    const closeButton = modal.querySelector(".shahid-modal-close");
+    const modal = modalContainer.querySelector(".anghami-modal-fade");
+    const closeButton = modal.querySelector(".anghami-modal-close");
     const actionButtons = modal.querySelectorAll("[data-action]");
 
     const closeModal = () => {
-      modal.style.animation = "shahidModalFadeOut 0.2s ease-in forwards";
+      modal.style.animation = "anghamiModalFadeOut 0.2s ease-in forwards";
       setTimeout(() => {
         modalContainer.innerHTML = "";
-        if (this.previouslyFocusedElement && this.previouslyFocusedElement.focus) {
+        if (
+          this.previouslyFocusedElement &&
+          this.previouslyFocusedElement.focus
+        ) {
           this.previouslyFocusedElement.focus();
         }
         this.previouslyFocusedElement = null;
@@ -464,47 +478,64 @@ export default class DigitalShahidServices {
   render() {
     const lang = this.getLang();
     const isArabic = lang === "ar";
-    const plans = shahidPlans[lang];
-    const description = shahidDescription[lang];
+    const plan = opacPlan[lang];
+    const description = opacDescription[lang];
 
     this.container.innerHTML = `
-      <div class="${this.currentLang === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] px-5 py-16">
-        <div class="mx-auto w-full max-w-screen-2xl ${isArabic ? 'dir="rtl"' : ""}">
-          <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white mb-10">
-            ${isArabic ? "اشتراكات شاهد" : "FORFAITS SHAHID"}
+      <div class="${
+        isArabic ? "font-noto-kufi-arabic" : "font-rubik"
+      } w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-16">
+        <div>
+          <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
+            ${
+              isArabic
+                ? "اشتراك <span class='font-rubik'>O’pack</span>"
+                : "forfait O’pack"
+            }
           </h2>
+        </div>
+        <div class="mx-auto pt-12 w-full max-w-screen-xl" ${
+          isArabic ? 'dir="rtl"' : ""
+        }>
+          <div class="flex flex-col-reverse lg:flex-row-reverse w-full gap-8 items-center">
 
-          <div class="flex flex-col-reverse lg:grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-5 items-stretch">
-            
-            <!-- Card 1 -->
-            <div class="flex justify-center">
-              ${renderShahidCard(plans[0], isArabic, 0)}
-            </div>
-
-            <!-- Card 2 -->
-            <div class="flex justify-center">
-              ${renderShahidCard(plans[1], isArabic, 1)}
-            </div>
-
-            <!-- Logo/info -->
-            <div class="flex flex-col items-center justify-center text-center mt-4 lg:mt-0 px-4">
-              <img src="./assets/images/services/shahid.svg"  alt="Shahid"
-                   class="w-full max-w-xs h-auto mb-6 dark:hidden flex"/>
-              <img src="./assets/images/services/shahid-d.svg" alt="Shahid"
-                   class="w-full max-w-xs h-auto mb-6 dark:flex hidden"/>
-              <div class="text-base leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">
+            <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">
+              <div dir="ltr" class="flex items-center justify-center gap-1 md:gap-3 mb-8">
+              <img 
+                  src="./assets/images/services/osn.svg" alt="OSN+"
+                  class="w-[76.33px] md:w-42 h-auto dark:hidden"
+                />
+                <img 
+                  src="./assets/images/services/osn-dark.svg" alt="OSN+"
+                  class="w-[76.33px] md:w-42 h-auto hidden dark:block"
+                />
+                <span class="text-[24px] md:text-4xl font-semibold text-black dark:text-white">&</span>
+                <img 
+                  src="./assets/images/services/anghami.svg" alt="Anghami"
+                  class="w-[150.85px] md:w-48 h-auto dark:hidden"
+                />
+                <img 
+                  src="./assets/images/services/anghami-dark.svg" alt="Anghami"
+                  class="w-[150.85px] md:w-48 h-auto hidden dark:block"
+                />
+                </div>
+              <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl text-center text-gray-800 dark:text-gray-200">
                 ${
                   isArabic
-                    ? `<p>احصلوا الآن على اشتراك <span class="font-semibold">شاهد</span> الذي يناسبكم، و استفيدوا من <span class="font-semibold">دخول حصري</span> لمدة 30 يوم + <span class="font-semibold">إنترنت</span>. <span></span></p>`
-                    : `<p>Obtenez dès maintenant <span class="font-semibold">un forfait Shahid</span>,30 jours d'<span class="font-semibold">accès premium Shahid + internet</span></p>`
+                    ? `<p>سارعوا للحصول على اشتراك  <span class="font-semibold font-rubik">OSN+ & ANGHAMI</span> واستمتعوا <span class="font-semibold">بمحتوياتكم المفضلة</span> بالإضافة إلى حجم إنترنت بـ <span class="font-rubik">1000</span> دج!</p>`
+                    : `<p>Obtenez dès maintenant un forfait <span class="font-semibold">OSN+</span> & <span class="font-semibold">ANGHAMI</span> pour plonger dans <span class="font-semibold">une expérience de streaming exceptionnelle</span> et profiter d'un volume internet pour 1000 DA !</p>`
                 }
               </div>
             </div>
 
+            <!-- Card Section (right on desktop, bottom on mobile) -->
+            <div class="w-full lg:w-[45%] flex justify-center">
+              ${renderAnghamiCard(plan, isArabic)}
+            </div>
           </div>
         </div>
       </div>
-      <div id="shahid-modal-container"></div>
+      <div id="opac-modal-container"></div>
     `;
   }
 

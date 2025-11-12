@@ -482,7 +482,7 @@ export default class DigitalAnghamiServices {
     this.container.innerHTML = `
       <div class="${
         isArabic ? "font-noto-kufi-arabic" : "font-rubik"
-      } w-full bg-[#F8F8F8] dark:bg-[#2C2C2C] px-5 py-16">
+      } w-full bg-white dark:bg-[#141414] px-5 py-16">
         <div>
           <h2 class="font-medium text-3xl md:text-4xl tracking-wide uppercase text-center text-black dark:text-white">
             ${

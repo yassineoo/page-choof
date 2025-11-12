@@ -4,6 +4,7 @@ import DigitalShahidServices from "./DigitalShahidServices.js";
 import TODServices from "./TODServices.js";
 import DigitalFreeFireServices from "./DigitalFreeFireServices.js";
 import DigitalAnghamiServices from "./DigitalAnghamiServices.js";
+import DigitalOpacServices from "./DigitalOpacServices.js";
 export default class DigitalServices {
   constructor(container) {
     this.container = container;
@@ -15,7 +16,8 @@ export default class DigitalServices {
     this.container.innerHTML = `
       <div id="digital-services-header" class=""></div>
       <div id="bitdefender-services" class=""></div>
-            <div id="tod-services" class=""></div>
+      <div id="opac-services" class=""></div>
+      <div id="tod-services" class=""></div>
       <div id="shahid-services" class=""></div>
       <div id="anghami-services" class=""></div>
       <div id="freefire-services" class=""></div>
@@ -23,6 +25,7 @@ export default class DigitalServices {
 
     new DigitalServicesHeader(document.getElementById("digital-services-header"));
     new DigitalBitdefenderServices(document.getElementById("bitdefender-services"));
+    new DigitalOpacServices(document.getElementById("opac-services"));
     new DigitalShahidServices(document.getElementById("shahid-services"));
     new DigitalAnghamiServices(document.getElementById("anghami-services"));
     new TODServices(document.getElementById("tod-services"));

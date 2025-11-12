@@ -40,12 +40,12 @@ export default class DigitalFreeFireServices {
         w-full 
         flex flex-col items-center gap-8
         px-4 py-8
-        ${isDark ? "bg-[#141414]" : "bg-white"}
+        ${isDark ? "bg-[#2c2c2c]" : "bg-[#F8F8F8]"}
       `,
 
       cardWrapper: `
         w-full flex justify-center
-        ${isDark ? "bg-[#141414]" : "bg-white"}
+        ${isDark ? "bg-[#2c2c2c]" : "bg-[#F8F8F8]"}
         my-8
       `,
 
