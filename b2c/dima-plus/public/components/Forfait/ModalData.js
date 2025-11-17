@@ -46,7 +46,7 @@ function generateModalContent(offers, lang) {
     `لقد حصلت على 6Go  إنترنت + تخفيضات عند شركائنا، الكل صالح 30 يوم. حمّل التطبيق فايدة واستفد من المزايا!  ` 
     : 
     offer.name === "Forfait 500" ?
-    `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en! `
+    `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en ! `
     :
     offer.name === "Smart 100" && !isArabic ?
     `Vous disposez d'appels illimités vers Ooredoo + Facebook et Messenger illimités + 100 DA vers tous les réseaux + 500Mo, valables 24 h`

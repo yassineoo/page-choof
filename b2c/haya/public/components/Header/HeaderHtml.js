@@ -259,14 +259,14 @@ export const generateHeaderHTML = (
               px-[14px] pt-[22px] pb-[20px]">
 
     <button id="opt-hadra" 
-            class="${fontClass} w-full text-left rounded-lg">
+            class="${fontClass} w-full ${language === "ar" ? "text-right" : "text-left"} rounded-lg">
       ${texts.modeOptionHadra || "MAXY Hadra"}
     </button>
 
     <div class="h-[1px] bg-[#EBEBEB] my-[10px]"></div>
 
     <button id="opt-internet" 
-            class="${fontClass} w-full text-left rounded-lg">
+            class="${fontClass} w-full ${language === "ar" ? "text-right" : "text-left"} rounded-lg">
       ${texts.modeOptionInternet || "MAXY Internet"}
     </button>
 

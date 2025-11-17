@@ -27,7 +27,7 @@ export default {
     },
     "Forfait 500": {
       confirm: `6Go internet + Coupons Fayda, le tout valable 30 jours.`,
-      success: `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en! `,
+      success: `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en ! `,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 500. Veuillez recharger votre compte.`,
     },
     "Forfait 300": {
@@ -48,17 +48,17 @@ export default {
     "Smart 200": {
       confirm: `Internet gratuit + appels illimités vers Ooredoo <br> + 600 DA de crédit, le tout valable 24 heures. `,
       success: `Vous disposez de Internet gratuit + appels illimités vers Ooredoo + 600 DA de crédit, le tout valable 24 heures.`,
-      insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 200. Veuillez recharger votre compte.`,
+      insufficient: `Votre crédit est insuffisant pour acheter le forfait smart 200. Veuillez recharger votre compte.`,
     },
     "Smart 100": {
       confirm: `500Mo internet + appels illimités vers Ooredoo + Facebook et Messenger illimités + 100 DA de crédit, le tout valable 24 heures.`,
       success: `Vous disposez d'appels illimités vers Ooredoo + Facebook et Messenger illimités + 100 DA vers tous les réseaux + 500Mo, valables 24 heures.`,
-      insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 100. Veuillez recharger votre compte.`,
+      insufficient: `Votre crédit est insuffisant pour acheter le forfait smart 100. Veuillez recharger votre compte.`,
     },
     "Smart 50": {
       confirm: `200Mo internet + 30 minutes vers Ooredoo, le tout valable 24 heures.`,
       success: `Vous disposez de 200Mo internet + 30 minutes vers Ooredoo, le tout valable 24 heures.`,
-      insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 50. Veuillez recharger votre compte.`,
+      insufficient: `Votre crédit est insuffisant pour acheter le forfait smart 50. Veuillez recharger votre compte.`,
     },
   },
 

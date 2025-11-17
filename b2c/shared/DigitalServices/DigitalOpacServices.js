@@ -497,33 +497,24 @@ export default class DigitalOpacServices {
         <div class="mx-auto pt-12 w-full max-w-screen-xl" ${
           isArabic ? 'dir="rtl"' : ""
         }>
-          <div class="flex flex-col-reverse lg:flex-row-reverse w-full gap-8 items-center">
+          <div class="flex flex-col lg:flex-row-reverse w-full gap-8 items-center">
 
             <div class="w-full lg:w-[55%] max-w-xl mx-auto flex flex-col items-center text-center">
               <div dir="ltr" class="flex items-center justify-center gap-1 md:gap-3 mb-8">
-              <img 
-                  src="./assets/images/services/osn.svg" alt="OSN+"
-                  class="w-[76.33px] md:w-42 h-auto dark:hidden"
+                <img 
+                  src="./assets/images/header/Ooredoo.svg" alt="ooredoo"
+                  class="w-[150px] md:w-[225px] h-auto dark:hidden"
                 />
                 <img 
-                  src="./assets/images/services/osn-dark.svg" alt="OSN+"
-                  class="w-[76.33px] md:w-42 h-auto hidden dark:block"
-                />
-                <span class="text-[24px] md:text-4xl font-semibold text-black dark:text-white">&</span>
-                <img 
-                  src="./assets/images/services/anghami.svg" alt="Anghami"
-                  class="w-[150.85px] md:w-48 h-auto dark:hidden"
-                />
-                <img 
-                  src="./assets/images/services/anghami-dark.svg" alt="Anghami"
-                  class="w-[150.85px] md:w-48 h-auto hidden dark:block"
-                />
+                  src="./assets/images/header/Ooredoo-white.svg" alt="ooredoo-white"
+                  class="w-[150px] md:w-[225px] h-auto hidden dark:block"
+                />                
                 </div>
               <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl text-center text-gray-800 dark:text-gray-200">
                 ${
                   isArabic
                     ? `<p>استفيدوا من دخول حصري إلى <a class='text-blue-500 underline font-semibold' href='https://liferay-dev.ooredoo.dz/ar/particuliers/services/o-pack'>خدماتكم الرقمية</a> المفضلة – <span class='font-semibold'>ألعاب، فيديوهات حسب الطلب، موسيقى حسب الطلب ومسابقات</span>، بالإضافة إلى 10Go إنترنت بـ<span class='font-semibold'> 800 دج للشهر فقط!</span> <span class='font-semibold'>استمتعوا بالترفيه واللّعب والتصفح بلا حدود مع Ooredoo!</span></p>`
-                    : `<p>Profitez d’un accès exclusif à vos <a class='text-blue-500 underline font-semibold' href='https://liferay-dev.ooredoo.dz/fr/particuliers/services/o-pack'>services digitaux</a> préférés\n <span class='font-semibold'>- jeux, VOD, MOD et quiz -</span> avec <span class'font-semibold'>10Go d’internet</span> pour seulement <span class='font-semibold'>800 DA par mois !</span> <br/>\n <span class='font-semibold'>Divertissez-vous, jouez et surfez sans limites avec Ooredoo !</span></p>`
+                    : `<p>Profitez d’un accès exclusif à vos <a class='text-blue-500 underline font-semibold' href='https://liferay-dev.ooredoo.dz/fr/particuliers/services/o-pack'>services digitaux</a> préférés\n <span class='font-semibold'>- jeux, VOD, MOD et quiz -</span> avec <span class='font-semibold'>10Go d’internet</span> pour seulement <span class='font-semibold'>800 DA par mois !</span> <br/>\n <span class='font-semibold'>Divertissez-vous, jouez et surfez sans limites avec Ooredoo !</span></p>`
                 }
               </div>
             </div>

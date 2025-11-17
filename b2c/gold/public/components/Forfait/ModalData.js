@@ -1,28 +1,28 @@
 export default {
   fr: {
     "Gold 1000": {
-      confirm: `Gold 1000 = 15Go + 2000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours.`,
-      success: `Félicitations ! Vous venez de recevoir 15Go + 2000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours.`,
+      confirm: `15Go + 2000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours.`,
+      success: `Vous venez de recevoir 15Go + 2000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait GOLD 1000. Veuillez recharger votre compte.`,
     },
     "Gold 1500": {
-      confirm: `Gold 1500 = 40Go + 3000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours`,
-      success: `Félicitations ! Vous avez 40Go + 3000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours`,
+      confirm: `40Go + 3000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours`,
+      success: `Vous avez 40Go + 3000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait GOLD 1500. Veuillez recharger votre compte.`,
     },
     "Gold 2000": {
-      confirm: `Gold 2000 = 70Go + 6000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours`,
-      success: `Félicitations ! 70Go + 6000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours`,
+      confirm: `70Go + 6000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours`,
+      success: `70Go + 6000 DA de crédit vers tous les réseaux nationaux + appels illimités vers Ooredoo, le tout valable 30 jours`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait GOLD 2000. Veuillez recharger votre compte.`,
     },
     "Gold 2500": {
-      confirm: `Gold 2500 = 100Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 100 SMS vers les autres réseaux nationaux, le tout valable 30 jours.`,
-      success: `Félicitations ! Vous avez 100Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 100 SMS vers les autres réseaux nationaux, le tout valable 30 jours`,
+      confirm: `100Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 100 SMS vers les autres réseaux nationaux, le tout valable 30 jours.`,
+      success: `Vous avez 100Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 100 SMS vers les autres réseaux nationaux, le tout valable 30 jours`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait GOLD 2500. Veuillez recharger votre compte.`,
     },
     "Gold 4000": {
-      confirm: `Gold 4000 = 200Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 200 SMS vers les autres réseaux nationaux, le tout valable 30 jours.`,
-      success: `Félicitations ! Vous venez de recevoir le forfait Gold 4000 qui vous offre 200Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 200 SMS vers les autres réseaux nationaux, le tout valable 4 semaines.`,
+      confirm: `200Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 200 SMS vers les autres réseaux nationaux, le tout valable 30 jours.`,
+      success: `Vous venez de recevoir le forfait Gold 4000 qui vous offre 200Go + appels illimités vers tous les réseaux nationaux + SMS illimités vers Ooredoo + 200 SMS vers les autres réseaux nationaux, le tout valable 4 semaines.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait Gold 4000. Veuillez recharger votre compte.`,
     },
     "Forfait 1500": {
@@ -37,7 +37,7 @@ export default {
     },
     "Forfait 500": {
       confirm: `6Go internet + Coupons Fayda, le tout valable 30 jours.`,
-      success: `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en! `,
+      success: `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en ! `,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 500. Veuillez recharger votre compte.`,
     },
     "Forfait 300": {
@@ -58,44 +58,44 @@ export default {
     "Smart 200": {
       confirm: `Internet gratuit + appels illimités vers Ooredoo <br> + 600 DA de crédit, le tout valable 24 heures. `,
       success: `Vous disposez de Internet gratuit + appels illimités vers Ooredoo + 600 DA de crédit, le tout valable 24 heures.`,
-      insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 200. Veuillez recharger votre compte.`,
+      insufficient: `Votre crédit est insuffisant pour acheter le forfait smart 200. Veuillez recharger votre compte.`,
     },
     "Smart 100": {
       confirm: `500Mo internet + appels illimités vers Ooredoo + Facebook et Messenger illimités + 100 DA de crédit, le tout valable 24 heures.`,
       success: `Vous disposez d'appels illimités vers Ooredoo + Facebook et Messenger illimités + 100 DA vers tous les réseaux + 500Mo, valables 24 heures.`,
-      insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 100. Veuillez recharger votre compte.`,
+      insufficient: `Votre crédit est insuffisant pour acheter le forfait smart 100. Veuillez recharger votre compte.`,
     },
     "Smart 50": {
       confirm: `200Mo internet + 30 minutes vers Ooredoo, le tout valable 24 heures.`,
       success: `Vous disposez de 200Mo internet + 30 minutes vers Ooredoo, le tout valable 24 heures.`,
-      insufficient: `Votre crédit est insuffisant pour acheter le forfait Smart 50. Veuillez recharger votre compte.`,
+      insufficient: `Votre crédit est insuffisant pour acheter le forfait smart 50. Veuillez recharger votre compte.`,
     },
   },
 
   ar: {
     "Gold 1000": {
       confirm: `Gold 1000 يمنحك 15Go و2000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح  30 يوم.`,
-      success: `هنيئًا! لقد حصلت على 15Go و2000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح  30 يوم`,
+      success: `لقد حصلت على 15Go و2000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح  30 يوم`,
       insufficient: `رصيدك غير كافٍ لشراء اشتراك GOLD 1000. يُرجى تعبئة حسابك`,
     },
     "Gold 1500": {
       confirm: `Gold 1500 يمنحك 40Go و3000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح  30 يوم.`,
-      success: `هنيئا ! لقد حصلت على 40Go و3000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح  30 يوم. `,
+      success: `لقد حصلت على 40Go و3000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح  30 يوم. `,
       insufficient: `رصيدك غير كافٍ لشراء اشتراك GOLD 1500. يرجى تعبئة حسابك. `,
     },
     "Gold 2000": {
       confirm:`2000 يمنحك 70Go و6000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح  30 يوم`,
-      success:`هنيئا ! لقد حصلت على70Go  و6000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح  30 يوم`,
+      success:`لقد حصلت على70Go  و6000 دج رصيد نحو كل الشبكات الوطنية + مكالمات غير محدودة نحو Ooredoo، الكل صالح  30 يوم`,
       insufficient:`رصيدك غير كافٍ لشراء اشتراك GOLD 2000. يرجى تعبئة حسابك. `,
     },
     "Gold 2500": {
       confirm:`Gold 2500 يمنحك 100Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + رسائل قصيرة غير محدودة نحو Ooredoo و100 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح  30 يوم. `,
-      success:`هنيئا ! لقد حصلت على 100Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + رسائل قصيرة غير محدودة نحو Ooredoo و100 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح  30 يوم.`,
+      success:`لقد حصلت على 100Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + رسائل قصيرة غير محدودة نحو Ooredoo و100 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح  30 يوم.`,
       insufficient:`رصيدك غير كافٍ لشراء اشتراك GOLD 2500. يرجى تعبئة حسابك. `,
     },
     "Gold 4000": {
       confirm:`Gold 4000 يمنحك 200Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + رسائل قصيرة غير محدودة نحو Ooredoo و200 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح  30 يوم.`,
-      success:`هنيئا ! لقد حصلت على 200Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + رسائل قصيرة غير محدودة نحو Ooredoo و200 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح  30 يوم.`,
+      success:`لقد حصلت على 200Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + رسائل قصيرة غير محدودة نحو Ooredoo و200 رسالة قصيرة نحو الشبكات الأخرى، الكل صالح  30 يوم.`,
       insufficient:`رصيدك غير كافٍ لشراء اشتراك GOLD 4000. يرجى تعبئة حسابك. `,
     },
     "اشتراك 1500":{

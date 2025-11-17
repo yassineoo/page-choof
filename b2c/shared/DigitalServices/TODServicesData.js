@@ -4,7 +4,7 @@ export const todPackages = {
       id: "tod-mobile",
       title: "Forfait TOD MOBILE",
       type: "TOD MOBILE",
-      description: `Profitez du meilleur du sport et du divertissement sur votre smartphone ! <strong>Streaming HD</strong> + un volume internet généreux à partir de <strong>900 DA par mois</strong> !`,
+      description: `Profitez du meilleur du sport et du divertissement sur votre smartphone ! <strong>Streaming HD</strong> + un volume internet <span class='sm:whitespace-nowrap'>généreux à partir de <strong>900 DA par mois</strong> !</span>`,
       logo: "./assets/images/services/TOD.svg",
       subLogo: "./assets/images/services/Mobile.svg",
       durations: [

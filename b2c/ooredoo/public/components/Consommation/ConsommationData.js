@@ -124,6 +124,15 @@ export const consommationData = {
             extra: "/5Go",
           },
           {
+            subIcon: "opack",
+            subtitle: "O’Pack",
+            value: "8",
+            unit: "Go",
+            date: "26/05/25",
+            percentage: 80,
+            extra: "/10Go",
+          },
+          {
             subIcon: "tod",
             subtitle: "TOD",
             value: "4",
@@ -284,6 +293,15 @@ export const consommationData = {
             date: "26/05/25",
             percentage: 80,
             extra: "<span class='font-rubik'>/5</span>Go",
+          },
+          {
+            subIcon: "opack",
+            subtitle: "O’Pack",
+            value: '<span class="font-rubik">8</span>',
+            unit: "Go",
+            date: "26/05/25",
+            percentage: 80,
+            extra: "<span class='font-rubik'>/10</span>Go",
           },
           {
             subIcon: "tod",

@@ -65,7 +65,7 @@ export const migrationData = {
     migrationDimaModal: {
       confirmTitle: "هنيئًا!",
       confirmDescription:
-        "لقد تم تفعيل ميزة مشاركة الإنترنت بنجاح! بإمكانك الآن اختيار حد مشاركة الإنترنت.",
+        "لقد تم تفعيل ميزة مشاركة الإنترنت بنجاح ! بإمكانك الآن اختيار حد مشاركة الإنترنت.",
       successTitle: "رصيد غير كافٍ",
       successMessage:
         "رصيدك غير كافٍ، يُرجى تعبئة حسابك.",

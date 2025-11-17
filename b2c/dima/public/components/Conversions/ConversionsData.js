@@ -96,7 +96,7 @@ const conversionsData = {
 
     plans: [
       {
-        name: "إشتراك <span class='font-rubik'>DIMA 2500</span>",
+        name: "اشتراك <span class='font-rubik'>DIMA 2500</span>",
         description:
           "100Go إنترنت + مكالمات غير محدودة نحو كل الشبكات + 250 رسائل قصيرة نحو كل الشبكات + فايسبوك و ANAZIK  و ANAFLIX",
         price: 2500,
@@ -104,7 +104,7 @@ const conversionsData = {
         priceUnit: "دج/",
       },
       {
-        name: "إشتراك <span class='font-rubik'>DIMA 2000</span>",
+        name: "اشتراك <span class='font-rubik'>DIMA 2000</span>",
         description:
           "50Go إنترنت + 300 دقيقة و 200 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo و فايسبوك و ANAZIK و ANAFLIX ",
         price: 2000,
@@ -112,7 +112,7 @@ const conversionsData = {
         priceUnit: "دج/",
       },
       {
-        name: "إشتراك <span class='font-rubik'>DIMA 1500</span>",
+        name: "اشتراك <span class='font-rubik'>DIMA 1500</span>",
         description:
           "30Go إنترنت + 150 دقيقة و 150 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo و فايسبوك + ANAZIK",
         price: 1500,
@@ -120,7 +120,7 @@ const conversionsData = {
         priceUnit: "دج/",
       },
       {
-        name: "إشتراك <span class='font-rubik'>DIMA 1200</span>",
+        name: "اشتراك <span class='font-rubik'>DIMA 1200</span>",
         description:
           "8Go إنترنت + 100 دقيقة و 120 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo و فايسبوك + ANAZIK",
         price: 1200,
@@ -128,7 +128,7 @@ const conversionsData = {
         priceUnit: "دج/",
       },
       {
-        name: "إشتراك <span class='font-rubik'>DIMA 500</span>",
+        name: "اشتراك <span class='font-rubik'>DIMA 500</span>",
         description:
           "3Go إنترنت + 100 دقيقة و 50 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo وفايسبوك ",
         price: 500,
@@ -136,7 +136,7 @@ const conversionsData = {
         priceUnit: "دج/",
       },
       {
-        name: "إشتراك <span class='font-rubik'>DIMA 500 HADRA</span>",
+        name: "اشتراك <span class='font-rubik'>DIMA 500 HADRA</span>",
         description:
           "100 دقيقة و 100 رسالة قصيرة نحو كل الشبكات + مكالمات غير محدودة نحو Ooredoo  ",
         price: 500,

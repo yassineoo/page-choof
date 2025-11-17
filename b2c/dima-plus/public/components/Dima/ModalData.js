@@ -37,7 +37,7 @@ export default {
     },
     "Forfait 500": {
       confirm: `6Go + Coupon Fayda, le tout valable 30 jours.`,
-      success: `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en! `,
+      success: `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en ! `,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 500. Veuillez recharger votre compte.`,
     },
     "Forfait 300": {

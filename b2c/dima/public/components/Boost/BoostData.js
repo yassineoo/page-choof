@@ -4,7 +4,7 @@ export const boostData = {
     description:
       "Booster votre forfait Dima 2000 et bénéficiez d'appels illimités vers tous les réseaux + 50Go et 50 SMS en plus, le tout selon la validité de votre forfait Dima 2000 en cours.",
     confirmDescription:
-      "Pour 500da seulement, vous pouvez booster votre forfait Dima 2000 et bénéficiez d'appels illimités vers tous les réseaux + 50Go et 50 SMS en plus, le tout selon la validité de votre forfait Dima 2000 en cours.",
+      "Pour 500 DA seulement, vous pouvez booster votre forfait Dima 2000 et bénéficiez d'appels illimités vers tous les réseaux + 50Go et 50 SMS en plus, le tout selon la validité de votre forfait Dima 2000 en cours.",
     price: "500 DA",
     buy: "ACHETER",
     confirmTitle: "BOOST 500",

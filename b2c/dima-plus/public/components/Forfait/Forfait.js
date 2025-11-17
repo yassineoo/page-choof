@@ -1434,7 +1434,7 @@ class ForfaitComponent {
         if (content.hasShahid) {
           this.showModal({
             type: "success-shahid",
-            title: isRTL ? "هنيئًا !" : "Félicitations !",
+            title: isRTL ? "هنيئًا!" : "Félicitations !",
             message: content.success,
             isRTL,
             onActivate: () => {
@@ -1482,7 +1482,7 @@ class ForfaitComponent {
   showSuccessModal(content, isRTL, onClose) {
     this.showModal({
       type: "success",
-      title: isRTL ? "هنيئًا !" : "Félicitations !",
+      title: isRTL ? "هنيئًا!" : "Félicitations !",
       message: content.success,
       isRTL,
       onClose,

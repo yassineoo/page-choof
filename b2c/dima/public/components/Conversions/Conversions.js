@@ -17,7 +17,7 @@ class ConversionsComponent {
 
   getCleanPlanName(name, lang) {
     if (lang === "ar") {
-      return name.replace(/^إشتراك\s+/, "");
+      return name.replace("اشتراك", "");
     }
     return name;
   }
@@ -859,7 +859,7 @@ class ConversionsComponent {
     return `
       <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 conversions-modal-fade" style="background-color: rgba(105, 105, 105, 0.8);" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12" ${dirAttribute}>
-          <button class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-ooredoo-red text-white z-20 conversions-modal-close" aria-label="${
+          <button class="absolute top-[15px] right-[15px] w-[34px] h-[34px] flex items-center justify-center rounded-full bg-[#ED1C24] text-white z-20 conversions-modal-close" aria-label="${
             isRTL ? "إغلاق" : "Fermer"
           }">
             <img src="./assets/images/Close.svg" alt="close" class="w-6 h-6 block"/>

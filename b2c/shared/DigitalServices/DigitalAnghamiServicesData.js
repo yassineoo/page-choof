@@ -18,7 +18,7 @@ export const anghamiPlan = {
 };
 
 export const anghamiDescription = {
-  fr: "Obtenez dès maintenant un forfait OSN+ & ANGHAMI pour plonger dans une expérience de streaming exceptionnelle et profiter d’un volume internet pour 1000 DA !",
+  fr: "Obtenez dès maintenant un forfait OSN+ & ANGHAMI pour plonger dans une expérience de streaming exceptionnelle et profiter d’un volume internet <span class='whitespace-nowrap'>pour 1000 DA !</span>",
   ar: "سارعوا للحصول على اشتراك  OSN+ & ANGHAMI واستمتعوا بمحتوياتكم المفضلة بالإضافة إلى حجم إنترنت بـ 1000 دج!",
 };
 

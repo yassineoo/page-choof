@@ -1403,7 +1403,7 @@ class ForfaitComponent {
     return {
       confirm: isArabic ? `${offer.data} صالحة 4 أسابيع` : `${offer.data} valables 4 semaines`,
       success: isArabic
-        ? `هنيئًا! لقد تم تفعيل الاشتراك ${offer.name} بنجاح: ${offer.data} صالحة 4 أسابيع.`
+        ? ` لقد تم تفعيل الاشتراك ${offer.name} بنجاح: ${offer.data} صالحة 4 أسابيع.`
         : `Votre Forfait ${offer.name} est activé avec succès : ${offer.data} valables 4 semaines.`,
       insufficient: isArabic ? `رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك.` : `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
     };
@@ -1435,7 +1435,7 @@ class ForfaitComponent {
   showSuccessModal(content, isRTL, onClose) {
     this.showModal({
       type: "success",
-      title: isRTL ? "هنيئًا !" : "Félicitations !",
+      title: isRTL ? "هنيئًا!" : "Félicitations !",
       message: content.success,
       isRTL,
       onClose,

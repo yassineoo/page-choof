@@ -492,7 +492,7 @@ export default class DigitalShahidServices {
                    class="w-full max-w-xs h-auto mb-6 dark:hidden flex"/>
               <img src="./assets/images/services/shahid-d.svg" alt="Shahid"
                    class="w-full max-w-xs h-auto mb-6 dark:flex hidden"/>
-              <div class="text-base leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">
+              <div class="text-base md:text-xl leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">
                 ${
                   isArabic
                     ? `<p>احصلوا الآن على اشتراك <span class="font-semibold">شاهد</span> الذي يناسبكم، و استفيدوا من <span class="font-semibold">دخول حصري</span> لمدة 30 يوم + <span class="font-semibold">إنترنت</span>. <span></span></p>`

@@ -8,7 +8,7 @@ const styles = {
   card: "w-full max-w-[28rem] bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col relative overflow-hidden dima-card-border",
   cardHeader: "bg-ooredoo-red px-6 py-3 text-center font-rubik",
   cardName:
-    "font-medium text-2xl md:text-3xl leading-tight tracking-tight text-white",
+    "font-medium font-rubik text-2xl md:text-3xl leading-tight tracking-tight text-white",
   cardContent: "p-6 flex flex-col flex-1 justify-between",
   dataTitle: "text-2xl font-semibold text-ooredoo-red mb-3",
   featuresList: "list-none p-0 m-0",
@@ -121,7 +121,7 @@ function renderAnghamiCard(plan, isArabic) {
     styles.card
   }">
       <div class="${styles.cardHeader}">
-        <h2 dir="ltr" class="${styles.cardName}">${plan.name}</h2>
+        <h2 dir="ltr" class="${styles.cardName}">${isArabic ? plan.name : "OSN+ & ANGHAMI 1000"}</h2>
       </div>
       <div class="${styles.cardContent}">
         <div>
@@ -279,7 +279,7 @@ export default class DigitalAnghamiServices {
   showSuccessModal(content, isRTL, onClose) {
     this.showModal({
       type: "success",
-      title: isRTL ? "هنيئًا !" : "Félicitations !",
+      title: isRTL ? "هنيئًا!" : "Félicitations !",
       message: content.success,
       isRTL,
       onClose,
@@ -344,11 +344,11 @@ export default class DigitalAnghamiServices {
               </button>
               <div class="text-center mb-6">
                   <h2 id="anghami-modal-title"
-                   dir="${!isRTL ? "ltr" : title.includes("1000 OSN+ & ANGHAMI") ? "ltr" : "rtl"}"
+                   dir="${!isRTL ? "ltr" : title.includes("1000 OSN+ & ANGHAMI") || title.includes("OSN+ & ANGHAMI 1000") ? "ltr" : "rtl"}"
                    class="${
-                    !isRTL ? "font-rubik" : title.includes("1000 OSN+ & ANGHAMI") ? "font-rubik" : fontClass
+                    !isRTL ? "font-rubik" : title.includes("1000 OSN+ & ANGHAMI") || title.includes("OSN+ & ANGHAMI 1000") ? "font-rubik" : fontClass
                   } font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
-                      ${title}
+                      ${type === "confirm" && !isRTL ? "OSN+ & ANGHAMI 1000" : title}
                   </h2>
               </div>
               <div class="text-center mb-10">
@@ -517,11 +517,11 @@ export default class DigitalAnghamiServices {
                   class="w-[150.85px] md:w-48 h-auto hidden dark:block"
                 />
                 </div>
-              <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl text-center text-gray-800 dark:text-gray-200">
+              <div class="text-base md:text-xl leading-relaxed tracking-wide text-gray-800 dark:text-gray-200 w-full mx-auto text-center">
                 ${
                   isArabic
                     ? `<p>سارعوا للحصول على اشتراك  <span class="font-semibold font-rubik">OSN+ & ANGHAMI</span> واستمتعوا <span class="font-semibold">بمحتوياتكم المفضلة</span> بالإضافة إلى حجم إنترنت بـ <span class="font-rubik">1000</span> دج!</p>`
-                    : `<p>Obtenez dès maintenant un forfait <span class="font-semibold">OSN+</span> & <span class="font-semibold">ANGHAMI</span> pour plonger dans <span class="font-semibold">une expérience de streaming exceptionnelle</span> et profiter d'un volume internet pour 1000 DA !</p>`
+                    : `<p>Obtenez dès maintenant un forfait <span class="font-semibold">OSN+</span> & <span class="font-semibold">ANGHAMI</span> pour plonger dans <span class="font-semibold">une expérience de streaming exceptionnelle</span> et profiter d'un volume internet pour <span class="whitespace-nowrap">1000 DA !</span></p>`
                 }
               </div>
             </div>

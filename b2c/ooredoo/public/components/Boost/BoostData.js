@@ -12,7 +12,7 @@ export const boostData = {
     cancelBtn: "ANNULER",
     successTitle: "FÉLICITATIONS !",
     successMessage:
-      "Félicitations ! Vous venez de recevoir 200Go valables 4 semaines.",
+      "Vous venez de recevoir 200Go valables 4 semaines.",
     insufficientTitle: "CRÉDIT INSUFFISANT",
     insufficientMessage:
       "Votre crédit est insuffisant pour acheter le Boost  500. Veuillez recharger votre compte.",
@@ -31,7 +31,7 @@ export const boostData = {
     cancelBtn: "إلغاء",
     successTitle: "هنيئًا!",
     successMessage:
-      "هنيئًا! لقد حصلت على 200Go إنترنت صالحين لمدة 4 أسابيع.",
+      "لقد حصلت على 200Go إنترنت صالحين لمدة 4 أسابيع.",
     insufficientTitle: "رصيد غير كافٍ",
     insufficientMessage:
       "رصيدك غير كافٍ لشراء الـ Boost 500. يُرجى إعادة تعبئة حسابك.",
