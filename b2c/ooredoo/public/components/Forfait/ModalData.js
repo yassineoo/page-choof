@@ -2,7 +2,7 @@ export default {
   fr: {
     "4990 DA": {
       confirm: `200Go valables 4 semaines + 5Go + appels illimités vers Ooredoo + 500 DA valables en appels et en SMS vers tous, le tout valable 4 semaines et renouvelable 11 fois.`,
-      success: `Vous avez reçu le forfait 4990 DA : 200Go valables 4 semaines + 5Go + illimité Ooredoo + 500da valables en appels et en SMS vers tous, le tout valable 4 semaines et renouvelable 11 fois.`,
+      success: `Vous venez de recevoir le forfait 4990 DA : 200Go valables 4 semaines + 5Go + illimité Ooredoo + 500da valables en appels et en SMS vers tous, le tout valable 4 semaines et renouvelable 11 fois.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait 4990 DA : Ooredoo 500 X 12 + 200Go supplémentaires. Veuillez recharger votre compte.`,
     },
     "OOREDOO 500":{
@@ -75,7 +75,7 @@ export default {
   ar: {
     "4990 دج": {
       confirm: `200Go إنترنت صالحين 4 أسابيع + 5Go + مكالمات غير محدودة نحو Ooredoo و 500 دج رصيد صالح للمكالمات والرسائل القصيرة نحو كل الشبكات. الاشتراك صالح 4 أسابيع ويتم تجديده 11 مرة.`,
-      success: `لقد حصلت على الاشتراك 4990 دج: 200Go إنترنت صالحين 4 أسابيع + 5Go + مكالمات غير محدودة نحو Ooredoo و 500 دج رصيد صالح للمكالمات والرسائل القصيرة نحو كل الشبكات. الاشتراك صالح 4 أسابيع ويتم تجديده 11 مرة`,
+      success: `لقد حصلت على الاشتراك 4990 دج: 200Go إنترنت صالحين 4 أسابيع + 5Go + مكالمات غير محدودة نحو Ooredoo و 500 دج رصيد صالح للمكالمات والرسائل القصيرة نحو كل الشبكات. الاشتراك صالح 4 أسابيع ويتم تجديده 11 مرة.`,
       insufficient: `رصيدك غير كافٍ لشراء الاشتراك 4990 دج: Ooredoo 500 X 12 + 200Go إضافية. يُرجى إعادة تعبئة حسابك.`,
     },
     "OOREDOO 500":{

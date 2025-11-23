@@ -12,7 +12,7 @@ export const boostData = {
     cancelBtn: "ANNULER",
     successTitle: "FÉLICITATIONS !",
     successMessage:
-    "Vous venez de recevoir 30Go + appels gratuits vers tous les réseaux nationaux + SMS gratuits vers ooredoo + 100 SMS vers les autres réseaux nationaux. Plus d'infos sur *500#",
+    "Vous venez de recevoir 30Go + appels gratuits vers tous les réseaux nationaux + SMS gratuits vers ooredoo + 100 SMS vers les autres réseaux nationaux. Plus d'infos sur *500#.",
     insufficientTitle: "CRÉDIT INSUFFISANT",
     insufficientMessage:
       "Votre crédit est insuffisant pour acheter le Boost 500. Veuillez recharger votre compte.",
@@ -31,7 +31,7 @@ export const boostData = {
     cancelBtn: "إلغاء",
     successTitle: "هنيئًا!",
     successMessage:
-      "لقد حصلت على 30Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + رسائل قصيرة مجانية نحو Ooredoo و100 رسالة قصيرة نحو الشبكات الأخرى. المزيد من المعلومات على #500*",
+      "لقد حصلت على 30Go ومكالمات غير محدودة نحو كل الشبكات الوطنية + رسائل قصيرة مجانية نحو Ooredoo و100 رسالة قصيرة نحو الشبكات الأخرى. المزيد من المعلومات على #500*.",
     insufficientTitle: "رصيد غير كافٍ",
     insufficientMessage: 
     "رصيدك غير كافٍ لشراء Boost 500. يرجى تعبئة رصيدك.",

@@ -121,7 +121,7 @@ function renderAnghamiCard(plan, isArabic) {
     styles.card
   }">
       <div class="${styles.cardHeader}">
-        <h2 dir="ltr" class="${styles.cardName}">${plan.name}</h2>
+        <h2 dir="ltr" class="${styles.cardName} uppercase">${plan.name}</h2>
       </div>
       <div class="${styles.cardContent}">
         <div>
@@ -281,7 +281,7 @@ export default class DigitalOpacServices {
   showSuccessModal(content, isRTL, onClose) {
     this.showModal({
       type: "success",
-      title: isRTL ? "هنيئًا !" : "Félicitations !",
+      title: isRTL ? "هنيئًا!" : "Félicitations !",
       message: content.success,
       isRTL,
       onClose,
@@ -346,10 +346,7 @@ export default class DigitalOpacServices {
               </button>
               <div class="text-center mb-6">
                   <h2 id="anghami-modal-title"
-                   dir="${!isRTL ? "ltr" : title.includes("1000 OSN+ & ANGHAMI") ? "ltr" : "rtl"}"
-                   class="${
-                    !isRTL ? "font-rubik" : title.includes("1000 OSN+ & ANGHAMI") ? "font-rubik" : fontClass
-                  } font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
+                   class="${isRTL && type !== 'confirm' ? "font-noto-kufi-arabic" : "font-rubik"} font-semibold text-ooredoo-red dark:text-white text-2xl md:text-3xl leading-tight uppercase tracking-tight">
                       ${title}
                   </h2>
               </div>
@@ -513,8 +510,8 @@ export default class DigitalOpacServices {
               <div class="text-base tracking-wide leading-loose w-full mx-auto md:text-xl text-center text-gray-800 dark:text-gray-200">
                 ${
                   isArabic
-                    ? `<p>استفيدوا من دخول حصري إلى <a class='text-blue-500 underline font-semibold' href='https://liferay-dev.ooredoo.dz/ar/particuliers/services/o-pack'>خدماتكم الرقمية</a> المفضلة – <span class='font-semibold'>ألعاب، فيديوهات حسب الطلب، موسيقى حسب الطلب ومسابقات</span>، بالإضافة إلى 10Go إنترنت بـ<span class='font-semibold'> 800 دج للشهر فقط!</span> <span class='font-semibold'>استمتعوا بالترفيه واللّعب والتصفح بلا حدود مع Ooredoo!</span></p>`
-                    : `<p>Profitez d’un accès exclusif à vos <a class='text-blue-500 underline font-semibold' href='https://liferay-dev.ooredoo.dz/fr/particuliers/services/o-pack'>services digitaux</a> préférés\n <span class='font-semibold'>- jeux, VOD, MOD et quiz -</span> avec <span class='font-semibold'>10Go d’internet</span> pour seulement <span class='font-semibold'>800 DA par mois !</span> <br/>\n <span class='font-semibold'>Divertissez-vous, jouez et surfez sans limites avec Ooredoo !</span></p>`
+                    ? `<p>استفيدوا من دخول حصري إلى <a class='text-blue-500 underline font-semibold' href='https://ore.do/services-digitaux'>خدماتكم الرقمية</a> المفضلة – <span class='font-semibold'>ألعاب، فيديوهات حسب الطلب، موسيقى حسب الطلب ومسابقات</span>، بالإضافة إلى 10Go إنترنت بـ<span class='font-semibold'> 800 دج للشهر فقط!</span> <span class='font-semibold'>استمتعوا بالترفيه واللّعب والتصفح بلا حدود مع Ooredoo!</span></p>`
+                    : `<p>Profitez d’un accès exclusif à vos <a class='text-blue-500 underline font-semibold' href='https://ore.do/services-digitaux'>services digitaux</a> préférés\n <span class='font-semibold'>- jeux, VOD, MOD et quiz -</span> avec <span class='font-semibold'>10Go d’internet</span> pour seulement <span class='font-semibold'>800 DA par mois !</span> <br/>\n <span class='font-semibold'>Divertissez-vous, jouez et surfez sans limites avec Ooredoo !</span></p>`
                 }
               </div>
             </div>

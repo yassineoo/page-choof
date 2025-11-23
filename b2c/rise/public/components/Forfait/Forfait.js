@@ -1401,7 +1401,7 @@ class ForfaitComponent {
     const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
 
     return {
-      confirm: isArabic ? `${offer.data} صالحة 4 أسابيع` : `${offer.data} valables 4 semaines`,
+      confirm: isArabic ? `${offer.data} صالحة 4 أسابيع.` : `${offer.data} valables 4 semaines.`,
       success: isArabic
         ? ` لقد تم تفعيل الاشتراك ${offer.name} بنجاح: ${offer.data} صالحة 4 أسابيع.`
         : `Votre Forfait ${offer.name} est activé avec succès : ${offer.data} valables 4 semaines.`,

@@ -87,7 +87,7 @@ export const migrationData = {
         "ستقوم بالتغيير إلى عرض <span class='font-rubik'>N’YOOZ</span> وقد يؤدي ذلك إلى خسارة اشتراكك الحالي.",
       successTitle: "هنيئًا!",
       successMessage:
-        "مرحبًا بك في عرض <span class='font-rubik'>N’YOOZ</span> سارع لتحميل التطبيق My Ooredoo مجانًا لشراء أو تشكيل الاشتراك الذي يناسبك واستمتع بمغامرة <br/> <span dir='ltr' class='font-rubik whitespace-nowrap'><a href='https://ore.do/yo' class='underline text-blue-600'>https://ore.do/yo</a> N’YOOZ!</span> <br/> قم بشراء اشتراكاتك على #151*",    },
+        "مرحبًا بك في عرض <span class='font-rubik'>N’YOOZ</span> سارع لتحميل التطبيق My Ooredoo مجانًا لشراء أو تشكيل الاشتراك الذي يناسبك واستمتع بمغامرة <br/> <span dir='ltr' class='font-rubik whitespace-nowrap'><a href='https://ore.do/yo' class='underline text-blue-600'>https://ore.do/yo</a> !N’YOOZ</span> <br/> قم بشراء اشتراكاتك على #151*.",    },
   },
 };
 export default migrationData;

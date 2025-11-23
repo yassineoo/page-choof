@@ -416,7 +416,7 @@ export class Slider {
 
     return `
           <div class="hidden sm:flex w-full items-center justify-center">
-            <div class="forfait-grid-3 gap-5 items-stretch grid grid-cols-1 md:grid-cols-2">
+            <div class="forfait-grid-3 gap-5 items-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               ${offers.map((offer, index) => this.createForfaitCardSmart(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
             </div>
           </div>

@@ -81,7 +81,7 @@ export const offerData = {
       manualModalTitle: "وضع التعبئة",
       manualModalDesc: 'ستقوم بتغيير وضع التعبئة نحو "يدوي"، وستحصل على رصيد غير مفعّل عند كل تعبئة.',
       manualSuccessTitle: "هنيئًا!",
-      manualSuccessDesc: 'أنت الآن في الوضع "يدوي"',
+      manualSuccessDesc: 'أنت الآن في الوضع "يدوي".',
       autoModalTitle: "وضع التعبئة",
       autoModalDesc: 'ستقوم بتغيير وضع التعبئة "التلقائي":',
       autoSuccessTitle: "هنيئًا!",

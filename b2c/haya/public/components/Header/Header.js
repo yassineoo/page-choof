@@ -511,11 +511,28 @@ export default class Header {
   }
   updateModeUI() {
     const modeBtnLabel = document.getElementById("mode-label");
+    const modeBtn = document.getElementById("mode-btn");
+    const modeBtnMobile = document.getElementById("mode-btn-mobile")
+    const modeCardLabel = document.getElementById("mode-card");
+    const modeCardMobuileLabel = document.getElementById("mode-card-mobile");
     const modeBtnLabelMobile = document.getElementById("mode-label-mobile");
     const texts = offerData.text[this.currentLanguage] || offerData.text.fr;
     let label = texts.currentMode;
+    let tooltiLabel = texts.modeInfoTooltip;
+    if (localStorage.getItem("mode") === "hadra") {
+      label = texts.modeOptionHadra;
+    } else if (localStorage.getItem("mode") === "internet") {
+      label = texts.modeOptionInternet;
+    }
+    if (localStorage.getItem("mode") === "hadra") {
+      tooltiLabel = texts.modeHadraTooltip;
+    }else if (localStorage.getItem("mode") === "internet") {
+      tooltiLabel = texts.modeInternetTooltip;
+    }
     if (modeBtnLabel) modeBtnLabel.textContent = label;
     if (modeBtnLabelMobile) modeBtnLabelMobile.textContent = label;
+    if (modeCardLabel) modeCardLabel.textContent = tooltiLabel;
+    if (modeCardMobuileLabel) modeCardMobuileLabel.textContent = tooltiLabel;
   }
 
   openModeChangeModal(option) {

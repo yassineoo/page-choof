@@ -276,7 +276,7 @@ export default class DigitalShahidServices {
   showSuccessModal(content, isRTL, onClose) {
     this.showModal({
       type: "success",
-      title: isRTL ? "هنيئًا !" : "Félicitations !",
+      title: isRTL ? "هنيئًا!" : "Félicitations !",
       message: content.success,
       isRTL,
       onClose,
@@ -488,10 +488,10 @@ export default class DigitalShahidServices {
 
             <!-- Logo/info -->
             <div class="flex flex-col items-center justify-center text-center mt-4 lg:mt-0 px-4">
-              <img src="./assets/images/services/shahid.svg"  alt="Shahid"
-                   class="w-full max-w-xs h-auto mb-6 dark:hidden flex"/>
+              <img src="./assets/images/services/shahid.svg" alt="Shahid"
+                   class="w-full max-w-xs h-auto dark:hidden flex"/>
               <img src="./assets/images/services/shahid-d.svg" alt="Shahid"
-                   class="w-full max-w-xs h-auto mb-6 dark:flex hidden"/>
+                   class="w-full max-w-xs h-auto dark:flex hidden"/>
               <div class="text-base md:text-xl leading-relaxed tracking-wide max-w-sm text-gray-800 dark:text-gray-200">
                 ${
                   isArabic

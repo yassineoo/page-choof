@@ -123,7 +123,6 @@ export class ModalSlider {
     const storedRenewal = localStorage.getItem("autoRenewal") !== null ? JSON.parse(localStorage.getItem("autoRenewal")) : true;
     const slidesHTML = storedRenewal ? 
       this.slides
-      .filter(offer => offer.planName !== "Gold Jdida 1000")
       .map((offer) => `
       <div class="swiper-slide" style="width: 287px; height: auto; padding-bottom: 10px;">
         ${this.createCardHTML(offer)}

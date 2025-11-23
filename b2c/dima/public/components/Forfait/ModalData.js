@@ -49,7 +49,7 @@ function generateModalContent(offers, lang) {
     `6Go attribués + des réductions en illimité chez nos partenaires, valables 30 jours. Téléchargez l’application Fayda et profitez-en !`
     :
     offer.name === "Smart 100" && !isArabic ?
-    `Vous disposez d'appels illimités vers Ooredoo + Facebook et Messenger illimités + 100 DA vers tous les réseaux + 500Mo, valables 24 h`
+    `Vous disposez d'appels illimités vers Ooredoo + Facebook et Messenger illimités + 100 DA vers tous les réseaux + 500Mo, valables 24 h.`
     :
     `<span dir="rtl">${offer.data} ${offer.name.includes('Smart') || offer.name.includes('Dima') || offer.name.includes('DIMA') ? '' : isArabic ? 'إنترنت' : 'internet'}</span> <span class="font-rubik mx-1">+</span>${featuresString}, ${
       isArabic ? "الكل صالح" : "le tout valable"

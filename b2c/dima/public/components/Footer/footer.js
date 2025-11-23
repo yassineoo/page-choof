@@ -300,7 +300,7 @@ export default class Footer {
     const title = language === "ar" ? "شاهد!" : "SHAHID !";
     const message =
       language === "ar"
-        ? "لقد تم تفعيل خدمة شاهد ! بعد قليل، ستصلك رسالة قصيرة تحتوي على رابط"
+        ? "لقد تم تفعيل خدمة شاهد ! بعد قليل، ستصلك رسالة قصيرة تحتوي على رابط."
         : "Service Shahid activé ! Vous recevrez un SMS avec un lien sous peu.";
 
     const modal = document.createElement("div");

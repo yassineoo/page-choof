@@ -10,7 +10,7 @@ export const migrationData = {
     cancelBtn: "ANNULER",
     successTitle: "FÉLICITATIONS !",
     change: "Voulez-vous changer vers l'offre « La Gold » ?",
-    changeDima: "500 DA vous seront débités pour l'activation de l'option partage",
+    changeDima: "500 DA vous seront débités pour l'activation de l'option partage.",
     changeNyooz: "Vous pouvez partager jusqu'à 30Go.",
     ok: "OK",
     changeOfferGeneric: "Activer l'option partage",
@@ -22,7 +22,7 @@ export const migrationData = {
     migrationDimaModal: {
       confirmTitle: "FÉLICITATIONS !",
       confirmDescription:
-        "L'option de partage  est activée avec  succès ! Désormais,  vous pouvez choisir  votre limite de  partage d'internet",
+        "L'option de partage  est activée avec  succès ! Désormais, vous pouvez choisir votre limite de  partage d'internet.",
       successTitle: "CRÉDIT INSUFFISANT",
       successMessage:
         "Votre crédit est  insuffisant, veuillez  recharger votre  crédit.",
@@ -65,7 +65,7 @@ export const migrationData = {
     migrationDimaModal: {
       confirmTitle: "هنيئًا!",
       confirmDescription:
-        "لقد تم تفعيل ميزة مشاركة الإنترنت بنجاح ! بإمكانك الآن اختيار حد مشاركة الإنترنت.",
+        "لقد تم تفعيل ميزة مشاركة الإنترنت بنجاح! بإمكانك الآن اختيار حد مشاركة الإنترنت.",
       successTitle: "رصيد غير كافٍ",
       successMessage:
         "رصيدك غير كافٍ، يُرجى تعبئة حسابك.",

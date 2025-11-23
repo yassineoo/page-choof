@@ -6,6 +6,7 @@ export const generateHeaderHTML = (
   theme = "light"
 ) => {
   const texts = offerData.text[language] || offerData.text.fr;
+  const currentMode = localStorage.getItem("mode") ;
   const fontClass = language === "ar" ? "font-noto-kufi-arabic" : "font-rubik";
   const containsArabic = (text = "") =>
     /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(text);
@@ -248,7 +249,13 @@ export const generateHeaderHTML = (
   <div class="relative">
     <button id="mode-btn" class="${fontClass} flex items-center justify-between gap-[5px] rounded-full px-[10px] py-[4px] 
  text-[18px] font-medium transition-all duration-300 bg-ooredoo-red text-white border-2 border-white">
-      <span id="mode-label">${texts.currentMode}</span>
+      <span id="mode-label">
+       ${
+        currentMode ? 
+         currentMode === "hadra" ? texts.modeOptionHadra : texts.modeOptionInternet
+        : texts.currentMode
+       }
+      </span>
       <img src="./assets/images/header/chevron-down-white.svg" class="w-6 h-6" alt="" />
     </button>
 
@@ -347,9 +354,13 @@ export const generateHeaderHTML = (
               <div class="flex items-center rounded-full h-[36px] p-0.5">
               <div class="relative">
                 <button id="mode-btn-mobile" class="flex-1 flex items-center justify-between gap-2 rounded-full h-[32px] font-medium transition-all duration-300 bg-ooredoo-red text-white border-2 border-white text-[14px] ${fontClass}" style="padding:2px 7px;">
-                  <span id="mode-label-mobile" class="truncate">${
-                    texts.currentMode
-                  }</span>
+                  <span id="mode-label-mobile" class="truncate">
+                  ${
+                    currentMode ? 
+                    currentMode === "hadra" ? texts.modeOptionHadra : texts.modeOptionInternet
+                    : texts.currentMode
+                  }
+                  </span>
                   <img src="./assets/images/header/chevron-down-white.svg" class="w-4 h-4" />
                 </button>
                                 <div id="mode-options-mobile" class="absolute top-[100%] right-0 left-0 z-50 hidden">

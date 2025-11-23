@@ -27,17 +27,17 @@ export const opacModalData = {
   fr: {
     "O’pack": {
       confirm:
-        "Profitez du meilleur du divertissement en un seul forfait ! Un accès premium à OSN+ et à Anghami + 10Go d'internet dédié pendant 1 mois. Le forfait est auto-renouvelable. ",
-      success: "Vous avez activé votre forfait avec succès.Téléchargez Anghami et OSN+ pour profiter de votre abonnement.",
-      insufficient: "Votre crédit est insuffisant pour acheter ce forfait. Veuillez recharger votre compte.",
+        "Pour 800 DA, profitez de 1 mois d'accès à 7 services digitaux + 10Go d’internet. ",
+      success: "Achat effectué avec succès ! Vous recevrez un SMS avec un lien sous peu.",
+      insufficient: "Votre crédit est insuffisant. Veuillez recharger votre compte et réessayer à nouveau.",
     },
   },
   ar: {
     "O’pack": {
       confirm:
-        "استفد من محتويات ترفيهية رائعة في اشتراك واحد! دخول حصري إلى +OSN و Anghami و 10Go إنترنت، صالح لمدة شهر. الاشتراك قبل للتجديد تلقائيًا.",
-      success: "لقد قمت بتفعيل اشتراكك بنجاح! حمّل +OSN و Anghami واستمتع به الأن!",
-      insufficient: "رصيدك غير كافٍ لشراء هذا الاشتراك. يُرجى إعادة تعبئة حسابك.",
+        "بـ 800 دج, استفد من دخول لمدة شهر إلى 7 خدمات رقمية + 10Go إنترنت.",
+      success: "لقد تم الشراء بنجاح! ستصلك رسالة  قصيرة فيها رابط بعد قليل.",
+      insufficient: "رصيدك غير كافٍ. يُرجى إعادة تعبئة حسابك والمحاولة مرة أخرى.",
     },
   },
 };
