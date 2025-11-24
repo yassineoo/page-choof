@@ -277,7 +277,7 @@ export const generateHeaderHTML = (
       ${texts.modeOptionInternet || "MAXY Internet"}
     </button>
 
-    <div class="${userData.mode === 'internet' || userData.mode === 'free' || userData.mode !== 'internet' || userData.mode !== 'free' || userData.mode !== 'hadra' ? "hidden" : ''} h-[1px] bg-[#EBEBEB] my-[10px]"></div>
+    <div class="${userData.mode === 'internet' || userData.mode === 'free' ? 'hidden' : userData.mode === 'hadra' ? '' : userData.mode !== 'internet' || userData.mode !== 'hadra' || userData.mode !== 'free' ? 'hidden' : ''} h-[1px] bg-[#EBEBEB] my-[10px]"></div>
 
     <button id="opt-free" 
             class="${userData.mode === 'hadra' || userData.mode === 'internet' ? "" : "hidden"} ${fontClass} w-full ${language === "ar" ? "text-right" : "text-left"} rounded-lg">
@@ -379,7 +379,7 @@ export const generateHeaderHTML = (
                     <button id="opt-internet-mobile" class="${userData.mode === 'internet' && "hidden"} ${fontClass} w-full ${language === 'ar' ? 'text-right' : 'text-left'} px-2 py-2 md:px-3 md:py-3 rounded-lg">${
                       texts.modeOptionInternet || "MAXY Internet"
                     }</button>
-                    <div class="${userData.mode === 'internet' || userData.mode === 'free' || userData.mode !== 'internet' || userData.mode !== 'free' || userData.mode !== 'hadra' ? "hidden" : ''} h-[1px]  bg-[#EBEBEB] my-[6px]"></div>
+                    <div class="${userData.mode === 'internet' || userData.mode === 'free' ? 'hidden' : userData.mode === 'hadra' ? '' : userData.mode !== 'internet' || userData.mode !== 'hadra' || userData.mode !== 'free' ? 'hidden' : ''} h-[1px]  bg-[#EBEBEB] my-[6px]"></div>
                     <button id="opt-free-mobile" class="${userData.mode === 'hadra' || userData.mode === 'internet' ? "" : "hidden"} ${fontClass} w-full ${language === 'ar' ? 'text-right' : 'text-left'} px-2 py-2 md:px-3 md:py-3 rounded-lg">${
                       texts.currentMode || "MAXY Internet"
                     }</button>
