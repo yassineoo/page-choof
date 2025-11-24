@@ -8,6 +8,8 @@ export const offerData = {
       currentMode: "Minutes ou crédit gratuit",
       modeOptionHadra: "MAXY Hadra",
       modeOptionInternet: "MAXY Internet",
+      modeHadraTooltip: 'Maintenant vos recharges de 1000 et 2000 DA vous donnent les avantages "MAXY Hadra". Si vous souhaitez changer vos avantages, cliquez sur la flèche. ',
+      modeInternetTooltip: 'Maintenant vos recharges de 1000 et 2000 DA vous donnent les avantages "MAXY Internet". Si vous souhaitez changer vos avantages, cliquez sur la flèche. ',
       modeInfoTooltip:
         'Maintenant vos recharges de 1000 et 2000 DA vous donnent les avantages "Minutes ou crédits gratuits". Si vous souhaitez changer vos avantages, cliquez sur la flèche.',
       modeChangeTitle: "MODE DE RECHARGEMENT",
@@ -48,6 +50,7 @@ export const offerData = {
       modeChangeDescriptionInternet:
         "ابتداءً من الآن، تعبئاتك بقيمة 1000 دج وأكثر تمنحك MAXY إنترنت مع ضعف الرصيد وإنترنت مجاني. عبّئ واستفد الآن! ",
       modeChangeSuccessTitle: "هنيئًا!",
+      modeChangeSuccessDescriptionFree: 'أنت الآن في وضع "دقائق أو رصيد مجاني".',
       modeChangeSuccessDescriptionHadra: 'أنت الآن في وضع "MAXY هدرة".',
       modeChangeSuccessDescriptionInternet: 'أنت الآن في وضع "MAXY إنترنت".',
       cancelBtn: "إلغاء",

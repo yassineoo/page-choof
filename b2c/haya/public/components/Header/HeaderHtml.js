@@ -261,20 +261,27 @@ export const generateHeaderHTML = (
 
 <div id="mode-options" class="absolute left-0 right-0 z-50 hidden" aria-hidden="true">
 
-  <div class="bg-white w-full dark:bg-[#2C2C2C] text-[14px] text-[#575757] font-semibold dark:text-white 
+  <div class="${language === 'ar' ? 'text-right' : 'text-left'} bg-white w-full dark:bg-[#2C2C2C] text-[14px] text-[#575757] font-semibold dark:text-white 
               rounded-[16px] border border-gray-200 dark:border-white 
               px-[14px] pt-[22px] pb-[20px]">
 
     <button id="opt-hadra" 
-            class="${fontClass} w-full ${language === "ar" ? "text-right" : "text-left"} rounded-lg">
+            class="${userData.mode === 'hadra' && "hidden"} ${fontClass} w-full ${language === "ar" ? "text-right" : "text-left"} rounded-lg">
       ${texts.modeOptionHadra || "MAXY Hadra"}
     </button>
 
-    <div class="h-[1px] bg-[#EBEBEB] my-[10px]"></div>
+    <div class="${userData.mode === 'hadra' ? "hidden" : ''} h-[1px] bg-[#EBEBEB] my-[10px]"></div>
 
     <button id="opt-internet" 
-            class="${fontClass} w-full ${language === "ar" ? "text-right" : "text-left"} rounded-lg">
+            class="${userData.mode === 'internet' && "hidden"} ${fontClass} w-full ${language === "ar" ? "text-right" : "text-left"} rounded-lg">
       ${texts.modeOptionInternet || "MAXY Internet"}
+    </button>
+
+    <div class="${userData.mode === 'internet' || userData.mode === 'free' || userData.mode !== 'internet' || userData.mode !== 'free' || userData.mode !== 'hadra' ? "hidden" : ''} h-[1px] bg-[#EBEBEB] my-[10px]"></div>
+
+    <button id="opt-free" 
+            class="${userData.mode === 'hadra' || userData.mode === 'internet' ? "" : "hidden"} ${fontClass} w-full ${language === "ar" ? "text-right" : "text-left"} rounded-lg">
+      ${texts.currentMode || "MAXY Gratuit"}
     </button>
 
   </div>
@@ -287,7 +294,7 @@ export const generateHeaderHTML = (
                     <img src="./assets/images/header/Info.svg" class="w-full h-full" alt="info" />
                   </button>
 
-                  <div id="mode-card" class="mode-card absolute text-[#575757] dark:text-white bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-80 p-4 shadow-lg rounded-lg border border-gray-200 dark:border-[#fff] hidden z-50">
+                  <div id="mode-card" class="mode-card absolute text-[#575757] dark:text-white bg-white dark:bg-[#2C2C2C] text-base ${language === 'ar' ? 'text-right' : 'text-left'} left-1/2 transform -translate-x-1/2 top-full mt-3 w-80 p-4 shadow-lg rounded-lg border border-gray-200 dark:border-[#fff] hidden z-50">
                     <div class="${fontClass}" style="font-weight:400; font-size:0.875rem; line-height:1.25rem; text-align:justify;">
                       ${infoCardDesc}
                     </div>
@@ -363,15 +370,19 @@ export const generateHeaderHTML = (
                   </span>
                   <img src="./assets/images/header/chevron-down-white.svg" class="w-4 h-4" />
                 </button>
-                                <div id="mode-options-mobile" class="absolute top-[100%] right-0 left-0 z-50 hidden">
-                  <div class="bg-white dark:bg-[#2C2C2C] text-black dark:text-white w-full p-2 mode-options text-[14px] md:text-[20px] rounded-[12px] border border-gray-200 dark:border-white">
-                    <button id="opt-hadra-mobile" class="${fontClass} w-full text-left px-2 py-2 md:px-3 md:py-3 rounded-lg">${
-    texts.modeOptionHadra || "MAXY Hadra"
-  }</button>
-  <div class="h-[1px]  bg-[#EBEBEB] my-[6px]"></div>
-                    <button id="opt-internet-mobile" class="${fontClass} w-full text-left px-2 py-2 md:px-3 md:py-3 rounded-lg">${
-    texts.modeOptionInternet || "MAXY Internet"
-  }</button>
+                <div id="mode-options-mobile" class="absolute top-[100%] right-0 left-0 z-50 hidden">
+                  <div class="${language === 'ar' ? 'text-right' : 'text-left'} bg-white dark:bg-[#2C2C2C] text-black dark:text-white w-full p-2 mode-options text-[14px] md:text-[20px] rounded-[12px] border border-gray-200 dark:border-white">
+                    <button id="opt-hadra-mobile" class="${userData.mode === 'hadra' && "hidden"} ${fontClass} w-full ${language === 'ar' ? 'text-right' : 'text-left'} px-2 py-2 md:px-3 md:py-3 rounded-lg">${
+                      texts.modeOptionHadra || "MAXY Hadra"
+                    }</button>
+                    <div class="${userData.mode === 'hadra' ? "hidden" : ''} h-[1px] bg-[#EBEBEB] my-[6px]"></div>
+                    <button id="opt-internet-mobile" class="${userData.mode === 'internet' && "hidden"} ${fontClass} w-full ${language === 'ar' ? 'text-right' : 'text-left'} px-2 py-2 md:px-3 md:py-3 rounded-lg">${
+                      texts.modeOptionInternet || "MAXY Internet"
+                    }</button>
+                    <div class="${userData.mode === 'internet' || userData.mode === 'free' || userData.mode !== 'internet' || userData.mode !== 'free' || userData.mode !== 'hadra' ? "hidden" : ''} h-[1px]  bg-[#EBEBEB] my-[6px]"></div>
+                    <button id="opt-free-mobile" class="${userData.mode === 'hadra' || userData.mode === 'internet' ? "" : "hidden"} ${fontClass} w-full ${language === 'ar' ? 'text-right' : 'text-left'} px-2 py-2 md:px-3 md:py-3 rounded-lg">${
+                      texts.currentMode || "MAXY Internet"
+                    }</button>
                   </div>
                 </div>
               </div>
@@ -379,8 +390,8 @@ export const generateHeaderHTML = (
                 <button id="mode-info-mobile" class="w-8 h-8 flex items-center justify-center rounded-full bg-transparent text-white relative ml-0 md:ml-2">
                   <img src="./assets/images/header/Info.svg" class="w-5 h-5 dark:hidden" alt="info" />
                   <img src="./assets/images/header/Info.svg" class="hidden dark:block w-5 h-5" alt="info" />
-                  <div id="mode-card-mobile" class="mode-card-mobile absolute text-[#575757] dark:text-white bg-white dark:bg-[#2C2C2C] text-left left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
-                    <div class="${fontClass}" style="font-weight:400; font-size:0.875rem; line-height:1.25rem; text-align:justify;">
+                  <div id="mode-card-mobile" class="mode-card-mobile absolute text-[#575757] dark:text-white bg-white dark:bg-[#2C2C2C] text-sm ${language === 'ar' ? 'text-right' : 'text-left'} left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 p-4 shadow-lg rounded-lg border border-gray-200 hidden z-50">
+                    <div class="${fontClass}" style="font-weight:400; font-size:0.1rem; line-height:1.25rem; text-align:justify;">
                       ${infoCardDesc}
                     </div>
                   </div>

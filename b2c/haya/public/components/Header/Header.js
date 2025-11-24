@@ -442,8 +442,10 @@ export default class Header {
     const modeBtnMobile = document.getElementById("mode-btn-mobile");
     const optHadra = document.getElementById("opt-hadra");
     const optInternet = document.getElementById("opt-internet");
+    const optFree = document.getElementById("opt-free");
     const optHadraMobile = document.getElementById("opt-hadra-mobile");
     const optInternetMobile = document.getElementById("opt-internet-mobile");
+    const optFreeMobile = document.getElementById("opt-free-mobile");
     const modeOptions = document.getElementById("mode-options");
     const modeOptionsMobile = document.getElementById("mode-options-mobile");
     if (modeBtn && modeOptions) {
@@ -495,6 +497,12 @@ export default class Header {
         modeOptions.classList.add("hidden");
         this.openModeChangeModal("internet");
       });
+    if (optFree)
+      optFree.addEventListener("click", (e) => {
+        e.stopPropagation();
+        modeOptions.classList.add("hidden");
+        this.openModeChangeModal("free");
+      });
     if (optHadraMobile)
       optHadraMobile.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -506,6 +514,12 @@ export default class Header {
         e.stopPropagation();
         modeOptionsMobile.classList.add("hidden");
         this.openModeChangeModal("internet");
+      });
+    if (optFreeMobile)
+      optFreeMobile.addEventListener("click", (e) => {
+        e.stopPropagation();
+        modeOptionsMobile.classList.add("hidden");
+        this.openModeChangeModal("free");
       });
     this.updateModeUI();
   }
@@ -523,11 +537,15 @@ export default class Header {
       label = texts.modeOptionHadra;
     } else if (localStorage.getItem("mode") === "internet") {
       label = texts.modeOptionInternet;
+    }else{
+      label = texts.currentMode
     }
     if (localStorage.getItem("mode") === "hadra") {
       tooltiLabel = texts.modeHadraTooltip;
     }else if (localStorage.getItem("mode") === "internet") {
       tooltiLabel = texts.modeInternetTooltip;
+    }else{
+      tooltiLabel = texts.modeInfoTooltip
     }
     if (modeBtnLabel) modeBtnLabel.textContent = label;
     if (modeBtnLabelMobile) modeBtnLabelMobile.textContent = label;
@@ -545,7 +563,10 @@ export default class Header {
     const isHadra = option === "hadra";
     const desc = isHadra
       ? texts.modeChangeDescriptionHadra || texts.modeInfoTooltip
-      : texts.modeChangeDescriptionInternet || texts.modeInfoTooltip;
+      : option !== 'free'
+      ? texts.modeChangeDescriptionInternet || texts.modeInfoTooltip
+      : texts.modeInfoTooltip || texts.modeInfoTooltip
+
     const html = `
           <div class="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl min-w-[320px] px-6 md:px-8 pt-16 pb-8 md:pb-12">
         ${closeBtnHTML}
@@ -579,8 +600,10 @@ export default class Header {
             const successText = isHadra
               ? texts.modeChangeSuccessDescriptionHadra ||
                 texts.modeChangeSuccessDescriptionInternet
-              : texts.modeChangeSuccessDescriptionInternet ||
-                texts.modeChangeSuccessDescriptionHadra;
+              :
+               option !== 'free'
+                ? texts.modeChangeSuccessDescriptionInternet || texts.modeInfoTooltip
+                : texts.modeChangeSuccessDescriptionFree || texts.modeInfoTooltip
             this.modal.showAlert({
               title: successTitle,
               text: successText,

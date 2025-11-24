@@ -878,6 +878,9 @@ class ForfaitComponent {
               <img src="./assets/images/services/Bitdefender.svg" class="h-full w-full"/>
             </span>
             <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
+              <img src="./assets/images/services/opack.svg" class="h-full w-full"/>
+            </span>
+            <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
               <img src="./assets/images/TOD.svg" class="h-full w-full"/>
             </span>
             <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
