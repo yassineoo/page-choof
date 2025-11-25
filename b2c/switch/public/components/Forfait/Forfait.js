@@ -947,9 +947,7 @@ class ForfaitComponent {
             <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
               <img src="./assets/images/services/anghami-osn.svg"  class="h-full w-full"/>
             </span>
-            <span class="bg-white py-2 px-1 rounded-full flex justify-center w-full max-w-32 h-8 md:h-12">
-              <img src="./assets/images/services/freefire.svg" class="h-full w-full"/>
-            </span>
+            
           </div>
           <div class="flex items-center gap-4 flex-wrap justify-between">
             <p class="text-white py-10 md:py-0">${this.currentLang === "ar" ? "استفيدوا منها اينما كنتم!" : "Profitez en où que vous soyez !"}</p>

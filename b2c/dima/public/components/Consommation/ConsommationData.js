@@ -202,13 +202,7 @@ export const consommationData = {
             percentage: 80,
             extra: "/5Go",
           },
-          {
-            subIcon: "freefire",
-            subtitle: "FREE FIRE",
-            infini: true,
-            date: "26/05/25",
-            percentage: 100,
-          },
+          
         ],
       },
     ],
