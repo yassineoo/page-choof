@@ -489,8 +489,7 @@ export const consommationData = {
             date: "26/05/25",
             percentage: 80,
             extra: "/5Go",
-          },
-          
+          } 
         ],
       },
     ],

@@ -30,7 +30,7 @@ export default class DigitalServices {
     new DigitalAnghamiServices(document.getElementById("anghami-services"));
     new TODServices(document.getElementById("tod-services"));
 
-    //new DigitalFreeFireServices(document.getElementById("freefire-services"));
+    new DigitalFreeFireServices(document.getElementById("freefire-services"));
   }
 
   setupResizeObserver() {
