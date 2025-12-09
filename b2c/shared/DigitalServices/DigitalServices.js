@@ -5,6 +5,7 @@ import TODServices from "./TODServices.js";
 import DigitalFreeFireServices from "./DigitalFreeFireServices.js";
 import DigitalAnghamiServices from "./DigitalAnghamiServices.js";
 import DigitalOpacServices from "./DigitalOpacServices.js";
+import DigitalFiveGService from "./DigitalFiveGService.js";
 export default class DigitalServices {
   constructor(container) {
     this.container = container;
@@ -21,6 +22,7 @@ export default class DigitalServices {
       <div id="shahid-services" class=""></div>
       <div id="anghami-services" class=""></div>
       <div id="freefire-services" class=""></div>
+      <div id="fiveg-service" class=""></div>
     `;
 
     new DigitalServicesHeader(document.getElementById("digital-services-header"));
@@ -31,6 +33,7 @@ export default class DigitalServices {
     new TODServices(document.getElementById("tod-services"));
 
     new DigitalFreeFireServices(document.getElementById("freefire-services"));
+    new DigitalFiveGService(document.getElementById("fiveg-service"));
   }
 
   setupResizeObserver() {
