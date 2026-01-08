@@ -1,11 +1,14 @@
 import ForfaitData from "./ForfaitData.js";
 import ModalData from "./ModalData.js";
 import { Slider } from "./Slider.js";
+import { RamadanSlider } from "../../../../shared/component/RamadanSlider.js";
+
 
 class ForfaitComponent {
   constructor(container) {
     this.container = container;
     this.slider = new Slider();
+    this.ramadanSlider = new RamadanSlider();
     this.currentLang = this.getLanguage();
     this.lastIsMobile = this.isMobile();
     this.sliders = new Map([
@@ -950,7 +953,55 @@ class ForfaitComponent {
             </button>
           </div>
         </div>
-        <div class="py-16 dark:bg-black bg-white">
+        <div class="relative py-16 dark:bg-black bg-white">
+          <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
+            ${
+              this.currentLang === "ar"
+                ? "<span> عرض خاص بشهر رمضان</span>"
+                : "<span class='font-rubik'>PROMO Ramadan</span>"
+            }
+          </h2>
+          <div class="">
+              ${this.ramadanSlider.createResponsiveLayout(14,labels, "forfait-grid-4", this.isRTL, this.convertToLatinNumerals)}
+          </div>
+          <div class="hidden md:block absolute bottom-3 ${this.currentLang === "ar" ? "left-10" : "right-10"}">
+            <img 
+              src="./assets/images/RamadanImage1.svg" 
+              alt="Ramadan Decor Bottom" 
+              class="object-contain mx-auto dark:hidden" 
+            />
+            <img 
+              src="./assets/images/RamadanImage1-dark.svg" 
+              alt="Ramadan Decor Bottom" 
+              class="w-40 h-40 object-contain mx-auto hidden dark:block opacity-35" 
+            />
+          </div>
+          <div class="hidden md:block absolute top-0 ${this.currentLang === "ar" ? "right-16" : "left-16"} opacity-25">
+            <img 
+              src="./assets/images/RamadanImage2.svg" 
+              alt="Ramadan Decor Bottom" 
+              class="object-contain mx-auto dark:hidden" 
+            />
+            <img 
+              src="./assets/images/RamadanImage2-dark.svg" 
+              alt="Ramadan Decor Bottom" 
+              class="object-contain mx-auto hidden dark:block" 
+            />
+          </div>
+          <div class="md:hidden absolute top-0 left-0">
+            <img 
+              src="./assets/images/RamadanImage1.svg" 
+              alt="Ramadan Decor Bottom" 
+              class="w-40 h-40 object-contain mx-auto dark:hidden" 
+            />
+            <img 
+              src="./assets/images/RamadanImage1-dark.svg" 
+              alt="Ramadan Decor Bottom" 
+              class="w-40 h-40 object-contain mx-auto hidden dark:block opacity-35" 
+            />
+          </div>
+        </div>
+        <div class="py-16 dark:bg-[#2c2c2c] bg-[#F8F8F8]">
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${
               this.currentLang === "ar"
@@ -964,7 +1015,7 @@ class ForfaitComponent {
         </div>
       </section>
 
-      <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] py-16">
+      <section class="w-full bg-white dark:bg-black py-16">
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
             ${this.currentLang === "ar" ? "اشتراكات الإنترنت" : "FORFAITS INTERNET"}
           </h2>
@@ -977,13 +1028,14 @@ class ForfaitComponent {
     </div>
   `;
 
-    this.bindPurchaseButtons(language, [...data.ooredoo ,...data.forfaits,...data.internetForfaits, ...data.smartForfaits], labels);
+    this.bindPurchaseButtons(language, [...data.ooredoo ,...data.forfaits,...data.internetForfaits, ...data.smartForfaits, ...data.ramadanForfaits], labels);
 
     requestAnimationFrame(() => {
       this.slider.initSwiper("ooredoo-slider");
       this.slider.initSwiper("forfaits-slider");
       this.slider.initSwiper("internet-slider");
       this.slider.initSwiper("hadra-slider");
+      this.ramadanSlider.initSwiper("ramadan-slider");
     });
     setTimeout(() => {
       this.initializeSliders();
@@ -1454,6 +1506,12 @@ class ForfaitComponent {
   }
 
   showPurchaseFlow(offerName, content, isRTL) {
+    console.log("ISMAAAA", offerName)
+    if (offerName === "200 DA" || offerName === "200 دج") {
+      this.showSuccessModal(content, isRTL, () => {
+        this.showInsufficientCreditModal(content, isRTL);
+      });
+    }else {
     this.showModal({
       type: "confirm",
       title: offerName,
@@ -1461,10 +1519,10 @@ class ForfaitComponent {
       isRTL,
       onConfirm: () => {
         this.showSuccessModal(content, isRTL, () => {
-          this.showInsufficientCreditModal(content, isRTL);
+          !offerName.includes("Ooredoo POP") ? this.showInsufficientCreditModal(content, isRTL) : null;
         });
       },
-    });
+    });}
   }
 
   showInsufficientCreditModal(content, isRTL, onClose) {

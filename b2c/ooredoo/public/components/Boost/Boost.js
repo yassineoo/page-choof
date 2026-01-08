@@ -33,10 +33,10 @@ class BoostComponent {
       display: flex;
       justify-content: center;
       align-items: center;
-      background: white;
+      background: #F8F8F8;
     }
     .dark .boost-section {
-      background: #141414
+      background: #2c2c2c;
     }
 
     .boost-card-shadow {

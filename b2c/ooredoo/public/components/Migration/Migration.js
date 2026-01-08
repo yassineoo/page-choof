@@ -677,7 +677,7 @@ class Migration {
   <div class="w-full ${isRTL ? "font-noto-kufi-arabic" : "font-rubik"}" ${
       isRTL ? 'dir="rtl"' : 'dir="ltr"'
     }>
-    <section class="w-full bg-[#F8F8F8] dark:bg-[#2c2c2c] migration-section">
+    <section class="w-full bg-white dark:bg-black migration-section">
       <div>
         <div style="width:100%">
 <div class="migration-card-shadow migration-hover-lift">

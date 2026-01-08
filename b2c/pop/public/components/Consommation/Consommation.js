@@ -1,4 +1,5 @@
 import { consommationData } from "./ConsommationData.js";
+import FiveGOne from "../../../../shared/component/FiveGOne.js"
 
 export default class Consommation {
   constructor(container) {
@@ -28,7 +29,7 @@ export default class Consommation {
         "phone",
       ],
       MAX_SECTIONS_BEFORE_EXPAND: 4,
-      EXPANDABLE_INDICES: new Set([3,2,0]),
+      EXPANDABLE_INDICES: new Set([3,2,0,1]),
     };
 
     this.cache = {
@@ -567,7 +568,7 @@ export default class Consommation {
       <div class="${bgClass} w-full py-16 px-8 md:px-12 flex flex-col items-stretch ${fontClass}" ${
       lang === "ar" ? 'dir="rtl"' : ""
     }>
-
+        ${FiveGOne(lang, "desktop")}
         <div class="w-full flex flex-row justify-between items-center mb-8">
           <div class="flex flex-col">
             <h1 class="${textClass} text-[2rem] leading-[170%] tracking-[2%] uppercase" style="font-weight: 500;">

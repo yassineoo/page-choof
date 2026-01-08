@@ -1,6 +1,5 @@
 import { consommationData } from "./ConsommationData.js";
 import FiveGOne from "../../../../shared/component/FiveGOne.js";
-import FiveGTwo from "../../../../shared/component/FiveGTwo.js";
 
 
 export default class Consommation {

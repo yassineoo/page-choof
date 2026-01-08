@@ -1,0 +1,261 @@
+/* ===========================
+   Ramadan Welcome Dialog
+   =========================== */
+
+.ramadan-welcome-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.ramadan-welcome-dialog {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease-in-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ramadan-welcome-dialog {
+    background-color: #2c2c2c;
+    color: #ffffff;
+  }
+}
+
+.ramadan-welcome-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ramadan-welcome-dialog-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ed1c24;
+  margin: 0;
+  text-align: center;
+}
+
+.ramadan-welcome-dialog-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333333;
+  margin: 0;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ramadan-welcome-dialog-text {
+    color: #e0e0e0;
+  }
+}
+
+.ramadan-welcome-dialog-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.ramadan-welcome-dialog-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  min-width: 120px;
+}
+
+.ramadan-welcome-dialog-btn.confirm-btn {
+  background-color: #ed1c24;
+  color: white;
+}
+
+.ramadan-welcome-dialog-btn.confirm-btn:hover {
+  background-color: #d41620;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(237, 28, 36, 0.3);
+}
+
+.ramadan-welcome-dialog-btn.confirm-btn:active {
+  transform: translateY(0);
+}
+
+.ramadan-welcome-dialog-btn.delete-btn {
+  background-color: #f0f0f0;
+  color: #333333;
+  border: 2px solid #ddd;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ramadan-welcome-dialog-btn.delete-btn {
+    background-color: #3c3c3c;
+    color: #e0e0e0;
+    border-color: #555;
+  }
+}
+
+.ramadan-welcome-dialog-btn.delete-btn:hover {
+  background-color: #e0e0e0;
+  border-color: #999;
+  transform: translateY(-2px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ramadan-welcome-dialog-btn.delete-btn:hover {
+    background-color: #4c4c4c;
+    border-color: #777;
+  }
+}
+
+.ramadan-welcome-dialog-btn.delete-btn:active {
+  transform: translateY(0);
+}
+
+/* ===========================
+   Ramadan Felicitation
+   =========================== */
+
+.ramadan-felicitation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #ed1c24 0%, #c41820 100%);
+  border-radius: 16px;
+  padding: 32px;
+  min-width: 300px;
+  box-shadow: 0 10px 40px rgba(237, 28, 36, 0.3);
+  z-index: 10000;
+  animation: popIn 0.4s ease-out;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.felicitation-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.felicitation-icon {
+  font-size: 48px;
+  color: white;
+  font-weight: bold;
+  animation: scaleIn 0.4s ease-out;
+}
+
+.felicitation-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin: 0;
+}
+
+/* ===========================
+   Animations
+   =========================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+
+@media (max-width: 640px) {
+  .ramadan-welcome-dialog {
+    padding: 24px;
+    width: 95%;
+  }
+
+  .ramadan-welcome-dialog-title {
+    font-size: 20px;
+  }
+
+  .ramadan-welcome-dialog-text {
+    font-size: 14px;
+  }
+
+  .ramadan-welcome-dialog-buttons {
+    flex-direction: column;
+  }
+
+  .ramadan-welcome-dialog-btn {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .ramadan-felicitation {
+    min-width: 250px;
+    padding: 24px;
+  }
+
+  .felicitation-text {
+    font-size: 18px;
+  }
+
+  .felicitation-icon {
+    font-size: 40px;
+  }
+}

@@ -1,25 +1,29 @@
 export const digitalFiveGServiceData = {
   fr: {
-    description: "Découvrez nos services 5G exclusifs",
+    description: "Profitez du meilleur réseau en Algérie en activant la 5G.",
     buttonText: "Activer",
     },
     ar: {
-    description: "اكتشف خدمات 5G الحصرية لدينا",
-    buttonText: "تشغيل",
+    description: "استفد من أفضل شبكة بالجزائر بتفعيل 5G.",
+    buttonText: "تفعيل",
     },
 };
 
 export const  dialogData = {
     fr:{
         dialog1Title: "Activer la 5G",
-        dialog2Title: "Félicitations!",
+        dialog2Title: "Signature du contrat",
+        dialog3Title: "Félicitations!",
         dialog1Message: "Profitez du meilleur réseau en Algérie en activant la 5G.",
-        dialog2Message: "5G activée avec succés !"
+        dialog2Message: "Veuillez signer dans le cadre ci-dessous.",
+        dialog3Message: "5G activée avec succés !"
     },
     ar:{
         dialog1Title: "تفعيل 5G",
-        dialog2Title: "هنيئا!",
-        dialog1Message: "استمتع بأفضل شبكة في الجزائر عن طريق تفعيل 5G.",
-        dialog2Message: "تم تفعيل 5G بنجاح!"
+        dialog2Title: "توقيع العقد",
+        dialog3Title: "هنيئا!",
+        dialog1Message: "استفد من أفضل شبكة بالجزائر بتفعيل 5G.",
+        dialog2Message: "الرجاء التوقيع في المربع أدناه.",
+        dialog3Message: "لقد تم تفعيل 5G بنجاح!"
     }
 }

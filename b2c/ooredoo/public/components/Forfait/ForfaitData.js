@@ -175,6 +175,22 @@ export default {
         buy: "Acheter",
       },
     ],
+    ramadanForfaits: [
+            {
+                name: "3000 DA",
+                data: "120Go",
+                price: "3000",
+                duration: "4 semaines",
+                buy: "Acheter",
+            },
+            {
+                name: "200 DA",
+                data: "5Go",
+                price: "200",
+                duration: "24H",
+                buy: "Acheter",
+            },
+    ],
     labels: {
       titleData: "FORFAITS INTERNET",
       titleSmart: "FORFAITS SMART",
@@ -357,6 +373,22 @@ export default {
         duration: "<span class='font-rubik'>4</span> أسابيع",
         buy: "Acheter",
       },
+    ],
+    ramadanForfaits: [
+            {
+                name: "3000 دج",
+                data: "<span class='font-rubik'>120Go</span>",
+                price: "3000",
+                duration: "4 أسابيع",
+                buy: "شراء",
+            },  
+            {
+                name: "200 دج",
+                data: "<span class='font-rubik'>5Go</span>",
+                price: "200",
+                duration: "24 ساعة",
+                buy: "شراء",
+            },
     ],
     labels: {
       titleData: "اشتراكات الإنترنت",

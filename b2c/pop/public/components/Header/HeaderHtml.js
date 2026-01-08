@@ -1,3 +1,4 @@
+import FiveGOne from "../../../../shared/component/FiveGOne.js";
 import { offerData } from "./OfferData.js";
 
 export const generateHeaderHTML = (
@@ -306,6 +307,7 @@ export const generateHeaderHTML = (
             </div>
           </div>
         </div>
+        ${FiveGOne(language, "mobile")}
       </div>
 
     </div>

@@ -69,7 +69,17 @@ export default {
       confirm: `15Go + 5Go YouTube, valables 4 semaines. `,
       success: `Vous venez de recevoir 15Go d'internet + 5Go YouTube, valables 4 semaines.`,
       insufficient: `Votre crédit est insuffisant pour acheter le forfait INTERNET 1000. Veuillez recharger votre compte.`,
-    }
+    },
+    "3000 DA": {
+      confirm: `120Go valables 4 semaines.`,
+      success:  `Vous venez de recevoir 120Go valables 4 semaines.`,
+      insufficient: `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
+    },
+    "200 DA": {
+      confirm: `5Go valables 24 heures.`,
+      success:  `Vous venez de recevoir 5Go valables 24 heures.`,
+      insufficient: `Votre crédit est insuffisant. Veuillez recharger votre compte.`,
+    },
   },
 
   ar: {
@@ -142,6 +152,16 @@ export default {
       confirm: `اشتراك 1000 يمنحك 15Go و5Go يوتيوب صالحين 4 أسابيع.`,
       success: `لقد حصلت على 15Go و5Go يوتيوب صالحين 4 أسابيع.`,
       insufficient: `رصيدك غير كافٍ لشراء اشتراك 1000. يُرجى تعبئة رصيدك.`,
+    },
+    "3000 دج": {
+      confirm: `120Go صالحة لمدة 4 أسابيع.`,
+      success: `لقد حصلت على 120Go صالحة لمدة 4 أسابيع.`,
+      insufficient: `رصيدك غير كافٍ. يُرجى تعبئة حسابك.`,
+    },
+    "200 دج": {
+      confirm: ``,
+      success: `لقد حصلت على 5Go صالحة لمدة 24 ساعة.`,
+      insufficient: `رصيدك غير كافٍ. يُرجى تعبئة حسابك.`,
     },
   },
 };
