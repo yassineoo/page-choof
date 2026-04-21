@@ -19,7 +19,7 @@ export default class Consommation {
       PUBLIC_IMAGE_BASE: "./assets/images/consommation/",
       DARK_ICONS: ["dollar-phone", "infini", "internet", "rocket", "services", "sms", "telephone", "phone"],
       MAX_SECTIONS_BEFORE_EXPAND: 4,
-      EXPANDABLE_INDICES: new Set([]),
+      EXPANDABLE_INDICES: new Set([1]),
     };
 
     this.cache = {
@@ -526,7 +526,7 @@ export default class Consommation {
 
     const renderedCard = `
       <div class="card ${bgClass} ${borderClass} rounded-[22px] overflow-hidden w-full relative transition-all duration-300 ${shadowClass} flex flex-col ${fontClass}" data-card-index="${cardIndex}">
-        <div class="px-6 py-7 flex flex-col justify-between min-h-full relative">
+        <div class="px-6 pt-7 pb-20 flex flex-col justify-between min-h-full relative">
         <div class="">
           <!-- Title Section -->
           <div class="flex items-center gap-1 flex-shrink-0" style="padding-bottom: 24px; border-bottom: 0.87px solid #F4F4F4;">

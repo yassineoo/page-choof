@@ -65,7 +65,84 @@ export class Slider {
 
     return `
       <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
-        <div class="p-6 forfait-card-container h-full" ${isRTL ? `dir="rtl"` : ``}>
+        <div class="py-6 h-full" ${isRTL ? `dir="rtl"` : ``}>
+          <div class="">
+            <h2 class="${titleFontClass} font-medium text-2xl text-center capitalize text-black dark:text-white mb-4 leading-tight">
+                 ${
+                   isRTL && index < 4
+                     ? `<span>
+                    اشتراك <span class="font-rubik">${offer.price}</span>
+                  </span>`
+                     : offer.name
+                 }
+            </h2>
+          </div>
+
+          <div class="w-full forfait-divider mb-4"></div>
+
+          <div class="mt-10 mb-8">
+            <div class="flex justify-center">
+              <h3 class="${dataFontClass} text-[50px] font-semibold text-ooredoo-red dark:text-white mb-2 ${textAlign} leading-10">${offer.data}</h3>
+            </div>
+          </div>
+
+          <div class="">
+            <div class="flex justify-center items-baseline w-full mb-4">
+              <div class="flex items-baseline justify-center" style="width:70%;">
+                <span class="font-rubik font-semibold mx-2 text-[27.96px] leading-none text-black dark:text-white">${priceNumber}</span>
+                <span class="${priceFontClass} font-semibold text-base leading-none text-black dark:text-white whitespace-nowrap">${currencyLabel}</span>
+                <span class="${priceFontClass} font-semibold leading-none text-black dark:text-white whitespace-nowrap ${
+      durationText.includes("cycle") ? "text-xs" : "text-base"
+    }">/${durationText}</span>
+              </div>
+            </div>
+
+            <div class="forfait-button-zone flex justify-center w-full">
+              <button class="forfait-buy-btn ${buttonFontClass} bg-ooredoo-red text-white border-none rounded-full cursor-pointer"
+                style="
+                  font-weight: 600;
+                  font-size: 16px;
+                  line-height: 100%;
+                  letter-spacing: 0;
+                  text-align: center;
+                  text-transform: uppercase;
+                  padding: 8px 24px;
+                  height: 32px;
+                  width: auto;
+                  min-width: 96px;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+                data-index="${index}" 
+                data-offer-name="${offer.name}">
+                ${buyLabel}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  createForfaitAppelCard(offer, index, labels) {
+    const isRTL = this.currentLang === "ar";
+    const currencyLabel = isRTL ? "دج" : "DA";
+    const buyLabel = labels.buy || offer.buy || (isRTL ? "شراء" : "Acheter");
+    const textAlign = isRTL ? "text-right" : "text-left";
+
+    const titleFontClass = this.getFontClass(offer.name);
+    const dataFontClass = this.getFontClass(offer.data);
+    const buttonFontClass = this.getFontClass(buyLabel);
+
+    const priceNumber = this.convertToLatinNumerals(offer.price.replace(/[^0-9٠-٩]/g, ""));
+    const durationText = this.convertToLatinNumerals(offer.duration);
+
+    const priceFontClass = isRTL ? "font-noto-kufi-arabic" : "font-rubik";
+
+    return `
+      <div class="relative bg-white dark:bg-[#2C2C2C] rounded-xl flex flex-col w-full mx-auto forfait-card-shadow overflow-hidden" style="max-width: 300px;">
+        <div class="py-6 h-full" ${isRTL ? `dir="rtl"` : ``}>
           <div class="pb-4">
             <h2 class="${titleFontClass} font-medium text-2xl text-center capitalize text-black dark:text-white mb-4 leading-tight">
                  ${
@@ -76,11 +153,11 @@ export class Slider {
                      : offer.name
                  }
             </h2>
-            <div class="w-full h-px forfait-divider mb-4"></div>
+            <div class="w-full forfait-divider"></div>
           </div>
 
-          <div class="forfait-card-content flex-1">
-            <div class="mb-5">
+          <div class="forfait-card-content flex-1 px-3 h-[180px]">
+            <div class="my-4">
               <h3 class="${dataFontClass} text-[28px] font-semibold text-ooredoo-red dark:text-white mb-2 ${textAlign} leading-10">${offer.data}</h3>
             </div>
 
@@ -162,10 +239,41 @@ export class Slider {
     const dotsId = gridType === "forfait-grid-5" ? "forfaits-dots" : "smart-dots";
     const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
 
+    const totalOffers = offers.length;
+    const desktopRemainder = totalOffers % 3;
+    const tabletRemainder = totalOffers % 2;
+
+    const desktopPlacementClass = (index) => {
+      if (desktopRemainder === 1 && index === totalOffers - 1) {
+        return "lg:col-start-5";
+      }
+      if (desktopRemainder === 2 && index === totalOffers - 2) {
+        return "lg:col-start-3";
+      }
+      if (desktopRemainder === 2 && index === totalOffers - 1) {
+        return "lg:col-start-7";
+      }
+      return "";
+    };
+
+    const tabletPlacementClass = (index) => {
+      if (tabletRemainder === 1 && index === totalOffers - 1) {
+        return "sm:col-span-2 sm:justify-self-center";
+      }
+      return "";
+    };
+
     return `
-            <div class="forfait-grid ${gridClass === "forfait-grid-5" && gridClass} ${gridClass === "forfait-grid-3" && "grid-cols-1"}">
-              ${offers.map((offer, index) => this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
+          <div class="flex justify-center">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-0 gap-y-6 w-full lg:w-[60rem]">
+              ${offers
+                .map((offer, index) => {
+                  const placementClasses = `${tabletPlacementClass(index)} ${desktopPlacementClass(index)}`.trim();
+                  return `<div class="lg:col-span-4 ${placementClasses}">${this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)}</div>`;
+                })
+                .join("")}
             </div>
+          </div>
       
             
             <div class="forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
@@ -176,6 +284,35 @@ export class Slider {
                         (offer, index) => `
                     <div class="swiper-slide flex justify-center p-4">
                         ${this.createForfaitCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)}
+                    </div>
+                    `
+                      )
+                      .join("")}
+                </div>
+                <div class="absolute bottom-0  swiper-pagination"></div>
+                </div>
+            </div>`;
+  }
+
+  createResponsiveAppelLayout(offers, labels, gridType, isRTL, convertToLatinNumerals) {
+    const gridClass = gridType === "forfait-grid-5" ? "forfait-grid-5" : "forfait-grid-3";
+    const sliderId = gridType === "forfait-grid-5" ? "forfaits-slider" : "smart-slider";
+    const startIndex = gridType === "forfait-grid-5" ? 0 : ForfaitData[this.currentLang].forfaits.length;
+
+    return `
+            <div class="forfait-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              ${offers.map((offer, index) => this.createForfaitAppelCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)).join("")}
+            </div>
+      
+            
+            <div class="forfait-mobile-slider forfait-mobile-container" id="${sliderId}">
+                <div class="relative swiper">
+                <div class="swiper-wrapper">
+                    ${offers
+                      .map(
+                        (offer, index) => `
+                    <div class="swiper-slide flex justify-center p-4">
+                        ${this.createForfaitAppelCard(offer, startIndex + index, labels, isRTL, convertToLatinNumerals)}
                     </div>
                     `
                       )

@@ -596,6 +596,55 @@ class ForfaitComponent {
   
 
 }
+
+/* Final override: forfait-grid-5 responsive behavior */
+.forfait-grid-5 {
+  grid-template-columns: repeat(1, minmax(260px, 320px)) !important;
+  justify-content: center !important;
+}
+
+.forfait-grid-5 > * {
+  grid-column: auto !important;
+  justify-self: center !important;
+}
+
+/* md screens: 2 columns + center last single card */
+@media (min-width: 768px) {
+  .forfait-grid-5 {
+    grid-template-columns: repeat(2, minmax(260px, 320px)) !important;
+  }
+
+  .forfait-grid-5 > * {
+    justify-self: stretch !important;
+  }
+
+  .forfait-grid-5 > *:last-child:nth-child(odd) {
+    grid-column: 1 / -1 !important;
+    justify-self: center !important;
+  }
+}
+
+/* large screens: 3 columns + center last line with 1 or 2 cards */
+@media (min-width: 1280px) {
+  .forfait-grid-5 {
+    grid-template-columns: repeat(3, minmax(260px, 320px)) !important;
+  }
+
+  .forfait-grid-5 > *:nth-last-child(1):nth-child(3n + 1) {
+    grid-column: 2 / 3 !important;
+    justify-self: center !important;
+  }
+
+  .forfait-grid-5 > *:nth-last-child(2):nth-child(3n + 1) {
+    grid-column: 1 / 2 !important;
+    justify-self: end !important;
+  }
+
+  .forfait-grid-5 > *:last-child:nth-child(3n + 2) {
+    grid-column: 3 / 4 !important;
+    justify-self: start !important;
+  }
+}
   `;
   }
 
@@ -833,14 +882,13 @@ class ForfaitComponent {
     if (language === "ar") {
       return `
       <h2 class="text-center text-3xl sm:text-4xl md:text-5xl font-medium mb-16 text-black dark:text-white" dir="rtl">
-        <span class="font-noto-kufi-arabic" dir="rtl">اشتراكات</span>
-        <span class="font-rubik" dir="ltr"> SMART</span>
+        <span class="font-noto-kufi-arabic" dir="rtl">اشتراكات المكالمات والإنترنت</span>
       </h2>
     `;
     } else {
       return `
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center text-black dark:text-white">
-        <span class="font-rubik">FORFAITS SMART</span>
+        <span class="font-rubik uppercase">FORFAITS  Appels ET Internet</span>
       </h2>
     `;
     }
@@ -869,7 +917,7 @@ class ForfaitComponent {
       <section class="w-full bg-white dark:bg-[#141414] py-16">
         <div class="max-w-[1600px] mx-auto md:px-6">
           ${this.renderTitle(language)}
-          ${this.slider.createResponsiveLayout(data.smartForfaits, labels, "forfait-grid-3")}
+          ${this.slider.createResponsiveAppelLayout(data.smartForfaits, labels, "forfait-grid-3")}
         </div>
       </section>
 
