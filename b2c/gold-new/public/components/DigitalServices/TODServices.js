@@ -350,7 +350,7 @@ export default class TODServices {
       () => {
         this.showModal(
           "congrats",
-          isArabic ? "هنيئًا!" : "Félicitations!",
+          isArabic ? "هنيئًا!" : "Félicitations !",
           congratsMsg,
           () => {
             this.showModal("credit", isArabic ? "رصيد غير كافٍ" : "Crédit insuffisant", noCreditMsg, () => {}, isArabic);

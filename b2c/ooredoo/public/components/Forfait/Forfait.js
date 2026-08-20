@@ -920,7 +920,6 @@ class ForfaitComponent {
           <div class="mb-8">
             ${this.slider.createResponsiveLayoutOoredoo(data.ooredoo, labels, "forfait-grid-3", this.isRTL)}
           </div>
-          ${this.slider.createResponsiveLayout(data.forfaits, data.ooredoo,labels, "forfait-grid-5", this.isRTL)}
         </div>
         <div class="bg-ooredoo-red py-16 mt-16 px-[clamp(1rem,5vw,5rem)]">
           <h1 class="text-white leading-snug font-extrabold text-[42px] max-w-[1000px] font-outfit uppercase">${
@@ -953,71 +952,11 @@ class ForfaitComponent {
             </button>
           </div>
         </div>
-        <div class="relative py-16 dark:bg-black bg-white">
-          <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
-            ${
-              this.currentLang === "ar"
-                ? "<span> عرض خاص بشهر رمضان</span>"
-                : "<span class='font-rubik'>PROMO Ramadan</span>"
-            }
-          </h2>
-          <div class="">
-              ${this.ramadanSlider.createResponsiveLayout(14,labels, "forfait-grid-4", this.isRTL, this.convertToLatinNumerals)}
-          </div>
-          <div class="hidden md:block absolute bottom-3 ${this.currentLang === "ar" ? "left-10" : "right-10"}">
-            <img 
-              src="./assets/images/RamadanImage1.svg" 
-              alt="Ramadan Decor Bottom" 
-              class="object-contain mx-auto dark:hidden" 
-            />
-            <img 
-              src="./assets/images/RamadanImage1-dark.svg" 
-              alt="Ramadan Decor Bottom" 
-              class="w-40 h-40 object-contain mx-auto hidden dark:block opacity-35" 
-            />
-          </div>
-          <div class="hidden md:block absolute top-0 ${this.currentLang === "ar" ? "right-16" : "left-16"} opacity-25">
-            <img 
-              src="./assets/images/RamadanImage2.svg" 
-              alt="Ramadan Decor Bottom" 
-              class="object-contain mx-auto dark:hidden" 
-            />
-            <img 
-              src="./assets/images/RamadanImage2-dark.svg" 
-              alt="Ramadan Decor Bottom" 
-              class="object-contain mx-auto hidden dark:block" 
-            />
-          </div>
-          <div class="md:hidden absolute top-0 left-0">
-            <img 
-              src="./assets/images/RamadanImage1.svg" 
-              alt="Ramadan Decor Bottom" 
-              class="w-40 h-40 object-contain mx-auto dark:hidden" 
-            />
-            <img 
-              src="./assets/images/RamadanImage1-dark.svg" 
-              alt="Ramadan Decor Bottom" 
-              class="w-40 h-40 object-contain mx-auto hidden dark:block opacity-35" 
-            />
-          </div>
-        </div>
-        <div class="py-16 dark:bg-[#2c2c2c] bg-[#F8F8F8]">
-          <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
-            ${
-              this.currentLang === "ar"
-                ? "<span>اشتراكات المكالمات والإنترنت</span>"
-                : "<span class='font-rubik'>FORFAITS APPELS & INETERNET</span>"
-            }
-          </h2>
-          <div class="">
-              ${this.slider.createResponsiveLayoutInternet(data.internetForfaits, labels, "forfait-grid-4", this.isRTL, this.convertToLatinNumerals)}
-          </div>
-        </div>
       </section>
 
       <section class="w-full bg-white dark:bg-black py-16">
           <h2 class="text-3xl sm:text-4xl uppercase md:text-5xl font-medium mb-16 leading-tight tracking-wide text-center">
-            ${this.currentLang === "ar" ? "اشتراكات الإنترنت" : "FORFAITS INTERNET"}
+            ${this.currentLang === "ar" ? "اشتراكات إضافية" : "Forfaits Extra"}
           </h2>
           <div class="">
               ${this.slider.createResponsiveLayoutSmart(data.smartForfaits, labels, "forfait-grid-4", this.isRTL, this.convertToLatinNumerals)}
@@ -1028,7 +967,8 @@ class ForfaitComponent {
     </div>
   `;
 
-    this.bindPurchaseButtons(language, [...data.ooredoo ,...data.forfaits,...data.internetForfaits, ...data.smartForfaits, ...data.ramadanForfaits], labels);
+    this.bindPurchaseButtons(language, [...data.ooredoo ,...data.forfaits, ...data.smartForfaits,], labels);
+    this.bindOoredooModeButtons();
 
     requestAnimationFrame(() => {
       this.slider.initSwiper("ooredoo-slider");
@@ -1040,6 +980,7 @@ class ForfaitComponent {
     setTimeout(() => {
       this.initializeSliders();
       this.addSliderAccessibility();
+      this.equalizeOoredooCardHeights();
     }, 50);
   }
 
@@ -1449,7 +1390,13 @@ class ForfaitComponent {
       e.stopPropagation();
       e.stopImmediatePropagation();
 
-      const index = parseInt(button.getAttribute("data-index"), 10);
+      const card = button.closest("[data-ooredoo-card]");
+      const isOoredooCard = Boolean(card);
+      const baseIndex = parseInt(button.getAttribute("data-base-index") || button.dataset.baseIndex || button.getAttribute("data-index") || "0", 10) || 0;
+      const currentTab = isOoredooCard ? (card.getAttribute("data-current-tab") || "X6") : null;
+      const packOffset = currentTab === "X9" ? 1 : currentTab === "X12" ? 2 : 0;
+      const index = isOoredooCard ? baseIndex + packOffset : parseInt(button.getAttribute("data-index"), 10);
+      console.log("Acheter index:", index, "currentTab:", currentTab, "baseIndex:", baseIndex);
       const offer = allOffers[index];
       if (offer) {
         setTimeout(() => {
@@ -1466,10 +1413,14 @@ class ForfaitComponent {
       e.stopPropagation();
       e.stopImmediatePropagation();
 
-      const index = parseInt(button.getAttribute("data-index"), 10);
-      "Touch event on purchase button, index:", index;
+      const card = button.closest("[data-ooredoo-card]");
+      const isOoredooCard = Boolean(card);
+      const baseIndex = parseInt(button.getAttribute("data-base-index") || button.dataset.baseIndex || button.getAttribute("data-index") || "0", 10) || 0;
+      const currentTab = isOoredooCard ? (card.getAttribute("data-current-tab") || "X6") : null;
+      const packOffset = currentTab === "X9" ? 1 : currentTab === "X12" ? 2 : 0;
+      const index = isOoredooCard ? baseIndex + packOffset : parseInt(button.getAttribute("data-index"), 10);
+      console.log("Acheter index:", index, "currentTab:", currentTab, "baseIndex:", baseIndex);
       const offer = allOffers[index];
-      "OFFER SENDED from touchHandler", offer;
 
       if (offer) {
         setTimeout(() => {
@@ -1483,6 +1434,237 @@ class ForfaitComponent {
 
     this.container.addEventListener("click", clickHandler);
     this.container.addEventListener("touchend", touchHandler, { passive: false });
+  }
+
+  bindOoredooModeButtons() {
+    if (this.ooredooModeClickHandler) {
+      this.container.removeEventListener("click", this.ooredooModeClickHandler);
+    }
+
+    const clickHandler = (event) => {
+      const button = event.target.closest(".ooredoo-mode-btn");
+      if (!button) return;
+
+      const card = button.closest("[data-ooredoo-card]");
+      if (!card) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const nextMode = button.getAttribute("data-card-mode") === "ooredoo" ? "ooredoo" : "forfait";
+      const selectedPack = button.getAttribute("data-card-pack");
+      const selectedFreeCount = button.getAttribute("data-card-free-count");
+      const offerNameElement = card.querySelector("[data-card-offer-name]");
+      const packLabelElement = card.querySelector("[data-card-pack-label]");
+      const freeCountElement = card.querySelector("[data-card-free-count-display]");
+      const freeSummaryCountElement = card.querySelector("[data-card-free-summary-count]");
+      const baseOfferName = card.getAttribute("data-base-offer-name") || offerNameElement?.dataset.baseOfferName || offerNameElement?.textContent?.trim() || "";
+      
+      // Lock height BEFORE toggling to prevent layout shift
+      this.equalizeOoredooCardHeights();
+      
+      // Save scroll position
+      const scrollY = window.scrollY;
+
+      card.setAttribute("data-active-mode", nextMode);
+
+      const ooredooView = card.querySelector('[data-card-view="ooredoo"]');
+      const forfaitView = card.querySelector('[data-card-view="forfait"]');
+      if (ooredooView) {
+        ooredooView.classList.toggle("hidden", nextMode !== "ooredoo");
+      }
+      if (forfaitView) {
+        forfaitView.classList.toggle("hidden", nextMode !== "forfait");
+      }
+
+      if (selectedPack) {
+        card.setAttribute("data-current-tab", selectedPack);
+      } else {
+        card.setAttribute("data-current-tab", "X6");
+      }
+
+      if (nextMode === "forfait" && selectedPack) {
+        if (offerNameElement) {
+          const isArabic = this.getLanguage() === 'ar';
+          const displayName = isArabic ? `${selectedPack.replace('X6', '6X').replace('X9', '9X').replace('X12', '12X')} ${baseOfferName}` : `${baseOfferName} ${selectedPack}`;
+          offerNameElement.textContent = displayName.trim();
+          if (isArabic) offerNameElement.setAttribute('dir', 'ltr'); else offerNameElement.removeAttribute('dir');
+        }
+        if (packLabelElement) {
+          packLabelElement.textContent = selectedPack;
+        }
+        if (freeCountElement && selectedFreeCount) {
+          freeCountElement.textContent = selectedFreeCount;
+        }
+        if (freeSummaryCountElement && selectedFreeCount) {
+          freeSummaryCountElement.textContent = selectedFreeCount;
+        }
+        // Update the free text based on selected count
+        const freeTextElement = card.querySelector("[data-card-free-text]");
+        if (freeTextElement && selectedFreeCount) {
+          if (this.currentLang === "ar") {
+            if (selectedFreeCount == 1) {
+              freeTextElement.textContent = "اشتراك مجانًا!";
+            } else if (selectedFreeCount == 2) {
+              freeTextElement.textContent = "اشتراكين مجانًا!";
+            } else if (selectedFreeCount == 3) {
+              freeTextElement.textContent = "3 اشتراكات مجانًا!";
+            }
+          } else {
+            if (selectedFreeCount == 1) {
+              freeTextElement.textContent = "gratuit !";
+            } else {
+              freeTextElement.textContent = `gratuits !`;
+            }
+          }
+        }
+        // Update paid count using ForfaitData if possible
+        try {
+          const allForfaits = (ForfaitData && ForfaitData[this.currentLang] && ForfaitData[this.currentLang].forfaits) || [];
+          const match = allForfaits.find(f => f.name && baseOfferName && f.name.indexOf(baseOfferName) === 0 && f.name.indexOf(selectedPack) !== -1);
+          const paidValue = match ? (match.payed || match.paid || match.payed === 0 ? match.payed : null) : null;
+          const paidElement = card.querySelector('[data-card-paid-count]');
+            const givenElement = card.querySelector('[data-card-given]');
+          const priceElement = card.querySelector('[data-card-price]');
+          const oldPriceElement = card.querySelector('[data-card-old-price]');
+          if (paidElement) {
+            if (paidValue != null) paidElement.textContent = paidValue;
+            else if (selectedPack === 'X6') paidElement.textContent = '5';
+            else if (selectedPack === 'X9') paidElement.textContent = '7';
+            else if (selectedPack === 'X12') paidElement.textContent = '9';
+          }
+            if (givenElement) {
+              const givenValue = match ? (match.given != null ? match.given : null) : null;
+              if (givenValue != null) givenElement.textContent = givenValue;
+              else if (selectedPack === 'X6') givenElement.textContent = '6';
+              else if (selectedPack === 'X9') givenElement.textContent = '9';
+              else if (selectedPack === 'X12') givenElement.textContent = '12';
+            }
+          if (priceElement) {
+            const priceVal = match ? (match.price != null ? match.price : null) : null;
+            if (priceVal != null) priceElement.textContent = priceVal;
+          }
+          if (oldPriceElement) {
+            const oldPriceVal = match ? (match.oldPrice != null ? match.oldPrice : null) : null;
+            if (oldPriceVal != null) oldPriceElement.textContent = oldPriceVal;
+          }
+        } catch (e) {
+          // ignore lookup errors
+        }
+        // Update buy button data-index using the pack offset from the base X6 value
+        try {
+          const buyBtn = card.querySelector('.forfait-buy-btn');
+          if (buyBtn) {
+            const baseIdx = parseInt(buyBtn.getAttribute('data-base-index') || buyBtn.dataset.baseIndex || buyBtn.getAttribute('data-index') || '0', 10) || 0;
+            const currentTab = card.getAttribute('data-current-tab') || selectedPack || 'X6';
+            let packOffset = 0;
+            if (currentTab === 'X9') packOffset = 1;
+            else if (currentTab === 'X12') packOffset = 2;
+
+            const computedIndex = baseIdx + packOffset;
+            buyBtn.setAttribute('data-index', String(computedIndex));
+            buyBtn.dataset.baseIndex = String(baseIdx);
+          }
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      // When switching back to ooredoo, restore buy button index
+      if (nextMode === 'ooredoo') {
+        try {
+          const buyBtn = card.querySelector('.forfait-buy-btn');
+          if (buyBtn && buyBtn.dataset.baseIndex) {
+            buyBtn.setAttribute('data-index', buyBtn.dataset.baseIndex);
+          }
+        } catch (e) {}
+      }
+
+      card.querySelectorAll(".ooredoo-mode-btn").forEach((modeButton) => {
+        const isActive = modeButton === button;
+        modeButton.classList.toggle("bg-[#ED1C2421]", isActive);
+        modeButton.classList.toggle("text-[#ED1C24]", isActive);
+        modeButton.classList.toggle("border-[#ED1C2421]", isActive);
+        modeButton.classList.toggle("bg-[#78626321]", !isActive);
+        modeButton.classList.toggle("text-[#827D7D]", !isActive);
+        modeButton.classList.toggle("border-[#78626321]", !isActive);
+      });
+
+      // Equalize heights immediately and lock the card height before any reflow
+      this.equalizeOoredooCardHeights();
+      
+      // Restore scroll position to prevent jump
+      window.scrollTo(0, scrollY);
+      
+      // Then re-equalize after a small delay to catch any deferred layout changes
+      requestAnimationFrame(() => {
+        this.equalizeOoredooCardHeights();
+      });
+      
+      setTimeout(() => {
+        this.equalizeOoredooCardHeights();
+      }, 100);
+    };
+
+    this.ooredooModeClickHandler = clickHandler;
+    this.container.addEventListener("click", clickHandler);
+  }
+
+  equalizeOoredooCardHeights() {
+    const cards = Array.from(this.container.querySelectorAll("[data-ooredoo-card]"));
+    if (!cards.length) return;
+
+    // Reset all to auto to measure
+    cards.forEach((card) => {
+      card.style.height = "auto";
+      card.style.minHeight = "";
+      
+      const views = card.querySelectorAll("[data-card-view]");
+      views.forEach(view => {
+        view.style.height = "auto";
+        view.style.minHeight = "";
+      });
+    });
+
+    // Measure max heights of each view type across all cards
+    let maxOoredooHeight = 0;
+    let maxForfaitHeight = 0;
+
+    cards.forEach((card) => {
+      const ooredooView = card.querySelector('[data-card-view="ooredoo"]');
+      const forfaitView = card.querySelector('[data-card-view="forfait"]');
+      
+      if (ooredooView) {
+        maxOoredooHeight = Math.max(maxOoredooHeight, ooredooView.offsetHeight);
+      }
+      if (forfaitView) {
+        maxForfaitHeight = Math.max(maxForfaitHeight, forfaitView.offsetHeight);
+      }
+    });
+
+    // Apply the larger of the two heights to BOTH views in each card
+    const maxViewHeight = Math.max(maxOoredooHeight, maxForfaitHeight);
+    
+    cards.forEach((card) => {
+      const ooredooView = card.querySelector('[data-card-view="ooredoo"]');
+      const forfaitView = card.querySelector('[data-card-view="forfait"]');
+      
+      if (ooredooView) {
+        ooredooView.style.minHeight = `${maxViewHeight}px`;
+      }
+      if (forfaitView) {
+        forfaitView.style.minHeight = `${maxViewHeight}px`;
+      }
+    });
+
+    // Then equalize the outer card heights
+    const maxHeight = cards.reduce((height, card) => Math.max(height, card.offsetHeight), 0);
+    if (!maxHeight) return;
+
+    cards.forEach((card) => {
+      card.style.height = `${maxHeight}px`;
+      card.style.minHeight = `${maxHeight}px`;
+    });
   }
 
   handlePurchaseClick(offer, language) {
@@ -1744,6 +1926,10 @@ class ForfaitComponent {
     if (this.purchaseTouchHandler) {
       this.container.removeEventListener("touchend", this.purchaseTouchHandler);
       this.purchaseTouchHandler = null;
+    }
+    if (this.ooredooModeClickHandler) {
+      this.container.removeEventListener("click", this.ooredooModeClickHandler);
+      this.ooredooModeClickHandler = null;
     }
   }
 

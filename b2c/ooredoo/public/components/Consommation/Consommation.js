@@ -21,7 +21,7 @@ export default class Consommation {
       PUBLIC_IMAGE_BASE: "./assets/images/consommation/",
       DARK_ICONS: ["dollar-phone", "infini", "internet", "rocket", "services", "sms", "telephone", "phone"],
       MAX_SECTIONS_BEFORE_EXPAND: 4,
-      EXPANDABLE_INDICES: new Set([3]),
+      EXPANDABLE_INDICES: new Set([3,2]),
     };
 
     this.cache = {

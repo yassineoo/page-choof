@@ -113,11 +113,11 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
             <img src="./assets/images/header/help-white.svg" class="w-4 h-4 lg:w-5 lg:h-5 mr-2 hidden dark:inline transition-opacity duration-300" />
           </a>
           <div class="relative h-[40px] lg:h-[48px]" id="language-desktop">
-            <button class="flex items-center h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] hover:bg-gray-50 transition-all duration-300 text-black">
+            <button class="flex items-center justify-between gap-4 h-full px-4 lg:px-6 rounded-[40px] bg-white border border-[#E4E4E7] hover:bg-gray-50 transition-all duration-300 text-black">
               <span id="current-language" class="${
                 language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"
               } text-sm lg:text-base font-medium">${currentLanguage}</span>
-              <img src="./assets/images/header/chevron-down.svg" class="w-3 h-3 lg:w-4 lg:h-4 ml-2 transition-all duration-300" />
+              <img src="./assets/images/header/chevron-down.svg" class="w-3 h-3 lg:w-4 lg:h-4 transition-all duration-300" />
             </button>
             <div class="language-dropdown-menu hidden absolute right-0 mt-2 w-full min-w-[120px] bg-white rounded-lg shadow-lg z-50 border border-gray-200 overflow-hidden transition-all duration-300">
               <a href="#" class="language-option block px-4 lg:px-6 py-3 hover:bg-gray-100 text-black transition-all duration-300 ${
@@ -182,8 +182,8 @@ export const generateHeaderHTML = (language = "fr", userData = {}, theme = "ligh
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 min-w-0">
                 <img src="./assets/images/header/Company.svg" class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
-                <span class="font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
-                  companyHTML || "Nom de lentreprise"
+                <span class="${language === "ar" ? "font-noto-kufi-arabic" : "font-rubik"} font-medium text-[clamp(14px,2.5vw,18px)] leading-[1.7] tracking-[0.02em] text-white truncate">${
+                  language === "ar" ? "اسم الشركة" : "Nom De L'entreprise" || "Nom De L'entreprise"
                 }</span>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0">

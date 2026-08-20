@@ -1,4 +1,4 @@
-import { todPackages, todDescription } from "./TODServicesData.js";
+import { todPackages, todDescription, todPackagesWorldCup } from "./TODServicesData.js";
 
 // Enhanced styles following Dima pattern
 const customCSS = `
@@ -102,7 +102,7 @@ function renderLogoBlock({ logo, subLogo, id }) {
 function renderTopCard(pkg, lang) {
   const topCard = document.createElement("div");
   topCard.className =
-    "flex items-center justify-between w-full h-auto bg-white dark:bg-[#2C2C2C] dima-card-border mb-2 rounded-[15px] px-[16px] sm:px-[24px] py-[24px]";
+    "flex items-center justify-between w-full h-[100px] bg-white dark:bg-[#2C2C2C] dima-card-border mb-2 rounded-[15px] px-[16px] sm:px-[24px] py-[24px]";
 
   const logoBlock = renderLogoBlock(pkg);
 
@@ -130,14 +130,14 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
 
   const titleBar = document.createElement("div");
   titleBar.className =
-    "w-full bg-[#ED1C24] text-white  font-medium text-[25px] leading-[1] text-center capitalize py-[20px] rounded-t-[15px] tracking-wide";
+    `w-full bg-[#ED1C24] text-white font-medium text-[22px] leading-[1] text-center py-[20px] rounded-t-[15px] tracking-wide`;
   titleBar.innerHTML = pkg.title;
   downCard.appendChild(titleBar);
 
   // Tabs
   const tabs = document.createElement("div");
   tabs.className =
-    "flex items-center w-[95%] h-[41px] gap-[8px] border border-[#ED1C24] rounded-full px-[10px] py-[7px] bg-white dark:bg-[#2C2C2C] mb-[10px] mt-6 shadow-sm";
+    `${pkg.features ? 'hidden' : 'flex'} items-center w-[95%] h-[41px] gap-[8px] border border-[#ED1C24] rounded-full px-[10px] py-[7px] bg-white dark:bg-[#2C2C2C] mb-[10px] mt-6 shadow-sm`;
   pkg.durations.forEach((d, i) => {
     const tab = document.createElement("button");
     tab.type = "button";
@@ -154,14 +154,27 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
 
   // Options
   const optsUL = document.createElement("ul");
-  optsUL.className = "flex flex-col gap-y-[9px] w-full px-[15px] py-5";
+  const featuresUL = document.createElement("ul");
+  optsUL.className = `${pkg.features ? 'hidden' : ''} flex flex-col gap-y-[9px] w-full px-[15px] py-5`;
+  featuresUL.className = `${pkg.features ? '' : 'hidden'} flex flex-col gap-y-[9px] w-full px-[15px] py-5`;
+
   curr.options.forEach((opt) => {
     const li = document.createElement("li");
     li.className = "flex items-center gap-2 text-[15px] font-normal text-[#191919] dark:text-gray-200";
     li.innerHTML = `<img src="./assets/images/dima/checkbox.svg" alt="" class="w-[19px] h-[19px] mr-2" /><span>${opt}</span>`;
     optsUL.appendChild(li);
   });
+
+  const features = pkg.features?.forEach((opt) => {
+    const li = document.createElement("li");
+    li.className = "flex items-center gap-2 text-[15px] font-normal text-[#191919] dark:text-gray-200";
+    li.innerHTML = `<img src="./assets/images/dima/checkbox.svg" alt="" class="w-[19px] h-[19px] mr-2" /><span>${opt}</span>`;
+    featuresUL.appendChild(li);
+  });
+  
+  
   downCard.appendChild(optsUL);
+  downCard.appendChild(featuresUL);
 
   // Dima-style Divider
   const dash = document.createElement("div");
@@ -186,8 +199,8 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
   const priceRow = document.createElement("div");
   priceRow.className = "flex items-baseline justify-center gap-[10px]";
   priceRow.innerHTML = `
-    <span class="font-semibold font-rubik  text-[37.38px] dark:text-white">${curr.price}</span>
-    <span class="font-semibold text-[20px] dark:text-white">${lang === "ar" ? "دج/" : "DA /"}${curr.months}</span>
+    <span class="font-semibold font-rubik  text-[37.38px] dark:text-white">${pkg.features ? pkg.price : curr.price}</span>
+    <span class="font-semibold text-[20px] dark:text-white">${lang === "ar" ? "دج" : "DA "}${pkg.features ? "" : "/" + curr.months}</span>
   `;
   downCard.appendChild(priceRow);
 
@@ -204,7 +217,7 @@ function renderDownCard(pkg, currentDuration, onSwitch, onBuy, lang) {
 function TODCard({ packageData, lang, onBuyClick }) {
   let currentDuration = 0;
   const card = document.createElement("div");
-  card.className = "flex flex-col items-center w-full gap-[4px]";
+  card.className = "flex flex-col items-center w-full max-w-[25rem] gap-[4px]";
 
   const topCard = renderTopCard(packageData, lang);
   card.appendChild(topCard);
@@ -301,6 +314,7 @@ export default class TODServices {
   render() {
     const lang = this.getLang();
     const pkgs = todPackages[lang];
+    const worldCupPkg = todPackagesWorldCup[lang];
     const isArabic = lang === "ar";
 
     this.container.innerHTML = `
@@ -313,6 +327,8 @@ export default class TODServices {
               ${isArabic ? "اشتراكات <span class='font-rubik'>TOD</span>" : "LES FORFAITS TOD"}
             </h2>
           </div>
+
+          <div class="flex flex-col items-center md:flex-row md:justify-center gap-7 mb-7 w-full" id="tod-world-cup-packages-grid"></div>
           
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 place-items-center w-full" id="tod-packages-grid"></div>
           <div id="tod-modal-hook"></div>
@@ -321,7 +337,9 @@ export default class TODServices {
     `;
 
     const packageGrid = this.container.querySelector("#tod-packages-grid");
-    pkgs.forEach((pkg) => {
+    const worldCupGrid = this.container.querySelector("#tod-world-cup-packages-grid");
+
+    pkgs.filter((pkg) => !pkg.type.includes("TOD WORLD CUP")).forEach((pkg) => {
       const card = TODCard({
         packageData: pkg,
         lang,
@@ -329,19 +347,69 @@ export default class TODServices {
       });
       packageGrid.appendChild(card);
     });
+
+    pkgs.filter((pkg) => pkg.type.includes("TOD WORLD CUP")).forEach((pkg) => {
+      const card = TODCard({
+        packageData: pkg,
+        lang,
+        onBuyClick: (selection) => this.handleBuyClick(selection, lang),
+      });
+      worldCupGrid.appendChild(card);
+    });
   }
 
   handleBuyClick(selection, lang) {
     const isArabic = lang === "ar";
     const confirmMsg = isArabic
-      ? `احصل على دخول إلى <span class="whitespace-nowrap">${selection.duration.giga}Go + ${selection.package.type}</span> إنترنت صالحين شهر بـ <span class="whitespace-nowrap">${selection.duration.price} دج.</span>`
-      : `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go d'internet valables ${selection.duration.months} pour <span class="whitespace-nowrap">${selection.duration.price} DA.</span>`;
+      ? 
+      selection.package.type === "TOD WORLD CUP TV"
+      ? 
+      `شاهدوا كل مباريات كأس العالم على شاشة تلفازكم واحصلوا على 12 شهر أفلام ومسلسلات بــ 900 19 دج.`
+      : selection.package.type === "TOD WORLD CUP MOBILE" ?
+      `شاهدوا كل مباريات كأس العالم على شاشة هاتفكم، واحصلوا على 12 شهر أفلام ومسلسلات بــ 900 12 دج.`
+      :
+      `احصل على دخول إلى <span class="whitespace-nowrap">${selection.duration.giga}Go + ${selection.package.type}</span> إنترنت صالحين شهر بـ <span class="whitespace-nowrap">${selection.duration.price} دج.</span>`
+      : 
+      selection.package.type === "TOD WORLD CUP TV"
+      ? `Obtenez un accès complet à la Coupe du Monde sur votre TV + 12 mois de films et de séries pour 19 900 DA.`
+      : selection.package.type === "TOD WORLD CUP MOBILE" ?
+      `Obtenez un accès complet à la Coupe du Monde sur votre Mobile + 12 mois de films et de séries pour 12 900 DA.`
+      :
+      `Obtenez un accès à ${selection.package.type} + ${selection.duration.giga}Go d'internet valables ${selection.duration.months} pour <span class="whitespace-nowrap">${selection.duration.price} DA.</span>`;
     const congratsMsg = isArabic
-      ? `لقد قمت بتفعيل اشتراكك  <span class="whitespace-nowrap">${selection.duration.giga}Go + ${selection.package.type}</span> بنجاح. قم بتحميل TOD الآن على <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">هذا الرابط</a>.`
-      : `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">ce lien</a>.`;
+      ? 
+      selection.package.type === "TOD WORLD CUP TV"
+      ? 
+      `لقد قمت بتفعيل اشتراك كأس العالم بنجاح! حمل TOD على  <a href="${selection.package.link}" target="_blank" class="text-blue-500">هذا الرابط</a>. <br/>استفد من عروض حصرية على My Ooredoo عند شراء اشتراكاتك المقبلة. <br/>حمّل التطبيق على: <a href="http://ore.do/myo" target="_blank" class="text-ooredoo-red">http://ore.do/myo</a>`
+      :selection.package.type === "TOD WORLD CUP MOBILE" ?
+      `لقد قمت بتفعيل اشتراك كأس العالم بنجاح! حمل TOD على  <a href="${selection.package.link}" target="_blank" class="text-blue-500">هذا الرابط</a>. <br/>استفد من عروض حصرية على My Ooredoo عند شراء اشتراكاتك المقبلة. <br/>حمّل التطبيق على: <a href="http://ore.do/myo" target="_blank" class="text-ooredoo-red">http://ore.do/myo</a>`
+      :
+
+      `لقد قمت بتفعيل اشتراكك  <span class="whitespace-nowrap">${selection.duration.giga}Go + ${selection.package.type}</span> بنجاح. قم بتحميل TOD الآن على <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">هذا الرابط</a>.`
+      : 
+      selection.package.type === "TOD WORLD CUP TV" 
+      ? `Vous avez activé votre forfait Coupe du Monde avec succès ! Téléchargez TOD sur <a href="${selection.package.link}" target="_blank" class="text-blue-500 underline">ce lien</a>. <br/> 
+         Pour vos prochains achats, profitez d’offres exclusives sur My Ooredoo. Téléchargez l’application ici : <a href="http://ore.do/myo" target="_blank" class="text-ooredoo-red">http://ore.do/myo.</a>`
+      : selection.package.type === "TOD WORLD CUP MOBILE" ?
+      `Vous avez activé votre forfait Coupe du Monde avec succès ! Téléchargez TOD sur <a href="${selection.package.link}" target="_blank" class="text-blue-500 underline">ce lien</a>. <br/> 
+         Pour vos prochains achats, profitez d’offres exclusives sur My Ooredoo. Téléchargez l’application ici : <a href="http://ore.do/myo" target="_blank" class="text-ooredoo-red">http://ore.do/myo.</a>`
+      :
+      `Vous avez activé votre forfait ${selection.package.type} + ${selection.duration.giga}Go avec succès. Téléchargez TOD sur <a href="${selection.duration.link}" target="_blank" class="text-blue-500 underline">ce lien</a>.`;
     const noCreditMsg = isArabic
-      ? `عزيزي الزبون، رصيدك غير كافٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى.`
-      : `Cher client, votre crédit est insuffisant pour acheter le forfait ${selection.package.type}. Veuillez recharger votre compte et réessayer.`;
+      ?
+      selection.package.type === "TOD WORLD CUP TV"
+      ? `رصيدك غير كافٍ لشراء هذا الاشتراك. يُرجى تعبئة حسابك و المحاولة مرة أخرى.`
+      : selection.package.type === "TOD WORLD CUP MOBILE" ?
+      `رصيدك غير كافٍ لشراء هذا الاشتراك. يُرجى تعبئة حسابك و المحاولة مرة أخرى.`
+      : 
+      `عزيزي الزبون، رصيدك غير كافٍ لشراء الاشتراك ${selection.package.type}. يُرجى تعبئة حسابك والمحاولة مرة أخرى.`
+      :
+      selection.package.type === "TOD WORLD CUP TV"
+      ? `Vous n’avez pas assez de crédit pour acheter ce forfait. Veuillez recharger votre compte et réessayer.`
+      : selection.package.type === "TOD WORLD CUP MOBILE" ?
+        `Vous n’avez pas assez de crédit pour acheter ce forfait. Veuillez recharger votre compte et réessayer.`
+      :
+      `Cher client, votre crédit est insuffisant pour acheter le forfait ${selection.package.type}. Veuillez recharger votre compte et réessayer.`;
 
     this.showModal(
       "buy",

@@ -265,7 +265,7 @@ export class Slider {
 
     return `
           <div class="flex justify-center">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-0 gap-y-6 w-full lg:w-[60rem]">
+            <div class="forfait-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-0 gap-y-6 w-full lg:w-[60rem]">
               ${offers
                 .map((offer, index) => {
                   const placementClasses = `${tabletPlacementClass(index)} ${desktopPlacementClass(index)}`.trim();

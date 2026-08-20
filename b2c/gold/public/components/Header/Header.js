@@ -427,7 +427,7 @@ export default class Header {
         confirmationTitle: "MODE DE RECHARGEMENT",
         cancelBtn: "Annuler",
         confirmBtn: "Confirmer",
-        felicitationTitle: "Félicitations!",
+        felicitationTitle: "Félicitations !",
         okBtn: "OK",
         offers: {
           mactivia: {

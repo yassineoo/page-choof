@@ -2,6 +2,75 @@ export const todPackages = {
   fr: [
     {
       id: "tod-mobile",
+      title: "Forfait Coupe du Monde TV",
+      type: "TOD WORLD CUP TV",
+      description: `Vivez l’euphorie de la Coupe du Monde sur votre TV ! Regardez 104 matchs en HD et sans coupure !`,
+      logo: "./assets/images/services/TOD.svg",
+      durations: [
+        { months: "1 mois", 
+          giga: 5, 
+          price: 900, 
+          priceText: "900 DA/mois", 
+          options: ["Accès PREMIUM à TOD", "5Go Internet"], link: "https://tod.dz" },
+        {
+          months: "3 mois",
+          giga: 15,
+          price: 2500,
+          priceText: "2500 DA/3 mois",
+          options: ["Accès PREMIUM à TOD", "15Go Internet"],
+          link: "https://tod.dz",
+        },
+        {
+          months: "12 mois",
+          giga: 60,
+          price: 9000,
+          priceText: "9000 DA/12 mois",
+          options: ["Accès PREMIUM à TOD", "60Go Internet"],
+          link: "https://tod.dz",
+        },
+      ],
+      features:[
+        "Accès à tous les matchs de la Coupe du Monde",
+        "12 mois de films et séries"
+      ],
+      price: 19900,
+      link: "https://tod.dz",
+    },
+    {
+      id: "tod-mobile",
+      title: "Forfait Coupe du Monde Mobile",
+      type: "TOD WORLD CUP MOBILE",
+      description: `Vivez l’euphorie de la Coupe du Monde sur votre mobile ! Regardez 104 matchs en HD et sans coupure !`,
+      logo: "./assets/images/services/TOD.svg",
+      subLogo: "./assets/images/services/Mobile.svg",
+      durations: [
+        { months: "1 mois", giga: 5, price: 900, priceText: "900 DA/mois", options: ["Accès PREMIUM à TOD", "5Go Internet"], link: "https://tod.dz" },
+        {
+          months: "3 mois",
+          giga: 15,
+          price: 2500,
+          priceText: "2500 DA/3 mois",
+          options: ["Accès PREMIUM à TOD", "15Go Internet"],
+          link: "https://tod.dz",
+        },
+        {
+          months: "12 mois",
+          giga: 60,
+          price: 9000,
+          priceText: "9000 DA/12 mois",
+          options: ["Accès PREMIUM à TOD", "60Go Internet"],
+          link: "https://tod.dz",
+        },
+      ],
+      features:[
+        "Accès à tous les matchs de la Coupe du Monde",
+        "12 mois de films et séries"
+      ],
+      price: 12900,
+      link: "https://tod.dz",
+    },
+    {
+      id: "tod-mobile",
       title: "Forfait TOD MOBILE",
       type: "TOD MOBILE",
       description: `Profitez du meilleur du sport et du divertissement sur votre smartphone ! <strong>Streaming HD</strong> + un volume internet <span class='sm:whitespace-nowrap'>généreux à partir de <strong>900 DA par mois</strong> !</span>`,
@@ -98,6 +167,43 @@ export const todPackages = {
   ar: [
     {
       id: "tod-mobile",
+      title: "اشتراك كأس العالم <span class='font-rubik'>TV</span>",
+      type: "TOD WORLD CUP TV",
+      description: `عيشوا اثارة كأس العالم على شاشة التلفاز!  شاهدوا كل مبارياتكم بجودة HD و بدون انقطاع.`,
+      logo: "./assets/images/services/TOD.svg",
+      durations: [
+        { months: "شهر", giga: 5, price: 900, priceText: "900 دج/شهر", options: ["دخول Premium إلى TOD", "5Go"], link: "https://tod.dz" },
+        { months: "3 أشهر", giga: 15, price: 2500, priceText: "2500 دج/3 أشهر", options: ["دخول Premium إلى TOD", "15Go"], link: "https://tod.dz" },
+        { months: "12 شهر", giga: 60, price: 9000, priceText: "9000 دج/12 شهر", options: ["دخول Premium إلى TOD", "60Go"], link: "https://tod.dz" },
+      ],
+      features:[
+        "دخول إلى كل مباريات كأس العالم ",
+        "12 شهر أفلام ومسلسلات"
+      ],
+      price: 19900,
+      link: "https://tod.dz",
+    },
+    {
+      id: "tod-mobile",
+      title: "اشتراك كأس العالم <span class='font-rubik'>Mobile</span>",
+      type: "TOD WORLD CUP MOBILE",
+      description: `عيشوا اثارة كأس العالم على هاتفكم!شاهدوا كل مبارياتكم بجودة HD و بدون انقطاع.`,
+      logo: "./assets/images/services/TOD.svg",
+      subLogo: "./assets/images/services/Mobile.svg",
+      durations: [
+        { months: "شهر", giga: 5, price: 900, priceText: "900 دج/شهر", options: ["دخول Premium إلى TOD", "5Go"], link: "https://tod.dz" },
+        { months: "3 أشهر", giga: 15, price: 2500, priceText: "2500 دج/3 أشهر", options: ["دخول Premium إلى TOD", "15Go"], link: "https://tod.dz" },
+        { months: "12 شهر", giga: 60, price: 9000, priceText: "9000 دج/12 شهر", options: ["دخول Premium إلى TOD", "60Go"], link: "https://tod.dz" },
+      ],
+      features:[
+        "دخول إلى كل مباريات كأس العالم ",
+        "12 شهر أفلام ومسلسلات"
+      ],
+      price: 12900,
+      link: "https://tod.dz",
+    },
+    {
+      id: "tod-mobile",
       title: "اشتراك <span class='font-rubik'>TOD MOBILE</span>",
       type: "TOD MOBILE",
       description: `استمتعوا بأفضل المحتويات الرياضية والترفيهية على هاتفكم! <strong>المشاهدة على الإنترنت بجودة HD</strong> + حجم إنترنت كبير ابتداءً من <strong>900 دج في الشهر!</strong>`,
@@ -155,3 +261,20 @@ export const todDescription = {
     مسلسلات، أفلام، ومحتويات حصرية. اختر الباقة الأنسب لاحتياجاتك الترفيهية.
   `,
 };
+
+export const todPackagesWorldCup = {
+  fr: [
+    {
+      id: "tod-world-cup-tv",
+      title: "Forfait Coupe du Monde TV",
+      type: "TOD MOBILE",
+      description: `Vivez l’euphorie de la Coupe du Monde sur votre TV ! Regardez 104 matchs en HD et sans coupure`,
+      logo: "./assets/images/services/TOD.svg",
+      subLogo: "./assets/images/services/Mobile.svg",
+      features:[
+        "Accès à tous les matchs de la Coupe du Monde",
+        "12 mois de films et séries"
+      ]
+    },
+  ]
+}

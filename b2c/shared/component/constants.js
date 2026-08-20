@@ -2,7 +2,7 @@ export const  dialogData = {
     fr:{
         dialog1Title: "Activer la 5G",
         dialog2Title: "Signature du contrat",
-        dialog3Title: "Félicitations!",
+        dialog3Title: "Félicitations !",
         dialog1Message: "Profitez du meilleur réseau en Algérie en activant la 5G.",
         dialog2Message: "Veuillez signer dans le cadre ci-dessous.",
         dialog3Message: "5G activée avec succés !"

@@ -339,7 +339,7 @@ export class RamadanSlider {
       //resize: this.handleResize.bind(this),
     };
     this.setupEventListeners();
-    this.checkAndShowWelcomeDialog();
+    // this.checkAndShowWelcomeDialog(); // Dialog disabled - no longer showing on page load
   }
 
   handleLanguageChange() {
@@ -788,7 +788,7 @@ export class RamadanSlider {
     this.forceRemoveConfirmationElements();
     
     const isRTL = this.currentLang === "ar";
-    const felicitationText = isRTL ? "هنيئًا!" : "Félicitations!";
+    const felicitationText = isRTL ? "هنيئًا!" : "Félicitations !";
     
     const felicitationHTML = `
       <div id="ramadan-felicitation-panel" style="display:none"
